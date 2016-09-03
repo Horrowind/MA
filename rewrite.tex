@@ -1,0 +1,234 @@
+\section{Necklaces and rewriting systems}
+
+\newcommand{\rewrite}{\rightarrow}
+\newcommand{\cycsim}{\stackrel{\circ}{\sim}}
+\newcommand{\srewrite}[1]{\stackrel{#1}{\rewrite}}
+
+In this chapter we are interested in proving that certain boundary configurations can not be build with a set of polygons from another boundary configuration. For this we model insertion and deletion of an $n$-gon as a rewriting step on a part of the boundary.
+
+\begin{example}
+In \autoref{fig:rewrite:example1}, we glued a triangle at a patch with a hexagonal boundary. Suppose we are working with a patch where each inner vertex has valence $3$ and each vertex on the boundary has valence two, i.e. coincides with exactly one polygon inside the patch. After gluing the triangle, two vertices have now valence three. To enforce the idea of symbolic manipulation we denote vertices of valence two with $a$ and those of valence three with $b$ (and $c$, $d$, etc.\ for larger valences). Then we can think of an insertion as exchanging the substring $aa$ with $bab$ and in converse the deletion as exchanging $bab$ with $a$. In \autoref{fig:rewrite:example2} we see that adding a triangle can also change a substring $aba$ to $bb$. Note that the vertex labeled with $b$ is now an inner vertex and has valence three. If we assumed that each inner vertex has a larger valence, then this transformation would have worked differently.
+  \begin{tikzfigure}{\label{fig:rewrite:example1}}{An example of a rewriting step}
+    \tikz[label distance=0.0em];
+    \matrix (m) [ column sep=1cm] {
+      \begin{scope}[xscale=1.0, yscale=0.866]
+        \node (a) at (-0.5, -1) [inner sep = 1pt, circle, below left] {$a$};
+        \node (b) at (0.5, -1) [inner sep = 1pt, circle, below right] {$a$};
+        \node (c) at (1, 0) [inner sep = 1pt, circle, right] {$a$};
+        \node (d) at (0.5, 1) [inner sep = 1pt, circle, above right] {$a$};
+        \node (e) at (-0.5, 1) [inner sep = 1pt, circle, above left] {$a$};
+        \node (f) at (-1, 0) [inner sep = 1pt, circle, left] {$a$};
+        
+        \filldraw[fill=gray!50!white] (-0.5, -1) -- (0.5, -1) -- (1, 0) -- (0.5, 1) -- (-0.5, 1) -- (-1, 0) -- cycle;
+      \end{scope}
+      &
+      \begin{scope}[xscale=1.0, yscale=0.866]
+        \node (a) at (-0.5, -1) [inner sep = 1pt, circle, below left] {$a$};
+        \node (b) at (0.5, -1) [inner sep = 1pt, circle, below right] {$a$};
+        \node (c) at (1, 0) [inner sep = 1pt, circle, below right] {$b$};
+        \node (d) at (0.5, 1) [inner sep = 1pt, circle, above] {$b$};
+        \node (e) at (-0.5, 1) [inner sep = 1pt, circle, above left] {$a$};
+        \node (f) at (-1, 0) [inner sep = 1pt, circle, left] {$a$};
+        \node (g) at (1.5, 1) [inner sep = 1pt, circle, above right] {$a$};
+        \filldraw[fill=gray!50!white] (-0.5, -1) -- (0.5, -1) -- (1, 0) -- (0.5, 1) -- (-0.5, 1) -- (-1, 0) -- cycle;
+        \draw (1, 0) -- (1.5, 1) -- (0.5, 1);
+      \end{scope}
+      \\
+    };
+  \end{tikzfigure}
+
+  \begin{tikzfigure}{\label{fig:rewrite:example2}}{Another example of a rewriting step}
+    \tikz[label distance=0.0em];
+    \matrix (m) [ column sep=1cm] {
+      \begin{scope}[xscale=1.0, yscale=0.866]
+        \node (a) at (-0.5, -1) [inner sep = 1pt, circle, below left] {$a$};
+        \node (b) at (0.5, -1) [inner sep = 1pt, circle, below right] {$a$};
+        \node (c) at (0, 0) [inner sep = 1pt, circle, right] {$b$};
+        \node (d) at (0.5, 1) [inner sep = 1pt, circle, above right] {$a$};
+        \node (e) at (-0.5, 1) [inner sep = 1pt, circle, above left] {$a$};
+        \node (f) at (-1, 0) [inner sep = 1pt, circle, left] {$a$};
+        \filldraw[fill=gray!50!white] (-0.5, -1) -- (0.5, -1) -- (0, 0) -- (0.5, 1) -- (-0.5, 1) -- (-1, 0) -- cycle;
+        \draw[dotted] (0, 0) -- (-0.25, 0);
+      \end{scope}
+      &
+      \begin{scope}[xscale=1.0, yscale=0.866]
+        \filldraw[fill=gray!50!white] (-0.5, -1) -- (0.5, -1) -- (0, 0) -- (0.5, 1) -- (-0.5, 1) -- (-1, 0) -- cycle;
+        \node (a) at (-0.5, -1) [inner sep = 1pt, circle, below left] {$a$};
+        \node (b) at (0.5, -1) [inner sep = 1pt, circle, below right] {$b$};
+        \node (d) at (0.5, 1) [inner sep = 1pt, circle, above] {$b$};
+        \node (e) at (-0.5, 1) [inner sep = 1pt, circle, above left] {$a$};
+        \node (f) at (-1, 0) [inner sep = 1pt, circle, left] {$a$};
+        \draw (0.5, -1) -- (0.5, 1);
+        \draw[dotted] (0, 0) -- (-0.25, 0);
+      \end{scope}
+      \\
+    };
+  \end{tikzfigure}
+\end{example}
+
+To make these notions precise we need some definitions:
+
+With this example in mind, we want to show that with such transformations we can not go from one special kind of boundary to another, which shows, that we could not build a whole polyhedron:
+
+\begin{example}
+  Assume we want to build a $3$-valent polyhedron with a single hexagon and some triangles and nonagons and further assume that we showed that under the
+\end{example}
+
+\begin{definition}[Abstract rewriting system] An abstract rewriting system (or simply rewrite system) is a set $A$ together with a rewriting relation $\rewrite\; \subseteq A\times A$. One writes $\srewrite{\ast}$ for the transitive, reflexive closure and $\stackrel{\ast}{\leftrightarrow}$ for the equivalence closure of $\to$.
+\end{definition}
+
+\begin{definition}[String rewriting]\label{def:rewrite:stringrewriting} Let $R \subseteq \Sigma^\ast \times \Sigma^\ast$ be a set of pairs of words over $\Sigma$ called rules. We define a binary relation $\rewrite_R\; \subseteq \Sigma^\ast$ by containing all instances of $(w_1, w_2)$ where $w_1 = a l b, w_2 = a r b \text{ for } a, b \in \Sigma^\ast \text{ and } (l, r) \in R$. When talking about rules, we may also write $l \rewrite r$ instead of $(l, r)$. Therefore we can define from $R$ an abstract rewriting system $(\Sigma^\ast, \rewrite_R)$.
+\end{definition}
+
+
+
+\begin{definition}[(Local) Confluence, {\sc Church-Rosser}-Property] An abstract rewriting system $(A, \rewrite)$ is called confluent (locally confluent), if for all $a, b, c \in A$ with $a \srewrite{\ast} b$ and $a \srewrite{\ast} c$ ($a \rewrite b$ and $a \rewrite c$) there exists $x \in A$, such that $b \srewrite{\ast} x$ and $c \srewrite{\ast} x$. Further (or as we will see equivalently), $A$ has the {\sc Church-Rosser}-Property, that is, whenever $a \stackrel{\ast}{\leftrightarrow} b$ there exists a $x \in A$, such that $a \rewrite x$ and $b \rewrite x$.
+
+\begin{tikzfigure}{\label{fig:rewrite:confluence}}{Visualization of confluence and local confluence and the {\sc Church-Rosser}-Property.}
+  \tikz[label distance=0.0em];
+  \matrix (m) [ column sep=1cm] {
+    \begin{scope}
+      \node (a) at (1, 2) {$a$};
+      \node (b) at (0, 1) {$b$};
+      \node (c) at (2, 1) {$c$};
+      \node (x) at (1, 0) {$x$};
+      
+      \draw [thick, ->] (a) -- (b) node [inner sep=1pt, circle, midway, above left] {$\ast$};
+      \draw [thick, ->] (a) -- (c) node [inner sep=1pt, circle, midway, above right] {$\ast$};
+      \draw [thick, ->, dashed] (b) -- (x) node [inner sep=1pt, circle, midway, below left] {$\ast$};
+      \draw [thick, ->, dashed] (c) -- (x) node [inner sep=1pt, circle, midway, below right] {$\ast$};
+    \end{scope}
+    &
+    \begin{scope}
+      \node (a) at (1, 2) {$a$};
+      \node (b) at (0, 1) {$b$};
+      \node (c) at (2, 1) {$c$};
+      \node (x) at (1, 0) {$x$};
+      
+      \draw [thick, ->] (a) -- (b);
+      \draw [thick, ->] (a) -- (c);
+      \draw [thick, ->, dashed] (b) -- (x) node [inner sep=1pt, circle, midway, below left] {$\ast$};
+      \draw [thick, ->, dashed] (c) -- (x) node [inner sep=1pt, circle, midway, below right] {$\ast$};
+    \end{scope}
+    &
+    \begin{scope}
+      \node (a) at (0, 2) {$a$};
+      \node (b) at (2, 2) {$b$};
+      \node (x) at (1, 0) {$x$};
+      
+      \draw [thick, <->] (a) -- (b) node [inner sep=1pt, circle, midway, above] {$\ast$};
+      \draw [thick, ->, dashed] (a) -- (x) node [inner sep=1pt, circle, midway, below left] {$\ast$};
+      \draw [thick, ->, dashed] (b) -- (x) node [inner sep=1pt, circle, midway, below right] {$\ast$};
+    \end{scope}
+    \\
+  };
+\end{tikzfigure}
+
+\end{definition}
+
+
+
+\begin{definition}[Termination] An abstract rewriting system $(A, \rewrite)$ is called terminating if there do not exist infinite chains $a_1 \rewrite a_2 \rewrite \dots$.
+\end{definition}
+
+\begin{proposition} \label{prop:rewriting:equivalence} An abstract rewriting system is confluent if and only if it has the {\sc Church-Rosser}-Property. Additionally, these properties hold for any terminating and locally confluent rewriting system.
+\begin{proof} See \cite{baader1999term}.
+\end{proof}
+\end{proposition}
+
+\autoref{prop:rewriting:equivalence} gives us a very useful tool for deciding $a \stackrel{\ast}{\leftrightarrow} b$ for a terminating and confluent rewriting system $(A, \rewrite)$. We can choose reductions $a \rewrite a_1 \rewrite a_2 \rewrite \dots \rewrite a_n$ and $b \rewrite b_1 \rewrite b_2 \rewrite \dots \rewrite b_m$ arbitrarily until no further reductions are possible (this will happen since $\rewrite$ is terminating). Then $a_n \stackrel{\ast}{\leftrightarrow} b_m$, and by the {\sc Church-Rosser}-property there exist further reductions $a_n \srewrite{\ast} x, b_m \srewrite{\ast} x$ to some $x \in A$. But $x$ is equal to $a_n$ and $b_m$, since these were fully reduced and therefore $a \stackrel{\ast}{\leftrightarrow} b$ if and only if $a_n = b_m$.
+\\\\
+Let us now introduce our main object of interest:
+
+\begin{definition}[Necklace] \label{def:necklace} Let $\Sigma$ be a finite set. A necklace with colors $\Sigma$ is an element of $\Sigma^\circ \coloneqq \Sigma^\ast / \cycsim$, where $\cycsim$ is generated by $a_1 a_2 \dots a_n \cycsim a_2 \dots a_n a_1$ for all $n \in \nats, a_1, a_2, \dots, a_n \in \Sigma$.
+\end{definition}
+
+\begin{definition} Let $\Sigma$ again be a finite set and let $R$ be a set of rules. Then define $\Sigma_R^\circ \coloneqq \Sigma^\ast / \langle \cycsim \cup \rewrite_{R} \rangle = \Sigma^\circ /\langle \rewrite_R \rangle$, where $\langle \sim \rangle$ is the equivalence closure of $\sim$.
+\end{definition}
+
+We are interested in deciding whether two words $w_1, w_2 \in \Sigma^\ast$ are representing the same equivalence class in $\Sigma^\circ_R$, which we will call the word problem, and want to use a rewriting approach to this problem. But we face some serious problems with the above machinery quickly:\\
+
+Normally, termination of a rewriting system is proven using some strict order $>$ on $A$ without an infinite descending chain, which decreases in each rewriting step, i.e. $\rewrite \; \subseteq \; >$. This turns out to be a technical difficulty for necklaces as there is no easy way to define a strict order on $\Sigma^\ast$ which is also useful for rewriting. We hence use a more general approach as presented in \cite{huet1980confluent}.
+
+\begin{definition}[(Local) Confluence modulo $\sim$] An abstract rewriting system $(A, \rewrite)$ is called confluent modulo an equivalence relation $\sim\;\subseteq A^2$, if for all $a, b, a', b' \in \Sigma$, $a \sim b$ with $a\srewrite{\ast}a'$ and $b\srewrite{\ast}b'$ there exists $\bar{a}, \bar{b}$ such that $\bar{a} \sim \bar{b}$ with $a'\srewrite{\ast}\bar{a}$ and $b'\srewrite{\ast}\bar{b}$. $(A, \rewrite)$ is called locally confluent modulo $\sim$, if
+\begin{itemize}
+  \item For all $a, b, c \in A$ with $a \rewrite b, a \rewrite c$ there exists $\bar{b}, \bar{c} \in A$ such that $b \srewrite{\ast} \bar{b}, c \srewrite{\ast} \bar{c}$ and $\bar{b} \sim \bar{c}$.
+  \item For all $a, b, a' \in A$ with $a \sim b, a \rewrite a'$ there exists $\bar{a}, \bar{b} \in A$ such that $a' \srewrite{\ast} \bar{a}, b \srewrite{\ast} \bar{b}$ and $\bar{a} \sim \bar{b}$.
+\end{itemize}
+\begin{tikzfigure}{\label{fig:rewrite:confluence}}{Visualization of confluence and local confluence modulo $\sim$.}
+  \tikz[label distance=0.0em];
+  \matrix (m) [ column sep=1cm] {
+    \begin{scope}
+      \node (a) at (1, 2) {$a$};
+      \node (b) at (2, 2) {$b$};
+      \node (a') at (0, 1) {$a'$};
+      \node (b') at (3, 1) {$b'$};
+      \node (a_) at (1, 0) {$\bar{a}$};
+      \node (b_) at (2, 0) {$\bar{b}$};
+      
+      \path (a) -- (b) node [inner sep=0pt, circle, midway] {$\sim$};
+      \draw [thick, ->] (a) -- (a') node [inner sep=1pt, circle, midway, above left] {$\ast$};
+      \draw [thick, ->] (b) -- (b') node [inner sep=1pt, circle, midway, above right] {$\ast$};
+      \draw [thick, ->, dashed] (a') -- (a_) node [inner sep=1pt, circle, midway, below left] {$\ast$};
+      \draw [thick, ->, dashed] (b') -- (b_) node [inner sep=1pt, circle, midway, below right] {$\ast$};
+      \path (a_) -- (b_) node [inner sep=0pt, circle, midway] {$\sim$};
+    \end{scope}
+    &
+    \begin{scope}
+    \end{scope}
+    &
+    \begin{scope}
+      \node (a) at (1, 2) {$a$};
+      \node (b) at (0, 1) {$b$};
+      \node (c) at (2, 1) {$c$};
+      \node (x) at (0.5, 0) {$\bar{b}$};
+      \node (y) at (1.5, 0) {$\bar{c}$};
+      
+      \draw [thick, ->] (a) -- (b);
+      \draw [thick, ->] (a) -- (c);
+      \draw [thick, ->, dashed] (b) -- (x) node [inner sep=1pt, circle, midway, left] {$\ast$};
+      \draw [thick, ->, dashed] (c) -- (y) node [inner sep=1pt, circle, midway, right] {$\ast$};
+      \path (x) -- (y) node [inner sep=0pt, circle, midway] {$\sim$};
+
+      \node (and) at (3, 1) {and};
+
+      \node (a2) at (5, 2) {$a$};
+      \node (b2) at (6, 2) {$b$};
+      \node (b_2) at (6, 0) {$\bar{b}$};
+      \node (a'2) at (4, 1) {$a'$};
+      \node (a_2) at (5, 0) {$\bar{a}$};
+      
+      \path (a2) -- (b2) node [inner sep=1pt, circle, midway] {$\sim$};
+      \draw [thick, ->] (a2) -- (a'2);
+      \draw [thick, ->, dashed] (a'2) -- (a_2) node [inner sep=1pt, circle, midway, below left] {$\ast$};
+      \draw [thick, ->, dashed] (b2) -- (b_2) node [inner sep=1pt, circle, midway, right] {$\ast$};
+      \path (a_2) -- (b_2) node [inner sep=0pt, circle, midway] {$\sim$};
+    \end{scope}
+    \\
+  };
+\end{tikzfigure}
+\end{definition}
+
+The new freedom of viewing everything modulo an equivalence relation allows us to do two things: First, we can view cyclic strings as strings modulo $\cycsim$ and therefore cyclic string rewriting as string rewriting modulo $\cycsim$. Second, we now have a tool for proving termination. The problem of finding a strict order on $\Sigma^\ast / \cycsim$ can now be moved to finding an order on $\Sigma^\ast / \cycsim$, where $\cycsim$ is a superset of $\cycsim$. For each
+
+A similar statement to \autoref{prop:rewriting:equivalence} is also true in the more general context:
+
+\begin{proposition}
+A terminating abstract rewriting system is confluent modulo an equivalence relation $\sim$ if and only if it is locally confluent modulo $\sim$.
+\begin{proof}
+See \cite{huet1980confluent}.
+\end{proof}
+\end{proposition}
+
+\begin{definition} [Necklace rewriting]
+Let $R \subseteq \Sigma^\ast \times \Sigma^\ast$ be sets of pairs of words over $\Sigma$ called rules and let further $R^\circ, \subseteq \Sigma^\circ \times \Sigma^\circ$ be a set of pairs of cyclical words over $\Sigma$. We now define $\rewrite_R$ as above in \autoref{def:rewrite:stringrewriting} and abuse notation a bit with defining $\rewrite_{R^\circ} = R^\circ$. This gives a abstract rewriting system on necklaceses: $(\Sigma^\circ, (\rewrite_R / \cycsim)\;\cup \rewrite_{R^\circ})$.
+\end{definition}
+
+
+\begin{definition}[Critical pairs for necklace rewriting]
+
+\end{definition}
+
+\begin{proposition}[Critical pair lemma for necklace rewriting]
+
+\end{proposition}
