@@ -4,12 +4,13 @@
 #include "datasizes.h"
 #include "boundary.h"
 
-#define PAGE_SIZE 16384
+#define PAGE_SIZE 16384 * 4
 #define QUEUE_SIZE_PER_PAGE ((PAGE_SIZE - sizeof(void*)) / sizeof(boundary_bits_t))
 
 
 typedef struct {
     void* empty_list;
+    int empty_list_size;
 } page_allocator_t;
 
 typedef struct queue_page {

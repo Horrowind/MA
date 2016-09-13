@@ -1,4 +1,4 @@
-#include "stdio.h"
+#include <stdio.h>
 
 #include "datasizes.h"
 #include "boundary.h"
@@ -23,7 +23,6 @@ boundary_t boundary_rotr(boundary_t boundary, int shift) {
 
 
 #ifndef NDEBUG
-#include <stdio.h>
 #include <stdlib.h>
 static
 void boundary_check(boundary_t boundary) {
@@ -37,7 +36,7 @@ static
 void boundary_check(boundary_t boundary) { }
 #endif
 
-static
+static inline
 boundary_t boundary_normalize(boundary_t boundary) {
     boundary_t max = boundary;
     for(int i = 0; i < boundary.size; i++) {

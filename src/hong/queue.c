@@ -8,23 +8,31 @@
 
 void page_allocator_init(page_allocator_t* page_allocator) {
     page_allocator->empty_list = NULL;
+    page_allocator->empty_list_size = 0;
 }
 
 void* allocate_page(page_allocator_t* page_allocator) {
     void* new_page;
     if(page_allocator->empty_list == NULL) {
         new_page = mmap(NULL, PAGE_SIZE, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+        madvise(new_page, PAGE_SIZE, MADV_SEQUENTIAL);
     } else {
         new_page = page_allocator->empty_list;
         page_allocator->empty_list = *(void**)(new_page);
+        page_allocator->empty_list_size--;
     }
     return new_page;
 }
 
 void deallocate_page(page_allocator_t* page_allocator, void* page) {
-    void* old_empty_list_head = page_allocator->empty_list;
-    *(void**)(page_allocator) = page;
-    *(void**)(page) = old_empty_list_head;
+    if(page_allocator->empty_list_size > 100) {
+        munmap(page, PAGE_SIZE); 
+    } else {
+        void* old_empty_list_head = page_allocator->empty_list;
+        *(void**)(page_allocator) = page;
+        *(void**)(page) = old_empty_list_head;
+        page_allocator->empty_list_size++;
+    }
 }
 
 void page_allocator_deinit(page_allocator_t* page_allocator) {
@@ -82,10 +90,32 @@ boundary_bits_t queue_dequeue(queue_t* queue) {
         deallocate_page(queue->page_allocator, queue->tail_page);
         queue->tail_page = new_tail_page;
         result = queue->tail_page->entries[0];
+        if(queue->tail_page->next_page != NULL) {
+            madvise(queue->tail_page->next_page, PAGE_SIZE, MADV_WILLNEED);
+        }
         queue->tail_index = 1;
     }
     return result;
 }
+
+inline
+boundary_bits_t queue_next(queue_t* queue) {
+    boundary_bits_t result;
+    if(queue->tail_index < QUEUE_SIZE_PER_PAGE) {
+        result = queue->tail_page->entries[queue->tail_index];
+        queue->tail_index++;
+    } else {
+        queue_page_t* new_tail_page = queue->tail_page->next_page;
+        queue->tail_page = new_tail_page;
+        result = queue->tail_page->entries[0];
+        if(queue->tail_page->next_page != NULL) {
+            madvise(queue->tail_page->next_page, PAGE_SIZE, MADV_WILLNEED);
+        }
+        queue->tail_index = 1;
+    }
+    return result;
+}
+
 
 // Moves the first page from donor to donee.
 //    Assumes that donor has at least two different pages.

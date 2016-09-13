@@ -6,10 +6,11 @@
 #define inline
 #endif
 
-#define NUM_THREADS 2
-int small_ngon = 5;
-int large_ngon = 7;
-#define MAX_SIZE 31
+#define NUM_THREADS 1
+int small_ngon = 4;
+int large_ngon = 9;
+#define MAX_NGON_COUNT 2
+#define MAX_SIZE (bitsof(boundary_bits_t)/6)
 #define MAX_SEARCH_SIZE 50
 
 #define VALENCE        3

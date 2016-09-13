@@ -3,391 +3,263 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <threads.h>
+#include <math.h>
 
+#include "queue.h"
 #include "database.h"
 #include "pool.h"
 #include "stack.h"
+#include "hash.h"
 
-typedef enum thread_state {
-    THREAD_STATE_TERMINATING,
-    THREAD_STATE_WAITING,
-    THREAD_STATE_RUNNING,
-    THREAD_STATE_CAN_SHARE,
-} thread_state_t;
+//#include "gb.h"
+
+#include "graphit.h"
+#include "planar_graph.h"
+
+typedef struct search_queue_entry {
+    boundary_t boundary;
+    struct search_queue_entry* prev;
+    u8 ngon;
+    u8 rotation;
+} search_queue_entry_t;
+
+#define SEARCH_QUEUE_SIZE_PER_PAGE ((PAGE_SIZE - sizeof(void*)) / sizeof(search_queue_entry_t))
+
+typedef struct search_queue_page {
+    struct search_queue_page* next_page;
+    search_queue_entry_t entries[QUEUE_SIZE_PER_PAGE];
+} search_queue_page_t;
 
 typedef struct {
-    thrd_t thread_id;
-    cnd_t thread_cond;
-    page_allocator_t page_allocator;
-    queue_t queues[MAX_SIZE];
-    enum thread_state state;
-} thread_data_t;
+    search_queue_page_t* search_page;
+    int search_index;
+    search_queue_page_t* insert_page;
+    int insert_index;
+    page_allocator_t* page_allocator;
+} search_queue_t;
 
 typedef struct {
-    int number_of_active_threads;
-    thread_data_t thread_data[NUM_THREADS];
-    mtx_t mutex;
-    database_t database;
-} thread_manager_t;
+    boundary_t boundary;
+    uint path_length;
+} search_hash_map_entry_t;
 
-    
-void thread_manager_init(thread_manager_t* thread_manager, database_t database) {
-    thread_manager->number_of_active_threads = NUM_THREADS;
-    thread_manager->database = database;
-    mtx_init(&thread_manager->mutex, mtx_plain);
-    for(int thread = 0; thread < NUM_THREADS; thread++) { 
-        page_allocator_init(&thread_manager->thread_data[thread].page_allocator);
-        for(int size = 0; size < MAX_SIZE; size++) {
-            queue_init(&thread_manager->thread_data[thread].queues[size], &thread_manager->thread_data[thread].page_allocator);
-        }
-        thread_manager->thread_data[thread].state = THREAD_STATE_RUNNING;
-        cnd_init(&thread_manager->thread_data[thread].thread_cond);
-    }
+int search_hash_map_cmp(search_hash_map_entry_t entry1, search_hash_map_entry_t entry2) {
+    return entry1.boundary.bits == entry2.boundary.bits;
 }
 
-void thread_try_sharing(thread_manager_t* thread_manager, long thread_number) {
-    thread_data_t* data = &thread_manager->thread_data[thread_number];
-    int res = mtx_trylock(&thread_manager->mutex);
-    if(res == 0) {
-        if(thread_manager->number_of_active_threads < NUM_THREADS) {
-            ulong next_waiting_thread = (thread_number + 1) % NUM_THREADS;
-            while(thread_manager->thread_data[next_waiting_thread].state != THREAD_STATE_WAITING) {
-                next_waiting_thread = (next_waiting_thread + 1) % NUM_THREADS;
-            }
+u32 search_hash_map_hash(search_hash_map_entry_t entry) {
+    /* u32 result = 0x10b85ada; */
+    /* int primes[] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67}; */
+    /* int i = 0; */
+    /* while(primes[i] < entry.boundary.size) { */
+    /*     result ^= (u32)entry.boundary.bits; */
+    /*     entry.boundary = boundary_rotl(entry.boundary, primes[i]); */
+    /*     i++; */
+    /* } */
 
-            thread_data_t* other_data = &thread_manager->thread_data[next_waiting_thread];
-                    
-            for(int i = 1; i < MAX_SIZE; i++) {
-                if(data->queues[i].head_page != data->queues[i].tail_page) {
-                    queue_move_first_page(&data->queues[i], &other_data->queues[i]);
-                }
-            }
-            other_data->state = THREAD_STATE_RUNNING;
-            thread_manager->number_of_active_threads++;
+    u32 result = 0x10b85ada ^ ((entry.boundary.bits ^ (entry.boundary.bits >> 16)) * 0x45d9f3b);
+    result = (result ^ (result >> 16)) * 0x45d9f3b;
+    result = result ^ (result >> 16);
+    
+    assert(result != DELETED_HASH);
+    return result;
+}
 
-            cnd_signal(&other_data->thread_cond);
-        }
-        mtx_unlock(&thread_manager->mutex);
+//GB_TABLE(static inline, search_hash_map_t, search_hash_map_, boundary_t);
+
+generate_hashmap(search_hash_map, search_hash_map_entry_t, search_hash_map_hash, search_hash_map_cmp);
+
+void search_queue_init(search_queue_t* queue, page_allocator_t* page_allocator) {
+    queue->page_allocator = page_allocator;
+    queue->search_index = 0;
+    queue->insert_index = 0;
+    queue->search_page = queue->insert_page = allocate_page(page_allocator);
+}
+
+inline
+void search_queue_insert(search_queue_t* queue, search_queue_entry_t item) {
+    search_queue_page_t* insert_page = queue->insert_page;
+    if(queue->insert_index < SEARCH_QUEUE_SIZE_PER_PAGE) {
+        insert_page->entries[queue->insert_index] = item;
+        queue->insert_index++;
     } else {
-        assert(res == thrd_busy && "Error when trying to lock the mutex");
+        insert_page->next_page = (search_queue_page_t*)allocate_page(queue->page_allocator);
+        /* queue_head_page->next_page->next_page = NULL; */
+        queue->insert_page = insert_page->next_page; // !
+        queue->insert_page->entries[0] = item;
+        queue->insert_index = 1;
     }
 }
+
+inline
+search_queue_entry_t* search_queue_get(search_queue_t* queue) {
+    search_queue_page_t* search_page = queue->search_page;
+    if(queue->search_index < SEARCH_QUEUE_SIZE_PER_PAGE) {
+        return &search_page->entries[queue->search_index++];
+    } else {
+        search_page = search_page->next_page;
+        queue->search_index = 1;
+        return &search_page->entries[0];
+    }
+}
+
+b32 search_queue_is_nonempty(search_queue_t* queue) {
+    return queue->insert_page != queue->search_page || queue->search_index < queue->insert_index;
+}
+
+int system2(char* cmd) {
+    int result = system(cmd);
+    if (!WIFEXITED(result) && WIFSIGNALED(result)) exit(1);
+    return result;
+}
+
+
+static inline
+int heuristic(boundary_t boundary, boundary_t goal) {
+    int min_diff = 64;
+    for(int i = 0; i < boundary.size; i++) {
+        int diff = __builtin_popcountl(boundary_rotl(boundary, i).bits & goal.bits);
+        if(diff < min_diff) min_diff = diff;
+    }
     
-void thread_wait(thread_manager_t* thread_manager, ulong thread_number) {
-    thread_data_t* data = &thread_manager->thread_data[thread_number];
-    mtx_lock(&thread_manager->mutex);
-    thread_manager->number_of_active_threads--;
-    if(thread_manager->number_of_active_threads == 0) {
-        for(long other_thread = (thread_number + 1) % NUM_THREADS;
-            other_thread != thread_number;
-            other_thread = (other_thread + 1) % NUM_THREADS) {
-            thread_manager->thread_data[other_thread].state = THREAD_STATE_TERMINATING;
-            cnd_signal(&thread_manager->thread_data[other_thread].thread_cond);
-        }
-        mtx_unlock(&thread_manager->mutex);
-        page_allocator_deinit(&data->page_allocator);
-        thrd_exit(0);
-    }
-    data->state = THREAD_STATE_WAITING;
-
-    while(data->state == THREAD_STATE_WAITING) {
-        cnd_wait(&data->thread_cond, &thread_manager->mutex);
-    }
-    if(data->state == THREAD_STATE_TERMINATING) {
-        mtx_unlock(&thread_manager->mutex);
-        page_allocator_deinit(&data->page_allocator);
-        thrd_exit(0);
-    }
-    mtx_unlock(&thread_manager->mutex);
+    return boundary.size;
 }
 
-typedef struct {
-    int ngon;
-    int rotation;
-    boundary_t boundary;
-} search_direction_t;
+b32 search_database(boundary_t start, boundary_t goal, int* ngons, int ngons_count) {
+    page_allocator_t page_allocator;
+    page_allocator_init(&page_allocator);
+    search_queue_t queues[512];
+   
+    search_hash_map_t hash_map;
+    search_hash_map_init(&hash_map, 1024);
 
-typedef struct {
-    boundary_t boundary;
-    int current_search_direction;
-    search_direction_t directions[2 * MAX_SIZE];
-} search_stack_entry_t;
-
-generate_stack(search_stack, search_stack_entry_t);
-search_stack_t search_stack;
-
-void init_search_stack_entry(boundary_t boundary, search_stack_entry_t* entry) {
-    entry->boundary = boundary;
-    for(int i = 0; i < boundary.size; i++) {
-        entry->directions[i].ngon = small_ngon;
-        entry->directions[i].rotation = i;
-        entry->directions[i].boundary = boundary_normalize((boundary_remove(boundary_rotl(boundary, i), small_ngon, 0)));
-    }
-    for(int i = 0; i < boundary.size; i++) {
-        entry->directions[i + boundary.size].ngon = large_ngon;
-        entry->directions[i + boundary.size].rotation = i;
-        entry->directions[i + boundary.size].boundary =
-            boundary_normalize((boundary_remove(boundary_rotl(boundary, i), large_ngon, 0)));
+    for(int i = 0; i < 512; i++) {
+        search_queue_init(&queues[i], &page_allocator);
     }
 
-    entry->current_search_direction = 0;
-
-    for(int i = 0; i < 2 * boundary.size - 1; i++) {
-        for(int j = i + 1; j < 2 * boundary.size; j++) {
-            if(entry->directions[i].boundary.size > entry->directions[j].boundary.size) {
-                search_direction_t tmp = entry->directions[i];
-                entry->directions[i] = entry->directions[j];
-                entry->directions[j] = tmp;
-            }
-        }
-        // We can ignore boundaries with size 0.
-        if(entry->directions[i].boundary.size == 0) {
-            entry->current_search_direction++;
-        }
-    }
-#ifndef NDEBUG
-    printf("Entry ");
-    boundary_write(entry->boundary);
-    printf("\n");
-    for(int i = entry->current_search_direction; i < 2 * boundary.size; i++) {
-        printf("%5i ", i);
-        boundary_write(entry->directions[i].boundary);
-        printf("\n%75i\n%75i\n", entry->directions[i].rotation, entry->directions[i].ngon);
-    }
-#endif //NDEBUG
-}
-
-b32 search_backward_in_database(database_t database, boundary_t start, boundary_t goal) {
-    start = boundary_normalize(start);
-    search_stack_do_empty(&search_stack);
-    search_stack_entry_t start_entry;
-    init_search_stack_entry(start, &start_entry);
-    search_stack_push(&search_stack, start_entry);
+    search_queue_insert(&queues[start.size], (search_queue_entry_t) {.boundary = start, .ngon = 0, .rotation = 0, .prev = NULL});
+    int step = 0;
     while(1) {
-#ifndef NDEBUG
-        for(int i = 0; i < search_stack.fill; i++) {
-            boundary_write(search_stack.data[i].boundary);
-            printf("\n");
-        }
-        printf("\n");
-#endif //NDEBUG
-        search_stack_entry_t* entry = search_stack_top(&search_stack);
-        boundary_t boundary = entry->boundary;
-        if(boundary.bits == goal.bits && boundary.size == goal.size) {
-            return 1;
-        }
-        if(entry->current_search_direction < 2 * entry->boundary.size) {
-            boundary_t new_boundary = entry->directions[entry->current_search_direction].boundary;
-            b32 already_found = 0;
-            for(int i = 0; i < search_stack.fill; i++) {
-                if(new_boundary.bits == search_stack.data[i].boundary.bits) {
-                    already_found = 1;
-                    break;
-                }
-            }
-
-            if(!already_found) {
-                if(new_boundary.size < MAX_SIZE &&
-                   database_contains(database, new_boundary)) {
-                    search_stack_entry_t new_entry;
-                    init_search_stack_entry(new_boundary, &new_entry);
-                    search_stack_push(&search_stack, new_entry);
-                } else {
-                    entry->current_search_direction++;
-                }
-            } else {
-                entry->current_search_direction++;
-            }
-        } else {
-            search_stack_pop(&search_stack);
-            if(search_stack_is_empty(&search_stack)) {
-                return 0;
-            } else {
-                search_stack_top(&search_stack)->current_search_direction++;
-            }
-        }
-    }
-}
-
-/* b32 search_backward_towards_database(database_t database, boundary_t start, int start_size) { */
-/*     boundary_t boundary = start; */
-/*     search_stack_do_empty(&search_stack); */
-/*     search_stack_push(&search_stack, (search_stack_entry_t){.ngon = small_ngon, .rotation = 0}); */
-/*     while(1) { */
-/* #ifndef NDEBUG */
-/*         for(int i = 0; i < search_stack.fill; i++) { */
-/*             printf("(%i,%i)", search_stack.data[i].ngon, search_stack.data[i].rotation); */
-/*         } */
-/*         boundary_write(boundary); */
-/*         printf("\n"); */
-/* #endif //NDEBUG */
-/*         search_stack_entry_t* entry = search_stack_top(&search_stack); */
-        
-/*         if(boundary.size < MAX_SIZE && database_contains(database, boundary_normalize(boundary))) { */
-/*             return 1; */
-/*         } */
-        
-/*         if(entry->rotation < boundary.size) { */
-/*             boundary_t new_boundary = boundary_remove(boundary, entry->ngon); */
-/*             if(new_boundary.size > MAX_SIZE && new_boundary.size < MAX_SEARCH_SIZE) { */
-/*                 boundary = new_boundary; */
-/*                 search_stack_push(&search_stack, (search_stack_entry_t){.ngon = small_ngon, .rotation = 0}); */
-/*             } else { */
-/*                 entry->rotation++; */
-/*                 boundary = boundary_rotl(boundary, 1); */
-/*             } */
-/*         } else if(entry->ngon == small_ngon) { */
-/*             entry->rotation = 0; */
-/*             entry->ngon = large_ngon; */
-/*         } else { */
-/*             search_stack_pop(&search_stack); */
-/*             if(search_stack_is_empty(&search_stack)) { */
-/*                 return 0; */
-/*             } else { */
-/*                 entry = search_stack_top(&search_stack); */
-/*                 boundary = boundary_insert(boundary, entry->ngon); */
-/*                 entry->rotation++; */
-/*                 boundary = boundary_rotl(boundary, 1); */
-/*             } */
-/*         } */
-/*     } */
-/* } */
-
-
-
-int working_thread_add(void* thread_manager_ptr) {
-    thread_manager_t* thread_manager = (thread_manager_t*)thread_manager_ptr;
-    thrd_t self_id = thrd_current();
-    ulong thread_number = -1;
-    for(int i = 0; i < NUM_THREADS; i++) {
-        if(thread_manager->thread_data[i].thread_id == self_id) {
-            thread_number = i;
-            break;
-        }
-    }
-    assert(thread_number != -1);
-    thread_data_t* data = &thread_manager->thread_data[thread_number];
-
-    while(1) {
-        if(thread_manager->number_of_active_threads < NUM_THREADS && data->state == THREAD_STATE_CAN_SHARE) {
-            thread_try_sharing(thread_manager, thread_number);
-        }
-        
-        int has_no_items = 1;
-        for(int size = 1; size < MAX_SIZE; size++) {
-            if(!queue_is_empty(&data->queues[size])) {
-                boundary_t boundary = {
-                    .bits = queue_dequeue(&data->queues[size]),
-                    .size = size
-                };
-                boundary_check(boundary);
-                if(!database_contains(thread_manager->database, boundary)) {
-#ifndef NDEBUG
-                    printf("Thread %li found ", thread_number);
-                    boundary_write(boundary);
-                    printf("\n");
-#endif
-                    for(int j = 0; j < size; j++) {
-                        boundary_t new_boundary = boundary_insert(boundary, small_ngon, 1);
-                        if(new_boundary.size != 0 && new_boundary.size < MAX_SIZE) {
-                            queue_enqueue(&data->queues[new_boundary.size], boundary_normalize(new_boundary).bits);
-                        }
-                        new_boundary = boundary_insert(boundary, large_ngon, 1);
-                        if(new_boundary.size != 0 && new_boundary.size < MAX_SIZE) {
-                            queue_enqueue(&data->queues[new_boundary.size], boundary_normalize(new_boundary).bits);
-                        }
-                        boundary = boundary_rotl(boundary, 1);
-                    }
-                    database_add(thread_manager->database, boundary);
-                }
-                has_no_items = 0;
-                if(data->queues[size].head_page != data->queues[size].tail_page) data->state = THREAD_STATE_CAN_SHARE;
+        int nonempty_queue_index = -1;
+        for(int i = 0; i < 512; i++) {
+            if(search_queue_is_nonempty(&queues[i])) {
+                nonempty_queue_index = i;
                 break;
             }
+        }
+        assert(nonempty_queue_index != -1);
+        search_queue_entry_t* current_entry = search_queue_get(&queues[nonempty_queue_index]);
+        boundary_t boundary = current_entry->boundary;
+        //boundary_write(boundary); printf("\n");
+        //getchar();
+        if(boundary.bits == goal.bits && boundary.size == goal.size) {
+            printf("Found on step %i:\n", step);
+            planar_graph_builder_t builder;
+            planar_graph_builder_from_boundary(&builder, current_entry->boundary);
             
+            while(current_entry != NULL) {
+                /* boundary_write(current_entry->boundary); printf(" %i %i\n", current_entry->ngon, current_entry->rotation); */
+                /* boundary_write(builder.boundary); printf("\n"); */
+                /* assert(boundary.bits == current_entry->boundary.bits); */
+                planar_graph_builder_insert(&builder, current_entry->ngon, 0);
+                planar_graph_builder_rotr(&builder, current_entry->rotation);
+                /* boundary_write(builder.boundary); printf("\n"); */
+                /* boundary_write(current_entry->boundary); printf(" %i\n", current_entry->ngon); */
+                /* boundary_write(current_entry->prev->boundary); printf("\n"); */
+                /* planar_graph_to_dotty(builder, 0); */
+                planar_graph_builder_check_outer_edges(&builder);
+                /* assert(builder.boundary.bits == current_entry->boundary.bits); */
+                current_entry = current_entry->prev;
+            }
+            planar_graph_t planar_graph = planar_graph_from_builder(builder);
+            int stop = planar_graph_output_sdl(planar_graph);
+            planar_graph_deinit(planar_graph);
+            if(stop) {
+                return 1;
+            } else {
+                continue;
+            }
         }
-        
-        if(has_no_items) {
-            thread_wait(thread_manager, thread_number);
+
+        int path_length = nonempty_queue_index - heuristic(boundary, goal);
+        /* if((step & 0xFFFFF) == 0) printf("Path length: %i %i %i \n", path_length, nonempty_queue_index, heuristic(boundary, goal)); */
+        step++;
+        if((step & 0xFFFFFF) == 0) return 0;
+        search_hash_map_entry_t entry = { .boundary = boundary_normalize(boundary), .path_length = path_length };
+        search_hash_map_entry_t* found_entry = search_hash_map_find(&hash_map, entry);
+        if(!found_entry || found_entry->path_length < path_length) {
+                        /* boundary_write(boundary); printf(" %i \n", path_length); */
+            for(int i = 0; i < boundary.size; i++) {
+                for(int j = 0; j < ngons_count; j++) {
+                    boundary_t new_boundary = (boundary_remove(boundary_rotl(boundary, i), ngons[j], 0));
+                    int heuristic_plus_path_length = heuristic(new_boundary, goal) + (path_length + 1);
+                    assert(heuristic_plus_path_length < 512);
+                    if(new_boundary.size > 0) {
+                        /* search_hash_map_entry_t new_entry = { .boundary = boundary_normalize(new_boundary) }; */
+                        /* if(!search_hash_map_find(&hash_map, new_entry)) { */
+                            search_queue_insert(&queues[heuristic_plus_path_length],
+                                                (search_queue_entry_t) {
+                                                    .boundary = new_boundary,
+                                                        .ngon = ngons[j],
+                                                        .rotation = i,
+                                                        .prev = current_entry
+                                                        });
+                        /* } */
+                    }
+                }
+            }
+            if(found_entry) {
+                found_entry->path_length = path_length;
+            } else {
+                search_hash_map_insert(&hash_map, entry);
+            }
+        } else {
         }
-    };
+    }
 }
 
 
 int main(int argc, char* argv[]) {
 
+    
     if(argc == 3) {
         small_ngon = atoi(argv[1]);
         large_ngon = atoi(argv[2]);
     };
 
+    int ngons[] = { small_ngon, large_ngon };
+    
     database_t monogon_database;
-    database_t small_ngon_database;
+    /* database_t small_ngon_database; */
 
     database_init(&monogon_database);
-    database_init(&small_ngon_database);
+    /* database_init(&small_ngon_database); */
 
-    thread_manager_t monogon_thread_manager;   
-    thread_manager_t small_ngon_thread_manager;   
-
-    thread_manager_init(&monogon_thread_manager, monogon_database);
-    thread_manager_init(&small_ngon_thread_manager, small_ngon_database);
-
-    queue_enqueue(&monogon_thread_manager.thread_data[0].queues[1], 0); // insert monogon
-    queue_enqueue(&small_ngon_thread_manager.thread_data[0].queues[small_ngon], 0); // insert small_ngon
-
-    for(long thread_number = 0; thread_number < NUM_THREADS; thread_number++) {
-        thrd_create(&monogon_thread_manager.thread_data[thread_number].thread_id,
-                       working_thread_add, (void*)&monogon_thread_manager);
-    }
-    mtx_unlock(&monogon_thread_manager.mutex);
-
-    for(int thread_number = 0; thread_number < NUM_THREADS; thread_number++) {
-        printf("Waiting for thread %i...\n", thread_number);
-        thrd_join(monogon_thread_manager.thread_data[thread_number].thread_id, NULL);
-        printf("Waiting for thread %i successfully!\n", thread_number);
-    }
-
-    for(long thread_number = 0; thread_number < NUM_THREADS; thread_number++) {
-        thrd_create(&small_ngon_thread_manager.thread_data[thread_number].thread_id,
-                       working_thread_add, (void*)&small_ngon_thread_manager);
-    }
-
-
-    mtx_unlock(&small_ngon_thread_manager.mutex);
+    boundary_t monogon_boundary = { .size = 1, .bits = 0 };
+    boundary_t small_ngon_boundary = { .size = small_ngon, .bits = 0 };
+    boundary_t triangle_boundary = { .size = 3, .bits = 0 };
     
-    for(int thread_number = 0; thread_number < NUM_THREADS; thread_number++) {
-        printf("Waiting for thread %i...\n", thread_number);
-        thrd_join(small_ngon_thread_manager.thread_data[thread_number].thread_id, NULL);
-        printf("Waiting for thread %i successfully!\n", thread_number);
-    }
+    database_build_from_boundary(monogon_database, monogon_boundary, ngons, 2);
+    /* database_build_from_boundary(small_ngon_database, small_ngon_boundary, ngons, 2); */
 
-    mtx_destroy(&monogon_thread_manager.mutex);
-    mtx_destroy(&small_ngon_thread_manager.mutex);
+    //if(database_contains(small_ngon_database, star)) {
+    /* //search_database(star, small_ngon_boundary, ngons, 2); */
+        /* search_stack_init(&search_stack, 64); */
+        /* if(search_backward_in_database(small_ngon_database, star, small_ngon_boundary)) { */
+        /*     for(int i = 0; i < search_stack.fill; i++) {  */
+        /*         boundary_write(search_stack.data[i].boundary); */
+        /*         printf("\n"); */
+        /*     } */
+        /* } */
+        //    }
 
-    
     pool_t mouse_pool;
     pool_init(&mouse_pool);
-    boundary_t* mouse_data = (boundary_t*)mouse_pool.data;
-
-    int count = 0;
-    boundary_t boundary;
-    for(boundary.size = 1; boundary.size < MAX_SIZE; boundary.size++) {
-        for(boundary.bits = 0; boundary.bits < (1 << boundary.size); boundary.bits++) {
-            if(database_contains(monogon_database, boundary)) {
-                count++;
-            }
-        }
-    }
-    printf("Count: %i\n", count);
-
-    
-    search_stack_init(&search_stack, 64);
+    /* search_stack_init(&search_stack, 64); */
 
     {
         boundary_t boundary;
-        for(boundary.size = 1; boundary.size * 6 < MAX_SIZE; boundary.size++) {
+        for(boundary.size = 0; boundary.size * 6 < bitsof(boundary_bits_t); boundary.size++) {
             for(boundary.bits = 0; boundary.bits < (1 << boundary.size); boundary.bits++) {
                 if(database_contains(monogon_database, boundary)) {
                     for(int k = 0; k < boundary.size; k++) {
@@ -398,7 +270,6 @@ int main(int argc, char* argv[]) {
                             printf("Found mouse ");
                             boundary_write(boundary);
                             printf("\n");
-                            break;
                         
                         }
                         boundary = boundary_rotl(boundary, 1);
@@ -407,35 +278,46 @@ int main(int argc, char* argv[]) {
             }
         }
     }
-    for(int i = 0; i < mouse_pool.fill / sizeof(boundary_t); i++) {
-        boundary_t mouse = mouse_data[i];
-        if(mouse.size * 6 < MAX_SIZE) {
-            boundary_t mouse_6_expanded = boundary_unfold(mouse, 6);
-            printf("Expansion: ");
-            boundary_write(mouse_6_expanded);
-            if(database_contains(small_ngon_database, mouse_6_expanded)) {
-                printf(" is found\n");
-                boundary_t small_ngon_boundary = { .bits = 0, .size = small_ngon };
-                b32 res = search_backward_in_database(small_ngon_database, mouse_6_expanded, small_ngon_boundary);
-                if(res) {
-                    printf("Found small_ngon replacement\n");
-                    for(int i = 0; i < search_stack.fill; i++) {
-                        boundary_write(search_stack.data[i].boundary);
-                        printf("\n");
-                    }
-                    printf("\n");
-                                    }
-            } else {
-                printf(" is not found\n");
-            }
+
+    database_deinit(&monogon_database);
+    boundary_t* mouse_data = (boundary_t*)mouse_pool.data;
+    int mouse_count = mouse_pool.fill / sizeof(boundary_t);
+    printf("Found %i mouses\n", mouse_count);
+    for(int i = 1; i < mouse_count; i++) {
+        int found = search_database(boundary_unfold(mouse_data[i], 3), triangle_boundary, ngons, 2);
+        if(found) {
+            int is_also_found = search_database(boundary_unfold(mouse_data[i], 6), small_ngon_boundary, ngons, 2);
+            if(is_also_found) return 0;
         }
     }
+    /* for(int i = 0; i < mouse_pool.fill / sizeof(boundary_t); i++) { */
+    /*     boundary_t mouse = mouse_data[i]; */
+    /*     if(mouse.size * 6 < MAX_SIZE) { */
+    /*         boundary_t mouse_6_expanded = boundary_unfold(mouse, 6); */
+    /*         printf("Expansion: "); */
+    /*         boundary_write(mouse_6_expanded); */
+    /*         if(database_contains(small_ngon_database, mouse_6_expanded)) { */
+    /*             printf(" is found\n"); */
+    /*             boundary_t small_ngon_boundary = { .bits = 0, .size = small_ngon }; */
+    /*             b32 res = search_backward_in_database(small_ngon_database, mouse_6_expanded, small_ngon_boundary); */
+    /*             if(res) { */
+    /*                 printf("Found small_ngon replacement\n"); */
+    /*                 for(int i = 0; i < search_stack.fill; i++) { */
+    /*                     boundary_write(search_stack.data[i].boundary); */
+    /*                     printf("\n"); */
+    /*                 } */
+    /*                 printf("\n"); */
+    /*                                 } */
+    /*         } else { */
+    /*             printf(" is not found\n"); */
+    /*         } */
+    /*     } */
+    /* } */
 
-    pool_deinit(&mouse_pool);
+    /* pool_deinit(&mouse_pool); */
     
-    database_deinit(&monogon_database);
-    database_deinit(&small_ngon_database);
+    /* database_deinit(&small_ngon_database); */
     
-    search_stack_deinit(&search_stack);
+    /* search_stack_deinit(&search_stack); */
     
 }

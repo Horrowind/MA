@@ -4,7 +4,6 @@
 #include "queue.c"
 #include "main.c"
 #include "planar_graph.c"
-//#include "graphit.c"
 
 #define BASE_POOL_IMPLEMENTATION
 #include "pool.h"

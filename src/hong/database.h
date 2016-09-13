@@ -25,6 +25,7 @@ static void database_init(database_t* database);
 static void database_deinit(database_t* database);
 static inline b32 database_contains(database_t database, boundary_t boundary);
 static inline void database_add(database_t database, boundary_t boundary);
+static inline void database_build_from_boundary(database_t database, boundary_t boundary, int* ngons, int ngon_count);
 
 
 #endif //DATABASE_H
