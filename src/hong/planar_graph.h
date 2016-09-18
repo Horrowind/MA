@@ -93,5 +93,6 @@ void planar_graph_layout_step(planar_graph_t* graph, int step, double* force_x, 
 void planar_graph_layout(planar_graph_t* graph);
 
 int planar_graph_output_sdl(planar_graph_t graph);
+void planar_graph_output_tikz(planar_graph_t graph);
 
 #endif //PLANAR_GRAPH_H

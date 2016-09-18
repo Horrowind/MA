@@ -46,7 +46,7 @@ void planar_graph_builder_from_boundary(planar_graph_builder_t* planar_graph, bo
     planar_graph->vertex_count = boundary.size;
     pool_init(&planar_graph->edges_pool);
     planar_graph_builder_edge_t* edges = (planar_graph_builder_edge_t*)pool_alloc(
-        &planar_graph->edges_pool, boundary.size * sizeof(planar_graph_builder_edge_t));
+            &planar_graph->edges_pool, boundary.size * sizeof(planar_graph_builder_edge_t));
     planar_graph->current_outer_edge = 0;
     for(int i = 0; i < boundary.size; i++) {
         edges[i].vertex1 = i;
@@ -124,7 +124,7 @@ void planar_graph_builder_insert(planar_graph_builder_t* planar_graph, int ngon,
             if(s <= ngon - 2) {
                 int old_edge_count = planar_graph->edges_pool.fill / sizeof(planar_graph_builder_edge_t);
                 planar_graph_builder_edge_t* new_edges = (planar_graph_builder_edge_t*)pool_alloc(
-                    &planar_graph->edges_pool, (ngon - 1 - s) * sizeof(planar_graph_builder_edge_t));
+                        &planar_graph->edges_pool, (ngon - 1 - s) * sizeof(planar_graph_builder_edge_t));
                 planar_graph_builder_edge_t* edges = (planar_graph_builder_edge_t*)planar_graph->edges_pool.data;
 
                 result.bits   = boundary.bits + (((boundary_bits_t)1) << ((boundary.size - 1) * BITS));
@@ -269,7 +269,7 @@ planar_graph_t planar_graph_from_builder(planar_graph_builder_t builder) {
         result.vertices[vertex].y = sin(TAU * (double)i / builder.boundary.size + PI / builder.boundary.size);
         result.vertices[vertex].is_boundary = 1;
         outer_edge = edges[outer_edge].next;
-	}
+    }
 
     return result;
 }
@@ -341,15 +341,15 @@ void planar_graph_layout(planar_graph_t* graph) {
 
 
 int planar_graph_output_sdl(planar_graph_t graph) {
-	SDL_Window *win = NULL;
-	SDL_Renderer *renderer = NULL;
-	int posX = 100, posY = 100, width = 600, height = 600;
+    SDL_Window *win = NULL;
+    SDL_Renderer *renderer = NULL;
+    int posX = 100, posY = 100, width = 600, height = 600;
 
-	SDL_Init(SDL_INIT_VIDEO);
+    SDL_Init(SDL_INIT_VIDEO);
 
-	win = SDL_CreateWindow("Planar graph", posX, posY, width, height, 0);
+    win = SDL_CreateWindow("Planar graph", posX, posY, width, height, 0);
 
-	renderer = SDL_CreateRenderer(win, -1, SDL_RENDERER_SOFTWARE);
+    renderer = SDL_CreateRenderer(win, -1, SDL_RENDERER_SOFTWARE);
 
     double* force_array = malloc(graph.vertex_count * sizeof(double) * 2);
     double* force_x = &force_array[0];
@@ -357,34 +357,40 @@ int planar_graph_output_sdl(planar_graph_t graph) {
     
     int step = 1;
     int result = 0;
-	while (1) {
-		SDL_Event e;
-		if (SDL_PollEvent(&e)) {
-			if(e.type == SDL_QUIT) {
-			    exit(0);
-			}
+    while (1) {
+	SDL_Event e;
+	if (SDL_PollEvent(&e)) {
+	    if(e.type == SDL_QUIT) {
+		exit(0);
+	    }
             if(e.type == SDL_KEYDOWN) {
-			    if(e.key.keysym.sym == SDLK_ESCAPE) {
+		if(e.key.keysym.sym == SDLK_ESCAPE) {
                     result = 0;
                     break;
+                }
+		if(e.key.keysym.sym == SDLK_r) {
+		    step = 1;
+                }
+                if(e.key.keysym.sym == SDLK_p) {
+		    planar_graph_output_tikz(graph);
                 }
                 if(e.key.keysym.sym == SDLK_RETURN) {
                     result = 1;
                     break;
                 }
 
-			}
+	    }
 
-		}
+	}
 
-		SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-		SDL_RenderClear(renderer);
-		SDL_SetRenderDrawColor(renderer, 255, 73, 123, 255);
+	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+	SDL_RenderClear(renderer);
+	SDL_SetRenderDrawColor(renderer, 255, 73, 123, 255);
 
         planar_graph_layout_step(&graph, step, force_x, force_y);
         step++;
         
-		for(int i = 0; i < graph.vertex_count; i++){
+	for(int i = 0; i < graph.vertex_count; i++){
             planar_graph_vertex_t* current_vertex = &graph.vertices[i];
             for(int j = 0; j < VALENCE; j++) {
                 planar_graph_edge_t* current_edge = graph.vertices[i].edges[j];
@@ -401,10 +407,10 @@ int planar_graph_output_sdl(planar_graph_t graph) {
                     SDL_Rect rect = { .x = (int)x1 - 1, .y = (int)y1 - 1, .w = 3, .h = 3 };
                     SDL_RenderFillRect(renderer, &rect);
                 }
-			}
-		}
+	    }
+	}
 
-		/* SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255); */
+	/* SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255); */
         /* for(int i = 0; i < graph.boundary.size; i++) { */
         /*     int vertex_valence = boundary_rotl(graph.boundary, i).bits & LAST_NODE_MASK; */
         /*     for(int j = 1; j < vertex_valence + 1; j++) { */
@@ -418,14 +424,53 @@ int planar_graph_output_sdl(planar_graph_t graph) {
         /*     } */
         /* } */
 				
-		SDL_RenderPresent(renderer);
-	}
+	SDL_RenderPresent(renderer);
+    }
 
     free(force_array);
     
-	SDL_DestroyRenderer(renderer);
-	SDL_DestroyWindow(win);
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(win);
 
-	SDL_Quit();
+    SDL_Quit();
     return result;
+}
+
+
+void planar_graph_output_tikz(planar_graph_t g) {
+    FILE *f = fopen("output_graph.tex", "w");
+    if (f == NULL) {
+	printf("Error opening file output_graph!\n");
+	exit(1);
+    }
+    // print latex-code 
+    fprintf(f,
+	    "\\documentclass[a4paper]{article}\n"
+	    "\\usepackage{tikz}\n"
+	    "\\begin{document}\n"
+	    "\\begin{figure}[h!]\n"
+	    "\\centering\n"
+	    "\\begin{tikzpicture}[scale = 4]\n"
+	    );
+    // print tikz-code for nodes
+    for (int i = 0; i<g.vertex_count; i++) {
+	fprintf(f, "\\coordinate (x%i) at (%f, %f);\n", i, g.vertices[i].x, g.vertices[i].y);
+    }
+    // print tikz-code for connection lines
+    for (int i = 0; i < g.edge_count; i++) {
+	fprintf(f,"\\draw (%f, %f) -- (%f, %f);\n",
+		g.edges[i].vertex1->x, g.edges[i].vertex1->y,
+		g.edges[i].vertex2->x, g.edges[i].vertex2->y);
+    }
+    // print latex-code 
+    fprintf(f, "\\end{tikzpicture}\n"
+	    "\\caption{Graph}\n"
+	    "\n"
+	    "\\end{figure}\n"
+	    "\\end{document}\n"
+	    );
+
+    fclose(f);
+    // create pdf
+    //system("pdflatex output_graph.tex");
 }
