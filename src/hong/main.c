@@ -31,6 +31,7 @@ typedef struct search_queue_page {
 } search_queue_page_t;
 
 typedef struct {
+    search_queue_page_t* start_page;
     search_queue_page_t* search_page;
     int search_index;
     search_queue_page_t* insert_page;
@@ -73,7 +74,15 @@ void search_queue_init(search_queue_t* queue, page_allocator_t* page_allocator) 
     queue->page_allocator = page_allocator;
     queue->search_index = 0;
     queue->insert_index = 0;
-    queue->search_page = queue->insert_page = allocate_page(page_allocator);
+    queue->start_page = queue->search_page = queue->insert_page = allocate_page(page_allocator);
+}
+
+void search_queue_deinit(search_queue_t* queue) {
+    while(queue->start_page) {
+        search_queue_page_t* page = queue->start_page;
+        queue->start_page = queue->start_page->next_page;
+        munmap(page, PAGE_SIZE); 
+    }
 }
 
 inline
@@ -147,34 +156,34 @@ b32 search_database(boundary_t start, boundary_t goal, int* ngons, int ngons_cou
                 break;
             }
         }
-        assert(nonempty_queue_index != -1);
+        if(nonempty_queue_index == -1) {
+            printf("Empty! %i %i\n", start.size, step);
+            for(int i = 0; i < 512; i++) {
+                search_queue_deinit(&queues[i]);
+            }
+            return 0;
+        }
         search_queue_entry_t* current_entry = search_queue_get(&queues[nonempty_queue_index]);
         boundary_t boundary = current_entry->boundary;
-        //boundary_write(boundary); printf("\n");
         //getchar();
         if(boundary.bits == goal.bits && boundary.size == goal.size) {
-            printf("Found on step %i:\n", step);
+            printf("Found boundary "); boundary_write(start); printf("\n");
             planar_graph_builder_t builder;
             planar_graph_builder_from_boundary(&builder, current_entry->boundary);
             
-            while(current_entry != NULL) {
-                /* boundary_write(current_entry->boundary); printf(" %i %i\n", current_entry->ngon, current_entry->rotation); */
-                /* boundary_write(builder.boundary); printf("\n"); */
-                /* assert(boundary.bits == current_entry->boundary.bits); */
+            while(current_entry->prev != NULL) {
                 planar_graph_builder_insert(&builder, current_entry->ngon, 0);
                 planar_graph_builder_rotr(&builder, current_entry->rotation);
-                /* boundary_write(builder.boundary); printf("\n"); */
-                /* boundary_write(current_entry->boundary); printf(" %i\n", current_entry->ngon); */
-                /* boundary_write(current_entry->prev->boundary); printf("\n"); */
-                /* planar_graph_to_dotty(builder, 0); */
-                planar_graph_builder_check_outer_edges(&builder);
-                /* assert(builder.boundary.bits == current_entry->boundary.bits); */
+                /* planar_graph_builder_check_outer_edges(&builder); */
                 current_entry = current_entry->prev;
             }
             planar_graph_t planar_graph = planar_graph_from_builder(builder);
             int stop = planar_graph_output_sdl(planar_graph);
             planar_graph_deinit(planar_graph);
             if(stop) {
+                for(int i = 0; i < 512; i++) {
+                    search_queue_deinit(&queues[i]);
+                }
                 return 1;
             } else {
                 continue;
@@ -184,7 +193,12 @@ b32 search_database(boundary_t start, boundary_t goal, int* ngons, int ngons_cou
         int path_length = nonempty_queue_index - heuristic(boundary, goal);
         /* if((step & 0xFFFFF) == 0) printf("Path length: %i %i %i \n", path_length, nonempty_queue_index, heuristic(boundary, goal)); */
         step++;
-        if((step & 0xFFFFFF) == 0) return 0;
+        if((step & 0xFFFF) == 0) {
+            for(int i = 0; i < 512; i++) {
+                search_queue_deinit(&queues[i]);
+            }
+            return 0;
+        }
         search_hash_map_entry_t entry = { .boundary = boundary_normalize(boundary), .path_length = path_length };
         search_hash_map_entry_t* found_entry = search_hash_map_find(&hash_map, entry);
         if(!found_entry || found_entry->path_length < path_length) {
@@ -237,40 +251,44 @@ int main(int argc, char* argv[]) {
 
     boundary_t monogon_boundary = { .size = 1, .bits = 0 };
     boundary_t small_ngon_boundary = { .size = small_ngon, .bits = 0 };
-    boundary_t triangle_boundary = { .size = 3, .bits = 0 };
+    boundary_t large_ngon_boundary = { .size = large_ngon, .bits = 0 };
+
+    boundary_t test;
+    test.bits = 0x256;
+    test.size = 11;
+    for(int i = 0; i < 11; i++) {
+        boundary_t test2 = boundary_rotl(boundary_unfold(test, 6), i);
+        search_database(test2, large_ngon_boundary, ngons, 2);
+    }
+    exit(0);
     
     database_build_from_boundary(monogon_database, monogon_boundary, ngons, 2);
-    /* database_build_from_boundary(small_ngon_database, small_ngon_boundary, ngons, 2); */
-
-    //if(database_contains(small_ngon_database, star)) {
-    /* //search_database(star, small_ngon_boundary, ngons, 2); */
-        /* search_stack_init(&search_stack, 64); */
-        /* if(search_backward_in_database(small_ngon_database, star, small_ngon_boundary)) { */
-        /*     for(int i = 0; i < search_stack.fill; i++) {  */
-        /*         boundary_write(search_stack.data[i].boundary); */
-        /*         printf("\n"); */
-        /*     } */
-        /* } */
-        //    }
 
     pool_t mouse_pool;
     pool_init(&mouse_pool);
-    /* search_stack_init(&search_stack, 64); */
 
     {
         boundary_t boundary;
-        for(boundary.size = 0; boundary.size * 6 < bitsof(boundary_bits_t); boundary.size++) {
+        for(boundary.size = 0; boundary.size < MAX_SIZE; boundary.size++) {
             for(boundary.bits = 0; boundary.bits < (1 << boundary.size); boundary.bits++) {
                 if(database_contains(monogon_database, boundary)) {
                     for(int k = 0; k < boundary.size; k++) {
                         if(boundary_is_mouse(boundary)) {
-                            boundary_t* new_mouse = (boundary_t*)pool_alloc(&mouse_pool, sizeof(boundary_t));
-                            *new_mouse = boundary;
-                        
-                            printf("Found mouse ");
-                            boundary_write(boundary);
-                            printf("\n");
-                        
+                            boundary_t* mouses = (boundary_t*)mouse_pool.data;
+                            int mouses_count = mouse_pool.fill / sizeof(boundary_t);
+                            
+                            b32 is_found = 0;
+                            for(int i = 0; i < mouses_count; i++) {
+                                if(mouses[i].bits == boundary_normalize(boundary).bits) {
+                                    is_found = 1;
+                                    break;
+                                }
+                            }
+                            if(!is_found) {
+                                boundary_t* new_mouse = (boundary_t*)pool_alloc(&mouse_pool, sizeof(boundary_t));
+                                *new_mouse = boundary_normalize(boundary);
+                                //boundary_write(*new_mouse); printf("\n");
+                            }
                         }
                         boundary = boundary_rotl(boundary, 1);
                     }
@@ -284,40 +302,12 @@ int main(int argc, char* argv[]) {
     int mouse_count = mouse_pool.fill / sizeof(boundary_t);
     printf("Found %i mouses\n", mouse_count);
     for(int i = 1; i < mouse_count; i++) {
-        int found = search_database(boundary_unfold(mouse_data[i], 3), triangle_boundary, ngons, 2);
-        if(found) {
+        boundary_t mouse_goal_boundary = { .size = large_ngon - 3, .bits = (boundary_bits_t)1 };
+        mouse_goal_boundary = boundary_normalize(mouse_goal_boundary);
+        b32 is_found = search_database(mouse_data[i], mouse_goal_boundary, ngons, 2);
+        if(is_found) {
             int is_also_found = search_database(boundary_unfold(mouse_data[i], 6), small_ngon_boundary, ngons, 2);
             if(is_also_found) return 0;
         }
-    }
-    /* for(int i = 0; i < mouse_pool.fill / sizeof(boundary_t); i++) { */
-    /*     boundary_t mouse = mouse_data[i]; */
-    /*     if(mouse.size * 6 < MAX_SIZE) { */
-    /*         boundary_t mouse_6_expanded = boundary_unfold(mouse, 6); */
-    /*         printf("Expansion: "); */
-    /*         boundary_write(mouse_6_expanded); */
-    /*         if(database_contains(small_ngon_database, mouse_6_expanded)) { */
-    /*             printf(" is found\n"); */
-    /*             boundary_t small_ngon_boundary = { .bits = 0, .size = small_ngon }; */
-    /*             b32 res = search_backward_in_database(small_ngon_database, mouse_6_expanded, small_ngon_boundary); */
-    /*             if(res) { */
-    /*                 printf("Found small_ngon replacement\n"); */
-    /*                 for(int i = 0; i < search_stack.fill; i++) { */
-    /*                     boundary_write(search_stack.data[i].boundary); */
-    /*                     printf("\n"); */
-    /*                 } */
-    /*                 printf("\n"); */
-    /*                                 } */
-    /*         } else { */
-    /*             printf(" is not found\n"); */
-    /*         } */
-    /*     } */
-    /* } */
-
-    /* pool_deinit(&mouse_pool); */
-    
-    /* database_deinit(&small_ngon_database); */
-    
-    /* search_stack_deinit(&search_stack); */
-    
+    }    
 }

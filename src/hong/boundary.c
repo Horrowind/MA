@@ -9,7 +9,7 @@
 static inline
 boundary_t boundary_rotl(boundary_t boundary, int shift) {
     boundary.bits =
-        (((boundary.bits << (shift * BITS)) & ((1ull << (boundary.size * BITS)) - 1)) |
+        (((boundary.bits << (shift * BITS)) & ((((boundary_bits_t)1) << (boundary.size * BITS)) - 1)) |
          (boundary.bits >> ((boundary.size - shift)  * BITS)));
     return boundary;
 }
@@ -17,17 +17,19 @@ boundary_t boundary_rotl(boundary_t boundary, int shift) {
 static inline
 boundary_t boundary_rotr(boundary_t boundary, int shift) {
     boundary.bits = (((boundary.bits >> (shift * BITS)) |
-                      (boundary.bits << ((boundary.size - shift) * BITS))) & ((1ull << (boundary.size * BITS)) - 1));
+                      (boundary.bits << ((boundary.size - shift) * BITS))) & ((((boundary_bits_t)1) << (boundary.size * BITS)) - 1));
     return boundary;
 }
 
 
-#ifndef NDEBUG
+#if 0
 #include <stdlib.h>
 static
 void boundary_check(boundary_t boundary) {
     if(boundary.bits != 0 && bitsof(boundary_bits_t) - __builtin_clzll(boundary.bits) > boundary.size * BITS) {
-        printf("Boundary %lx is larger then size %i\n", boundary.bits, boundary.size);
+        printf("Boundary ");
+        boundary_write(boundary);
+        printf(" is larger then size %i\n", boundary.size);
         exit(0);
     }
 }
@@ -50,9 +52,9 @@ boundary_t boundary_normalize(boundary_t boundary) {
 static
 void boundary_write(boundary_t boundary) {
     printf("[%02i] ", boundary.size);
-    for(int i = 63; i >= 0; i--) {
+    for(int i = bitsof(boundary_bits_t) - 1; i >= 0; i--) {
         if(i < boundary.size) {
-            printf("%i", (int)((boundary.bits >> i) & 1));
+            printf("%i", (int)((boundary.bits >> i) & (boundary_bits_t)1));
         } else {
             printf(" ");
         }
@@ -76,15 +78,16 @@ boundary_t boundary_insert(boundary_t boundary, int ngon, int allow_overlap) {
     if((boundary.bits >> (BITS * (boundary.size - 1))) < VALENCE - 2) {
         u32 s;
         if(VALENCE != 4) {
-            s = __builtin_ctzll(~boundary.bits) / BITS;
+            s = boundary_bits_ctz(~boundary.bits) / BITS;
         } else {
-            s = __builtin_ctzll(~(boundary.bits | 0x5555555555555555)) / BITS;
+            const boundary_bits_t c = (((boundary_bits_t)-1) / ((boundary_bits_t)3));
+            s = boundary_bits_ctz(~(boundary.bits | c)) / BITS;
         }
         if(s != boundary.size - 1) {
             if(s <= ngon - 2) {
-                result.bits   = boundary.bits + (1ull << ((boundary.size - 1) * BITS));
+                result.bits   = boundary.bits + (((boundary_bits_t)1) << ((boundary.size - 1) * BITS));
                 result.bits >>= s * BITS;
-                result.bits  += 1ull;
+                result.bits  += ((boundary_bits_t)1);
                 result.bits <<= (ngon - 2 - s) * BITS;
                 result.size   = boundary.size + ngon - 2 - 2 * s;
             }
@@ -97,7 +100,7 @@ boundary_t boundary_insert(boundary_t boundary, int ngon, int allow_overlap) {
                 }
             } else {
                 if(boundary.size + 3 <= ngon) {
-                    result.bits   = 1 << (ngon - boundary.size - 3) * BITS;
+                    result.bits   = ((boundary_bits_t)1) << (ngon - boundary.size - 3) * BITS;
                     result.size   = ngon - boundary.size - 2;
                 }
             }
@@ -115,11 +118,11 @@ boundary_t boundary_remove(boundary_t boundary, int ngon, int allow_overlap) {
         u32 s = __builtin_ctzll(boundary.bits) / BITS;
         if(s != boundary.size - 1) {
             if(s <= ngon - 2) {
-                result.bits   = boundary.bits - (1ull << ((boundary.size - 1) * BITS));
+                result.bits   = boundary.bits - (((boundary_bits_t)1) << ((boundary.size - 1) * BITS));
                 result.bits >>= s * BITS;
-                result.bits  -= 1;
+                result.bits  -= ((boundary_bits_t)1);
                 result.bits <<= (ngon - 2 - s) * BITS;
-                result.bits  |= (((1 << (ngon - 2 - s) * BITS) - 1) / LAST_NODE_MASK) * (VALENCE - 2);
+                result.bits  |= (((((boundary_bits_t)1) << (ngon - 2 - s) * BITS) - 1) / LAST_NODE_MASK) * (VALENCE - 2);
                 result.size   = boundary.size + ngon - 2 - 2 * s;
             }
         } else if(allow_overlap) { // Overlapping case
@@ -127,13 +130,13 @@ boundary_t boundary_remove(boundary_t boundary, int ngon, int allow_overlap) {
                 if(boundary.size + 1 <= ngon) {
                     result.bits   = (boundary.bits >> (BITS * (boundary.size - 1))) - 2;
                     result.bits <<= (ngon - boundary.size - 1) * BITS;
-                    result.bits  |= ((1 << ((ngon - boundary.size - 1) * BITS)) - 1) / LAST_NODE_MASK * (VALENCE - 2);
+                    result.bits  |= ((((boundary_bits_t)1) << ((ngon - boundary.size - 1) * BITS)) - 1) / LAST_NODE_MASK * (VALENCE - 2);
                     result.size   = ngon - boundary.size;
                 }
             } else { // Overlapping with a single edge
                 if(boundary.size + 3 <= ngon) { 
                     result.bits   = (VALENCE - 3) << ((ngon - boundary.size - 3) * BITS);
-                    result.bits  |= (((1 << ((ngon - boundary.size - 3) * BITS)) - 1) / LAST_NODE_MASK) * (VALENCE - 2);
+                    result.bits  |= (((((boundary_bits_t)1) << ((ngon - boundary.size - 3) * BITS)) - 1) / LAST_NODE_MASK) * (VALENCE - 2);
                     result.size       = ngon - boundary.size - 2;
                 }
             }
@@ -149,13 +152,13 @@ char boundary_is_mouse(boundary_t boundary) {
         boundary.bits >>= 1;
         boundary_bits_t v = boundary.bits;
         boundary_bits_t s = bitsof(boundary_bits_t); // bit size; must be power of 2
-        boundary_bits_t mask = ~0ull;
-        while ((s >>= 1ull) >= (1ull << (BITS - 1))) {
+        boundary_bits_t mask = ~((boundary_bits_t)0);
+        while ((s >>= 1) >= (((boundary_bits_t)1) << (BITS - 1))) {
             mask ^= (mask << s);
             v = ((v >> s) & mask) | ((v << s) & ~mask);
         }
         v >>= bitsof(boundary_bits_t) / BITS - boundary.size + 1;
-        if(boundary.bits + v == (1 << (boundary.size - 1)) - 1) {
+        if(boundary.bits + ((boundary_bits_t)v) == (((boundary_bits_t)1) << (boundary.size - 1)) - 1) {
             return 1;
         }
     }

@@ -116,9 +116,9 @@ void planar_graph_builder_insert(planar_graph_builder_t* planar_graph, int ngon,
     if((boundary.bits >> (BITS * (boundary.size - 1))) < VALENCE - 2) {
         u32 s;
         if(VALENCE != 4) {
-            s = __builtin_ctzll(~boundary.bits) / BITS;
+            s = boundary_bits_ctz(~boundary.bits) / BITS;
         } else {
-            s = __builtin_ctzll(~(boundary.bits | 0x5555555555555555)) / BITS;
+            s = boundary_bits_ctz(~(boundary.bits | 0x5555555555555555)) / BITS;
         }
         if(s != boundary.size - 1) {
             if(s <= ngon - 2) {
@@ -127,7 +127,7 @@ void planar_graph_builder_insert(planar_graph_builder_t* planar_graph, int ngon,
                     &planar_graph->edges_pool, (ngon - 1 - s) * sizeof(planar_graph_builder_edge_t));
                 planar_graph_builder_edge_t* edges = (planar_graph_builder_edge_t*)planar_graph->edges_pool.data;
 
-                result.bits   = boundary.bits + (1ull << ((boundary.size - 1) * BITS));
+                result.bits   = boundary.bits + (((boundary_bits_t)1) << ((boundary.size - 1) * BITS));
                 int vertex1 = edges[planar_graph->current_outer_edge].vertex1;
 
                 result.bits >>= s * BITS;
@@ -157,7 +157,7 @@ void planar_graph_builder_insert(planar_graph_builder_t* planar_graph, int ngon,
                 new_edges[ngon - 2 - s].next = edges[outer_edge].next;
                 new_edges[ngon - 2 - s].vertex2 = vertex2;
                 
-                result.bits  += 1ull;
+                result.bits  += ((boundary_bits_t)1);
                 result.bits <<= (ngon - 2 - s) * BITS;
                 result.size   = boundary.size + ngon - 2 - 2 * s;
                 edges[edges[planar_graph->current_outer_edge].prev].next = old_edge_count;
@@ -349,7 +349,7 @@ int planar_graph_output_sdl(planar_graph_t graph) {
 
 	win = SDL_CreateWindow("Planar graph", posX, posY, width, height, 0);
 
-	renderer = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED);
+	renderer = SDL_CreateRenderer(win, -1, SDL_RENDERER_SOFTWARE);
 
     double* force_array = malloc(graph.vertex_count * sizeof(double) * 2);
     double* force_x = &force_array[0];
