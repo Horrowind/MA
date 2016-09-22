@@ -42,7 +42,7 @@ void planar_graph_to_dotty(planar_graph_builder_t g, int line_num) {
 static
 void planar_graph_builder_from_boundary(planar_graph_builder_t* planar_graph, boundary_t boundary) {
     planar_graph->boundary = boundary;
-    planar_graph->face_count = 1;
+    planar_graph->face_count = 2;
     planar_graph->vertex_count = boundary.size;
     pool_init(&planar_graph->edges_pool);
     planar_graph_builder_edge_t* edges = (planar_graph_builder_edge_t*)pool_alloc(
@@ -135,11 +135,14 @@ void planar_graph_builder_insert(planar_graph_builder_t* planar_graph, int ngon,
                 int outer_edge = planar_graph->current_outer_edge;
                 for(int i = 0; i < s; i++) {
                     assert(edges[outer_edge].face2 == OUTER_FACE);
-                    edges[outer_edge].face2 = new_face;
+		    edges[outer_edge].face2 = new_face;
+		    edges[outer_edge].face2 = new_face;
                     outer_edge = edges[outer_edge].next;
                 }
                 int vertex2 = edges[outer_edge].vertex2;
-
+		assert(edges[outer_edge].face2 == OUTER_FACE);
+		edges[outer_edge].face2 = new_face;
+		
                 for(int j = 0; j < ngon - 1 - s; j++) {
                     new_edges[j].vertex1 = planar_graph->vertex_count - 1 + j;
                     new_edges[j].vertex2 = planar_graph->vertex_count     + j;
@@ -164,9 +167,6 @@ void planar_graph_builder_insert(planar_graph_builder_t* planar_graph, int ngon,
                 edges[edges[outer_edge].next].prev = old_edge_count + ngon - 2 - s;
                 planar_graph->current_outer_edge = old_edge_count;
                 planar_graph->boundary = result;
-
-
-
             }
         } else if(allow_overlap) {
             if((boundary.bits >> (BITS * (boundary.size - 1))) < VALENCE - 3) {
@@ -217,15 +217,15 @@ planar_graph_t planar_graph_from_builder(planar_graph_builder_t builder) {
     for(int edge = 0; edge < edge_count; edge++) {
         int vertex1 = edges[edge].vertex1;
         int vertex2 = edges[edge].vertex2;
-        int face1 = edges[edge].face1 + 1;
-        int face2 = edges[edge].face2 + 1;
+        int face1 = edges[edge].face1;
+        int face2 = edges[edge].face2;
         
         // Edges
         result.edges[edge].vertex1 = &result.vertices[vertex1];
         result.edges[edge].vertex2 = &result.vertices[vertex2];
         result.edges[edge].face1 = &result.faces[face1];
         result.edges[edge].face2 = &result.faces[face2];
-
+	result.edges[edge].edge_data = 0;
         // Vertices
         for(int j = 0; j < VALENCE; j++) {
             if(result.vertices[vertex1].edges[j] == NULL) {
@@ -255,6 +255,11 @@ planar_graph_t planar_graph_from_builder(planar_graph_builder_t builder) {
                 break;
             }
         }
+
+	if(face1 == INNER_FACE || face2 == INNER_FACE) {
+	    result.vertices[vertex1].type = VERTEX_TYPE_INNER_BOUNDARY;
+	    result.vertices[vertex2].type = VERTEX_TYPE_INNER_BOUNDARY;
+	}
     }
 
     for(int i = 0; i < builder.vertex_count; i++) {
@@ -267,7 +272,7 @@ planar_graph_t planar_graph_from_builder(planar_graph_builder_t builder) {
         int vertex = edges[outer_edge].vertex1;
         result.vertices[vertex].x = cos(TAU * (double)i / builder.boundary.size + PI / builder.boundary.size);
         result.vertices[vertex].y = sin(TAU * (double)i / builder.boundary.size + PI / builder.boundary.size);
-        result.vertices[vertex].is_boundary = 1;
+        result.vertices[vertex].type |= VERTEX_TYPE_BOUNDARY;
         outer_edge = edges[outer_edge].next;
     }
 
@@ -319,7 +324,7 @@ void planar_graph_layout_step(planar_graph_t* graph, int step, double* force_x, 
     for (int i = 0; i < graph->vertex_count; i++) {
         planar_graph_vertex_t* current_vertex = &graph->vertices[i];
         double force_norm = sqrt(force_x[i] * force_x[i] + force_y[i] * force_y[i]);
-        if(!current_vertex->is_boundary && force_norm > EPS) {
+        if(!(current_vertex->type & VERTEX_TYPE_BOUNDARY)  && force_norm > EPS) {
             double dx = MIN(force_norm, c) * force_x[i] / force_norm;
             double dy = MIN(force_norm, c) * force_y[i] / force_norm;
             current_vertex->x += dx;
@@ -339,15 +344,46 @@ void planar_graph_layout(planar_graph_t* graph) {
     free(force_array);
 }
 
+int planar_graph_edge_near_vertex(planar_graph_edge_t edge, planar_graph_vertex_t vertex) {
+    double d1x = edge.vertex2->x - edge.vertex1->x;
+    double d1y = edge.vertex2->y - edge.vertex1->y;
+
+    double d2x = vertex.x - edge.vertex1->x;
+    double d2y = vertex.y - edge.vertex1->y;
+
+    double d3x = vertex.x - edge.vertex2->x;
+    double d3y = vertex.y - edge.vertex2->y;
+
+    double dot1 = d1y * d2x - d1x * d2y;
+    double dot2 = d1x * d2x + d1y * d2y;
+    double dot3 = -d1x * d3x - d3y * d2y;
+    double dot4 = d1x * d1x + d1y * d1y;
+    /* if(fabs(dot1) < 0.05 && dot2 > 0.0 && dot2 < 1.0) { */
+    if(fabs(dot1) < 0.05 * dot4 && dot2 > 0.0 && dot3 > 0.0) {
+	return 1;
+    } else {
+	return 0;
+    }
+}
+
+
+int posX = 10, posY = 10, width = 700, height = 700;
+
+double screen2coordx(int x) {
+    return (x - 5 - ((double)width)/2.0) / ((double)width) * 2.0;
+}
+double screen2coordy(int y) {
+    return (y - 5 - ((double)width)/2.0) / ((double)width) * 2.0;
+}
 
 int planar_graph_output_sdl(planar_graph_t graph) {
     SDL_Window *win = NULL;
     SDL_Renderer *renderer = NULL;
-    int posX = 100, posY = 100, width = 600, height = 600;
+
 
     SDL_Init(SDL_INIT_VIDEO);
 
-    win = SDL_CreateWindow("Planar graph", posX, posY, width, height, 0);
+    win = SDL_CreateWindow("Planar graph", posX, posY, width + 10, height + 10, 0);
 
     renderer = SDL_CreateRenderer(win, -1, SDL_RENDERER_SOFTWARE);
 
@@ -362,8 +398,7 @@ int planar_graph_output_sdl(planar_graph_t graph) {
 	if (SDL_PollEvent(&e)) {
 	    if(e.type == SDL_QUIT) {
 		exit(0);
-	    }
-            if(e.type == SDL_KEYDOWN) {
+	    } else if(e.type == SDL_KEYDOWN) {
 		if(e.key.keysym.sym == SDLK_ESCAPE) {
                     result = 0;
                     break;
@@ -372,17 +407,24 @@ int planar_graph_output_sdl(planar_graph_t graph) {
 		    step = 1;
                 }
                 if(e.key.keysym.sym == SDLK_p) {
-		    planar_graph_output_tikz(graph);
-                }
+		    planar_graph_output_tikz(graph, 0);
+		}
                 if(e.key.keysym.sym == SDLK_RETURN) {
                     result = 1;
                     break;
                 }
-
+	    } else if(e.type == SDL_MOUSEBUTTONDOWN) {
+		for(int i = 0; i < graph.edge_count; i++) {
+		    planar_graph_vertex_t v;
+		    v.x = screen2coordx(e.button.x);
+		    v.y = screen2coordx(e.button.y);
+		    if(planar_graph_edge_near_vertex(graph.edges[i], v)) {
+			graph.edges[i].edge_data = 1 - graph.edges[i].edge_data;
+		    }
+		}
 	    }
-
 	}
-
+	
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 	SDL_RenderClear(renderer);
 	SDL_SetRenderDrawColor(renderer, 255, 73, 123, 255);
@@ -398,14 +440,29 @@ int planar_graph_output_sdl(planar_graph_t graph) {
                     planar_graph_vertex_t* other_vertex = current_edge->vertex1 == current_vertex
                         ? current_edge->vertex2
                         : current_edge->vertex1;
-
-                    double x1 = current_vertex->x * (double)(width / 2) + (double)(width / 2);
-                    double y1 = current_vertex->y * (double)(height / 2) + (double)(height / 2);
-                    double x2 = other_vertex->x * (double)(width / 2) + (double)(width / 2);
-                    double y2 = other_vertex->y * (double)(height / 2) + (double)(height / 2);
-                    SDL_RenderDrawLine(renderer, (int)x1, (int)y1, (int)x2, (int)y2);
+                    int x1 = current_vertex->x * (double)(width / 2) + (double)(width / 2) + 5;
+                    int y1 = current_vertex->y * (double)(height / 2) + (double)(height / 2) + 5;
+                    int x2 = other_vertex->x * (double)(width / 2) + (double)(width / 2) + 5;
+                    int y2 = other_vertex->y * (double)(height / 2) + (double)(height / 2) + 5;
+		    planar_graph_vertex_t v;
+		    v.x = screen2coordx(e.button.x);
+		    v.y = screen2coordx(e.button.y);
+		    /* printf("%f\n", planar_graph_edge_vertex_distance(graph.edges[i], v)); */
+		    if(planar_graph_edge_near_vertex(*current_edge, v)) {
+			SDL_SetRenderDrawColor(renderer, 73, 123, 255, 255);
+		    } else if(current_edge->edge_data) {
+			SDL_SetRenderDrawColor(renderer, 123, 255, 73, 255);
+		    } else {
+			SDL_SetRenderDrawColor(renderer, 255, 73, 123, 255);
+		    }
+                    SDL_RenderDrawLine(renderer, x1, y1, x2, y2);
                     SDL_Rect rect = { .x = (int)x1 - 1, .y = (int)y1 - 1, .w = 3, .h = 3 };
-                    SDL_RenderFillRect(renderer, &rect);
+		    if(current_vertex->type & VERTEX_TYPE_INNER_BOUNDARY) {
+			SDL_SetRenderDrawColor(renderer, 73, 123, 255, 255);
+		    } else {
+			SDL_SetRenderDrawColor(renderer, 255, 73, 123, 255);
+		    }
+		    SDL_RenderFillRect(renderer, &rect);
                 }
 	    }
 	}
@@ -437,8 +494,11 @@ int planar_graph_output_sdl(planar_graph_t graph) {
 }
 
 
-void planar_graph_output_tikz(planar_graph_t g) {
-    FILE *f = fopen("output_graph.tex", "w");
+void planar_graph_output_tikz(planar_graph_t g, int k) {
+    char buffer[64];
+    sprintf(buffer, "output_graph%03i.tex", k);
+    
+    FILE *f = fopen(buffer, "w");
     if (f == NULL) {
 	printf("Error opening file output_graph!\n");
 	exit(1);
@@ -446,11 +506,12 @@ void planar_graph_output_tikz(planar_graph_t g) {
     // print latex-code 
     fprintf(f,
 	    "\\documentclass[a4paper]{article}\n"
+	    "\\usepackage[left=0.5cm, right=0.5cm, top=1cm, bottom=1cm]{geometry}\n"
 	    "\\usepackage{tikz}\n"
 	    "\\begin{document}\n"
 	    "\\begin{figure}[h!]\n"
 	    "\\centering\n"
-	    "\\begin{tikzpicture}[scale = 4]\n"
+	    "\\begin{tikzpicture}[scale = 10, auto]\n"
 	    );
     // print tikz-code for nodes
     for (int i = 0; i<g.vertex_count; i++) {
@@ -461,6 +522,23 @@ void planar_graph_output_tikz(planar_graph_t g) {
 	fprintf(f,"\\draw (%f, %f) -- (%f, %f);\n",
 		g.edges[i].vertex1->x, g.edges[i].vertex1->y,
 		g.edges[i].vertex2->x, g.edges[i].vertex2->y);
+	/* fprintf(f,"\\draw (%f, %f) to node {%li} node [swap] {%li} (%f, %f);\n", */
+	/* 	g.edges[i].vertex1->x, g.edges[i].vertex1->y, */
+	/* 	g.edges[i].face1 - g.faces, g.edges[i].face2 - g.faces, */
+	/* 	g.edges[i].vertex2->x, g.edges[i].vertex2->y); */
+    }
+    for(int i = 0; i < g.face_count; i++) {
+	double sx = 0.0;
+	double sy = 0.0;
+	for(int j = 0; j < g.faces[i].ngon; j++) {
+	    sx += g.faces[i].edges[j]->vertex1->x;
+	    sy += g.faces[i].edges[j]->vertex1->y;
+	    sx += g.faces[i].edges[j]->vertex2->x;
+	    sy += g.faces[i].edges[j]->vertex2->y;
+	}
+	sx /= 2 * g.faces[i].ngon;
+	sy /= 2 * g.faces[i].ngon;
+	fprintf(f,"\\node at (%f, %f) {%i};\n", sx, sy, i);
     }
     // print latex-code 
     fprintf(f, "\\end{tikzpicture}\n"

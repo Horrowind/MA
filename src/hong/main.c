@@ -11,8 +11,6 @@
 #include "stack.h"
 #include "hash.h"
 
-//#include "gb.h"
-
 #include "graphit.h"
 #include "planar_graph.h"
 
@@ -170,35 +168,57 @@ b32 search_database(boundary_t start, boundary_t goal, int* ngons, int ngons_cou
 	boundary_t boundary_normalized = boundary_normalize(boundary);
 	/* boundary_write(boundary); printf("\n"); */
 	//getchar();
+
+	int stop = 1; // If set, search no more
 	
         if(boundary_normalized.bits == goal_normalized.bits && boundary.size == goal.size) {
-            printf("Found boundary "); boundary_write(start); printf("\n");
             planar_graph_builder_t builder;
             planar_graph_builder_from_boundary(&builder, current_entry->boundary);
-            
+
             while(current_entry->prev != NULL) {
                 planar_graph_builder_insert(&builder, current_entry->ngon, 0);
                 planar_graph_builder_rotr(&builder, current_entry->rotation);
                 /* planar_graph_builder_check_outer_edges(&builder); */
                 current_entry = current_entry->prev;
-            }
-            planar_graph_t planar_graph = planar_graph_from_builder(builder);
-            int stop = planar_graph_output_sdl(planar_graph);
-            planar_graph_deinit(planar_graph);
-            if(stop) {
-                for(int i = 0; i < 512; i++) {
-                    search_queue_deinit(&queues[i]);
-                }
-                return 1;
-            } else {
-                continue;
-            }
+	    }
+
+
+	    planar_graph_builder_edge_t* edges = (planar_graph_builder_edge_t*)builder.edges_pool.data;
+	    int edge_count = builder.edges_pool.fill / sizeof(planar_graph_builder_edge_t);
+	    for(int i = 0; i < edge_count; i++) {
+		if(edges[i].face1 == INNER_FACE || edges[i].face2 == INNER_FACE) continue;
+		if(edges[i].face1 == OUTER_FACE || edges[i].face2 == OUTER_FACE) continue;
+		for(int j = i + 1; j < edge_count; j++) {
+		    // we have two faces, which are adjacent along two different edges
+		    // => the graph is not 2-connected
+		    if((edges[i].face1 == edges[j].face1 && edges[i].face2 == edges[j].face2) ||
+		       (edges[i].face1 == edges[j].face2 && edges[i].face2 == edges[j].face1)) {
+			stop = 0;
+			break;
+		    }
+		}
+	    }
+
+	    if(stop) {
+		printf("Found boundary "); boundary_write(start); printf("\n");
+		planar_graph_t planar_graph = planar_graph_from_builder(builder);
+		stop = planar_graph_output_sdl(planar_graph);
+		planar_graph_deinit(planar_graph);
+		if(stop) {
+		    for(int i = 0; i < 512; i++) {
+			search_queue_deinit(&queues[i]);
+		    }
+		    return 1;
+		}
+
+	    }
+	    continue;
         }
 
         int path_length = nonempty_queue_index - heuristic(boundary, goal);
         /* if((step & 0xFFFFF) == 0) printf("Path length: %i %i %i \n", path_length, nonempty_queue_index, heuristic(boundary, goal)); */
         step++;
-        if((step & 0xFFFF) == 0) {
+        if((step & 0x1FFFF) == 0) {
             for(int i = 0; i < 512; i++) {
                 search_queue_deinit(&queues[i]);
             }
@@ -276,7 +296,7 @@ int main(int argc, char* argv[]) {
 
     {
         boundary_t boundary;
-        for(boundary.size = 0; boundary.size < MAX_SIZE; boundary.size++) {
+        for(boundary.size = 13; boundary.size < MAX_SIZE; boundary.size++) {
             for(boundary.bits = 0; boundary.bits < (1 << boundary.size); boundary.bits++) {
                 if(database_contains(monogon_database, boundary)) {
                     for(int k = 0; k < boundary.size; k++) {

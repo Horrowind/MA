@@ -13,8 +13,8 @@ int large_ngon = 9;
 #define MAX_NGON_COUNT 2
 
 #define NUM_THREADS 1
-#define MAX_SIZE_CAP 26
-#define MAX_SIZE ((BOUNDARY_BITS / 3) + 1 > MAX_SIZE_CAP ? MAX_SIZE_CAP : (BOUNDARY_BITS / 3) + 1)
+#define MAX_SIZE_CAP 22
+#define MAX_SIZE ((BOUNDARY_BITS / 6) + 1 > MAX_SIZE_CAP ? MAX_SIZE_CAP : (BOUNDARY_BITS / 6) + 1)
 #define MAX_SEARCH_SIZE 50
 
 #define BITS           (VALENCE < 4 ? 1 : 2)

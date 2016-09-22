@@ -232,7 +232,7 @@ THREAD_SIG(working_thread_add, thread_manager_ptr) {
                     for(int j = 0; j < size; j++) {
                         for(int k = 0; k < thread_manager->ngon_count; k++) {
                             int ngon = thread_manager->ngons[k];
-                            boundary_t new_boundary = boundary_insert(boundary, ngon, 1);
+                            boundary_t new_boundary = boundary_insert(boundary, ngon, 0);
                             if(new_boundary.size != 0 && new_boundary.size < MAX_SIZE) {
 #ifdef EARLY_OUT
                                 if(!database_contains(thread_manager->database, new_boundary)) {

@@ -14,8 +14,10 @@ typedef struct planar_graph_builder_edge {
     int next;
 } planar_graph_builder_edge_t;
 
-#define INNER_FACE (0)
-#define OUTER_FACE (-1)
+enum {
+    OUTER_FACE,
+    INNER_FACE,
+};
 typedef struct {
     boundary_t boundary;
     int face_count;
@@ -31,9 +33,15 @@ typedef struct planar_graph_vertex planar_graph_vertex_t;
 typedef struct planar_graph_edge planar_graph_edge_t;
 typedef struct planar_graph_face planar_graph_face_t;
 
+typedef enum {
+    VERTEX_TYPE_NORMAL,
+    VERTEX_TYPE_BOUNDARY,
+    VERTEX_TYPE_INNER_BOUNDARY
+} vertex_type_t;
+
 struct planar_graph_vertex {
     planar_graph_edge_t* edges[VALENCE];
-    b32 is_boundary;
+    vertex_type_t type;
     double x;
     double y;
 };
@@ -43,6 +51,7 @@ struct planar_graph_edge {
     planar_graph_vertex_t* vertex2;
     planar_graph_face_t* face1;
     planar_graph_face_t* face2;
+    int edge_data;
 };
 
 struct planar_graph_face {
@@ -93,6 +102,6 @@ void planar_graph_layout_step(planar_graph_t* graph, int step, double* force_x, 
 void planar_graph_layout(planar_graph_t* graph);
 
 int planar_graph_output_sdl(planar_graph_t graph);
-void planar_graph_output_tikz(planar_graph_t graph);
+void planar_graph_output_tikz(planar_graph_t graph, int i);
 
 #endif //PLANAR_GRAPH_H
