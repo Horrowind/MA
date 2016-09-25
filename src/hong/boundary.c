@@ -9,7 +9,7 @@
 static inline
 boundary_t boundary_rotl(boundary_t boundary, int shift) {
     boundary.bits =
-        (((boundary.bits << (shift * BITS)) & ((((boundary_bits_t)1) << (boundary.size * BITS)) - 1)) |
+        (((boundary.bits << (shift * BITS)) & ((((boundary_bits_t)1) << (boundary.size * BITS)) - ((boundary_bits_t)1))) |
          (boundary.bits >> ((boundary.size - shift)  * BITS)));
     return boundary;
 }
@@ -52,9 +52,9 @@ boundary_t boundary_normalize(boundary_t boundary) {
 static
 void boundary_write(boundary_t boundary) {
     printf("[%02i] ", boundary.size);
-    for(int i = bitsof(boundary_bits_t) - 1; i >= 0; i--) {
+    for(int i = bitsof(boundary_bits_t) / BITS - 1; i >= 0; i--) {
         if(i < boundary.size) {
-            printf("%i", (int)((boundary.bits >> i) & (boundary_bits_t)1));
+            printf("%i", (int)((boundary.bits >> (i) * BITS) & LAST_NODE_MASK));
         } else {
             printf(" ");
         }
@@ -66,7 +66,7 @@ boundary_t boundary_unfold(boundary_t boundary, int n) {
     boundary_t result = boundary;
     result.size = boundary.size * n;
     for(int i = 1; i < n; i++) {
-        result.bits <<= boundary.size;
+        result.bits <<= boundary.size * BITS;
         result.bits  |= boundary.bits;
     }
     return result;
@@ -76,16 +76,11 @@ static inline
 boundary_t boundary_insert(boundary_t boundary, int ngon, int allow_overlap) {
     boundary_t result = {.bits = 0, .size = 0};
     if((boundary.bits >> (BITS * (boundary.size - 1))) < VALENCE - 2) {
-        u32 s;
-        if(VALENCE != 4) {
-            s = boundary_bits_ctz(~boundary.bits) / BITS;
-        } else {
-            const boundary_bits_t c = (((boundary_bits_t)-1) / ((boundary_bits_t)3));
-            s = boundary_bits_ctz(~(boundary.bits | c)) / BITS;
-        }
+        u32 s = boundary_bits_get_trailing_max_nodes(bits);
         if(s != boundary.size - 1) {
             if(s <= ngon - 2) {
-                result.bits   = boundary.bits + (((boundary_bits_t)1) << ((boundary.size - 1) * BITS));
+		result = boundary;
+                result.bits  += (((boundary_bits_t)1) << ((boundary.size - 1) * BITS));
                 result.bits >>= s * BITS;
                 result.bits  += ((boundary_bits_t)1);
                 result.bits <<= (ngon - 2 - s) * BITS;
@@ -115,10 +110,11 @@ static inline
 boundary_t boundary_remove(boundary_t boundary, int ngon, int allow_overlap) {
     boundary_t result = {.bits = 0, .size = 0};
     if((boundary.bits >> (BITS * (boundary.size - 1))) != 0) {
-        u32 s = __builtin_ctzll(boundary.bits) / BITS;
+        u32 s = boundary_bits_ctz(boundary.bits) / BITS;
         if(s != boundary.size - 1) {
             if(s <= ngon - 2) {
-                result.bits   = boundary.bits - (((boundary_bits_t)1) << ((boundary.size - 1) * BITS));
+		result = boundary;
+                result.bits  -= (((boundary_bits_t)1) << ((boundary.size - 1) * BITS));
                 result.bits >>= s * BITS;
                 result.bits  -= ((boundary_bits_t)1);
                 result.bits <<= (ngon - 2 - s) * BITS;
@@ -149,18 +145,14 @@ static
 char boundary_is_mouse(boundary_t boundary) {
     // A mouse boundary complex has odd length and the head has valence 1
     if(boundary.size % 2 == 1 && (boundary.bits & LAST_NODE_MASK) == 0) {
-        boundary.bits >>= 1;
-        boundary_bits_t v = boundary.bits;
-        boundary_bits_t s = bitsof(boundary_bits_t); // bit size; must be power of 2
-        boundary_bits_t mask = ~((boundary_bits_t)0);
-        while ((s >>= 1) >= (((boundary_bits_t)1) << (BITS - 1))) {
-            mask ^= (mask << s);
-            v = ((v >> s) & mask) | ((v << s) & ~mask);
-        }
-        v >>= bitsof(boundary_bits_t) / BITS - boundary.size + 1;
-        if(boundary.bits + ((boundary_bits_t)v) == (((boundary_bits_t)1) << (boundary.size - 1)) - 1) {
-            return 1;
-        }
+	boundary_bits_t v = boundary.bits >> BITS;
+	int s = boundary.size - 1;
+	for(int i = 0; i < s / 2; i++) {
+	    if(((v >> (i * BITS)) & LAST_NODE_MASK) + ((v >> ((s - 1 - i) * BITS)) & LAST_NODE_MASK) != VALENCE - 2) {
+		return 0;
+	    }
+	}
+	return 1;
     }
     return 0;
 }

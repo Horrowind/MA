@@ -114,12 +114,7 @@ void planar_graph_builder_insert(planar_graph_builder_t* planar_graph, int ngon,
     boundary_t result = {.bits = 0, .size = 0};
     boundary_t boundary = planar_graph->boundary;
     if((boundary.bits >> (BITS * (boundary.size - 1))) < VALENCE - 2) {
-        u32 s;
-        if(VALENCE != 4) {
-            s = boundary_bits_ctz(~boundary.bits) / BITS;
-        } else {
-            s = boundary_bits_ctz(~(boundary.bits | 0x5555555555555555)) / BITS;
-        }
+        u32 s = boundary_bits_get_trailing_max_nodes(bits);
         if(s != boundary.size - 1) {
             if(s <= ngon - 2) {
                 int old_edge_count = planar_graph->edges_pool.fill / sizeof(planar_graph_builder_edge_t);
@@ -127,7 +122,8 @@ void planar_graph_builder_insert(planar_graph_builder_t* planar_graph, int ngon,
                         &planar_graph->edges_pool, (ngon - 1 - s) * sizeof(planar_graph_builder_edge_t));
                 planar_graph_builder_edge_t* edges = (planar_graph_builder_edge_t*)planar_graph->edges_pool.data;
 
-                result.bits   = boundary.bits + (((boundary_bits_t)1) << ((boundary.size - 1) * BITS));
+		result = boundary;
+                result.bits += (((boundary_bits_t)1) << ((boundary.size - 1) * BITS));
                 int vertex1 = edges[planar_graph->current_outer_edge].vertex1;
 
                 result.bits >>= s * BITS;

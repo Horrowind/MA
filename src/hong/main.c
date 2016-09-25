@@ -64,8 +64,6 @@ u32 search_hash_map_hash(search_hash_map_entry_t entry) {
     return result;
 }
 
-//GB_TABLE(static inline, search_hash_map_t, search_hash_map_, boundary_t);
-
 generate_hashmap(search_hash_map, search_hash_map_entry_t, search_hash_map_hash, search_hash_map_cmp);
 
 void search_queue_init(search_queue_t* queue, page_allocator_t* page_allocator) {
@@ -123,11 +121,11 @@ int system2(char* cmd) {
 
 static inline
 int heuristic(boundary_t boundary, boundary_t goal) {
-    int min_diff = 64;
-    for(int i = 0; i < boundary.size; i++) {
-        int diff = __builtin_popcountl(boundary_rotl(boundary, i).bits & goal.bits);
-        if(diff < min_diff) min_diff = diff;
-    }
+    /* int min_diff = 64; */
+    /* for(int i = 0; i < boundary.size; i++) { */
+    /*     int diff = __builtin_popcountl(boundary_rotl(boundary, i).bits & goal.bits); */
+    /*     if(diff < min_diff) min_diff = diff; */
+    /* } */
     
     return boundary.size;
 }
@@ -167,7 +165,7 @@ b32 search_database(boundary_t start, boundary_t goal, int* ngons, int ngons_cou
         boundary_t boundary = current_entry->boundary;
 	boundary_t boundary_normalized = boundary_normalize(boundary);
 	/* boundary_write(boundary); printf("\n"); */
-	//getchar();
+	/* getchar(); */
 
 	int stop = 1; // If set, search no more
 	
@@ -274,9 +272,7 @@ int main(int argc, char* argv[]) {
     database_init(&monogon_database);
     /* database_init(&small_ngon_database); */
 
-    boundary_t monogon_boundary = { .size = 1, .bits = 0 };
     boundary_t small_ngon_boundary = { .size = small_ngon, .bits = 0 };
-    boundary_t large_ngon_boundary = { .size = large_ngon, .bits = 0 };
 
     /* boundary_t test; */
     /* test.bits = 0x256; */
@@ -286,8 +282,19 @@ int main(int argc, char* argv[]) {
     /*     search_database(test2, large_ngon_boundary, ngons, 2); */
     /* } */
     /* exit(0); */
-    
-    boundary_t mouse_goal_boundary = { .size = large_ngon - 3, .bits = (boundary_bits_t)1 };
+
+    boundary_t mouse_goal_boundary;
+    switch(VALENCE) {
+    case 3:
+	mouse_goal_boundary.size = large_ngon - 3;
+	mouse_goal_boundary.bits = (boundary_bits_t)1;
+	break;
+    case 4:
+    case 5:
+	mouse_goal_boundary.size = large_ngon - 1;
+	mouse_goal_boundary.bits = (boundary_bits_t)2;
+	break;
+    }
     mouse_goal_boundary = boundary_normalize(mouse_goal_boundary);
     database_build_from_boundary(monogon_database, mouse_goal_boundary, ngons, 2);
 
@@ -296,8 +303,8 @@ int main(int argc, char* argv[]) {
 
     {
         boundary_t boundary;
-        for(boundary.size = 13; boundary.size < MAX_SIZE; boundary.size++) {
-            for(boundary.bits = 0; boundary.bits < (1 << boundary.size); boundary.bits++) {
+        for(boundary.size = 0; boundary.size < MAX_SIZE; boundary.size++) {
+            for(boundary.bits = 0; boundary.bits < (1 << (boundary.size * BITS)); boundary.bits++) {
                 if(database_contains(monogon_database, boundary)) {
                     for(int k = 0; k < boundary.size; k++) {
                         if(boundary_is_mouse(boundary)) {
@@ -314,7 +321,7 @@ int main(int argc, char* argv[]) {
                             if(!is_found) {
                                 boundary_t* new_mouse = (boundary_t*)pool_alloc(&mouse_pool, sizeof(boundary_t));
                                 *new_mouse = boundary_normalize(boundary);
-                                //boundary_write(*new_mouse); printf("\n");
+                                boundary_write(*new_mouse); printf("\n");
                             }
                         }
                         boundary = boundary_rotl(boundary, 1);
@@ -329,11 +336,17 @@ int main(int argc, char* argv[]) {
     int mouse_count = mouse_pool.fill / sizeof(boundary_t);
     printf("Found %i mouses\n", mouse_count);
     for(int i = 1; i < mouse_count; i++) {
-        boundary_t mouse_goal_boundary = { .size = large_ngon - 3, .bits = (boundary_bits_t)1 };
-        mouse_goal_boundary = boundary_normalize(mouse_goal_boundary);
-	boundary_write(mouse_goal_boundary); printf("\n");
 	boundary_write(mouse_data[i]); printf("\n");
-        int is_found = search_database(boundary_unfold(mouse_data[i], 6), small_ngon_boundary, ngons, 2);
+	int is_found;
+	switch(VALENCE) {
+	case 3:
+	    is_found = search_database(boundary_unfold(mouse_data[i], 6), small_ngon_boundary, ngons, 2);
+	    break;
+	case 4:
+	case 5:
+	    is_found = search_database(boundary_unfold(mouse_data[i], 4), small_ngon_boundary, ngons, 2);
+	    break;
+	}
         if(is_found) {
 	    b32 is_also_found = search_database(mouse_data[i], mouse_goal_boundary, ngons, 2);
 	    if(is_also_found) return 0;

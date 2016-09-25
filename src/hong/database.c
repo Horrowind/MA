@@ -56,7 +56,7 @@ void database_add(database_t database, boundary_t boundary) {
 static
 void database_init(database_t* database) {
     u64 page_size = sysconf(_SC_PAGESIZE);
-    u64 bits_used = (1ull << MAX_SIZE) + MAX_SIZE;
+    u64 bits_used = (1ull << (MAX_SIZE * BITS)) + (MAX_SIZE * BITS);
     u64 pages_used = div_ceil(bits_used, 8 * page_size);
     database->entries = mmap(NULL, pages_used * page_size, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
     madvise(database->entries, pages_used * page_size, MADV_RANDOM);
@@ -65,7 +65,7 @@ void database_init(database_t* database) {
 
 static
 void database_deinit(database_t* database) {
-    u64 bits_used = (1ull << MAX_SIZE) + MAX_SIZE;
+    u64 bits_used = (1ull << (MAX_SIZE * BITS)) + (MAX_SIZE * BITS);
     u64 pages_used = div_ceil(bits_used, 8 * sysconf(_SC_PAGESIZE));
     munmap(database->entries, pages_used);
 }

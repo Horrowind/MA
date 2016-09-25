@@ -6,21 +6,16 @@
 #include "params.h"
 
 #if BOUNDARY_BITS == 32
-typedef uint32_t boundary_bits_t;
 #define boundary_bits_ctz(x)                    \
     (__builtin_ctz(x))
 #else
 
 #if BOUNDARY_BITS == 64
-typedef uint64_t boundary_bits_t;
 #define boundary_bits_ctz(x)                    \
     (__builtin_ctzll(x))
 
 #else
 #if BOUNDARY_BITS == 128
-
-
-typedef __uint128_t boundary_bits_t;
 static inline
 int boundary_bits_ctz(boundary_bits_t v) {
     union _128_as_64 {
@@ -40,6 +35,11 @@ int boundary_bits_ctz(boundary_bits_t v) {
 #endif
 #endif
 #endif
+
+#define boundary_bits_get_trailing_max_nodes(bits)			\
+    (VALENCE != 4							\
+     ? boundary_bits_ctz(~boundary.bits) / BITS				\
+     : boundary_bits_ctz(~(boundary.bits | (((boundary_bits_t)-1) / ((boundary_bits_t)3)))) / BITS)
 
 typedef struct  {
     boundary_bits_t bits;
