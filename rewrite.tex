@@ -1,9 +1,5 @@
 \section{Necklaces and rewriting systems}
 
-\newcommand{\rewrite}{\rightarrow}
-\newcommand{\cycsim}{\stackrel{\circ}{\sim}}
-\newcommand{\srewrite}[1]{\stackrel{#1}{\rewrite}}
-
 In this chapter we are interested in proving that certain boundary configurations can not be build with a set of polygons from another boundary configuration. For this we model insertion and deletion of an $n$-gon as a rewriting step on a part of the boundary.
 
 \begin{example}
@@ -136,7 +132,7 @@ With this example in mind, we want to show that with such transformations we can
 \end{proof}
 \end{proposition}
 
-\autoref{prop:rewriting:equivalence} gives us a very useful tool for deciding $a \stackrel{\ast}{\leftrightarrow} b$ for a terminating and confluent rewriting system $(A, \rewrite)$. We can choose reductions $a \rewrite a_1 \rewrite a_2 \rewrite \dots \rewrite a_n$ and $b \rewrite b_1 \rewrite b_2 \rewrite \dots \rewrite b_m$ arbitrarily until no further reductions are possible (this will happen since $\rewrite$ is terminating). Then $a_n \stackrel{\ast}{\leftrightarrow} b_m$, and by the {\sc Church-Rosser}-property there exist further reductions $a_n \srewrite{\ast} x, b_m \srewrite{\ast} x$ to some $x \in A$. But $x$ is equal to $a_n$ and $b_m$, since these were fully reduced and therefore $a \stackrel{\ast}{\leftrightarrow} b$ if and only if $a_n = b_m$.
+\autoref{prop:rewriting:equivalence} gives us a very useful tool for deciding $a \stackrel{\ast}{\leftrightarrow} b$ for a terminating and confluent rewriting system $(A, \rewrite)$. We can choose reductions $a \rewrite a_1 \rewrite a_2 \rewrite \dots \rewrite a_n$ and $b \rewrite b_1 \rewrite b_2 \rewrite \dots \rewrite b_m$ arbitrarily until no further reductions are possible (this will happen since $\rewrite$ is terminating). Then, assuming $a \stackrel{\ast}{\leftrightarrow} b$, we have $a_n \stackrel{\ast}{\leftrightarrow} b_m$. By the {\sc Church-Rosser}-property there exist further reductions $a_n \srewrite{\ast} x, b_m \srewrite{\ast} x$ to some $x \in A$. But $x$ is equal to $a_n$ and $b_m$, since these were fully reduced and therefore $a_n = b_m$ if $a \stackrel{\ast}{\leftrightarrow} b$. On the other hand, if $a \stackrel{\ast}{\leftrightarrow} b$ does not hold, $a_n$ and $b_m$ can not be equal or else we would have a reduction chain $a \rewrite a_1 \rewrite a_2 \rewrite \dots \rewrite a_n = b_m \rewrite^{-1} b_1 \rewrite^{-1} \dots \rewrite^{-1} b_1 \rewrite^{-1} b$.
 \\\\
 Let us now introduce our main object of interest:
 

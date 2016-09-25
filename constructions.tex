@@ -1,0 +1,90 @@
+\section{Construction}
+
+Let $r \in \nats$. Within this section one can think of $r$ as the given valence of a polyhedron. Many constructions in this thesis will utilize the concept of replacing each face of a polyhedron with a larger patch. It can be quite challenging to see whether the resulting structures fit as well together as the previous faces did. This section introduces the necessary formalism for these kinds of constructions.
+
+\begin{definition}[Patch] A $2$-connected planar graph is called an $r$-patch if each of its vertices except the ones on the outer face is $r$-valent (the exterior vertices can differ from the valence $r$, but are not required to).
+\end{definition}
+
+\begin{definition}[Boundary structure of a patch] Each $r$-patch $\mathcal{P}$ is assigned a cyclically ordered tuple $\cyctup{w_1, \dots, w_n}$ giving values $w_k$ to each vertex $v_k$ on the outer face of $G$, where $w_k = \deg(v_k) - 1$ and the natural, positive order on the vertices of $\mathcal{P}$ is given. This tuple is denoted as the boundary structure of $\mathcal{P}$. Each entry is called the face count of the according vertex.
+\end{definition}
+
+The geometric interpretation is rather straightforward. Each vertex on the boundary is associated with the number of adjacent inner faces.
+
+If one is interested in whether two patches of a construction fit together to assemble a larger patch one has to compare the valences along some path on the boundary of each part. This is captured in the following definition:
+\begin{definition}
+  Two tuples $(w_1, \dots, w_n)$ and $(w'_1, \dots, w'_n)$ are said to fit together if for all $i \in \{1, \dots, n \}$ the equation $w_i + w'_{n-i} = r$ holds. Also, a single tuple $w$ is called self-fitting, if $w$ fits with itself. The boundary structure of a patch $\cyctup{w_1, \dots, w_n}$ is said to fit from $i$ to $j$ to the boundary structure of a patch $\cyctup{w'_1, \dots, w'_n}$ from $i'$ to $j'$ if the tuples $(w_i, \dots, w_j)$ and $(w'_{i'}, \dots, w'_{j'})$ fit. Note that these tuples could ``overflow'', i.e. if $i > j$ then $(w_i, \dots, w_j)$ denotes the tuple $(w_i, \dots, w_n, w_1, \dots w_j)$.
+\end{definition}
+
+\begin{lemma}\label{thm:fitting:arcs}
+  Let $\mathcal{P}, \mathcal{P}'$ be two $r$-patches, $w = \cyctup{w_1, \dots, w_n}$ and $w' = \cyctup{w'_1, \dots, w'_m}$ their respective boundary structures and $v_k$ and $v'_k$ the vertices on the outer face associated to each $w_k$, $w'_k$. If $w_i + w'_{j'} + 1 \leq r$ and $w'_{i'} + w_{j} + 1 \leq r$ and $w$ fits from $i+1$ to $j-1$ to $w'$ from $i'+1$ to $j'-1$, then there exists an $r$-patch which has $\mathcal{P}$ and $\mathcal{P}'$ as subgraphs and identifies $v_{i+k} = v'_{j'-k}$, $0 \leq k \leq (j - i \mod n)$ but not any other two vertices.
+  \begin{proof}
+    By ``gluing'' $\mathcal{P}$ and $\mathcal{P}'$ along the paths $v_i - \dots - v_{j}$ and $v'_{i'} - \dots - v'_{j'}$, that is, identifying $v_{i+k}$ with $v'_{j'-k}$, $0 \leq k \leq (j - i \mod n)$, the resulting graph satisfies the requirements, see \autoref{fig:patch:example}. It is planar since both $\mathcal{P}$ and $\mathcal{P}'$ are, and both graphs were combined along the outer face. Let $\tilde{v}_k$ be the vertex in the new graph which represents $v_{i+k}$ and $v_{j' - k}$ from the old graphs. By construction $\tilde{v}_k$ is now an inner vertex if $1 \leq k \leq (j - i - 1 \mod n)$ and a vertex on the outer face if $k=0$ or $k = (j - i \mod n)$. When gluing $v_{i+k}$ with $v_{j' - k}$ ($1 \leq k \leq (j - i - 1 \mod n)$), the edges $v_{i+k-1}$--$v_{i+k}$ and $v'_{j'-k+1}$--$v'_{j'-k}$ coincide, as well as the edges $v_{i+k+1}$--$v_{i+k}$ and $v'_{j'-k-1}$--$v'_{j'-k}$. Therefore the valence of $\tilde{v}_k$ is two less than the sum of valences of $v_{i+k}$ and $v'_{j'-k}$, thus
+    \begin{equation*}
+      \deg(\tilde{v}_k) = \deg(v_{i+k}) + \deg(v'_{j'-k}) - 2 = w_{i+k} + 1 + w'_{j'-k} + 1 - 2 = w_{i+k} + w'_{j'-k} = r.
+    \end{equation*}
+    The edges $v_{i}$--$v_{i+1}$ and $v'_{j}$--$v'_{j-1}$ are now glued together, it follows $\deg(\tilde{v}_0) = \deg(v_i) + \deg(v'_{j'}) - 1 = (w_i + 1) + (w'_{j'} + 1) - 1 = w_i + w'_{j'} + 1 \leq r$. Analogously $\deg(\tilde{v}_0) \leq r$ holds. This proves that the new graph is an $r$-patch.
+  \end{proof}
+
+  \begin{tikzfigure}{\label{fig:patch:example}}{Gluing two patches together}
+    \draw (-1, -2) -- (1, -2) (0, -2) -- (0, 2)  (-1, 2) -- (1, 2);
+    \draw[dotted] (-1, -2) -- (-2, -1.5);
+    \draw[dotted] (1, -2) -- (2, -1.5);
+    \draw[dotted] (-1, 2) -- (-2, 1.5);
+    \draw[dotted] (1, 2) -- (2, 1.5);
+    \draw[dotted] (0, -0.5) -- (0.5, -0.5);
+    \draw[dotted] (0, 0) -- (-0.5, 0);
+    \draw[dotted] (0, 0.5) -- (0.5, 0.5);
+
+    \node at (0, -2) [anchor=north] {$v_i=v_{j'}$};
+    \fill [black] (0, -2) circle (2pt);
+    \node at (0, 2) [anchor=south] {$v_j=v_{i'}$};
+    \fill [black] (0, 2) circle (2pt);
+    \node at (0, -0.5) [anchor=base east] {$v_{i+k-1}=v_{j'-k+1}$};
+    \fill [black] (0, -0.5) circle (2pt);
+    \node at (0, 0) [anchor=base west] {$v_{i+k}=v_{j'-k}$};
+    \fill [black] (0, 0) circle (2pt);
+    \node at (0, 0.5) [anchor=base east] {$v_{i+k+1}=v_{j'-k-1}$};
+    \fill [black] (0, 0.5) circle (2pt);
+  \end{tikzfigure}
+\end{lemma}
+
+\begin{definition}
+  Let $w = (w_1, \dots, w_n)$ be a tuple. The $w$-expansion of a cyclic ordered tuple $a = \cyctup{a_1, \dots a_k}$ is the cyclic ordered tuple $\cyctup{a_1, w_1, \dots w_n, a_2, w_1, \dots, w_n, a_3 \dots, a_k, w_1, \dots, w_n}$. If the boundary structure of an $r$-patch is a $w$-expansion of $a$, the vertices associated to $a_k$ will be called ``corner vertices'', while the vertices associated to any $w_k$ are called ``side vertices''.
+\end{definition}
+
+As previously stated, these definitions are used to formalize the construction step ``replace each face with a patch''. Up until now, there is no requirement given on the interior of the patch. If one expects the result of such a construction to be a polyhedron, by \autoref{thm:steinitz} there has to be a condition on the connectivity of the patch. A necessary one is the following:
+
+\begin{definition}
+  Let $w = (w_1, \dots, w_n)$ be a tuple and $\mathcal{P}$ an $r$-patch, whose boundary structure is the $w$-expansion of some cyclic ordered tuple. $\mathcal{P}$ is called pseudo-$3$-connected, if for each inner vertex $v$ of $\mathcal{P}$ there exist at least $3$ corner vertices and $3$ (vertex-) disjoint paths from $v$ to these corners and no side vertex is connected to more than two other side vertices.
+\end{definition}
+
+With this one is able to describe a general construction scheme:
+
+\begin{construction}\label{thm:construction:patch}
+  Let $G$ be a planar $3$-connected graph of valence $r$ describing the skeleton of some polyhedron $P$. Let $w = (w_1, \dots, w_n)$ be a self-fitting tuple. Let for each $k$-gonal face $f$ a pseudo-$3$-connected $r$-patch $\mathcal{P}(f)$ be given, whose boundary structure is the $w$-expansion of the boundary structure of a $k$-gon. Divide each edge of $G$ by $n$ vertices and draw in each face $f$ the dedicated $r$-patch $\mathcal{P}(f)$ such that the corner vertices of $\mathcal{P}(f)$ coincide with the original vertices of $G$ and the side vertices are the new vertices added by the subdivision. Note that each of these patches allow for many distinct drawings. While the rotation of the drawing is irrelevant for the rest of the proof, there is a difference based on the orientation of the drawing (drawing the patch ``from the inside" of $P$ gives a different result than drawing from outside). When drawing each patch equally oriented, they allow for \autoref{thm:fitting:arcs} to be applied, so assume hereafter this to be done. These patches form a combined graph $G'$, which is again planar, as one only needed to skew each of the plane drawings of the patches into each face of $G$. For the rest of the proof, the notion ``corner vertex'' will relate to the original vertices of $G$, while ``side vertices'' denote those on the subdivisions made before. The remaining vertices will be called ``inner vertices''. It is easy to see, that each vertex has valence $r$. The side vertices have valence $r$ by \autoref{thm:fitting:arcs}, while the valence of the corner and the inner edges remained unchanged.
+
+$G'$ is also $3$-connected. To see this assume the existence of two vertices $v$ and $v'$, whose elimination would disconnect $G'$. Since $G$ is $3$-connected, there exists a component $C$ with at least one corner vertex $c$. Furthermore $c$ is connected to every other corner vertex of $G'$ by the original paths in $G$ (by Menger's theorem \cite{menger}, $c$ has in $G$ at least three disjoint paths to any other corner vertex, only two of which can be deleted by $v$ and $v'$). From the pseudo-$3$-connectivity of each patch follows, that $c$ is also connected to each inner vertex, which had three disjoint paths to some corner vertices of $G'$. Finally each side vertex is connected to $r \geq 3$ vertices, one of which is not a side vertex by pseudo-$3$-connectivity, while two other vertices are side vertices on a path to a different corner vertex. 
+
+%TODO
+As these are all connected to $c$, there is no side vertex not connected to $c$. Thus, $G'$ is $3$-connected and could be realized as a polyhedron by \autoref{thm:steinitz}.
+\end{construction}
+
+\begin{remark}
+  \autoref{thm:construction:patch} still holds for $3$-connected graphs drawn on an orientable closed $2$-manifold. The arguments used were only ``local planarity'' (when drawing each patch into the appropriate patch) and the existence of an orientation. If the tuple $w$ used for the expansion is also symmetric, that is, $w_i = w_{n-i}$, $i = 1, \dots n$, the requirement of an orientation can be dropped, the necessary equations of \autoref{thm:fitting:arcs} then hold regardless of the numbering of the vertices. If $w_i$ is a weight in a symmetric self-fitting tuple of length $n$, then $w_i + w_{n-i} = 2 w_i = r$, therefore these expansions only exist if $r$ is even and each $w_i$ is equal to $\frac{r}{2}$; reviewing the considered cases only $r = 4$ remains.
+\end{remark}
+
+% \begin{tikzfigure}
+%   \begin{scope}
+%     \draw (0, 0) -- (1, 0) -- (1, 4) -- (0, 4) -- cycle;
+%     \draw (0, 1) -- (1, 1);
+%     \draw (0, 2) -- (1, 2);
+%     \draw (0, 3) -- (1, 3);
+
+%     \draw (0, 0) -- (-0.25, -0.25);
+%     \draw (0, 1) -- (-0.25, 1.25);
+%     \draw (1, 0) -- (1.25, -0.25);
+%     \draw (1, 3) -- (1.25, 3.25);
+%     \draw (0, 3) -- (-0.25, 3.25);
+
+%   \end{scope}
+% \end{tikzfigure}
