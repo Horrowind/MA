@@ -2,7 +2,7 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "string.h"
-#include "SDL.h"
+#include "SDL2/SDL.h"
 
 #include "graphit.h"
 
@@ -22,7 +22,7 @@ void do_layout(c_graph g) {
 	force_x = malloc(g.d_graph.number_of_nodes*sizeof(double));
 	force_y = malloc(g.d_graph.number_of_nodes*sizeof(double));
 	
-	for (int i = 1; i<2; i++){
+	for (int i = 1; i < 200; i++){
 		move(g, i, force_x, force_y);
 	}
 	
@@ -30,12 +30,24 @@ void do_layout(c_graph g) {
 	free(force_y);
 }
 
+
+/* TTF_Font* Sans = TTF_OpenFont("Sans.ttf", 24); */
+/* SDL_Color White = {255, 255, 255};  */
+/* SDL_Surface* surfaceMessage = TTF_RenderText_Solid(Sans, "put your text here", White); */
+/* SDL_Texture* Message = SDL_CreateTextureFromSurface(renderer, surfaceMessage); */
+/* SDL_Rect Message_rect; */
+/* Message_rect.x = 0;    */
+/* Message_rect.y = 0;  */
+/* Message_rect.w = 100;  */
+/* Message_rect.h = 100;  */
+/* SDL_RenderCopy(renderer, Message, NULL, &Message_rect);  */
+
 // single move routine -------------------------------------------------
 
 void move(c_graph g, int n, double* force_x, double* force_y){
 	int degree = g.d_graph.deg;
 	int node_length = g.d_graph.number_of_nodes;
-	double constant = pow(node_length/pi, 0.5);
+	double constant = sqrt(node_length / pi);
 
 	// Step I:
 	memset(force_x, 0, node_length * sizeof(double));
@@ -44,31 +56,32 @@ void move(c_graph g, int n, double* force_x, double* force_y){
 	// Step II:
 	for (int i = 0; i < node_length; i++){
 		for (int j = 0; j < degree; j++){
-			
-			double distance = dist(g.X[i], g.Y[i], g.X[g.d_graph.A[degree*i+j]], g.Y[g.d_graph.A[degree*i+j]]);
-			//					printf("%i, %i, %f , %f, %f, loop, distance: %f \n", i, j, constant, force_x[i], force_y[i], distance);
-			//			printf("%f, %f \n", g.X[i], g.Y[i]);
-			force_x[i] -= constant * (g.X[i]- g.X[g.d_graph.A[degree*i+j]]) * distance * distance;
-			force_y[i] -= constant * (g.Y[i]- g.Y[g.d_graph.A[degree*i+j]]) * distance * distance;
-		}
+			int other_index = g.d_graph.A[degree*i+j];
+            if(other_index != -1) {
+                double distance_squared =
+                    (g.X[i] - g.X[other_index]) * (g.X[i] - g.X[other_index]) +
+                    (g.Y[i] - g.Y[other_index]) * (g.Y[i] - g.Y[other_index]);
+                    
+                force_x[i] -= constant * (g.X[i] - g.X[other_index]) * distance_squared;
+                force_y[i] -= constant * (g.Y[i] - g.Y[other_index]) * distance_squared;
+            } else {
+            }
+        }
 	}
 
 	// Step III:
 
 	double c = cool(n, node_length);
-	// 3 is the number of boundary nodes
-	for (int i = 3; i < node_length; i++){
 
-		double norm = dist(0, 0, force_x[i], force_y[i]);
-		if (norm == 0) {
-			g.X[i] = 0;
-			g.Y[i] = 0;
-		} else {
-			g.X[i] +=  min(norm, c) * force_x[i]/norm; 
-			g.Y[i] +=  min(norm, c) * force_y[i]/norm; 
-			//printf("Iteration %i \n", i);
-		}
-		//printf("%f, %f \n", g.X[i], g.Y[i]);
+	for (int i = 0; i < node_length; i++){
+		double norm = sqrt(g.X[i] * g.X[i] + g.Y[i] * g.Y[i]);
+        double force_norm = sqrt(force_x[i] * force_x[i] + force_y[i] * force_y[i]);
+        if(fabs(norm - 1.0d) > 0.001d && force_norm > 0.001d) {
+            double dx = min(norm, c) * force_x[i]/force_norm;
+            double dy = min(norm, c) * force_y[i]/force_norm;
+            g.X[i] += dx;
+            g.Y[i] += dy;
+        }
 	}
 
 	return;
@@ -117,7 +130,7 @@ double dist(double x1, double x2, double y1, double y2){
 
 double cool(int i, int n){
 	double result;
-	result = pow(pi/n, 0.5)/(1 + pi/n*pow(i, 1.5));
+	result = sqrt(pi/(double)n)/(1 + pi/(double)n*pow((double)i, 1.5));
 	return result;
 }
 
@@ -247,7 +260,7 @@ c_graph c_minigraph(){
 void output_sdl(c_graph g) {
 	SDL_Window *win = NULL;
 	SDL_Renderer *renderer = NULL;
-	int posX = 100, posY = 100, width = 320, height = 320;
+	int posX = 100, posY = 100, width = 600, height = 600;
 
 	SDL_Init(SDL_INIT_VIDEO);
 
@@ -258,9 +271,15 @@ void output_sdl(c_graph g) {
 	while (1) {
 		SDL_Event e;
 		if (SDL_PollEvent(&e)) {
-			if (e.type == SDL_QUIT) {
-				break;
+			if(e.type == SDL_QUIT) {
+			    exit(0);
 			}
+            if(e.type == SDL_KEYDOWN) {
+			    if(e.key.keysym.sym == SDLK_ESCAPE) {
+                    break;
+                }
+			}
+
 		}
 
 		SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
@@ -269,13 +288,14 @@ void output_sdl(c_graph g) {
 
 		for (int i = 0; i<g.d_graph.number_of_nodes; i++){
 			for (int j = 0; j < g.d_graph.deg; j++) {
-				float x1 = g.X[i]*(width/2) +width/2;
-				float y1 = g.Y[i]*(-height/2) +height/2;
-						
-				float x2 = g.X[g.d_graph.A[g.d_graph.deg*i+j]]*(width/2) +width/2;
-				float y2 = g.Y[g.d_graph.A[g.d_graph.deg*i+j]]*(-height/2)+height/2;
-						
-				SDL_RenderDrawLine(renderer, x1, y1, x2, y2);
+                int other_index = g.d_graph.A[g.d_graph.deg*i+j];
+                if(other_index != -1) {
+                    float x1 = g.X[i]*(width/2) +width/2;
+                    float y1 = g.Y[i]*(-height/2) +height/2;
+                    float x2 = g.X[other_index]*(width/2) +width/2;
+                    float y2 = g.Y[other_index]*(-height/2)+height/2;
+                    SDL_RenderDrawLine(renderer, x1, y1, x2, y2);
+                }
 			}
 		}
 				

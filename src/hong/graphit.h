@@ -10,8 +10,8 @@ typedef struct {
 
 typedef struct {
 	d_graph d_graph; //
-  double* X; // cartesian coordinates of every node n
-  double* Y; // cartesian coordinates of every node n
+    double* X; // cartesian coordinates of every node n
+    double* Y; // cartesian coordinates of every node n
 } c_graph;
 
 

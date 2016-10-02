@@ -222,7 +222,7 @@ THREAD_SIG(working_thread_add, thread_manager_ptr) {
 #ifndef EARLY_OUT
                 if(!database_contains(thread_manager->database, boundary)) {
 #endif
-#if 0
+#if 1
 //                    if(boundary_is_mouse(boundary)) {
                         printf("Thread %li found ", thread_number);
                         boundary_write(boundary);

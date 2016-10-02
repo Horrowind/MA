@@ -305,7 +305,8 @@ int main(int argc, char* argv[]) {
         boundary_t boundary;
         for(boundary.size = 0; boundary.size < MAX_SIZE; boundary.size++) {
             for(boundary.bits = 0; boundary.bits < (1 << (boundary.size * BITS)); boundary.bits++) {
-                if(database_contains(monogon_database, boundary)) {
+                boundary_t boundary_normalized = boundary_normalize(boundary);
+                if(database_contains(monogon_database, boundary_normalized)) {
                     for(int k = 0; k < boundary.size; k++) {
                         if(boundary_is_mouse(boundary)) {
                             boundary_t* mouses = (boundary_t*)mouse_pool.data;
@@ -313,7 +314,7 @@ int main(int argc, char* argv[]) {
                             
                             b32 is_found = 0;
                             for(int i = 0; i < mouses_count; i++) {
-                                if(mouses[i].bits == boundary_normalize(boundary).bits) {
+                                if(mouses[i].bits == boundary_normalized.bits) {
                                     is_found = 1;
                                     break;
                                 }

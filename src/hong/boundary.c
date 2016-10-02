@@ -54,7 +54,7 @@ void boundary_write(boundary_t boundary) {
     printf("[%02i] ", boundary.size);
     for(int i = bitsof(boundary_bits_t) / BITS - 1; i >= 0; i--) {
         if(i < boundary.size) {
-            printf("%i", (int)((boundary.bits >> (i) * BITS) & LAST_NODE_MASK));
+            printf("%i", (int)((boundary.bits >> (i * BITS)) & LAST_NODE_MASK));
         } else {
             printf(" ");
         }
