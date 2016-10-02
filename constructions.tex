@@ -1,9 +1,11 @@
 \section{Construction}
 
-Let $r \in \nats$. Within this section one can think of $r$ as the given valence of a polyhedron. Many constructions in this thesis will utilize the concept of replacing each face of a polyhedron with a larger patch. It can be quite challenging to see whether the resulting structures fit as well together as the previous faces did. This section introduces the necessary formalism for these kinds of constructions.
+Let $r \in \nats$. Within this section one can think of $r$ as the given valence of a polyhedral map. Many constructions in this thesis will utilize the concept of replacing each face of a polyhedral map with a larger patch. It can be quite challenging to see whether the resulting structures fit as well together as the previous faces did. This section introduces the necessary formalism for these kinds of constructions.
 
-\begin{definition}[Patch] A $2$-connected planar graph is called an $r$-patch if each of its vertices except the ones on the outer face is $r$-valent (the exterior vertices can differ from the valence $r$, but are not required to).
+\begin{definition}[Patch] For a planar graph embedding we want to call the single unbounded face the ``outer face'' and every other face ``inner face''. A map on the euclidean plane is called an $r$-patch if each of its vertices except the ones on the outer face is $r$-valent (the exterior vertices can differ from the valence $r$, but are not required to).
 \end{definition}
+
+Note that the union of the inner faces $F_{i}$ of a patch is homeomorphic to a $2$-cell (since $\bigcup_{f \in F_{i}} f \cong \mathbb{E}^2 \setminus \mathring{f_{o}} \cong \sphere^2 \setminus \psi^{-1}(\mathring{f_{o}})$, where $f_{o}$ is the outer face and $\psi$ is the stereographic projection and $\psi^{-1}(\mathring{f_{o}})$ is a $2$-cell by definition).
 
 \begin{definition}[Boundary structure of a patch] Each $r$-patch $\mathcal{P}$ is assigned a cyclically ordered tuple $\cyctup{w_1, \dots, w_n}$ giving values $w_k$ to each vertex $v_k$ on the outer face of $G$, where $w_k = \deg(v_k) - 1$ and the natural, positive order on the vertices of $\mathcal{P}$ is given. This tuple is denoted as the boundary structure of $\mathcal{P}$. Each entry is called the face count of the according vertex.
 \end{definition}
@@ -25,26 +27,37 @@ If one is interested in whether two patches of a construction fit together to as
     The edges $v_{i}$--$v_{i+1}$ and $v'_{j}$--$v'_{j-1}$ are now glued together, it follows $\deg(\tilde{v}_0) = \deg(v_i) + \deg(v'_{j'}) - 1 = (w_i + 1) + (w'_{j'} + 1) - 1 = w_i + w'_{j'} + 1 \leq r$. Analogously $\deg(\tilde{v}_0) \leq r$ holds. This proves that the new graph is an $r$-patch.
   \end{proof}
 
-  \begin{tikzfigure}{\label{fig:patch:example}}{Gluing two patches together}
-    \draw (-1, -2) -- (1, -2) (0, -2) -- (0, 2)  (-1, 2) -- (1, 2);
-    \draw[dotted] (-1, -2) -- (-2, -1.5);
-    \draw[dotted] (1, -2) -- (2, -1.5);
-    \draw[dotted] (-1, 2) -- (-2, 1.5);
-    \draw[dotted] (1, 2) -- (2, 1.5);
-    \draw[dotted] (0, -0.5) -- (0.5, -0.5);
-    \draw[dotted] (0, 0) -- (-0.5, 0);
-    \draw[dotted] (0, 0.5) -- (0.5, 0.5);
+  \begin{tikzfigure}{\label{fig:patch:example}}{Gluing two patches together (for $r = 3$)}
+    \draw (-1, -2) -- (1, -2);
+    \draw (0, -2) -- (0, -1.5);
+    \draw (0, 2) -- (0, 1.5);
+    \draw (-1, 2) -- (1, 2);
+    \draw (0, -0.75) -- (0.25, -0.5) -- (-0.25, 0) -- (0.25, 0.5) -- (0, 0.75);
+
+
+    \draw[loosely dotted] (-1, -2) -- (-2, -1.5);
+    \draw[loosely dotted] (1, -2) -- (2, -1.5);
+    \draw[loosely dotted] (-1, 2) -- (-2, 1.5);
+    \draw[loosely dotted] (1, 2) -- (2, 1.5);
+    \draw[loosely dotted] (0.25, -0.5) -- (0.75, -0.5);
+    \draw[loosely dotted] (-0.25, 0) -- (-0.75, 0);
+    \draw[loosely dotted] (0.25, 0.5) -- (0.75, 0.5);
+    \draw[loosely dotted] (0, -1.5) -- (0, -0.75);
+    \draw[loosely dotted] (0, 1.5) -- (0, 0.75);
 
     \node at (0, -2) [anchor=north] {$v_i=v_{j'}$};
     \fill [black] (0, -2) circle (2pt);
     \node at (0, 2) [anchor=south] {$v_j=v_{i'}$};
     \fill [black] (0, 2) circle (2pt);
-    \node at (0, -0.5) [anchor=base east] {$v_{i+k-1}=v_{j'-k+1}$};
-    \fill [black] (0, -0.5) circle (2pt);
-    \node at (0, 0) [anchor=base west] {$v_{i+k}=v_{j'-k}$};
-    \fill [black] (0, 0) circle (2pt);
-    \node at (0, 0.5) [anchor=base east] {$v_{i+k+1}=v_{j'-k-1}$};
-    \fill [black] (0, 0.5) circle (2pt);
+    \node at (0.25, -0.5) [anchor=east] {$v_{i+k-1}=v_{j'-k+1}$};
+    \fill [black] (0.25, -0.5) circle (2pt);
+    \node at (-0.25, 0) [anchor=west] {$v_{i+k}=v_{j'-k}$};
+    \fill [black] (-0.25, 0) circle (2pt);
+    \node at (0.25, 0.5) [anchor=east] {$v_{i+k+1}=v_{j'-k-1}$};
+    \fill [black] (0.25, 0.5) circle (2pt);
+
+    \node at (-0.5, -1.5) [anchor=east] {$\mathcal{P}$};
+    \node at (0.5, -1.5) [anchor=west] {$\mathcal{P'}$};
   \end{tikzfigure}
 \end{lemma}
 
@@ -52,39 +65,17 @@ If one is interested in whether two patches of a construction fit together to as
   Let $w = (w_1, \dots, w_n)$ be a tuple. The $w$-expansion of a cyclic ordered tuple $a = \cyctup{a_1, \dots a_k}$ is the cyclic ordered tuple $\cyctup{a_1, w_1, \dots w_n, a_2, w_1, \dots, w_n, a_3 \dots, a_k, w_1, \dots, w_n}$. If the boundary structure of an $r$-patch is a $w$-expansion of $a$, the vertices associated to $a_k$ will be called ``corner vertices'', while the vertices associated to any $w_k$ are called ``side vertices''.
 \end{definition}
 
-As previously stated, these definitions are used to formalize the construction step ``replace each face with a patch''. Up until now, there is no requirement given on the interior of the patch. If one expects the result of such a construction to be a polyhedron, by \autoref{thm:steinitz} there has to be a condition on the connectivity of the patch. A necessary one is the following:
-
-\begin{definition}
-  Let $w = (w_1, \dots, w_n)$ be a tuple and $\mathcal{P}$ an $r$-patch, whose boundary structure is the $w$-expansion of some cyclic ordered tuple. $\mathcal{P}$ is called pseudo-$3$-connected, if for each inner vertex $v$ of $\mathcal{P}$ there exist at least $3$ corner vertices and $3$ (vertex-) disjoint paths from $v$ to these corners and no side vertex is connected to more than two other side vertices.
-\end{definition}
-
 With this one is able to describe a general construction scheme:
 
 \begin{construction}\label{thm:construction:patch}
-  Let $G$ be a planar $3$-connected graph of valence $r$ describing the skeleton of some polyhedron $P$. Let $w = (w_1, \dots, w_n)$ be a self-fitting tuple. Let for each $k$-gonal face $f$ a pseudo-$3$-connected $r$-patch $\mathcal{P}(f)$ be given, whose boundary structure is the $w$-expansion of the boundary structure of a $k$-gon. Divide each edge of $G$ by $n$ vertices and draw in each face $f$ the dedicated $r$-patch $\mathcal{P}(f)$ such that the corner vertices of $\mathcal{P}(f)$ coincide with the original vertices of $G$ and the side vertices are the new vertices added by the subdivision. Note that each of these patches allow for many distinct drawings. While the rotation of the drawing is irrelevant for the rest of the proof, there is a difference based on the orientation of the drawing (drawing the patch ``from the inside" of $P$ gives a different result than drawing from outside). When drawing each patch equally oriented, they allow for \autoref{thm:fitting:arcs} to be applied, so assume hereafter this to be done. These patches form a combined graph $G'$, which is again planar, as one only needed to skew each of the plane drawings of the patches into each face of $G$. For the rest of the proof, the notion ``corner vertex'' will relate to the original vertices of $G$, while ``side vertices'' denote those on the subdivisions made before. The remaining vertices will be called ``inner vertices''. It is easy to see, that each vertex has valence $r$. The side vertices have valence $r$ by \autoref{thm:fitting:arcs}, while the valence of the corner and the inner edges remained unchanged.
-
-$G'$ is also $3$-connected. To see this assume the existence of two vertices $v$ and $v'$, whose elimination would disconnect $G'$. Since $G$ is $3$-connected, there exists a component $C$ with at least one corner vertex $c$. Furthermore $c$ is connected to every other corner vertex of $G'$ by the original paths in $G$ (by Menger's theorem \cite{menger}, $c$ has in $G$ at least three disjoint paths to any other corner vertex, only two of which can be deleted by $v$ and $v'$). From the pseudo-$3$-connectivity of each patch follows, that $c$ is also connected to each inner vertex, which had three disjoint paths to some corner vertices of $G'$. Finally each side vertex is connected to $r \geq 3$ vertices, one of which is not a side vertex by pseudo-$3$-connectivity, while two other vertices are side vertices on a path to a different corner vertex. 
-
-%TODO
-As these are all connected to $c$, there is no side vertex not connected to $c$. Thus, $G'$ is $3$-connected and could be realized as a polyhedron by \autoref{thm:steinitz}.
+Assume we have a map of a graph $G$ of valence $r$ on a closed orientable $2$-manifold S. Let $w = (w_1, \dots, w_n)$ be a self-fitting tuple. Let for each $k$-gonal face $f$ a $r$-patch $\mathcal{P}(f)$ be given, whose boundary structure is the $w$-expansion of the boundary structure of a $k$-gon. Divide each edge of $G$ in the embedding in $S$ by $n$ vertices and draw in each face $f$ the dedicated $r$-patch $\mathcal{P}(f)$ such that the corner vertices of $\mathcal{P}(f)$ coincide with the original vertices of $G$ and the side vertices are the new vertices added by the subdivision. We can do this because both the face we want to replace and the patch we want to insert are homeomorphic to a $2$-cell and the number of vertices of the patch and the subdivision exactly match. Note that each of these patches may allow for many distinct drawings. While the rotation of the drawing is irrelevant for the rest of the proof, there is a difference based on the orientation of the drawing (drawing the patch “from on side” of $S$ gives a different result than drawing from the other). When drawing each patch equally oriented, they allow for \autoref{thm:fitting:arcs} to be applied, so assume hereafter this to be done. These patches form a combined graph $G'$ , which is embedded by construction into $S$, as one only needed to skew each of the plane drawings of the patches into each face of $G$ on $S$. For the rest of the proof, the notion ``corner vertex'' will relate to the original vertices of $G$, while ``side vertices'' denote those on the subdivisions made before. The remaining vertices will be called ``inner vertices''. By \autoref{thm:fitting:arcs} each side vertex is $r$-valent, which is also true for the inner vertices (they come from $r$-valent inner vertices of a patch) and for the corner vertices (which were $r$-valent to begin with). $G'$ is also simple. $G'$ is nonempty and connected by construction and there is no possibility for it to contain loops or multi-edges since these would be also present in either $G$ or one of the patches $\mathcal{P}(f)$. Lastly, each face of the embedding is homeomorphic to a $2$-cell, since all faces in the new embedding are homeomorphic to an inner face of some patch $\mathcal{P}(f)$. Thus we have constructed another map on $S$.
 \end{construction}
 
-\begin{remark}
-  \autoref{thm:construction:patch} still holds for $3$-connected graphs drawn on an orientable closed $2$-manifold. The arguments used were only ``local planarity'' (when drawing each patch into the appropriate patch) and the existence of an orientation. If the tuple $w$ used for the expansion is also symmetric, that is, $w_i = w_{n-i}$, $i = 1, \dots n$, the requirement of an orientation can be dropped, the necessary equations of \autoref{thm:fitting:arcs} then hold regardless of the numbering of the vertices. If $w_i$ is a weight in a symmetric self-fitting tuple of length $n$, then $w_i + w_{n-i} = 2 w_i = r$, therefore these expansions only exist if $r$ is even and each $w_i$ is equal to $\frac{r}{2}$; reviewing the considered cases only $r = 4$ remains.
-\end{remark}
+As previously stated, these definitions are used to formalize the construction step ``replace each face with a patch''. Up until now, there is no requirement explicitly stated on the interior of the patch. If one expects the result of such a construction to be a polyhedral map, further conditions have to be met. Furthermore, when using \autoref{thm:construction:patch} we have the problem of assigning a patch for each face of the map. While we might need only one type of patch for a $k$-gon for each $k \geq 3$, we could still have to deal with a huge amount of values of $k$. We now want to define a construction scheme for patches for arbitrary $k$ which additionally allow to create polyhedral maps, even from non-polyhedral ones!
 
-% \begin{tikzfigure}
-%   \begin{scope}
-%     \draw (0, 0) -- (1, 0) -- (1, 4) -- (0, 4) -- cycle;
-%     \draw (0, 1) -- (1, 1);
-%     \draw (0, 2) -- (1, 2);
-%     \draw (0, 3) -- (1, 3);
 
-%     \draw (0, 0) -- (-0.25, -0.25);
-%     \draw (0, 1) -- (-0.25, 1.25);
-%     \draw (1, 0) -- (1.25, -0.25);
-%     \draw (1, 3) -- (1.25, 3.25);
-%     \draw (0, 3) -- (-0.25, 3.25);
 
-%   \end{scope}
-% \end{tikzfigure}
+\begin{definition} A patch is said to suffice the polyhedral condition if each pair of its inner faces meets proper. Two $r$-patches $\mathcal{P}, \mathcal{P'}$ as in \autoref{thm:fitting:arcs} are said to suffice the polyhedral condition if the resulting patch of \autoref{thm:fitting:arcs} suffices the polyhedral condition.
+\end{definition}
+\begin{construction} \label{thm:construction:polymap} If each patch in \autoref{thm:construction:patch} has the polyhedral condition and each pair of patches we glued together using \autoref{thm:fitting:arcs} also has the polyhedral condition, the resulting map is polyhedral, as each pair of adjacent faces in the resulting map comes either from two inner faces in a single patch or from two different patches which were glued together or they meet at a corner vertex. TODO.
+\end{construction}
