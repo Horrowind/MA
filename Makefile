@@ -3,7 +3,7 @@ TEXMFOUTPUT:=build
 build/ma_main.pdf: *.tex
 	mkdir -p build
 	# latexmk -bibtex build/ma_main
-	latexmk -pdf -jobname=build/output -pdflatex="pdflatex -interaction=nonstopmode -halt-on-error -file-line-error" \
+	latexmk -bibtex -pdf -jobname=build/output -pdflatex="pdflatex -interaction=nonstopmode -halt-on-error -file-line-error" \
 		-use-make ma_main.tex
 
 all: build/ma_main.pdf
