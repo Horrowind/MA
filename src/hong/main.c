@@ -163,11 +163,11 @@ b32 search_database(boundary_t start, boundary_t goal, int* ngons, int ngons_cou
         }
         search_queue_entry_t* current_entry = search_queue_get(&queues[nonempty_queue_index]);
         boundary_t boundary = current_entry->boundary;
-	boundary_t boundary_normalized = boundary_normalize(boundary);
-	/* boundary_write(boundary); printf("\n"); */
-	/* getchar(); */
+        boundary_t boundary_normalized = boundary_normalize(boundary);
+        /* boundary_write(boundary); printf("\n"); */
+        /* getchar(); */
 
-	int stop = 1; // If set, search no more
+        int stop = 1; // If set, search no more
 	
         if(boundary_normalized.bits == goal_normalized.bits && boundary.size == goal.size) {
             planar_graph_builder_t builder;
@@ -178,39 +178,38 @@ b32 search_database(boundary_t start, boundary_t goal, int* ngons, int ngons_cou
                 planar_graph_builder_rotr(&builder, current_entry->rotation);
                 /* planar_graph_builder_check_outer_edges(&builder); */
                 current_entry = current_entry->prev;
-	    }
+            }
 
 
-	    planar_graph_builder_edge_t* edges = (planar_graph_builder_edge_t*)builder.edges_pool.data;
-	    int edge_count = builder.edges_pool.fill / sizeof(planar_graph_builder_edge_t);
-	    for(int i = 0; i < edge_count; i++) {
-		if(edges[i].face1 == INNER_FACE || edges[i].face2 == INNER_FACE) continue;
-		if(edges[i].face1 == OUTER_FACE || edges[i].face2 == OUTER_FACE) continue;
-		for(int j = i + 1; j < edge_count; j++) {
-		    // we have two faces, which are adjacent along two different edges
-		    // => the graph is not 2-connected
-		    if((edges[i].face1 == edges[j].face1 && edges[i].face2 == edges[j].face2) ||
-		       (edges[i].face1 == edges[j].face2 && edges[i].face2 == edges[j].face1)) {
-			stop = 0;
-			break;
-		    }
-		}
-	    }
+            planar_graph_builder_edge_t* edges = (planar_graph_builder_edge_t*)builder.edges_pool.data;
+            int edge_count = builder.edges_pool.fill / sizeof(planar_graph_builder_edge_t);
+            for(int i = 0; i < edge_count; i++) {
+                if(edges[i].face1 == INNER_FACE || edges[i].face2 == INNER_FACE) continue;
+                if(edges[i].face1 == OUTER_FACE || edges[i].face2 == OUTER_FACE) continue;
+                for(int j = i + 1; j < edge_count; j++) {
+                    // we have two faces, which are adjacent along two different edges
+                    // => the graph is not 2-connected
+                    if((edges[i].face1 == edges[j].face1 && edges[i].face2 == edges[j].face2) ||
+                       (edges[i].face1 == edges[j].face2 && edges[i].face2 == edges[j].face1)) {
+                        stop = 0;
+                        break;
+                    }
+                }
+            }
 
-	    if(stop) {
-		printf("Found boundary "); boundary_write(start); printf("\n");
-		planar_graph_t planar_graph = planar_graph_from_builder(builder);
-		stop = planar_graph_output_sdl(planar_graph);
-		planar_graph_deinit(planar_graph);
-		if(stop) {
-		    for(int i = 0; i < 512; i++) {
-			search_queue_deinit(&queues[i]);
-		    }
-		    return 1;
-		}
-
-	    }
-	    continue;
+            if(stop) {
+                printf("Found boundary "); boundary_write(start); printf("\n");
+                planar_graph_t planar_graph = planar_graph_from_builder(builder);
+                stop = planar_graph_output_sdl(planar_graph);
+                planar_graph_deinit(planar_graph);
+                if(stop) {
+                    for(int i = 0; i < 512; i++) {
+                        search_queue_deinit(&queues[i]);
+                    }
+                    return 2 - stop; // == 0 if stop == 2, and 1 if stop == 2
+                }
+            }
+            continue;
         }
 
         int path_length = nonempty_queue_index - heuristic(boundary, goal);
@@ -225,7 +224,7 @@ b32 search_database(boundary_t start, boundary_t goal, int* ngons, int ngons_cou
         search_hash_map_entry_t entry = { .boundary = boundary_normalize(boundary), .path_length = path_length };
         search_hash_map_entry_t* found_entry = search_hash_map_find(&hash_map, entry);
         if(!found_entry || found_entry->path_length < path_length) {
-                        /* boundary_write(boundary); printf(" %i \n", path_length); */
+            /* boundary_write(boundary); printf(" %i \n", path_length); */
             for(int i = 0; i < boundary.size; i++) {
                 for(int j = 0; j < ngons_count; j++) {
                     boundary_t new_boundary = (boundary_remove(boundary_rotl(boundary, i), ngons[j], 0));
@@ -234,13 +233,13 @@ b32 search_database(boundary_t start, boundary_t goal, int* ngons, int ngons_cou
                     if(new_boundary.size > 0) {
                         /* search_hash_map_entry_t new_entry = { .boundary = boundary_normalize(new_boundary) }; */
                         /* if(!search_hash_map_find(&hash_map, new_entry)) { */
-                            search_queue_insert(&queues[heuristic_plus_path_length],
-                                                (search_queue_entry_t) {
-                                                    .boundary = new_boundary,
-                                                        .ngon = ngons[j],
-                                                        .rotation = i,
-                                                        .prev = current_entry
-                                                        });
+                        search_queue_insert(&queues[heuristic_plus_path_length],
+                                            (search_queue_entry_t) {
+                                                .boundary = new_boundary,
+                                                    .ngon = ngons[j],
+                                                    .rotation = i,
+                                                    .prev = current_entry
+                                                    });
                         /* } */
                     }
                 }
@@ -256,8 +255,39 @@ b32 search_database(boundary_t start, boundary_t goal, int* ngons, int ngons_cou
 }
 
 
-int main(int argc, char* argv[]) {
+void test_paths() {
+    database_t pentagon_database;
+    database_init(&pentagon_database);
+    boundary_t pentagon_boundary = { .size = 5, .bits = 0 };
+    database_build_from_boundary(pentagon_database, pentagon_boundary, (int[]){ 5 }, 1);
 
+    boundary_t test_boundary = {
+        .bits = 0x3CF,
+        .size = 12
+    };
+    test_boundary = boundary_normalize(test_boundary);
+    search_database(test_boundary, pentagon_boundary, (int[]){ 5 }, 1);
+    
+    for(int size = 1; size < (MAX_SIZE - 12) / 2; size++) {
+        printf("%i\n", size);
+        for(int i = 0; i < (1 << size); i++) {
+            test_boundary.size = 12 + 2 * size;
+            boundary_bits_t rev = 0;
+            for(int j = 0; j < size; j++) {
+                rev |= ((i >> (size - j - 1)) & 1) << j;
+            }
+            test_boundary.bits = (((i << 6) | 0x1E) << (size + 6)) | (((~rev) & ((1 << size) - 1)) << 6) | 0x1E;
+            //boundary_write(test_boundary); printf("\n");
+            test_boundary = boundary_normalize(test_boundary);
+            if(database_contains(pentagon_database, test_boundary)) {
+                search_database(test_boundary, pentagon_boundary, (int[]){ 5 }, 1);
+            }
+        }
+    }
+}
+
+
+int main(int argc, char* argv[]) {
     
     if(argc == 3) {
         small_ngon = atoi(argv[1]);
@@ -274,26 +304,17 @@ int main(int argc, char* argv[]) {
 
     boundary_t small_ngon_boundary = { .size = small_ngon, .bits = 0 };
 
-    /* boundary_t test; */
-    /* test.bits = 0x256; */
-    /* test.size = 11; */
-    /* for(int i = 0; i < 11; i++) { */
-    /*     boundary_t test2 = boundary_rotl(boundary_unfold(test, 6), i); */
-    /*     search_database(test2, large_ngon_boundary, ngons, 2); */
-    /* } */
-    /* exit(0); */
-
     boundary_t mouse_goal_boundary;
     switch(VALENCE) {
     case 3:
-	mouse_goal_boundary.size = large_ngon - 3;
-	mouse_goal_boundary.bits = (boundary_bits_t)1;
-	break;
+        mouse_goal_boundary.size = large_ngon - 3;
+        mouse_goal_boundary.bits = (boundary_bits_t)1;
+        break;
     case 4:
     case 5:
-	mouse_goal_boundary.size = large_ngon - 1;
-	mouse_goal_boundary.bits = (boundary_bits_t)2;
-	break;
+        mouse_goal_boundary.size = large_ngon - 1;
+        mouse_goal_boundary.bits = (boundary_bits_t)2;
+        break;
     }
     mouse_goal_boundary = boundary_normalize(mouse_goal_boundary);
     database_build_from_boundary(monogon_database, mouse_goal_boundary, ngons, 2);
@@ -337,20 +358,22 @@ int main(int argc, char* argv[]) {
     int mouse_count = mouse_pool.fill / sizeof(boundary_t);
     printf("Found %i mouses\n", mouse_count);
     for(int i = 1; i < mouse_count; i++) {
-	boundary_write(mouse_data[i]); printf("\n");
-	int is_found;
-	switch(VALENCE) {
-	case 3:
-	    is_found = search_database(boundary_unfold(mouse_data[i], 6), small_ngon_boundary, ngons, 2);
-	    break;
-	case 4:
-	case 5:
-	    is_found = search_database(boundary_unfold(mouse_data[i], 4), small_ngon_boundary, ngons, 2);
-	    break;
-	}
-        if(is_found) {
-	    b32 is_also_found = search_database(mouse_data[i], mouse_goal_boundary, ngons, 2);
-	    if(is_also_found) return 0;
+        boundary_write(mouse_data[i]); printf("\n");
+        b32 is_also_found = search_database(mouse_data[i], mouse_goal_boundary, ngons, 2);
+        if(is_also_found) {
+            int is_found;
+            switch(VALENCE) {
+            case 3:
+                is_found = search_database(boundary_unfold(mouse_data[i], 6), small_ngon_boundary, ngons, 2);
+                break;
+            case 4:
+            case 5:
+                is_found = search_database(boundary_unfold(mouse_data[i], 4), small_ngon_boundary, ngons, 2);
+                break;
+            }
+            if(is_found) {
+                return 0;
+            }
         }
     }    
 }
