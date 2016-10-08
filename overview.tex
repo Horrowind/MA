@@ -1,0 +1,24 @@
+\section{Overview}
+
+The {\sc Eberhard} theorems are two results (in various formulations and extensions) on the constructablilty of $r$-valent polyhedra with a given vector $(p_k)_{k \geq 3}$, where $p_k$ describes the number of occurrences of each $k$-gon. The original formulations were as in the following:
+\begin{theorem}[{\sc Eberhard}s theorem for $3$-valent polyhedra] Let $(p_k)_{k \geq 3, k \neq 6}$ be a sequence of natural numbers, where $p_k = 0$ for all $k \geq K$ for which
+\begin{align*}
+  \sum_{3 \leq k \leq K,\, k \neq 6 \todo{Add a new line}}(6 - k) \cdot p_k = 12,
+\end{align*}
+then there exists a number $p_6$ and a $3$-valent polyhedron which has exactly $p_k$ $k$-gons for each $3 \leq k \leq K$.
+\end{theorem}
+\begin{theorem}[{\sc Eberhard}s theorem for $4$-valent polyhedra] Let $(p_k)_{k \geq 3, k \neq 4}$ be a sequence of natural numbers, where $p_k = 0$ for all $k \geq K$ for which
+\begin{align*}
+  \sum_{3 \leq k \leq K,\, k \neq 4 \todo{Add a new line}}(4 - k) \cdot p_k = 8,
+\end{align*}
+then there exists a number $p_4$ and a $4$-valent polyhedron which has exactly $p_k$ $k$-gons for each $3 \leq k \leq K$.
+\end{theorem}
+
+In both cases we call the sequence $(p_k)_{k \geq 3}$ to be realizable (as a $r$-valent polyhedron). The sums in both theorems are in fact necessary conditions for a sequence $(p_k)_{k \geq 3}$ to be realizable and are easily deducable from the {\sc Euler}-equations. We see that in the $3$-valent case as well as in the $4$-valent case there is a special type of $k$-gons, which do cancel out in these sums. We can interpret these $k$-gons as flat in the respective context and can assign positive and negative curvature to each $k$-gon (where the amount of curvature equals $6 - k$ or $4 - k$). Then we can restate the theorems as: Given a number of $k$-gons for each $k$, such that they add up to the right amount of curvature, there exists an $r$-valent polyhedron with these amounts of $k$-gon when additionally adding enough flat $k$-gons.
+
+One kind of generalization of these results was to let go of polyhedra and try to proof the results more generally on surfaces. This was done in the late 1970's \todo{check if this was actually in the late 1970} and there is now a complete characterization which sequences $(p_k)_{k\geq 3}$ have a $3$-valent or $4$-valent realization as a map on some surface with $p_k$ $k$-gons when choosing the value of $p_6$ or $p_4$ appropriately. We review these results later in \autoref{sec:polymap}, when giving exact definitions for maps on surfaces.
+
+Another approach would be to allow for more then one type of $k$-gon to act as flat $k$-gons and leave their exact amount unspecified in the sequence $p$. This thesis tries to establish many of these kinds of results while also giving criteria, where such a theorem can not be expected. We give an exact formulation of such a theorem in \autoref{sec:gen:eberhard}.
+
+
+\todo{Add the other sections}.

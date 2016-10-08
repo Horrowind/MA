@@ -1,0 +1,47 @@
+\section{Generalized {\sc Eberhard} theorems}\label{sec:gen:eberhard}
+We want to show necessary conditions on the realizability of two sequences as a polyhedral map on some surface. Let throughout this section $M$ be a map on a closed $2$-manifold with faces $V$, edges $E$ and faces $F$, $p$-vector $p = (p_3, \dots, p_n)$ and $v$-vector $v = (v_3, \dots v_m)$. We want to write $\chi$ for the {\sc Euler}-charateristic and also want to abbreviate $v = |V|$, $e = |E|$ and $f = |F|$. Using a double counting argument (each edge is adjacent to two faces and each edge is adjacent to two vertices, see \autoref{rem:edge:incidence}) the following for the number of edges holds:
+\begin{align}
+  2e = \sum_{k=3}^{m} k \cdot p_k = \sum_{k=3}^{n} k \cdot v_k \label{eq:handshake}.
+\end{align}
+We can draw our first conclusion, namely that
+\begin{align}
+  0 \equiv \sum_{k=3}^{m} k \cdot p_k \qquad &(\mod 2) \label{eq:cond:handshake}\\
+  0 \equiv \sum_{k=3}^{n} k \cdot v_k \qquad &(\mod 2) \label{eq:cond:handshake2}
+\end{align}
+
+Next we want to state the following fundamental property:
+\begin{theorem}[{\sc Euler-Poincaré} relation]\label{thm:eulers:relation} $v - e + f = \chi$.
+\end{theorem}
+
+Putting \autoref{eq:handshake} into Euler's relation \autoref{thm:eulers:relation} gives for any $t \in (0, 1)$
+\begin{align*}
+  \sum_{k=3}^m v_k - \left(\frac{t}{2} \sum_{k=3}^m k v_k + \frac{1-t}{2} \sum_{k=3}^n k p_k \right) + \sum_{k=3}^n p_k = \chi,
+\end{align*}
+which can be transformed into
+\begin{align}
+  t \sum_{k=3}^m \left(\frac{2}{t} - k \right) v_k + (1-t) \sum_{k=3}^n \left( \frac{2}{1-t} - k \right) p_k = 2 \chi. \label{eq:general:vp:relation}
+\end{align}
+This equation is independent of the value of some $v_k$ or $p_k$ when the value of $t$ is appropriately chosen. Of special interest in this thesis are the cases of one $v_r$ giving no information in the above equation (so $r \geq 3$ fixed and $t = \frac{2}{r}$). The resulting equations are listed below for $r \in \set{3, 4, 5}$:
+\begin{alignat}{3}
+  r &= 3: \qquad &2 \sum_{k=3}^m \left(3 - k \right) +   \sum_{k=3}^n \left(6 - k \right) p_k &= 6 \chi \label{eq:valence:3},\\
+  r &= 4: \qquad &  \sum_{4=3}^m \left(4 - k \right) +   \sum_{k=3}^n \left(4 - k \right) p_k &= 4 \chi  \label{eq:valence:4},\\
+  r &= 5: \qquad &2 \sum_{k=3}^m \left(5 - k \right) + 3 \sum_{k=3}^n \left( \frac{10}{3} - k \right) p_k &= 10 \chi \label{eq:valence:5}.
+\end{alignat}
+
+\begin{definition}[$(q_3, \dots, q_n)$-$(w_3, \dots, w_m)$-realizable]\label{def:eberhard:realizable}
+  A pair of sequence $p = (p_3, \dots, p_m)$, $q = (p_3, \dots, p_m)$ is said to be $(q_3, \dots, q_n)$-$(w_3, \dots, w_m)$-realizable on a closed $2$-manifold $S$, if there exists $c, d \in \nats$, such that ($p + c q$, $v + d w$) is realizable on $S$.
+\end{definition}
+\begin{problem}[General Eberhard's problem]\label{problem:eberhard}
+  Let $r \in \{3, 4, 5\}$ and $(q_3, \dots, q_n)$ and $(v_3, \dots, v_m)$ be sequences which satisfy
+  \begin{alignat}{5}
+    r &= 3: \qquad &  \sum_{k=3}^n \left(           6 - k \right) q_k &= 0, \qquad &2 \sum_{k=3}^m \left(3 - k \right) v_k &= 0 \label{eq:zero:curv:3}\\
+    r &= 4: \qquad &  \sum_{k=3}^n \left(           4 - k \right) q_k &= 0, \qquad &  \sum_{k=3}^m \left(4 - k \right) v_k &= 0 \label{eq:zero:curv:4}\\
+    r &= 5: \qquad &3 \sum_{k=3}^n \left(\frac{10}{3} - k \right) q_k &= 0, \qquad &2 \sum_{k=3}^m \left(5 - k \right) v_k &= 0 \label{eq:zero:curv:5}
+  \end{alignat}
+  respectively. Show that all sequences $(p_3, \dots, p_m)$, $(v_3, \dots, v_m)$ satisfying the equations \ref{eq:valence:3}, \ref{eq:valence:4} or \ref{eq:valence:5} for some $2$-manifold $S$ are $(q_3, \dots, q_n)$-$(v_3, \dots, v_n)$-realizable on $S$.
+\end{problem}
+
+\begin{notation}
+  Throughout the thesis we want to denote this problem as of $(p_3, \dots, p_n)$-type for valence $r$.
+\end{notation}
+

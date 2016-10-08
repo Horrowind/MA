@@ -1,6 +1,6 @@
-\section{Polyhedral maps}
+\section{Polyhedral maps}\label{sec:polymap}
 \begin{definition}[Embedding of a graph]
-  Let $G = (V, E)$ be a finite graph. An embedding $\phi$ of $G$ into a (topological) $2$-manifold $S$ is a map which assigns to every vertex $v \in V$ a single point $\phi(v) \in S$ and every edge $e = \{v, v'\} \in E$ a subset $\phi(e) \subseteq S$ and a homeomorphism $\phi_e : [0, 1] \stackrel{\cong}{\longrightarrow} \phi(e)$, such that $\phi_e(\set{0, 1}) = \set{\phi(v), \phi(v')}$ and for any two edges $e, e' \in E, e \neq e'$: $\phi_e(\,(0,1)\,) \cap \phi_{e'}(\,(0,1)\,) = \emptyset$. We call a graph planar if such an embedding exists into to euclidean plane. The closure of the connected components of $S \setminus \bigcup_{e \in E} \phi(e)$ are called faces of the embedding and the set of all faces shall be $F$. We can define an incidence structure between $F$ and $E$ by saying $f \in F$ contains $e \in E \iff f \cap \phi(e) = \phi(e)$, which extends to a poset between $V$, $E$ and $F$ using additionally the normal incidence structure in the graph $G$.
+  Let $G = (V, E)$ be a finite graph. An embedding $\phi$ of $G$ into a (topological) $2$-manifold $S$ is a map which assigns to every vertex $v \in V$ a single point $\phi(v) \in S$ and every edge $e = \{v, v'\} \in E$ a subset $\phi(e) \subseteq S$ and a homeomorphism $\phi_e : [0, 1] \stackrel{\cong}{\longrightarrow} \phi(e)$, such that $\phi_e(\set{0, 1}) = \set{\phi(v), \phi(v')}$ and for any two edges $e, e' \in E, e \neq e'$: $\phi_e(\,(0,1)\,) \cap \phi_{e'}(\,(0,1)\,) = \emptyset$. We call a graph planar if such an embedding exists into to euclidean plane. The closure of the connected components of $S \setminus \bigcup_{e \in E} \phi(e)$ are called faces of the embedding and the set of all faces shall be $F$. We can define an incidence structure between $F$ and $E$ by saying $f \in F$ contains $e \in E \iff f \cap \phi(e) = \phi(e)$, which extends to an incidence poset between $V$, $E$ and $F$ using additionally the normal incidence structure in the graph $G$.
 \end{definition}
 
 \begin{definition}[Map on a closed $2$-manifold] \label{def:map} An embedding of a graph $G$ into a closed $2$-manifold with vertices $V$, edges $E$ and faces $F$ is called a map, provided the following properties hold:
@@ -19,7 +19,7 @@
 \end{remark}
 
 
-\begin{remark} The poset of a polyhedral map has the property that each edge contains exactly two vertices and is contained in exactly two faces. The first assertion is trivial to see, as we only allowed simple graphs in the definition of polyhedral maps. To see the second fact, first note that by the topology of a closed $2$-manifold each edge $e$ is contained in some face and not in more than two faces. But $e$ can not be contained in a single face $f$, because then $f$ is either not a closed $2$-cell or we would have a situation where $e$ points inwards into $f$ (\autoref{fig:example:pointyface}) in which case the graph contains a vertex of valence $1$.
+\begin{remark}\label{rem:edge:incidence} The incidence poset of a polyhedral map has the property that each edge contains exactly two vertices and is contained in exactly two faces. The first assertion is trivial to see, as we only allowed simple graphs in the definition of polyhedral maps. To see the second fact, first note that by the topology of a closed $2$-manifold each edge $e$ is contained in some face and not in more than two faces. But $e$ can not be contained in a single face $f$, because then $f$ is either not a closed $2$-cell or we would have a situation where $e$ points inwards into $f$ (\autoref{fig:example:pointyface}) in which case the graph contains a vertex of valence $1$.
 
   \begin{tikzfigure}{\label{fig:example:pointyface}}{An unpleasent situation for a face being wrapped around to itself or pierced by an edge.}
     \matrix (m) [ column sep=1cm] {
@@ -67,6 +67,36 @@ We want to show that the converse is also true and that polyhedral maps on the s
 
 With these two results (and the knowledge that planarity of a graph is equivalent to the embedability into $\sphere^2$) we can see that in fact every polyhedral map on the $\sphere^2$ comes from a polyhedron and vice-versa, at least then looking at the underlying graphs. Actually checking that going from a map to the underlying graph, then to the polyhedron by {\sc Steinitz's} theorem and back to polyhedral map using \autoref{rem:polymap:from:polyhedron} yields the same map (up to a homeomorphism on the embedding) and the same the other way around will be left out here.
 
-\begin{theorem}[{\sc Euler-Poincaré} relation] For an embedding from $G = (V, E)$ into $S$ with faces $F$, where $S$ has {\sc Euler}-characteristic $\chi$ we have $|V| - |E| + |F| = \chi$.
+\begin{definition}[Sequence]
+  A sequence $a$ in this thesis is a map $\nats \setminus \{0, 1, 2\} \rightarrow \nats$ with finite support. These maps will be written as $(a(3), a(4), ..., a(k))$, where $k = \operatorname{max} \operatorname{supp} a$. If $a$ has a small but wide support this notation will be further abbreviated by $[a(k_1) \times k_1, a(k_2) \times k_2, ...]$, where only entries not equal to zero occur. Further $a(k) \times k$ will be simply written as $k$ if $a(k) = 1$.
+\end{definition}
+\begin{example}
+  $(2, 0, 0, 1)$, $[2 \times 3, 1 \times 6]$ and $[2 \times 3, 6]$ all denote the same sequence.
+\end{example}
+\begin{definition}[$p$-vector and $v$-vector of a map on a surface]\label{def:relizable}
+  The $p$-vector of a map $M$ in to a $2$-manifold is the sequence $(p_3, \dots, p_m)$, where $p_k$ denotes the number of faces with exactly $k$ vertices. Similarly the $v$-vector of $M$ is the sequence $(v_3, \dots, v_n)$ where each $v_k$ is the number of vertices of $M$ with valence $k$.
+\end{definition}
+
+\begin{definition}\label{def:realizable}
+  A pair of sequences $p = (p_3, \dots, p_m)$, $v = (v_3, \dots, v_n)$ is said to be realizable as a polyhedral map on the closed $2$-manifold $S$ (or short: realizable on $S$), if there exists such a map having $p$ as its $p$-vector and $v$ as its $v$-vector.
+\end{definition}
+
+The the two main theorems we want to base our constructions on are the following:
+
+\begin{theorem}[Jendrol', Jucovi{\v{c}}, 1977, \cite{jendrol1977generalization}] \label{thm:eberhard:extended:3}
+  \todo{Rewrite the statements} Each sequence $p$ together with $v$ is realizable on the closed orientable $2$-manifold of genus $g$ for some $p_6 \in \nats$, $v_3 \in \nats$ if and only if
+  \begin{align*}
+    \sum_{k=3}^m (6-k)p_k + 2 \sum_{k=4}^n (3-k)v_k &= 12(1-g), \\
+    \sum_{k=3,\, 2 \nmid k}^{m} p_k \neq 0 \text{ or} \sum_{k=4, \,3 \nmid k}^m v_k \neq 1 &\text{ if } g = 0, \\
+    p \neq [5, 7] \text{ or } v \neq [k\times3] \text{ for all } k \in \nats &\text{ if } g = 1.
+  \end{align*}
 \end{theorem}
 
+\begin{theorem}[Jendrol', Jucovi{\v{c}}, Barnette, Grünbaum, Zaks, 1973, \cite{jucovivc1973theorem}, \cite{barnette1971toroidal}, \cite{grunbaum1969planar}, \cite{zaks1971analogue}] \label{thm:eberhard:extended:4}
+  \todo{Rewrite the statements} Each sequence $p$ together with $v$ is realizable on the closed orientable $2$-manifold of genus $g$ for some $p_4, v_4 \in \nats$ if and only if
+  \begin{align*}
+    \sum_{3 \leq k \leq m,\, k \neq 4} (4-k)p_k + \sum_{k \geq 3,\, k\neq 4} (4-k)v_k &= 8(1-g), \\
+    \sum_{3 \leq k \leq n,\, k \neq 4} p_k &\equiv 0 \qquad\qquad (\mod 0) \\
+    p \neq [3, 5] \text{ or } v \neq [k\times4] \text{ for all } k \in \nats &\text{ if } g = 1.
+  \end{align*}
+\end{theorem}
