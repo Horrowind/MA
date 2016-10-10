@@ -1,47 +1,94 @@
 \section{Generalized {\sc Eberhard} theorems}\label{sec:gen:eberhard}
-We want to show necessary conditions on the realizability of two sequences as a polyhedral map on some surface. Let throughout this section $M$ be a map on a closed $2$-manifold with faces $V$, edges $E$ and faces $F$, $p$-vector $p = (p_3, \dots, p_n)$ and $v$-vector $v = (v_3, \dots v_m)$. We want to write $\chi$ for the {\sc Euler}-charateristic and also want to abbreviate $v = |V|$, $e = |E|$ and $f = |F|$. Using a double counting argument (each edge is adjacent to two faces and each edge is adjacent to two vertices, see \autoref{rem:edge:incidence}) the following for the number of edges holds:
+We can reformulate the statements of \autoref{thm:eberhard:3} and \autoref{thm:eberhard:4} as in the following:
+\begin{theorem}
+  Let $p \defeq (p_3, p_4, \dots, p_m)$ be a sequence of natural numbers, where
+  \begin{align*}
+    \sum_{k=3}^m(6 - k) \cdot p_k = 12 \qquad \left( \text{or:}\quad \sum_{k=3}^m(4 - k) \cdot p_k = 8 \right)
+  \end{align*}
+  then there exists infinitely many $c, d \in \nats$, such that $p + c \cdot [6]$ and $d \cdot [3]$ (or: $p + c \cdot [4]$ and $d \cdot [4]$) are realizable on the sphere $\sphere^2$.
+\end{theorem}
+
+\begin{remark}
+The only difference between this version and \autoref{thm:eberhard:3} or \autoref{thm:eberhard:4} is, that in the previous statements $p_6$ or $p_4$ is assumed to be zero at first, while in this version we can specify a least amount of hexagons or quadrangles to occur in the polyhedron. This can be seen by a quick construction we do not want to deliver here. From there, we can further see that indeed we can realize an infinite amount of pairs by applying the theorem repeatedly and substituting $p$ with $p + (c + 1) \cdot [6]$ or $p + (c + 1) \cdot [4]$.
+\end{remark}
+
+We want to capture this more generally in the following definition:
+\begin{definition}[$(q_3, \dots, q_n)$-$(w_3, \dots, w_m)$-realizable]\label{def:eberhard:realizable}
+  A pair of sequence $p = (p_3, \dots, p_m)$, $v = (v_3, \dots, v_n)$ is said to be $(q_3, \dots, q_n)$-$(w_3, \dots, w_m)$-realizable on a closed $2$-manifold $S$, if there exists infinitely many $c, d \in \nats$, such that ($p + c q$, $v + d w$) is realizable on $S$.
+\end{definition}
+
+The pairs of sequences $([6], [3])$ and $([4], [4])$ play an important part in these theorems. Geometrically, hexagons act flat in an $3$-valent grid, as do quadrangles in $4$-valent grids. From this perspective, we can take the next step and state a very general {\sc Eberhard}-like problem:
+
+\begin{problem}\label{prob:eberhard:unspecified}
+  Let $(q_k)_{k \geq 3}$, $(w_k)_{k \geq 3}$ be a pair of ``flat'' sequences. Show for all ``reasonably chosen'' sequences $p$, $v$ and for every closed $2$-manifold $S$ that $(p, v)$ is $q$-$w$-realizable.
+\end{problem}
+
+
+In this section, we want to give conditions which flesh out the vague descriptions ``flat'' and ``reasonably chosen''. 
+For this, let $M$ be a polyhedral map on a closed $2$-manifold $S$ with faces $V$, edges $E$ and faces $F$, $p$-vector $p = (p_3, \dots, p_n)$ and $v$-vector $v = (v_3, \dots, v_m)$. $\chi$ shall be the {\sc Euler}-characteristic of $S$ and we want to abbreviate $v = |V|$, $e = |E|$ and $f = |F|$. Using a double counting argument (each edge is adjacent to two faces and each edge is adjacent to two vertices, see \autoref{rem:edge:incidence}) the following for the number of edges holds:
 \begin{align}
   2e = \sum_{k=3}^{m} k \cdot p_k = \sum_{k=3}^{n} k \cdot v_k \label{eq:handshake}.
 \end{align}
-We can draw our first conclusion, namely that
-\begin{align}
-  0 \equiv \sum_{k=3}^{m} k \cdot p_k \qquad &(\mod 2) \label{eq:cond:handshake}\\
-  0 \equiv \sum_{k=3}^{n} k \cdot v_k \qquad &(\mod 2) \label{eq:cond:handshake2}
-\end{align}
+% We can draw our first conclusion, namely that
+% \begin{align}
+%   0 \equiv \sum_{k=3}^{m} k \cdot p_k \qquad &(\mod 2) \label{eq:cond:handshake}\\
+%   0 \equiv \sum_{k=3}^{n} k \cdot v_k \qquad &(\mod 2) \label{eq:cond:handshake2}
+% \end{align}
+% for each $p$-vector $p$ and $v$-vector $v$ of a polyhedral map.
 
-Next we want to state the following fundamental property:
+Next we want to state the following fundamental property of maps on surfaces (which holds even for embeddings):
 \begin{theorem}[{\sc Euler-Poincaré} relation]\label{thm:eulers:relation} $v - e + f = \chi$.
 \end{theorem}
 
-Putting \autoref{eq:handshake} into Euler's relation \autoref{thm:eulers:relation} gives for any $t \in (0, 1)$
+Putting \autoref{eq:handshake} into Euler's relation \autoref{thm:eulers:relation} gives for any $t \in \reals$ \todo{Explain interpolation step}
 \begin{align*}
-  \sum_{k=3}^m v_k - \left(\frac{t}{2} \sum_{k=3}^m k v_k + \frac{1-t}{2} \sum_{k=3}^n k p_k \right) + \sum_{k=3}^n p_k = \chi,
+  \sum_{k=3}^m v_k - \left(\frac{t}{2} \sum_{k=3}^m k \cdot v_k + \frac{1-t}{2} \sum_{k=3}^n k \cdot p_k \right) + \sum_{k=3}^n p_k = \chi,
 \end{align*}
 which can be transformed into
 \begin{align}
-  t \sum_{k=3}^m \left(\frac{2}{t} - k \right) v_k + (1-t) \sum_{k=3}^n \left( \frac{2}{1-t} - k \right) p_k = 2 \chi. \label{eq:general:vp:relation}
+  \sum_{k=3}^m (2 - t \cdot k ) v_k + \sum_{k=3}^n ( 2 - (1 - t) \cdot k ) p_k = 2 \chi. \label{eq:general:vp:relation}
 \end{align}
-This equation is independent of the value of some $v_k$ or $p_k$ when the value of $t$ is appropriately chosen. Of special interest in this thesis are the cases of one $v_r$ giving no information in the above equation (so $r \geq 3$ fixed and $t = \frac{2}{r}$). The resulting equations are listed below for $r \in \set{3, 4, 5}$:
-\begin{alignat}{3}
-  r &= 3: \qquad &2 \sum_{k=3}^m \left(3 - k \right) +   \sum_{k=3}^n \left(6 - k \right) p_k &= 6 \chi \label{eq:valence:3},\\
-  r &= 4: \qquad &  \sum_{4=3}^m \left(4 - k \right) +   \sum_{k=3}^n \left(4 - k \right) p_k &= 4 \chi  \label{eq:valence:4},\\
-  r &= 5: \qquad &2 \sum_{k=3}^m \left(5 - k \right) + 3 \sum_{k=3}^n \left( \frac{10}{3} - k \right) p_k &= 10 \chi \label{eq:valence:5}.
-\end{alignat}
 
-\begin{definition}[$(q_3, \dots, q_n)$-$(w_3, \dots, w_m)$-realizable]\label{def:eberhard:realizable}
-  A pair of sequence $p = (p_3, \dots, p_m)$, $q = (p_3, \dots, p_m)$ is said to be $(q_3, \dots, q_n)$-$(w_3, \dots, w_m)$-realizable on a closed $2$-manifold $S$, if there exists $c, d \in \nats$, such that ($p + c q$, $v + d w$) is realizable on $S$.
+If \autoref{prob:eberhard:unspecified} holds for $(q, w)$, then $p + c_1 \cdot q$ and $v + d_1 \cdot w$, as well as $p + c_2 \cdot q$ and $v + d_2 \cdot w$ (and infinitely many others) have to suffice \autoref{eq:general:vp:relation} for $c_1, d_1, c_2, d_2 \in \nats$, $(c_1, d_1) \neq (c_2, d_2)$ and we get after subtraction for $c' = c_2 - c_1, d' = d_2 - d_1$ and all $t \in \reals$:
+\begin{align*}
+  d' \cdot \sum_{k=3}^m \left(2 - t \cdot k \right) w_k + c' \cdot \sum_{k=3}^n \left( 2 - (1 - t) \cdot k \right) q_k = 0. 
+\end{align*}
+
+Assume without loss of generality that $d' \neq 0$. We can choose $t \in (0, 1)$ such that $\sum_{k=3}^m (2 - t \cdot k) w_k = 0$ by the mean value theorem ($\sum_{k=3}^m (2 - 0 \cdot k) w_k > 0 > \sum_{k=3}^m (2 - 1 \cdot k) w_k$) and obtain
+\begin{align}
+    \sum_{k=3}^m \left(\frac{2}{t} - k \right) w_k = \sum_{k=3}^n \left( \frac{2}{1-t} - k \right) q_k = 0. \label{eq:qw:flat}
+\end{align}
+
+
+We want to constitute from this equation when a pair of sequences is ``flat'', i.e. if they suffice this equation:
+
+\begin{definition}
+  A pair of sequences $(q, w)$ is called flat with parameter $t$, if \autoref{eq:qw:flat} holds.
 \end{definition}
-\begin{problem}[General Eberhard's problem]\label{problem:eberhard}
-  Let $r \in \{3, 4, 5\}$ and $(q_3, \dots, q_n)$ and $(v_3, \dots, v_m)$ be sequences which satisfy
-  \begin{alignat}{5}
-    r &= 3: \qquad &  \sum_{k=3}^n \left(           6 - k \right) q_k &= 0, \qquad &2 \sum_{k=3}^m \left(3 - k \right) v_k &= 0 \label{eq:zero:curv:3}\\
-    r &= 4: \qquad &  \sum_{k=3}^n \left(           4 - k \right) q_k &= 0, \qquad &  \sum_{k=3}^m \left(4 - k \right) v_k &= 0 \label{eq:zero:curv:4}\\
-    r &= 5: \qquad &3 \sum_{k=3}^n \left(\frac{10}{3} - k \right) q_k &= 0, \qquad &2 \sum_{k=3}^m \left(5 - k \right) v_k &= 0 \label{eq:zero:curv:5}
-  \end{alignat}
-  respectively. Show that all sequences $(p_3, \dots, p_m)$, $(v_3, \dots, v_m)$ satisfying the equations \ref{eq:valence:3}, \ref{eq:valence:4} or \ref{eq:valence:5} for some $2$-manifold $S$ are $(q_3, \dots, q_n)$-$(v_3, \dots, v_n)$-realizable on $S$.
+
+If $t > \frac{2}{3}$, the coefficients of each $w_k$ is negative and therefore \autoref{eq:qw:flat} cannot hold. The same is true for $t < \frac{1}{3}$ and the coefficients of $q_k$, therefore from now on assume that $t \in \left[\frac{1}{3}, \frac{2}{3}\right]$.
+
+With this definition we now have everything ready to state the general {\sc Eberhard} problem:
+
+\begin{problem}[General {\sc Eberhard}'s problem]\label{problem:eberhard}
+  Let $ t \in \left[\frac{1}{3}, \frac{2}{3}\right]$ and $q$ and $w$ be flat sequences with parameter $t$. Show that all sequences $p$, $v$ satisfying \autoref{eq:general:vp:relation} for some $2$-manifold $S$ with {\sc Euler}-characteristic $\chi$ and \autoref{eq:handshake} for some $e \in \nats$ are $q$-$w$-realizable on $S$.
 \end{problem}
 
-\begin{notation}
-  Throughout the thesis we want to denote this problem as of $(p_3, \dots, p_n)$-type for valence $r$.
-\end{notation}
+In this thesis we do not want to deal with \autoref{problem:eberhard} in general, but with the rather specific case where $|\set{k : q_k \neq 0}| = 2$ and $|\set{k : w_k \neq 0}| = 1$. Let $r \geq 3$, $w_r \neq 0$. Since $t \in \left[\frac{1}{3}, \frac{2}{3}\right]$, we have $r \in \set{3, 4, 5, 6}$. For $r = 6$ we have $t = \frac{1}{3}$ and thus $\sum_{k=3}^n \left(3 - k \right) q_k = 0 \implies q = (q_3, 0, 0, \dots)$, contradicting the assumption $|\set{k : q_k \neq 0}| = 2$. This leaves $r \in \set{3, 4, 5}$ and we can state \autoref{eq:general:vp:relation} 
 
+  \begin{alignat}{5}
+  r &= 3: \qquad &2 \sum_{k=3}^m \left(3 - k \right) v_k\,+\, &&  & \sum_{k=3}^n \left(6 - k \right) p_k &&= 6 \chi \label{eq:vp:3}\\
+  r &= 4: \qquad &  \sum_{4=3}^m \left(4 - k \right) v_k\,+\, &&  & \sum_{k=3}^n \left(4 - k \right) p_k &&= 4 \chi  \label{eq:vp:4}\\
+  r &= 5: \qquad &2 \sum_{k=3}^m \left(5 - k \right) v_k\,+\, &&3 & \sum_{k=3}^n \left( \tfrac{10}{3} - k \right) p_k &&= 10 \chi \label{eq:vp:5}
+  \end{alignat}
+and \autoref{eq:qw:flat} 
+\begin{alignat}{5}
+  r &= 3: \qquad &  \sum_{k=3}^m \left(3 - k \right) w_k\,=\,&    \sum_{k=3}^n \left(6 - k \right) q_k &&= 0 \label{eq:flat:3}\\
+  r &= 4: \qquad &  \sum_{4=3}^m \left(4 - k \right) w_k\,=\,&    \sum_{k=3}^n \left(4 - k \right) q_k &&= 0  \label{eq:flat:4}\\
+  r &= 5: \qquad &  \sum_{k=3}^m \left(5 - k \right) w_k\,=\,&    \sum_{k=3}^n \left( \tfrac{10}{3} - k \right) q_k &&= 0 \label{eq:flat:5}
+\end{alignat}
+explicitly in these cases.
+
+\begin{remark}
+  We immediately recognize \autoref{eq:vp:3} and \autoref{eq:vp:4} in \autoref{thm:eberhard:extended:3} and \autoref{thm:eberhard:extended:4} and the used sequences for $q$ and $w$ clearly suffice \autoref{eq:flat:3} or \autoref{eq:flat:4}, but there is no mention of \autoref{eq:handshake} in those theorems. In fact we can add to every pair of sequences $p$ and $q$ as in \autoref{thm:eberhard:extended:3} a number of hexagons and $3$-valent vertices to make them suffice \autoref{eq:handshake}, if $2 | \sum_{k \geq 3} p_k$. But $2 | \sum_{k \geq 3} p_k$ automatically follows from \autoref{eq:vp:3}. The same goes for \autoref{thm:eberhard:extended:4}, where we can add quadrangles and $4$-valent vertices to suffice \autoref{eq:handshake}, provided that the parity condition mentioned in the theorem holds. Thus we can conclude that \autoref{problem:eberhard} is in fact a generalization of both theorems.
+\end{remark}

@@ -1,11 +1,11 @@
-\section{Construction}
+\section{Construction}\label{sec:construction}
 
-Let $r \in \nats$. Within this section one can think of $r$ as the given valence of a polyhedral map. Many constructions in this thesis will utilize the concept of replacing each face of a polyhedral map with a larger patch. It can be quite challenging to see whether the resulting structures fit as well together as the previous faces did. This section introduces the necessary formalism for these kinds of constructions.
+Let $r \in \nats$. Within this section one can think of $r$ as the given valence of a polyhedral map. Many constructions in this thesis will utilize the concept of replacing each face of a polyhedral map with a larger patch. It can be quite challenging to see whether the resulting structures fit as well together as the previous faces did. This section introduces the necessary formalism for these kinds of constructions. Note that throughout this section, we allow for $2$-valent vertices in maps.
 
-\begin{definition}[Patch] For a planar graph embedding we want to call the single unbounded face the ``outer face'' and every other face ``inner face''. A map on the euclidean plane is called a patch. It is called a $r$-patch, if each of its vertices except the ones on the outer face is $r$-valent (the exterior vertices can differ from the valence $r$, but are not required to). The $p$-vector of a patch is the sequence $(p_3, p_4, \dots)$, where $p_k$ denotes the number of $k$-gonal inner faces of the patch.
+\begin{definition}[Patch] For a planar graph embedding we want to call the single unbounded face the ``outer face'' and every other face ``inner face''. A map on the euclidean plane is called a patch. It is called a $r$-patch, if each of its vertices except the ones on the outer face is $r$-valent, while for the valence $r(v)$ of a vertex $v$ on the outer face $2 \leq r(v) \leq r$ holds. The $p$-vector of a patch is the sequence $(p_3, p_4, \dots)$, where $p_k$ denotes the number of $k$-gonal inner faces of the patch.
 \end{definition}
 
-Note that the union of the inner faces $F_{i}$ of a patch is homeomorphic to a $2$-cell (since $\bigcup_{f \in F_{i}} f \cong \mathbb{E}^2 \setminus \mathring{f_{o}} \cong \sphere^2 \setminus \psi^{-1}(\mathring{f_{o}})$, where $f_{o}$ is the outer face and $\psi$ is the stereographic projection and $\psi^{-1}(\mathring{f_{o}})$ is a $2$-cell by definition).
+Note that the union of the inner faces $F_{i}$ of a patch is homeomorphic to a $2$-cell (since $\bigcup_{f \in F_{i}} f \cong \mathbb{E}^2 \setminus \operatorname{int}(f_{o}) \cong (\sphere^2 \setminus \set{(0, 0, 1)}) \setminus \operatorname{int}(\psi^{-1}(f_{o}))$, which is a $2$-cell because $\psi^{-1}(f_{o})$ is a $2$-cell, where $f_{o}$ is the outer face and $\psi$ is the stereographic projection).
 
 \begin{definition}[Boundary structure of a patch] Each $r$-patch $\mathcal{P}$ is assigned a cyclically ordered tuple $\cyctup{w_1, \dots, w_n}$ giving values $w_k$ to each vertex $v_k$ on the outer face of $G$, where $w_k = \deg(v_k) - 1$ and the natural, positive order on the vertices of $\mathcal{P}$ is given. This tuple is denoted as the boundary structure of $\mathcal{P}$. Each entry is called the face count of the according vertex.
 \end{definition}
@@ -68,146 +68,204 @@ If one is interested in whether two patches of a construction fit together to as
 With this one is able to describe a general construction scheme:
 
 \begin{construction}\label{const:map}
-  Assume we have a $r$-valent map $M$ on a closed orientable $2$-manifold $S$. Let $w = (w_1, \dots, w_n)$ be a self-fitting tuple. Let for each $k$-gonal face $f$ a $w$-$k$-gonal $r$-patch $\mathcal{P}(f)$ be given. Divide each edge of $G$ in the embedding in $S$ by $n$ vertices and draw in each face $f$ the dedicated $r$-patch $\mathcal{P}(f)$ such that the corner vertices of $\mathcal{P}(f)$ coincide with the original vertices of $G$ and the side vertices are the new vertices added by the subdivision. We can do this because both the face we want to replace and the patch we want to insert are homeomorphic to a $2$-cell and the number of vertices of the patch and the subdivision exactly match. Note that each of these patches may allow for many distinct drawings. While the rotation of the drawing is irrelevant for the rest of the proof, there is a difference based on the orientation of the drawing (drawing the patch “from on side” of $S$ gives a different result than drawing from the other). When drawing each patch equally oriented, they allow for \autoref{thm:fitting:tuples} to be applied, so assume hereafter this to be done. These patches form a combined graph $G'$ , which is embedded by construction into $S$, as one only needed to skew each of the plane drawings of the patches into each face of $G$ on $S$. For the rest of the proof, the notion ``corner vertex'' will relate to the original vertices of $G$, while ``side vertices'' denote those on the subdivisions made before. The remaining vertices will be called ``inner vertices''. By \autoref{thm:fitting:tuples} each side vertex is $r$-valent, which is also true for the inner vertices (they come from $r$-valent inner vertices of a patch) and for the corner vertices (which were $r$-valent to begin with). $G'$ is also simple. $G'$ is nonempty and connected by construction and there is no possibility for it to contain loops or multi-edges since these would be also present in either $G$ or one of the patches $\mathcal{P}(f)$. Lastly, each face of the embedding is homeomorphic to a $2$-cell, since all faces in the new embedding are homeomorphic to an inner face of some patch $\mathcal{P}(f)$. Thus we have constructed another map on $S$.
+  \begin{cinput}
+  \item A map $M$ on a closed orientable $2$-manifold $S$ with $p$-vector $p$, $v$-vector $v$, underlying graph $G = (V, E)$ and faces $F$. \item A self-fitting tuple $w = (w_1, \dots, w_n)$
+  \item For each $k$-gonal face $f \in F$ a $w$-$k$-gonal $r$-patch $\mathcal{P}(f)$ with $p$-vector $p^{(f)}$.
+  \end{cinput}
+  \begin{coutput}
+    \item A map $M'$ on $S$ with $v$-vector $v + d \cdot [r]$ for some $d \in \nats$ and $p$-vector $\sum_{f \in F} p^{(f)}$
+  \end{coutput} 
+  \begin{cdescription} 
+    Divide each edge $e \in E$ in the embedding of $G$ into $S$ by $n$ vertices and draw in each face $f$ the dedicated $r$-patch $\mathcal{P}(f)$ such that the corner vertices of $\mathcal{P}(f)$ coincide with the original vertices $V$ and the side vertices are the new vertices added by the subdivision. We can do this because both the face we want to replace and the patch we want to insert are homeomorphic to a $2$-cell and the number of vertices of the patch and the subdivision match exactly. Note that each of these patches may allow for many distinct drawings. While the rotation of the drawing is irrelevant for the rest of the proof, there is a difference based on the orientation of the drawing (drawing the patch “from one side” of $S$ gives a different result than drawing it from the other side). When drawing each patch equally oriented, they allow for \autoref{thm:fitting:tuples} to be applied, so assume hereafter this to be done. These patches form a combined graph $G'$ , which is embedded by construction into $S$ (there is a homeomorphism between each subdivided face $f \in F$ and the corresponding patch $\mathcal{P}(f)$). For the rest of the proof, the notion ``corner vertex'' will relate to the original vertices $V$, while ``side vertices'' denote those on the subdivisions made before. The remaining vertices of $G'$ will be called ``inner vertices''. $G'$ is simple: $G'$ is nonempty and connected by construction and there is no possibility for it to contain loops or multi-edges since these would be also present in either $G$ or one of the patches $\mathcal{P}(f)$. Lastly, each face of the embedding is homeomorphic to a $2$-cell, since all faces in the new embedding are homeomorphic to an inner face of some patch $\mathcal{P}(f)$, thus the embedding of $G'$ into $S$ is a map $M'$. By \autoref{thm:fitting:tuples} each side vertex is $r$-valent, which is also true for the inner vertices (they come from $r$-valent inner vertices of a $r$-patch). Each corner vertex has the same valence it had previously in the map $M$, therefore the $v$-vector of $M'$ is $v + d \cdot [r]$ for some $d \in \nats$. The $p$-vector of $M'$ is the sum of the $p$-vectors $p^{(f)}$ of each patch $\mathcal{P}(f)$ ($f \in F$). Thus we have constructed another map on $S$ with $v$-vector $v + d \cdot [r]$ and $p$-vector $\sum_{f \in F} p^{(f)}$.
+  \end{cdescription}
 \end{construction}
 
 As previously stated, these definitions are used to formalize the construction step ``replace each face with a patch''. Up until now, there is no requirement explicitly stated on the interior of the patch. If one expects the result of such a construction to be a polyhedral map, further conditions have to be met. Furthermore, when using \autoref{const:map} we have the problem of assigning a patch for each face of the map. While we might need only one type of patch for a $k$-gon for each $k \geq 3$, we could still have to deal with a huge amount of values of $k$. We now want to define a construction scheme for patches for arbitrary $k$ which additionally allow to create $r$-valent polyhedral maps, even from $r$-valent non-polyhedral ones!
 
-\begin{definition} Let $w = \cyctup{b, i_1, \dots, i_m, o_0, \dots, o_s, \dots, o_{n - 1}, o_n, \dots i'_1, b'}$, $1 \leq s < n$, such that:
+\begin{definition} Let $w = \cyctup{i_0, i_1, \dots, i_{m-1}, i_m = o_0, \dots, o_s, \dots, o_{n - 1}, o_n = i_m, i_{m-1} \dots i'_1, i'_0}$, $1 \leq s < n$, such that:
   \begin{itemize}
-  \item $b + b' = r - 1$,
-  \item $(i_1, \dots i_m)$ and $(i'_m, \dots, i'_1)$ are fitting tuples,
+  \item $i_0 + i'_0 = r - 1$,
+  \item $(i_1, \dots i_{m-1})$ and $(i'_{m-1}, \dots, i'_1)$ are fitting tuples,
   \item $o_s = 1$,
-  \item $(o_{s + 1}, \dots o_{n - 1}, o_n + o_0, o_1, \dots o_{s - 1})$ is a self-fitting tuple.
+  \item $(o_{s + 1}, \dots o_{n - 1}, o_n + o_0, o_1, \dots o_{s - 1})$ is a self-fitting tuple
   \end{itemize}
-  Such a cyclically ordered tuple will be called mouse tuple with outer tuple $(o_{s + 1}, \dots o_{n - 1}, o_n, o_1, \dots o_{s - 1})$ and a patch with a mouse tuple as boundary structure and the property that every two inner faces meet properly (see \autoref{def:polymap}) will be called mouse patch, if additionally for all $1 \leq l < l + 1 < l' \leq \frac{n - 1}{2}$, there are no two inner faces $f$, $f'$ in $\mathcal{P}$, such that $f$ contains the vertices associated to $o_{s + l \mod n}$ and $o_{s + l' \mod n}$ while $f'$ contains the vertices associated to $o_{s - l \mod n}$ and $o_{s - l' \mod n}$
+  (see also \autoref{fig:expansion:patch}). Such a cyclically ordered tuple will be called expansion tuple with outer tuple $(o_{s + 1}, \dots o_{n - 1}, o_n, o_1, \dots o_{s - 1})$ and a patch with an expansion tuple as boundary structure will be called expansion patch. An expansion patch with the property that every two inner faces meet properly (see \autoref{def:polymap}) will be said to have the polyhedral property, if additionally 
+  \begin{itemize}
+  \item for all $1 \leq l < l + 1 < l' \leq \frac{n - 1}{2}$, there are no two inner faces $f$, $f'$ in $\mathcal{P}$, such that $f$ contains the vertices associated to $o_{s + l \mod n}$ and $o_{s + l' \mod n}$ while $f'$ contains the vertices associated to $o_{s - l \mod n}$ and $o_{s - l' \mod n}$,
+  \item for all $0 \leq l < l + 1 < l' \leq m$, there are no two inner faces $f$, $f'$ in $\mathcal{P}$, such that $f$ contains the vertices associated to $i_{l}$ and $i_{l'}$ while $f'$ contains the vertices associated to $i'_{l}$ and $i'_{l'}$ and
+  \end{itemize}
 \end{definition}
 
-\begin{construction}\label{const:mouse:patch}
-  We can construct from a mouse $r$-patch $\mathcal{M}$ with outer tuple $o$ and for every $k \geq 3$ a $o$-$k$-gonal $r$-patch $\mathcal{M}(k)$, which contains $k$ copies of $\mathcal{M}$ and a single $k$-gon. Let $w = \cyctup{b, i_1, \dots, i_m, o_1, \dots, o_s, \dots, o_{n - 1}, i'_m, \dots i'_1, b'}$ be the boundary structure of $\mathcal{M}$ (and by definition we have $o = (o_{s + 1}, \dots o_{n - 1}, i_m + i'_m, o_1, \dots o_{s - 1})$) and also let $v_b$, $v'_b$ be the two vertices in $\mathcal{M}$, to which $b$ and $b'$ are assigned. We now form a larger patch using \autoref{thm:fitting:tuples} repeatedly by gluing the edge $\set{v_b, v'_b}$ of each of the $k$ copies of $\mathcal{M}$ to an edge of the $k$-gon and also gluing the vertex associated to $i_l$, $1 \leq l \leq m$ from on copy to the vertex associated to $i'_l$ from the adjacent copy. To speak geometrically, we form a ring of $k$ patches of the form $\mathcal{M}$ around the $k$-gon (see \autoref{fig:mouse:patch}).  
+\begin{construction}\label{const:expansion:patch}
+  \begin{cinput}
+  \item A $r$-patch $\mathcal{M}$ with outer tuple $o$ with $p$-vector $p$.
+  \end{cinput}
+  \begin{coutput}
+  \item For every $k \geq 3$ a $o$-$k$-gonal $r$-patch $\mathcal{M}(k)$ with $p$-vector $[k] + k \cdot p$.
+  \end{coutput}
+  \begin{cdescription} We construct $\mathcal{M}(k)$ from $k$ copies of $\mathcal{M}$ and a single $k$-gon. Let
+\begin{align*}
+  w = \cyctup{i_0, i_1, \dots, i_m, o_1, \dots, o_s, \dots, o_{n - 1}, i'_m, \dots i'_1, i'_0}
+\end{align*}
+ be the boundary structure of $\mathcal{M}$ (note that by definition we have $o = (o_{s + 1}, \dots o_{n - 1}, i_n + o_0, o_1, \dots o_{s - 1})$) and also let $v_0$, $v'_0$ be the two vertices in $\mathcal{M}$ to which $i_0$ and $i'_0$ are assigned. We now form a larger patch using \autoref{thm:fitting:tuples} repeatedly by gluing the edge $\set{v_0, v'_0}$ of each of the $k$ copies of $\mathcal{M}$ to an edge of the $k$-gon and also gluing the vertex associated to $i_l$, $1 \leq l \leq m$ from on copy to the vertex associated to $i'_l$ from the adjacent copy. To speak geometrically, we form a ring of $k$ patches of the form $\mathcal{M}$ around the $k$-gon (see \autoref{fig:expansion:patch}). The $p$-vector of $\mathcal{M}(k)$ is therefore $[k] + k \cdot p$.
 
-\begin{tikzfigure}{\label{fig:mouse:patch}}{Schematic view of \autoref{const:mouse:patch}}
+    \begin{tikzfigure}{\label{fig:expansion:patch}}{Schematic view of \autoref{const:expansion:patch}}
 
-  \node (0, 0) {$k$-gon};
+      \node (0, 0) {$k$-gon};
 
-  \draw (0 : 1) -- (72 : 1) -- (144 : 1)  (216 : 1) -- (288 : 1) -- (0 : 1);
-  \draw[loosely dotted] (144 : 1) -- (216 : 1);
-
-
-  \draw (0 : 1) -- (0 : 2.5);
-  \draw[loosely dotted] (0 : 2.5) -- (0 : 3.5);
-  \draw (0 : 3.5) -- (0 : 5);
-  \draw (72 : 1) -- (72 : 2.5);
-  \draw[loosely dotted] (72 : 2.5) -- (72 : 3.5);
-  \draw (72 : 3.5) -- (72 : 5);
-  \draw (144 : 1) -- (144 : 2.5);
-  \draw[loosely dotted] (144 : 2.5) -- (144 : 3.5);
-  \draw (144 : 3.5) -- (144 : 5);
-  \draw (216 : 1) -- (216 : 2.5);
-  \draw[loosely dotted] (216 : 2.5) -- (216 : 3.5);
-  \draw (216 : 3.5) -- (216 : 5);
-  \draw (288 : 1) -- (288 : 2.5);
-  \draw[loosely dotted] (288 : 2.5) -- (288 : 3.5);
-  \draw (288 : 3.5) -- (288 : 5);
+      \draw (0 : 1) -- (72 : 1) -- (144 : 1)  (216 : 1) -- (288 : 1) -- (0 : 1);
+      \draw[loosely dotted] (144 : 1) -- (216 : 1);
 
 
-  \draw (-13 : 5.132) -- (13 : 5.132);
-  \draw[loosely dotted] (13 : 5.132) -- (27 : 5.612);
-  \draw (27 : 5.612) -- (36 : 6.180) -- (45 : 5.612);
-  \draw[loosely dotted] (45 : 5.612) -- (59 : 5.132);
-  \draw (59 : 5.132) -- (85 : 5.132);
-  \draw[loosely dotted] (85 : 5.132) -- (99 : 5.612);
-  \draw (99 : 5.612) -- (108 : 6.180) -- (117 : 5.612);
-  \draw[loosely dotted] (117 : 5.612) -- (131 : 5.132);
-  \draw (131 : 5.132) -- (144 : 5);
-  \draw (-131 : 5.132) -- (216 : 5);
-  \draw[loosely dotted] (-117 : 5.612) -- (-131 : 5.132);
-  \draw (-99 : 5.612) -- (-108 : 6.180) -- (-117 : 5.612);
-  \draw[loosely dotted] (-99 : 5.612) -- (-85 : 5.132);
-  \draw (-59 : 5.132) -- (-85 : 5.132);
-  \draw[loosely dotted] (-45 : 5.612) -- (-85 : 5.132);
-  \draw (-27 : 5.612) -- (-36 : 6.180) -- (-45 : 5.612);
-  \draw[loosely dotted] (-27 : 5.612) -- (-13 : 5.132);
+      \draw (0 : 1) -- (0 : 2.5);
+      \draw[loosely dotted] (0 : 2.5) -- (0 : 3.5);
+      \draw (0 : 3.5) -- (0 : 5);
+      \draw (72 : 1) -- (72 : 2.5);
+      \draw[loosely dotted] (72 : 2.5) -- (72 : 3.5);
+      \draw (72 : 3.5) -- (72 : 5);
+      \draw (144 : 1) -- (144 : 2.5);
+      \draw[loosely dotted] (144 : 2.5) -- (144 : 3.5);
+      \draw (144 : 3.5) -- (144 : 5);
+      \draw (216 : 1) -- (216 : 2.5);
+      \draw[loosely dotted] (216 : 2.5) -- (216 : 3.5);
+      \draw (216 : 3.5) -- (216 : 5);
+      \draw (288 : 1) -- (288 : 2.5);
+      \draw[loosely dotted] (288 : 2.5) -- (288 : 3.5);
+      \draw (288 : 3.5) -- (288 : 5);
 
-  \fill [black] (0 : 1) circle (2pt);
-  \node[anchor="99"] at (0 : 1) {$b$};
-  \fill [black] (0 : 2) circle (2pt);
-  \node[anchor="90"] at (0 : 2) {$i_1$};
-  \fill [black] (0 : 4) circle (2pt);
-  \node[anchor="90"] at (0 : 4) {$i_{m}$};
-  \fill [black] (0 : 5) circle (2pt);
-  \node[anchor="45"] at (0 : 5) {$o_{0}$};
-  \fill [black] (-9 : 5.062) circle (2pt);
-  \node[anchor="0"] at (-9 : 5.062) {$o_{1}$};
-  \fill [black] (-30 : 5.774) circle (2pt);
-  \node[anchor="0"] at (-30 : 5.774) {$o_{s - 1}$};
-  \fill [black] (-36 : 6.180) circle (2pt);
-  \node[anchor="-36"] at (-36 : 6.180) {$o_{s}$};
-  \fill [black] (-42 : 5.774) circle (2pt);
-  \node[anchor="-36"] at (-42 : 5.774) {$o_{s + 1}$};
-  \fill [black] (-63 : 5.062) circle (2pt);
-  \node[anchor="-63"] at (-63 : 5.062) {$o_{n - 1}$};
-  \fill [black] (-72 : 5) circle (2pt);
-  \node[anchor="-117"] at (-72 : 5) {$o_{n}$};
-  \fill [black] (-72 : 4) circle (2pt);
-  \node[anchor="198"] at (-72 : 4) {$i'_{m}$};
-  \fill [black] (-72 : 2) circle (2pt);
-  \node[anchor="198"] at (-72 : 2) {$i'_{1}$};
-  \fill [black] (-72 : 1) circle (2pt);
-  \node[anchor="180"] at (-72 : 1) {$b'$};
-  \node at (-36 : 3.5) {$\mathcal{M}$};
 
-  \fill [black] (72 : 1) circle (2pt);
-  \node[anchor="180"] at (72 : 1) {$b$};
-  \fill [black] (72 : 2) circle (2pt);
-  \node[anchor="162"] at (72 : 2) {$i_1$};
-  \fill [black] (72 : 4) circle (2pt);
-  \node[anchor="162"] at (72 : 4) {$i_{m}$};
-  \fill [black] (72 : 5) circle (2pt);
-  \node[anchor="117"] at (72 : 5) {$o_{0}$};
-  \fill [black] (63 : 5.062) circle (2pt);
-  \node[anchor="72"] at (63 : 5.062) {$o_{1}$};
-  \fill [black] (42 : 5.774) circle (2pt);
-  \node[anchor="72"] at (42 : 5.774) {$o_{s - 1}$};
-  \fill [black] (36 : 6.180) circle (2pt);
-  \node[anchor="36"] at (36 : 6.180) {$o_{s}$};
-  \fill [black] (30 : 5.774) circle (2pt);
-  \node[anchor="0"] at (30 : 5.774) {$o_{s + 1}$};
-  \fill [black] (9 : 5.062) circle (2pt);
-  \node[anchor="0"] at (9 : 5.062) {$o_{n - 1}$};
-  \fill [black] (0 : 5) circle (2pt);
-  \node[anchor="-45"] at (0 : 5) {$o_{n}$};
-  \fill [black] (0 : 4) circle (2pt);
-  \node[anchor="270"] at (0 : 4) {$i'_{m}$};
-  \fill [black] (0 : 2) circle (2pt);
-  \node[anchor="270"] at (0 : 2) {$i'_{1}$};
-  \fill [black] (0 : 1) circle (2pt);
-  \node[anchor="252"] at (0 : 1) {$b'$};
-  \node at (36 : 3.5) {$\mathcal{M}$};
+      \draw (-13 : 5.132) -- (13 : 5.132);
+      \draw[loosely dotted] (13 : 5.132) -- (27 : 5.612);
+      \draw (27 : 5.612) -- (36 : 6.180) -- (45 : 5.612);
+      \draw[loosely dotted] (45 : 5.612) -- (59 : 5.132);
+      \draw (59 : 5.132) -- (85 : 5.132);
+      \draw[loosely dotted] (85 : 5.132) -- (99 : 5.612);
+      \draw (99 : 5.612) -- (108 : 6.180) -- (117 : 5.612);
+      \draw[loosely dotted] (117 : 5.612) -- (131 : 5.132);
+      \draw (131 : 5.132) -- (144 : 5);
+      \draw (-131 : 5.132) -- (216 : 5);
+      \draw[loosely dotted] (-117 : 5.612) -- (-131 : 5.132);
+      \draw (-99 : 5.612) -- (-108 : 6.180) -- (-117 : 5.612);
+      \draw[loosely dotted] (-99 : 5.612) -- (-85 : 5.132);
+      \draw (-59 : 5.132) -- (-85 : 5.132);
+      \draw[loosely dotted] (-45 : 5.612) -- (-85 : 5.132);
+      \draw (-27 : 5.612) -- (-36 : 6.180) -- (-45 : 5.612);
+      \draw[loosely dotted] (-27 : 5.612) -- (-13 : 5.132);
 
-  \node at (108 : 3.5) {$\mathcal{M}$};
-  \node at (-108 : 3.5) {$\mathcal{M}$};
+      \fill [black] (0 : 1) circle (2pt);
+      \node[anchor="99"] at (0 : 1) {$i_0$};
+      \fill [black] (0 : 2) circle (2pt);
+      \node[anchor="90"] at (0 : 2) {$i_1$};
+      \fill [black] (0 : 4) circle (2pt);
+      \node[anchor="90"] at (0 : 4) {$i_{m-1}$};
+      \fill [black] (0 : 5) circle (2pt);
+      \node[anchor="45"] at (0 : 5) {$o_{0}$};
+      \fill [black] (-9 : 5.062) circle (2pt);
+      \node[anchor="0"] at (-9 : 5.062) {$o_{1}$};
+      \fill [black] (-30 : 5.774) circle (2pt);
+      \node[anchor="0"] at (-30 : 5.774) {$o_{s - 1}$};
+      \fill [black] (-36 : 6.180) circle (2pt);
+      \node[anchor="-36"] at (-36 : 6.180) {$o_{s}$};
+      \fill [black] (-42 : 5.774) circle (2pt);
+      \node[anchor="-36"] at (-42 : 5.774) {$o_{s + 1}$};
+      \fill [black] (-63 : 5.062) circle (2pt);
+      \node[anchor="-63"] at (-63 : 5.062) {$o_{n - 1}$};
+      \fill [black] (-72 : 5) circle (2pt);
+      \node[anchor="-117"] at (-72 : 5) {$o_{n}$};
+      \fill [black] (-72 : 4) circle (2pt);
+      \node[anchor="198"] at (-72 : 4) {$i'_{m-1}$};
+      \fill [black] (-72 : 2) circle (2pt);
+      \node[anchor="198"] at (-72 : 2) {$i'_{1}$};
+      \fill [black] (-72 : 1) circle (2pt);
+      \node[anchor="180"] at (-72 : 1) {$i'_0$};
+      \node at (-36 : 3.5) {$\mathcal{M}$};
 
-  \draw[loosely dotted] (171 : 4) -- (189 : 4);
-\end{tikzfigure}
+      \fill [black] (72 : 1) circle (2pt);
+      \node[anchor="180"] at (72 : 1) {$i_0$};
+      \fill [black] (72 : 2) circle (2pt);
+      \node[anchor="162"] at (72 : 2) {$i_1$};
+      \fill [black] (72 : 4) circle (2pt);
+      \node[anchor="162"] at (72 : 4) {$i_{m-1}$};
+      \fill [black] (72 : 5) circle (2pt);
+      \node[anchor="117"] at (72 : 5) {$o_{0}$};
+      \fill [black] (63 : 5.062) circle (2pt);
+      \node[anchor="72"] at (63 : 5.062) {$o_{1}$};
+      \fill [black] (42 : 5.774) circle (2pt);
+      \node[anchor="72"] at (42 : 5.774) {$o_{s - 1}$};
+      \fill [black] (36 : 6.180) circle (2pt);
+      \node[anchor="36"] at (36 : 6.180) {$o_{s}$};
+      \fill [black] (30 : 5.774) circle (2pt);
+      \node[anchor="0"] at (30 : 5.774) {$o_{s + 1}$};
+      \fill [black] (9 : 5.062) circle (2pt);
+      \node[anchor="0"] at (9 : 5.062) {$o_{n - 1}$};
+      \fill [black] (0 : 5) circle (2pt);
+      \node[anchor="-45"] at (0 : 5) {$o_{n}$};
+      \fill [black] (0 : 4) circle (2pt);
+      \node[anchor="270"] at (0 : 4) {$i'_{m-1}$};
+      \fill [black] (0 : 2) circle (2pt);
+      \node[anchor="270"] at (0 : 2) {$i'_{1}$};
+      \fill [black] (0 : 1) circle (2pt);
+      \node[anchor="252"] at (0 : 1) {$i'_0$};
+      \node at (36 : 3.5) {$\mathcal{M}$};
 
-We do not want to lay out each application of \autoref{thm:fitting:tuples} explicitly and instead we just want to note two things: First, each inner vertex of $\mathcal{M}(k)$ has indeed valence $r$. We see this from calculating the valence for each kind of vertices. The vertices from the original $k$-gon (where they met only one face) are now adjacent additionally to $b + b'$ faces, so the valence is $1 + b + b' = r$. The vertices associated to $i_l$ and $i'_l$, $1 \leq i \leq m$ are adjacent to $i_l + i_l'$ faces and have therefore valence $r$ too, since $(i_1, \dots i_m)$ and $(i'_m, \dots, i'_1)$ were required to be fitting tuples. All other inner vertices come from inner vertices of $\mathcal{M}$, therefore they also have valence $r$. The second thing to note is that $\mathcal{M}(k)$ is in fact $o$-$k$-gonal since $o_s = 1$ and the vertices between those associated with $o_s$ have exactly the boundary structure $(o_{s + 1}, \dots o_{n - 1}, o_n + o_0, o_1, \dots o_{s - 1})$.
+      \node at (108 : 3.5) {$\mathcal{M}$};
+      \node at (-108 : 3.5) {$\mathcal{M}$};
+
+      \draw[loosely dotted] (171 : 4) -- (189 : 4);
+    \end{tikzfigure}
+
+    We do not want to lay out each application of \autoref{thm:fitting:tuples} explicitly and instead we just want to note two things: First, each inner vertex of $\mathcal{M}(k)$ has indeed valence $r$. We see this from calculating the valence for each kind of vertices. The vertices from the original $k$-gon (where they met only one face) are now adjacent additionally to $b + b'$ faces, so the valence is $1 + b + b' = r$. The vertices associated to $i_l$ and $i'_l$, $1 \leq i \leq m$ are adjacent to $i_l + i_l'$ faces and have therefore valence $r$ too, since $(i_1, \dots i_m)$ and $(i'_m, \dots, i'_1)$ were required to be fitting tuples. All other inner vertices come from inner vertices of $\mathcal{M}$, therefore they also have valence $r$. Second, $\mathcal{M}(k)$ is in fact $o$-$k$-gonal since $o_s = 1$ and the vertices between those associated with $o_s$ have exactly the boundary structure $(o_{s + 1}, \dots o_{n - 1}, o_n + o_0, o_1, \dots o_{s - 1})$. This finishes the construction.
+  \end{cdescription}
 \end{construction}
 
 With these constructions at hand we can now finally design a scheme to create a $r$-valent polyhedral map from a non-polyhedral one.
 
 \begin{theorem}\label{thm:const:polymap}
-  Given a $r$-valent map $M$ on an orientable closed $2$-manifold $S$ and a mouse $r$-patch $\mathcal{M}$ with outer tuple $o$, \autoref{const:map} returns a $r$-valent polyhedral map on $S$ when we take $\mathcal{P}(f) = \mathcal{M}(k)$ for each $k$-gonal face $f$.
+  Given a $r$-valent map $M$ on an orientable closed $2$-manifold $S$ and an expansion $r$-patch $\mathcal{M}$ with outer tuple $o$, \autoref{const:map} returns a $r$-valent polyhedral map on $S$ when we take $\mathcal{P}(f) = \mathcal{M}(k)$ for each $k$-gonal face $f$ of $M$.
 \begin{proof}
-The only requirement of \autoref{const:map} we did not explicitly stated is that $o$ is self-fitting (which it is by definition) and that $\mathcal{M}(k)$ is $o$-$k$-gonal, which was the result of \autoref{const:mouse:patch}. Thus we can apply \autoref{const:map} and get a map $M'$ on $S$, for which we need to show that it is polyhedral. We want to use a proof by contradiction so assume that two faces of $M'$, $f$ and $f'$, do not meet properly.
+The only requirement of \autoref{const:map} we did not explicitly stated is that $o$ is self-fitting (which it is by definition) and that $\mathcal{M}(k)$ is $o$-$k$-gonal, which was the result of \autoref{const:expansion:patch}. Thus we can apply \autoref{const:map} and get a map $M'$ on $S$, for which we need to show that it is polyhedral. We want to use a proof by contradiction so assume that two faces of $M'$, $f$ and $f'$, do not meet properly.
 
 TODO
 \end{proof}
 \end{theorem}
 
-\begin{remark}
-  Given the $p$-vector $p^{(M)}$ of $M$ and the $p$-vector $p^{(P)}$ of the mouse patch $\mathcal{M}$ in \autoref{thm:const:polymap}, the $p$-vector $p^{(M')}$ of the resulting map $M'$ can be computed explicitly:
-  \begin{align*}
-    p^{(M')} = p^{(M)} + \left(\sum_{k = 3} p^{(M)}_k\right) \cdot p^{(P)}.
-  \end{align*}
-\end{remark}
+
+Putting all these constructions together, we can formulate a proof scheme for \autoref{problem:eberhard}:
+\begin{proposition} Let $r = 3$ (or $r = 4$), $p$ and $v$ be a pair of sequences for which we can apply \autoref{thm:eberhard:extended:3} (or \autoref{thm:eberhard:extended:4}). Let $w = [r]$ and $q = [k_s \times s, k_l \times l]$, where $s \in \set{3, 4, 5}$, $l > 6$, $k_s = \frac{l - 6}{\gcd(6 - s, l - 6)}$ and $k_l = \frac{6 - s}{\gcd(6 - s, l - 6)}$ (or $s = 3$, $l > 4$, $k_s = l - 4$ and $k_l = 1$). Assume there exist
+  \begin{itemize}
+  \item an expansion $r$-patch $\mathcal{P}_N$ with outer arc $o$ consisting of $s$-gons and $l$-gons,
+  \item an $o$-$6$-gonal (or $o$-$4$-gonal) $r$-patch $\mathcal{P}_F$ consisting of $s$-gons and $l$-gons,
+  \item an expansion $r$-patch $\mathcal{P}_P$ with the polyhedral condition consisting of $s$-gons and $l$-gons.
+  \end{itemize}
+  Then $(p, v)$ is $q$-$w$-realizable.
+  \begin{proof}
+    If $r = 3$, we start by using \autoref{thm:eberhard:extended:3} to construct a map $M'$ with $p$-vector $p' = p + c' \cdot [6]$ and $v$-vector $v' = v + d' \cdot [3]$ ($c', d' \in \nats$). We chose $c'$ hexagonal faces of $M'$ and assign to those the patch $\mathcal{P}_F$, every other $k$-gonal face is assigned the patch $\mathcal{P}_N(k)$. Next, the use of \autoref{const:map} returns a new map $M''$. Finally, we use \autoref{thm:const:polymap} with $\mathcal{P}_P$ and get a polyhedral map $M$. We need to show that the $p$-vector of $M$ is of the form $p + c \times [6]$ and likewise that the $v$-vector is of the form $v + d \times [3]$. The second assertion is easy to see: $M'$ has a $v$-vector $v + d' \cdot [3]$, therefore is the $v$-vector of $M''$ of the form $v + (d' + d'') \cdot [3]$ (by \autoref{const:map}) and finally, \autoref{thm:const:polymap} yields a $v$-vector of the form $v + (d' + d'' + d) \cdot [3]$, as desired. Let $p^{(N)} = [a^{(N)}_s \times s, a^{(N)}_l \times l]$ be the $p$-vector of $\mathcal{P}_N$, $p^{(F)} = [a^{(F)}_s \times s, a^{(F)}_l \times l]$ be the $p$-vector of $\mathcal{P}_F$ and $p^{(P)} = [a^{(P)}_s \times s, a^{(P)}_l \times l]$ be the $p$-vector of $\mathcal{P}_P$. By \autoref{const:map} and \autoref{const:expansion:patch}, $M''$ has the $p$-vector
+    \begin{align*}
+      &c' \cdot p^{(F)} + \sum_{k \geq 3} \left(p_k \cdot p^{(N)} + [k]\right)\\
+      ={}& p + c' \cdot p^{(F)} + 2e \cdot p^{(N)}\\
+      ={}& p + c' \cdot \left[a^{(F)}_s \times s, a^{(F)}_l \times l\right] + 2e \cdot \left[a^{(N)}_s \times s, a^{(N)}_l \times l\right]\\
+      ={}& p + \left[\left(c' a^{(F)}_s + 2e \, a^{(N)}_s \right) \times s, \left(c' a^{(F)}_l + 2e\, a^{(N)}_l\right) \times l \right],
+    \end{align*}
+    where we abbreviated $\sum_{k\geq 3}p_k$ by $2e$ as suggested by \autoref{eq:handshake}. Using this, we can express the $p$-vector of $M$:
+    \begin{align*}
+      &\sum_{k \geq 3} \left(p_k \cdot p^{(P)} + [k] \right) 
+        + \left(c' a^{(F)}_s + 2e \, a^{(N)}_s \right) \cdot \left(s \cdot p^{(P)} + [s] \right)
+        + \left(c' a^{(F)}_l + 2e \, a^{(N)}_l \right) \cdot \left(l \cdot p^{(P)} + [l] \right)\\
+      ={}&p + 2e \cdot \left[a^{(P)}_s \times s, a^{(P)}_l \times l\right] + \left(c' a^{(F)}_s + 2e \, a^{(N)}_s \right) \cdot \left(s \cdot p^{(P)} + [s] \right)\\     
+      &\phantom{p}+ \left(c' a^{(F)}_l + 2e \, a^{(N)}_l \right) \cdot \left(l \cdot p^{(P)} + [l] \right)\\
+      ={}&p + [a_s \times s, a_l \times l],
+    \end{align*}
+    for suitably chosen $a_s, a_l \in \nats$. Since $M$ is a map, \autoref{eq:vp:3} holds for the $p$-vector $p + [a_s \times s, a_l \times l]$ and the $v$-vector $v + (d' + d'' + d) \cdot [3])$, so we have:
+    \begin{align*}
+      &2 \sum_{k=3}^m \left(3 - k \right) v_k + \sum_{k=3}^n \left(6 - k \right) p_k + (6 - a_s) s + (6 - a_l) l = 6 \chi \\
+      \implies & (6 - a_s) s + (6 - a_l) l = 0,
+    \end{align*}
+    since $p$ and $v$ also fulfill \autoref{eq:vp:3}, and by solving this linear Diophantine equation we can write $a_s = c \cdot k_s$ and $a_l = c \cdot k_l$ for some $c \in \nats$, what we wanted to show. The case $r = 4$ is analogue until the last series of equations when we apply \autoref{thm:eberhard:extended:4} instead of \autoref{thm:eberhard:extended:3}, so assume we have a map $M$ with $p$-vector $p + [a_s \times s, a_l \times l]$ and the $v$-vector $v + (d' + d'' + d) \cdot [3])$. These have to suffice  \autoref{eq:vp:4}, therefore
+    \begin{align*}
+      &\sum_{4=3}^m \left(4 - k \right) v_k +  \sum_{k=3}^n \left(4 - k \right) p_k + (4 - a_s) s + (4 - a_l) l = 4 \chi\\
+      \implies & (4 - a_s) s + (4 - a_l) l = 0,
+    \end{align*}
+    like before. Solving this linear Diophantine equation yields the required $c \in \nats$ with $a_s = c \cdot k_s$ and $a_l = c \cdot k_l$.
+  \end{proof}
+\end{proposition}
+

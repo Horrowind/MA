@@ -17,6 +17,7 @@
 \usepackage{graphicx}
 \usepackage{makeidx}
 \usepackage{aliascnt}
+\usepackage[super,square]{natbib}
 \usepackage[labelfont=bf]{caption}
 \usepackage[inner=2cm,outer=2cm,top=1.5cm,bottom=1.5cm,includeheadfoot]{geometry}
 \counterwithin{figure}{section}
@@ -32,6 +33,7 @@
 }
 \usepackage{shapepar}
 
+\setlist{nosep}
 \setlength{\parindent}{0pt}
 \renewcommand{\baselinestretch}{1.2}
 \theoremstyle{definition}
@@ -42,6 +44,8 @@
     {\begin{figure}[h!] \caption{#2} #1 \centering  \begin{tikzpicture}[line cap=round, line join=round]}
     {\end{tikzpicture} \end{figure}}
 
+\newcommand{\todo}[1]{(TODO)}
+
 \newcommand{\newthm}[3]{%
   \newaliascnt{#2}{#1}%
   \newtheorem{#2}[#2]{#3}%
@@ -49,7 +53,7 @@
   \expandafter\def\csname#2autorefname\endcsname{#3}%
 }
 
-\newcommand{\todo}[1]{(TODO)}
+
 
 % math environments
 \newtheorem{theorem}{Theorem}[section]
@@ -63,6 +67,18 @@
 \newthm{theorem}{definition}{Definition}
 \newthm{theorem}{corollary}{Corollary}
 \newthm{theorem}{construction}{Construction}
+
+\newlength{\tempitemindent}
+
+\newenvironment{cinput}
+    {\leavevmode \par \begin{minipage}[t]{.1\textwidth} {\it Input: } \end{minipage}\begin{minipage}[t]{.9\textwidth} \begin{itemize} }
+    {\end{itemize} \end{minipage}}
+\newenvironment{coutput}
+    {\leavevmode \par \begin{minipage}[t]{.1\textwidth} {\it Output: } \end{minipage}\begin{minipage}[t]{.9\textwidth} \begin{itemize} }
+    {\setlength{\global\tempitemindent}{\leftmargin}\end{itemize} \end{minipage}}
+\newenvironment{cdescription}
+    {\leavevmode \par \begin{minipage}[t]{\dimexpr .1\textwidth + \tempitemindent}{\it Description: }\end{minipage}\ignorespaces}
+    {}
 
 \renewcommand*{\theenumi}{\thetheorem\,(\roman{enumi})}%
 \renewcommand*{\labelenumi}{\thetheorem\,(\roman{enumi})}%
