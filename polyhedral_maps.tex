@@ -57,7 +57,7 @@
 
 We want to show that the converse is also true and that polyhedral maps on the sphere $\sphere^2$ and polyhedra have the same $1$-skeletons. For this we need a property from graph theory.
 
-\begin{definition} A graph is called $k$-(vertex)-connected if it has more then $k$ vertices and the deletion of fewer then $k$ vertices leaves the graph connected.
+\begin{definition} A graph is called $k$-(vertex)-connected if it has more than $k$ vertices and the deletion of fewer than $k$ vertices leaves the graph connected.
 \end{definition}
 
 \begin{proposition} Every graph $G = (V, E)$ of a polyhedral map $\phi$ is $3$-connected.
@@ -69,10 +69,10 @@ We want to show that the converse is also true and that polyhedral maps on the s
 \begin{theorem}[{\sc Steinitz's} theorem] A graph is the $1$-skeleton of a polyhedron if and only if it is $3$-connected and planar.
 \end{theorem}
 
-With these two results (and the knowledge that planarity of a graph is equivalent to the embedability into $\sphere^2$) we can see that in fact every polyhedral map on the $\sphere^2$ comes from a polyhedron and vice-versa, at least then looking at the underlying graphs. Actually checking that going from a map to the underlying graph, then to the polyhedron by {\sc Steinitz's} theorem and back to polyhedral map using \autoref{rem:polymap:from:polyhedron} yields the same map (up to a homeomorphism on the embedding) and the same the other way around will be left out here.
+With these two results (and the knowledge that planarity of a graph is equivalent to the embedability into $\sphere^2$) we can see that in fact every polyhedral map on the $\sphere^2$ comes from a polyhedron and vice-versa, at least when looking at the underlying graphs. Actually checking that going from a map to the underlying graph, then to the polyhedron by {\sc Steinitz's} theorem and back to polyhedral map using \autoref{rem:polymap:from:polyhedron} yields the same map (up to a homeomorphism on the embedding) and the same the other way around will be left out here.
 
 \begin{definition}[Sequence]
-  A sequence $a$ in this thesis is a map $\nats \setminus \{0, 1, 2\} \rightarrow \nats$ with finite support. These maps will be written as $(a(3), a(4), ..., a(k))$, where $k = \operatorname{max} \operatorname{supp} a$. If $a$ has a small but wide support this notation will be further abbreviated by $[a(k_1) \times k_1, a(k_2) \times k_2, ...]$, where only entries not equal to zero occur. Further $a(k) \times k$ will be simply written as $k$ if $a(k) = 1$. Additionally, we want to define addition of two sequences and multiplication with scalars, these operations are to be executed element-wise.
+  A sequence $a$ in this thesis is a map $\nats \setminus \{0, 1, 2\} \rightarrow \nats$ with finite support. These maps will be written as $(a(3), a(4), ..., a(k))$, where $k = \operatorname{max} \operatorname{supp} a$. If $a$ has a small but wide support this notation will be further abbreviated by $[a(k_1) \times k_1, a(k_2) \times k_2, ...]$, where only entries not equal to zero occur. Further $a(k) \times k$ will be simply written as $k$ if $a(k) = 1$. Additionally, we want to define addition and subtraction of two sequences and multiplication with scalars, these operations are to be executed element-wise.
 \end{definition}
 \begin{example}
   $(2, 0, 0, 1)$, $[2 \times 3, 1 \times 6]$, $[2 \times 3, 6]$ and $2 \cdot [3] + [6]$ all denote the same sequence.
@@ -105,3 +105,5 @@ The the two main theorems we want to base our constructions on are the following
     p \neq [p_4 \times 4] \text{ or } v \neq [3, 5] &&\text{ if } \chi = 0.
   \end{align*}
 \end{theorem}
+
+Another good argument why the theorem fails on the torus in some cases is also found in \cite{izmestiev2013there}.

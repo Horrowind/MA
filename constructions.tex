@@ -89,7 +89,7 @@ As previously stated, these definitions are used to formalize the construction s
   \item $o_s = 1$,
   \item $(o_{s + 1}, \dots o_{n - 1}, o_n + o_0, o_1, \dots o_{s - 1})$ is a self-fitting tuple
   \end{itemize}
-  (see also \autoref{fig:expansion:patch}). Such a cyclically ordered tuple will be called expansion tuple with outer tuple $(o_{s + 1}, \dots o_{n - 1}, o_n, o_1, \dots o_{s - 1})$ and a patch with an expansion tuple as boundary structure will be called expansion patch. An expansion patch with the property that every two inner faces meet properly (see \autoref{def:polymap}) will be said to have the polyhedral property, if additionally 
+  (see also \autoref{fig:expansion:patch}). Such a cyclically ordered tuple will be called expansion tuple with outer tuple $(o_{s + 1}, \dots o_{n - 1}, o_n + o_0, o_1, \dots o_{s - 1})$ and a patch with an expansion tuple as boundary structure will be called expansion patch. An expansion patch with the property that every two inner faces meet properly (see \autoref{def:polymap}) will be said to have the polyhedral property, if additionally 
   \begin{itemize}
   \item for all $1 \leq l < l + 1 < l' \leq \frac{n - 1}{2}$, there are no two inner faces $f$, $f'$ in $\mathcal{P}$, such that $f$ contains the vertices associated to $o_{s + l \mod n}$ and $o_{s + l' \mod n}$ while $f'$ contains the vertices associated to $o_{s - l \mod n}$ and $o_{s - l' \mod n}$,
   \item for all $0 \leq l < l + 1 < l' \leq m$, there are no two inner faces $f$, $f'$ in $\mathcal{P}$, such that $f$ contains the vertices associated to $i_{l}$ and $i_{l'}$ while $f'$ contains the vertices associated to $i'_{l}$ and $i'_{l'}$ and
@@ -220,22 +220,22 @@ As previously stated, these definitions are used to formalize the construction s
 
 With these constructions at hand we can now finally design a scheme to create a $r$-valent polyhedral map from a non-polyhedral one.
 
-\begin{theorem}\label{thm:const:polymap}
+\begin{proposition}\label{thm:const:polymap}
   Given a $r$-valent map $M$ on an orientable closed $2$-manifold $S$ and an expansion $r$-patch $\mathcal{M}$ with outer tuple $o$, \autoref{const:map} returns a $r$-valent polyhedral map on $S$ when we take $\mathcal{P}(f) = \mathcal{M}(k)$ for each $k$-gonal face $f$ of $M$.
 \begin{proof}
 The only requirement of \autoref{const:map} we did not explicitly stated is that $o$ is self-fitting (which it is by definition) and that $\mathcal{M}(k)$ is $o$-$k$-gonal, which was the result of \autoref{const:expansion:patch}. Thus we can apply \autoref{const:map} and get a map $M'$ on $S$, for which we need to show that it is polyhedral. We want to use a proof by contradiction so assume that two faces of $M'$, $f$ and $f'$, do not meet properly.
 
 TODO
 \end{proof}
-\end{theorem}
+\end{proposition}
 
 
 Putting all these constructions together, we can formulate a proof scheme for \autoref{problem:eberhard}:
-\begin{proposition} Let $r = 3$ (or $r = 4$), $p$ and $v$ be a pair of sequences for which we can apply \autoref{thm:eberhard:extended:3} (or \autoref{thm:eberhard:extended:4}). Let $w = [r]$ and $q = [k_s \times s, k_l \times l]$, where $s \in \set{3, 4, 5}$, $l > 6$, $k_s = \frac{l - 6}{\gcd(6 - s, l - 6)}$ and $k_l = \frac{6 - s}{\gcd(6 - s, l - 6)}$ (or $s = 3$, $l > 4$, $k_s = l - 4$ and $k_l = 1$). Assume there exist
+\begin{proposition}\label{thm:main:const} Let $r = 3$ (or $r = 4$), $p$ and $v$ be a pair of sequences for which we can apply \autoref{thm:eberhard:extended:3} (or \autoref{thm:eberhard:extended:4}). Let $w = [r]$ and $q = [k_s \times s, k_l \times l]$, where $s \in \set{3, 4, 5}$, $l > 6$, $k_s = \frac{l - 6}{\gcd(6 - s, l - 6)}$ and $k_l = \frac{6 - s}{\gcd(6 - s, l - 6)}$ (or $s = 3$, $l > 4$, $k_s = l - 4$ and $k_l = 1$). Assume there exist
   \begin{itemize}
   \item an expansion $r$-patch $\mathcal{P}_N$ with outer arc $o$ consisting of $s$-gons and $l$-gons,
   \item an $o$-$6$-gonal (or $o$-$4$-gonal) $r$-patch $\mathcal{P}_F$ consisting of $s$-gons and $l$-gons,
-  \item an expansion $r$-patch $\mathcal{P}_P$ with the polyhedral condition consisting of $s$-gons and $l$-gons.
+  \item an expansion $r$-patch $\mathcal{P}_P$ with the polyhedral property consisting of $s$-gons and $l$-gons.
   \end{itemize}
   Then $(p, v)$ is $q$-$w$-realizable.
   \begin{proof}

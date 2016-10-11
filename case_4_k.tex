@@ -1,10 +1,194 @@
 \section{$3$-valent Eberhard-like theorems with quadrangles}
-\begin{theorem}
-  Let $p$ and $v$ be sequences for which \autoref{eq:vp:3} holds for some orientable $2$-manifold $S$ with {\sc Euler}-characteristic $\chi$. Then $(p, v)$ is $[(4k + 1) \times 4, 2 \times (4k+7)]$-$[3]$-realizable and $[(4k + 3) \times 4, 2 \times (4k+9)]$-$[3]$-realizable. When not being in the case $\chi = 2$, $\sum_{k=3,\, 2 \nmid k}^{m} p_k = 0$ and $\sum_{k=4, \,3 \nmid k}^m v_k = 1$, it is also $[(4k + 4) \times 4, 2 \times (4k+10)]$-$[3]$-realizable.
+
+\begin{construction}\label{const:edge:replacement:4:1}
+  \begin{cinput}
+  \item A $3$-patch with $p$-vector $p$ and a specified edge with exactly one vertex incident to some $k_1$-gon and the other vertex  incident to some $k_2$-gon.
+  \end{cinput}
+  \begin{coutput}
+  \item A new $3$-patch with $p$-vector $p - [k_1, k_2] + [k \times 4] + [k_1 + k, k_2 + k]$ for all $k \in \nats$.
+  \end{coutput}
+  \begin{cdescription}
+    Using the replacement of the single edge as seen in \autoref{fig:const:edge:replacement:4:1} results in a new map with $p$-vector $p - [k_1, k_2] + [4] + [k_1 + 1, k_2 + 1]$. The thick line on the left is the specified line and the thick line on the right is a new line which we can use to repeat the construction. Every time we use this construction we add a new quadrangle while increasing the number of vertices of left and the right polygon; doing this $k$ times has the desired result, since we only inserted $3$-valent vertices.
+    \begin{tikzfigure}{\label{fig:const:edge:replacement:4:1}}{}
+      \matrix (m) [column sep=1cm] {
+        \begin{scope}
+          \draw[very thick] (-1, 0) -- (1, 0);
+          \draw (-1.2, 0.5) -- (-1, 0) -- (-1.2, -0.5);
+          \draw (1.2, 0.5) -- (1, 0) -- (1.2, -0.5);
+          \node at (-1.5, 0) {$k_1$};
+          \node at (1.5, 0) {$k_2$};
+        \end{scope}
+        &
+        \begin{scope}
+          \draw[very thick] (-1, 0.5) -- (1, 0.5);
+          \draw (-1, -0.5) -- (1, -0.5);
+          \draw (-1.2, 1) -- (-1, 0.5);
+          \draw (-1.2, -1) -- (-1, -0.5);
+          \draw (1.2, 1) -- (1, 0.5);
+          \draw (1.2, -1) -- (1, -0.5);
+          \draw (1, 0.5) -- (1, -0.5);
+          \draw (-1, 0.5) -- (-1, -0.5);
+
+          \node at (-1.8, 0) {$k_1 + 1$};
+          \node at (1.8, 0) {$k_2 + 1$};
+          \node at (0, 0) {$4$};
+        \end{scope}
+        \\
+      };
+    \end{tikzfigure}
+  \end{cdescription}
+\end{construction}
+
+\begin{construction}\label{const:edge:replacement:4:2}
+  \begin{cinput}
+  \item A $3$-patch with $p$-vector $p$ and a specified edge incident to both some $k_1$-gon and some $k_2$-gon.
+  \end{cinput}
+  \begin{coutput}
+  \item A new $3$-patch with $p$-vector $p - [k_1, k_2] + [(4k) \times 4] + [4k + k_1 , 4k + k_2]$ for all $k \in \nats$.
+  \end{coutput}
+  \begin{cdescription}
+    Using the replacement of the single edge as seen in \autoref{fig:const:edge:replacement:4:2} results in a new map with $p$-vector $p - [k_1, k_2] + [4 \times 4] + [k_1 + 4, k_2 + 4]$. The thick line on the left is the specified line and the thick line on the right is a new line which we can use to repeat the construction. Every time we use this construction we add four new quadrangles while increasing the number of vertices of left and the right polygon; doing this $k$ times has the desired result, since we only insert $3$-valent vertices.
+    \begin{tikzfigure}{\label{fig:const:edge:replacement:4:2}}{}
+      \matrix (m) [column sep=1cm] {
+        \begin{scope}
+          \draw[very thick] (0, -1) -- (0, 1);
+          \draw (0.5, -1.2) -- (0, -1) -- (-0.5, -1.2);
+          \draw (0.5, 1.2) -- (0, 1) -- (-0.5, 1.2);
+          \node at (-1, 0) {$k_1$};
+          \node at (1, 0) {$k_2$};
+        \end{scope}
+        &
+        \begin{scope}
+          \draw (0.5, -2.2) -- (0, -2) -- (-0.5, -2.2);
+          \draw (0.5, 2.2) -- (0, 2) -- (-0.5, 2.2);
+          \draw[very thick] (0, 2) -- (0, 1.5);
+          \draw (0, 1.5) -- (-0.5, 1) -- (-0.5, -1) -- (0, -1.5) -- (0.5, -1) -- (0.5, 1) -- (0, 1.5);
+          \draw (0, -2) -- (0, -1.5);
+          \draw (-0.5, -1) -- (0, -0.5) -- (0.5, -1);
+          \draw (-0.5, 1) -- (0, 0.5) -- (0.5, 1);
+          \draw (0, -0.5) -- (0, 0.5);
+          \node at (-1.25, 0) {$k_1 + 4$};
+          \node at (1.25, 0) {$k_2 + 4$};
+          \node at (-0.25, 0) {$4$};
+          \node at (0.25, 0) {$4$};
+          \node at (0, -1) {$4$};
+          \node at (0, 1) {$4$};
+
+        \end{scope}
+        \\
+      };
+    \end{tikzfigure}
+  \end{cdescription}
+\end{construction}
+
+\begin{lemma}\label{thm:expansion:patch:4:7}
+  There are an expansion $3$-patch with outer arc $o = (1, 1, 1, 2, 2, 2)$ and a corresponding $o$-$6$-gonal $3$-patch consisting only of $4$-gons and $4k + 7$-gons for all $k \in \nats$.
   \begin{proof}
-    \todo{Write up the proof.}
-    \begin{tikzfigure}{\label{fig:expansion:patch:4}}{An expansion patch to build a polyhedral map from a non-polyhedral}
+    Using \autoref{const:edge:replacement:4:2} on the edges drawn thick in both $3$-patches in \autoref{fig:expansion:patch:4:7} results in $3$-patches consisting only $n$-gons with the specified amount of vertices. The left patch is an expansion patch with outer arc $o$, while the right patch is $o$-$6$-gonal, these properties do not change when using \autoref{const:edge:replacement:4:2} on the thick lines.
+    \begin{tikzfigure}{\label{fig:expansion:patch:4:7}}{}
+      \matrix (m) [column sep=1cm] {
+        \begin{scope}[scale=1.2]
+          \draw (0.5, 2.5) -- (-0.5, 2) -- (-1, 1) -- (-0.1, 0) -- (1.1, 0) -- (2, 1) -- (1.5, 2);
+          \draw[very thick] (0.5, 2.5) -- (1.5, 2);
+          \draw (0.5, 2.5) -- (0, 3.5) -- (0.9, 4.5) -- (2.1, 4.5) -- (3, 3.5) -- (2.5, 2.5) -- (1.5, 2);
+          \draw (2, 1) -- (3, 1.5) -- (2.5, 2.5);
+          \node[anchor=90] at (-0.1, 0) {$i_0$};
+          \node[anchor=90] at (1.2, 0) {$i'_0$};
+          \node[anchor=120] at (2, 1) {$i'_1$};
+          \node[anchor=180] at (3, 1.5) {$i'_2 = o_7$};
+          \node[anchor=180] at (2.5, 2.5) {$o_6$};
+          \node[anchor=180] at (3, 3.5) {$o_5$};
+          \node[anchor=-120] at (2.1, 4.5) {$o_4$};
+          \node[anchor=-60] at (0.9, 4.5) {$o_3$};
+          \node[anchor=0] at (0, 3.5) {$\mathbf{o_2}$};
+          \node[anchor=-20] at (0.5, 2.5) {$o_{1}$};
+          \node[anchor=0] at (-0.5, 2) {$i_2 = o_{0}$};
+          \node[anchor=45] at (-1, 1) {$i_1$};
+        \end{scope}
+        &
+        \begin{scope}[scale=3, yshift=25]
+          \input{tikz/4_7/hexagon2}
+        \end{scope}
+        \\
+      };
+    \end{tikzfigure}
+  \end{proof}
+\end{lemma}
+
+\begin{lemma}\label{thm:expansion:patch:4:9}
+  There are an expansion $3$-patch with outer arc $o = (1, 1, 1, 1, 1, 2, 2, 2, 2, 2)$ and a corresponding $o$-$6$-gonal $3$-patch consisting only of $4$-gons and $4k + 9$-gons for all $k \in \nats$.
+  \begin{proof}
+    Using \autoref{const:edge:replacement:4:2} on the edges drawn thick in both $3$-patches in \autoref{fig:expansion:patch:4:9} results in $3$-patches consisting only $n$-gons with the specified amount of vertices. The left patch is an expansion patch with outer arc $o$, while the right patch is $o$-$6$-gonal, these properties do not change when using \autoref{const:edge:replacement:4:2} on the thick lines.
+    \begin{tikzfigure}{\label{fig:expansion:patch:4:9}}{}
+      \matrix (m) [column sep=1cm] {
+        \begin{scope}[scale=0.8]
+          \draw (-0.5, 3) -- (-1, 2) -- (-1, 1) -- (0, 0) -- (1, 0) -- (2, 1) -- (2, 2) -- (1.5, 3) -- (0.5, 3.5);
+          \draw[very thick] (0.5, 3.5) -- (-0.5, 3);
+          \draw (2, 1) -- (3, 1) -- (3, 2) -- (2, 2);
+          \draw (3, 2) -- (2.5, 3) -- (1.5, 3);
+          \draw (2.5, 3) -- (1, 4.5);
+          \draw (0.5, 3.5) -- (1, 4.5) -- (1, 5.5) -- (0, 6.5) -- (-1, 6.5) -- (-2, 5.5) -- (-2, 4.5) -- (-1.5, 3.5) -- (-0.5, 3);
+          \node[anchor=90] at (0, 0) {$i_0$};
+          \node[anchor=90] at (1, 0) {$i'_0$};
+          \node[anchor=120] at (2, 1) {$i'_1$};
+          \node[anchor=180] at (3, 1) {$i'_2 = o_{11}$};
+          \node[anchor=180] at (3, 2) {$o_{10}$};
+          \node[anchor=-150] at (2.5, 3) {$o_9$};
+          \node[anchor=-150] at (1, 4.5) {$o_8$};
+          \node[anchor=-150] at (1, 5.5) {$o_7$};
+          \node[anchor=-110] at (0, 6.5) {$o_6$};
+          \node[anchor=-70] at (-1, 6.5) {$o_5$};
+          \node[anchor=-20] at (-2, 5.5) {$o_4$};
+          \node[anchor=0] at (-2, 4.5) {$o_3$};
+          \node[anchor=60] at (-1.5, 3.5) {$\mathbf{o_2}$};
+          \node[anchor=20] at (-0.5, 3) {$o_{1}$};
+          \node[anchor=0] at (-1, 2) {$i_2 = o_{0}$};
+          \node[anchor=45] at (-1, 1) {$i_1$};
+        \end{scope}
+        &
+        \begin{scope}[scale=3, yshift=25]
+          \input{tikz/4_9/hexagon}
+        \end{scope}
+        \\
+      };
+    \end{tikzfigure}
+  \end{proof}
+\end{lemma}
+
+\begin{lemma}\label{thm:expansion:patch:4:10}
+  There are an expansion $3$-patch with outer arc $o = (1, 1, 2, 1, 2, 2)$ and a corresponding $o$-$6$-gonal $3$-patch consisting only of $4$-gons and $4k + 10$-gons for all $k \in \nats$.
+  \begin{proof}
+    Using \autoref{const:edge:replacement:4:2} on the edges drawn thick in both $3$-patches in \autoref{fig:expansion:patch:4:10} results in $3$-patches consisting only $n$-gons with the specified amount of vertices. The left patch is an expansion patch with outer arc $o$, while the right patch is $o$-$6$-gonal, these properties do not change when using \autoref{const:edge:replacement:4:2} on the thick lines.
+    \begin{tikzfigure}{\label{fig:expansion:patch:4:10}}{\todo{better picture}}
+      \matrix (m) [column sep=1cm] {
+        \begin{scope}[scale=3]
+          \input{tikz/4_10/ngon}
+        \end{scope}
+        &
+        \begin{scope}[scale=3]
+          \input{tikz/4_10/hexagon}
+        \end{scope}
+        \\
+      };
+    \end{tikzfigure}
+  \end{proof}
+\end{lemma}
+
+
+\begin{lemma}\label{thm:expansion:patch:poly:4:k}
+  There is an expansion $3$-patch with the polyhedral property consisting of $4$-gons and $k$-gons, $k \geq 7$.
+  \begin{proof}
+    Use \autoref{const:edge:replacement:4:1} on the edges drawn thick in \autoref{fig:expansion:patch:poly:4}. \todo{argue that this has the polyhedral property}.
+    \begin{tikzfigure}{\label{fig:expansion:patch:poly:4}}{\todo{better picture}}
       \input{svgs/case_4_k_2val_to_3val.svg.tex}
     \end{tikzfigure}
+  \end{proof}
+\end{lemma}
+
+
+\begin{theorem}
+  Let $p$ and $v$ be sequences for which \autoref{eq:vp:3} holds for some orientable closed $2$-manifold $S$ with {\sc Euler}-characteristic $\chi$. Then $(p, v)$ is $[(4k + 1) \times 4, 2 \times (4k+7)]$-$[3]$-realizable and $[(4k + 3) \times 4, 2 \times (4k+9)]$-$[3]$-realizable for all $k \in \nats$. When not being in the case $\chi = 2$, $\sum_{k=3,\, 2 \nmid k}^{m} p_k = 0$ and $\sum_{k=4, \,3 \nmid k}^m v_k = 1$, it is also $[(4k + 4) \times 4, 2 \times (4k+10)]$-$[3]$-realizable.
+  \begin{proof}
+    \autoref{thm:expansion:patch:4:7}, \autoref{thm:expansion:patch:4:9}, \autoref{thm:expansion:patch:4:10} and \autoref{thm:expansion:patch:poly:4:k} deliver the necessary patches to apply \autoref{thm:main:const}, which shows the claim.
   \end{proof}
 \end{theorem}

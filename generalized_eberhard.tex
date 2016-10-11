@@ -5,16 +5,16 @@ We can reformulate the statements of \autoref{thm:eberhard:3} and \autoref{thm:e
   \begin{align*}
     \sum_{k=3}^m(6 - k) \cdot p_k = 12 \qquad \left( \text{or:}\quad \sum_{k=3}^m(4 - k) \cdot p_k = 8 \right)
   \end{align*}
-  then there exists infinitely many $c, d \in \nats$, such that $p + c \cdot [6]$ and $d \cdot [3]$ (or: $p + c \cdot [4]$ and $d \cdot [4]$) are realizable on the sphere $\sphere^2$.
+  then there exists $c, d \in \nats$, such that $p + c \cdot [6]$ and $d \cdot [3]$ (or: $p + c \cdot [4]$ and $d \cdot [4]$) are realizable on the sphere $\sphere^2$.
 \end{theorem}
 
 \begin{remark}
-The only difference between this version and \autoref{thm:eberhard:3} or \autoref{thm:eberhard:4} is, that in the previous statements $p_6$ or $p_4$ is assumed to be zero at first, while in this version we can specify a least amount of hexagons or quadrangles to occur in the polyhedron. This can be seen by a quick construction we do not want to deliver here. From there, we can further see that indeed we can realize an infinite amount of pairs by applying the theorem repeatedly and substituting $p$ with $p + (c + 1) \cdot [6]$ or $p + (c + 1) \cdot [4]$.
+The only difference between this version and \autoref{thm:eberhard:3} or \autoref{thm:eberhard:4} is, that in the previous statements $p_6$ or $p_4$ is assumed to be zero at first, while in this version we can specify a least amount of hexagons or quadrangles to occur in the polyhedron. This can be seen by a quick construction we do not want to deliver here. 
 \end{remark}
 
 We want to capture this more generally in the following definition:
 \begin{definition}[$(q_3, \dots, q_n)$-$(w_3, \dots, w_m)$-realizable]\label{def:eberhard:realizable}
-  A pair of sequence $p = (p_3, \dots, p_m)$, $v = (v_3, \dots, v_n)$ is said to be $(q_3, \dots, q_n)$-$(w_3, \dots, w_m)$-realizable on a closed $2$-manifold $S$, if there exists infinitely many $c, d \in \nats$, such that ($p + c q$, $v + d w$) is realizable on $S$.
+  A pair of sequence $p = (p_3, \dots, p_m)$, $v = (v_3, \dots, v_n)$ is said to be $(q_3, \dots, q_n)$-$(w_3, \dots, w_m)$-realizable on a closed $2$-manifold $S$, if there exists $c, d \in \nats$, such that ($p + c q$, $v + d w$) is realizable on $S$.
 \end{definition}
 
 The pairs of sequences $([6], [3])$ and $([4], [4])$ play an important part in these theorems. Geometrically, hexagons act flat in an $3$-valent grid, as do quadrangles in $4$-valent grids. From this perspective, we can take the next step and state a very general {\sc Eberhard}-like problem:
@@ -71,7 +71,7 @@ If $t > \frac{2}{3}$, the coefficients of each $w_k$ is negative and therefore \
 With this definition we now have everything ready to state the general {\sc Eberhard} problem:
 
 \begin{problem}[General {\sc Eberhard}'s problem]\label{problem:eberhard}
-  Let $ t \in \left[\frac{1}{3}, \frac{2}{3}\right]$ and $q$ and $w$ be flat sequences with parameter $t$. Show that all sequences $p$, $v$ satisfying \autoref{eq:general:vp:relation} for some $2$-manifold $S$ with {\sc Euler}-characteristic $\chi$ and \autoref{eq:handshake} for some $e \in \nats$ are $q$-$w$-realizable on $S$.
+  Let $ t \in \left[\frac{1}{3}, \frac{2}{3}\right]$ and $q$ and $w$ be flat sequences with parameter $t$. Which sequences $p$, $v$ satisfying \autoref{eq:general:vp:relation} for some $2$-manifold $S$ with {\sc Euler}-characteristic $\chi$ and \autoref{eq:handshake} for some $e \in \nats$ are $q$-$w$-realizable on $S$?
 \end{problem}
 
 In this thesis we do not want to deal with \autoref{problem:eberhard} in general, but with the rather specific case where $|\set{k : q_k \neq 0}| = 2$ and $|\set{k : w_k \neq 0}| = 1$. Let $r \geq 3$, $w_r \neq 0$. Since $t \in \left[\frac{1}{3}, \frac{2}{3}\right]$, we have $r \in \set{3, 4, 5, 6}$. For $r = 6$ we have $t = \frac{1}{3}$ and thus $\sum_{k=3}^n \left(3 - k \right) q_k = 0 \implies q = (q_3, 0, 0, \dots)$, contradicting the assumption $|\set{k : q_k \neq 0}| = 2$. This leaves $r \in \set{3, 4, 5}$ and we can state \autoref{eq:general:vp:relation} 
@@ -87,8 +87,11 @@ and \autoref{eq:qw:flat}
   r &= 4: \qquad &  \sum_{4=3}^m \left(4 - k \right) w_k\,=\,&    \sum_{k=3}^n \left(4 - k \right) q_k &&= 0  \label{eq:flat:4}\\
   r &= 5: \qquad &  \sum_{k=3}^m \left(5 - k \right) w_k\,=\,&    \sum_{k=3}^n \left( \tfrac{10}{3} - k \right) q_k &&= 0 \label{eq:flat:5}
 \end{alignat}
-explicitly in these cases.
-
+explicitly in these cases. 
 \begin{remark}
   We immediately recognize \autoref{eq:vp:3} and \autoref{eq:vp:4} in \autoref{thm:eberhard:extended:3} and \autoref{thm:eberhard:extended:4} and the used sequences for $q$ and $w$ clearly suffice \autoref{eq:flat:3} or \autoref{eq:flat:4}, but there is no mention of \autoref{eq:handshake} in those theorems. In fact we can add to every pair of sequences $p$ and $q$ as in \autoref{thm:eberhard:extended:3} a number of hexagons and $3$-valent vertices to make them suffice \autoref{eq:handshake}, if $2 | \sum_{k \geq 3} p_k$. But $2 | \sum_{k \geq 3} p_k$ automatically follows from \autoref{eq:vp:3}. The same goes for \autoref{thm:eberhard:extended:4}, where we can add quadrangles and $4$-valent vertices to suffice \autoref{eq:handshake}, provided that the parity condition mentioned in the theorem holds. Thus we can conclude that \autoref{problem:eberhard} is in fact a generalization of both theorems.
 \end{remark}
+
+Theorems of this kind where first studied in \cite{devos2010eberhard}, where \autoref{problem:eberhard} is established for $q = [5, 7]$ and $w = [3]$ for arbitrary closed $2$-manifolds. This result for the case of orientable manifolds will be  a byproduct of our main theorems.
+
+\todo{state all theorem when they are done.}
