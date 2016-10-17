@@ -1,4 +1,4 @@
-\section{Negative results}
+\section{Negative results}\label{sec:negative:results}
 
 \begin{definition} A planar graph is called multi-$r$-valent, $r \in \nats$, if the valence of every vertex is a multiple of $r$. Dually the graph is called multi-$k$-gonal, $k \in \nats$, if for every $k'$-gon $k$ divides $k'$. It is called almost multi-$k$-gonal / almost multi-$r$-valent, if there is exactly one $k'$-gonal face / exactly one $r'$-valent vertex with $k' \nmid k$.
 \end{definition}
@@ -27,29 +27,25 @@ We can dualize this theorem and get:
 \end{proof}
 \end{corollary}
 
-\begin{proposition}
-  Let $p$ and $v$ be sequences, $S$ a closed $2$-manifold and $l \in \nats, l \geq 13$, $q_3 = \frac{l - 6}{\gcd(3, l-6)}$, $q_l = \frac{3}{\gcd(3, l-6)}$. Then the set
-  \begin{align*}
-    C(l, p, v) \defeq \set{c \in \nats : (p + c \cdot [q_3 \times 3, q_l \times l], v + c \cdot [3]) \text{ is realizable on } S}
-  \end{align*}
-  is cofinal. Additionally, if $l \geq 11$ and $\sum_{k \geq 4} 2k \cdot v_k + \sum_{k \geq 4} \floor{\tfrac{k}{2}} p_k < 3p_3$, then $C(l, p, v)$ is empty.
+\begin{proposition}\todo{Use new C(p, v, q, w, S) notation}
+  Let $p$ and $v$ be sequences, $S$ a closed $2$-manifold $S$ and $q = [q_3 \times 3, q_l \times l]$, $w = [3]$ for $l \in \nats, l \geq 13$, $q_3 = \frac{l - 6}{\gcd(3, l-6)}$, $q_l = \frac{3}{\gcd(3, l-6)}$. Then the set $(C(p, v, q, w, S)$ is cofinite, i.e. $\nats^2 \setminus C(p, v, q, w, S)$ is finite. Additionally, if $l \geq 11$ and $\sum_{k \geq 4} 2k \cdot v_k + \sum_{k \geq 4} \floor{\tfrac{k}{2}} p_k < 3p_3$, then $C(p, v, q, w, S)$ is empty, except when $S$ is the sphere $\sphere^2$, $p = [4 \times 3]$, $v = [4 \times 3]$, in which case $C(p, v, q, w, S) = \set{(0, 0)}$.
   \begin{proof}
-    Since any to faces of a polyhedral map on $S$ have to meet proper, there can not be two triangles which coincide on a single edge with two $3$-valence vertices (see \autoref{fig:adjacent:triangles}). %
-    \begin{tikzfigure}{\label{fig:adjacent:triangles}}{Two triangles incident to a $3$-valent edge}
+    Since any to faces of a polyhedral map on $S$ have to meet proper, there can not be two triangles which coincide on a single edge with two $3$-valence vertices (see \autoref{fig:adjacent:triangles}), with the single exception of the tetrahedron, in which case we have $(0, 0) \in C(p, v, q, w, S)$. Without loss of generality assume $(p, v) \neq ([4 \times 3], [4 \times 3])$, since we always can obtain $C(p, v, q, w, S)$ from $C(p + q, v + w, q, w, S)$.%
+    \begin{tikzfigure}{\label{fig:adjacent:triangles}}{Two triangles incident to two $3$-valent vertices}
       \draw (-2, 0) -- (-1, 0) -- (0, 1) -- (1, 0) -- (2, 0);
       \draw (-1, 0) -- (0, -1) -- (1, 0);
       \draw (0, 1) -- (0, -1);
       \draw[loosely dotted] (-2.5, 0) -- (-2, 0);
       \draw[loosely dotted] (2.5, 0) -- (2, 0);
     \end{tikzfigure}%
-    Therefore every edge adjacent to a triangle has to have either a vertex of valence greater than $3$ or it has to be also adjacent to a larger $k$-gon, $k > 3$. Using this we can estimate the number of adjacent triangle-edge pairs (of which there are $3p_3$ many). Around each vertex of valence $r > 3$ we can put $r$ triangles, which counts as $2r$ triangle-edge pairs. Around each $k$-gon we can fit no more than $\floor{\frac{k}{2}} + \lceil \frac{j}{2} \rceil$ triangles, where $j$ is the number of vertices with valence greater than $3$ adjacent to the $k$-gon \todo{insert figure}. We can only hope for the greatest number of triangle-edge pairs, if we do not waste the vertices with valence greater than $3$ to the larger $k$-gons. Thus we can have only $\floor{\frac{k}{2}}$ triangle-edge pairs around each $k$-gon. Let $p' \defeq p + c \cdot [q_3 \times 3, q_l \times l]$, $v' = v + c \cdot [3]$, we have
+    As there can not be two triangles adjacent to a single edge with two $3$-valence vertices in the map, every edge adjacent to a triangle has to have either a vertex of valence greater than $3$ or it has also to be adjacent to a larger $k$-gon, $k > 3$. Using this we can estimate the number of triangle-edge pairs $(f, e)$, $f$ is a triangle, $e$ is an edge and $f$ contains $e$. There are $3p_3$ many of these pairs, since every triangle contains three edges. On the other hand, around each vertex of valence $r > 3$ we can put at maximum $r$ triangles, which would be $2r$ triangle-edge pairs. Around each $k$-gon we can fit no more than $\floor{\frac{k}{2}} + \lceil \frac{j}{2} \rceil$ triangles, where $j$ is the number of vertices with valence greater than $3$ adjacent to the $k$-gon \todo{insert figure}. We can only hope for the greatest number of triangle-edge pairs, if we do not waste the vertices with valence greater than $3$ to the larger $k$-gons. Thus we can have only $\floor{\frac{k}{2}}$ triangle-edge pairs around each $k$-gon. Let $p' \defeq p + c \cdot [q_3 \times 3, q_l \times l]$, $v' = v + c \cdot [3]$, we have
     \begin{align*}
       &\sum_{k \geq 4} 2k \cdot v'_k + \sum_{k \geq 4} \floor{\tfrac{k}{2}} p'_k \\
       ={}&\sum_{k \geq 4} 2k \cdot v_k + \sum_{k \geq 4} \floor{\tfrac{k}{2}} p_k + c \cdot q_l \cdot \floor{\tfrac{l}{2}}\\
       \geq{} & 3 p'_3 {}={} 3 p_3 + 3 c \cdot q_3 \\
       \implies & \sum_{k \geq 4} 2k \cdot v_k + \sum_{k \geq 4} \floor{\tfrac{k}{2}} p_k - 3p_3 \geq c \cdot (3 q_3 - q_l \cdot \floor{\tfrac{l}{2}})
     \end{align*}
-    Since $3q_3 = (l - 6)q_l$, the coefficient $(3 q_3 - q_l \cdot \floor{\tfrac{l}{2}})$ is positive if $\floor{\frac{l}{2}} < l - 6$, i.e. if $l \geq 13$, and we can only hope for finally many solutions. If $\sum_{k \geq 4} 2k \cdot v_k + \sum_{k \geq 4} \floor{\tfrac{k}{2}} p_k < 3p_3$, the coefficient of $c$ has to be negative, which is only the case for $l < 11$. This finishes the proof.
+    Since $3q_3 = (l - 6)q_l$, the coefficient $(3 q_3 - q_l \cdot \floor{\tfrac{l}{2}})$ is positive if $\floor{\frac{l}{2}} < l - 6$, i.e. if $l \geq 13$, and we can only hope for finitely many solutions. If $\sum_{k \geq 4} 2k \cdot v_k + \sum_{k \geq 4} \floor{\tfrac{k}{2}} p_k < 3p_3$, the coefficient of $c$ has to be negative, which is only the case for $l < 11$. This finishes the proof.
   \end{proof}
 \end{proposition}
 

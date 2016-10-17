@@ -8,7 +8,7 @@
   \item A new $3$-patch with $p$-vector $p - [k_1, k_2] + [10k \times 5] + [k_1 + 5k, k_2 + 5k]$ for all $k \in \nats$.
   \end{coutput}
   \begin{cdescription}
-    Using the replacement of the single edge as seen in \autoref{fig:const:edge:replacement:5:1} results in a new map with $p$-vector $p - [k_1, k_2] + [10 \times 5] + [k_1 + 5, k_2 + 5]$. The thick line on the left is the specified line and the thick line on the right is a new line which we can use to repeat the construction. Every time we use this construction we add ten new pentagons while increasing the number of vertices of left and the right polygon by 5; doing this $k$ times has the desired result, since we only inserted $3$-valent vertices.
+    Using the replacement of the single edge as seen in \autoref{fig:const:edge:replacement:5:1} results in a new map with $p$-vector $p - [k_1, k_2] + [10 \times 5] + [k_1 + 5, k_2 + 5]$. The thick line on the left is the specified line and the thick line on the right is a new line which we can use to repeat the construction. Every time we use this construction we add ten new pentagons while increasing the number of vertices of the left and right polygon by 5; doing this $k$ times has the desired result, since we only inserted $3$-valent vertices.
     \begin{tikzfigure}{\label{fig:const:edge:replacement:5:1}}{}
       \matrix (m) [column sep=1cm] {
         \begin{scope}
@@ -64,7 +64,7 @@
   \item A new $3$-patch with $p$-vector $p - [k_1, k_2] + [10k \times 5] + [k_1 + 5k, k_2 + 5k]$ for all $k \in \nats$.
   \end{coutput}
   \begin{cdescription}
-    Using the replacement of the path as seen in \autoref{fig:const:edge:replacement:5:2} results in a new map with $p$-vector $p - [k_1, k_2] + [10 \times 5] + [k_1 + 5, k_2 + 5]$. The thick drawn path on the left is the specified path and the thick drawn path on the right is a new path which we can use to repeat the construction. Every time we use this construction we add ten new pentagons while increasing the number of vertices of left and the right polygon by 5; doing this $k$ times has the desired result, since we only inserted $3$-valent vertices.
+    Using the replacement of the path as seen in \autoref{fig:const:edge:replacement:5:2} results in a new map with $p$-vector $p - [k_1, k_2] + [10 \times 5] + [k_1 + 5, k_2 + 5]$. The thick drawn path on the left is the specified path and the thick drawn path on the right is a new path which we can use to repeat the construction. Every time we use this construction we add ten new pentagons while increasing the number of vertices of the left and right polygon by 5; doing this $k$ times has the desired result, since we only inserted $3$-valent vertices.
     \begin{tikzfigure}{\label{fig:const:edge:replacement:5:2}}{}
       \matrix (m) [column sep=1cm] {
         \begin{scope}
@@ -122,7 +122,7 @@
   \item A new $3$-patch with $p$-vector $p - [k_1, k_2] + [(10k) \times 5] + [5k + k_1 , 5k + k_2]$ for all $k \in \nats$.
   \end{coutput}
   \begin{cdescription}
-    Using the replacement of the single edge as seen in \autoref{fig:const:edge:replacement:5:3} results in a new map with $p$-vector $p - [k_1, k_2] + [4 \times 4] + [k_1 + 4, k_2 + 4]$. The thick line on the left is the specified line and the thick line on the right is a new line which we can use to repeat the construction. Every time we use this construction we add four new quadrangles while increasing the number of vertices of left and the right polygon; doing this $k$ times has the desired result, since we only insert $3$-valent vertices.
+    Using the replacement of the single edge as seen in \autoref{fig:const:edge:replacement:5:3} results in a new map with $p$-vector $p - [k_1, k_2] + [10 \times 5] + [k_1 + 5, k_2 + 5]$. The thick line on the left is the specified line and the thick line on the right is a new line which we can use to repeat the construction. Every time we use this construction we add four new quadrangles while increasing the number of vertices of the left and right polygon; doing this $k$ times has the desired result, since we only insert $3$-valent vertices.
     \begin{tikzfigure}{\label{fig:const:edge:replacement:5:3}}{}
       \matrix (m) [column sep=1cm] {
         \begin{scope}
@@ -134,20 +134,32 @@
         \end{scope}
         &
         \begin{scope}
-          \draw (0.5, -2.2) -- (0, -2) -- (-0.5, -2.2);
-          \draw (0.5, 2.2) -- (0, 2) -- (-0.5, 2.2);
-          \draw[very thick] (0, 2) -- (0, 1.5);
-          \draw (0, 1.5) -- (-0.5, 1) -- (-0.5, -1) -- (0, -1.5) -- (0.5, -1) -- (0.5, 1) -- (0, 1.5);
-          \draw (0, -2) -- (0, -1.5);
-          \draw (-0.5, -1) -- (0, -0.5) -- (0.5, -1);
-          \draw (-0.5, 1) -- (0, 0.5) -- (0.5, 1);
-          \draw (0, -0.5) -- (0, 0.5);
-          \node at (-1.25, 0) {$k_1 + 4$};
-          \node at (1.25, 0) {$k_2 + 4$};
-          \node at (-0.25, 0) {$4$};
-          \node at (0.25, 0) {$4$};
-          \node at (0, -1) {$4$};
-          \node at (0, 1) {$4$};
+          \draw (0.5, -2.7) -- (0, -2.5) -- (-0.5, -2.7);
+          \draw (0.5, 2.7) -- (0, 2.5) -- (-0.5, 2.7);
+          \draw[very thick] (0, 2.5) -- (0, 2);
+          \draw (0, -2.5) -- (0, -2);
+          \draw (0, -2) -- (-1.5 , -1.5) -- (-2, 0) -- (-1.5, 1.5) -- (0, 2) -- (1.5, 1.5) -- (2, 0) -- (1.5, -1.5) -- (0, -2);
+          \draw (-0.5, -1) -- (-0.5, -0.5) -- (-1, 0) -- (-0.5, 0.5) -- (-0.5, 1) -- (0.5, 1) -- (0.5, 0.5) -- (1, 0) -- (0.5, -0.5) -- (0.5, -1) -- (-0.5, -1);
+          \draw (-0.5, -0.5) -- (0, -0.25) -- (0.5, -0.5);
+          \draw (-0.5, 0.5) -- (0, 0.25) -- (0.5, 0.5);
+          \draw (-1.5, -1.5) -- (-0.5, -1);
+          \draw (1.5, -1.5) -- (0.5, -1);
+          \draw (-1.5, 1.5) -- (-0.5, 1);
+          \draw (1.5, 1.5) -- (0.5, 1);
+          \draw (0, -0.25) -- (0, 0.25);
+          \draw (-2, 0) -- (-1, 0);
+          \draw (2, 0) -- (1, 0);
+
+          \node at (-1.25, -0.5) {$5$};
+          \node at (1.25, -0.5) {$5$};
+          \node at (-1.25, 0.5) {$5$};
+          \node at (1.25, 0.5) {$5$};
+          \node at (-0.5, 0) {$5$};
+          \node at (0.5, 0) {$5$};
+          \node at (0, -1.5) {$5$};
+          \node at (0, 1.5) {$5$};
+          \node at (0, -0.75) {$5$};
+          \node at (0, 0.75) {$5$};
 
         \end{scope}
         \\
@@ -156,6 +168,53 @@
   \end{cdescription}
 \end{construction}
 
+\begin{theorem}
+  Let $p$ and $v$ be a pair of admissible sequences for some orientable closed $2$-manifold $S$ with {\sc Euler}-characteristic $\chi$, i.e. \autoref{eq:vp:3} and \autoref{eq:handshake} holds for some $e \in \nats$. Then $(p, v)$ is $[(5k + 1) \times 5, (5k+7)]$-$[3]$-realizable for all $k \in \nats$.
+  \begin{proof}
+    To apply \autoref{thm:main:const}, we need an expansion $3$-patch with outer tuple $o$ and a corresponding $o$-$k$-gonal $3$-patch, both of which only contain pentagons and $5k+7$-gons. These are depicted in \autoref{fig:expansion:patch:5:7}.
+
+\begin{tikzfigure}{\label{fig:expansion:patch:5:7}}{}
+      \matrix (m) [column sep=1cm] {
+        \begin{scope}[scale=3, yshift=25]
+          \input{tikz/5_7/ngon}
+        \end{scope}
+        &
+        \begin{scope}[scale=3, yshift=25]
+          \input{tikz/5_7/hexagon}
+        \end{scope}
+        &
+        \begin{scope}[scale=3, yshift=25]
+          \input{tikz/5_7/mouse}
+        \end{scope}
+        \\
+      };
+    \end{tikzfigure}
+  \end{proof}
+\end{theorem}
+
+\begin{theorem}
+  Let $p$ and $v$ be a pair of admissible sequences for some orientable closed $2$-manifold $S$ with {\sc Euler}-characteristic $\chi$, i.e. \autoref{eq:vp:3} and \autoref{eq:handshake} holds for some $e \in \nats$. Then $(p, v)$ is $[(5k + 2) \times 5, (5k+8)]$-$[3]$-realizable for all $k \in \nats$.
+  \begin{proof}
+    To apply \autoref{thm:main:const}, we need an expansion $3$-patch with outer tuple $o$ and a corresponding $o$-$k$-gonal $3$-patch, both of which only contain pentagons and $5k+8$-gons. These are depicted in \autoref{fig:expansion:patch:5:8}.
+
+\begin{tikzfigure}{\label{fig:expansion:patch:5:8}}{}
+      \matrix (m) [column sep=1cm] {
+        \begin{scope}[scale=3, yshift=25]
+          \input{tikz/5_8/ngon}
+        \end{scope}
+        &
+        \begin{scope}[scale=3, yshift=25]
+          \input{tikz/5_8/hexagon}
+        \end{scope}
+        &
+        \begin{scope}[scale=3, yshift=25]
+          \input{tikz/5_8/mouse}
+        \end{scope}
+        \\
+      };
+    \end{tikzfigure}
+  \end{proof}
+\end{theorem}
 
 
 % \begin{lemma}\label{thm:expansion:patch:4:7}

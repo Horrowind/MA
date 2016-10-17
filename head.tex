@@ -17,7 +17,7 @@
 \usepackage{graphicx}
 \usepackage{makeidx}
 \usepackage{aliascnt}
-\usepackage[super,square]{natbib}
+%\usepackage[super,square]{natbib}
 \usepackage[labelfont=bf]{caption}
 \usepackage[inner=2cm,outer=2cm,top=1.5cm,bottom=1.5cm,includeheadfoot]{geometry}
 \counterwithin{figure}{section}
@@ -72,10 +72,10 @@
 
 \newenvironment{cinput}
     {\leavevmode \par \begin{minipage}[t]{.1\textwidth} {\it Input: } \end{minipage}\begin{minipage}[t]{.9\textwidth} \begin{itemize} }
-    {\end{itemize} \end{minipage}}
+    {\end{itemize} \vspace{0.2em} \end{minipage}}
 \newenvironment{coutput}
     {\leavevmode \par \begin{minipage}[t]{.1\textwidth} {\it Output: } \end{minipage}\begin{minipage}[t]{.9\textwidth} \begin{itemize} }
-    {\setlength{\global\tempitemindent}{\leftmargin}\end{itemize} \end{minipage}}
+    {\setlength{\global\tempitemindent}{\leftmargin}\vspace{0.2em}\end{itemize} \end{minipage}}
 \newenvironment{cdescription}
     {\leavevmode \par \begin{minipage}[t]{\dimexpr .1\textwidth + \tempitemindent}{\it Description: }\end{minipage}\ignorespaces}
     {}

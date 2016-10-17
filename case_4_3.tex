@@ -1,5 +1,7 @@
 \section{$3$-valent {\sc Eberhard}-like theorems with quadrangles}
 
+In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with quadrangles, i.e. for $q = [q_4 \times 4, q_l \times l]$, $w = [w_3 \times 3]$, $l > 6$. As it turns out in \label{sec:negative:results}, this is only possible for all admissible pairs of sequences on all closed orientable $2$-manifolds, if $4 \nmid l$. For all the proofs, we want to use \autoref{thm:main:const}, therefore we need to have a construction scheme for patches with arbitrary large $l$-gons. These we get by the next two constructions:
+
 \begin{construction}\label{const:edge:replacement:4:1}
   \begin{cinput}
   \item A $3$-patch with $p$-vector $p$ and a specified edge with exactly one vertex incident to some $k_1$-gon and the other vertex  incident to some $k_2$-gon.
@@ -9,7 +11,7 @@
   \item If every two faces of the $3$-patch meet proper, then this is carried over to the new patch.
   \end{coutput}
   \begin{cdescription}
-    Using the replacement of the single edge as seen in \autoref{fig:const:edge:replacement:4:1} results in a new map with $p$-vector $p - [k_1, k_2] + [4] + [k_1 + 1, k_2 + 1]$. The thick line on the left is the specified line and the thick line on the right is a new line which we can use to repeat the construction. Every time we use this construction we add a new quadrangle while increasing the number of vertices of left and the right polygon; doing this $k$ times has the desired result, since we only inserted $3$-valent vertices.
+    Using the replacement of the single edge as seen in \autoref{fig:const:edge:replacement:4:1} results in a new map with $p$-vector $p - [k_1, k_2] + [4] + [k_1 + 1, k_2 + 1]$. The thick line on the left is the specified line and the thick line on the right is a new line which we can use to repeat the construction. Every time we use this construction we add a new quadrangle while increasing the number of vertices of the left and right polygon; doing this $k$ times has the desired result, since we only inserted $3$-valent vertices.
     \begin{tikzfigure}{\label{fig:const:edge:replacement:4:1}}{}
       \matrix (m) [column sep=1cm] {
         \begin{scope}
@@ -48,7 +50,7 @@
   \item A new $3$-patch with $p$-vector $p - [k_1, k_2] + [(4k) \times 4] + [4k + k_1 , 4k + k_2]$ for all $k \in \nats$.
   \end{coutput}
   \begin{cdescription}
-    Using the replacement of the single edge as seen in \autoref{fig:const:edge:replacement:4:2} results in a new map with $p$-vector $p - [k_1, k_2] + [4 \times 4] + [k_1 + 4, k_2 + 4]$. The thick line on the left is the specified line and the thick line on the right is a new line which we can use to repeat the construction. Every time we use this construction we add four new quadrangles while increasing the number of vertices of left and the right polygon; doing this $k$ times has the desired result, since we only insert $3$-valent vertices.
+    Using the replacement of the single edge as seen in \autoref{fig:const:edge:replacement:4:2} results in a new map with $p$-vector $p - [k_1, k_2] + [4 \times 4] + [k_1 + 4, k_2 + 4]$. The thick line on the left is the specified line and the thick line on the right is a new line which we can use to repeat the construction. Every time we use this construction we add four new quadrangles while increasing the number of vertices of the left and right polygon; doing this $k$ times has the desired result, since we only insert $3$-valent vertices.
     \begin{tikzfigure}{\label{fig:const:edge:replacement:4:2}}{}
       \matrix (m) [column sep=1cm] {
         \begin{scope}
@@ -81,6 +83,23 @@
     \end{tikzfigure}
   \end{cdescription}
 \end{construction}
+
+\begin{lemma}\label{thm:expansion:patch:poly:4:k}
+  There is an expansion $3$-patch with the polyhedral property consisting of $4$-gons and $k$-gons, $k \geq 7$.
+  \begin{proof}
+    The $3$-patch in \autoref{fig:expansion:patch:poly:4} has the polyhedral property. This does not change, when we use \autoref{const:edge:replacement:4:1} on the edges drawn thick in this figure, since the adjacency between faces and outer vertices does not change after the first iteration of the construction step.
+    \begin{tikzfigure}{\label{fig:expansion:patch:poly:4}}{A expansion patch with the polyhedral property consisting of $4$-gons and $7$-gons}
+      \draw[very thick] (0.5, 2.5) -- (0, 2);
+      \draw[very thick] (1, 2) -- (1.5, 2.5);
+      \draw (0, 2) -- (-0.5, 1) -- (0, 0) -- (1, 0) -- (1.5, 1) -- (1, 2) -- (0.5, 2.5);
+      \draw (1.5, 2.5) -- (2, 3.5) -- (1.5, 4.5) -- (0.5, 4.5) -- (0, 3.5) -- (0.5, 2.5);
+      \draw (1.5, 2.5) -- (2, 1.5) -- (3, 1.5) -- (3.5, 2.5) -- (3, 3.5) -- (2.5, 4) -- (2, 3.5);
+      \draw (-0.5, 1) -- (-1.5, 1) -- (-2, 2) -- (-1.5, 3) -- (-1, 3.5) -- (-0.5, 3) -- (0, 2);
+      \draw (-0.5, 3) -- (0, 3.5);
+      \draw (-1, 3.5) -- (0.5, 4.5);
+    \end{tikzfigure}
+  \end{proof}
+\end{lemma}
 
 \begin{lemma}\label{thm:expansion:patch:4:7}
   There are an expansion $3$-patch with outer tuple $o = (1, 1, 1, 2, 2, 2)$ and a corresponding $o$-$6$-gonal $3$-patch consisting only of $4$-gons and $4k + 7$-gons for all $k \in \nats$.
@@ -159,7 +178,7 @@
 \begin{lemma}\label{thm:expansion:patch:4:10}
   There are an expansion $3$-patch with outer tuple $o = (1, 1, 2, 1, 2, 2)$ and a corresponding $o$-$6$-gonal $3$-patch consisting only of $4$-gons and $4k + 10$-gons for all $k \in \nats$.
   \begin{proof}
-    Using \autoref{const:edge:replacement:4:2} on the edges drawn thick in both $3$-patches in \autoref{fig:expansion:patch:4:10} results in $3$-patches consisting only $n$-gons with the specified amount of vertices. The left patch is an expansion patch with outer tuple $o$, while the right patch is $o$-$6$-gonal, these properties do not change when using \autoref{const:edge:replacement:4:2} on the thick lines.
+    Using \autoref{const:edge:replacement:4:2} on the edges drawn thick in both $3$-patches in \autoref{fig:expansion:patch:4:10} results in $3$-patches consisting only quadrangles and $n$-gons with the specified amount of vertices. The left patch is an expansion patch with outer tuple $o$, while the right patch is $o$-$6$-gonal, these properties do not change when using \autoref{const:edge:replacement:4:2} on the thick lines.
     \begin{tikzfigure}{\label{fig:expansion:patch:4:10}}{\todo{better picture}}
       \matrix (m) [column sep=1cm] {
         \begin{scope}[scale=3]
@@ -195,7 +214,7 @@
 
 
 \begin{theorem}
-  Let $p$ and $v$ be sequences for which \autoref{eq:vp:3} holds for some orientable closed $2$-manifold $S$ with {\sc Euler}-characteristic $\chi$ and \autoref{eq:handshake} holds for some $e \in \nats$. Then $(p, v)$ is $[(4k + 1) \times 4, 2 \times (4k+7)]$-$[3]$-realizable and $[(4k + 3) \times 4, 2 \times (4k+9)]$-$[3]$-realizable for all $k \in \nats$. When not being in the case $\chi = 2$, $\sum_{k=3,\, 2 \nmid k}^{m} p_k = 0$ and $\sum_{k=4, \,3 \nmid k}^m v_k = 1$, it is also $[(4k + 4) \times 4, 2 \times (4k+10)]$-$[3]$-realizable.
+  Let $p$ and $v$ be a pair of admissible sequences for some orientable closed $2$-manifold $S$ with {\sc Euler}-characteristic $\chi$, i.e. \autoref{eq:vp:3} and \autoref{eq:handshake} holds for some $e \in \nats$. Then $(p, v)$ is $[(4k + 1) \times 4, 2 \times (4k+7)]$-$[3]$-realizable, $[(4k + 3) \times 4, 2 \times (4k+9)]$-$[3]$-realizable and  $[(4k + 4) \times 4, 2 \times (4k+10)]$-$[3]$-realizable for all $k \in \nats$.
   \begin{proof}
     \autoref{thm:expansion:patch:4:7}, \autoref{thm:expansion:patch:4:9}, \autoref{thm:expansion:patch:4:10} and \autoref{thm:expansion:patch:poly:4:k} deliver the necessary patches to apply \autoref{thm:main:const}, which shows the claim.
   \end{proof}

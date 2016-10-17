@@ -231,7 +231,7 @@ TODO
 
 
 Putting all these constructions together, we can formulate a proof scheme for \autoref{problem:eberhard}:
-\begin{proposition}\label{thm:main:const} Let $r = 3$ (or $r = 4$), $p$ and $v$ be a pair of sequences for which we can apply \autoref{thm:eberhard:extended:3} (or \autoref{thm:eberhard:extended:4}). Let $w = [r]$ and $q = [k_s \times s, k_l \times l]$, where $s \in \set{3, 4, 5}$, $l > 6$, $k_s = \frac{l - 6}{\gcd(6 - s, l - 6)}$ and $k_l = \frac{6 - s}{\gcd(6 - s, l - 6)}$ (or $s = 3$, $l > 4$, $k_s = l - 4$ and $k_l = 1$). Assume there exist
+\begin{proposition}\label{thm:main:const} Let $r = 3$ (or $r = 4$), $p$ and $v$ be an admissible pair of sequences for which we can apply \autoref{thm:eberhard:extended:3} (or \autoref{thm:eberhard:extended:4}). Let $w = [r]$ and $q = [q_s \times s, q_l \times l]$, where $s \in \set{3, 4, 5}$, $l > 6$, $q_s = \frac{l - 6}{\gcd(6 - s, l - 6)}$ and $q_l = \frac{6 - s}{\gcd(6 - s, l - 6)}$ (or $s = 3$, $l > 4$, $q_s = l - 4$ and $q_l = 1$). Assume there exist
   \begin{itemize}
   \item an expansion $r$-patch $\mathcal{P}_N$ with outer arc $o$ consisting of $s$-gons and $l$-gons,
   \item an $o$-$6$-gonal (or $o$-$4$-gonal) $r$-patch $\mathcal{P}_F$ consisting of $s$-gons and $l$-gons,
@@ -239,33 +239,7 @@ Putting all these constructions together, we can formulate a proof scheme for \a
   \end{itemize}
   Then $(p, v)$ is $q$-$w$-realizable.
   \begin{proof}
-    If $r = 3$, we start by using \autoref{thm:eberhard:extended:3} to construct a map $M'$ with $p$-vector $p' = p + c' \cdot [6]$ and $v$-vector $v' = v + d' \cdot [3]$ ($c', d' \in \nats$). We chose $c'$ hexagonal faces of $M'$ and assign to those the patch $\mathcal{P}_F$, every other $k$-gonal face is assigned the patch $\mathcal{P}_N(k)$. Next, the use of \autoref{const:map} returns a new map $M''$. Finally, we use \autoref{thm:const:polymap} with $\mathcal{P}_P$ and get a polyhedral map $M$. We need to show that the $p$-vector of $M$ is of the form $p + c \times [6]$ and likewise that the $v$-vector is of the form $v + d \times [3]$. The second assertion is easy to see: $M'$ has a $v$-vector $v + d' \cdot [3]$, therefore is the $v$-vector of $M''$ of the form $v + (d' + d'') \cdot [3]$ (by \autoref{const:map}) and finally, \autoref{thm:const:polymap} yields a $v$-vector of the form $v + (d' + d'' + d) \cdot [3]$, as desired. Let $p^{(N)} = [a^{(N)}_s \times s, a^{(N)}_l \times l]$ be the $p$-vector of $\mathcal{P}_N$, $p^{(F)} = [a^{(F)}_s \times s, a^{(F)}_l \times l]$ be the $p$-vector of $\mathcal{P}_F$ and $p^{(P)} = [a^{(P)}_s \times s, a^{(P)}_l \times l]$ be the $p$-vector of $\mathcal{P}_P$. By \autoref{const:map} and \autoref{const:expansion:patch}, $M''$ has the $p$-vector
-    \begin{align*}
-      &c' \cdot p^{(F)} + \sum_{k \geq 3} \left(p_k \cdot p^{(N)} + [k]\right)\\
-      ={}& p + c' \cdot p^{(F)} + 2e \cdot p^{(N)}\\
-      ={}& p + c' \cdot \left[a^{(F)}_s \times s, a^{(F)}_l \times l\right] + 2e \cdot \left[a^{(N)}_s \times s, a^{(N)}_l \times l\right]\\
-      ={}& p + \left[\left(c' a^{(F)}_s + 2e \, a^{(N)}_s \right) \times s, \left(c' a^{(F)}_l + 2e\, a^{(N)}_l\right) \times l \right],
-    \end{align*}
-    where we abbreviated $\sum_{k\geq 3}p_k$ by $2e$ as suggested by \autoref{eq:handshake}. Using this, we can express the $p$-vector of $M$:
-    \begin{align*}
-      &\sum_{k \geq 3} \left(p_k \cdot p^{(P)} + [k] \right) 
-        + \left(c' a^{(F)}_s + 2e \, a^{(N)}_s \right) \cdot \left(s \cdot p^{(P)} + [s] \right)
-        + \left(c' a^{(F)}_l + 2e \, a^{(N)}_l \right) \cdot \left(l \cdot p^{(P)} + [l] \right)\\
-      ={}&p + 2e \cdot \left[a^{(P)}_s \times s, a^{(P)}_l \times l\right] + \left(c' a^{(F)}_s + 2e \, a^{(N)}_s \right) \cdot \left(s \cdot p^{(P)} + [s] \right)\\     
-      &\phantom{p}+ \left(c' a^{(F)}_l + 2e \, a^{(N)}_l \right) \cdot \left(l \cdot p^{(P)} + [l] \right)\\
-      ={}&p + [a_s \times s, a_l \times l],
-    \end{align*}
-    for suitably chosen $a_s, a_l \in \nats$. Since $M$ is a map, \autoref{eq:vp:3} holds for the $p$-vector $p + [a_s \times s, a_l \times l]$ and the $v$-vector $v + (d' + d'' + d) \cdot [3])$, so we have:
-    \begin{align*}
-      &2 \sum_{k=3}^m \left(3 - k \right) v_k + \sum_{k=3}^n \left(6 - k \right) p_k + (6 - a_s) s + (6 - a_l) l = 6 \chi \\
-      \implies & (6 - a_s) s + (6 - a_l) l = 0,
-    \end{align*}
-    since $p$ and $v$ also fulfill \autoref{eq:vp:3}, and by solving this linear Diophantine equation we can write $a_s = c \cdot k_s$ and $a_l = c \cdot k_l$ for some $c \in \nats$, what we wanted to show. The case $r = 4$ is analogue until the last series of equations when we apply \autoref{thm:eberhard:extended:4} instead of \autoref{thm:eberhard:extended:3}, so assume we have a map $M$ with $p$-vector $p + [a_s \times s, a_l \times l]$ and the $v$-vector $v + (d' + d'' + d) \cdot [3])$. These have to suffice  \autoref{eq:vp:4}, therefore
-    \begin{align*}
-      &\sum_{4=3}^m \left(4 - k \right) v_k +  \sum_{k=3}^n \left(4 - k \right) p_k + (4 - a_s) s + (4 - a_l) l = 4 \chi\\
-      \implies & (4 - a_s) s + (4 - a_l) l = 0,
-    \end{align*}
-    like before. Solving this linear Diophantine equation yields the required $c \in \nats$ with $a_s = c \cdot k_s$ and $a_l = c \cdot k_l$.
+    If $r = 3$, we start by using \autoref{thm:eberhard:extended:3} to construct a map $M'$ with $p$-vector $p' = p + c'_6 \cdot [6]$ and $v$-vector $v' = v + d' \cdot [3]$ ($c'_6, d' \in \nats$). We chose $c'_6$ hexagonal faces of $M'$ and assign to those the patch $\mathcal{P}_F$, every other $k$-gonal face is assigned the patch $\mathcal{P}_N(k)$. Next, the use of \autoref{const:map} returns a new map $M''$. Finally, we use \autoref{thm:const:polymap} with $\mathcal{P}_P$ and get a polyhedral map $M$. If we can show that this map has a $p$-vector of the form $p +  [c_s \times s, c_l \times l]$ and a $v$-vector of the form $v + d \cdot [r]$, we can conclude the claim by \autoref{lem:2:valued:eberhard}. So we look at the $p$ and $v$-vector of the maps $M''$ and finally $M$: $M''$ has a $p$-vector of $p + [c''_s \times s, c''_l \times s]$, since we removed the additional $c'_6$ in $M'$ and replaced them with many more $s$-gons and $l$-gons. When doing this we only added $r$-valent vertices, so the $v$-vector of $M''$ is clearly $v'' \defeq v + d'' \cdot [3]$. Finally the $p$-vector and the $v$-vector of $M$ is of the desired form, since we only added more $s$-gons, $l$-gons and $r$-valent vertices in the last construction step. For $r = 4$, we just switch out quadrangles for hexagons, $4$-valent vertices for $3$-valent vertices and use \autoref{thm:eberhard:extended:4} in the beginning. Every step in the proof goes completely analogous.
   \end{proof}
 \end{proposition}
 
