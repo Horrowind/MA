@@ -1,36 +1,370 @@
 \section{Negative results}\label{sec:negative:results}
 
-\begin{definition} A planar graph is called multi-$r$-valent, $r \in \nats$, if the valence of every vertex is a multiple of $r$. Dually the graph is called multi-$k$-gonal, $k \in \nats$, if for every $k'$-gon $k$ divides $k'$. It is called almost multi-$k$-gonal / almost multi-$r$-valent, if there is exactly one $k'$-gonal face / exactly one $r'$-valent vertex with $k' \nmid k$.
+Attentive readers might have noticed that we left out in the previous sections exactly those theorems for $[q_s \times s, q_l \times l]$-$[r]$-realizability, where $s | l$. This is not by far a coincidence. In fact, the problems with these realizations arise from graph theory, and even weaker constructs can not exists. These constructs are graphs with the following properties: 
+
+\begin{definition} \todo{introduce a mod b-valent vertices / a mod b-gonal faces} A planar graph is called $(a \mod r)$-valent, $r \in \nats_{>0}$, $a \in \set{0, \dots, r - 1}$, if the valence of every vertex is a congruent $a$ modulo $r$. Dually, the graph is called $(a \mod k)$-gonal, $k \in \nats_{>0}$, $a \in \set{0, \dots, k - 1}$, if for every $k'$-gon $k' \equiv b ~(\mod k)$ holds. It is called near $(a \mod k)$-gonal / near $(a \mod r)$-valent, if there is exactly one $k'$-gonal face / exactly one $r'$-valent vertex with $k' \not\equiv a ~(\mod k)$ / $r' \not\equiv a ~(\mod r)$. In the case of $a = 0$, these properties will be called (near) multi-$k$-gonal / (near) multi-$r$-valent.
 \end{definition}
 
-\begin{theorem} Let $r, k \in \set{2, 3, 4, 5, 6}$. No $2$-connected graph is both multi-$r$-valent and almost multi-$k$-gonal.
-\end{theorem}
+The following theorem is established in \cite{malkevitch1970properties}, together with many similar results for up to two exceptional vertices/faces. We can immediately draw a conclusion for which admissible pairs of sequences we can not hope for a $q$-$w$-realization by applying this theorem on $[q_s \times s, q_l \times l]$-$[r]$-realizations, $s | l$, which we will do as a corollary.
 
-We can dualize this theorem and get:
-\begin{corollary} No $2$-connected graph is both almost multi-$r$-valent and multi-$k$-gonal, $r, k \in \set{2, 3, 4, 5, 6}$.
+\begin{theorem}\label{thm:near:regular:nonrealizable} Let $r, k \in \set{2, 3, 4, 5}$. No connected planar graph is both multi-$r$-valent and near multi-$k$-gonal.
+\end{theorem}
+\begin{corollary} No connected planar graph is both near multi-$r$-valent and multi-$k$-gonal, $r, k \in \set{3, 4, 5}$.
 \end{corollary}
 
-\begin{corollary}
-  Let $r \in \set{3, 4, 5}$, $s \in {3, 4, 5}$ if $r = 3$ or $s = 3$. Additionally let $c \in \nats$. Then the sequences $p$, $v$,
-  \begin{alignat*}{2}
-    p &= [l], & \qquad&s \nmid l \\
-    v &= (v_3, \dots, v_n), & &\sum_{k = 3, r \nmid k}^n v_k = 0
-  \end{alignat*}
-  or dual
-  \begin{alignat*}{2}
-    p &= (p_3, \dots, p_m), & \qquad&\sum_{k = 3, s \nmid k}^m p_k = 0\\
-    v &= [l], & &r \nmid l
-  \end{alignat*}
+\begin{corollary}\label{thm:division:nonrealizable}
+  Let $(s, r) \in \set{(3, 3), (3, 4), (3, 5), (4, 3), (5, 3)}$ and let $c \in \nats_{> 0}$. Then the sequences $p = (p_3, \dots, p_m)$, $v = (v_3, \dots, v_n)$ with either
+  \begin{align*}
+    \sum_{k = 3, s \nmid k}^m p_k = 1, \qquad&\sum_{k = 3, r \nmid k}^n v_k = 0 \text{~or} \\
+    \sum_{k = 3, s \nmid k}^m p_k = 0, \qquad&\sum_{k = 3, r \nmid k}^n v_k = 1
+  \end{align*}
   are not $[q_s \times s, q_{c \cdot s} \times (c \cdot s)]$-$[r]$-realizable as polyhedron (for all $q_s, q_{c \cdot s} \in \nats$).
 \begin{proof}
-  The $1$-skeleton of a $[q_s \times s, q_{c \cdot s} \times (c \cdot s)]$-$[r]$-realization of such a pair of $p$-vectors and $v$-vectors would directly contradict the previous two statements.
+  The $1$-skeleton of a $[q_s \times s, q_{c \cdot s} \times (c \cdot s)]$-$[r]$-realization of such a pair of $p$-vectors and $v$-vectors would directly contradict the previous one of two statements.
 \end{proof}
 \end{corollary}
 
-\begin{proposition}\todo{Use new C(p, v, q, w, S) notation}
-  Let $p$ and $v$ be sequences, $S$ a closed $2$-manifold $S$ and $q = [q_3 \times 3, q_l \times l]$, $w = [3]$ for $l \in \nats, l \geq 13$, $q_3 = \frac{l - 6}{\gcd(3, l-6)}$, $q_l = \frac{3}{\gcd(3, l-6)}$. Then the set $(C(p, v, q, w, S)$ is cofinite, i.e. $\nats^2 \setminus C(p, v, q, w, S)$ is finite. Additionally, if $l \geq 11$ and $\sum_{k \geq 4} 2k \cdot v_k + \sum_{k \geq 4} \floor{\tfrac{k}{2}} p_k < 3p_3$, then $C(p, v, q, w, S)$ is empty, except when $S$ is the sphere $\sphere^2$, $p = [4 \times 3]$, $v = [4 \times 3]$, in which case $C(p, v, q, w, S) = \set{(0, 0)}$.
+In \cite{horvnak1977nearly} we can also find similar results to those in \cite{malkevitch1970properties} for cell-decompositions of arbitrary closed orientable $2$-manifolds, suggesting that only the surfaces of small genus provide exceptions to the realizablity of (near) multi-$k$-gonal / multi-$k$-valent graph embeddings. Sadly (or luckily), there is no immediate new instance of an unrealizable admissible pair of sequences from these results.
+
+In the case $r = 3$, $s = 3$ in \autoref{thm:division:nonrealizable}, the provided pair $(p, v)$ is not admissible, which would not explain why we left out a theorem about $[3, 9]$-$3$-realizable maps in \autoref{sec:3:3}. Strangely, there is another type of divisibility condition, which excludes even more pairs:
+
+\begin{proposition}\label{thm:mod:graphs:nonrealizable}
+  Let $(s, r) \in \set{(3, 3), (3, 4), (3, 5), (4, 3), (5, 3)}$. There is no connected planar graph which is both $(r \mod 2r)$-valent and near $(s \mod 2s)$-gonal.
+\begin{proof}
+  We want to use proof by contradiction. Assume that there is such a planar graph $G$ with an exceptional $sc$-gon, $c \equiv 0 \mod 2$, and let the number of edges of $G$ be minimal among all such graphs. First we want to show that we can reduce our considerations to the case where $G$ is $r$-valent. For this we use the following construction to reduce the valence of a single vertex $v$ by $2r$ by splitting the vertex into $3$ distinct vertices (\autoref{fig:mod:graphs:nonrealizable:1}). %
+  \begin{tikzfigure}{\label{fig:mod:graphs:nonrealizable:1}}{Splitting the vertex $v$ into $3$ vertices, here $r = 3$}
+    \matrix (m) [column sep=1cm] {
+      \begin{scope}
+        \draw (0 : 0) -- (10 : 2);
+        \draw (0 : 0) -- (50 : 2);
+        \draw (0 : 0) -- (130 : 2);
+        \draw (0 : 0) -- (170 : 2);
+        \draw (0 : 0) -- (210 : 2);
+        \draw (0 : 0) -- (250 : 2);
+        \draw (0 : 0) -- (290 : 2);
+        \draw (0 : 0) -- (330 : 2);
+        \draw[loosely dotted] (0 : 0) -- (70 : 0.5);
+        \draw[loosely dotted] (0 : 0) -- (90 : 0.5);
+        \draw[loosely dotted] (0 : 0) -- (110 : 0.5);
+        \draw[loosely dotted] (60 : 1) -- (120 : 1);
+        \node at (30 : 1.5) {$f_1$};
+        \node at (150 : 1.5) {$f_2$};
+        \node at (270 : 1.5) {$f_0$};
+        \node[anchor=north, inner sep=9pt] at (0 : 0) {$v$};
+      \end{scope}
+      &
+      \begin{scope}
+        \draw (330 : 1) -- ++(10 : 2);
+        \draw ( 90 : 1) -- ++(50 : 2);
+        \draw ( 90 : 1) -- ++(130 : 2);
+        \draw (210 : 1) -- ++(170 : 2);
+        \draw (210 : 1) -- ++(210 : 2);
+        \draw (210 : 1) -- ++(250 : 2);
+        \draw (330 : 1) -- ++(290 : 2);
+        \draw (330 : 1) -- ++(330 : 2);
+        \draw[loosely dotted] (90 : 1) -- ++(70 : 0.5);
+        \draw[loosely dotted] (90 : 1) -- ++(90 : 0.5);
+        \draw[loosely dotted] (90 : 1) -- ++(110 : 0.5);
+        \node at (30 : 1.5) {$f_1$};
+        \node at (150 : 1.5) {$f_2$};
+        \node at (270 : 1.5) {$f_0$};
+        \node[anchor=north] at (90 : 1) {$v$};
+        \draw[loosely dotted, shift={(90:1)}] (60 : 1) -- (120 : 1);
+
+      \end{scope}
+      \\
+    };
+  \end{tikzfigure}%
+  There are two special conditions which can occur here: First, one of faces $f_0, f_1, f_2$ depicted in \autoref{fig:mod:graphs:nonrealizable:1} is the exceptional face and second, there are at least to faces of $\set{f_0, f_1, f_2}$, which are actually the same set and the construction disconnects the graph. Therefore there are four cases which we need to consider arising from those two conditions. We want to call the number of vertices of the face $f_i$ with $k_i$.
+  \begin{enumerate}
+  \item {\it None of the $f_i$ is the exceptional face and all of the $f_i$ are distinct faces.} In this case $f_0 \cup f_1 \cup f_2$ forms a new face with $\sum_{i=0}^c k_i$ vertices, for which $k_0 + k_1 + k_2 \equiv 3s \equiv s ~(\mod 2s)$ holds, therefore the new face is a new ordinary face and we have a new graph with a single exceptional face.
+  \item {\it The face $f_e \in \set{f_0, f_1, f_2}$ is the exceptional face and all of the $f_i$ are distinct faces.} In this case again all of the $f_i$ form a new face with $k_0 + k_1 + k_2$ vertices, and since $k_0 + k_1 + k_2 \equiv 2s + sc \equiv sc ~(\mod 2s)$ holds, the new face is the new single exceptional face.
+  \item {\it None of the $f_i$ is the exceptional face and some of the $f_i$ coincide.} In this case there are several connected components. We want to show that we can pick one which has exactly one exceptional face, which would contradict that we started with a minimal example. Let $h \in \set{1, \dots, 2} = |\set{f_0, f_1, f_2}|$, the number of different faces $f_i$. $f_0 \cup f_1 \cup f_2$ is adjacent to $\sum_{f_i \in \set{f_0, f_1, f_2}} k_i$ vertices. After the splitting step we have exactly $4 - h$ connected components; two, if we have two different faces and three if all faces are actually the same. We want to call the face of each component which has common edges with $f_0 \cup f_1 \cup f_2$ as the outer face of this component. If we look at those connected components which do not contain the exceptional face, then each of them contains only multi-$r$-valent vertices and except for their outer face only multi-$s$-gonal faces. But by \autoref{thm:near:regular:nonrealizable} we see that the outer face must be multi-$s$-gonal, too. If any of these components does not have an $(s \mod 2s)$-gonal outer face, we would have held a smaller graph (with fewer edges) if we only considered this connected component. Therefore every connected component not containing the exceptional face has a $(s \mod 2s)$-gonal outer face and we return our view on the connected component with the exceptional face. The outer face of this component has the same amount of vertices as are adjacent to $f_0 \cup f_1 \cup f_2$ minus the number of vertices of each of the outer faces of the other connected components. If we take this modulo $2s$ (we have $3 - h$ other connected components each with a $(s \mod 2s)$-gonal outer face):
+
+    \begin{align*}
+      &\sum_{f_i \in \set{f_0, f_1, f_2}} k_i - s(3 - h) \\
+      \equiv{}& \sum_{f_i \in \set{f_0, f_1, f_2}} s - s(3 - h) \\
+      \equiv{}& s h - s(3 - h) \equiv s &(\mod 2s)
+    \end{align*}
+    Therefore we have held a smaller connected component with exactly one exceptional face and fewer faces.
+  \item {\it The face $f_e \in \set{f_0, f_1, f_2}$ is the exceptional face and some of the $f_i$ coincide.} In this case we can argue quite similar as in the previous case. We now have after the construction in \autoref{fig:mod:graphs:nonrealizable:1} $4 - h$ connected components with $(s \mod 2s)$-gonal outer face (where again $h = |\set{f_0, f_1, f_2}|$) and the number of vertices of these outer faces has to add up to the number of vertices adjacent to $f_0 \cup f_1 \cup f_2$. Therefore we have
+    \begin{align*}
+      0{}\equiv{}&\sum_{f_i \in \set{f_0, f_1, f_2}} k_i - s(4 - h) \\
+      \equiv{}& \sum_{f_i \in \set{f_0, f_1, f_2} \setminus \set{f_e}} s + sc - s(4 - h) \\
+      \equiv{}& s(h - 1) + sc - s(4 - h) \\
+      \equiv{}& sc - s  &(\mod 2s)
+    \end{align*}
+
+    which contradicts our assumption $c \equiv 0 \mod 2$.
+  \end{enumerate}
+
+  Thus the splitting construction is sound and we can use it repeatedly to replace all vertices with valence greater than $r$ by new vertices with valence $r$. Therefore from now on assume $G$ to be $r$-valent (remember we removed repeatedly $2r$ from the valence of some vertex which was $(r \mod 2r)$-valent). Next, we want to use \autoref{fig:mod:graphs:nonrealizable:2} to cut of the exceptional face a $2s$-gon, if we did not already have a $2s$-gonal exceptional face. We only have two cases here, either all of $f_0$, $f_1$, $f_2$ are distinct or not, since $f_0$, $f_1$, $f_2$ can not be the exceptional face, but the same arguments as in the previous case-by-case-analysis apply here (cases (i) and (iii)). We only need to add that the remaining face $f_r$ is in fact an ordinary $(s \mod 2s)$-gonal face, since we got it by removing $3s$ edges from the exceptional face.
+
+  Finally we want to cut of two $s$-gons from ordinary faces
+
+  \begin{tikzfigure}{\label{fig:mod:graphs:nonrealizable:2}}{Cutting of a $2s$-gons and a $s$-gon from the exceptional face, here $s = 3$, $r = 4$}
+    \matrix (m) [ column sep=1cm] {
+      \begin{scope}
+        \draw (345 : 2) -- ( 15 : 2);
+        \draw ( 15 : 2) -- ( 45 : 2);
+        \draw ( 45 : 2) -- ( 75 : 2);
+        \draw ( 75 : 2) -- (105 : 2);
+        \draw (105 : 2) -- (135 : 2);
+        \draw (135 : 2) -- (165 : 2);
+        \draw (165 : 2) -- (195 : 2);
+        \draw (195 : 2) -- (225 : 2);
+        \draw[loosely dotted] (225 : 2) -- (255 : 2);
+        \draw[loosely dotted] (255 : 2) -- (285 : 2);
+        \draw (285 : 2) -- (315 : 2);
+        \draw (315 : 2) -- (345 : 2);
+
+        \draw ( 15 : 2) -- ( 17 : 2.4);
+        \draw ( 45 : 2) -- ( 47 : 2.4);
+        \draw ( 75 : 2) -- ( 77 : 2.4);
+        \draw (105 : 2) -- (107 : 2.4);
+        \draw (135 : 2) -- (137 : 2.4);
+        \draw (165 : 2) -- (167 : 2.4);
+        \draw (195 : 2) -- (197 : 2.4);
+        \draw (225 : 2) -- (227 : 2.4);
+        \draw (285 : 2) -- (287 : 2.4);
+        \draw (315 : 2) -- (317 : 2.4);
+        \draw (345 : 2) -- (347 : 2.4);
+        \draw ( 15 : 2) -- ( 13 : 2.4);
+        \draw ( 45 : 2) -- ( 43 : 2.4);
+        \draw ( 75 : 2) -- ( 73 : 2.4);
+        \draw (105 : 2) -- (103 : 2.4);
+        \draw (135 : 2) -- (133 : 2.4);
+        \draw (165 : 2) -- (163 : 2.4);
+        \draw (195 : 2) -- (193 : 2.4);
+        \draw (225 : 2) -- (223 : 2.4);
+        \draw (285 : 2) -- (283 : 2.4);
+        \draw (315 : 2) -- (313 : 2.4);
+        \draw (345 : 2) -- (343 : 2.4);
+
+        \node at ( 90 : 2.5) {$f_0$};
+        \node at (210 : 2.5) {$f_1$};
+        \node at (300 : 2.5) {$f_2$};
+      \end{scope}
+      &
+      \begin{scope}
+        \draw (345 : 2) -- ( 15 : 2);
+        \draw ( 15 : 2) -- (315 : 2);
+        \draw ( 45 : 2) -- ( 75 : 2);
+        \draw ( 75 : 2) -- (105 : 2);
+        \draw (105 : 2) -- (135 : 2);
+        \draw (135 : 2) -- (165 : 2);
+        \draw (165 : 2) -- (195 : 2);
+        \draw (195 : 2) -- ( 45 : 2);
+        \draw[loosely dotted] (225 : 2) -- (255 : 2.3);
+        \draw[loosely dotted] (255 : 2.3) -- (285 : 2);
+        \draw (285 : 2) -- (225 : 2);
+        \draw (315 : 2) -- (345 : 2);
+
+        \draw ( 15 : 2) -- ( 17 : 2.4);
+        \draw ( 45 : 2) -- ( 47 : 2.4);
+        \draw ( 75 : 2) -- ( 77 : 2.4);
+        \draw (105 : 2) -- (107 : 2.4);
+        \draw (135 : 2) -- (137 : 2.4);
+        \draw (165 : 2) -- (167 : 2.4);
+        \draw (195 : 2) -- (197 : 2.4);
+        \draw (225 : 2) -- (227 : 2.4);
+        \draw (285 : 2) -- (287 : 2.4);
+        \draw (315 : 2) -- (317 : 2.4);
+        \draw (345 : 2) -- (347 : 2.4);
+        \draw ( 15 : 2) -- ( 13 : 2.4);
+        \draw ( 45 : 2) -- ( 43 : 2.4);
+        \draw ( 75 : 2) -- ( 73 : 2.4);
+        \draw (105 : 2) -- (103 : 2.4);
+        \draw (135 : 2) -- (133 : 2.4);
+        \draw (165 : 2) -- (163 : 2.4);
+        \draw (195 : 2) -- (193 : 2.4);
+        \draw (225 : 2) -- (223 : 2.4);
+        \draw (285 : 2) -- (283 : 2.4);
+        \draw (315 : 2) -- (313 : 2.4);
+        \draw (345 : 2) -- (343 : 2.4);
+
+        \node at ( 30 : 2.5) {$f_0$};
+        \node at (210 : 2.5) {$f_1$};
+        \node at (300 : 2.5) {$f_2$};
+        \node at (255 : 2) {$f_r$};
+        
+      \end{scope}
+      \\
+    };
+  \end{tikzfigure}%
+
+  Next we want to use another construction to deal with larger polygons. We can cut out two $s$-gons as in \autoref{fig:mod:graphs:nonrealizable:3} from a larger $k$-gon.%
+  \begin{tikzfigure}{\label{fig:mod:graphs:nonrealizable:3}}{Cutting of two $s$-gons from a larger $k$-gon, here $s = 4$, $r = 3$}
+    \matrix (m) [ column sep=1cm] {
+      \begin{scope}
+        \draw (345 : 2) -- ( 15 : 2);
+        \draw ( 15 : 2) -- ( 45 : 2);
+        \draw ( 45 : 2) -- ( 75 : 2);
+        \draw ( 75 : 2) -- (105 : 2);
+        \draw (105 : 2) -- (135 : 2);
+        \draw (135 : 2) -- (165 : 2);
+        \draw (165 : 2) -- (195 : 2);
+        \draw (195 : 2) -- (225 : 2);
+        \draw[loosely dotted] (225 : 2) -- (255 : 2);
+        \draw[loosely dotted] (285 : 2) -- (315 : 2);
+        \draw (315 : 2) -- (345 : 2);
+
+        \draw ( 15 : 2) -- ( 15 : 2.4);
+        \draw ( 45 : 2) -- ( 45 : 2.4);
+        \draw ( 75 : 2) -- ( 75 : 2.4);
+        \draw (105 : 2) -- (105 : 2.4);
+        \draw (135 : 2) -- (135 : 2.4);
+        \draw (165 : 2) -- (165 : 2.4);
+        \draw (195 : 2) -- (195 : 2.4);
+        \draw (225 : 2) -- (225 : 2.4);
+        \draw (315 : 2) -- (315 : 2.4);
+        \draw (345 : 2) -- (345 : 2.4);
+
+        \node at ( 90 : 2.5) {$f_0$};
+        \node at (210 : 2.5) {$f_1$};
+        \node at (330 : 2.5) {$f_2$};
+      \end{scope}
+      &
+      \begin{scope}
+        \draw (345 : 2) -- ( 15 : 2);
+        \draw ( 15 : 2) -- ( 45 : 2);
+        \draw ( 45 : 2) -- ( 75 : 2);
+        \draw ( 75 : 2) -- (345 : 2);
+        \draw (105 : 2) -- (135 : 2);
+        \draw (135 : 2) -- (165 : 2);
+        \draw (165 : 2) -- (195 : 2);
+        \draw (195 : 2) -- (105 : 2);
+        \draw[loosely dotted] (225 : 2) -- (255 : 2);
+        \draw[loosely dotted] (285 : 2) -- (315 : 2);
+        \draw (315 : 2) -- (225 : 2);
+
+        \draw ( 15 : 2) -- ( 15 : 2.4);
+        \draw ( 45 : 2) -- ( 45 : 2.4);
+        \draw ( 75 : 2) -- ( 75 : 2.4);
+        \draw (105 : 2) -- (105 : 2.4);
+        \draw (135 : 2) -- (135 : 2.4);
+        \draw (165 : 2) -- (165 : 2.4);
+        \draw (195 : 2) -- (195 : 2.4);
+        \draw (225 : 2) -- (225 : 2.4);
+        \draw (315 : 2) -- (315 : 2.4);
+        \draw (345 : 2) -- (345 : 2.4);
+
+        \node at ( 90 : 2.5) {$f_0$};
+        \node at (210 : 2.5) {$f_1$};
+        \node at (330 : 2.5) {$f_2$};
+        \node at (270 : 1.75) {$f_r$};
+      \end{scope}
+      \\
+    };
+  \end{tikzfigure}%
+  Doing so we have the same four cases as in the first construction, in fact, we can take the argument of each one and directly apply it to this figure again. In the outcome, we get a new $(r \mod 2r)$-valent and near $(s \mod 2s)$-gonal graph, which either has a fewer edges,a contradiction, or we could cut of two $s$-gons from a larger $s \mod 2s$-gon at specific places. By repeatedly using this construction we can build around the exceptional face rings of $s$-gons until we reach one of the graphs in \autoref{fig:mod:graphs:nonrealizable:4}, which one depends on $(s, r)$. %
+  \begin{tikzfigure}{\label{fig:mod:graphs:nonrealizable:4}}{A graph which is not $(r \mod 2r)$-valent and near $(s \mod 2s)$-gonal for each pair $(s, r)$}
+    \matrix (m) [column sep=1cm, row sep=1cm] {
+      \begin{scope}[scale=0.7]
+        \draw (  0 : 3) -- (60 : 3) -- (120 : 3) -- (180 : 3) -- (240 : 3) -- (300 : 3) -- (0 : 3);
+        \draw (  0 : 3) -- (0 : 0);
+        \draw ( 60 : 3) -- (0 : 0);
+        \draw (120 : 3) -- (0 : 0);
+        \draw (180 : 3) -- (0 : 0);
+        \draw (240 : 3) -- (0 : 0);
+        \draw (300 : 3) -- (0 : 0);
+      \end{scope}
+      &
+      \begin{scope}[scale=0.7]
+        \draw (0 : 3) -- (60 : 3) -- (120 : 3) -- (180 : 3) -- (240 : 3) -- (300 : 3) -- (0 : 3);
+        \draw (0 : 3) -- (30 : 2) -- (60 : 3) -- (90: 2) -- (120 : 3) -- (150 : 2) -- (180 : 3) -- (210 : 2) -- (240 : 3) -- (270 : 2) -- (300 : 3) -- (330 : 2) -- (0 : 3);
+        \draw (30 : 2) -- (90 : 2) -- (150 : 2) -- (210 : 2) -- (270 : 2) -- (330 : 2) -- (30 : 2);
+      \end{scope}
+      &
+      \begin{scope}[scale=0.7]
+        \draw (0 : 3) -- (60 : 3) -- (120 : 3) -- (180 : 3) -- (240 : 3) -- (300 : 3) -- (0 : 3);
+        \draw (0 : 3) -- (30 : 2) -- (60 : 3) -- (90: 2) -- (120 : 3) -- (150 : 2) -- (180 : 3) -- (210 : 2) -- (240 : 3) -- (270 : 2) -- (300 : 3) -- (330 : 2) -- (0 : 3);
+        \draw (0 : 2) -- (30 : 2) -- (60 : 2) -- (90: 2) -- (120 : 2) -- (150 : 2) -- (180 : 2) -- (210 : 2) -- (240 : 2) -- (270 : 2) -- (300 : 2) -- (330 : 2) -- (0 : 2);
+          \draw (  0 : 3) -- (  0 : 2);
+          \draw ( 60 : 3) -- ( 60 : 2);
+          \draw (120 : 3) -- (120 : 2);
+          \draw (180 : 3) -- (180 : 2);
+          \draw (240 : 3) -- (240 : 2);
+          \draw (300 : 3) -- (300 : 2);
+          \draw (0 : 2) -- (30 : 1) -- (60 : 2) -- (90: 1) -- (120 : 2) -- (150 : 1) -- (180 : 2) -- (210 : 1) -- (240 : 2) -- (270 : 1) -- (300 : 2) -- (330 : 1) -- (0 : 2);
+          \draw (30 : 1) -- (30 : 2);
+          \draw (90 : 1) -- (90 : 2);
+          \draw (150 : 1) -- (150 : 2);
+          \draw (210 : 1) -- (210 : 2);
+          \draw (270 : 1) -- (270 : 2);
+          \draw (330 : 1) -- (330 : 2);
+          \draw (30 : 1) -- (90 : 1) -- (150 : 1) -- (210 : 1) -- (270 : 1) -- (330 : 1) -- (30 : 1);
+        \end{scope}
+        \\
+        \begin{scope}[scale=0.7]
+          \draw (  0 : 3) -- ( 45 : 3) -- (90 : 3) -- (135 : 3) -- (180 : 3) -- (225 : 3) -- (270 : 3) -- (315 : 3) -- (0 : 3);
+          \draw (  0 : 2) -- ( 45 : 2) -- (90 : 2) -- (135 : 2) -- (180 : 2) -- (225 : 2) -- (270 : 2) -- (315 : 2) -- (0 : 2);
+          \draw (  0 : 3) -- (  0 : 2);
+          \draw ( 45 : 3) -- ( 45 : 2);
+          \draw ( 90 : 3) -- ( 90 : 2);
+          \draw (135 : 3) -- (135 : 2);
+          \draw (180 : 3) -- (180 : 2);
+          \draw (225 : 3) -- (225 : 2);
+          \draw (270 : 3) -- (270 : 2);
+          \draw (315 : 3) -- (315 : 2);
+        \end{scope}
+        &
+        \begin{scope}[scale=0.7]
+          \draw (0 : 1) -- (36 : 1) -- (72 : 1) -- (108: 1) -- (144 : 1) -- (180 : 1) -- (216 : 1) -- (252 : 1) -- (288 : 1) -- (324 : 1) -- (0 : 1);
+          \draw (18 : 3) -- (54 : 3) -- (90 : 3) -- (126: 3) -- (162 : 3) -- (198 : 3) -- (234 : 3) -- (270 : 3) -- (306 : 3) -- (342 : 3) -- (18 : 3);
+          \draw (0 :1.8) -- (18 :2.2) -- (36 :1.8)  -- (54 :2.2) -- (72 :1.8) -- (90 :2.2) -- (108 :1.8) -- (126:2.2) -- (144 :1.8) -- (162 :2.2) -- (180 :1.8) -- (198 :2.2) -- (216 :1.8) -- (234 :2.2) -- (252 :1.8) -- (270 :2.2) -- (288 :1.8) -- (306 :2.2) -- (324 :1.8) -- (342 : 2.2) -- (0 : 1.8);
+          \draw (  0 : 1) -- (  0 :1.8);
+          \draw ( 36 : 1) -- ( 36 :1.8);
+          \draw ( 72 : 1) -- ( 72 :1.8);
+          \draw (108 : 1) -- (108 :1.8);
+          \draw (144 : 1) -- (144 :1.8);
+          \draw (180 : 1) -- (180 :1.8);
+          \draw (216 : 1) -- (216 :1.8);
+          \draw (252 : 1) -- (252 :1.8);
+          \draw (288 : 1) -- (288 :1.8);
+          \draw (324 : 1) -- (324 :1.8);
+          \draw ( 18 :2.2) -- ( 18 : 3);
+          \draw ( 54 :2.2) -- ( 54 : 3);
+          \draw ( 90 :2.2) -- ( 90 : 3);
+          \draw (126 :2.2) -- (126 : 3);
+          \draw (162 :2.2) -- (162 : 3);
+          \draw (198 :2.2) -- (198 : 3);
+          \draw (234 :2.2) -- (234 : 3);
+          \draw (270 :2.2) -- (270 : 3);
+          \draw (306 :2.2) -- (306 : 3);
+          \draw (342 :2.2) -- (342 : 3);
+        \end{scope}
+        &\\
+      };
+    \end{tikzfigure}%
+    But none of these are $(r \mod 2r)$-valent and near $(s \mod 2s)$-gonal, a contradiction.
+  \end{proof}
+\end{proposition}
+
+By dualization we get:
+\begin{corollary} Let $(s, r) \in \set{(3, 3), (3, 4), (3, 5), (4, 3), (5, 3)}$. There is no connected planar graph which is both near $(r \mod 2r)$-valent and $(s \mod 2s)$-gonal.
+\end{corollary}
+
+Finally we can state another theorem, singling out even more cases than \autoref{thm:division:nonrealizable}.
+
+\begin{corollary}\label{thm:mod:nonrealizable}
+  Let $(s, r) \in \set{(3, 3), (3, 4), (3, 5), (4, 3), (5, 3)}$ and let $c \in \nats_{> 0}$. Then the sequences $p = (p_3, \dots, p_m)$, $v = (v_3, \dots, v_n)$ with either
+  \begin{align*}
+    \sum_{k = 3, ~k \not\equiv s (\mod 2s)}^m p_k = 1, \qquad&\sum_{k = 3, ~k \not\equiv r (\mod 2r)}^n v_k = 0 \text{~or} \\
+    \sum_{k = 3, ~k \not\equiv s (\mod 2s)}^m p_k = 0, \qquad&\sum_{k = 3, ~k \not\equiv r (\mod 2r)}^n v_k = 1
+  \end{align*}
+  are not $[q_s \times s, q_{2cs + s} \times (2cs + s)]$-$[r]$-realizable as polyhedron (for all $q_s, q_{2cs + s} \in \nats$).
+\begin{proof}
+  With \autoref{thm:division:nonrealizable} we can filter out the cases, where we have an exceptional $k$-gon (or $k$-valent vertex) where $k$ is not divisible by $s$ (or $r$). Otherwise, the $1$-skeleton of a $[q_s \times s, q_{2cs + s} \times (2cs + s)]$-$[r]$-realization of such a pair of $p$-vectors and $v$-vectors would directly contradict \autoref{thm:mod:graphs:nonrealizable}.
+\end{proof}
+\end{corollary}
+
+The last theorem we want to present in this section explains, why we were unable to find $3$-valent {\sc Eberhard}-like theorems with triangles and large $k$-gons, $k \geq 11$:
+
+\begin{theorem}
+  Let $p$ and $v$ be sequences, $S$ a closed $2$-manifold $S$ and $q = [q_3 \times 3, q_l \times l]$, $w = [3]$ for $l \in \nats, l \geq 13$, $q_3 = \frac{l - 6}{\gcd(3, l-6)}$, $q_l = \frac{3}{\gcd(3, l-6)}$. Then the set $(C(p, v, q, w, S)$ is finite. Additionally, if $l \geq 11$ and $\sum_{k \geq 4} 2k \cdot v_k + \sum_{k \geq 4} \floor{\tfrac{k}{2}} p_k < 3p_3$, then $C(p, v, q, w, S)$ is empty, except when $S \cong \sphere^2$, $p = [4 \times 3]$, $v = [4 \times 3]$, in which case $C(p, v, q, w, S) = \set{(0, 0)}$.
   \begin{proof}
-    Since any to faces of a polyhedral map on $S$ have to meet proper, there can not be two triangles which coincide on a single edge with two $3$-valence vertices (see \autoref{fig:adjacent:triangles}), with the single exception of the tetrahedron, in which case we have $(0, 0) \in C(p, v, q, w, S)$. Without loss of generality assume $(p, v) \neq ([4 \times 3], [4 \times 3])$, since we always can obtain $C(p, v, q, w, S)$ from $C(p + q, v + w, q, w, S)$.%
+    Since any to faces of a polyhedral map on $S$ have to meet proper, there can not be two triangles which coincide on a single edge with two $3$-valence vertices (see \autoref{fig:adjacent:triangles}), with the single exception of the tetrahedron, in which case we have $(0, 0) \in C(p, v, q, w, S)$. Without loss of generality assume $(p, v) \neq ([4 \times 3], [4 \times 3])$, since we always can obtain $C(p, v, q, w, S)$ from $C(p + q, v + w, q, w, S)$. %
     \begin{tikzfigure}{\label{fig:adjacent:triangles}}{Two triangles incident to two $3$-valent vertices}
       \draw (-2, 0) -- (-1, 0) -- (0, 1) -- (1, 0) -- (2, 0);
       \draw (-1, 0) -- (0, -1) -- (1, 0);
@@ -47,5 +381,5 @@ We can dualize this theorem and get:
     \end{align*}
     Since $3q_3 = (l - 6)q_l$, the coefficient $(3 q_3 - q_l \cdot \floor{\tfrac{l}{2}})$ is positive if $\floor{\frac{l}{2}} < l - 6$, i.e. if $l \geq 13$, and we can only hope for finitely many solutions. If $\sum_{k \geq 4} 2k \cdot v_k + \sum_{k \geq 4} \floor{\tfrac{k}{2}} p_k < 3p_3$, the coefficient of $c$ has to be negative, which is only the case for $l < 11$. This finishes the proof.
   \end{proof}
-\end{proposition}
+\end{theorem}
 

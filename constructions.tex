@@ -2,19 +2,17 @@
 
 Let $r \in \nats$. Within this section one can think of $r$ as the given valence of a polyhedral map. Many constructions in this thesis will utilize the concept of replacing each face of a polyhedral map with a larger patch. It can be quite challenging to see whether the resulting structures fit as well together as the previous faces did. This section introduces the necessary formalism for these kinds of constructions. Note that throughout this section, we allow for $2$-valent vertices in maps.
 
-\begin{definition}[Patch] For a planar graph embedding we want to call the single unbounded face the ``outer face'' and every other face ``inner face''. A map on the euclidean plane is called a patch. It is called a $r$-patch, if each of its vertices except the ones on the outer face is $r$-valent, while for the valence $r(v)$ of a vertex $v$ on the outer face $2 \leq r(v) \leq r$ holds. The $p$-vector of a patch is the sequence $(p_3, p_4, \dots)$, where $p_k$ denotes the number of $k$-gonal inner faces of the patch.
+\begin{definition}[Patch] For a planar graph embedding we want to call the single unbounded face the ``outer face'' and every other face ``inner face''. A map on the euclidean plane is called a patch. It is called a $r$-patch, if each of its vertices except the ones on the outer face is $r$-valent, while for the valence $r(v)$ of a vertex $v$ on the outer face $2 \leq r(v) \leq r$ holds. The $p$-vector of a patch is the sequence $(p_3, p_4, \dots)$, where $p_k$ denotes the number of $k$-gonal inner faces of the patch. The boundary $\partial\mathcal{P}$ of a patch $\mathcal{P}$ is induced subgraph of all vertices and edges adjacent to the outer face.
 \end{definition}
 
-Note that the union of the inner faces $F_{i}$ of a patch is homeomorphic to a $2$-cell (since $\bigcup_{f \in F_{i}} f \cong \mathbb{E}^2 \setminus \operatorname{int}(f_{o}) \cong (\sphere^2 \setminus \set{(0, 0, 1)}) \setminus \operatorname{int}(\psi^{-1}(f_{o}))$, which is a $2$-cell because $\psi^{-1}(f_{o})$ is a $2$-cell, where $f_{o}$ is the outer face and $\psi$ is the stereographic projection).
+Note that the union of the inner faces $F_{i}$ of a patch is homeomorphic to a $2$-cell (since $\bigcup_{f \in F_{i}} f \cong \mathbb{E}^2 \setminus \operatorname{int}(f_{o}) \cong (\sphere^2 \setminus \set{(0, 0, 1)}) \setminus \operatorname{int}(\psi^{-1}(f_{o}))$, which is a $2$-cell because $\psi^{-1}(f_{o})$ is a $2$-cell, where $f_{o}$ is the outer face and $\psi$ is the stereographic projection). From that we see that $\partial\mathcal{P}$ is a cyclic graph.
 
-\begin{definition}[Boundary structure of a patch] Each $r$-patch $\mathcal{P}$ is assigned a cyclically ordered tuple $\cyctup{w_1, \dots, w_n}$ giving values $w_k$ to each vertex $v_k$ on the outer face of $G$, where $w_k = \deg(v_k) - 1$ and the natural, positive order on the vertices of $\mathcal{P}$ is given. This tuple is denoted as the boundary structure of $\mathcal{P}$. Each entry is called the face count of the according vertex.
+\begin{definition}[Boundary structure of a patch] The boundary structure of an $r$-patch $\mathcal{P}$ with vertex set $V$ is the weight function $w_{\mathcal{P}} : V \cap \partial\mathcal{P} \to \nats, v \mapsto \deg(v_k) - 1$ , which assigns to every boundary vertex the number of inner faces adjacent to it.
 \end{definition}
-
-The geometric interpretation is rather straightforward. Each vertex on the boundary is associated with the number of adjacent inner faces.
 
 If one is interested in whether two patches of a construction fit together to assemble a larger patch one has to compare the valences along some path on the boundary of each part. This is captured in the following definition:
 \begin{definition}
-  Two tuples $(w_1, \dots, w_n)$ and $(w'_1, \dots, w'_n)$ are said to fit together if for all $i \in \{1, \dots, n \}$ the equation $w_i + w'_{n-i} = r$ holds. Also, a single tuple $w$ is called self-fitting, if $w$ fits with itself. The boundary structure of a patch $\cyctup{w_1, \dots, w_n}$ is said to fit from $i$ to $j$ to the boundary structure of a patch $\cyctup{w'_1, \dots, w'_n}$ from $i'$ to $j'$ if the tuples $(w_i, \dots, w_j)$ and $(w'_{i'}, \dots, w'_{j'})$ fit. Note that these tuples could ``overflow'', i.e. if $i > j$ then $(w_i, \dots, w_j)$ denotes the tuple $(w_i, \dots, w_n, w_1, \dots w_j)$.
+  Two patches $\mathcal{P}$ and $\mathcal{P}'$ are said to fit together along two paths $v_1 -- v_2 -- \dots --v_n \subseteq \mathcal{P}$, $v_1 -- v_2 -- \dots --v_n \subseteq \mathcal{P'}$, if for all $i \in \set{1, \dots, k}$ the equation $w_{\mathcal{P}}(v_i) + w_{\mathcal{P}}(v_{n-i}) = r$ holds. Also, a single tuple $w$ is called self-fitting, if $w$ fits with itself. The boundary structure of a patch $\cyctup{w_1, \dots, w_n}$ is said to fit from $i$ to $j$ to the boundary structure of a patch $\cyctup{w'_1, \dots, w'_n}$ from $i'$ to $j'$ if the tuples $(w_i, \dots, w_j)$ and $(w'_{i'}, \dots, w'_{j'})$ fit. Note that these tuples could ``overflow'', i.e. if $i > j$ then $(w_i, \dots, w_j)$ denotes the tuple $(w_i, \dots, w_n, w_1, \dots w_j)$.
 \end{definition}
 
 \begin{lemma}\label{thm:fitting:tuples}
@@ -82,7 +80,7 @@ With this one is able to describe a general construction scheme:
 
 As previously stated, these definitions are used to formalize the construction step ``replace each face with a patch''. Up until now, there is no requirement explicitly stated on the interior of the patch. If one expects the result of such a construction to be a polyhedral map, further conditions have to be met. Furthermore, when using \autoref{const:map} we have the problem of assigning a patch for each face of the map. While we might need only one type of patch for a $k$-gon for each $k \geq 3$, we could still have to deal with a huge amount of values of $k$. We now want to define a construction scheme for patches for arbitrary $k$ which additionally allow to create $r$-valent polyhedral maps, even from $r$-valent non-polyhedral ones!
 
-\begin{definition} Let $w = \cyctup{i_0, i_1, \dots, i_{m-1}, i_m = o_0, \dots, o_s, \dots, o_{n - 1}, o_n = i_m, i_{m-1} \dots i'_1, i'_0}$, $1 \leq s < n$, such that:
+\begin{definition}\label{def:expansion:patch} Let $w = \cyctup{i_0, i_1, \dots, i_{m-1}, i_m = o_0, \dots, o_s, \dots, o_{n - 1}, o_n = i_m, i_{m-1} \dots i'_1, i'_0}$, $1 \leq s < n$, such that:
   \begin{itemize}
   \item $i_0 + i'_0 = r - 1$,
   \item $(i_1, \dots i_{m-1})$ and $(i'_{m-1}, \dots, i'_1)$ are fitting tuples,
@@ -102,6 +100,7 @@ As previously stated, these definitions are used to formalize the construction s
   \end{cinput}
   \begin{coutput}
   \item For every $k \geq 3$ a $o$-$k$-gonal $r$-patch $\mathcal{M}(k)$ with $p$-vector $[k] + k \cdot p$.
+  \item If $\mathcal{M}$ has the polyhedral property, then all inner faces of $\mathcal{M}(k)$ meet proper.
   \end{coutput}
   \begin{cdescription} We construct $\mathcal{M}(k)$ from $k$ copies of $\mathcal{M}$ and a single $k$-gon. Let
 \begin{align*}
@@ -214,7 +213,7 @@ As previously stated, these definitions are used to formalize the construction s
       \draw[loosely dotted] (171 : 4) -- (189 : 4);
     \end{tikzfigure}
 
-    We do not want to lay out each application of \autoref{thm:fitting:tuples} explicitly and instead we just want to note two things: First, each inner vertex of $\mathcal{M}(k)$ has indeed valence $r$. We see this from calculating the valence for each kind of vertices. The vertices from the original $k$-gon (where they met only one face) are now adjacent additionally to $b + b'$ faces, so the valence is $1 + b + b' = r$. The vertices associated to $i_l$ and $i'_l$, $1 \leq i \leq m$ are adjacent to $i_l + i_l'$ faces and have therefore valence $r$ too, since $(i_1, \dots i_m)$ and $(i'_m, \dots, i'_1)$ were required to be fitting tuples. All other inner vertices come from inner vertices of $\mathcal{M}$, therefore they also have valence $r$. Second, $\mathcal{M}(k)$ is in fact $o$-$k$-gonal since $o_s = 1$ and the vertices between those associated with $o_s$ have exactly the boundary structure $(o_{s + 1}, \dots o_{n - 1}, o_n + o_0, o_1, \dots o_{s - 1})$. This finishes the construction.
+    We do not want to lay out each application of \autoref{thm:fitting:tuples} explicitly and instead we just want to note two things: First, each inner vertex of $\mathcal{M}(k)$ has indeed valence $r$. We see this from calculating the valence for each kind of vertices. The vertices from the original $k$-gon (where they met only one face) are now adjacent additionally to $b + b'$ faces, so the valence is $1 + b + b' = r$. The vertices associated to $i_l$ and $i'_l$, $1 \leq i \leq m$ are adjacent to $i_l + i_l'$ faces and have therefore valence $r$ too, since $(i_1, \dots i_m)$ and $(i'_m, \dots, i'_1)$ were required to be fitting tuples. All other inner vertices come from inner vertices of $\mathcal{M}$, therefore they also have valence $r$. Second, $\mathcal{M}(k)$ is in fact $o$-$k$-gonal since $o_s = 1$ and the vertices between those associated with $o_s$ have exactly the boundary structure $(o_{s + 1}, \dots o_{n - 1}, o_n + o_0, o_1, \dots o_{s - 1})$. Finally we want to show that if $\mathcal{M}$ has the polyhedral property that every two faces of $\mathcal{M}(k)$ meet proper. We first want to rule out that one of the faces is the single $k$-gon in the middle of the construction. Since $i_0 = i_0' = 1$, there is exactly one polygon in $\mathcal{M}$ which contains $v_0$ and/or $v_1$. The $k$-copies of this polygon are the neighbors of the $k$-gon in the middle of the construction, therefore this polygon meets proper with all other polygons in $\mathcal{M}(k)$. That $f$ and $f'$ meet proper is also immediately clear when $f$ and $f'$ reside in the same copy of $\mathcal{M}$ by the definition of the polyhedral property. If they reside in different copies, then they only can have a non-empty intersection, if the two copies are adjacent, i.e. we ``glued'' the vertices labeled with $i_0, \dots, i_m$ from the one copy to the vertices $i'_o, \dots, i'_m$ from the other copy. Thus, to do not meet proper, one face has to contain two non-adjacent vertices with labels in $i_0, \dots, i_m$, while the other has to contain two non-adjacent vertices with labels in $i'_o, \dots, i'_m$. But the last bullet point in \autoref{def:expansion:patch} prohibits exactly that. This finishes the construction. 
   \end{cdescription}
 \end{construction}
 
@@ -223,9 +222,210 @@ With these constructions at hand we can now finally design a scheme to create a 
 \begin{proposition}\label{thm:const:polymap}
   Given a $r$-valent map $M$ on an orientable closed $2$-manifold $S$ and an expansion $r$-patch $\mathcal{M}$ with outer tuple $o$, \autoref{const:map} returns a $r$-valent polyhedral map on $S$ when we take $\mathcal{P}(f) = \mathcal{M}(k)$ for each $k$-gonal face $f$ of $M$.
 \begin{proof}
-The only requirement of \autoref{const:map} we did not explicitly stated is that $o$ is self-fitting (which it is by definition) and that $\mathcal{M}(k)$ is $o$-$k$-gonal, which was the result of \autoref{const:expansion:patch}. Thus we can apply \autoref{const:map} and get a map $M'$ on $S$, for which we need to show that it is polyhedral. We want to use a proof by contradiction so assume that two faces of $M'$, $f$ and $f'$, do not meet properly.
+The only requirement of \autoref{const:map} we did not explicitly stated is that $o$ is self-fitting (which it is by definition) and that $\mathcal{M}(k)$ is $o$-$k$-gonal, which was the result of \autoref{const:expansion:patch}. Thus we can apply \autoref{const:map} and get a map $M'$ on $S$, for which we need to show that it is polyhedral. We want to use a proof by contradiction so assume that two faces of $M'$, $f$ and $f'$, do not meet properly. By construction, there are two faces $f_o$ and $f'_o$ in the original map $M$, such that $f$ is contained in $\mathcal{P}(f_o)$ and $f'$ is contained in $\mathcal{P}(f'_o)$. We consider two cases: whether $f_o$ and $f'_o$ denote the same face or not. We quickly rule out the first case, since we proved exactly that in \autoref{const:expansion:patch}. Therefore assume that $f_o$ and $f'_o$ are different. The patches $\mathcal{P}(f_o)$ and $\mathcal{P}(f'_o)$ and therefore also the faces $f$ and $f'$ only have a non-empty intersection, if $f_o$ and $f'_o$ are adjacent.
 
-TODO
+    \begin{tikzfigure}{\label{fig:thm:polymap}}{}
+      \begin{scope}[scale=0.8]
+      \node[shift={(-4,0)}] (0, 0) {$k$-gon};
+
+      \draw[shift={(-5,0)}] (9 : 1) -- (81 : 1) -- (153 : 1)  (225 : 1) -- (297 : 1) -- (9 : 1);
+      \draw[shift={(-5,0)}][loosely dotted] (153 : 1) -- (225 : 1);
+
+
+      \draw[shift={(-5,0)}] (9 : 1) -- (9 : 2.5);
+      \draw[shift={(-5,0)}][loosely dotted] (9 : 2.5) -- (9 : 3.5);
+      \draw[shift={(-5,0)}] (9 : 3.5) -- (9 : 5.062);
+      \draw[shift={(-5,0)}] (81 : 1) -- (81 : 2.5);
+      \draw[shift={(-5,0)}][loosely dotted] (81 : 2.5) -- (81 : 3.5);
+      \draw[shift={(-5,0)}] (81 : 3.5) -- (81 : 5.062);
+      \draw[shift={(-5,0)}] (153 : 1) -- (153 : 2.5);
+      \draw[shift={(-5,0)}][loosely dotted] (153 : 2.5) -- (153 : 3.5);
+      \draw[shift={(-5,0)}] (153 : 3.5) -- (153 : 5.062);
+      \draw[shift={(-5,0)}] (226 : 1) -- (225 : 2.5);
+      \draw[shift={(-5,0)}][loosely dotted] (225 : 2.5) -- (225 : 3.5);
+      \draw[shift={(-5,0)}] (225 : 3.5) -- (225 : 5.062);
+      \draw[shift={(-5,0)}] (297 : 1) -- (297 : 2.5);
+      \draw[shift={(-5,0)}][loosely dotted] (297 : 2.5) -- (297 : 3.5);
+      \draw[shift={(-5,0)}] (297 : 3.5) -- (297 : 5.062);
+      \draw[shift={(-5,0)}][loosely dotted] (4 : 5.012) -- (356 : 5.012);
+
+
+      \draw[shift={(-5,0)}] (-13 : 5.1315) -- (356 : 5.012) (4 : 5.012) -- (13 : 5.1315);
+      \draw[shift={(-5,0)}][loosely dotted] (13 : 5.1315) -- (27 : 5.612);
+      \draw[shift={(-5,0)}] (27 : 5.612) -- (36 : 6.180) -- (45 : 5.612);
+      \draw[shift={(-5,0)}][loosely dotted] (45 : 5.612) -- (68 : 5.012);
+      \draw[shift={(-5,0)}] (68 : 5.012) -- (85 : 5.1315);
+      \draw[shift={(-5,0)}][loosely dotted] (85 : 5.1315) -- (99 : 5.612);
+      \draw[shift={(-5,0)}] (99 : 5.612) -- (108 : 6.180) -- (117 : 5.612);
+      \draw[shift={(-5,0)}][loosely dotted] (117 : 5.612) -- (131 : 5.1315);
+      \draw[shift={(-5,0)}] (131 : 5.1315) -- (153 : 5.062);
+      \draw[shift={(-5,0)}] (-131 : 5.1315) -- (225 : 5.062);
+      \draw[shift={(-5,0)}][loosely dotted] (-117 : 5.612) -- (-131 : 5.1315);
+      \draw[shift={(-5,0)}] (-99 : 5.612) -- (-108 : 6.180) -- (-117 : 5.612);
+      \draw[shift={(-5,0)}][loosely dotted] (-99 : 5.612) -- (-85 : 5.1315);
+      \draw[shift={(-5,0)}] (-59 : 5.1315) -- (-85 : 5.1315);
+      \draw[shift={(-5,0)}][loosely dotted] (-45 : 5.612) -- (-85 : 5.1315);
+      \draw[shift={(-5,0)}] (-27 : 5.612) -- (-36 : 6.180) -- (-45 : 5.612);
+      \draw[shift={(-5,0)}][loosely dotted] (-27 : 5.612) -- (-13 : 5.1315);
+
+      \fill[shift={(-5,0)}] [black] (9 : 1) circle (2pt);
+      \node[shift={(-4,0)}][anchor="108"] at (9 : 1) {$i_0$};
+      \fill[shift={(-5,0)}] [black] (9 : 2) circle (2pt);
+      \node[shift={(-4,0)}][anchor="99"] at (9 : 2) {$i_1$};
+      \fill[shift={(-5,0)}] [black] (9 : 4) circle (2pt);
+      \node[shift={(-4,0)}][anchor="99"] at (9 : 4) {$i_{m-1}$};
+      \fill[shift={(-5,0)}] [black] (9 : 5.062) circle (2pt);
+      \node[shift={(-4,0)}][anchor="45"] at (9 : 5.062) {$o_{0}$};
+      \fill[shift={(-5,0)}] [black] (-9 : 5.062) circle (2pt);
+      \node[shift={(-4,0)}][anchor="0"] at (-9 : 5.062) {$o_{n - s}$};
+      \fill[shift={(-5,0)}] [black] (-30 : 5.774) circle (2pt);
+      \node[shift={(-4,0)}][anchor="0"] at (-30 : 5.774) {$o_{s - 1}$};
+      \fill[shift={(-5,0)}] [black] (-36 : 6.180) circle (2pt);
+      \node[shift={(-4,0)}][anchor="-36"] at (-36 : 6.180) {$o_{s}$};
+      \fill[shift={(-5,0)}] [black] (-42 : 5.774) circle (2pt);
+      \node[shift={(-4,0)}][anchor="-36"] at (-42 : 5.774) {$o_{s + 1}$};
+      % \fill[shift={(-5,0)}] [black] (-63 : 5.062) circle (2pt);
+      % \node[shift={(-4,0)}][anchor="-63"] at (-63 : 5.062) {$o_{n - 1}$};
+      \fill[shift={(-5,0)}] [black] (-63 : 5.062) circle (2pt);
+      \node[shift={(-4,0)}][anchor="-117"] at (-63 : 5.062) {$o_{n}$};
+      \fill[shift={(-5,0)}] [black] (-63 : 4) circle (2pt);
+      \node[shift={(-4,0)}][anchor="198"] at (-63 : 4) {$i'_{m-1}$};
+      \fill[shift={(-5,0)}] [black] (-63 : 2) circle (2pt);
+      \node[shift={(-4,0)}][anchor="198"] at (-63 : 2) {$i'_{1}$};
+      \fill[shift={(-5,0)}] [black] (-63 : 1) circle (2pt);
+      \node[shift={(-4,0)}][anchor="180"] at (-63 : 1) {$i'_0$};
+      \node[shift={(-4,0)}] at (-27 : 3.5) {$\mathcal{M}$};
+
+      \fill[shift={(-5,0)}] [black] (81 : 1) circle (2pt);
+      \node[shift={(-4,0)}][anchor="180"] at (81 : 1) {$i_0$};
+      \fill[shift={(-5,0)}] [black] (81 : 2) circle (2pt);
+      \node[shift={(-4,0)}][anchor="162"] at (81 : 2) {$i_1$};
+      \fill[shift={(-5,0)}] [black] (81 : 4) circle (2pt);
+      \node[shift={(-4,0)}][anchor="162"] at (81 : 4) {$i_{m-1}$};
+      \fill[shift={(-5,0)}] [black] (81 : 5.062) circle (2pt);
+      \node[shift={(-4,0)}][anchor="126"] at (81 : 5.062) {$o_{0}$};
+      \fill[shift={(-5,0)}] [black] (72 : 5) circle (2pt);
+      \node[shift={(-4,0)}][anchor="72"] at (72 : 5) {$o_{1}$};
+      \fill[shift={(-5,0)}] [black] (42 : 5.774) circle (2pt);
+      \node[shift={(-4,0)}][anchor="72"] at (42 : 5.774) {$o_{s - 1}$};
+      \fill[shift={(-5,0)}] [black] (36 : 6.180) circle (2pt);
+      \node[shift={(-4,0)}][anchor="36"] at (36 : 6.180) {$o_{s}$};
+      \fill[shift={(-5,0)}] [black] (30 : 5.774) circle (2pt);
+      \node[shift={(-4,0)}][anchor="0"] at (30 : 5.774) {$o_{s + 1}$};
+      %\fill[shift={(-5,0)}] [black] (9 : 5.062) circle (2pt);
+      %\node[shift={(-4,0)}][anchor="0"] at (9 : 5.062) {$o_{n - 1}$};
+      \fill[shift={(-5,0)}] [black] (9 : 5.062) circle (2pt);
+      \node[shift={(-4,0)}][anchor="-45"] at (9 : 5.062) {$o_{n}$};
+      \fill[shift={(-5,0)}] [black] (9 : 4) circle (2pt);
+      \node[shift={(-4,0)}][anchor="270"] at (9 : 4) {$i'_{m-1}$};
+      \fill[shift={(-5,0)}] [black] (9 : 2) circle (2pt);
+      \node[shift={(-4,0)}][anchor="270"] at (9 : 2) {$i'_{1}$};
+      \fill[shift={(-5,0)}] [black] (9 : 1) circle (2pt);
+      \node[shift={(-4,0)}][anchor="252"] at (9 : 1) {$i'_0$};
+      \node[shift={(-4,0)}] at (45 : 3.5) {$\mathcal{M}$};
+
+      \node[shift={(-4,0)}] at (117 : 3.5) {$\mathcal{M}$};
+      \node[shift={(-4,0)}] at (-99 : 3.5) {$\mathcal{M}$};
+
+      \draw[shift={(-5,0)}][loosely dotted] (180 : 4) -- (198 : 4);
+
+      \node[shift={(4,0)}] (0, 0) {$k'$-gon};
+
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (9 : 1) -- (81 : 1) -- (153 : 1)  (225 : 1) -- (297 : 1) -- (9 : 1);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (153 : 1) -- (225 : 1);
+
+
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (9 : 1) -- (9 : 2.5);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (9 : 2.5) -- (9 : 3.5);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (9 : 3.5) -- (9 : 5.062);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (81 : 1) -- (81 : 2.5);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (81 : 2.5) -- (81 : 3.5);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (81 : 3.5) -- (81 : 5.062);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (153 : 1) -- (153 : 2.5);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (153 : 2.5) -- (153 : 3.5);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (153 : 3.5) -- (153 : 5.062);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (226 : 1) -- (225 : 2.5);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (225 : 2.5) -- (225 : 3.5);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (225 : 3.5) -- (225 : 5.062);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (297 : 1) -- (297 : 2.5);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (297 : 2.5) -- (297 : 3.5);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (297 : 3.5) -- (297 : 5.062);
+      
+      % \draw[shift={(5,0)}, rotate around={180:(0,0)}] (-13 : 5.1315) -- (13 : 5.1315);
+      % \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (13 : 5.1315) -- (27 : 5.612);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (36 : 6.180) -- (45 : 5.612);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (45 : 5.612) -- (59 : 5.1315);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (59 : 5.1315) -- (85 : 5.1315);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (85 : 5.1315) -- (99 : 5.612);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (99 : 5.612) -- (108 : 6.180) -- (117 : 5.612);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (117 : 5.612) -- (131 : 5.1315);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (131 : 5.1315) -- (144 : 5);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (-131 : 5.1315) -- (216 : 5);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (-117 : 5.612) -- (-131 : 5.1315);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (-99 : 5.612) -- (-108 : 6.180) -- (-117 : 5.612);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (-99 : 5.612) -- (-85 : 5.1315);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (-59 : 5.1315) -- (-85 : 5.1315);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (-45 : 5.612) -- (-85 : 5.1315);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (-36 : 6.180) -- (-45 : 5.612);
+      %\draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (-27 : 5.612) -- (-13 : 5.1315);
+
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (9 : 1) circle (2pt);
+      \node[shift={(4,0)}][anchor="279"] at (189 : 1) {$i_0$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (9 : 2) circle (2pt);
+      \node[shift={(4,0)}][anchor="270"] at (189 : 2) {$i_1$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (9 : 4) circle (2pt);
+      \node[shift={(4,0)}][anchor="270"] at (189 : 4) {$i_{m-1}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (9 : 5.062) circle (2pt);
+      \node[shift={(4,0)}][anchor="225"] at (189 : 5) {$o_{0}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (-30 : 5.774) circle (2pt);
+      \node[shift={(4,0)}][anchor="180"] at (150 : 5.774) {$o_{s - 1}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (-36 : 6.180) circle (2pt);
+      \node[shift={(4,0)}][anchor="144"] at (144 : 6.180) {$o_{s}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (-42 : 5.774) circle (2pt);
+      \node[shift={(4,0)}][anchor="144"] at (138 : 5.774) {$o_{s + 1}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (-63 : 5.062) circle (2pt);
+      \node[shift={(4,0)}][anchor="63"] at (117 : 5) {$o_{n}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (-63 : 4) circle (2pt);
+      \node[shift={(4,0)}][anchor="18"] at (117 : 4) {$i'_{m-1}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (-63 : 2) circle (2pt);
+      \node[shift={(4,0)}][anchor="18"] at (117 : 2) {$i'_{1}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (-63 : 1) circle (2pt);
+      \node[shift={(4,0)}][anchor="0"] at (117 : 1) {$i'_0$};
+      \node[shift={(4,0)}] at (144 : 3.5) {$\mathcal{M}$};
+
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (81 : 1) circle (2pt);
+      \node[shift={(4,0)}][anchor="0"] at (261 : 1) {$i_0$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (81 : 2) circle (2pt);
+      \node[shift={(4,0)}][anchor="342"] at (261 : 2) {$i_1$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (81 : 4) circle (2pt);
+      \node[shift={(4,0)}][anchor="342"] at (261 : 4) {$i_{m-1}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (81 : 5.062) circle (2pt);
+      \node[shift={(4,0)}][anchor="297"] at (261 : 5.062) {$o_{0}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (42 : 5.774) circle (2pt);
+      \node[shift={(4,0)}][anchor="252"] at (222 : 5.774) {$o_{s - 1}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (36 : 6.180) circle (2pt);
+      \node[shift={(4,0)}][anchor="216"] at (216 : 6.180) {$o_{s}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (30 : 5.774) circle (2pt);
+      \node[shift={(4,0)}][anchor="180"] at (210 : 5.774) {$o_{s + 1}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (9 : 5.062) circle (2pt);
+      \node[shift={(4,0)}][anchor="135"] at (189 : 5.062) {$o_{n}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (9 : 4) circle (2pt);
+      \node[shift={(4,0)}][anchor="90"] at (189 : 4) {$i'_{m-1}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (9 : 2) circle (2pt);
+      \node[shift={(4,0)}][anchor="90"] at (189 : 2) {$i'_{1}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (9 : 1) circle (2pt);
+      \node[shift={(4,0)}][anchor="72"] at (189 : 1) {$i'_0$};
+      \node[shift={(4,0)}] at (216 : 3.5) {$\mathcal{M}$};
+
+      \node[shift={(4,0)}] at (288 : 3.5) {$\mathcal{M}$};
+      \node[shift={(4,0)}] at (72 : 3.5) {$\mathcal{M}$};
+
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (171 : 4) -- (189 : 4);
+
+      \end{scope}
+
+    \end{tikzfigure}
+
 \end{proof}
 \end{proposition}
 

@@ -1,6 +1,9 @@
 \section{Polyhedral maps}\label{sec:polymap}
+
+Since we want to state general {\sc Eberhard}-like theorems not only on polyhedra, i.e. the sphere $\sphere^2$, but on arbitrary surfaces, we need to define maps on $2$-manifolds and also need to specify which maps have common properties with polyhedra, which we will call polyhedral maps. This sections definitions follow \cite{brehm2004polyhedralmaps} closely.
+
 \begin{definition}[Embedding of a graph]
-  Let $G = (V, E)$ be a finite graph. An embedding $\phi$ of $G$ into a (topological) $2$-manifold $S$ is a map which assigns to every vertex $v \in V$ a single point $\phi(v) \in S$ and every edge $e = \{v, v'\} \in E$ a subset $\phi(e) \subseteq S$ and a homeomorphism $\phi_e : [0, 1] \stackrel{\cong}{\longrightarrow} \phi(e)$, such that $\phi_e(\set{0, 1}) = \set{\phi(v), \phi(v')}$ and for any two edges $e, e' \in E, e \neq e'$: $\phi_e(\,(0,1)\,) \cap \phi_{e'}(\,(0,1)\,) = \emptyset$. We call a graph planar if such an embedding exists into to euclidean plane. The closure of the connected components of $S \setminus \bigcup_{e \in E} \phi(e)$ are called faces of the embedding and the set of all faces shall be $F$. We can define an incidence structure between $F$ and $E$ by saying $f \in F$ contains $e \in E \iff f \cap \phi(e) = \phi(e)$, which extends to an incidence poset between $V$, $E$ and $F$ using additionally the normal incidence structure in the graph $G$.
+  Let $G = (V, E)$ be a finite graph. An embedding $\phi$ of $G$ into a (topological) $2$-manifold $S$ is a map which assigns to every vertex $v \in V$ a single point $\phi(v) \in S$ and every edge $e = \{v, v'\} \in E$ a subset $\phi(e) \subseteq S$ and a homeomorphism $\phi_e : [0, 1] \stackrel{\cong}{\longrightarrow} \phi(e)$, such that $\phi_e(\set{0, 1}) = \set{\phi(v), \phi(v')}$ and for any two edges $e, e' \in E, e \neq e'$: $\phi_e(\,(0,1)\,) \cap \phi_{e'}(\,(0,1)\,) = \emptyset$. We call a graph planar if such an embedding exists into to euclidean plane. The closure of the connected components of $S \setminus \bigcup_{e \in E} \phi(e)$ are called faces of the embedding and the set of all faces shall be $F$. We can define an incidence structure between $F$ and $E$ by saying $f \in F$ contains $e \in E \iff f \cap \phi(e) = \phi(e)$, which extends to an incidence poset between $V$, $E$ and $F$ using additionally the normal incidence structure in the graph $G$. To each embedding we can define a dual embedding, where adjacent faces are connected by edges, and the vertices form the new faces.
 \end{definition}
 
 \begin{definition}[Map on a closed $2$-manifold] \label{def:map} An embedding of a graph $G$ into a closed $2$-manifold with vertices $V$, edges $E$ and faces $F$ is called a map, provided the following properties hold:
@@ -22,10 +25,13 @@
 \begin{remark} Planar graphs are exactly those with embeddings into the sphere $\sphere^2 \defeq \set{(x, y, z) \in \reals^3 : x^2 + y^2 + z^2 = 1}$. Embeddings into the sphere and into the plane can be transformed into each other using the stereographic projection (i.e. the map $\psi: \sphere^2 \setminus \set{(0, 0, 1)} \to \reals^2, (x, y, z) \mapsto (\frac{x}{1-z}, \frac{y}{1-z})$) and its inverse, where the projection center (the point $(0, 0, 1)$) on the sphere is neither a vertex nor lies on an edge. We also want to explicitly define (polyhedral) maps on the euclidean plane as those embeddings which come from stereographic projections of (polyhedral) maps on the sphere.
 \end{remark}
 
+\begin{remark}
+  The concept of a map and a polyhedral map dualize perfectly, i.e. the dual of a map is again a map and this is also the case for polyhedral maps.
+\end{remark}
 
 \begin{remark}\label{rem:edge:incidence} The incidence poset of a polyhedral map has the property that each edge contains exactly two vertices and is contained in exactly two faces. The first assertion is trivial to see, as we only allowed simple graphs in the definition of polyhedral maps. To see the second fact, first note that by the topology of a closed $2$-manifold each edge $e$ is contained in some face and not in more than two faces. But $e$ can not be contained in a single face $f$, because then $f$ is either not a closed $2$-cell or we would have a situation where $e$ points inwards into $f$ (\autoref{fig:example:pointyface}) in which case the graph contains a vertex of valence $1$.
 
-  \begin{tikzfigure}{\label{fig:example:pointyface}}{An unpleasent situation for a face being wrapped around to itself or pierced by an edge.}
+  \begin{tikzfigure}{\label{fig:example:pointyface}}{\todo{}An unpleasent situation for a face being wrapped around to itself or pierced by an edge.}
     \matrix (m) [ column sep=1cm] {
       \begin{scope}
         \node (e) at (0.7, 1) [above] {$e$};

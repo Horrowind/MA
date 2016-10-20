@@ -5,15 +5,15 @@ In the previous two section, we could rely on \autoref{thm:eberhard:extended:3} 
 \begin{proposition}
   Let $p = (p_3, p_4, \dots, p_n)$, $v = (v_3, v_4, \dots, v_m)$ be a pair of admissible sequences, then $p$ is $[2\times3, 4]$-$[5]$-realizable on a closed orientable $2$-manifold $S$ with {\sc Euler} characteristic $\chi$.
   \begin{proof}
-    Let $p' \defeq p + v$ and $v' = [v'_4 \times 4]$ for some $v'_4$ we want to specify shortly. Since $p$ and $v$ are admissible, \autoref{eq:vp:4} holds for $p$ and $v$, and it also holds for $p'$ and $v'$:
-    % Beginning with equation \autoref{eq:vp:5} we retrieve the following:
+    Let $p' \defeq p + v$ and $v' = [v'_4 \times 4]$ for some $v'_4$ we want to specify shortly. Since $p$ and $v$ are admissible, \eqref{eq:vp:4} holds for $p$ and $v$, and it also holds for $p'$ and $v'$:
+    % Beginning with equation \eqref{eq:vp:5} we retrieve the following:
     % \begin{align*}
     %   &2 \sum_{k=3}^m \left(5 - k \right) v_k\,+\, 3 \sum_{k=3}^n \left( \frac{10}{3} - k \right) p_k = 10 \chi\\
     %   \implies &\frac{2}{3} \sum_{k=3}^m \left(5 - k \right) v_k\,+\, \sum_{k=3}^n \left( \frac{10}{3} - k \right) p_k = \frac{10}{3} \chi\\
     %   \implies & \frac{p_3}{3} = \frac{10}{3}\chi - \frac{2}{3} \sum_{k = 3}^m (5 - k) v_k + \sum_{k=4}^n \left(k - \frac{10}{3} \right) p_k  \geq \frac{10}{3} \chi - \frac{1}{3} \sum_{k = 3}^m (2 - k)v_k + \frac{2}{3} \sum_{k=4}^n p_k \\
     %   \implies & p_3 \geq \frac{10}{3}\chi - \frac{1}{3} \sum_{k = 3}^m (2 - k) v_k + \frac{2}{3} \sum_{k=3}^n p_k \geq \frac{2}{3}  \sum_{k=3}^n p_k - \frac{1}{3} \sum_{k = 3}^m (2 - k) v_k - \frac{2}{3}\chi.
     % \end{align*}
-    % We want to show that the last term in the inequality chain is a whole number. For this we take \autoref{eq:vp:5} modulo $3$:
+    % We want to show that the last term in the inequality chain is a whole number. For this we take \eqref{eq:vp:5} modulo $3$:
     % \begin{align*}
     %   0 &\cong{} 2 \sum_{k=3}^m \left(5 - k \right) v_k {}+{} \sum_{k=3}^n (10 - 3 k) p_k - 10 \chi &(\mod 3)\\
     %     &\cong{} 2 \sum_{k=3}^m \left(5 - k \right) v_k {}+{} 10 \sum_{k=3}^n p_k - 10 \chi &(\mod 3)\\
@@ -24,7 +24,7 @@ In the previous two section, we could rely on \autoref{thm:eberhard:extended:3} 
       &\sum_{k=3}^{\max(n, m)} (4 - k) p'_k + \sum_{k=3}^{\max(n, m)} (4 - k) v'_k \\
       ={}& \sum_{k=3}^n (4 - k) p_k + \sum_{k=3}^m (4 - k) v_k = 4 \chi
     \end{align*}
-    as well as \autoref{eq:handshake}
+    as well as \eqref{eq:handshake}
     \begin{align*}
       \sum_{k = 3}^n k (p_k + v_k) = \sum_{k = 3}^n k p_k + \sum_{k = 3}^n k v_k = 4e = \sum_{k = 3} k v'_k
     \end{align*}

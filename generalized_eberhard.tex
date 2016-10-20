@@ -40,7 +40,7 @@ Next we want to state the following fundamental property of maps on surfaces (wh
 \begin{theorem}[{\sc Euler-Poincaré} relation]\label{thm:eulers:relation} $v - e + f = \chi$.
 \end{theorem}
 
-Putting \autoref{eq:handshake} into Euler's relation \autoref{thm:eulers:relation} gives for any $t \in \reals$ \todo{Explain interpolation step}
+Putting \eqref{eq:handshake} into Euler's relation \autoref{thm:eulers:relation} gives for any $t \in \reals$ \todo{Explain interpolation step}
 \begin{align*}
   \sum_{k=3}^m v_k - \left(\frac{t}{2} \sum_{k=3}^m k \cdot v_k + \frac{1-t}{2} \sum_{k=3}^n k \cdot p_k \right) + \sum_{k=3}^n p_k = \chi,
 \end{align*}
@@ -49,10 +49,10 @@ which can be transformed into
   \sum_{k=3}^m (2 - t \cdot k ) v_k + \sum_{k=3}^n ( 2 - (1 - t) \cdot k ) p_k = 2 \chi. \label{eq:general:vp:relation}
 \end{align}
 
-\begin{definition} A pair of sequences $(p, v)$ is called admissible for a closed $2$-manifold $S$ with {\sc Euler} characteristic $\chi$, if \autoref{eq:general:vp:relation} hold for all values $t \in \reals$ and \autoref{eq:handshake} holds for some $e \in \nats$, i.e. if $\sum k p_k$ and $\sum k v_k$ are equal and divisible by $2$.
+\begin{definition} A pair of sequences $(p, v)$ is called admissible for a closed $2$-manifold $S$ with {\sc Euler} characteristic $\chi$, if \eqref{eq:general:vp:relation} hold for all values $t \in \reals$ and \eqref{eq:handshake} holds for some $e \in \nats$, i.e. if $\sum k p_k$ and $\sum k v_k$ are equal and divisible by $2$.
 \end{definition}
 
-If \autoref{prob:eberhard:unspecified} holds for $(q, w)$, then $p + c \cdot q$ and $v + d \cdot w$ have to be admissible for some $c,d \in \nats$, as these have to suffice \autoref{eq:general:vp:relation} as well. Since there exist non-realizable pairs of sequences $(p, v)$, for example $p = [12 \times 5, 6]$, $q = [22 \times 3]$, we can exclude that $c = d = 0$. From \autoref{eq:handshake} we can even conclude that both $c \neq 0$ and $d \neq 0$, since increasing the number of faces increases the number of vertices as well. After subtracting \autoref{eq:general:vp:relation} for the pair $(p, v)$ from the same equation for the pair $(p + c \cdot q, v + d \cdot w)$, we get that the following holds for all $t \in \reals$:
+If \autoref{prob:eberhard:unspecified} holds for $(q, w)$, then $p + c \cdot q$ and $v + d \cdot w$ have to be admissible for some $c,d \in \nats$, as these have to suffice \eqref{eq:general:vp:relation} as well. Since there exist non-realizable pairs of sequences $(p, v)$, for example $p = [12 \times 5, 6]$, $q = [22 \times 3]$, we can exclude that $c = d = 0$. From \eqref{eq:handshake} we can even conclude that both $c \neq 0$ and $d \neq 0$, since increasing the number of faces increases the number of vertices as well. After subtracting \eqref{eq:general:vp:relation} for the pair $(p, v)$ from the same equation for the pair $(p + c \cdot q, v + d \cdot w)$, we get that the following holds for all $t \in \reals$:
 \begin{align*}
   d \cdot \sum_{k=3}^m \left(2 - t \cdot k \right) w_k + c \cdot \sum_{k=3}^n \left( 2 - (1 - t) \cdot k \right) q_k = 0. 
 \end{align*}
@@ -65,10 +65,10 @@ Since $d \neq 0$, we can choose $t \in (0, 1)$ such that $\sum_{k=3}^m (2 - t \c
 We want to constitute from this equation when a pair of sequences is ``flat'', i.e. if they suffice this equation:
 
 \begin{definition}
-  A pair of sequences $(q, w)$ is called flat with parameter $t$, if \autoref{eq:qw:flat} holds.
+  A pair of sequences $(q, w)$ is called flat with parameter $t$, if \eqref{eq:qw:flat} holds.
 \end{definition}
 
-If $t > \frac{2}{3}$, the coefficients of each $w_k$ is negative and therefore \autoref{eq:qw:flat} cannot hold. The same is true for $t < \frac{1}{3}$ and the coefficients of $q_k$, therefore from now on assume that $t \in \left[\frac{1}{3}, \frac{2}{3}\right]$.
+If $t > \frac{2}{3}$, the coefficients of each $w_k$ is negative and therefore \eqref{eq:qw:flat} cannot hold. The same is true for $t < \frac{1}{3}$ and the coefficients of $q_k$, therefore from now on assume that $t \in \left[\frac{1}{3}, \frac{2}{3}\right]$.
 
 With this definition we now have everything ready to state the general {\sc Eberhard} problem:
 
@@ -76,7 +76,7 @@ With this definition we now have everything ready to state the general {\sc Eber
   Let $ t \in \left[\frac{1}{3}, \frac{2}{3}\right]$ and $q$ and $w$ be flat sequences with parameter $t$. Which admissible sequences $p$, $v$ for some $2$-manifold $S$ with {\sc Euler}-characteristic $\chi$ are $q$-$w$-realizable on $S$?
 \end{problem}
 
-In this thesis we do not want to deal with \autoref{problem:eberhard} in general, but with the rather specific case where $q = [q_s, q_l]$, $s < l$ and $w = [r]$ and $gcd(q_s, q_l) = 1$ ($s$ for small and $l$ for large). Since $t \in \left[\frac{1}{3}, \frac{2}{3}\right]$, we have $r \in \set{3, 4, 5, 6}$. For $r = 6$ we have $t = \frac{1}{3}$ and thus $\sum_{k=3}^n \left(3 - k \right) q_k = 0 \implies q = (q_3, 0, 0, \dots)$, contradicting the assumption $q = [q_s, q_l]$. This leaves $r \in \set{3, 4, 5}$ and we can state \autoref{eq:qw:flat} 
+In this thesis we do not want to deal with \autoref{problem:eberhard} in general, but with the rather specific case where $q = [q_s, q_l]$, $s < l$ and $w = [r]$ and $gcd(q_s, q_l) = 1$ ($s$ for small and $l$ for large). Since $t \in \left[\frac{1}{3}, \frac{2}{3}\right]$, we have $r \in \set{3, 4, 5, 6}$. For $r = 6$ we have $t = \frac{1}{3}$ and thus $\sum_{k=3}^n \left(3 - k \right) q_k = 0 \implies q = (q_3, 0, 0, \dots)$, contradicting the assumption $q = [q_s, q_l]$. This leaves $r \in \set{3, 4, 5}$ and we can state \eqref{eq:qw:flat} 
 \begin{alignat}{5}
   r &= 3: \qquad &  \sum_{k=3}^m \left(3 - k \right) w_k\,=\,&    \sum_{k=3}^n \left(6 - k \right) q_k &&= 0 \label{eq:flat:3}\\
   r &= 4: \qquad &  \sum_{4=3}^m \left(4 - k \right) w_k\,=\,&    \sum_{k=3}^n \left(4 - k \right) q_k &&= 0  \label{eq:flat:4}\\
@@ -110,7 +110,7 @@ but since all of them originate from the same equation, we get no additional val
 \end{lemma}
 
 \begin{remark}
-  We immediately recognize \autoref{eq:vp:3} and \autoref{eq:vp:4} in \autoref{thm:eberhard:extended:3} and \autoref{thm:eberhard:extended:4} and the used sequences for $q$ and $w$ clearly suffice \autoref{eq:flat:3} or \autoref{eq:flat:4}, but there is no mention of \autoref{eq:handshake} in those theorems. In fact we can add to every pair of sequences $p$ and $q$ as in \autoref{thm:eberhard:extended:3} a number of hexagons and $3$-valent vertices to make them suffice \autoref{eq:handshake}, if $2 | \sum_{k \geq 3} p_k$. But $2 | \sum_{k \geq 3} p_k$ automatically follows from \autoref{eq:vp:3}. The same goes for \autoref{thm:eberhard:extended:4}, where we can add quadrangles and $4$-valent vertices to suffice \autoref{eq:handshake}, provided that the parity condition mentioned in the theorem holds. Thus we can conclude that \autoref{problem:eberhard} is in fact a generalization of both theorems.
+  We immediately recognize \eqref{eq:vp:3} and \eqref{eq:vp:4} in \autoref{thm:eberhard:extended:3} and \autoref{thm:eberhard:extended:4} and the used sequences for $q$ and $w$ clearly suffice \eqref{eq:flat:3} or \eqref{eq:flat:4}, but there is no mention of \eqref{eq:handshake} in those theorems. In fact we can add to every pair of sequences $p$ and $q$ as in \autoref{thm:eberhard:extended:3} a number of hexagons and $3$-valent vertices to make them suffice \eqref{eq:handshake}, if $2 | \sum_{k \geq 3} p_k$. But $2 | \sum_{k \geq 3} p_k$ automatically follows from \eqref{eq:vp:3}. The same goes for \autoref{thm:eberhard:extended:4}, where we can add quadrangles and $4$-valent vertices to suffice \eqref{eq:handshake}, provided that the parity condition mentioned in the theorem holds. Thus we can conclude that \autoref{problem:eberhard} is in fact a generalization of both theorems. Further note that we silently introduced the notion $C(p, v, q, w, S)$ in \autoref{def:eberhard:realizable}. Questions which pairs $(c, d)$ the sets $C(p, v, [6], [3], S)$ and $C(p, v, [4], [4], S)$ contain on a large scale, i.e. for the ``classic'' {\sc Eberhard} theorems, if there is a threshold from which on all values $(p_6, v_3)$, $(p_4, v_4)$ are realizable, is established in \cite{jendrol1993face} and \cite{trenkler1984convex}. We do no further analysis in this direction on this set and only the notion to make certain non-realizability theorems in \autoref{sec:negative:results} precise.
 \end{remark}
 
 Theorems of this kind where first studied in \cite{devos2010eberhard}, where \autoref{problem:eberhard} is established for $q = [5, 7]$ and $w = [3]$ for arbitrary closed $2$-manifolds. This result for the case of orientable manifolds will be  a byproduct of our main theorems.
