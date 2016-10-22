@@ -1,4 +1,7 @@
-\section{Generalized {\sc Eberhard} theorems}\label{sec:gen:eberhard}
+\section{Generalized {\sc Eberhard} problems}\label{sec:gen:eberhard}
+
+We want to introduce a generalized form of the {\sc Eberhard} theorems in this section. We start with the usual formulation of them and do step by step abstractions to get a good grasp
+
 We can reformulate the statements of \autoref{thm:eberhard:3} and \autoref{thm:eberhard:4} as in the following:
 \begin{theorem}
   Let $p \defeq (p_3, p_4, \dots, p_m)$ be a sequence of natural numbers, where
@@ -9,22 +12,22 @@ We can reformulate the statements of \autoref{thm:eberhard:3} and \autoref{thm:e
 \end{theorem}
 
 \begin{remark}
-The only difference between this version and \autoref{thm:eberhard:3} or \autoref{thm:eberhard:4} is, that in the previous statements $p_6$ or $p_4$ is assumed to be zero at first, while in this version we can specify a least amount of hexagons or quadrangles to occur in the polyhedron. This can be seen by a quick construction we do not want to deliver here. 
+The only difference between this version and \autoref{thm:eberhard:3} or \autoref{thm:eberhard:4} is, that in the previous statements $p_6$ or $p_4$ is assumed to be zero at first, while in this version we can specify a least amount of hexagons or quadrangles to occur in the polyhedron. This can be seen by a quick construction we show in \autoref{ex:easy:expansion} later. 
 \end{remark}
 
 We want to capture this more generally in the following definition:
 \begin{definition}[$(q_3, \dots, q_n)$-$(w_3, \dots, w_m)$-realizable]\label{def:eberhard:realizable}
-  A pair of sequence $p = (p_3, \dots, p_m)$, $v = (v_3, \dots, v_n)$ is said to be $(q_3, \dots, q_n)$-$(w_3, \dots, w_m)$-realizable on a closed $2$-manifold $S$, if there exists $c, d \in \nats$, such that $(p + c q, v + d w)$ is realizable on $S$. We define $C(p, v, q, w, S)$ as the set of all tuples $(c, d)$ for which $(p + c q, v + d w)$ is realizable on $S$.
+  A pair of sequence $p = (p_3, \dots, p_m)$, $v = (v_3, \dots, v_n)$ is said to be \hdef{$(q_3, \dots, q_n)$-$(w_3, \dots, w_m)$-realizable} on a closed $2$-manifold $S$, if there exists $c, d \in \nats$, such that $(p + c q, v + d w)$ is realizable on $S$. We define \hdef{$C(p, v, q, w, S)$} as the set of all tuples $(c, d)$ for which $(p + c q, v + d w)$ is realizable on $S$.
 \end{definition}
 
-The pairs of sequences $([6], [3])$ and $([4], [4])$ play an important part in these theorems. Geometrically, hexagons act flat in an $3$-valent grid, as do quadrangles in $4$-valent grids. From this perspective, we can take the next step and state a very general {\sc Eberhard}-like problem:
+The sequences $[6]$ and $[3]$ (or: $[4]$ and $[4]$) play an important part in these theorems. Geometrically, hexagons ``act flat'' in an $3$-valent grid, as do quadrangles in $4$-valent grids. From this perspective, we can take the next step and state a very general {\sc Eberhard}-like problem:
 
 \begin{problem}\label{prob:eberhard:unspecified}
   Let $(q_k)_{k \geq 3}$, $(w_k)_{k \geq 3}$ be a pair of ``flat'' sequences. Show for all ``admissible'' sequences $p$, $v$ and for every closed $2$-manifold $S$ that $(p, v)$ is $q$-$w$-realizable.
 \end{problem}
 
-
 In this section, we want to give conditions which flesh out the vague descriptions ``flat'' and ``admissible''. 
+
 For this, let $M$ be a polyhedral map on a closed $2$-manifold $S$ with faces $V$, edges $E$ and faces $F$, $p$-vector $p = (p_3, \dots, p_n)$ and $v$-vector $v = (v_3, \dots, v_m)$. $\chi$ shall be the {\sc Euler}-characteristic of $S$ and we want to abbreviate $v = |V|$, $e = |E|$ and $f = |F|$. Using a double counting argument (each edge is adjacent to two faces and each edge is adjacent to two vertices, see \autoref{rem:edge:incidence}) the following holds:
 \begin{align}
   2e = \sum_{k=3}^{m} k \cdot p_k = \sum_{k=3}^{n} k \cdot v_k \label{eq:handshake}.
@@ -49,7 +52,7 @@ which can be transformed into
   \sum_{k=3}^m (2 - t \cdot k ) v_k + \sum_{k=3}^n ( 2 - (1 - t) \cdot k ) p_k = 2 \chi. \label{eq:general:vp:relation}
 \end{align}
 
-\begin{definition} A pair of sequences $(p, v)$ is called admissible for a closed $2$-manifold $S$ with {\sc Euler} characteristic $\chi$, if \eqref{eq:general:vp:relation} hold for all values $t \in \reals$ and \eqref{eq:handshake} holds for some $e \in \nats$, i.e. if $\sum k p_k$ and $\sum k v_k$ are equal and divisible by $2$.
+\begin{definition} A pair of sequences $(p, v)$ is called \hdef{admissible} for a closed $2$-manifold $S$ with {\sc Euler} characteristic $\chi$, if \eqref{eq:general:vp:relation} hold for all values $t \in \reals$ and \eqref{eq:handshake} holds for some $e \in \nats$, i.e. if $\sum k p_k$ and $\sum k v_k$ are equal and divisible by $2$.
 \end{definition}
 
 If \autoref{prob:eberhard:unspecified} holds for $(q, w)$, then $p + c \cdot q$ and $v + d \cdot w$ have to be admissible for some $c,d \in \nats$, as these have to suffice \eqref{eq:general:vp:relation} as well. Since there exist non-realizable pairs of sequences $(p, v)$, for example $p = [12 \times 5, 6]$, $q = [22 \times 3]$, we can exclude that $c = d = 0$. From \eqref{eq:handshake} we can even conclude that both $c \neq 0$ and $d \neq 0$, since increasing the number of faces increases the number of vertices as well. After subtracting \eqref{eq:general:vp:relation} for the pair $(p, v)$ from the same equation for the pair $(p + c \cdot q, v + d \cdot w)$, we get that the following holds for all $t \in \reals$:
@@ -65,7 +68,7 @@ Since $d \neq 0$, we can choose $t \in (0, 1)$ such that $\sum_{k=3}^m (2 - t \c
 We want to constitute from this equation when a pair of sequences is ``flat'', i.e. if they suffice this equation:
 
 \begin{definition}
-  A pair of sequences $(q, w)$ is called flat with parameter $t$, if \eqref{eq:qw:flat} holds.
+  A pair of sequences $(q, w)$ is called \hdef{flat with parameter $t$}, if \eqref{eq:qw:flat} holds.
 \end{definition}
 
 If $t > \frac{2}{3}$, the coefficients of each $w_k$ is negative and therefore \eqref{eq:qw:flat} cannot hold. The same is true for $t < \frac{1}{3}$ and the coefficients of $q_k$, therefore from now on assume that $t \in \left[\frac{1}{3}, \frac{2}{3}\right]$.
@@ -73,23 +76,26 @@ If $t > \frac{2}{3}$, the coefficients of each $w_k$ is negative and therefore \
 With this definition we now have everything ready to state the general {\sc Eberhard} problem:
 
 \begin{problem}[General {\sc Eberhard}'s problem]\label{problem:eberhard}
-  Let $ t \in \left[\frac{1}{3}, \frac{2}{3}\right]$ and $q$ and $w$ be flat sequences with parameter $t$. Which admissible sequences $p$, $v$ for some $2$-manifold $S$ with {\sc Euler}-characteristic $\chi$ are $q$-$w$-realizable on $S$?
+  Let $ t \in \left[\frac{1}{3}, \frac{2}{3}\right]$ and $q$ and $w$ be flat sequences with parameter $t$. Which admissible sequences $p$, $v$ for some $2$-manifold $S$ are $q$-$w$-realizable on $S$?
 \end{problem}
 
-In this thesis we do not want to deal with \autoref{problem:eberhard} in general, but with the rather specific case where $q = [q_s, q_l]$, $s < l$ and $w = [r]$ and $gcd(q_s, q_l) = 1$ ($s$ for small and $l$ for large). Since $t \in \left[\frac{1}{3}, \frac{2}{3}\right]$, we have $r \in \set{3, 4, 5, 6}$. For $r = 6$ we have $t = \frac{1}{3}$ and thus $\sum_{k=3}^n \left(3 - k \right) q_k = 0 \implies q = (q_3, 0, 0, \dots)$, contradicting the assumption $q = [q_s, q_l]$. This leaves $r \in \set{3, 4, 5}$ and we can state \eqref{eq:qw:flat} 
+This question was first raised in \cite{devos2010eberhard}, which established \autoref{problem:eberhard} for $v = [v_3 \times 3]$, $q = [5, 7]$ and $w = [3]$ for arbitrary closed $2$-manifolds. This thesis gives a definite answer to this question for all cases where $q = [q_s, q_l]$, $s < l$, $w = [r]$ and $\gcd(q_s, q_l) = 1$ ($s$ for ``small'' and $l$ for ``large'') and every admissible pair of sequences is $q$-$w$-realizable. To make this characterization complete we also give examples for admissible sequences which can not be $q$-$w$-realized.
+
+Not all values $s$ and $r$ can be obtained in this setting. Since $t \in \left[\frac{1}{3}, \frac{2}{3}\right]$, we have $r \in \set{3, 4, 5, 6}$. For $r = 6$ we have $t = \frac{1}{3}$ and thus $\sum_{k=3}^n \left(3 - k \right) q_k = 0 \implies q = (q_3, 0, 0, \dots)$, contradicting the assumption $q = [q_s, q_l]$. This leaves $r \in \set{3, 4, 5}$ and we can state \eqref{eq:qw:flat} 
 \begin{alignat}{5}
   r &= 3: \qquad &  \sum_{k=3}^m \left(3 - k \right) w_k\,=\,&    \sum_{k=3}^n \left(6 - k \right) q_k &&= 0 \label{eq:flat:3}\\
   r &= 4: \qquad &  \sum_{4=3}^m \left(4 - k \right) w_k\,=\,&    \sum_{k=3}^n \left(4 - k \right) q_k &&= 0  \label{eq:flat:4}\\
   r &= 5: \qquad &  \sum_{k=3}^m \left(5 - k \right) w_k\,=\,&    \sum_{k=3}^n \left( \tfrac{10}{3} - k \right) q_k &&= 0 \label{eq:flat:5}
 \end{alignat}
-explicitly in these cases. From the right part of these equations we get that $q_s$ has a positive coefficient, while $q_l$ has a negative coefficient, so that both can cancel out. This limits the possibilities for $s$ and based on these equations and the condition $\gcd(q_s, q_l) = 1$ we can divide the possible values of $(q, w)$ into five cases, where each case only depends on $l$:
+explicitly in these cases. From the right part of these equations we get that $q_s$ has a positive coefficient, while $q_l$ has a negative coefficient, so that both can cancel out. This limits the possibilities for $(s, r)$ to five cases: $(s, r) \in \set{(3, 3), (3, 4), (3, 5), (4, 3), (5, 3)}$ and based on the previous equations and the condition $\gcd(q_s, q_l) = 1$ we can specify the possible values of $(q, w)$ in these five cases, where each case only depends on $l$:
 \begin{alignat*}{6}
-  q = [q_3 \times 3, q_l \times l],\qquad&&w = [3],\qquad&q_3 = \tfrac{l - 6}{\gcd(l, 3)}, &\qquad&q_l = \tfrac{3}{\gcd(l, 3)} \\
-  q = [q_4 \times 4, q_l \times l],\qquad&&w = [3],\qquad&q_4 = \tfrac{l - 6}{\gcd(l, 2)}, &\qquad&q_l = \tfrac{2}{\gcd(l, 2)} \\
-  q = [q_5 \times 5, q_l \times l],\qquad&&w = [3],\qquad&q_5 = l - 6,                     &\qquad&q_l = 1 \\
-  q = [q_3 \times 3, q_l \times l],\qquad&&w = [4],\qquad&q_3 = l - 4,                     &\qquad&q_l = 1 \\
-  q = [q_3 \times 3, q_l \times l],\qquad&&w = [5],\qquad&q_3 = 3l - 10,                   &\qquad&q_l = 1
+  (s, r) = (3, 3): \quad && q = [q_3 \times 3, q_l \times l],\qquad&&w = [3],\qquad&q_3 = \tfrac{l - 6}{\gcd(l, 3)}, &\qquad&q_l = \tfrac{3}{\gcd(l, 3)} \\
+  (s, r) = (4, 3): \quad && q = [q_4 \times 4, q_l \times l],\qquad&&w = [3],\qquad&q_4 = \tfrac{l - 6}{\gcd(l, 2)}, &\qquad&q_l = \tfrac{2}{\gcd(l, 2)} \\
+  (s, r) = (5, 3): \quad && q = [q_5 \times 5, q_l \times l],\qquad&&w = [3],\qquad&q_5 = l - 6,                     &\qquad&q_l = 1 \\
+  (s, r) = (3, 4): \quad && q = [q_3 \times 3, q_l \times l],\qquad&&w = [4],\qquad&q_3 = l - 4,                     &\qquad&q_l = 1 \\
+  (s, r) = (3, 5): \quad && q = [q_3 \times 3, q_l \times l],\qquad&&w = [5],\qquad&q_3 = 3l - 10,                   &\qquad&q_l = 1
 \end{alignat*}
+
 Each of these cases will be the topic of the later sections \autoref{sec:3:3} - \autoref{sec:3:5} \todo{section section section}. We can also state \eqref{eq:general:vp:relation} for specific values of $r$ and get the following:
 \begin{alignat}{5}
   r &= 3: \qquad &2 \sum_{k=3}^m \left(3 - k \right) v_k\,+\, &&  & \sum_{k=3}^n \left(6 - k \right) p_k &&= 6 \chi \label{eq:vp:3}\\
@@ -105,33 +111,33 @@ but since all of them originate from the same equation, we get no additional val
     \item \eqref{eq:vp:4} and \eqref{eq:handshake} hold for $p$ and $v$.
     \item \eqref{eq:vp:5} and \eqref{eq:handshake} hold for $p$ and $v$.
   \end{enumerate}
-  \begin{proof} (i)$\implies$(ii)-(iv) have already been shown. The converse holds by computation\todo{better argument?}.
+  \begin{proof} (i)$\implies$(ii)-(iv) have already been shown. The converse holds by a similar computation\todo{better argument?}.
   \end{proof}
 \end{lemma}
 
 \begin{remark}
-  We immediately recognize \eqref{eq:vp:3} and \eqref{eq:vp:4} in \autoref{thm:eberhard:extended:3} and \autoref{thm:eberhard:extended:4} and the used sequences for $q$ and $w$ clearly suffice \eqref{eq:flat:3} or \eqref{eq:flat:4}, but there is no mention of \eqref{eq:handshake} in those theorems. In fact we can add to every pair of sequences $p$ and $q$ as in \autoref{thm:eberhard:extended:3} a number of hexagons and $3$-valent vertices to make them suffice \eqref{eq:handshake}, if $2 | \sum_{k \geq 3} p_k$. But $2 | \sum_{k \geq 3} p_k$ automatically follows from \eqref{eq:vp:3}. The same goes for \autoref{thm:eberhard:extended:4}, where we can add quadrangles and $4$-valent vertices to suffice \eqref{eq:handshake}, provided that the parity condition mentioned in the theorem holds. Thus we can conclude that \autoref{problem:eberhard} is in fact a generalization of both theorems. Further note that we silently introduced the notion $C(p, v, q, w, S)$ in \autoref{def:eberhard:realizable}. Questions which pairs $(c, d)$ the sets $C(p, v, [6], [3], S)$ and $C(p, v, [4], [4], S)$ contain on a large scale, i.e. for the ``classic'' {\sc Eberhard} theorems, if there is a threshold from which on all values $(p_6, v_3)$, $(p_4, v_4)$ are realizable, is established in \cite{jendrol1993face} and \cite{trenkler1984convex}. We do no further analysis in this direction on this set and only the notion to make certain non-realizability theorems in \autoref{sec:negative:results} precise.
+  We immediately recognize \eqref{eq:vp:3} and \eqref{eq:vp:4} in \autoref{thm:eberhard:extended:3} and \autoref{thm:eberhard:extended:4} and the used sequences for $q$ and $w$ clearly suffice \eqref{eq:flat:3} or \eqref{eq:flat:4}, but there is no mention of \eqref{eq:handshake} in those theorems. In fact we can add to every pair of sequences $p$ and $q$ as in \autoref{thm:eberhard:extended:3} a number of hexagons and $3$-valent vertices to make them suffice \eqref{eq:handshake}, if $2 | \sum_{k \geq 3} p_k$. But $2 | \sum_{k \geq 3} p_k$ automatically follows from \eqref{eq:vp:3}. The same goes for \autoref{thm:eberhard:extended:4}, where we can add quadrangles and $4$-valent vertices to suffice \eqref{eq:handshake}, provided that the parity condition mentioned in the theorem holds. Thus we can conclude that \autoref{problem:eberhard} is in fact a generalization of both theorems. 
 \end{remark}
-
-Theorems of this kind where first studied in \cite{devos2010eberhard}, where \autoref{problem:eberhard} is established for $q = [5, 7]$ and $w = [3]$ for arbitrary closed $2$-manifolds. This result for the case of orientable manifolds will be  a byproduct of our main theorems.
+\begin{remark} Note that we silently introduced the notion $C(p, v, q, w, S)$ in \autoref{def:eberhard:realizable}. For the classical {sc Eberhard} theorems \cite{jendrol1993face} and \cite{jucovivc1976face} established for almost all sequences $p$ and $v$ which pairs $(c, d)$ the sets $C(p, v, [6], [3], S)$ and $C(p, v, [4], [4], S)$ contain on a large scale, i.e. whether there exists a threshold from which on all values $(p_6, v_3)$, $(p_4, v_4)$ which make $p$, $v$ admissible on $S$ also make $p$, $v$ realizable on $S$. We do no further analysis in this direction and only introduce the notion to make certain non-realizability theorems in \autoref{sec:negative:results} precise. We do note though, that knowing which pairs the set $C(p, v, [q_s \times s, q_l \times l], [r], S)$ contains after a certain threshold for $\gcd(q_s, q_l) = 1$ answers the same question when the restriction $\gcd(q_s, q_l) = 1$ is lifted.
+\end{remark}
 
 The last thing we want to mention in this chapter is a useful property of the condition $\gcd(q_s, q_l) = 1$ we wanted to have for our sequence $q$:
 
 \begin{lemma}\label{lem:2:valued:eberhard}
   Let $(p, v)$ be an admissible pair of sequences for some closed $2$-manifold $S$ with {\sc Euler} characteristics $\chi$ and $M$ be a map on $\chi$ with $p$-vector $p' \defeq p + [c_s \times s, c_l \times l]$, $v + d [r]$, for $s, l, c_s, c_l, r \in \nats$. Then $p' = p + c \cdot [q_s \times s, q_l \times l]$, where $[q_s \times s, q_l \times l]$ and $[r]$ are $t$-flat for parameter $t = \tfrac{2}{r}$ and $\gcd(q_s, q_l) = 1$. To put it differently: To show \autoref{problem:eberhard} for $[q_s \times s, q_l \times l]$ and $[r]$, where $\gcd(q_s, q_l) = 1$, it suffices to construct any polyhedral map $M$ where additionally to $p$ and $v$ only $s$-gons, $l$-gons and $r$-valent vertices are added, the proportion of the number of $s$-gons and $l$-gons is already dealt with automatically.
-\begin{proof}
-  Similarly to the reasoning above, we subtract \eqref{eq:general:vp:relation} for $(p', v')$ from \eqref{eq:general:vp:relation} for $(p, v)$ and get:
-\begin{align*}
-  (2 - t \cdot r) d + (2 - (1 - t) \cdot s) c_s +  (2 - (1 - t) \cdot l) c_l = 0. 
-\end{align*}
-When substituting $t \defeq \tfrac{2}{r}$, this reduces to
-\begin{align}
-  (2 - (1 - \tfrac{2}{r}) \cdot s) c_s + (2 - (1 - \tfrac{2}{r}) \cdot l) c_l = 0. \label{eq:lemma:1}
-\end{align}
-Since $[q_s \times s, q_l \times l]$ and $[r]$ are $t$-flat for parameter $t = \tfrac{2}{r}$, \eqref{eq:lemma:1} also holds for $q_s$ and $q_l$:
-\begin{align}
-  (2 - (1 - \tfrac{2}{r}) \cdot s) q_s + (2 - (1 - \tfrac{2}{r}) \cdot l) q_l = 0.
-\end{align}
-As \eqref{eq:lemma:1} is a linear {\sc Diophantine} equation and since $\gcd(q_s, q_l) = 1$, every solution of \eqref{eq:lemma:1} is a scalar multiple of $(q_s, q_l)$, which is what we wanted to show.
-\end{proof}
+  \begin{proof}
+    Similarly to the reasoning above, we subtract \eqref{eq:general:vp:relation} for $(p', v')$ from \eqref{eq:general:vp:relation} for $(p, v)$ and get:
+    \begin{align*}
+      (2 - t \cdot r) d + (2 - (1 - t) \cdot s) c_s +  (2 - (1 - t) \cdot l) c_l = 0. 
+    \end{align*}
+    When substituting $t \defeq \tfrac{2}{r}$, this reduces to
+    \begin{align}
+      (2 - (1 - \tfrac{2}{r}) \cdot s) c_s + (2 - (1 - \tfrac{2}{r}) \cdot l) c_l = 0. \label{eq:lemma:1}
+    \end{align}
+    Since $[q_s \times s, q_l \times l]$ and $[r]$ are $t$-flat for parameter $t = \tfrac{2}{r}$, \eqref{eq:lemma:1} also holds for $q_s$ and $q_l$:
+    \begin{align}
+      (2 - (1 - \tfrac{2}{r}) \cdot s) q_s + (2 - (1 - \tfrac{2}{r}) \cdot l) q_l = 0.
+    \end{align}
+    As \eqref{eq:lemma:1} is a linear {\sc Diophantine} equation and since $\gcd(q_s, q_l) = 1$, every solution of \eqref{eq:lemma:1} is a scalar multiple of $(q_s, q_l)$, which is what we wanted to show.
+  \end{proof}
 \end{lemma}

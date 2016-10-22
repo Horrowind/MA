@@ -2,111 +2,129 @@
 
 Let $r \in \nats$. Within this section one can think of $r$ as the given valence of a polyhedral map. Many constructions in this thesis will utilize the concept of replacing each face of a polyhedral map with a larger patch. It can be quite challenging to see whether the resulting structures fit as well together as the previous faces did. This section introduces the necessary formalism for these kinds of constructions. Note that throughout this section, we allow for $2$-valent vertices in maps.
 
-\begin{definition}[Patch] For a planar graph embedding we want to call the single unbounded face the ``outer face'' and every other face ``inner face''. A map on the euclidean plane is called a patch. It is called a $r$-patch, if each of its vertices except the ones on the outer face is $r$-valent, while for the valence $r(v)$ of a vertex $v$ on the outer face $2 \leq r(v) \leq r$ holds. The $p$-vector of a patch is the sequence $(p_3, p_4, \dots)$, where $p_k$ denotes the number of $k$-gonal inner faces of the patch. The boundary $\partial\mathcal{P}$ of a patch $\mathcal{P}$ is induced subgraph of all vertices and edges adjacent to the outer face.
+\begin{definition}[Patch] For a planar graph embedding we want to call the single unbounded face the \href{outer face} and every other face \href{inner face}. A map on the euclidean plane potentially $2$-valent vertices is called a \href{patch}. It is called an \href{$r$-patch}, if each of its vertices except the ones on the outer face is $r$-valent, while for the valence $r(v)$ of a vertex $v$ on the outer face $2 \leq r(v) \leq r$ holds. The \href{$p$-vector of a patch} is the sequence $(p_3, p_4, \dots)$, where $p_k$ denotes the number of $k$-gonal inner faces of the patch. The \href{boundary $\partial\mathcal{P}$ of a patch} $\mathcal{P}$ is induced subgraph of all vertices and edges adjacent to the outer face.
 \end{definition}
 
 Note that the union of the inner faces $F_{i}$ of a patch is homeomorphic to a $2$-cell (since $\bigcup_{f \in F_{i}} f \cong \mathbb{E}^2 \setminus \operatorname{int}(f_{o}) \cong (\sphere^2 \setminus \set{(0, 0, 1)}) \setminus \operatorname{int}(\psi^{-1}(f_{o}))$, which is a $2$-cell because $\psi^{-1}(f_{o})$ is a $2$-cell, where $f_{o}$ is the outer face and $\psi$ is the stereographic projection). From that we see that $\partial\mathcal{P}$ is a cyclic graph.
 
-\begin{definition}[Boundary structure of a patch] The boundary structure of an $r$-patch $\mathcal{P}$ with vertex set $V$ is the weight function $w_{\mathcal{P}} : V \cap \partial\mathcal{P} \to \nats, v \mapsto \deg(v_k) - 1$ , which assigns to every boundary vertex the number of inner faces adjacent to it.
+\begin{definition} Let $\mathcal{P}$ be an $r$-patch with vertex set $V$. Define $w_{\mathcal{P}}$ to be the weight function $w_{\mathcal{P}} : V \cap \partial\mathcal{P} \to \nats, v \mapsto \deg(v_k) - 1$, which assigns to every boundary vertex the number of inner faces adjacent to it.
 \end{definition}
 
 If one is interested in whether two patches of a construction fit together to assemble a larger patch one has to compare the valences along some path on the boundary of each part. This is captured in the following definition:
 \begin{definition}
-  Two patches $\mathcal{P}$ and $\mathcal{P}'$ are said to fit together along two paths $v_1 -- v_2 -- \dots --v_n \subseteq \mathcal{P}$, $v_1 -- v_2 -- \dots --v_n \subseteq \mathcal{P'}$, if for all $i \in \set{1, \dots, k}$ the equation $w_{\mathcal{P}}(v_i) + w_{\mathcal{P}}(v_{n-i}) = r$ holds. Also, a single tuple $w$ is called self-fitting, if $w$ fits with itself. The boundary structure of a patch $\cyctup{w_1, \dots, w_n}$ is said to fit from $i$ to $j$ to the boundary structure of a patch $\cyctup{w'_1, \dots, w'_n}$ from $i'$ to $j'$ if the tuples $(w_i, \dots, w_j)$ and $(w'_{i'}, \dots, w'_{j'})$ fit. Note that these tuples could ``overflow'', i.e. if $i > j$ then $(w_i, \dots, w_j)$ denotes the tuple $(w_i, \dots, w_n, w_1, \dots w_j)$.
+  A tuple $(w_1, \dots, w_n) \in \nats^n$ is called to \hdef{fit} to another tuple $(w'_1, \dots, w'_n) \nats^n$, if for all $i \in \set{1, \dots, k}$ the equation $w_i + w'_{n-i} = r$ holds. Additionally, two patches $\mathcal{P}$ and $\mathcal{P}'$ are said to fit together along two paths $v_1 - v_2 - \dots - v_n \subseteq \partial\mathcal{P}$, $v'_1 - v'_2 - \dots - v'_n \subseteq \partial\mathcal{P'}$, if $w_{\mathcal{P}}(v_1), \dots, w_{\mathcal{P}}(v_n)$ fits to $w_{\mathcal{P'}}(v'_1), \dots, w_{\mathcal{P'}}(v'_n)$. A single tuple $(w_1, \dots, w_n)$ (or a single path $v_1 - v_2 - \dots - v_n \subseteq \partial\mathcal{P}$) is called \hdef{self-fitting}, if $(w_1, \dots, w_n)$ (resp. $v_1 - v_2 - \dots - v_n$) fits with itself.
 \end{definition}
 
 \begin{lemma}\label{thm:fitting:tuples}
-  Let $\mathcal{P}, \mathcal{P}'$ be two $r$-patches, $w = \cyctup{w_1, \dots, w_n}$ and $w' = \cyctup{w'_1, \dots, w'_m}$ their respective boundary structures and $v_k$ and $v'_k$ the vertices on the outer face associated to each $w_k$, $w'_k$. If $w_i + w'_{j'} + 1 \leq r$ and $w'_{i'} + w_{j} + 1 \leq r$ and $w$ fits from $i+1$ to $j-1$ to $w'$ from $i'+1$ to $j'-1$, then there exists an $r$-patch which has $\mathcal{P}$ and $\mathcal{P}'$ as subgraphs and identifies $v_{i+k} = v'_{j'-k}$, $0 \leq k \leq (j - i \mod n)$ but not any other two vertices.
+  Let $\mathcal{P}, \mathcal{P}'$ be two $r$-patches, $v_0 - v_1 - \dots - v_{k + 1} \subseteq \partial\mathcal{P}$, $v'_0 - v'_1 - \dots - v'_{k + 1} \subseteq \partial\mathcal{P}$ be two paths along the boundary of the respective patch. If $w_{\mathcal{P}}(v_0) + w_{\mathcal{P}}(v'_{k + 1}) + 1 \leq r$ and $w_{\mathcal{P}}(v_{k+1}) + w_{\mathcal{P}}(v'_0) + 1 \leq r$ and $v_1 - \dots - v_k$ fits to $v'_1 - \dots v'_k$, then there exists an $r$-patch which has $\mathcal{P}$ and $\mathcal{P}'$ as subgraphs and identifies $v_{i} = v'_{k + 1 - i}$, $0 \leq i \leq k + 1$ but not any other two vertices.
   \begin{proof}
-    By ``gluing'' $\mathcal{P}$ and $\mathcal{P}'$ along the paths $v_i - \dots - v_{j}$ and $v'_{i'} - \dots - v'_{j'}$, that is, identifying $v_{i+k}$ with $v'_{j'-k}$, $0 \leq k \leq (j - i \mod n)$, the resulting graph satisfies the requirements, see \autoref{fig:patch:example}. It is planar since both $\mathcal{P}$ and $\mathcal{P}'$ are, and both graphs were combined along the outer face. Let $\tilde{v}_k$ be the vertex in the new graph which represents $v_{i+k}$ and $v_{j' - k}$ from the old graphs. By construction $\tilde{v}_k$ is now an inner vertex if $1 \leq k \leq (j - i - 1 \mod n)$ and a vertex on the outer face if $k=0$ or $k = (j - i \mod n)$. When gluing $v_{i+k}$ with $v_{j' - k}$ ($1 \leq k \leq (j - i - 1 \mod n)$), the edges $v_{i+k-1}$--$v_{i+k}$ and $v'_{j'-k+1}$--$v'_{j'-k}$ coincide, as well as the edges $v_{i+k+1}$--$v_{i+k}$ and $v'_{j'-k-1}$--$v'_{j'-k}$. Therefore the valence of $\tilde{v}_k$ is two less than the sum of valences of $v_{i+k}$ and $v'_{j'-k}$, thus
+    By ``gluing'' $\mathcal{P}$ and $\mathcal{P}'$ along the paths $v_0 - \dots - v_{k+1}$ and $v'_{0} - \dots - v'_{k+1}$, that is, identifying $v_{i}$ with $v'_{k + 1 - i}$, $0 \leq i \leq k + 1$, the resulting map satisfies the requirements, see \autoref{fig:patch:example}. It is a map into the euclidean plane since both $\mathcal{P}$ and $\mathcal{P}'$ are, and both graphs were combined along the outer face, so we attached two $2$-cells along their boundary. Let $\tilde{v}_i$ be the vertex in the new graph which represents $v_{i}$ and $v_{k + 1 - i}$ from the old graphs. By construction $\tilde{v}_i$ is now an inner vertex if $1 \leq i \leq k$ and a vertex on the outer face if $i=0$ or $i = k + 1$. When gluing $v_{i}$ and $v_{i + k - 1}$ ($1 \leq k \leq k $) together, the edges $v_{i}$--$v_{i+1}$ and $v'_{k+1 - i}$--$v'{k - i}$ as well as the edges $v_{i}$--$v_{i - 1}$ and $v'_{k+1 - i}$--$v'_{k + 2 - i}$ coincide. Therefore the valence of $\tilde{v}_k$ is two less than the sum of valences of $v_{i}$ in $\mathcal{P}$ and $v'_{k + 1 - i}$ in $\mathcal{P}'$, thus
     \begin{equation*}
-      \deg(\tilde{v}_k) = \deg(v_{i+k}) + \deg(v'_{j'-k}) - 2 = w_{i+k} + 1 + w'_{j'-k} + 1 - 2 = w_{i+k} + w'_{j'-k} = r.
+      \deg(\tilde{v}_k) = \deg(v_{i}) + \deg(v'_{k + 1 - i}) - 2 = (w_{\mathcal{P}}(v_i) + 1) + (w_{\mathcal{P'}}(v'_{k + 1 - i}) + 1) - 2 = w_{\mathcal{P}}(v_i) + w_{\mathcal{P'}}(v'_{k + 1 - i}) = r.
     \end{equation*}
-    The edges $v_{i}$--$v_{i+1}$ and $v'_{j}$--$v'_{j-1}$ are now glued together, it follows $\deg(\tilde{v}_0) = \deg(v_i) + \deg(v'_{j'}) - 1 = (w_i + 1) + (w'_{j'} + 1) - 1 = w_i + w'_{j'} + 1 \leq r$. Analogously $\deg(\tilde{v}_0) \leq r$ holds. This proves that the new graph is an $r$-patch.
+    The edges $v_{0}$--$v_{1}$ and $v'_{k+1}$--$v'_{k}$ are now glued together, it follows $\deg(\tilde{v}_0) = \deg(v_0) + \deg(v'_{k + 1}) - 1 = (w_{\mathcal{P}}(v_i) + 1) + (w_{\mathcal{P'}}(v'_{k + 1 - i}) + 1) - 1 = w_{\mathcal{P}}(v_i) + w_{\mathcal{P'}}(v'_{k + 1 - i}) + 1 \leq r$. Analogously $\deg(\tilde{v}_{k + 1}) \leq r$ holds. This proves that the new map is an $r$-patch.
+
+    \begin{tikzfigure}{\label{fig:patch:example}}{Gluing two patches together (for $r = 3$)}
+      \draw (-1, -2) -- (1, -2);
+      \draw (0, -2) -- (0, -1.5);
+      \draw (0, 2) -- (0, 1.5);
+      \draw (-1, 2) -- (1, 2);
+      \draw (0, -0.75) -- (0.25, -0.5) -- (-0.25, 0) -- (0.25, 0.5) -- (0, 0.75);
+
+
+      \draw[loosely dotted] (-1, -2) -- (-2, -1.5);
+      \draw[loosely dotted] (1, -2) -- (2, -1.5);
+      \draw[loosely dotted] (-1, 2) -- (-2, 1.5);
+      \draw[loosely dotted] (1, 2) -- (2, 1.5);
+      \draw (0.25, -0.5) -- (0.75, -0.5);
+      \draw (-0.25, 0) -- (-0.75, 0);
+      \draw (0.25, 0.5) -- (0.75, 0.5);
+      \draw[loosely dotted] (0, -1.5) -- (0, -0.75);
+      \draw[loosely dotted] (0, 1.5) -- (0, 0.75);
+
+      \node at (0, -2) [anchor=north] {$v_0=v'_{k+1}$};
+      \fill [black] (0, -2) circle (2pt);
+      \node at (0, 2) [anchor=south] {$v_{k+1}=v'_{o}$};
+      \fill [black] (0, 2) circle (2pt);
+      \node at (0.25, -0.5) [anchor=east, inner sep=7pt] {$v_{i - 1}=v'_{k - i + 2}$};
+      \fill [black] (0.25, -0.5) circle (2pt);
+      \node at (-0.25, 0) [anchor=west, inner sep=7pt] {$v_{i}=v'_{k - i + 1}$};
+      \fill [black] (-0.25, 0) circle (2pt);
+      \node at (0.25, 0.5) [anchor=east, inner sep=7pt] {$v_{i + 1}=v'_{k - i}$};
+      \fill [black] (0.25, 0.5) circle (2pt);
+
+      \node at (-0.5, -1.5) [anchor=east] {$\mathcal{P}$};
+      \node at (0.5, -1.5) [anchor=west] {$\mathcal{P'}$};
+    \end{tikzfigure}
   \end{proof}
-
-  \begin{tikzfigure}{\label{fig:patch:example}}{Gluing two patches together (for $r = 3$)}
-    \draw (-1, -2) -- (1, -2);
-    \draw (0, -2) -- (0, -1.5);
-    \draw (0, 2) -- (0, 1.5);
-    \draw (-1, 2) -- (1, 2);
-    \draw (0, -0.75) -- (0.25, -0.5) -- (-0.25, 0) -- (0.25, 0.5) -- (0, 0.75);
-
-
-    \draw[loosely dotted] (-1, -2) -- (-2, -1.5);
-    \draw[loosely dotted] (1, -2) -- (2, -1.5);
-    \draw[loosely dotted] (-1, 2) -- (-2, 1.5);
-    \draw[loosely dotted] (1, 2) -- (2, 1.5);
-    \draw[loosely dotted] (0.25, -0.5) -- (0.75, -0.5);
-    \draw[loosely dotted] (-0.25, 0) -- (-0.75, 0);
-    \draw[loosely dotted] (0.25, 0.5) -- (0.75, 0.5);
-    \draw[loosely dotted] (0, -1.5) -- (0, -0.75);
-    \draw[loosely dotted] (0, 1.5) -- (0, 0.75);
-
-    \node at (0, -2) [anchor=north] {$v_i=v_{j'}$};
-    \fill [black] (0, -2) circle (2pt);
-    \node at (0, 2) [anchor=south] {$v_j=v_{i'}$};
-    \fill [black] (0, 2) circle (2pt);
-    \node at (0.25, -0.5) [anchor=east] {$v_{i+k-1}=v_{j'-k+1}$};
-    \fill [black] (0.25, -0.5) circle (2pt);
-    \node at (-0.25, 0) [anchor=west] {$v_{i+k}=v_{j'-k}$};
-    \fill [black] (-0.25, 0) circle (2pt);
-    \node at (0.25, 0.5) [anchor=east] {$v_{i+k+1}=v_{j'-k-1}$};
-    \fill [black] (0.25, 0.5) circle (2pt);
-
-    \node at (-0.5, -1.5) [anchor=east] {$\mathcal{P}$};
-    \node at (0.5, -1.5) [anchor=west] {$\mathcal{P'}$};
-  \end{tikzfigure}
 \end{lemma}
 
 \begin{definition}
-  Let $w = (w_1, \dots, w_n)$ be a tuple. The $w$-expansion of a cyclic ordered tuple $a = \cyctup{a_1, \dots a_k}$ is the cyclic ordered tuple $\cyctup{a_1, w_1, \dots w_n, a_2, w_1, \dots, w_n, a_3 \dots, a_k, w_1, \dots, w_n}$. If the boundary structure of an $r$-patch is a $w$-expansion of $a$, the vertices associated to $a_k$ will be called ``corner vertices'', while the vertices associated to any $w_k$ are called ``side vertices''. If $a$ is the boundary structure of a $k$-gon, i.e. $a = \cyctup{1, \dots, 1}$ and a $r$-patch $\mathcal{P}$ has a boundary structure which is the $w$-expansion of $a$ we want to call $\mathcal{P}$ a $w$-$k$-gonal patch.
+  Let $w = (w_1, \dots, w_n) \in \nats^n$ be a tuple. A \hdef{$w$-expansion} of an $r$-patch $\mathcal{P}$ with boundary $\partial\mathcal{P} = v_1 - v_2 - \dots - \dots v_m - v_1$, is another $r$-patch $\mathcal{P'}$ with boundary
+\begin{align*}
+  \partial\mathcal{P'} = {v'}_1  - {v'}_1^{(1)} - \dots - {v'}_n^{(1)} -  {v'}_2 - {v'}_1^{(2)} - \dots - {v'}_n^{(2)} - \quad\dots\quad - {v'}_m  -  {v'}_1^{(m)} - {v'}_n^{(m)}  -  {v'}_1,
+\end{align*}
+such that $w_{\mathcal{P}}(v_i) = w_{\mathcal{P'}}(v'_i)$ and $w_{\mathcal{P'}}({v'}_j^{(m)}) = w_j$ for all $i \in \set{1, \dots, m}$, $j \in \set{1, \dots, n}$. We want to call the vertices $v'_i$ \href{corner vertices} and the vertices ${v'}_j^{i}$ \href{side vertices}. Furthermore, a patch is called \hdef{$w$-$k$-gonal}, if it is the $w$-expansion of the patch consisting only of a $k$-gon, i.e. if $w_{\mathcal{P'}}(v'_i) = 1$ for $i \in \set{1, \dots, m}$.
 \end{definition}
 
 With this one is able to describe a general construction scheme:
 
 \begin{construction}\label{const:map}
   \begin{cinput}
-  \item A map $M$ on a closed orientable $2$-manifold $S$ with $p$-vector $p$, $v$-vector $v$, underlying graph $G = (V, E)$ and faces $F$. \item A self-fitting tuple $w = (w_1, \dots, w_n)$
+  \item A map $M$ on a closed orientable $2$-manifold $S$ with $p$-vector $p$, $v$-vector $v$, underlying graph $G = (V, E)$ and faces $F$. 
+  \item A self-fitting tuple $w = (w_1, \dots, w_n)$
   \item For each $k$-gonal face $f \in F$ a $w$-$k$-gonal $r$-patch $\mathcal{P}(f)$ with $p$-vector $p^{(f)}$.
   \end{cinput}
   \begin{coutput}
     \item A map $M'$ on $S$ with $v$-vector $v + d \cdot [r]$ for some $d \in \nats$ and $p$-vector $\sum_{f \in F} p^{(f)}$
   \end{coutput} 
   \begin{cdescription} 
-    Divide each edge $e \in E$ in the embedding of $G$ into $S$ by $n$ vertices and draw in each face $f$ the dedicated $r$-patch $\mathcal{P}(f)$ such that the corner vertices of $\mathcal{P}(f)$ coincide with the original vertices $V$ and the side vertices are the new vertices added by the subdivision. We can do this because both the face we want to replace and the patch we want to insert are homeomorphic to a $2$-cell and the number of vertices of the patch and the subdivision match exactly. Note that each of these patches may allow for many distinct drawings. While the rotation of the drawing is irrelevant for the rest of the proof, there is a difference based on the orientation of the drawing (drawing the patch “from one side” of $S$ gives a different result than drawing it from the other side). When drawing each patch equally oriented, they allow for \autoref{thm:fitting:tuples} to be applied, so assume hereafter this to be done. These patches form a combined graph $G'$ , which is embedded by construction into $S$ (there is a homeomorphism between each subdivided face $f \in F$ and the corresponding patch $\mathcal{P}(f)$). For the rest of the proof, the notion ``corner vertex'' will relate to the original vertices $V$, while ``side vertices'' denote those on the subdivisions made before. The remaining vertices of $G'$ will be called ``inner vertices''. $G'$ is simple: $G'$ is nonempty and connected by construction and there is no possibility for it to contain loops or multi-edges since these would be also present in either $G$ or one of the patches $\mathcal{P}(f)$. Lastly, each face of the embedding is homeomorphic to a $2$-cell, since all faces in the new embedding are homeomorphic to an inner face of some patch $\mathcal{P}(f)$, thus the embedding of $G'$ into $S$ is a map $M'$. By \autoref{thm:fitting:tuples} each side vertex is $r$-valent, which is also true for the inner vertices (they come from $r$-valent inner vertices of a $r$-patch). Each corner vertex has the same valence it had previously in the map $M$, therefore the $v$-vector of $M'$ is $v + d \cdot [r]$ for some $d \in \nats$. The $p$-vector of $M'$ is the sum of the $p$-vectors $p^{(f)}$ of each patch $\mathcal{P}(f)$ ($f \in F$). Thus we have constructed another map on $S$ with $v$-vector $v + d \cdot [r]$ and $p$-vector $\sum_{f \in F} p^{(f)}$.
+    Divide each edge $e \in E$ in the embedding of $G$ into $S$ by $n$ vertices and draw in each face $f$ the dedicated $r$-patch $\mathcal{P}(f)$ such that the corner vertices of $\mathcal{P}(f)$ coincide with the original vertices $V$ and the side vertices are the new vertices added by the subdivision. We can do this because both the face we want to replace and the patch we want to insert are homeomorphic to a $2$-cell and the number of vertices of the patch and the subdivision match exactly. Note that each of these patches may allow for many distinct drawings. While the rotation of the drawing is irrelevant for the rest of the proof, there is a difference based on the orientation of the drawing (drawing the patch “from one side” of $S$ gives a different result than drawing it from the other side). When drawing each patch equally oriented, they allow for \autoref{thm:fitting:tuples} to be applied, so assume hereafter this to be done. These patches form a combined graph $G'$ , which is embedded by construction into $S$ (there is a homeomorphism between each subdivided face $f \in F$ and the corresponding patch $\mathcal{P}(f)$). For the rest of the proof, the notion ``corner vertex'' will relate to the original vertices $V$, while ``side vertices'' denote those on the subdivisions made before. The remaining vertices of $G'$ will be called ``inner vertices''. $G'$ is simple: $G'$ is nonempty and connected by construction and there is no possibility for it to contain loops or multi-edges since these would be also present in either $G$ or one of the patches $\mathcal{P}(f)$. Lastly, each face of the embedding is homeomorphic to a $2$-cell, since all faces in the new embedding are homeomorphic to an inner face of some patch $\mathcal{P}(f)$, thus the embedding of $G'$ into $S$ is a map $M'$. By \autoref{thm:fitting:tuples} each side vertex is $r$-valent, which is also true for the inner vertices (they come from $r$-valent inner vertices of an $r$-patch). Each corner vertex has the same valence it had previously in the map $M$, therefore the $v$-vector of $M'$ is $v + d \cdot [r]$ for some $d \in \nats$. The $p$-vector of $M'$ is the sum of the $p$-vectors $p^{(f)}$ of each patch $\mathcal{P}(f)$ ($f \in F$). Thus we have constructed another map on $S$ with $v$-vector $v + d \cdot [r]$ and $p$-vector $\sum_{f \in F} p^{(f)}$.
   \end{cdescription}
 \end{construction}
 
 As previously stated, these definitions are used to formalize the construction step ``replace each face with a patch''. Up until now, there is no requirement explicitly stated on the interior of the patch. If one expects the result of such a construction to be a polyhedral map, further conditions have to be met. Furthermore, when using \autoref{const:map} we have the problem of assigning a patch for each face of the map. While we might need only one type of patch for a $k$-gon for each $k \geq 3$, we could still have to deal with a huge amount of values of $k$. We now want to define a construction scheme for patches for arbitrary $k$ which additionally allow to create $r$-valent polyhedral maps, even from $r$-valent non-polyhedral ones!
 
-\begin{definition}\label{def:expansion:patch} Let $w = \cyctup{i_0, i_1, \dots, i_{m-1}, i_m = o_0, \dots, o_s, \dots, o_{n - 1}, o_n = i_m, i_{m-1} \dots i'_1, i'_0}$, $1 \leq s < n$, such that:
+\begin{definition}\label{def:expansion:patch} Let $\mathcal{P}$ be an $r$-patch with boundary
+\begin{align*}
+  \partial\mathcal{P} = i_0 - i_1 - \dots - i_{m-1} - (i_m = o_0) - \dots - o_s - \dots - o_{n - 1} - (o_n = i'_m) - i'_{m-1} \dots i'_1 - i'_0 - i_o
+\end{align*}
+($i_m$ and $o_0$ denote the same vertex, the same goes for $o_n$ and $i'_m$), for $1 \leq s < n$, such that:
   \begin{itemize}
-  \item $i_0 + i'_0 = r - 1$,
-  \item $(i_1, \dots i_{m-1})$ and $(i'_{m-1}, \dots, i'_1)$ are fitting tuples,
-  \item $o_s = 1$,
-  \item $(o_{s + 1}, \dots o_{n - 1}, o_n + o_0, o_1, \dots o_{s - 1})$ is a self-fitting tuple
+  \item $w_{\mathcal{P}}(i_0) + w_{\mathcal{P}}(i'_0) = r - 1$,
+  \item $i_1 - \dots - i_{m-1}$ fits $i'_{m-1} - \dots - i'_1$,
+  \item $w_{\mathcal{P}}(o_s) = 1$,
+  \item $(w_{\mathcal{P}}(o_{s + 1}), \dots w_{\mathcal{P}}(o_{n - 1}), w_{\mathcal{P}}(o_n) + w_{\mathcal{P}}(o_0), w_{\mathcal{P}}(o_1), \dots w_{\mathcal{P}}(o_{s - 1}))$ is a self-fitting tuple
   \end{itemize}
-  (see also \autoref{fig:expansion:patch}). Such a cyclically ordered tuple will be called expansion tuple with outer tuple $(o_{s + 1}, \dots o_{n - 1}, o_n + o_0, o_1, \dots o_{s - 1})$ and a patch with an expansion tuple as boundary structure will be called expansion patch. An expansion patch with the property that every two inner faces meet properly (see \autoref{def:polymap}) will be said to have the polyhedral property, if additionally 
-  \begin{itemize}
-  \item for all $1 \leq l < l + 1 < l' \leq \frac{n - 1}{2}$, there are no two inner faces $f$, $f'$ in $\mathcal{P}$, such that $f$ contains the vertices associated to $o_{s + l \mod n}$ and $o_{s + l' \mod n}$ while $f'$ contains the vertices associated to $o_{s - l \mod n}$ and $o_{s - l' \mod n}$,
-  \item for all $0 \leq l < l + 1 < l' \leq m$, there are no two inner faces $f$, $f'$ in $\mathcal{P}$, such that $f$ contains the vertices associated to $i_{l}$ and $i_{l'}$ while $f'$ contains the vertices associated to $i'_{l}$ and $i'_{l'}$ and
-  \end{itemize}
+  (see also \autoref{fig:expansion:patch}). Such a patch will be called \hdef{expansion patch with outer tuple $(o_{s + 1}, \dots o_{n - 1}, o_n + o_0, o_1, \dots o_{s - 1})$}.
 \end{definition}
+
+\begin{example}\label{ex:easy:expansion}\todo{Do it!}
+\end{example}
+
+\begin{remark}\label{rem:edge:patch}
+  We want to dissect this definition a bit to give a geometric intuition. The first thing to note is that by definition we are able to glue two copies of an expansion patch along the paths $i_0 - \dots - i_{m}$ and $i'_{m} - \dots - i'_0$ (by \autoref{thm:fitting:tuples}, see also  \autoref{fig:expansion:patch}). When doing this the new patch has a boundary path $o_s - \dots - o_{n-1} - (o_n = o_0) - o_1 - o_s$, which we require to be self-fitting. Therefore we can glue two of those patches along this boundary to get an even larger patch (see the four patches centered in \autoref{fig:thm:polymap}).
+\end{remark}
+
+\begin{definition}
+  For an expansion patch $\mathcal{M}$, we want to call the previously mentioned patch consisting of four copies of $\mathcal{M}$ glued together as in \autoref{fig:thm:polymap} an edge patch. An expansion patch $\mathcal{M}$ with boundary vertices named as in \label{def:expansion:patch} with the property that every two inner faces in the corresponding edge patch meet properly will be said to have the polyhedral property, if additionally no face contains both $i_0$ and $i'_0$ but not the edge $\set{i_o, i_1}$.
+\end{definition}
+
+Expansion patches will be our basic building block for all our constructive proofs. We can use them to obtain larger $o$-$k$-gonal patches:
 
 \begin{construction}\label{const:expansion:patch}
   \begin{cinput}
-  \item A $r$-patch $\mathcal{M}$ with outer tuple $o$ with $p$-vector $p$.
+  \item An expansion $r$-patch $\mathcal{M}$ with outer tuple $o$ and $p$-vector $p$.
   \end{cinput}
   \begin{coutput}
-  \item For every $k \geq 3$ a $o$-$k$-gonal $r$-patch $\mathcal{M}(k)$ with $p$-vector $[k] + k \cdot p$.
+  \item For every $k \geq 3$ an $o$-$k$-gonal $r$-patch $\mathcal{M}(k)$ with $p$-vector $[k] + k \cdot p$.
   \item If $\mathcal{M}$ has the polyhedral property, then all inner faces of $\mathcal{M}(k)$ meet proper.
   \end{coutput}
   \begin{cdescription} We construct $\mathcal{M}(k)$ from $k$ copies of $\mathcal{M}$ and a single $k$-gon. Let
 \begin{align*}
-  w = \cyctup{i_0, i_1, \dots, i_m, o_1, \dots, o_s, \dots, o_{n - 1}, i'_m, \dots i'_1, i'_0}
+  \partial\mathcal{P} = i_0 - i_1 - \dots - (i_m = o_0) - o_1 - \dots - o_s - \dots - o_{n - 1} - (o_n = i'_m) - \dots - i'_1 - i'_0 - i_0
 \end{align*}
- be the boundary structure of $\mathcal{M}$ (note that by definition we have $o = (o_{s + 1}, \dots o_{n - 1}, i_n + o_0, o_1, \dots o_{s - 1})$) and also let $v_0$, $v'_0$ be the two vertices in $\mathcal{M}$ to which $i_0$ and $i'_0$ are assigned. We now form a larger patch using \autoref{thm:fitting:tuples} repeatedly by gluing the edge $\set{v_0, v'_0}$ of each of the $k$ copies of $\mathcal{M}$ to an edge of the $k$-gon and also gluing the vertex associated to $i_l$, $1 \leq l \leq m$ from on copy to the vertex associated to $i'_l$ from the adjacent copy. To speak geometrically, we form a ring of $k$ patches of the form $\mathcal{M}$ around the $k$-gon (see \autoref{fig:expansion:patch}). The $p$-vector of $\mathcal{M}(k)$ is therefore $[k] + k \cdot p$.
+ be the boundary of $\mathcal{M}$ as in \autoref{def:expansion:patch}. We now form a larger patch using \autoref{thm:fitting:tuples} repeatedly by gluing the edge $\set{i_0, i'_0}$ of each of the $k$ copies of $\mathcal{M}$ to an edge of the $k$-gon and also gluing the vertex associated to $i_l$, $1 \leq l \leq m$ from on copy to the vertex associated to $i'_l$ from the adjacent copy. To speak geometrically, we form a ring of $k$ patches of the form $\mathcal{M}$ around the $k$-gon (see \autoref{fig:expansion:patch}). The $p$-vector of $\mathcal{M}(k)$ is therefore $[k] + k \cdot p$.
 
     \begin{tikzfigure}{\label{fig:expansion:patch}}{Schematic view of \autoref{const:expansion:patch}}
 
@@ -213,16 +231,18 @@ As previously stated, these definitions are used to formalize the construction s
       \draw[loosely dotted] (171 : 4) -- (189 : 4);
     \end{tikzfigure}
 
-    We do not want to lay out each application of \autoref{thm:fitting:tuples} explicitly and instead we just want to note two things: First, each inner vertex of $\mathcal{M}(k)$ has indeed valence $r$. We see this from calculating the valence for each kind of vertices. The vertices from the original $k$-gon (where they met only one face) are now adjacent additionally to $b + b'$ faces, so the valence is $1 + b + b' = r$. The vertices associated to $i_l$ and $i'_l$, $1 \leq i \leq m$ are adjacent to $i_l + i_l'$ faces and have therefore valence $r$ too, since $(i_1, \dots i_m)$ and $(i'_m, \dots, i'_1)$ were required to be fitting tuples. All other inner vertices come from inner vertices of $\mathcal{M}$, therefore they also have valence $r$. Second, $\mathcal{M}(k)$ is in fact $o$-$k$-gonal since $o_s = 1$ and the vertices between those associated with $o_s$ have exactly the boundary structure $(o_{s + 1}, \dots o_{n - 1}, o_n + o_0, o_1, \dots o_{s - 1})$. Finally we want to show that if $\mathcal{M}$ has the polyhedral property that every two faces of $\mathcal{M}(k)$ meet proper. We first want to rule out that one of the faces is the single $k$-gon in the middle of the construction. Since $i_0 = i_0' = 1$, there is exactly one polygon in $\mathcal{M}$ which contains $v_0$ and/or $v_1$. The $k$-copies of this polygon are the neighbors of the $k$-gon in the middle of the construction, therefore this polygon meets proper with all other polygons in $\mathcal{M}(k)$. That $f$ and $f'$ meet proper is also immediately clear when $f$ and $f'$ reside in the same copy of $\mathcal{M}$ by the definition of the polyhedral property. If they reside in different copies, then they only can have a non-empty intersection, if the two copies are adjacent, i.e. we ``glued'' the vertices labeled with $i_0, \dots, i_m$ from the one copy to the vertices $i'_o, \dots, i'_m$ from the other copy. Thus, to do not meet proper, one face has to contain two non-adjacent vertices with labels in $i_0, \dots, i_m$, while the other has to contain two non-adjacent vertices with labels in $i'_o, \dots, i'_m$. But the last bullet point in \autoref{def:expansion:patch} prohibits exactly that. This finishes the construction. 
+    We do not want to lay out each application of \autoref{thm:fitting:tuples} explicitly and instead we just want to note two things: First, each inner vertex of $\mathcal{M}(k)$ has indeed valence $r$. We see this from calculating the valence for each kind of vertices. The vertices from the original $k$-gon (where they met only one face) are now adjacent additionally to $w_{\mathcal{M}}(i_o) + w_{\mathcal{M}}(i'_o)$ faces, so the valence is $1 + w_{\mathcal{M}}(i_o) + w_{\mathcal{M}}(i'_o) = r$. The vertices $i_l$ and $i'_l$, $1 \leq i < m$ are adjacent to $i_l + i_l'$ faces and have therefore valence $r$ too, since $i_1 - \dots - i_{m-1}$ and $i'_{m-1} - \dots - i'_1$ were required to be fitting. All other inner vertices come from inner vertices of $\mathcal{M}$, therefore they also have valence $r$. Second, $\mathcal{M}(k)$ is in fact $o$-$k$-gonal since $w_{\mathcal{P}}(o_s) = 1$ and the number of faces adjacent to the vertices between the different copies of $o_s$ are exactly $w_{\mathcal{P}}(o_{s + 1}), \dots, w_{\mathcal{P}}(o_{n - 1}), w_{\mathcal{P}}(o_n) + w_{\mathcal{P}}(o_0), w_{\mathcal{P}}(o_1), \dots w_{\mathcal{P}}(o_{s - 1})$. Finally we want to show that if $\mathcal{M}$ has the polyhedral property that every two faces of $\mathcal{M}(k)$ meet proper. We first want to rule out that one of the faces is the single $k$-gon in the middle of the construction. The $k$ copies of $\mathcal{M}$ touch the $k$-gon in different edges, which correspond to the edge $\set{i_0, i'_0}$ in $\mathcal{M}$, therefore the $k$-gon meets any other face properly, if no face of $\mathcal{M}$ contains both vertices $i_0$ and $i'_0$, but not the whole edge $\set{i_0, i'_0}$, which is disallowed in the definition of the polyhedral condition. If both $f$ and $f'$ differ from the central $k$-gon, then they reside in two of the copies of $\mathcal{M}$. But they can only have a non-empty intersection, if they are in the same copy or in adjacent copies, i.e. one is glued along the vertices $i_o - \dots - i_m$ to the others vertices $i'_m - i'_0$. But then we can think of the subpatch of $\mathcal{M}(k)$ consisting only of those two copies of $\mathcal{M}$ containing $f$ and $f'$ as a subpatch of the edge patch of $\mathcal{M}$ and any two faces meeting non-properly in $\mathcal{M}$ would correspond to two faces in the edge patch meeting non-properly. But this can not be by definition, which finishes the construction. 
   \end{cdescription}
 \end{construction}
 
-With these constructions at hand we can now finally design a scheme to create a $r$-valent polyhedral map from a non-polyhedral one.
+With these constructions at hand we can now finally design a scheme to create an $r$-valent polyhedral map from a non-polyhedral one.
 
 \begin{proposition}\label{thm:const:polymap}
-  Given a $r$-valent map $M$ on an orientable closed $2$-manifold $S$ and an expansion $r$-patch $\mathcal{M}$ with outer tuple $o$, \autoref{const:map} returns a $r$-valent polyhedral map on $S$ when we take $\mathcal{P}(f) = \mathcal{M}(k)$ for each $k$-gonal face $f$ of $M$.
+  Given an $r$-valent map $M$ on an orientable closed $2$-manifold $S$ and an expansion $r$-patch $\mathcal{M}$ with outer tuple $o$, \autoref{const:map} returns an $r$-valent polyhedral map on $S$ when we take $\mathcal{P}(f) = \mathcal{M}(k)$ for each $k$-gonal face $f$ of $M$.
 \begin{proof}
-The only requirement of \autoref{const:map} we did not explicitly stated is that $o$ is self-fitting (which it is by definition) and that $\mathcal{M}(k)$ is $o$-$k$-gonal, which was the result of \autoref{const:expansion:patch}. Thus we can apply \autoref{const:map} and get a map $M'$ on $S$, for which we need to show that it is polyhedral. We want to use a proof by contradiction so assume that two faces of $M'$, $f$ and $f'$, do not meet properly. By construction, there are two faces $f_o$ and $f'_o$ in the original map $M$, such that $f$ is contained in $\mathcal{P}(f_o)$ and $f'$ is contained in $\mathcal{P}(f'_o)$. We consider two cases: whether $f_o$ and $f'_o$ denote the same face or not. We quickly rule out the first case, since we proved exactly that in \autoref{const:expansion:patch}. Therefore assume that $f_o$ and $f'_o$ are different. The patches $\mathcal{P}(f_o)$ and $\mathcal{P}(f'_o)$ and therefore also the faces $f$ and $f'$ only have a non-empty intersection, if $f_o$ and $f'_o$ are adjacent.
+The only requirement of \autoref{const:map} we did not explicitly stated is that $o$ is self-fitting (which it is by definition) and that $\mathcal{M}(k)$ is $o$-$k$-gonal, which was the result of \autoref{const:expansion:patch}. Thus we can apply \autoref{const:map} and get a map $M'$ on $S$, for which we need to show that it is polyhedral. We want to use a proof by contradiction so assume that two faces of $M'$, $f$ and $f'$, do not meet properly. By construction, there are two faces $f_o$ and $f'_o$ in the original map $M$, such that $f$ is contained in $\mathcal{P}(f_o)$ and $f'$ is contained in $\mathcal{P}(f'_o)$. Since $f$ and $f'$ do not meet proper, $f_o \cap f'_o \neq \emptyset$ and $\mathcal{P}(f_o) \cap \mathcal{P}(f'_o) \neq \emptyset$. We consider two cases: whether $f_o$ and $f'_o$ denote the same face or not and quickly rule out the first case, since $f_o$ is a $2$-cell and thus no vertices of the boundary of $\mathcal{P}(f_o)$ are identified in $M$ and we proved that the inner faces of $\mathcal{P}(f_o)$ meet proper in \autoref{const:expansion:patch}. Therefore assume that $f_o$ and $f'_o$ are different. The patches $\mathcal{P}(f_o)$ and $\mathcal{P}(f'_o)$ and therefore also the faces $f$ and $f'$ only have a non-empty intersection if $f_o$ and $f'_o$ are adjacent. Since the inner $k$-gons of $\mathcal{M}(k)$ are only adjacent to faces of the corresponding patch, we can also assume that neither $f$ nor $f'$ is one of those inner $k$-gons and that $f$ and $f'$ are contained in two copies of $\mathcal{M}$. Let $\mathcal{M}_c$ be the copy of $\mathcal{M}$ which contains $f$ (and is a subpatch of $\mathcal{P}(f_o)$) and let $\mathcal{M}_c'$ be the copy of $\mathcal{M}$ which contains $f'$ (and is a subpatch of $\mathcal{P}(f'_o)$), and we know that $\mathcal{M}_c \cap \mathcal{M}_c' \neq \emptyset$. 
+
+Recall that in \autoref{const:map} we constructed $M'$ be subdividing each edge of $M$ and replacing each face with the corresponding patch. We again want to use the notion of ``corner vertices'' for the original vertices in $M$, ``side vertices'' for the vertices added by the subdivision and ``inner vertices'' for all of the other vertices. Note that $\mathcal{M}_c$ and $\mathcal{M}_c'$ only contain exactly one corner vertex ($o_s$). If $f$ and $f'$ meet non-proper, then $\mathcal{M}_c$ and $\mathcal{M}_c'$ has to share at least one side vertex (they can not share an inner vertex, as these are completely internal to $\mathcal{P}(f_o)$ and $\mathcal{P}(f'_o)$ and those patches only meet at their boundary). Neither endpoints of an edge  $e \in M$ shared by both $f_o$ and $f_o'$ can be contained multiple times in $f_o$ or $f'_o$ or else $f_o$ or $f'_o$ would not be $2$-cells. Thus the intersection of $f_o$ and $f'_o$ does not contain paths of length greater then one and since $\mathcal{M}_c$ and $\mathcal{M}_c'$ do only contain vertices in the subdivision of adjacent edges in $M$, the intersection $\mathcal{M}_c \cap\mathcal{M}_c'$ contains only vertices in the subdivision of a single edge in $M$. But then $\mathcal{M}_c$ and $\mathcal{M}_c'$ are both contained in an edge patch formed along this edge and the faces in $\mathcal{M}_c$ and $\mathcal{M}'_c$ meet proper by the definition of the polyhedral property. We have held contradiction and finish the proof.
 
     \begin{tikzfigure}{\label{fig:thm:polymap}}{}
       \begin{scope}[scale=0.8]
@@ -277,7 +297,7 @@ The only requirement of \autoref{const:map} we did not explicitly stated is that
       \fill[shift={(-5,0)}] [black] (9 : 5.062) circle (2pt);
       \node[shift={(-4,0)}][anchor="45"] at (9 : 5.062) {$o_{0}$};
       \fill[shift={(-5,0)}] [black] (-9 : 5.062) circle (2pt);
-      \node[shift={(-4,0)}][anchor="0"] at (-9 : 5.062) {$o_{n - s}$};
+      \node[shift={(-4,0)}][anchor="0"] at (-9 : 5.062) {$o_{2s \mod n}$};
       \fill[shift={(-5,0)}] [black] (-30 : 5.774) circle (2pt);
       \node[shift={(-4,0)}][anchor="0"] at (-30 : 5.774) {$o_{s - 1}$};
       \fill[shift={(-5,0)}] [black] (-36 : 6.180) circle (2pt);
@@ -439,7 +459,7 @@ Putting all these constructions together, we can formulate a proof scheme for \a
   \end{itemize}
   Then $(p, v)$ is $q$-$w$-realizable.
   \begin{proof}
-    If $r = 3$, we start by using \autoref{thm:eberhard:extended:3} to construct a map $M'$ with $p$-vector $p' = p + c'_6 \cdot [6]$ and $v$-vector $v' = v + d' \cdot [3]$ ($c'_6, d' \in \nats$). We chose $c'_6$ hexagonal faces of $M'$ and assign to those the patch $\mathcal{P}_F$, every other $k$-gonal face is assigned the patch $\mathcal{P}_N(k)$. Next, the use of \autoref{const:map} returns a new map $M''$. Finally, we use \autoref{thm:const:polymap} with $\mathcal{P}_P$ and get a polyhedral map $M$. If we can show that this map has a $p$-vector of the form $p +  [c_s \times s, c_l \times l]$ and a $v$-vector of the form $v + d \cdot [r]$, we can conclude the claim by \autoref{lem:2:valued:eberhard}. So we look at the $p$ and $v$-vector of the maps $M''$ and finally $M$: $M''$ has a $p$-vector of $p + [c''_s \times s, c''_l \times s]$, since we removed the additional $c'_6$ in $M'$ and replaced them with many more $s$-gons and $l$-gons. When doing this we only added $r$-valent vertices, so the $v$-vector of $M''$ is clearly $v'' \defeq v + d'' \cdot [3]$. Finally the $p$-vector and the $v$-vector of $M$ is of the desired form, since we only added more $s$-gons, $l$-gons and $r$-valent vertices in the last construction step. For $r = 4$, we just switch out quadrangles for hexagons, $4$-valent vertices for $3$-valent vertices and use \autoref{thm:eberhard:extended:4} in the beginning. Every step in the proof goes completely analogous.
+    If $r = 3$, we start by using \autoref{thm:eberhard:extended:3} to construct a map $M'$ with $p$-vector $p' = p + c'_6 \cdot [6]$ and $v$-vector $v' = v + d' \cdot [3]$ ($c'_6, d' \in \nats$). We chose $c'_6$ hexagonal faces of $M'$ and assign to those the patch $\mathcal{P}_F$, every other $k$-gonal face is assigned the patch $\mathcal{P}_N(k)$. Next, the use of \autoref{const:map} returns a new map $M''$. Finally, we use \autoref{thm:const:polymap} with $\mathcal{P}_P$ and get a polyhedral map $M$. If we can show that this map has a $p$-vector of the form $p +  [c_s \times s, c_l \times l]$ and a $v$-vector of the form $v + d \cdot [r]$, we can conclude the claim by \autoref{lem:2:valued:eberhard}. So we look at the $p$ and $v$-vector of the maps $M''$ and finally $M$: $M''$ has a $p$-vector of $p + [c''_s \times s, c''_l \times s]$, since we removed the additional $c'_6$ hexagons in $M'$ and replaced them with many more $s$-gons and $l$-gons. When doing this we only added $r$-valent vertices, so the $v$-vector of $M''$ is clearly $v'' \defeq v + d'' \cdot [3]$. Finally the $p$-vector and the $v$-vector of $M$ is of the desired form, since we only added more $s$-gons, $l$-gons and $r$-valent vertices in the last construction step. For $r = 4$, we just switch out quadrangles for hexagons, $4$-valent vertices for $3$-valent vertices, $c'_4$ for $c'_6$ and use \autoref{thm:eberhard:extended:4} in the beginning. Every step in the proof goes completely analogous.
   \end{proof}
 \end{proposition}
 

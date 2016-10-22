@@ -1,37 +1,36 @@
 \section{Polyhedral maps}\label{sec:polymap}
 
-Since we want to state general {\sc Eberhard}-like theorems not only on polyhedra, i.e. the sphere $\sphere^2$, but on arbitrary surfaces, we need to define maps on $2$-manifolds and also need to specify which maps have common properties with polyhedra, which we will call polyhedral maps. This sections definitions follow \cite{brehm2004polyhedralmaps} closely.
+Since we want to state general {\sc Eberhard}-like theorems not only on polyhedra, i.e. on the sphere $\sphere^2$, but on arbitrary surfaces, we need to define maps on $2$-manifolds and also need to specify which maps have common properties with polyhedra, which we will call polyhedral maps. This sections definitions follow \cite{brehm2004polyhedralmaps} closely.
 
-\begin{definition}[Embedding of a graph]
-  Let $G = (V, E)$ be a finite graph. An embedding $\phi$ of $G$ into a (topological) $2$-manifold $S$ is a map which assigns to every vertex $v \in V$ a single point $\phi(v) \in S$ and every edge $e = \{v, v'\} \in E$ a subset $\phi(e) \subseteq S$ and a homeomorphism $\phi_e : [0, 1] \stackrel{\cong}{\longrightarrow} \phi(e)$, such that $\phi_e(\set{0, 1}) = \set{\phi(v), \phi(v')}$ and for any two edges $e, e' \in E, e \neq e'$: $\phi_e(\,(0,1)\,) \cap \phi_{e'}(\,(0,1)\,) = \emptyset$. We call a graph planar if such an embedding exists into to euclidean plane. The closure of the connected components of $S \setminus \bigcup_{e \in E} \phi(e)$ are called faces of the embedding and the set of all faces shall be $F$. We can define an incidence structure between $F$ and $E$ by saying $f \in F$ contains $e \in E \iff f \cap \phi(e) = \phi(e)$, which extends to an incidence poset between $V$, $E$ and $F$ using additionally the normal incidence structure in the graph $G$. To each embedding we can define a dual embedding, where adjacent faces are connected by edges, and the vertices form the new faces.
+\begin{definition}[Simple graphs]
+  A simple \hdef{graph} $G$ is a pair $(V, E)$ of a finite set $V$ and $E \subseteq \begin{psmallmatrix}V\\2\end{psmallmatrix}$ (so $G$ is undirected and finite without loops and multi-edges). A \hdef{subgraph} of $G$ is a graph $G' = (V', E')$, such that $V' \subseteq V$ and $E' \subseteq E \cap  \begin{psmallmatrix}V'\\2\end{psmallmatrix}$ and we want to denote this phenomena by $G' \subseteq G$. A \hdef{path} in $G$ is a subgraph $G_P = (V_P, E_P)$ of $G$, such that $V_P = \set{v_1, \dots, v_k}$ and $E_P = \bigcup_{i = 1}^{k-1}\set{v_i, v_{i+1}}$ for all $i \in \set{1, \dots k - 1}$. A \hdef{cycle} in $G$ is a subgraph $G_C = (V_C, E_C)$ of $G$, such that $V_C = \set{v_1, \dots, v_k}$ and $E_C = \set{v_k, v_1} \cup \bigcup_{i = 1}^{k-1}\set{v_i, v_{i+1}}$. We want to write $v_1 - \dots - v_k$ for paths and $v_1 - \dots - v_k - v_1$ for cycles. The \hdef{valence} of a vertex is the number of adjacent edges.
 \end{definition}
 
-\begin{definition}[Map on a closed $2$-manifold] \label{def:map} An embedding of a graph $G$ into a closed $2$-manifold with vertices $V$, edges $E$ and faces $F$ is called a map, provided the following properties hold:
+\begin{definition}[Embedding of a graph] Let $G = (V, E)$ be a finite graph (undirected, possibly with loops and multi-edges). An \hdef{embedding} $\phi$ of $G$ into a (topological) $2$-manifold $S$ is a function which assigns to every vertex $v \in V$ a single point $\phi(v) \in S$ and every edge $e = \{v, v'\} \in E$ a subset $\phi(e) \subseteq S$ and a homeomorphism $\phi_e : [0, 1] \stackrel{\cong}{\longrightarrow} \phi(e)$, such that $\phi_e(\set{0, 1}) = \set{\phi(v), \phi(v')}$ and for any two edges $e, e' \in E, e \neq e'$: $\phi_e(\,(0,1)\,) \cap \phi_{e'}(\,(0,1)\,) = \emptyset$. We call a graph \hdef{planar} if such an embedding exists into to euclidean plane. The closure of the connected components of $S \setminus \bigcup_{e \in E} \phi(e)$ are called \hdef{faces} of the embedding and the set of all faces shall be $F$. We can define an incidence structure between $F$ and $E$ by saying $f \in F$ contains $e \in E \iff f \cap \phi(e) = \phi(e)$, which extends to an incidence poset between $V$, $E$ and $F$ using additionally the normal incidence structure in the graph $G$. To each embedding we can define a \hdef{dual} embedding, where adjacent faces are connected by edges, and the vertices form the new faces.
+\end{definition}
+
+\begin{definition}[Map on a closed $2$-manifold] \label{def:map} An embedding of a graph $G$ into a closed $2$-manifold with vertices $V$, edges $E$ and faces $F$ is called a \hdef{map}, provided the following properties hold:
   \begin{itemize}
-  \item $G$ is simple, i.e. $G$ is nonempty, connected and contains no loops or multi-edges.
-  \item Every vertex $v \in V$ has valence at least $3$.
-  \item Every $f \in F$ is a closed $2$-cell (i.e. homeomorphic to $\set{(x, y) \in \reals^2 : x^2 + y^2 \leq 1}$).
+  \item $G$ is simple,
+  \item every vertex $v \in V$ has valence at least $3$ and
+  \item every $f \in F$ is a closed $2$-cell (i.e. homeomorphic to $\set{(x, y) \in \reals^2 : x^2 + y^2 \leq 1}$).
   \end{itemize}
-  When talking about a map $P$, the underlying graph is called the $1$-skeleton or simply the graph of $P$. The faces of a map incident to $n$ edges (or, equivalently, $n$ vertices) will be called $n$-gonal faces or simply $n$-gons.
+  When talking about a map $P$, the underlying graph is called the \hdef{$1$-skeleton} or simply the graph of $P$. The faces of a map incident to $n$ edges (or, equivalently, $n$ vertices) will be called \hdef{$n$-gonal} faces or simply \hdef{$n$-gons}.
 \end{definition}
 
 \begin{remark}
   In \autoref{sec:construction} we weaken this definition a bit to allow for $2$-valent vertices. This does not warrant a whole new definition, so we just state it here for completeness and to avoid confusion.
 \end{remark}
 
-\begin{definition}[Polyhedral map] \label{def:polymap} A map on a closed $2$-manifold is called polyhedral, if for every two faces $f, f', f \neq f'$ there is either no vertex, a single vertex or a single edge incident to both $f$ and $f'$. In this case the two faces are said to meet properly.
+\begin{definition}[Polyhedral map] \label{def:polymap} A map on a closed $2$-manifold is called \hdef{polyhedral}, if for every two faces $f, f', f \neq f'$ there is either no vertex, a single vertex or a single edge incident to both $f$ and $f'$. In this case the two faces are said to meet properly.
 \end{definition}
 
 \begin{remark} Planar graphs are exactly those with embeddings into the sphere $\sphere^2 \defeq \set{(x, y, z) \in \reals^3 : x^2 + y^2 + z^2 = 1}$. Embeddings into the sphere and into the plane can be transformed into each other using the stereographic projection (i.e. the map $\psi: \sphere^2 \setminus \set{(0, 0, 1)} \to \reals^2, (x, y, z) \mapsto (\frac{x}{1-z}, \frac{y}{1-z})$) and its inverse, where the projection center (the point $(0, 0, 1)$) on the sphere is neither a vertex nor lies on an edge. We also want to explicitly define (polyhedral) maps on the euclidean plane as those embeddings which come from stereographic projections of (polyhedral) maps on the sphere.
 \end{remark}
 
-\begin{remark}
-  The concept of a map and a polyhedral map dualize perfectly, i.e. the dual of a map is again a map and this is also the case for polyhedral maps.
-\end{remark}
+\begin{remark}\label{rem:edge:incidence} The incidence poset of a polyhedral map has the property that each edge contains exactly two vertices and is contained in exactly two faces. The first assertion is trivial to see, as we only allowed simple graphs in the definition of polyhedral maps. To see the second fact, first note that by the topology of a closed $2$-manifold each edge $e$ is contained in some face and not in more than two faces. But $e$ can not be contained in a single face $f$ twice, because then $f$ is either not a closed $2$-cell or we would have a situation where $e$ points inwards into $f$ (\autoref{fig:example:pointyface}) in which case the graph contains a vertex of valence $1$.
 
-\begin{remark}\label{rem:edge:incidence} The incidence poset of a polyhedral map has the property that each edge contains exactly two vertices and is contained in exactly two faces. The first assertion is trivial to see, as we only allowed simple graphs in the definition of polyhedral maps. To see the second fact, first note that by the topology of a closed $2$-manifold each edge $e$ is contained in some face and not in more than two faces. But $e$ can not be contained in a single face $f$, because then $f$ is either not a closed $2$-cell or we would have a situation where $e$ points inwards into $f$ (\autoref{fig:example:pointyface}) in which case the graph contains a vertex of valence $1$.
-
-  \begin{tikzfigure}{\label{fig:example:pointyface}}{\todo{}An unpleasent situation for a face being wrapped around to itself or pierced by an edge.}
+  \begin{tikzfigure}{\label{fig:example:pointyface}}{Two situations which can not occur in maps.}
     \matrix (m) [ column sep=1cm] {
       \begin{scope}
         \node (e) at (0.7, 1) [above] {$e$};
@@ -43,27 +42,41 @@ Since we want to state general {\sc Eberhard}-like theorems not only on polyhedr
         \draw[dotted] (0, 2) -- (2, 1.75);
         \draw[dotted] (0, 0) -- (2, 0.25);
         \draw(-0.5, 1) -- (1.625, 1);
+        \fill [black] (-0.5, 1) circle (2pt);
+        \fill [black] (1.625, 1) circle (2pt);
         
       \end{scope}
       &
       \begin{scope}
         \node (f) at (1, 0.5) {$f$};
-        \node (e) at (1.5, 1) [above] {$e$};
-        \draw (1, 1) -- (2, 1) -- (2, 2) -- (0, 2) -- (0, 0) -- (2, 0) -- (2, 1);
+        \node (e) at (1.125, 1) [above] {$e$};
+        \draw (1.8, 1) -- (2, 1) -- (2, 2) -- (0, 2) -- (0, 0) -- (2, 0) -- (2, 1);
+        \draw[loosely dotted] (1.4, 1) -- (1.8, 1);
+        \draw (1.4, 1) -- (1, 1);
+        \fill [black] (0, 0) circle (2pt);
+        \fill [black] (0, 2) circle (2pt);
+        \fill [black] (2, 2) circle (2pt);
+        \fill [black] (2, 0) circle (2pt);
+        \fill [black] (2, 1) circle (2pt);
+        \fill [black] (1, 1) circle (2pt);
+        \fill [black] (1.25, 1) circle (2pt);
       \end{scope} 
       \\};
   \end{tikzfigure}
-  
-  Further note that in a polyhedral map each vertex $v$ has a valence of at least $3$, since otherwise the two faces adjacent $v$ would both contain the two edges adjacent to $v$.
 \end{remark}
 
+\begin{remark}
+  Because of the last remark, the concept of a map and a polyhedral map dualize perfectly, i.e. the dual of a map is again a map and this is also the case for polyhedral maps.
+\end{remark}
+
+
 \begin{remark}\label{rem:polymap:from:polyhedron}
-  We can view every polyhedron as a map on a surface, where the graph is the $1$-skeleton of the polyhedron and the embedding is held by ``deforming'' the polyhedron into a sphere $\sphere^2$. In this context each face of the polyhedron corresponds to one in the map. It is easy to see that this map is polyhedral, which gives the name of the property some backing.
+  We can view every polyhedron as a map on a surface, where the graph of the map is the graph / $1$-skeleton of the polyhedron and the embedding is held by ``deforming'' the polyhedron into a sphere $\sphere^2$. In this context each face of the polyhedron corresponds to one in the map. It is easy to see that this map is polyhedral, which gives the name of the property some backing.
 \end{remark}
 
 We want to show that the converse is also true and that polyhedral maps on the sphere $\sphere^2$ and polyhedra have the same $1$-skeletons. For this we need a property from graph theory.
 
-\begin{definition} A graph is called $k$-(vertex)-connected if it has more than $k$ vertices and the deletion of fewer than $k$ vertices leaves the graph connected.
+\begin{definition} A graph is called \hdef{$k$-(vertex)-connected} if it has more than $k$ vertices and the deletion of fewer than $k$ vertices leaves the graph connected.
 \end{definition}
 
 \begin{proposition} Every graph $G = (V, E)$ of a polyhedral map $\phi$ is $3$-connected.
@@ -77,23 +90,25 @@ We want to show that the converse is also true and that polyhedral maps on the s
 
 With these two results (and the knowledge that planarity of a graph is equivalent to the embedability into $\sphere^2$) we can see that in fact every polyhedral map on the $\sphere^2$ comes from a polyhedron and vice-versa, at least when looking at the underlying graphs. Actually checking that going from a map to the underlying graph, then to the polyhedron by {\sc Steinitz's} theorem and back to polyhedral map using \autoref{rem:polymap:from:polyhedron} yields the same map (up to a homeomorphism on the embedding) and the same the other way around will be left out here.
 
+In the rest of the section we want to review two very broad {\sc Eberhard} theorems for polyhedral maps on oriented closed $2$-manifolds. To state them easily we need a few more definitions.
+
 \begin{definition}[Sequence]
-  A sequence $a$ in this thesis is a map $\nats \setminus \{0, 1, 2\} \rightarrow \nats$ with finite support. These maps will be written as $(a(3), a(4), ..., a(k))$, where $k = \operatorname{max} \operatorname{supp} a$. If $a$ has a small but wide support this notation will be further abbreviated by $[a(k_1) \times k_1, a(k_2) \times k_2, ...]$, where only entries not equal to zero occur. Further $a(k) \times k$ will be simply written as $k$ if $a(k) = 1$. Additionally, we want to define addition and subtraction of two sequences and multiplication with scalars, these operations are to be executed element-wise.
+  A \hdef{sequence} $a$ in this thesis is a map $\nats \setminus \{0, 1, 2\} \rightarrow \nats$ with finite support. These maps will be written as $(a_3, a_4, ..., a_k)$, where $k = \operatorname{max} \operatorname{supp} a$. If $a$ has a small but wide support this notation will be further abbreviated by $[a_{k_1} \times k_1, a_{k_2} \times k_2, ...]$, where only entries not equal to zero occur. Further $a_k \times k$ will be simply written as $k$ if $a_k = 1$. Additionally, we want to define addition and subtraction of two sequences and multiplication with scalars, these operations are to be executed element-wise.
 \end{definition}
 \begin{example}
   $(2, 0, 0, 1)$, $[2 \times 3, 1 \times 6]$, $[2 \times 3, 6]$ and $2 \cdot [3] + [6]$ all denote the same sequence.
 \end{example}
 \begin{definition}[$p$-vector and $v$-vector of a map on a surface]\label{def:relizable}
-  The $p$-vector of a map $M$ on a $2$-manifold is the sequence $(p_3, \dots, p_m)$, where $p_k$ denotes the number of faces with exactly $k$ vertices. Similarly the $v$-vector of $M$ is the sequence $(v_3, \dots, v_n)$ where each $v_k$ is the number of vertices of $M$ with valence $k$.
+  The \hdef{$p$-vector} of a map $M$ on a $2$-manifold is the sequence $(p_3, \dots, p_m)$, where $p_k$ denotes the number of faces with exactly $k$ vertices. Similarly the \hdef{$v$-vector} of $M$ is the sequence $(v_3, \dots, v_n)$ where each $v_k$ is the number of vertices of $M$ with valence $k$.
 \end{definition}
 
 \begin{definition}\label{def:realizable}
-  A pair of sequences $p = (p_3, \dots, p_m)$, $v = (v_3, \dots, v_n)$ is said to be realizable as a polyhedral map on the closed $2$-manifold $S$ (or short: realizable on $S$), if there exists such a map having $p$ as its $p$-vector and $v$ as its $v$-vector.
+  A pair of sequences $p = (p_3, \dots, p_m)$, $v = (v_3, \dots, v_n)$ is said to be \hdef{realizable as a polyhedral map} on the closed $2$-manifold $S$ (or short: realizable on $S$), if there exists such a map having $p$ as its $p$-vector and $v$ as its $v$-vector.
 \end{definition}
 
-The the two main theorems we want to base our constructions on are the following:
+The two main theorems we want to base our constructions on are the following:
 
-\begin{theorem}[Jendrol', Jucovi{\v{c}}, 1977, \cite{jendrol1977generalization}] \label{thm:eberhard:extended:3}
+\begin{theorem}[{\sc Jendrol', Jucovi{\v{c}}}, 1977, \cite{jendrol1977generalization}] \label{thm:eberhard:extended:3}
   Each pair of sequences $p$ and $v$ is realizable on the closed orientable $2$-manifold with {\sc Euler}-charactersitic $\chi$ for some $p_6 \in \nats$, $v_3 \in \nats$ if and only if
   \begin{align*}
     \sum_{k=3}^m (6-k)p_k + 2 \sum_{k=4}^n (3-k)v_k &= 6\chi, \\
@@ -102,7 +117,7 @@ The the two main theorems we want to base our constructions on are the following
   \end{align*}
 \end{theorem}
 
-\begin{theorem}[Jendrol', Jucovi{\v{c}}, Barnette, Grünbaum, Zaks, 1973, \cite{jucovivc1973theorem}, \cite{barnette1971toroidal}, \cite{grunbaum1969planar}, \cite{zaks1971analogue}] \label{thm:eberhard:extended:4}
+\begin{theorem}[{\sc Jendrol', Jucovi{\v{c}}, Barnette, Grünbaum, Zaks}, 1973, \cite{jucovivc1973theorem}, \cite{barnette1971toroidal}, \cite{grunbaum1969planar}, \cite{zaks1971analogue}] \label{thm:eberhard:extended:4}
   Each pair of sequences $p$ and $v$ is realizable on the closed orientable $2$-manifold with {\sc Euler}-characteristic $\chi$ for some $p_4, v_4 \in \nats$ if and only if
   \begin{align*}
     \sum_{3 \leq k \leq m,\, k \neq 4} (4-k)p_k + \sum_{k \geq 3,\, k\neq 4} (4-k)v_k &= 4\chi, \\
@@ -112,4 +127,4 @@ The the two main theorems we want to base our constructions on are the following
   \end{align*}
 \end{theorem}
 
-Another good argument why the theorem fails on the torus in some cases is also found in \cite{izmestiev2013there}.
+Another good argument why these theorems fails on the torus in some cases is also found in \cite{izmestiev2013there}.

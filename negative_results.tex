@@ -2,14 +2,14 @@
 
 Attentive readers might have noticed that we left out in the previous sections exactly those theorems for $[q_s \times s, q_l \times l]$-$[r]$-realizability, where $s | l$. This is not by far a coincidence. In fact, the problems with these realizations arise from graph theory, and even weaker constructs can not exists. These constructs are graphs with the following properties: 
 
-\begin{definition} \todo{introduce a mod b-valent vertices / a mod b-gonal faces} A planar graph is called $(a \mod r)$-valent, $r \in \nats_{>0}$, $a \in \set{0, \dots, r - 1}$, if the valence of every vertex is a congruent $a$ modulo $r$. Dually, the graph is called $(a \mod k)$-gonal, $k \in \nats_{>0}$, $a \in \set{0, \dots, k - 1}$, if for every $k'$-gon $k' \equiv b ~(\mod k)$ holds. It is called near $(a \mod k)$-gonal / near $(a \mod r)$-valent, if there is exactly one $k'$-gonal face / exactly one $r'$-valent vertex with $k' \not\equiv a ~(\mod k)$ / $r' \not\equiv a ~(\mod r)$. In the case of $a = 0$, these properties will be called (near) multi-$k$-gonal / (near) multi-$r$-valent.
+\begin{definition} A vertex is called $(a \mod r)$-valent, if its valence is congruent $a$ modulo $r$, $r \in \nats_{>0}$, $a \in \set{0, \dots, r - 1}$. A planar graph is called $(a \mod r)$-valent, if the valence $(a \mod r)$-valent. Dually, a face is called $(a \mod s)$-gonal, if the number of vertices of this face is congrent $a$ mod $s$, $s \in \nats_{>0}$, $a \in \set{0, \dots, s - 1}$ and the graph is called $(a \mod s)$-gonal if every face is $(a \mod s)$-gonal. It is called near $(a \mod k)$-gonal / near $(a \mod r)$-valent, if exactly one face / exactly one vertex is not $(a \mod s)$-gonal / $(a \mod r)$-valent. In the case of $a = 0$, these properties will be called (near) multi-$s$-gonal / (near) multi-$r$-valent.
 \end{definition}
 
 The following theorem is established in \cite{malkevitch1970properties}, together with many similar results for up to two exceptional vertices/faces. We can immediately draw a conclusion for which admissible pairs of sequences we can not hope for a $q$-$w$-realization by applying this theorem on $[q_s \times s, q_l \times l]$-$[r]$-realizations, $s | l$, which we will do as a corollary.
 
-\begin{theorem}\label{thm:near:regular:nonrealizable} Let $r, k \in \set{2, 3, 4, 5}$. No connected planar graph is both multi-$r$-valent and near multi-$k$-gonal.
+\begin{theorem}\label{thm:near:regular:nonrealizable} Let $r, s \in \set{2, 3, 4, 5}$. No connected planar graph is both multi-$r$-valent and near multi-$s$-gonal.
 \end{theorem}
-\begin{corollary} No connected planar graph is both near multi-$r$-valent and multi-$k$-gonal, $r, k \in \set{3, 4, 5}$.
+\begin{corollary} No connected planar graph is both near multi-$r$-valent and multi-$s$-gonal, $r, s \in \set{2, 3, 4, 5}$.
 \end{corollary}
 
 \begin{corollary}\label{thm:division:nonrealizable}
@@ -24,9 +24,18 @@ The following theorem is established in \cite{malkevitch1970properties}, togethe
 \end{proof}
 \end{corollary}
 
-In \cite{horvnak1977nearly} we can also find similar results to those in \cite{malkevitch1970properties} for cell-decompositions of arbitrary closed orientable $2$-manifolds, suggesting that only the surfaces of small genus provide exceptions to the realizablity of (near) multi-$k$-gonal / multi-$k$-valent graph embeddings. Sadly (or luckily), there is no immediate new instance of an unrealizable admissible pair of sequences from these results.
+\begin{example}
+  The following choices of $p, v, q, w$ show examples of pairs of admissibile sequences $(p, v)$, which are not $q$-$w$-realizable for all $k \in \nats$ by \autoref{thm:division:nonrealizable}:
+  \begin{alignat*}{10}
+    (s, r) = (4, 3):\quad& p = [& 6 \times 4&, 6], \quad v = [&10 \times 3&], \quad q = [&(2k + 1) \times 4&,{} & 8 + 4k&], \quad w = [3]\\
+    (s, r) = (5, 3):\quad& p = [&12 \times 5&, 6], \quad v = [&22 \times 3&], \quad q = [&(5k + 4) \times 5&,{} &10 + 5k&], \quad w = [3]\\
+    (s, r) = (3, 4):\quad& p = [& 8 \times 3&, 4], \quad v = [& 8 \times 4&], \quad q = [&(3k + 2) \times 3&,{} & 6 + 3k&], \quad w = [4]\\
+    (s, r) = (3, 5):\quad& p = [&22 \times 3&, 4], \quad v = [&14 \times 5&], \quad q = [&(9k + 8) \times 3&,{} & 6 + 3k&], \quad w = [5]
+  \end{alignat*}
+  If $(s, r) = (3, 3)$, there is no admissible pair of sequences that would suffice one of the two conditions in \autoref{thm:division:nonrealizable}.
+\end{example}
 
-In the case $r = 3$, $s = 3$ in \autoref{thm:division:nonrealizable}, the provided pair $(p, v)$ is not admissible, which would not explain why we left out a theorem about $[3, 9]$-$3$-realizable maps in \autoref{sec:3:3}. Strangely, there is another type of divisibility condition, which excludes even more pairs:
+In \cite{horvnak1977nearly} we can also find similar results to those in \cite{malkevitch1970properties} for cell-decompositions of arbitrary closed orientable $2$-manifolds, suggesting that only the surfaces of small genus provide exceptions to the realizablity of (near) multi-$k$-gonal / multi-$k$-valent graph embeddings. Sadly (or luckily), there is no immediate new instance of an unrealizable admissible pair of sequences from the results shown there. In the case $(s, r) = (3, 3)$ in \autoref{thm:division:nonrealizable}, the provided pairs $(p, v)$ are not admissible, which would not explain why we left out a theorem about $[3, 9]$-$3$-realizable maps in \autoref{sec:3:3}. Strangely, there is another type of divisibility condition, which excludes even more pairs:
 
 \begin{proposition}\label{thm:mod:graphs:nonrealizable}
   Let $(s, r) \in \set{(3, 3), (3, 4), (3, 5), (4, 3), (5, 3)}$. There is no connected planar graph which is both $(r \mod 2r)$-valent and near $(s \mod 2s)$-gonal.
@@ -99,8 +108,6 @@ In the case $r = 3$, $s = 3$ in \autoref{thm:division:nonrealizable}, the provid
   \end{enumerate}
 
   Thus the splitting construction is sound and we can use it repeatedly to replace all vertices with valence greater than $r$ by new vertices with valence $r$. Therefore from now on assume $G$ to be $r$-valent (remember we removed repeatedly $2r$ from the valence of some vertex which was $(r \mod 2r)$-valent). Next, we want to use \autoref{fig:mod:graphs:nonrealizable:2} to cut of the exceptional face a $2s$-gon, if we did not already have a $2s$-gonal exceptional face. We only have two cases here, either all of $f_0$, $f_1$, $f_2$ are distinct or not, since $f_0$, $f_1$, $f_2$ can not be the exceptional face, but the same arguments as in the previous case-by-case-analysis apply here (cases (i) and (iii)). We only need to add that the remaining face $f_r$ is in fact an ordinary $(s \mod 2s)$-gonal face, since we got it by removing $3s$ edges from the exceptional face.
-
-  Finally we want to cut of two $s$-gons from ordinary faces
 
   \begin{tikzfigure}{\label{fig:mod:graphs:nonrealizable:2}}{Cutting of a $2s$-gons and a $s$-gon from the exceptional face, here $s = 3$, $r = 4$}
     \matrix (m) [ column sep=1cm] {
@@ -193,7 +200,7 @@ In the case $r = 3$, $s = 3$ in \autoref{thm:division:nonrealizable}, the provid
     };
   \end{tikzfigure}%
 
-  Next we want to use another construction to deal with larger polygons. We can cut out two $s$-gons as in \autoref{fig:mod:graphs:nonrealizable:3} from a larger $k$-gon.%
+  Next we want to use another construction to deal with larger ordinary polygons. We can cut out two $s$-gons as in \autoref{fig:mod:graphs:nonrealizable:3} from a larger $k$-gon. %
   \begin{tikzfigure}{\label{fig:mod:graphs:nonrealizable:3}}{Cutting of two $s$-gons from a larger $k$-gon, here $s = 4$, $r = 3$}
     \matrix (m) [ column sep=1cm] {
       \begin{scope}
@@ -257,7 +264,7 @@ In the case $r = 3$, $s = 3$ in \autoref{thm:division:nonrealizable}, the provid
       \\
     };
   \end{tikzfigure}%
-  Doing so we have the same four cases as in the first construction, in fact, we can take the argument of each one and directly apply it to this figure again. In the outcome, we get a new $(r \mod 2r)$-valent and near $(s \mod 2s)$-gonal graph, which either has a fewer edges,a contradiction, or we could cut of two $s$-gons from a larger $s \mod 2s$-gon at specific places. By repeatedly using this construction we can build around the exceptional face rings of $s$-gons until we reach one of the graphs in \autoref{fig:mod:graphs:nonrealizable:4}, which one depends on $(s, r)$. %
+  Doing so we have the same four cases as in the first construction, in fact, we can take the argument of each one and directly apply it to this figure again. In the outcome, we get a new $(r \mod 2r)$-valent and near $(s \mod 2s)$-gonal graph, which either has a fewer edges, a contradiction, or we could cut of two $s$-gons from a larger $s \mod 2s$-gon at specific places. By repeatedly using this construction we can build around the exceptional face rings of $s$-gons until we reach one of the graphs in \autoref{fig:mod:graphs:nonrealizable:4}. %
   \begin{tikzfigure}{\label{fig:mod:graphs:nonrealizable:4}}{A graph which is not $(r \mod 2r)$-valent and near $(s \mod 2s)$-gonal for each pair $(s, r)$}
     \matrix (m) [column sep=1cm, row sep=1cm] {
       \begin{scope}[scale=0.7]
@@ -353,16 +360,23 @@ Finally we can state another theorem, singling out even more cases than \autoref
     \sum_{k = 3, ~k \not\equiv s (\mod 2s)}^m p_k = 1, \qquad&\sum_{k = 3, ~k \not\equiv r (\mod 2r)}^n v_k = 0 \text{~or} \\
     \sum_{k = 3, ~k \not\equiv s (\mod 2s)}^m p_k = 0, \qquad&\sum_{k = 3, ~k \not\equiv r (\mod 2r)}^n v_k = 1
   \end{align*}
-  are not $[q_s \times s, q_{2cs + s} \times (2cs + s)]$-$[r]$-realizable as polyhedron (for all $q_s, q_{2cs + s} \in \nats$).
+  are not $[q_s \times s, q_{2cs + s} \times (2cs + s)]$-$[r]$-realizable on the sphere $\sphere^2$ (for all $q_s, q_{2cs + s} \in \nats$).
 \begin{proof}
   With \autoref{thm:division:nonrealizable} we can filter out the cases, where we have an exceptional $k$-gon (or $k$-valent vertex) where $k$ is not divisible by $s$ (or $r$). Otherwise, the $1$-skeleton of a $[q_s \times s, q_{2cs + s} \times (2cs + s)]$-$[r]$-realization of such a pair of $p$-vectors and $v$-vectors would directly contradict \autoref{thm:mod:graphs:nonrealizable}.
 \end{proof}
 \end{corollary}
 
+\begin{example}
+  The following admissible pair of sequences $(p, v)$ is not $[3, 9]$-$[3]$-realizable by \autoref{thm:mod:nonrealizable}:
+  \begin{align*}
+    p = [4 \times 3, 6], v = [6 \times 3].
+  \end{align*}
+\end{example}
+
 The last theorem we want to present in this section explains, why we were unable to find $3$-valent {\sc Eberhard}-like theorems with triangles and large $k$-gons, $k \geq 11$:
 
-\begin{theorem}
-  Let $p$ and $v$ be sequences, $S$ a closed $2$-manifold $S$ and $q = [q_3 \times 3, q_l \times l]$, $w = [3]$ for $l \in \nats, l \geq 13$, $q_3 = \frac{l - 6}{\gcd(3, l-6)}$, $q_l = \frac{3}{\gcd(3, l-6)}$. Then the set $(C(p, v, q, w, S)$ is finite. Additionally, if $l \geq 11$ and $\sum_{k \geq 4} 2k \cdot v_k + \sum_{k \geq 4} \floor{\tfrac{k}{2}} p_k < 3p_3$, then $C(p, v, q, w, S)$ is empty, except when $S \cong \sphere^2$, $p = [4 \times 3]$, $v = [4 \times 3]$, in which case $C(p, v, q, w, S) = \set{(0, 0)}$.
+\begin{theorem}\label{thm:triangle:nonrealizable}
+  Let $p$ and $v$ be sequences, $S$ a closed $2$-manifold $S$ and $q = [q_3 \times 3, q_l \times l]$, $w = [3]$ for $l \in \nats, l \geq 13$, $q_3 = \frac{l - 6}{\gcd(3, l)}$, $q_l = \frac{3}{\gcd(3, l)}$. Then the set $(C(p, v, q, w, S)$ is finite. Additionally, if $l \geq 11$ and $\sum_{k \geq 4} 2k \cdot v_k + \sum_{k \geq 4} \floor{\tfrac{k}{2}} p_k < 3p_3$, then $C(p, v, q, w, S)$ is empty, except when $S \cong \sphere^2$, $p = [4 \times 3]$, $v = [4 \times 3]$, in which case $C(p, v, q, w, S) = \set{(0, 0)}$.
   \begin{proof}
     Since any to faces of a polyhedral map on $S$ have to meet proper, there can not be two triangles which coincide on a single edge with two $3$-valence vertices (see \autoref{fig:adjacent:triangles}), with the single exception of the tetrahedron, in which case we have $(0, 0) \in C(p, v, q, w, S)$. Without loss of generality assume $(p, v) \neq ([4 \times 3], [4 \times 3])$, since we always can obtain $C(p, v, q, w, S)$ from $C(p + q, v + w, q, w, S)$. %
     \begin{tikzfigure}{\label{fig:adjacent:triangles}}{Two triangles incident to two $3$-valent vertices}
@@ -379,7 +393,18 @@ The last theorem we want to present in this section explains, why we were unable
       \geq{} & 3 p'_3 {}={} 3 p_3 + 3 c \cdot q_3 \\
       \implies & \sum_{k \geq 4} 2k \cdot v_k + \sum_{k \geq 4} \floor{\tfrac{k}{2}} p_k - 3p_3 \geq c \cdot (3 q_3 - q_l \cdot \floor{\tfrac{l}{2}})
     \end{align*}
-    Since $3q_3 = (l - 6)q_l$, the coefficient $(3 q_3 - q_l \cdot \floor{\tfrac{l}{2}})$ is positive if $\floor{\frac{l}{2}} < l - 6$, i.e. if $l \geq 13$, and we can only hope for finitely many solutions. If $\sum_{k \geq 4} 2k \cdot v_k + \sum_{k \geq 4} \floor{\tfrac{k}{2}} p_k < 3p_3$, the coefficient of $c$ has to be negative, which is only the case for $l < 11$. This finishes the proof.
+    Since $3q_3 = (l - 6)q_l$, the coefficient $(3 q_3 - q_l \cdot \floor{\tfrac{l}{2}})$ is positive if $\floor{\frac{l}{2}} < l - 6$, i.e. if $l \geq 13$, and we can only hope for finitely many solutions in this case. If $\sum_{k \geq 4} 2k \cdot v_k + \sum_{k \geq 4} \floor{\tfrac{k}{2}} p_k < 3p_3$, the coefficient of $c$ has to be negative, which is only the case for $l < 11$. This finishes the proof.
   \end{proof}
 \end{theorem}
 
+\begin{example}
+  The following admissible pair of sequences $(p, v)$ is not $[q_3 \times 3, q_l \times l]$-$[3]$-realizable for all $l \geq 11$ by \autoref{thm:triangle:nonrealizable} where $q_3 \defeq \tfrac{l - 6}{\gcd(l, 3)}$, $q_l \defeq \tfrac{3}{\gcd(l, 3)}$:
+  \begin{align*}
+    p = [(4 + q_3) \times 3, q_l \times l],\quad v = [(4 - q_3 + (l - 4)q_l) \times 3]
+  \end{align*}
+  Note that for all $l \geq 11$ (and even $l \in \nats$) 
+  \begin{align*}
+    (l - 4)q_l = \tfrac{3(l - 4)}{\gcd(l, 3)} \geq \tfrac{l - 6}{\gcd(l, 3)} = q_3
+  \end{align*}
+  and therefore $v_3 \geq 4$, and $v$ is a defined sequence.
+\end{example}
