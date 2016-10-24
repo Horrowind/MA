@@ -4,6 +4,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{hyperref}
+\usepackage{cleveref}
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{amssymb}
@@ -13,25 +14,14 @@
 \usepackage{mathtools}
 \usepackage{enumitem}
 \usepackage{chngcntr}
-%\usepackage{caption}
-%\usepackage{setspace}
 \usepackage{array}
-%\usepackage{graphicx}
-%\usepackage{makeidx}
 \usepackage{aliascnt}
-%\usepackage[super,square]{natbib}
 \usepackage[labelfont=bf]{caption}
 \usepackage[inner=2cm,outer=2cm,top=1.5cm,bottom=1.5cm,includeheadfoot]{geometry}
+\usepackage[section]{placeins}
 \counterwithin{figure}{section}
 
-
-
-%\usepackage{extarrows}
-
-%\renewcommand*\rmdefault{cmsd}
-\newcommand{\hdef}[1]{\textit{#1}}
-
-
+\newcommand{\hdef}[1]{\textbf{#1}}
 \usepackage{tikz}
 \usetikzlibrary{%
     shapes.geometric,
@@ -49,7 +39,7 @@
 % figure enviroments
 \captionsetup[FLOAT_TYPE]{labelformat=simple, labelsep=none}
 \newenvironment{tikzfigure}[2]
-    {\begin{figure}[h!] \caption{#2} #1 \centering  \begin{tikzpicture}[line cap=round, line join=round]}
+    {\begin{figure}[!h] \caption{#2} #1 \centering  \begin{tikzpicture}[line cap=round, line join=round]}
     {\end{tikzpicture} \end{figure}}
 
 \newcommand{\todo}[1]{(TODO)}

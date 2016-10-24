@@ -3,7 +3,7 @@
 Since we want to state general {\sc Eberhard}-like theorems not only on polyhedra, i.e. on the sphere $\sphere^2$, but on arbitrary surfaces, we need to define maps on $2$-manifolds and also need to specify which maps have common properties with polyhedra, which we will call polyhedral maps. This sections definitions follow \cite{brehm2004polyhedralmaps} closely.
 
 \begin{definition}[Simple graphs]
-  A simple \hdef{graph} $G$ is a pair $(V, E)$ of a finite set $V$ and $E \subseteq \begin{psmallmatrix}V\\2\end{psmallmatrix}$ (so $G$ is undirected and finite without loops and multi-edges). A \hdef{subgraph} of $G$ is a graph $G' = (V', E')$, such that $V' \subseteq V$ and $E' \subseteq E \cap  \begin{psmallmatrix}V'\\2\end{psmallmatrix}$ and we want to denote this phenomena by $G' \subseteq G$. A \hdef{path} in $G$ is a subgraph $G_P = (V_P, E_P)$ of $G$, such that $V_P = \set{v_1, \dots, v_k}$ and $E_P = \bigcup_{i = 1}^{k-1}\set{v_i, v_{i+1}}$ for all $i \in \set{1, \dots k - 1}$. A \hdef{cycle} in $G$ is a subgraph $G_C = (V_C, E_C)$ of $G$, such that $V_C = \set{v_1, \dots, v_k}$ and $E_C = \set{v_k, v_1} \cup \bigcup_{i = 1}^{k-1}\set{v_i, v_{i+1}}$. We want to write $v_1 - \dots - v_k$ for paths and $v_1 - \dots - v_k - v_1$ for cycles. The \hdef{valence} of a vertex is the number of adjacent edges.
+  A \hdef{simple graph} $G$ is a pair $(V, E)$ of a finite set $V$ and $E \subseteq \begin{psmallmatrix}V\\2\end{psmallmatrix}$ (so $G$ is undirected and finite without loops and multi-edges). A \hdef{subgraph} of $G$ is a graph $G' = (V', E')$, such that $V' \subseteq V$ and $E' \subseteq E \cap  \begin{psmallmatrix}V'\\2\end{psmallmatrix}$ and we want to denote this phenomena by $G' \subseteq G$. A \hdef{path} in $G$ is a subgraph $G_P = (V_P, E_P)$ of $G$, such that $V_P = \set{v_1, \dots, v_k}$ and $E_P = \bigcup_{i = 1}^{k-1}\set{v_i, v_{i+1}}$ for all $i \in \set{1, \dots k - 1}$. A \hdef{cycle} in $G$ is a subgraph $G_C = (V_C, E_C)$ of $G$, such that $V_C = \set{v_1, \dots, v_k}$ and $E_C = \set{v_k, v_1} \cup \bigcup_{i = 1}^{k-1}\set{v_i, v_{i+1}}$. We want to write $v_1 - \dots - v_k$ for paths and $v_1 - \dots - v_k - v_1$ for cycles. The \hdef{valence} of a vertex is the number of adjacent edges.
 \end{definition}
 
 \begin{definition}[Embedding of a graph] Let $G = (V, E)$ be a finite graph (undirected, possibly with loops and multi-edges). An \hdef{embedding} $\phi$ of $G$ into a (topological) $2$-manifold $S$ is a function which assigns to every vertex $v \in V$ a single point $\phi(v) \in S$ and every edge $e = \{v, v'\} \in E$ a subset $\phi(e) \subseteq S$ and a homeomorphism $\phi_e : [0, 1] \stackrel{\cong}{\longrightarrow} \phi(e)$, such that $\phi_e(\set{0, 1}) = \set{\phi(v), \phi(v')}$ and for any two edges $e, e' \in E, e \neq e'$: $\phi_e(\,(0,1)\,) \cap \phi_{e'}(\,(0,1)\,) = \emptyset$. We call a graph \hdef{planar} if such an embedding exists into to euclidean plane. The closure of the connected components of $S \setminus \bigcup_{e \in E} \phi(e)$ are called \hdef{faces} of the embedding and the set of all faces shall be $F$. We can define an incidence structure between $F$ and $E$ by saying $f \in F$ contains $e \in E \iff f \cap \phi(e) = \phi(e)$, which extends to an incidence poset between $V$, $E$ and $F$ using additionally the normal incidence structure in the graph $G$. To each embedding we can define a \hdef{dual} embedding, where adjacent faces are connected by edges, and the vertices form the new faces.
@@ -85,10 +85,10 @@ We want to show that the converse is also true and that polyhedral maps on the s
   \end{proof}
 \end{proposition}
 
-\begin{theorem}[{\sc Steinitz's} theorem] A graph is the $1$-skeleton of a polyhedron if and only if it is $3$-connected and planar.
+\begin{theorem}[{\sc Steinitz}'s theorem] A graph is the $1$-skeleton of a polyhedron if and only if it is $3$-connected and planar.
 \end{theorem}
 
-With these two results (and the knowledge that planarity of a graph is equivalent to the embedability into $\sphere^2$) we can see that in fact every polyhedral map on the $\sphere^2$ comes from a polyhedron and vice-versa, at least when looking at the underlying graphs. Actually checking that going from a map to the underlying graph, then to the polyhedron by {\sc Steinitz's} theorem and back to polyhedral map using \autoref{rem:polymap:from:polyhedron} yields the same map (up to a homeomorphism on the embedding) and the same the other way around will be left out here.
+With these two results (and the knowledge that planarity of a graph is equivalent to the embedability into $\sphere^2$) we can see that in fact every polyhedral map on the $\sphere^2$ comes from a polyhedron and vice-versa, at least when looking at the underlying graphs. Actually checking that going from a map to the underlying graph, then to the polyhedron by {\sc Steinitz}'s theorem and back to polyhedral map using \autoref{rem:polymap:from:polyhedron} yields the same map (up to a homeomorphism on the embedding) and the same the other way around will be left out here.
 
 In the rest of the section we want to review two very broad {\sc Eberhard} theorems for polyhedral maps on oriented closed $2$-manifolds. To state them easily we need a few more definitions.
 
@@ -112,7 +112,7 @@ The two main theorems we want to base our constructions on are the following:
   Each pair of sequences $p$ and $v$ is realizable on the closed orientable $2$-manifold with {\sc Euler}-charactersitic $\chi$ for some $p_6 \in \nats$, $v_3 \in \nats$ if and only if
   \begin{align*}
     \sum_{k=3}^m (6-k)p_k + 2 \sum_{k=4}^n (3-k)v_k &= 6\chi, \\
-    \sum_{k=3,\, 2 \nmid k}^{m} p_k \neq 0 \text{ or} \sum_{k=4, \,3 \nmid k}^m v_k &\neq 1 &\text{ if } \chi = 2, \\
+    \sum_{k=3 \atop 2 \nmid k}^{m} p_k \neq 0 \text{ or} \sum_{k=4 \atop 3 \nmid k}^m v_k &\neq 1 &\text{ if } \chi = 2, \\
     p \neq [5, 7] \text{ or } v \neq [v_3 \times 3]  &&\text{ if } \chi = 0.
   \end{align*}
 \end{theorem}
@@ -120,8 +120,8 @@ The two main theorems we want to base our constructions on are the following:
 \begin{theorem}[{\sc Jendrol', Jucovi{\v{c}}, Barnette, Grünbaum, Zaks}, 1973, \cite{jucovivc1973theorem}, \cite{barnette1971toroidal}, \cite{grunbaum1969planar}, \cite{zaks1971analogue}] \label{thm:eberhard:extended:4}
   Each pair of sequences $p$ and $v$ is realizable on the closed orientable $2$-manifold with {\sc Euler}-characteristic $\chi$ for some $p_4, v_4 \in \nats$ if and only if
   \begin{align*}
-    \sum_{3 \leq k \leq m,\, k \neq 4} (4-k)p_k + \sum_{k \geq 3,\, k\neq 4} (4-k)v_k &= 4\chi, \\
-    \sum_{3 \leq k \leq n,\, k \neq 4} k p_k &\equiv 0& (\mod 2), \\
+    \sum_{3 \leq k \leq m \atop k \neq 4} (4-k)p_k + \sum_{k \geq 3 \atop k\neq 4} (4-k)v_k &= 4\chi, \\
+    \sum_{3 \leq k \leq n \atop k \neq 4} k p_k &\equiv 0& (\mod 2), \\
     p \neq [3, 5] \text{ or } v \neq [v_4 \times 4] &&\text{ if } \chi = 0,\\
     p \neq [p_4 \times 4] \text{ or } v \neq [3, 5] &&\text{ if } \chi = 0.
   \end{align*}

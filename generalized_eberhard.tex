@@ -11,13 +11,13 @@ We can reformulate the statements of \autoref{thm:eberhard:3} and \autoref{thm:e
   then there exists $c, d \in \nats$, such that $p + c \cdot [6]$ and $d \cdot [3]$ (or: $p + c \cdot [4]$ and $d \cdot [4]$) are realizable on the sphere $\sphere^2$.
 \end{theorem}
 
-\begin{remark}
-The only difference between this version and \autoref{thm:eberhard:3} or \autoref{thm:eberhard:4} is, that in the previous statements $p_6$ or $p_4$ is assumed to be zero at first, while in this version we can specify a least amount of hexagons or quadrangles to occur in the polyhedron. This can be seen by a quick construction we show in \autoref{ex:easy:expansion} later. 
+\begin{remark}\label{rem:gen:is:no:gen}
+The only difference between this version and \autoref{thm:eberhard:3} or \autoref{thm:eberhard:4} is, that in the previous statements $p_6$ or $p_4$ is assumed to be zero at first, while in this version we can specify a least amount of hexagons or quadrangles to occur in the polyhedron. To get from the original polyhedron of \autoref{thm:eberhard:3} or \autoref{thm:eberhard:4} (or even the polyhedral maps of \autoref{thm:eberhard:extended:3} and \autoref{thm:eberhard:extended:4}) to one which has at least the specified amount of hexagons or quadrangles is a quick construction we show in \autoref{ex:easy:expansion3} later. 
 \end{remark}
 
 We want to capture this more generally in the following definition:
 \begin{definition}[$(q_3, \dots, q_n)$-$(w_3, \dots, w_m)$-realizable]\label{def:eberhard:realizable}
-  A pair of sequence $p = (p_3, \dots, p_m)$, $v = (v_3, \dots, v_n)$ is said to be \hdef{$(q_3, \dots, q_n)$-$(w_3, \dots, w_m)$-realizable} on a closed $2$-manifold $S$, if there exists $c, d \in \nats$, such that $(p + c q, v + d w)$ is realizable on $S$. We define \hdef{$C(p, v, q, w, S)$} as the set of all tuples $(c, d)$ for which $(p + c q, v + d w)$ is realizable on $S$.
+  A pair of sequence $p = (p_3, \dots, p_m)$, $v = (v_3, \dots, v_n)$ is said to be \hdef{$(q_3, \dots, q_n)$-$(w_3, \dots, w_m)$-realizable} on a closed $2$-manifold $S$, if there exists $c, d \in \nats$, such that $(p + c q, v + d w)$ is realizable on $S$. 
 \end{definition}
 
 The sequences $[6]$ and $[3]$ (or: $[4]$ and $[4]$) play an important part in these theorems. Geometrically, hexagons ``act flat'' in an $3$-valent grid, as do quadrangles in $4$-valent grids. From this perspective, we can take the next step and state a very general {\sc Eberhard}-like problem:
@@ -43,7 +43,11 @@ Next we want to state the following fundamental property of maps on surfaces (wh
 \begin{theorem}[{\sc Euler-Poincaré} relation]\label{thm:eulers:relation} $v - e + f = \chi$.
 \end{theorem}
 
-Putting \eqref{eq:handshake} into Euler's relation \autoref{thm:eulers:relation} gives for any $t \in \reals$ \todo{Explain interpolation step}
+By linear interpolation of the two left hand sides of \eqref{eq:handshake} we obtain for any $t \in \reals$
+\begin{align}
+  \frac{t}{2} \sum_{k=3}^m k \cdot v_k + \frac{1-t}{2} \sum_{k=3}^n k \cdot p_k = e \label{eq:interpolated:handshake}
+\end{align}
+ which we can use to substitute $e$ in Euler's relation \autoref{thm:eulers:relation} to get:
 \begin{align*}
   \sum_{k=3}^m v_k - \left(\frac{t}{2} \sum_{k=3}^m k \cdot v_k + \frac{1-t}{2} \sum_{k=3}^n k \cdot p_k \right) + \sum_{k=3}^n p_k = \chi,
 \end{align*}
@@ -81,13 +85,13 @@ With this definition we now have everything ready to state the general {\sc Eber
 
 This question was first raised in \cite{devos2010eberhard}, which established \autoref{problem:eberhard} for $v = [v_3 \times 3]$, $q = [5, 7]$ and $w = [3]$ for arbitrary closed $2$-manifolds. This thesis gives a definite answer to this question for all cases where $q = [q_s, q_l]$, $s < l$, $w = [r]$ and $\gcd(q_s, q_l) = 1$ ($s$ for ``small'' and $l$ for ``large'') and every admissible pair of sequences is $q$-$w$-realizable. To make this characterization complete we also give examples for admissible sequences which can not be $q$-$w$-realized.
 
-Not all values $s$ and $r$ can be obtained in this setting. Since $t \in \left[\frac{1}{3}, \frac{2}{3}\right]$, we have $r \in \set{3, 4, 5, 6}$. For $r = 6$ we have $t = \frac{1}{3}$ and thus $\sum_{k=3}^n \left(3 - k \right) q_k = 0 \implies q = (q_3, 0, 0, \dots)$, contradicting the assumption $q = [q_s, q_l]$. This leaves $r \in \set{3, 4, 5}$ and we can state \eqref{eq:qw:flat} 
+Not all values $s$ and $r$ can be obtained in this setting. We only allow for a single entry in $w$, therefore the coefficient in \eqref{eq:qw:flat} of $w_r$ has to be zero and we get the relation $\frac{2}{t} = r$. From the same equation we get that the coefficient of $q_s$ has to be positive, while the coefficient of $q_l$ has to be negative, which gives $s < \frac{2r}{r - 2} < l$. Since $t \in \left[\frac{1}{3}, \frac{2}{3}\right]$, we have $r \in \set{3, 4, 5, 6}$. For $r = 6$ we have $s < \frac{2r}{r - 2} = 3 < l$, which is impossible as we do not allow polygons smaller than triangles. This leaves $r \in \set{3, 4, 5}$ and we can state \eqref{eq:qw:flat} 
 \begin{alignat}{5}
   r &= 3: \qquad &  \sum_{k=3}^m \left(3 - k \right) w_k\,=\,&    \sum_{k=3}^n \left(6 - k \right) q_k &&= 0 \label{eq:flat:3}\\
   r &= 4: \qquad &  \sum_{4=3}^m \left(4 - k \right) w_k\,=\,&    \sum_{k=3}^n \left(4 - k \right) q_k &&= 0  \label{eq:flat:4}\\
   r &= 5: \qquad &  \sum_{k=3}^m \left(5 - k \right) w_k\,=\,&    \sum_{k=3}^n \left( \tfrac{10}{3} - k \right) q_k &&= 0 \label{eq:flat:5}
 \end{alignat}
-explicitly in these cases. From the right part of these equations we get that $q_s$ has a positive coefficient, while $q_l$ has a negative coefficient, so that both can cancel out. This limits the possibilities for $(s, r)$ to five cases: $(s, r) \in \set{(3, 3), (3, 4), (3, 5), (4, 3), (5, 3)}$ and based on the previous equations and the condition $\gcd(q_s, q_l) = 1$ we can specify the possible values of $(q, w)$ in these five cases, where each case only depends on $l$:
+explicitly in these cases. From the right part of these equations we get that $q_s$ has a positive coefficient, while $q_l$ has a negative coefficient, so that both can cancel out. This limits the possibilities for $(s, r)$ to five cases: $(s, r) \in \set{(3, 3), (3, 4), (3, 5), (4, 3), (5, 3)}$ and based on the previous equations and the condition $\gcd(q_s, q_l) = 1$ we can specify the possible values of $(q, w)$ in these five cases, where each case only depends on $l > \frac{2r}{r - 2}$:
 \begin{alignat*}{6}
   (s, r) = (3, 3): \quad && q = [q_3 \times 3, q_l \times l],\qquad&&w = [3],\qquad&q_3 = \tfrac{l - 6}{\gcd(l, 3)}, &\qquad&q_l = \tfrac{3}{\gcd(l, 3)} \\
   (s, r) = (4, 3): \quad && q = [q_4 \times 4, q_l \times l],\qquad&&w = [3],\qquad&q_4 = \tfrac{l - 6}{\gcd(l, 2)}, &\qquad&q_l = \tfrac{2}{\gcd(l, 2)} \\
@@ -96,7 +100,7 @@ explicitly in these cases. From the right part of these equations we get that $q
   (s, r) = (3, 5): \quad && q = [q_3 \times 3, q_l \times l],\qquad&&w = [5],\qquad&q_3 = 3l - 10,                   &\qquad&q_l = 1
 \end{alignat*}
 
-Each of these cases will be the topic of the later sections \autoref{sec:3:3} - \autoref{sec:3:5} \todo{section section section}. We can also state \eqref{eq:general:vp:relation} for specific values of $r$ and get the following:
+Each of these cases will be the topic of the later \crefrange{sec:3:3}{sec:3:5}. We can also state \eqref{eq:general:vp:relation} for specific values of $r$ and get the following:
 \begin{alignat}{5}
   r &= 3: \qquad &2 \sum_{k=3}^m \left(3 - k \right) v_k\,+\, &&  & \sum_{k=3}^n \left(6 - k \right) p_k &&= 6 \chi \label{eq:vp:3}\\
   r &= 4: \qquad &  \sum_{4=3}^m \left(4 - k \right) v_k\,+\, &&  & \sum_{k=3}^n \left(4 - k \right) p_k &&= 4 \chi  \label{eq:vp:4}\\
@@ -111,15 +115,14 @@ but since all of them originate from the same equation, we get no additional val
     \item \eqref{eq:vp:4} and \eqref{eq:handshake} hold for $p$ and $v$.
     \item \eqref{eq:vp:5} and \eqref{eq:handshake} hold for $p$ and $v$.
   \end{enumerate}
-  \begin{proof} (i)$\implies$(ii)-(iv) have already been shown. The converse holds by a similar computation\todo{better argument?}.
+  \begin{proof} (i)$\implies$(ii)-(iv) have already been shown. The converse holds since we can use \eqref{eq:interpolated:handshake} to get from either \eqref{eq:vp:3}, \eqref{eq:vp:4} or \eqref{eq:vp:5} to \eqref{eq:general:vp:relation}.
   \end{proof}
 \end{lemma}
 
 \begin{remark}
   We immediately recognize \eqref{eq:vp:3} and \eqref{eq:vp:4} in \autoref{thm:eberhard:extended:3} and \autoref{thm:eberhard:extended:4} and the used sequences for $q$ and $w$ clearly suffice \eqref{eq:flat:3} or \eqref{eq:flat:4}, but there is no mention of \eqref{eq:handshake} in those theorems. In fact we can add to every pair of sequences $p$ and $q$ as in \autoref{thm:eberhard:extended:3} a number of hexagons and $3$-valent vertices to make them suffice \eqref{eq:handshake}, if $2 | \sum_{k \geq 3} p_k$. But $2 | \sum_{k \geq 3} p_k$ automatically follows from \eqref{eq:vp:3}. The same goes for \autoref{thm:eberhard:extended:4}, where we can add quadrangles and $4$-valent vertices to suffice \eqref{eq:handshake}, provided that the parity condition mentioned in the theorem holds. Thus we can conclude that \autoref{problem:eberhard} is in fact a generalization of both theorems. 
 \end{remark}
-\begin{remark} Note that we silently introduced the notion $C(p, v, q, w, S)$ in \autoref{def:eberhard:realizable}. For the classical {sc Eberhard} theorems \cite{jendrol1993face} and \cite{jucovivc1976face} established for almost all sequences $p$ and $v$ which pairs $(c, d)$ the sets $C(p, v, [6], [3], S)$ and $C(p, v, [4], [4], S)$ contain on a large scale, i.e. whether there exists a threshold from which on all values $(p_6, v_3)$, $(p_4, v_4)$ which make $p$, $v$ admissible on $S$ also make $p$, $v$ realizable on $S$. We do no further analysis in this direction and only introduce the notion to make certain non-realizability theorems in \autoref{sec:negative:results} precise. We do note though, that knowing which pairs the set $C(p, v, [q_s \times s, q_l \times l], [r], S)$ contains after a certain threshold for $\gcd(q_s, q_l) = 1$ answers the same question when the restriction $\gcd(q_s, q_l) = 1$ is lifted.
-\end{remark}
+
 
 The last thing we want to mention in this chapter is a useful property of the condition $\gcd(q_s, q_l) = 1$ we wanted to have for our sequence $q$:
 

@@ -2,7 +2,7 @@
 
 Let $r \in \nats$. Within this section one can think of $r$ as the given valence of a polyhedral map. Many constructions in this thesis will utilize the concept of replacing each face of a polyhedral map with a larger patch. It can be quite challenging to see whether the resulting structures fit as well together as the previous faces did. This section introduces the necessary formalism for these kinds of constructions. Note that throughout this section, we allow for $2$-valent vertices in maps.
 
-\begin{definition}[Patch] For a planar graph embedding we want to call the single unbounded face the \href{outer face} and every other face \href{inner face}. A map on the euclidean plane potentially $2$-valent vertices is called a \href{patch}. It is called an \href{$r$-patch}, if each of its vertices except the ones on the outer face is $r$-valent, while for the valence $r(v)$ of a vertex $v$ on the outer face $2 \leq r(v) \leq r$ holds. The \href{$p$-vector of a patch} is the sequence $(p_3, p_4, \dots)$, where $p_k$ denotes the number of $k$-gonal inner faces of the patch. The \href{boundary $\partial\mathcal{P}$ of a patch} $\mathcal{P}$ is induced subgraph of all vertices and edges adjacent to the outer face.
+\begin{definition}[Patch] For a planar graph embedding we want to call the single unbounded face the \hdef{outer face} and every other face \hdef{inner face}. A map on the euclidean plane potentially $2$-valent vertices is called a \hdef{patch}. It is called an \hdef{$r$-patch}, if each of its vertices except the ones on the outer face is $r$-valent, while for the valence $r(v)$ of a vertex $v$ on the outer face $2 \leq r(v) \leq r$ holds. The \hdef{$p$-vector of a patch} is the sequence $(p_3, p_4, \dots)$, where $p_k$ denotes the number of $k$-gonal inner faces of the patch. The \hdef{boundary $\partial\mathcal{P}$ of a patch} $\mathcal{P}$ is induced subgraph of all vertices and edges adjacent to the outer face.
 \end{definition}
 
 Note that the union of the inner faces $F_{i}$ of a patch is homeomorphic to a $2$-cell (since $\bigcup_{f \in F_{i}} f \cong \mathbb{E}^2 \setminus \operatorname{int}(f_{o}) \cong (\sphere^2 \setminus \set{(0, 0, 1)}) \setminus \operatorname{int}(\psi^{-1}(f_{o}))$, which is a $2$-cell because $\psi^{-1}(f_{o})$ is a $2$-cell, where $f_{o}$ is the outer face and $\psi$ is the stereographic projection). From that we see that $\partial\mathcal{P}$ is a cyclic graph.
@@ -64,7 +64,7 @@ If one is interested in whether two patches of a construction fit together to as
 \begin{align*}
   \partial\mathcal{P'} = {v'}_1  - {v'}_1^{(1)} - \dots - {v'}_n^{(1)} -  {v'}_2 - {v'}_1^{(2)} - \dots - {v'}_n^{(2)} - \quad\dots\quad - {v'}_m  -  {v'}_1^{(m)} - {v'}_n^{(m)}  -  {v'}_1,
 \end{align*}
-such that $w_{\mathcal{P}}(v_i) = w_{\mathcal{P'}}(v'_i)$ and $w_{\mathcal{P'}}({v'}_j^{(m)}) = w_j$ for all $i \in \set{1, \dots, m}$, $j \in \set{1, \dots, n}$. We want to call the vertices $v'_i$ \href{corner vertices} and the vertices ${v'}_j^{i}$ \href{side vertices}. Furthermore, a patch is called \hdef{$w$-$k$-gonal}, if it is the $w$-expansion of the patch consisting only of a $k$-gon, i.e. if $w_{\mathcal{P'}}(v'_i) = 1$ for $i \in \set{1, \dots, m}$.
+such that $w_{\mathcal{P}}(v_i) = w_{\mathcal{P'}}(v'_i)$ and $w_{\mathcal{P'}}({v'}_j^{(m)}) = w_j$ for all $i \in \set{1, \dots, m}$, $j \in \set{1, \dots, n}$. We want to call the vertices $v'_i$ \hdef{corner vertices} and the vertices ${v'}_j^{i}$ \hdef{side vertices}. Furthermore, a patch is called \hdef{$w$-$k$-gonal}, if it is the $w$-expansion of the patch consisting only of a $k$-gon, i.e. if $w_{\mathcal{P'}}(v'_i) = 1$ for $i \in \set{1, \dots, m}$.
 \end{definition}
 
 With this one is able to describe a general construction scheme:
@@ -96,19 +96,290 @@ As previously stated, these definitions are used to formalize the construction s
   \item $w_{\mathcal{P}}(o_s) = 1$,
   \item $(w_{\mathcal{P}}(o_{s + 1}), \dots w_{\mathcal{P}}(o_{n - 1}), w_{\mathcal{P}}(o_n) + w_{\mathcal{P}}(o_0), w_{\mathcal{P}}(o_1), \dots w_{\mathcal{P}}(o_{s - 1}))$ is a self-fitting tuple
   \end{itemize}
-  (see also \autoref{fig:expansion:patch}). Such a patch will be called \hdef{expansion patch with outer tuple $(o_{s + 1}, \dots o_{n - 1}, o_n + o_0, o_1, \dots o_{s - 1})$}.
+  (see also \autoref{fig:expansion:patch}). Such a patch will be called \hdef{expansion patch with outer tuple $(w_{\mathcal{P}}(o_{s + 1}), \dots w_{\mathcal{P}}(o_{n - 1}), w_{\mathcal{P}}(o_n) + w_{\mathcal{P}}(o_0), w_{\mathcal{P}}(o_1), \dots w_{\mathcal{P}}(o_{s - 1}))$}.
 \end{definition}
 
-\begin{example}\label{ex:easy:expansion}\todo{Do it!}
+\begin{example}\label{ex:easy:expansion1}
+  We want to review the last definition with two examples. A hexagon can be interpreted as an expansion $3$-patch $\mathcal{H}$ with outer tuple $((w_{\mathcal{H}}(o_3) + w_{\mathcal{H}}(o_0), w_{\mathcal{H}}(o_1)) = (2, 1)$, with vertices labeled according to \autoref{def:expansion:patch} in \autoref{fig:easy:expansion1}. Similarly two quadrangles which share a common edge build an expansion $4$-patch $\mathcal{Q}_2$ with outer tuple  $((w_{\mathcal{H}}(o_3) + w_{\mathcal{H}}(o_0), w_{\mathcal{H}}(o_1)) = (2, 2)$, as seen in the same figure.
+  \begin{tikzfigure}{\label{fig:easy:expansion1}}{Two expansion patches}
+    \matrix (m) [column sep=1cm] {
+      \begin{scope}
+        \draw (0 : 2) -- (60 : 2) -- (120 : 2) -- (180 : 2) -- (240 : 2) -- (300 : 2) -- (0 : 2);
+        \node[anchor=180] at (  0 : 2) {$i'_1 = o_3$};
+        \node[anchor=240] at ( 60 : 2) {$o_2 = o_s$};
+        \node[anchor=300] at (120 : 2) {$o_1$};
+        \node[anchor=  0] at (180 : 2) {$i_1 = o_0$};
+        \node[anchor= 60] at (240 : 2) {$i_0$};
+        \node[anchor=120] at (300 : 2) {$i'_0$};
+        \node             at (  0 : 0) {$\mathcal{H}$};
+      \end{scope}
+      &
+      \begin{scope}
+        \draw (0, 1) -- (0, -1) -- (-2, -1) -- (-2, 1) -- (0, 1) -- (2, 1) -- (2, -1) -- (0, -1);
+        \node[anchor= 45] at (-2, -1) {$i_0$};
+        \node[anchor= 90] at ( 0, -1) {$i'_0$};
+        \node[anchor=135] at ( 2, -1) {$i'_1 = o_3$};
+        \node[anchor=225] at ( 2,  1) {$o_2 = o_s$};
+        \node[anchor=270] at ( 0,  1) {$o_1$};
+        \node[anchor=315] at (-2,  1) {$i_1 = o_0$};
+        \node[anchor=  0] at ( 0,  0) {$\mathcal{Q}_2$};
+      \end{scope}
+      \\
+    };
+  \end{tikzfigure}%
 \end{example}
 
 \begin{remark}\label{rem:edge:patch}
-  We want to dissect this definition a bit to give a geometric intuition. The first thing to note is that by definition we are able to glue two copies of an expansion patch along the paths $i_0 - \dots - i_{m}$ and $i'_{m} - \dots - i'_0$ (by \autoref{thm:fitting:tuples}, see also  \autoref{fig:expansion:patch}). When doing this the new patch has a boundary path $o_s - \dots - o_{n-1} - (o_n = o_0) - o_1 - o_s$, which we require to be self-fitting. Therefore we can glue two of those patches along this boundary to get an even larger patch (see the four patches centered in \autoref{fig:thm:polymap}).
+  We want to dissect this definition a bit to give a geometric intuition. The first thing to note is that by definition we are able to glue two copies of an expansion patch along the paths $i_0 - \dots - i_{m}$ and $i'_{m} - \dots - i'_0$ (by \autoref{thm:fitting:tuples}). When doing this the new patch has a boundary path $o_s - \dots - o_{n-1} - (o_n = o_0) - o_1 - o_s$, which we require to be self-fitting. Therefore we can glue two of those patches along this boundary to get an even larger patch (see \autoref{fig:edge:patch}).
+    \begin{tikzfigure}{\label{fig:edge:patch}}{An edge patch}
+      \begin{scope}[scale=0.8]
+      \draw[shift={(-5,0)}] (9 : 1) -- (81 : 1)  (297 : 1) -- (9 : 1);
+
+      \draw[shift={(-5,0)}] (9 : 1) -- (9 : 2.5);
+      \draw[shift={(-5,0)}][loosely dotted] (9 : 2.5) -- (9 : 3.5);
+      \draw[shift={(-5,0)}] (9 : 3.5) -- (9 : 5.062);
+      \draw[shift={(-5,0)}] (81 : 1) -- (81 : 2.5);
+      \draw[shift={(-5,0)}][loosely dotted] (81 : 2.5) -- (81 : 3.5);
+      \draw[shift={(-5,0)}] (81 : 3.5) -- (81 : 5.062);
+      \draw[shift={(-5,0)}] (297 : 1) -- (297 : 2.5);
+      \draw[shift={(-5,0)}][loosely dotted] (297 : 2.5) -- (297 : 3.5);
+      \draw[shift={(-5,0)}] (297 : 3.5) -- (297 : 5.062);
+      \draw[shift={(-5,0)}][loosely dotted] (4 : 5.012) -- (356 : 5.012);
+
+
+      \draw[shift={(-5,0)}] (-13 : 5.1315) -- (356 : 5.012) (4 : 5.012) -- (13 : 5.1315);
+      \draw[shift={(-5,0)}][loosely dotted] (13 : 5.1315) -- (27 : 5.612);
+      \draw[shift={(-5,0)}] (27 : 5.612) -- (36 : 6.180) -- (45 : 5.612);
+      \draw[shift={(-5,0)}][loosely dotted] (45 : 5.612) -- (68 : 5.012);
+      \draw[shift={(-5,0)}] (68 : 5.012) -- (81 : 5.062);
+      \draw[shift={(-5,0)}] (-59 : 5.1315) -- (297 : 5.062);
+      \draw[shift={(-5,0)}][loosely dotted] (-45 : 5.612) -- (-59 : 5.1315);
+      \draw[shift={(-5,0)}] (-27 : 5.612) -- (-36 : 6.180) -- (-45 : 5.612);
+      \draw[shift={(-5,0)}][loosely dotted] (-27 : 5.612) -- (-13 : 5.1315);
+
+      \fill[shift={(-5,0)}] [black] (9 : 1) circle (2pt);
+      \node[shift={(-4,0)}][anchor="108"] at (9 : 1) {$i_0$};
+      \fill[shift={(-5,0)}] [black] (9 : 2) circle (2pt);
+      \node[shift={(-4,0)}][anchor="99"] at (9 : 2) {$i_1$};
+      \fill[shift={(-5,0)}] [black] (9 : 4) circle (2pt);
+      \node[shift={(-4,0)}][anchor="99"] at (9 : 4) {$i_{m-1}$};
+      \fill[shift={(-5,0)}] [black] (9 : 5.062) circle (2pt);
+      \node[shift={(-4,0)}][anchor="45"] at (9 : 5.062) {$o_{0}$};
+      \fill[shift={(-5,0)}] [black] (-9 : 5.062) circle (2pt);
+      \node[shift={(-4,0)}][anchor="0"] at (-9 : 5.062) {$o_{2s \mod n}$};
+      \fill[shift={(-5,0)}] [black] (-30 : 5.774) circle (2pt);
+      \node[shift={(-4,0)}][anchor="0"] at (-30 : 5.774) {$o_{s - 1}$};
+      \fill[shift={(-5,0)}] [black] (-36 : 6.180) circle (2pt);
+      \node[shift={(-4,0)}][anchor="-36"] at (-36 : 6.180) {$o_{s}$};
+      \fill[shift={(-5,0)}] [black] (-42 : 5.774) circle (2pt);
+      \node[shift={(-4,0)}][anchor="-36"] at (-42 : 5.774) {$o_{s + 1}$};
+      % \fill[shift={(-5,0)}] [black] (-63 : 5.062) circle (2pt);
+      % \node[shift={(-4,0)}][anchor="-63"] at (-63 : 5.062) {$o_{n - 1}$};
+      \fill[shift={(-5,0)}] [black] (-63 : 5.062) circle (2pt);
+      \node[shift={(-4,0)}][anchor="-117"] at (-63 : 5.062) {$o_{n}$};
+      \fill[shift={(-5,0)}] [black] (-63 : 4) circle (2pt);
+      \node[shift={(-4,0)}][anchor="198"] at (-63 : 4) {$i'_{m-1}$};
+      \fill[shift={(-5,0)}] [black] (-63 : 2) circle (2pt);
+      \node[shift={(-4,0)}][anchor="198"] at (-63 : 2) {$i'_{1}$};
+      \fill[shift={(-5,0)}] [black] (-63 : 1) circle (2pt);
+      \node[shift={(-4,0)}][anchor="180"] at (-63 : 1) {$i'_0$};
+      \node[shift={(-4,0)}] at (-27 : 3.5) {$\mathcal{M}$};
+
+      \fill[shift={(-5,0)}] [black] (81 : 1) circle (2pt);
+      \node[shift={(-4,0)}][anchor="180"] at (81 : 1) {$i_0$};
+      \fill[shift={(-5,0)}] [black] (81 : 2) circle (2pt);
+      \node[shift={(-4,0)}][anchor="162"] at (81 : 2) {$i_1$};
+      \fill[shift={(-5,0)}] [black] (81 : 4) circle (2pt);
+      \node[shift={(-4,0)}][anchor="162"] at (81 : 4) {$i_{m-1}$};
+      \fill[shift={(-5,0)}] [black] (81 : 5.062) circle (2pt);
+      \node[shift={(-4,0)}][anchor="126"] at (81 : 5.062) {$o_{0}$};
+      \fill[shift={(-5,0)}] [black] (72 : 5) circle (2pt);
+      \node[shift={(-4,0)}][anchor="72"] at (72 : 5) {$o_{1}$};
+      \fill[shift={(-5,0)}] [black] (42 : 5.774) circle (2pt);
+      \node[shift={(-4,0)}][anchor="72"] at (42 : 5.774) {$o_{s - 1}$};
+      \fill[shift={(-5,0)}] [black] (36 : 6.180) circle (2pt);
+      \node[shift={(-4,0)}][anchor="36"] at (36 : 6.180) {$o_{s}$};
+      \fill[shift={(-5,0)}] [black] (30 : 5.774) circle (2pt);
+      \node[shift={(-4,0)}][anchor="0"] at (30 : 5.774) {$o_{s + 1}$};
+      %\fill[shift={(-5,0)}] [black] (9 : 5.062) circle (2pt);
+      %\node[shift={(-4,0)}][anchor="0"] at (9 : 5.062) {$o_{n - 1}$};
+      \fill[shift={(-5,0)}] [black] (9 : 5.062) circle (2pt);
+      \node[shift={(-4,0)}][anchor="-45"] at (9 : 5.062) {$o_{n}$};
+      \fill[shift={(-5,0)}] [black] (9 : 4) circle (2pt);
+      \node[shift={(-4,0)}][anchor="270"] at (9 : 4) {$i'_{m-1}$};
+      \fill[shift={(-5,0)}] [black] (9 : 2) circle (2pt);
+      \node[shift={(-4,0)}][anchor="270"] at (9 : 2) {$i'_{1}$};
+      \fill[shift={(-5,0)}] [black] (9 : 1) circle (2pt);
+      \node[shift={(-4,0)}][anchor="252"] at (9 : 1) {$i'_0$};
+      \node[shift={(-4,0)}] at (45 : 3.5) {$\mathcal{M}$};
+
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (9 : 1) -- (81 : 1) (297 : 1) -- (9 : 1);
+
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (9 : 1) -- (9 : 2.5);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (9 : 2.5) -- (9 : 3.5);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (9 : 3.5) -- (9 : 5.062);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (81 : 1) -- (81 : 2.5);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (81 : 2.5) -- (81 : 3.5);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (81 : 3.5) -- (81 : 5.062);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (297 : 1) -- (297 : 2.5);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (297 : 2.5) -- (297 : 3.5);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (297 : 3.5) -- (297 : 5.062);
+      
+      % \draw[shift={(5,0)}, rotate around={180:(0,0)}] (-13 : 5.1315) -- (13 : 5.1315);
+      % \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (13 : 5.1315) -- (27 : 5.612);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (36 : 6.180) -- (45 : 5.612);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (45 : 5.612) -- (59 : 5.1315);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (59 : 5.1315) -- (81 : 5.062);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (-59 : 5.1315) -- (297 : 5.062);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (-45 : 5.612) -- (-59 : 5.1315);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (-36 : 6.180) -- (-45 : 5.612);
+      %\draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (-27 : 5.612) -- (-13 : 5.1315);
+
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (9 : 1) circle (2pt);
+      \node[shift={(4,0)}][anchor="279"] at (189 : 1) {$i_0$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (9 : 2) circle (2pt);
+      \node[shift={(4,0)}][anchor="270"] at (189 : 2) {$i_1$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (9 : 4) circle (2pt);
+      \node[shift={(4,0)}][anchor="270"] at (189 : 4) {$i_{m-1}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (9 : 5.062) circle (2pt);
+      \node[shift={(4,0)}][anchor="225"] at (189 : 5) {$o_{0}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (-30 : 5.774) circle (2pt);
+      \node[shift={(4,0)}][anchor="180"] at (150 : 5.774) {$o_{s - 1}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (-36 : 6.180) circle (2pt);
+      \node[shift={(4,0)}][anchor="144"] at (144 : 6.180) {$o_{s}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (-42 : 5.774) circle (2pt);
+      \node[shift={(4,0)}][anchor="144"] at (138 : 5.774) {$o_{s + 1}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (-63 : 5.062) circle (2pt);
+      \node[shift={(4,0)}][anchor="63"] at (117 : 5) {$o_{n}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (-63 : 4) circle (2pt);
+      \node[shift={(4,0)}][anchor="18"] at (117 : 4) {$i'_{m-1}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (-63 : 2) circle (2pt);
+      \node[shift={(4,0)}][anchor="18"] at (117 : 2) {$i'_{1}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (-63 : 1) circle (2pt);
+      \node[shift={(4,0)}][anchor="0"] at (117 : 1) {$i'_0$};
+      \node[shift={(4,0)}] at (144 : 3.5) {$\mathcal{M}$};
+
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (81 : 1) circle (2pt);
+      \node[shift={(4,0)}][anchor="0"] at (261 : 1) {$i_0$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (81 : 2) circle (2pt);
+      \node[shift={(4,0)}][anchor="342"] at (261 : 2) {$i_1$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (81 : 4) circle (2pt);
+      \node[shift={(4,0)}][anchor="342"] at (261 : 4) {$i_{m-1}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (81 : 5.062) circle (2pt);
+      \node[shift={(4,0)}][anchor="297"] at (261 : 5.062) {$o_{0}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (42 : 5.774) circle (2pt);
+      \node[shift={(4,0)}][anchor="252"] at (222 : 5.774) {$o_{s - 1}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (36 : 6.180) circle (2pt);
+      \node[shift={(4,0)}][anchor="216"] at (216 : 6.180) {$o_{s}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (30 : 5.774) circle (2pt);
+      \node[shift={(4,0)}][anchor="180"] at (210 : 5.774) {$o_{s + 1}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (9 : 5.062) circle (2pt);
+      \node[shift={(4,0)}][anchor="135"] at (189 : 5.062) {$o_{n}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (9 : 4) circle (2pt);
+      \node[shift={(4,0)}][anchor="90"] at (189 : 4) {$i'_{m-1}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (9 : 2) circle (2pt);
+      \node[shift={(4,0)}][anchor="90"] at (189 : 2) {$i'_{1}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (9 : 1) circle (2pt);
+      \node[shift={(4,0)}][anchor="72"] at (189 : 1) {$i'_0$};
+      \node[shift={(4,0)}] at (216 : 3.5) {$\mathcal{M}$};
+      \end{scope}
+
+    \end{tikzfigure}
 \end{remark}
 
 \begin{definition}
-  For an expansion patch $\mathcal{M}$, we want to call the previously mentioned patch consisting of four copies of $\mathcal{M}$ glued together as in \autoref{fig:thm:polymap} an edge patch. An expansion patch $\mathcal{M}$ with boundary vertices named as in \label{def:expansion:patch} with the property that every two inner faces in the corresponding edge patch meet properly will be said to have the polyhedral property, if additionally no face contains both $i_0$ and $i'_0$ but not the edge $\set{i_o, i_1}$.
+  For an expansion patch $\mathcal{M}$, we want to call the patch held by gluing four copies of $\mathcal{M}$ as in \autoref{rem:edge:patch} an \hdef{edge patch}. An expansion patch will be said to have the \hdef{polyhedral property} if every two inner faces in the corresponding edge patch meet properly.
 \end{definition}
+
+\begin{example}\label{ex:easy:expansion2}
+  The examples in \autoref{ex:easy:expansion} do in fact have the polyhedral property, which we can verify by looking at the edge patch in \autoref{fig:easy:expansion2}.
+  \begin{tikzfigure}{\label{fig:easy:expansion2}}{Two edge patches}
+    \matrix (m) [column sep=1cm] {
+      \begin{scope}[xscale=1.0, yscale=0.866, scale=0.75]
+        \draw[very thick] (-1,  0) -- (-2, -2) -- (-4, -2) -- (-5,  0) -- (-4,  2) -- (-2,  2) -- (-1,  0);
+        \draw[very thick] (-1,  0) -- ( 1,  0) -- ( 2, -2) -- ( 1, -4) -- (-1, -4) -- (-2, -2);
+        \draw[very thick] ( 1,  0) -- ( 2,  2) -- ( 1,  4) -- (-1,  4) -- (-2,  2);
+        \draw[very thick] ( 2, -2) -- ( 4, -2) -- ( 5,  0) -- ( 4,  2) -- ( 2,  2);
+        \node[anchor=240] at (-4, -2) {$i_0$};
+        \node[anchor=180] at (-5,  0) {$o_0$};
+        \node[anchor=120] at (-4,  2) {$o_1$};
+        \node[anchor= 60] at (-2,  2) {$o_s$};
+        \node[anchor=  0] at (-1,  0) {$o_3$};
+        \node[anchor=300] at (-2, -2) {$i'_0$};
+
+        \node[anchor=240] at (-1, -4) {$i'_0$};
+        \node[anchor=180] at (-2, -2) {$i_0$};
+        \node[anchor=120] at (-1,  0) {$o_0$};
+        \node[anchor= 60] at ( 1,  0) {$o_1$};
+        \node[anchor=  0] at ( 2, -2) {$o_s$};
+        \node[anchor=300] at ( 1, -4) {$o_3$};
+
+        \node[anchor=240] at (-1,  0) {$o_1$};
+        \node[anchor=180] at (-2,  2) {$o_s$};
+        \node[anchor=120] at (-1,  4) {$o_3$};
+        \node[anchor= 60] at ( 1,  4) {$i'_0$};
+        \node[anchor=  0] at ( 2,  2) {$i_0$};
+        \node[anchor=300] at ( 1,  0) {$o_0$};
+
+        \node[anchor=240] at ( 2, -2) {$o_s$};
+        \node[anchor=180] at ( 1,  0) {$o_3$};
+        \node[anchor=120] at ( 2,  2) {$i'_0$};
+        \node[anchor= 60] at ( 4,  2) {$i_0$};
+        \node[anchor=  0] at ( 5,  0) {$o_0$};
+        \node[anchor=300] at ( 4, -2) {$o_1$};
+
+        \node             at (-3,  0) {$\mathcal{H}$};
+        \node             at ( 0, -2) {$\mathcal{H}$};
+        \node             at ( 0,  2) {$\mathcal{H}$};
+        \node             at ( 3,  0) {$\mathcal{H}$};
+      \end{scope}
+      &
+      \begin{scope}[scale=0.75]
+        \draw[very thick] (-2, -3) -- (-2,  1) -- (-4,  1) -- (-4,  3) -- (2,  3) -- (2, -1) -- (4, -1) -- (4, -3) -- (-2, -3);
+        \draw[very thick] ( 0, -3) -- ( 0,  3);
+        \draw[very thick] ( 2, -1) -- ( 0, -1);
+        \draw[very thick] ( 0,  1) -- (-2,  1);
+        \draw[dotted] (-2, -1) -- ( 0, -1);
+        \draw[dotted] ( 2,  1) -- ( 0,  1);
+        \draw[dotted] (-2,  3) -- (-2,  1);
+        \draw[dotted] ( 2, -3) -- ( 2, -1);
+
+        \node[anchor=225] at (-4,  1) {$i_0$};
+        \node[anchor=135] at (-4,  3) {$o_0$};
+        \node[anchor=135] at (-2,  3) {$o_1$};
+        \node[anchor= 45] at ( 0,  3) {$o_s$};
+        \node[anchor=315] at ( 0,  1) {$o_3$};
+        \node[anchor=225] at (-2,  1) {$i'_0$};
+        \node[anchor=  0] at (-2,  2) {$\mathcal{Q}_2$};
+
+        \node[anchor= 45] at ( 4, -1) {$i_0$};
+        \node[anchor=315] at ( 4, -3) {$o_0$};
+        \node[anchor=315] at ( 2, -3) {$o_1$};
+        \node[anchor=225] at ( 0, -3) {$o_s$};
+        \node[anchor=135] at ( 0, -1) {$o_3$};
+        \node[anchor= 45] at ( 2, -1) {$i'_0$};
+        \node[anchor=180] at ( 2, -2) {$\mathcal{Q}_2$};
+
+        \node[anchor=135] at (-2,  1) {$i_0$};
+        \node[anchor= 45] at ( 0,  1) {$o_0$};
+        \node[anchor= 45] at ( 0, -1) {$o_1$};
+        \node[anchor=315] at ( 0, -3) {$o_s$};
+        \node[anchor=225] at (-2, -3) {$o_3$};
+        \node[anchor=135] at (-2, -1) {$i'_0$};
+        \node[anchor=270] at (-1, -1) {$\mathcal{Q}_2$};
+
+        \node[anchor=315] at ( 2, -1) {$i_0$};
+        \node[anchor=225] at ( 0, -1) {$o_0$};
+        \node[anchor=225] at ( 0,  1) {$o_1$};
+        \node[anchor=135] at ( 0,  3) {$o_s$};
+        \node[anchor= 45] at ( 2,  3) {$o_3$};
+        \node[anchor=315] at ( 2,  1) {$i'_0$};
+        \node[anchor= 90] at ( 1,  1) {$\mathcal{Q}_2$};
+      \end{scope}
+      \\
+    };
+  \end{tikzfigure}%
+\end{example}
 
 Expansion patches will be our basic building block for all our constructive proofs. We can use them to obtain larger $o$-$k$-gonal patches:
 
@@ -231,7 +502,7 @@ Expansion patches will be our basic building block for all our constructive proo
       \draw[loosely dotted] (171 : 4) -- (189 : 4);
     \end{tikzfigure}
 
-    We do not want to lay out each application of \autoref{thm:fitting:tuples} explicitly and instead we just want to note two things: First, each inner vertex of $\mathcal{M}(k)$ has indeed valence $r$. We see this from calculating the valence for each kind of vertices. The vertices from the original $k$-gon (where they met only one face) are now adjacent additionally to $w_{\mathcal{M}}(i_o) + w_{\mathcal{M}}(i'_o)$ faces, so the valence is $1 + w_{\mathcal{M}}(i_o) + w_{\mathcal{M}}(i'_o) = r$. The vertices $i_l$ and $i'_l$, $1 \leq i < m$ are adjacent to $i_l + i_l'$ faces and have therefore valence $r$ too, since $i_1 - \dots - i_{m-1}$ and $i'_{m-1} - \dots - i'_1$ were required to be fitting. All other inner vertices come from inner vertices of $\mathcal{M}$, therefore they also have valence $r$. Second, $\mathcal{M}(k)$ is in fact $o$-$k$-gonal since $w_{\mathcal{P}}(o_s) = 1$ and the number of faces adjacent to the vertices between the different copies of $o_s$ are exactly $w_{\mathcal{P}}(o_{s + 1}), \dots, w_{\mathcal{P}}(o_{n - 1}), w_{\mathcal{P}}(o_n) + w_{\mathcal{P}}(o_0), w_{\mathcal{P}}(o_1), \dots w_{\mathcal{P}}(o_{s - 1})$. Finally we want to show that if $\mathcal{M}$ has the polyhedral property that every two faces of $\mathcal{M}(k)$ meet proper. We first want to rule out that one of the faces is the single $k$-gon in the middle of the construction. The $k$ copies of $\mathcal{M}$ touch the $k$-gon in different edges, which correspond to the edge $\set{i_0, i'_0}$ in $\mathcal{M}$, therefore the $k$-gon meets any other face properly, if no face of $\mathcal{M}$ contains both vertices $i_0$ and $i'_0$, but not the whole edge $\set{i_0, i'_0}$, which is disallowed in the definition of the polyhedral condition. If both $f$ and $f'$ differ from the central $k$-gon, then they reside in two of the copies of $\mathcal{M}$. But they can only have a non-empty intersection, if they are in the same copy or in adjacent copies, i.e. one is glued along the vertices $i_o - \dots - i_m$ to the others vertices $i'_m - i'_0$. But then we can think of the subpatch of $\mathcal{M}(k)$ consisting only of those two copies of $\mathcal{M}$ containing $f$ and $f'$ as a subpatch of the edge patch of $\mathcal{M}$ and any two faces meeting non-properly in $\mathcal{M}$ would correspond to two faces in the edge patch meeting non-properly. But this can not be by definition, which finishes the construction. 
+    We do not want to lay out each application of \autoref{thm:fitting:tuples} explicitly and instead we just want to note two things: First, each inner vertex of $\mathcal{M}(k)$ has indeed valence $r$. We see this from calculating the valence for each kind of vertices. The vertices from the original $k$-gon (where they met only one face) are now adjacent additionally to $w_{\mathcal{M}}(i_o) + w_{\mathcal{M}}(i'_o)$ faces, so the valence is $1 + w_{\mathcal{M}}(i_o) + w_{\mathcal{M}}(i'_o) = r$. The vertices $i_l$ and $i'_l$, $1 \leq i < m$ are adjacent to $i_l + i_l'$ faces and have therefore valence $r$ too, since $i_1 - \dots - i_{m-1}$ and $i'_{m-1} - \dots - i'_1$ were required to be fitting. All other inner vertices come from inner vertices of $\mathcal{M}$, therefore they also have valence $r$. Second, $\mathcal{M}(k)$ is in fact $o$-$k$-gonal since $w_{\mathcal{P}}(o_s) = 1$ and the number of faces adjacent to the vertices between the different copies of $o_s$ are exactly $w_{\mathcal{P}}(o_{s + 1}), \dots, w_{\mathcal{P}}(o_{n - 1}), w_{\mathcal{P}}(o_n) + w_{\mathcal{P}}(o_0), w_{\mathcal{P}}(o_1), \dots w_{\mathcal{P}}(o_{s - 1})$. Finally we want to show that if $\mathcal{M}$ has the polyhedral property that every two faces of $\mathcal{M}(k)$ meet proper. We first want to rule out that one of the faces is the single $k$-gon in the middle of the construction. The $k$ copies of $\mathcal{M}$ touch the $k$-gon in different edges, which correspond to the edge $\set{i_0, i'_0}$ in $\mathcal{M}$, therefore the $k$-gon meets any other face properly, if no face of $\mathcal{M}$ contains both vertices $i_0$ and $i'_0$, but not the whole edge $\set{i_0, i'_0}$. Since this edge is a boundary edge, there is exactly one face in $\mathcal{M}$ which contains it, but this face would not meet proper with any other face which contains $i_o$ and $i'_0$ (since it can not contain the edge $\set{i_o, i'_o}$). But if two faces in $\mathcal{M}$ did not meet proper the same would be true for the corresponding edge patch, which contradicts that $\mathcal{M}$ has the polyhedral property. If both $f$ and $f'$ differ from the central $k$-gon, then they reside in two of the copies of $\mathcal{M}$. But they can only have a non-empty intersection, if they are in the same copy or in adjacent copies, i.e. one is glued along the vertices $i_o - \dots - i_m$ to the others vertices $i'_m - i'_0$. But then we can think of the subpatch of $\mathcal{M}(k)$ consisting only of those two copies of $\mathcal{M}$ containing $f$ and $f'$ as a subpatch of the edge patch of $\mathcal{M}$ and any two faces meeting non-properly in $\mathcal{M}$ would correspond to two faces in the edge patch meeting non-properly. But this can not be by definition, which finishes the construction. 
   \end{cdescription}
 \end{construction}
 
@@ -240,7 +511,7 @@ With these constructions at hand we can now finally design a scheme to create an
 \begin{proposition}\label{thm:const:polymap}
   Given an $r$-valent map $M$ on an orientable closed $2$-manifold $S$ and an expansion $r$-patch $\mathcal{M}$ with outer tuple $o$, \autoref{const:map} returns an $r$-valent polyhedral map on $S$ when we take $\mathcal{P}(f) = \mathcal{M}(k)$ for each $k$-gonal face $f$ of $M$.
 \begin{proof}
-The only requirement of \autoref{const:map} we did not explicitly stated is that $o$ is self-fitting (which it is by definition) and that $\mathcal{M}(k)$ is $o$-$k$-gonal, which was the result of \autoref{const:expansion:patch}. Thus we can apply \autoref{const:map} and get a map $M'$ on $S$, for which we need to show that it is polyhedral. We want to use a proof by contradiction so assume that two faces of $M'$, $f$ and $f'$, do not meet properly. By construction, there are two faces $f_o$ and $f'_o$ in the original map $M$, such that $f$ is contained in $\mathcal{P}(f_o)$ and $f'$ is contained in $\mathcal{P}(f'_o)$. Since $f$ and $f'$ do not meet proper, $f_o \cap f'_o \neq \emptyset$ and $\mathcal{P}(f_o) \cap \mathcal{P}(f'_o) \neq \emptyset$. We consider two cases: whether $f_o$ and $f'_o$ denote the same face or not and quickly rule out the first case, since $f_o$ is a $2$-cell and thus no vertices of the boundary of $\mathcal{P}(f_o)$ are identified in $M$ and we proved that the inner faces of $\mathcal{P}(f_o)$ meet proper in \autoref{const:expansion:patch}. Therefore assume that $f_o$ and $f'_o$ are different. The patches $\mathcal{P}(f_o)$ and $\mathcal{P}(f'_o)$ and therefore also the faces $f$ and $f'$ only have a non-empty intersection if $f_o$ and $f'_o$ are adjacent. Since the inner $k$-gons of $\mathcal{M}(k)$ are only adjacent to faces of the corresponding patch, we can also assume that neither $f$ nor $f'$ is one of those inner $k$-gons and that $f$ and $f'$ are contained in two copies of $\mathcal{M}$. Let $\mathcal{M}_c$ be the copy of $\mathcal{M}$ which contains $f$ (and is a subpatch of $\mathcal{P}(f_o)$) and let $\mathcal{M}_c'$ be the copy of $\mathcal{M}$ which contains $f'$ (and is a subpatch of $\mathcal{P}(f'_o)$), and we know that $\mathcal{M}_c \cap \mathcal{M}_c' \neq \emptyset$. 
+The only requirement of \autoref{const:map} we did not explicitly stated is that $o$ is self-fitting (which it is by definition) and that $\mathcal{M}(k)$ is $o$-$k$-gonal, which was the result of \autoref{const:expansion:patch}. Thus we can apply \autoref{const:map} and get a map $M'$ on $S$, for which we need to show that it is polyhedral. We want to use a proof by contradiction so assume that two faces of $M'$, $f$ and $f'$, do not meet properly. By construction, there are two faces $f_o$ and $f'_o$ in the original map $M$, such that $f$ is contained in $\mathcal{P}(f_o)$ and $f'$ is contained in $\mathcal{P}(f'_o)$. Since $f$ and $f'$ do not meet proper, $f_o \cap f'_o \neq \emptyset$ and $\mathcal{P}(f_o) \cap \mathcal{P}(f'_o) \neq \emptyset$. We consider two cases: either $f_o$ and $f'_o$ denote the same face or they do not and we can quickly rule our the first case since since $f_o$ is a $2$-cell and thus no vertices of the boundary of $\mathcal{P}(f_o)$ are identified in $M$ and we proved that the inner faces of $\mathcal{P}(f_o)$ meet proper in \autoref{const:expansion:patch}. Therefore assume that $f_o$ and $f'_o$ are different. The patches $\mathcal{P}(f_o)$ and $\mathcal{P}(f'_o)$ and therefore also the faces $f$ and $f'$ only have a non-empty intersection if $f_o$ and $f'_o$ are adjacent. Since the inner $k$-gons of $\mathcal{M}(k)$ are only adjacent to faces of the corresponding patch, we can also assume that neither $f$ nor $f'$ is one of those inner $k$-gons and that $f$ and $f'$ are contained in two copies of $\mathcal{M}$. Let $\mathcal{M}_c$ be the copy of $\mathcal{M}$ which contains $f$ (and is a subpatch of $\mathcal{P}(f_o)$) and let $\mathcal{M}_c'$ be the copy of $\mathcal{M}$ which contains $f'$ (and is a subpatch of $\mathcal{P}(f'_o)$), and we know that $\mathcal{M}_c \cap \mathcal{M}_c' \neq \emptyset$. 
 
 Recall that in \autoref{const:map} we constructed $M'$ be subdividing each edge of $M$ and replacing each face with the corresponding patch. We again want to use the notion of ``corner vertices'' for the original vertices in $M$, ``side vertices'' for the vertices added by the subdivision and ``inner vertices'' for all of the other vertices. Note that $\mathcal{M}_c$ and $\mathcal{M}_c'$ only contain exactly one corner vertex ($o_s$). If $f$ and $f'$ meet non-proper, then $\mathcal{M}_c$ and $\mathcal{M}_c'$ has to share at least one side vertex (they can not share an inner vertex, as these are completely internal to $\mathcal{P}(f_o)$ and $\mathcal{P}(f'_o)$ and those patches only meet at their boundary). Neither endpoints of an edge  $e \in M$ shared by both $f_o$ and $f_o'$ can be contained multiple times in $f_o$ or $f'_o$ or else $f_o$ or $f'_o$ would not be $2$-cells. Thus the intersection of $f_o$ and $f'_o$ does not contain paths of length greater then one and since $\mathcal{M}_c$ and $\mathcal{M}_c'$ do only contain vertices in the subdivision of adjacent edges in $M$, the intersection $\mathcal{M}_c \cap\mathcal{M}_c'$ contains only vertices in the subdivision of a single edge in $M$. But then $\mathcal{M}_c$ and $\mathcal{M}_c'$ are both contained in an edge patch formed along this edge and the faces in $\mathcal{M}_c$ and $\mathcal{M}'_c$ meet proper by the definition of the polyhedral property. We have held contradiction and finish the proof.
 
@@ -261,7 +532,7 @@ Recall that in \autoref{const:map} we constructed $M'$ be subdividing each edge 
       \draw[shift={(-5,0)}] (153 : 1) -- (153 : 2.5);
       \draw[shift={(-5,0)}][loosely dotted] (153 : 2.5) -- (153 : 3.5);
       \draw[shift={(-5,0)}] (153 : 3.5) -- (153 : 5.062);
-      \draw[shift={(-5,0)}] (226 : 1) -- (225 : 2.5);
+      \draw[shift={(-5,0)}] (225 : 1) -- (225 : 2.5);
       \draw[shift={(-5,0)}][loosely dotted] (225 : 2.5) -- (225 : 3.5);
       \draw[shift={(-5,0)}] (225 : 3.5) -- (225 : 5.062);
       \draw[shift={(-5,0)}] (297 : 1) -- (297 : 2.5);
@@ -364,7 +635,7 @@ Recall that in \autoref{const:map} we constructed $M'$ be subdividing each edge 
       \draw[shift={(5,0)}, rotate around={180:(0,0)}] (153 : 1) -- (153 : 2.5);
       \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (153 : 2.5) -- (153 : 3.5);
       \draw[shift={(5,0)}, rotate around={180:(0,0)}] (153 : 3.5) -- (153 : 5.062);
-      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (226 : 1) -- (225 : 2.5);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (225 : 1) -- (225 : 2.5);
       \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (225 : 2.5) -- (225 : 3.5);
       \draw[shift={(5,0)}, rotate around={180:(0,0)}] (225 : 3.5) -- (225 : 5.062);
       \draw[shift={(5,0)}, rotate around={180:(0,0)}] (297 : 1) -- (297 : 2.5);
@@ -448,10 +719,12 @@ Recall that in \autoref{const:map} we constructed $M'$ be subdividing each edge 
 
 \end{proof}
 \end{proposition}
-
+\begin{example}\label{ex:easy:expansion3}
+  Using the expansion patches $\mathcal{H}$ and $\mathcal{Q}_2$ from \autoref{ex:easy:expansion1} and \autoref{ex:easy:expansion2}, we can finally keep the promise from \autoref{rem:gen:is:no:gen} and deliver a construction which adds to a polyhedral map arbitrary many hexagons (or quadrangles) while inserting only $3$-valent (or $4$-valent) vertices. Given a map $M$ on a closed $2$-manifold, we can simply use \autoref{thm:const:polymap} repeatedly on $M$ with either $\mathcal{H}$ or $\mathcal{Q}_2$ to get the desired result. The theorem inserts at least a single hexagon or quadrangle in each step (which is quite an understatement, the number of polygons added is by far larger), so repeating this step eventually leads to to a map which has more then a specified amount of hexagons or quadrangles.
+\end{example}
 
 Putting all these constructions together, we can formulate a proof scheme for \autoref{problem:eberhard}:
-\begin{proposition}\label{thm:main:const} Let $r = 3$ (or $r = 4$), $p$ and $v$ be an admissible pair of sequences for which we can apply \autoref{thm:eberhard:extended:3} (or \autoref{thm:eberhard:extended:4}). Let $w = [r]$ and $q = [q_s \times s, q_l \times l]$, where $s \in \set{3, 4, 5}$, $l > 6$, $q_s = \frac{l - 6}{\gcd(6 - s, l - 6)}$ and $q_l = \frac{6 - s}{\gcd(6 - s, l - 6)}$ (or $s = 3$, $l > 4$, $q_s = l - 4$ and $q_l = 1$). Assume there exist
+\begin{proposition}\label{thm:main:const} Let $r = 3$ (or $r = 4$), $p$ and $v$ be an admissible pair of sequences. Let $w = [r]$ and $q = [q_s \times s, q_l \times l]$, where $s \in \set{3, 4, 5}$, $l > 6$, $q_s = \frac{l - 6}{\gcd(6 - s, l - 6)}$ and $q_l = \frac{6 - s}{\gcd(6 - s, l - 6)}$ (or $s = 3$, $l > 4$, $q_s = l - 4$ and $q_l = 1$). Assume there exist
   \begin{itemize}
   \item an expansion $r$-patch $\mathcal{P}_N$ with outer arc $o$ consisting of $s$-gons and $l$-gons,
   \item an $o$-$6$-gonal (or $o$-$4$-gonal) $r$-patch $\mathcal{P}_F$ consisting of $s$-gons and $l$-gons,
@@ -459,7 +732,7 @@ Putting all these constructions together, we can formulate a proof scheme for \a
   \end{itemize}
   Then $(p, v)$ is $q$-$w$-realizable.
   \begin{proof}
-    If $r = 3$, we start by using \autoref{thm:eberhard:extended:3} to construct a map $M'$ with $p$-vector $p' = p + c'_6 \cdot [6]$ and $v$-vector $v' = v + d' \cdot [3]$ ($c'_6, d' \in \nats$). We chose $c'_6$ hexagonal faces of $M'$ and assign to those the patch $\mathcal{P}_F$, every other $k$-gonal face is assigned the patch $\mathcal{P}_N(k)$. Next, the use of \autoref{const:map} returns a new map $M''$. Finally, we use \autoref{thm:const:polymap} with $\mathcal{P}_P$ and get a polyhedral map $M$. If we can show that this map has a $p$-vector of the form $p +  [c_s \times s, c_l \times l]$ and a $v$-vector of the form $v + d \cdot [r]$, we can conclude the claim by \autoref{lem:2:valued:eberhard}. So we look at the $p$ and $v$-vector of the maps $M''$ and finally $M$: $M''$ has a $p$-vector of $p + [c''_s \times s, c''_l \times s]$, since we removed the additional $c'_6$ hexagons in $M'$ and replaced them with many more $s$-gons and $l$-gons. When doing this we only added $r$-valent vertices, so the $v$-vector of $M''$ is clearly $v'' \defeq v + d'' \cdot [3]$. Finally the $p$-vector and the $v$-vector of $M$ is of the desired form, since we only added more $s$-gons, $l$-gons and $r$-valent vertices in the last construction step. For $r = 4$, we just switch out quadrangles for hexagons, $4$-valent vertices for $3$-valent vertices, $c'_4$ for $c'_6$ and use \autoref{thm:eberhard:extended:4} in the beginning. Every step in the proof goes completely analogous.
+    If $r = 3$, we start by using \autoref{thm:eberhard:extended:3} on $p + [q_s \times s, q_l \times l]$ and $v$ to construct a map $M'$ with $p$-vector $p' = p + [q_s \times s, q_l \times l] + c'_6 \cdot [6]$ and $v$-vector $v' = v + d' \cdot [3]$ ($c'_6, d' \in \nats$). Note that by doing so we could not run into the exceptional cases of \autoref{thm:eberhard:extended:3} on the torus. We chose $c'_6$ hexagonal faces of $M'$ and assign to those the patch $\mathcal{P}_F$, every other $k$-gonal face is assigned the patch $\mathcal{P}_N(k)$. Next, the use of \autoref{const:map} returns a new map $M''$. Finally, we use \autoref{thm:const:polymap} with $\mathcal{P}_P$ and get a polyhedral map $M$. If we can show that this map has a $p$-vector of the form $p +  [c_s \times s, c_l \times l]$ and a $v$-vector of the form $v + d \cdot [r]$, we can conclude the claim by \autoref{lem:2:valued:eberhard}. So we look at the $p$ and $v$-vector of the maps $M''$ and finally $M$: $M''$ has a $p$-vector of $p + [c''_s \times s, c''_l \times s]$, since we removed the additional $c'_6$ hexagons in $M'$ and replaced them with many more $s$-gons and $l$-gons. When doing this we only added $r$-valent vertices, so the $v$-vector of $M''$ is clearly $v'' \defeq v + d'' \cdot [3]$. Finally the $p$-vector and the $v$-vector of $M$ is of the desired form, since we only added more $s$-gons, $l$-gons and $r$-valent vertices in the last construction step. For $r = 4$, we just switch out quadrangles for hexagons, $4$-valent vertices for $3$-valent vertices, $c'_4$ for $c'_6$ and use \autoref{thm:eberhard:extended:4} in the beginning. Every step in the proof goes completely analogous.
   \end{proof}
 \end{proposition}
 

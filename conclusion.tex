@@ -1,0 +1,22 @@
+\section{Closing remarks}\label{sec:closing:remarks}
+
+We have seen that in our setting, $[q_s \times s, q_l \times l]$-$[r]$-realization with $s < l$, $gcd(q_s, q_l) = 1$ we could establish all {\sc Eberhard}-like theorems which realize all admissible sequences $p$ and $q$. The most interesting question emerging from this work is of course what the situation is in the cases were some admissible sequences are not $[q_s \times s, q_l \times l]$-$[r]$-realizable. We want to propose the following conjectures, i.e. realization only fails on the sphere $\sphere^2$ with a single exceptional $k$-gon or a single $k$-valent vertex:
+
+\begin{conjecture}
+  Let $(s, r) \in \set{(3, 4), (3, 5), (4, 3), (5, 3)}$, $l = s \cdot c$ for some $c \in \nats$ and $q = [q_s \times s, q_l \times l]$ and $w = [r]$ be flat with $\gcd(q_s, q_l) = 1$. Let $p = (p_3, \dots, p_m)$ and $q = (q_3, \dots, q_m)$ be admissible sequences for a closed $2$-manifold $S \not\cong \sphere^2$. Then $(p, v)$ is $q$-$w$-realizable on $S$.
+\end{conjecture}
+
+\begin{conjecture}
+  Let $(s, r) \in \set{(3, 4), (3, 5), (4, 3), (5, 3)}$, $l = s \cdot c$ for some $c \in \nats$ and $q = [q_s \times s, q_l \times l]$ and $w = [r]$ be flat with $\gcd(q_s, q_l) = 1$. Let $p = (p_3, \dots, p_m)$ and $q = (q_3, \dots, q_m)$ be admissible sequences on the sphere $\sphere^2$. If neither
+  \begin{align*}
+    \sum_{k = 3 \atop k \neq s, ~k \neq l}^m p_k = 1, \qquad&\sum_{k = 3 \atop k \neq r}^n v_k = 0 \text{~nor} \\
+    \sum_{k = 3 \atop k \neq s, ~k \neq l}^m p_k = 0, \qquad&\sum_{k = 3 \atop k \neq r}^n v_k = 1
+  \end{align*}
+then $(p, v)$ is $q$-$w$-realizable on $\sphere^2$.
+\end{conjecture}
+
+Which of those sequences excluded in the last conjecture are actually realizable is a difficult question. We have seen quite a few examples where we could show that they are not realizable, but the author assumes that there could be more parity conditions missing.
+
+An oddity we found is the case $(r, s) = (3, 3)$. Giving a {\sc Eberhard} theorem for $l \geq 13$ is probably as hard as determining the set of all $p$-vectors and $v$-vectors of polyhedral maps. If $l = 11$ or $l = 12$ we have problems with spacing the triangles far enough away so that we can insert all of them without creating \autoref{fig:adjacent:triangles}. Usually those things work better if $\sum_{k \geq 4} 2k \cdot v_k + \sum_{k \geq 4} \floor{\tfrac{k}{2}} p_k \gg 3p_3$ (we have less restrictions to place our triangles) or if we have large $p$- and $v$-vectors (we have more possibilities to place other polygons).
+
+Another interesting question would be determining the set $C(p, v, q, w, S)$ we defined in the previous section. Note that by \eqref{eq:handshake} only the value of $c$ in each pair $(c, d) \in C(p, v, q, w, S)$ is interesting, since it uniquely defines $d$. For the classical {sc Eberhard} theorems \cite{jendrol1993face} and \cite{jucovivc1976face} established for almost all sequences $p$ and $v$ which values of $c$ the pairs $(c, d)$ in the sets $C(p, v, [6], [3], S)$ and $C(p, v, [4], [4], S)$ contain on a large scale. They found that there is a parity condition on $c$, either these sets are empty, they contain a pair $(c, d)$ for each $c$ greater then some limit depending on $p$ and $v$, or they contain either all even or all odd values of $c$ after that threshold. In light of this, knowing those parity conditions on the pairs $(c, d)$ in the set $C(p, v, [q_s \times s, q_l \times l], [r], S)$ for $\gcd(q_s, q_l) = 1$ would also the determine the set $C(p, v, [q_s \times s, q_l \times l], [r], S)$ when the restriction $\gcd(q_s, q_l) = 1$ is lifted (for example if $C(p, v, [q_s \times s, q_l \times l], [r], S)$ contains only pairs $(c, d)$ with odd values of $c$, then $C(p, v, 2 \cdot [q_s \times s, q_l \times l], [r], S)$ is empty).

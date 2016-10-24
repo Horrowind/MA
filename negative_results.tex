@@ -2,7 +2,7 @@
 
 Attentive readers might have noticed that we left out in the previous sections exactly those theorems for $[q_s \times s, q_l \times l]$-$[r]$-realizability, where $s | l$. This is not by far a coincidence. In fact, the problems with these realizations arise from graph theory, and even weaker constructs can not exists. These constructs are graphs with the following properties: 
 
-\begin{definition} A vertex is called $(a \mod r)$-valent, if its valence is congruent $a$ modulo $r$, $r \in \nats_{>0}$, $a \in \set{0, \dots, r - 1}$. A planar graph is called $(a \mod r)$-valent, if the valence $(a \mod r)$-valent. Dually, a face is called $(a \mod s)$-gonal, if the number of vertices of this face is congrent $a$ mod $s$, $s \in \nats_{>0}$, $a \in \set{0, \dots, s - 1}$ and the graph is called $(a \mod s)$-gonal if every face is $(a \mod s)$-gonal. It is called near $(a \mod k)$-gonal / near $(a \mod r)$-valent, if exactly one face / exactly one vertex is not $(a \mod s)$-gonal / $(a \mod r)$-valent. In the case of $a = 0$, these properties will be called (near) multi-$s$-gonal / (near) multi-$r$-valent.
+\begin{definition} A vertex is called \hdef{$(a \mod r)$-valent}, if its valence is congruent $a$ modulo $r$, $r \in \nats_{>0}$, $a \in \set{0, \dots, r - 1}$. A planar graph is called $(a \mod r)$-valent, if the valence $(a \mod r)$-valent. Dually, a face is called \hdef{$(a \mod s)$-gonal}, if the number of vertices of this face is congrent $a$ mod $s$, $s \in \nats_{>0}$, $a \in \set{0, \dots, s - 1}$ and the graph is called $(a \mod s)$-gonal if every face is $(a \mod s)$-gonal. It is called \hdef{near $(a \mod k)$-gonal} / \hdef{near $(a \mod r)$-valent}, if exactly one face / exactly one vertex is not $(a \mod s)$-gonal / $(a \mod r)$-valent. In the case of $a = 0$, these properties will be called \hdef{(near) multi-$s$-gonal} / \hdef{(near) multi-$r$-valent}.
 \end{definition}
 
 The following theorem is established in \cite{malkevitch1970properties}, together with many similar results for up to two exceptional vertices/faces. We can immediately draw a conclusion for which admissible pairs of sequences we can not hope for a $q$-$w$-realization by applying this theorem on $[q_s \times s, q_l \times l]$-$[r]$-realizations, $s | l$, which we will do as a corollary.
@@ -15,8 +15,8 @@ The following theorem is established in \cite{malkevitch1970properties}, togethe
 \begin{corollary}\label{thm:division:nonrealizable}
   Let $(s, r) \in \set{(3, 3), (3, 4), (3, 5), (4, 3), (5, 3)}$ and let $c \in \nats_{> 0}$. Then the sequences $p = (p_3, \dots, p_m)$, $v = (v_3, \dots, v_n)$ with either
   \begin{align*}
-    \sum_{k = 3, s \nmid k}^m p_k = 1, \qquad&\sum_{k = 3, r \nmid k}^n v_k = 0 \text{~or} \\
-    \sum_{k = 3, s \nmid k}^m p_k = 0, \qquad&\sum_{k = 3, r \nmid k}^n v_k = 1
+    \sum_{k = 3 \atop s \nmid k}^m p_k = 1, \qquad&\sum_{k = 3 \atop r \nmid k}^n v_k = 0 \text{~or} \\
+    \sum_{k = 3 \atop s \nmid k}^m p_k = 0, \qquad&\sum_{k = 3 \atop r \nmid k}^n v_k = 1
   \end{align*}
   are not $[q_s \times s, q_{c \cdot s} \times (c \cdot s)]$-$[r]$-realizable as polyhedron (for all $q_s, q_{c \cdot s} \in \nats$).
 \begin{proof}
@@ -35,7 +35,7 @@ The following theorem is established in \cite{malkevitch1970properties}, togethe
   If $(s, r) = (3, 3)$, there is no admissible pair of sequences that would suffice one of the two conditions in \autoref{thm:division:nonrealizable}.
 \end{example}
 
-In \cite{horvnak1977nearly} we can also find similar results to those in \cite{malkevitch1970properties} for cell-decompositions of arbitrary closed orientable $2$-manifolds, suggesting that only the surfaces of small genus provide exceptions to the realizablity of (near) multi-$k$-gonal / multi-$k$-valent graph embeddings. Sadly (or luckily), there is no immediate new instance of an unrealizable admissible pair of sequences from the results shown there. In the case $(s, r) = (3, 3)$ in \autoref{thm:division:nonrealizable}, the provided pairs $(p, v)$ are not admissible, which would not explain why we left out a theorem about $[3, 9]$-$3$-realizable maps in \autoref{sec:3:3}. Strangely, there is another type of divisibility condition, which excludes even more pairs:
+In \cite{horvnak1977nearly} we can also find similar results to those in \cite{malkevitch1970properties} for cell-decompositions of arbitrary closed orientable $2$-manifolds, suggesting that only the surfaces of small genus provide exceptions to the realizablity of (near) multi-$k$-gonal / multi-$k$-valent graph embeddings. Sadly (or luckily), there is no immediate new instance of an unrealizable admissible pair of sequences from the results shown there. In the case $(s, r) = (3, 3)$ in \autoref{thm:division:nonrealizable}, the provided pairs $(p, v)$ are not admissible, which would not explain why we left out a theorem about $[3, 9]$-$[3]$-realizable maps in \autoref{sec:3:3}. Strangely, there is another type of divisibility condition, which excludes even more pairs:
 
 \begin{proposition}\label{thm:mod:graphs:nonrealizable}
   Let $(s, r) \in \set{(3, 3), (3, 4), (3, 5), (4, 3), (5, 3)}$. There is no connected planar graph which is both $(r \mod 2r)$-valent and near $(s \mod 2s)$-gonal.
@@ -264,7 +264,7 @@ In \cite{horvnak1977nearly} we can also find similar results to those in \cite{m
       \\
     };
   \end{tikzfigure}%
-  Doing so we have the same four cases as in the first construction, in fact, we can take the argument of each one and directly apply it to this figure again. In the outcome, we get a new $(r \mod 2r)$-valent and near $(s \mod 2s)$-gonal graph, which either has a fewer edges, a contradiction, or we could cut of two $s$-gons from a larger $s \mod 2s$-gon at specific places. By repeatedly using this construction we can build around the exceptional face rings of $s$-gons until we reach one of the graphs in \autoref{fig:mod:graphs:nonrealizable:4}. %
+  Doing so we have the same four cases as in the first construction, in fact, we can take the argument of each one and directly apply it to this figure again. In the outcome, we get a new $(r \mod 2r)$-valent and near $(s \mod 2s)$-gonal graph, which either has a fewer edges, a contradiction, or we could cut of two $s$-gons from a larger $(s \mod 2s)$-gonal faces at specific places. By repeatedly using this construction we can build around the exceptional face rings of $s$-gons until we reach one of the graphs in \autoref{fig:mod:graphs:nonrealizable:4}. %
   \begin{tikzfigure}{\label{fig:mod:graphs:nonrealizable:4}}{A graph which is not $(r \mod 2r)$-valent and near $(s \mod 2s)$-gonal for each pair $(s, r)$}
     \matrix (m) [column sep=1cm, row sep=1cm] {
       \begin{scope}[scale=0.7]
@@ -357,8 +357,8 @@ Finally we can state another theorem, singling out even more cases than \autoref
 \begin{corollary}\label{thm:mod:nonrealizable}
   Let $(s, r) \in \set{(3, 3), (3, 4), (3, 5), (4, 3), (5, 3)}$ and let $c \in \nats_{> 0}$. Then the sequences $p = (p_3, \dots, p_m)$, $v = (v_3, \dots, v_n)$ with either
   \begin{align*}
-    \sum_{k = 3, ~k \not\equiv s (\mod 2s)}^m p_k = 1, \qquad&\sum_{k = 3, ~k \not\equiv r (\mod 2r)}^n v_k = 0 \text{~or} \\
-    \sum_{k = 3, ~k \not\equiv s (\mod 2s)}^m p_k = 0, \qquad&\sum_{k = 3, ~k \not\equiv r (\mod 2r)}^n v_k = 1
+    \sum_{k = 3 \atop k \not\equiv s (\mod 2s)}^m p_k = 1, \qquad&\sum_{k = 3 \atop k \not\equiv r (\mod 2r)}^n v_k = 0 \text{~or} \\
+    \sum_{k = 3 \atop k \not\equiv s (\mod 2s)}^m p_k = 0, \qquad&\sum_{k = 3 \atop k \not\equiv r (\mod 2r)}^n v_k = 1
   \end{align*}
   are not $[q_s \times s, q_{2cs + s} \times (2cs + s)]$-$[r]$-realizable on the sphere $\sphere^2$ (for all $q_s, q_{2cs + s} \in \nats$).
 \begin{proof}
@@ -374,6 +374,10 @@ Finally we can state another theorem, singling out even more cases than \autoref
 \end{example}
 
 The last theorem we want to present in this section explains, why we were unable to find $3$-valent {\sc Eberhard}-like theorems with triangles and large $k$-gons, $k \geq 11$:
+
+\begin{definition}
+  We want to call \hdef{$C(p, v, q, w, S)$} the set of all tuples $(c, d)$ for which $(p + c q, v + d w)$ is realizable on $S$.
+\end{definition}
 
 \begin{theorem}\label{thm:triangle:nonrealizable}
   Let $p$ and $v$ be sequences, $S$ a closed $2$-manifold $S$ and $q = [q_3 \times 3, q_l \times l]$, $w = [3]$ for $l \in \nats, l \geq 13$, $q_3 = \frac{l - 6}{\gcd(3, l)}$, $q_l = \frac{3}{\gcd(3, l)}$. Then the set $(C(p, v, q, w, S)$ is finite. Additionally, if $l \geq 11$ and $\sum_{k \geq 4} 2k \cdot v_k + \sum_{k \geq 4} \floor{\tfrac{k}{2}} p_k < 3p_3$, then $C(p, v, q, w, S)$ is empty, except when $S \cong \sphere^2$, $p = [4 \times 3]$, $v = [4 \times 3]$, in which case $C(p, v, q, w, S) = \set{(0, 0)}$.

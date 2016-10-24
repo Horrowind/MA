@@ -1,14 +1,17 @@
 \section{$3$-valent {\sc Eberhard}-like theorems with pentagons}\label{sec:5:3}
 
+In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with pentagons, i.e. for $q = [q_5 \times 5, q_l \times l]$, $w = [w_3 \times 3]$, $l > 6$, $\gcd(q_5, q_l) = 1$. As it turns out in \label{sec:negative:results}, this is only possible for all admissible pairs of sequences on all closed orientable $2$-manifolds, if $5 \nmid l$. For all the proofs, we want to use \autoref{thm:main:const}, therefore we need to have a construction scheme for patches with arbitrary large $l$-gons. These we get by the next three constructions:
+
 \begin{construction}\label{const:edge:replacement:5:1}
   \begin{cinput}
   \item A $3$-patch with $p$-vector $p$ and a specified edge with exactly one vertex incident to some $k_1$-gon and the other vertex  incident to some $k_2$-gon.
   \end{cinput}
   \begin{coutput}
   \item A new $3$-patch with $p$-vector $p - [k_1, k_2] + [10k \times 5] + [k_1 + 5k, k_2 + 5k]$ for all $k \in \nats$.
+  \item If every two faces of the $3$-patch meet proper, then this is carried over to the new patch.
   \end{coutput}
   \begin{cdescription}
-    Using the replacement of the single edge as seen in \autoref{fig:const:edge:replacement:5:1} results in a new map with $p$-vector $p - [k_1, k_2] + [10 \times 5] + [k_1 + 5, k_2 + 5]$. The thick line on the left is the specified line and the thick line on the right is a new line which we can use to repeat the construction. Every time we use this construction we add ten new pentagons while increasing the number of vertices of the left and right polygon by 5; doing this $k$ times has the desired result, since we only inserted $3$-valent vertices.
+    Using the replacement of the single edge as seen in \autoref{fig:const:edge:replacement:5:1} results in a new map with $p$-vector $p - [k_1, k_2] + [10 \times 5] + [k_1 + 5, k_2 + 5]$. The thick line on the left is the specified line and the thick line on the right is a new line which we can use to repeat the construction. Every time we use this construction we add ten new pentagons while increasing the number of vertices of the left and right polygon by 5; doing this $k$ times has the desired result, since we only inserted $3$-valent vertices. That all faces meet proper follows by induction, as this property is preserved in each step.
     \begin{tikzfigure}{\label{fig:const:edge:replacement:5:1}}{}
       \matrix (m) [column sep=1cm] {
         \begin{scope}
@@ -58,13 +61,13 @@
 
 \begin{construction}\label{const:edge:replacement:5:2}
   \begin{cinput}
-  \item A $3$-patch with $p$-vector $p$ and a specified path of length $2$ with the start vertex incident to some $k_1$-gon and the end vertex incident to some $k_2$-gon, while the vertex in the middle is incident to neither polygon.
+  \item A $3$-patch with $p$-vector $p$ and a specified edge incident to both some $k_1$-gon and some $k_2$-gon.
   \end{cinput}
   \begin{coutput}
-  \item A new $3$-patch with $p$-vector $p - [k_1, k_2] + [10k \times 5] + [k_1 + 5k, k_2 + 5k]$ for all $k \in \nats$.
+  \item A new $3$-patch with $p$-vector $p - [k_1, k_2] + [(10k) \times 5] + [5k + k_1 , 5k + k_2]$ for all $k \in \nats$.
   \end{coutput}
   \begin{cdescription}
-    Using the replacement of the path as seen in \autoref{fig:const:edge:replacement:5:2} results in a new map with $p$-vector $p - [k_1, k_2] + [10 \times 5] + [k_1 + 5, k_2 + 5]$. The thick drawn path on the left is the specified path and the thick drawn path on the right is a new path which we can use to repeat the construction. Every time we use this construction we add ten new pentagons while increasing the number of vertices of the left and right polygon by 5; doing this $k$ times has the desired result, since we only inserted $3$-valent vertices.
+    Using the replacement of the single edge as seen in \autoref{fig:const:edge:replacement:5:2} results in a new map with $p$-vector $p - [k_1, k_2] + [10 \times 5] + [k_1 + 5, k_2 + 5]$. The thick line on the left is the specified line and the thick line on the right is a new line which we can use to repeat the construction. Every time we use this construction we add four new quadrangles while increasing the number of vertices of the left and right polygon; doing this $k$ times has the desired result, since we only insert $3$-valent vertices.
     \begin{tikzfigure}{\label{fig:const:edge:replacement:5:2}}{}
       \matrix (m) [column sep=1cm] {
         \begin{scope}
@@ -160,7 +163,8 @@
           \node at (0, 1.5) {$5$};
           \node at (0, -0.75) {$5$};
           \node at (0, 0.75) {$5$};
-
+          \node[anchor=east] at (-2, 0) {$k_1 + 5$};
+          \node[anchor=west] at (2, 0) {$k_2 + 5$};
         \end{scope}
         \\
       };
@@ -168,13 +172,15 @@
   \end{cdescription}
 \end{construction}
 
-\begin{theorem}
-  Let $p$ and $v$ be a pair of admissible sequences for some orientable closed $2$-manifold $S$ with {\sc Euler}-characteristic $\chi$, i.e. \eqref{eq:vp:3} and \eqref{eq:handshake} holds for some $e \in \nats$. Then $(p, v)$ is $[(5k + 1) \times 5, (5k+7)]$-$[3]$-realizable for all $k \in \nats$.
-  \begin{proof}
-    To apply \autoref{thm:main:const}, we need an expansion $3$-patch with outer tuple $o$ and a corresponding $o$-$k$-gonal $3$-patch, both of which only contain pentagons and $5k+7$-gons. These are depicted in \autoref{fig:expansion:patch:5:7}.
 
-\begin{tikzfigure}{\label{fig:expansion:patch:5:7}}{}
-      \matrix (m) [column sep=1cm] {
+We now can split the infinitely many cases in four series, each with a different residual class of $l \mod 5$:
+
+\begin{theorem}
+  Let $p$ and $v$ be a pair of admissible sequences for a orientable closed $2$-manifold $S$. Then $(p, v)$ is $[(5k + 1) \times 5, (5k+7)]$-$[3]$-realizable for all $k \in \nats$.
+  \begin{proof}
+    An expansion $3$-patch with outer tuple $o = (1, 1, 1, 2, 2, 2)$, a corresponding $o$-$6$-gonal $3$-patch and a expansion $3$-patch with the polyhedral property, all consisting only of quintangles and heptagons, are shown in \autoref{fig:expansion:patch:5:7}. Using \autoref{const:edge:replacement:5:1}, \autoref{const:edge:replacement:5:2} and \autoref{const:edge:replacement:5:3} on the edges as indicated in all three we get new $3$-patches consisting only of quintangles and $5k + 7$-gons. Therefore we can apply \autoref{thm:main:const}.
+    \begin{tikzfigure}{\label{fig:expansion:patch:5:7}}{}
+      \matrix (m) [column sep=1cm, row sep=1cm] {
         \begin{scope}[scale=3, yshift=25]
           \input{tikz/5_7/ngon}
         \end{scope}
@@ -182,7 +188,7 @@
         \begin{scope}[scale=3, yshift=25]
           \input{tikz/5_7/hexagon}
         \end{scope}
-        &
+        \\
         \begin{scope}[scale=3, yshift=25]
           \input{tikz/5_7/mouse}
         \end{scope}
@@ -193,11 +199,10 @@
 \end{theorem}
 
 \begin{theorem}
-  Let $p$ and $v$ be a pair of admissible sequences for some orientable closed $2$-manifold $S$ with {\sc Euler}-characteristic $\chi$, i.e. \eqref{eq:vp:3} and \eqref{eq:handshake} holds for some $e \in \nats$. Then $(p, v)$ is $[(5k + 2) \times 5, (5k+8)]$-$[3]$-realizable for all $k \in \nats$.
+  Let $p$ and $v$ be a pair of admissible sequences for a orientable closed $2$-manifold $S$. Then $(p, v)$ is $[(5k + 2) \times 5, (5k+8)]$-$[3]$-realizable for all $k \in \nats$.
   \begin{proof}
-    To apply \autoref{thm:main:const}, we need an expansion $3$-patch with outer tuple $o$ and a corresponding $o$-$k$-gonal $3$-patch, both of which only contain pentagons and $5k+8$-gons. These are depicted in \autoref{fig:expansion:patch:5:8}.
-
-\begin{tikzfigure}{\label{fig:expansion:patch:5:8}}{}
+    An expansion $3$-patch with outer tuple $o = (1, 2, 2, 2, 1, 2, 1, 1, 1, 2)$, a corresponding $o$-$6$-gonal $3$-patch and a expansion $3$-patch with the polyhedral property, all consisting only of quintangles and octagons, are shown in \autoref{fig:expansion:patch:5:8}. Using \autoref{const:edge:replacement:5:1}, \autoref{const:edge:replacement:5:2} and \autoref{const:edge:replacement:5:3} on the edges as indicated in all three we get new $3$-patches consisting only of quintangles and $5k + 8$-gons. Therefore we can apply \autoref{thm:main:const}.
+    \begin{tikzfigure}{\label{fig:expansion:patch:5:8}}{}
       \matrix (m) [column sep=1cm] {
         \begin{scope}[scale=3, yshift=25]
           \input{tikz/5_8/ngon}
@@ -206,7 +211,7 @@
         \begin{scope}[scale=3, yshift=25]
           \input{tikz/5_8/hexagon}
         \end{scope}
-        &
+        \\
         \begin{scope}[scale=3, yshift=25]
           \input{tikz/5_8/mouse}
         \end{scope}
@@ -216,115 +221,48 @@
   \end{proof}
 \end{theorem}
 
+\begin{theorem}
+  Let $p$ and $v$ be a pair of admissible sequences for a orientable closed $2$-manifold $S$. Then $(p, v)$ is $[(5k + 3) \times 5, (5k+9)]$-$[3]$-realizable for all $k \in \nats$.
+  \begin{proof}
+    An expansion $3$-patch with outer tuple $o = (1, 2, 1, 1, 2, 1, 1, 2, 2, 1, 2, 2, 1, 2)$, a corresponding $o$-$6$-gonal $3$-patch and a expansion $3$-patch with the polyhedral property, all consisting only of quintangles and nonagons, are shown in \autoref{fig:expansion:patch:5:9}. Using \autoref{const:edge:replacement:5:1}, \autoref{const:edge:replacement:5:2} and \autoref{const:edge:replacement:5:3} on the edges as indicated in all three we get new $3$-patches consisting only of quintangles and $5k + 9$-gons. Therefore we can apply \autoref{thm:main:const}.
+    \begin{tikzfigure}{\label{fig:expansion:patch:5:9}}{}
+      \matrix (m) [column sep=1cm] {
+        \begin{scope}[scale=3, yshift=25]
+          \input{tikz/5_9/ngon}
+        \end{scope}
+        &
+        \begin{scope}[scale=3, yshift=25]
+          \input{tikz/5_9/hexagon}
+        \end{scope}
+        \\
+        \begin{scope}[scale=3, yshift=25]
+          \input{tikz/5_9/mouse}
+        \end{scope}
+        \\
+      };
+    \end{tikzfigure}
+  \end{proof}
+\end{theorem}
 
-% \begin{lemma}\label{thm:expansion:patch:4:7}
-%   There are an expansion $3$-patch with outer tuple $o = (1, 1, 1, 2, 2, 2)$ and a corresponding $o$-$6$-gonal $3$-patch consisting only of $4$-gons and $4k + 7$-gons for all $k \in \nats$.
-%   \begin{proof}
-%     Using \autoref{const:edge:replacement:4:2} on the edges drawn thick in both $3$-patches in \autoref{fig:expansion:patch:4:7} results in $3$-patches consisting only $n$-gons with the specified amount of vertices. The left patch is an expansion patch with outer tuple $o$, while the right patch is $o$-$6$-gonal, these properties do not change when using \autoref{const:edge:replacement:4:2}.
-%     \begin{tikzfigure}{\label{fig:expansion:patch:4:7}}{}
-%       \matrix (m) [column sep=1cm] {
-%         \begin{scope}[scale=1.2]
-%           \draw (0.5, 2.5) -- (-0.5, 2) -- (-1, 1) -- (-0.1, 0) -- (1.1, 0) -- (2, 1) -- (1.5, 2);
-%           \draw[very thick] (0.5, 2.5) -- (1.5, 2);
-%           \draw (0.5, 2.5) -- (0, 3.5) -- (0.9, 4.5) -- (2.1, 4.5) -- (3, 3.5) -- (2.5, 2.5) -- (1.5, 2);
-%           \draw (2, 1) -- (3, 1.5) -- (2.5, 2.5);
-%           \node[anchor=90] at (-0.1, 0) {$i_0$};
-%           \node[anchor=90] at (1.2, 0) {$i'_0$};
-%           \node[anchor=120] at (2, 1) {$i'_1$};
-%           \node[anchor=180] at (3, 1.5) {$i'_2 = o_7$};
-%           \node[anchor=180] at (2.5, 2.5) {$o_6$};
-%           \node[anchor=180] at (3, 3.5) {$o_5$};
-%           \node[anchor=-120] at (2.1, 4.5) {$o_4$};
-%           \node[anchor=-60] at (0.9, 4.5) {$o_3$};
-%           \node[anchor=0] at (0, 3.5) {$\mathbf{o_2}$};
-%           \node[anchor=-20] at (0.5, 2.5) {$o_{1}$};
-%           \node[anchor=0] at (-0.5, 2) {$i_2 = o_{0}$};
-%           \node[anchor=45] at (-1, 1) {$i_1$};
-%         \end{scope}
-%         &
-%         \begin{scope}[scale=3, yshift=25]
-%           \input{tikz/4_7/hexagon2}
-%         \end{scope}
-%         \\
-%       };
-%     \end{tikzfigure}
-%   \end{proof}
-% \end{lemma}
-
-% \begin{lemma}\label{thm:expansion:patch:4:9}
-%   There are an expansion $3$-patch with outer tuple $o = (1, 1, 1, 1, 1, 2, 2, 2, 2, 2)$ and a corresponding $o$-$6$-gonal $3$-patch consisting only of $4$-gons and $4k + 9$-gons for all $k \in \nats$.
-%   \begin{proof}
-%     Using \autoref{const:edge:replacement:4:2} on the edges drawn thick in both $3$-patches in \autoref{fig:expansion:patch:4:9} results in $3$-patches consisting only $n$-gons with the specified amount of vertices. The left patch is an expansion patch with outer tuple $o$, while the right patch is $o$-$6$-gonal, these properties do not change when using \autoref{const:edge:replacement:4:2}.
-%     \begin{tikzfigure}{\label{fig:expansion:patch:4:9}}{}
-%       \matrix (m) [column sep=1cm] {
-%         \begin{scope}[scale=0.8]
-%           \draw (-0.5, 3) -- (-1, 2) -- (-1, 1) -- (0, 0) -- (1, 0) -- (2, 1) -- (2, 2) -- (1.5, 3) -- (0.5, 3.5);
-%           \draw[very thick] (0.5, 3.5) -- (-0.5, 3);
-%           \draw (2, 1) -- (3, 1) -- (3, 2) -- (2, 2);
-%           \draw (3, 2) -- (2.5, 3) -- (1.5, 3);
-%           \draw (2.5, 3) -- (1, 4.5);
-%           \draw (0.5, 3.5) -- (1, 4.5) -- (1, 5.5) -- (0, 6.5) -- (-1, 6.5) -- (-2, 5.5) -- (-2, 4.5) -- (-1.5, 3.5) -- (-0.5, 3);
-%           \node[anchor=90] at (0, 0) {$i_0$};
-%           \node[anchor=90] at (1, 0) {$i'_0$};
-%           \node[anchor=120] at (2, 1) {$i'_1$};
-%           \node[anchor=180] at (3, 1) {$i'_2 = o_{11}$};
-%           \node[anchor=180] at (3, 2) {$o_{10}$};
-%           \node[anchor=-150] at (2.5, 3) {$o_9$};
-%           \node[anchor=-150] at (1, 4.5) {$o_8$};
-%           \node[anchor=-150] at (1, 5.5) {$o_7$};
-%           \node[anchor=-110] at (0, 6.5) {$o_6$};
-%           \node[anchor=-70] at (-1, 6.5) {$o_5$};
-%           \node[anchor=-20] at (-2, 5.5) {$o_4$};
-%           \node[anchor=0] at (-2, 4.5) {$o_3$};
-%           \node[anchor=60] at (-1.5, 3.5) {$\mathbf{o_2}$};
-%           \node[anchor=20] at (-0.5, 3) {$o_{1}$};
-%           \node[anchor=0] at (-1, 2) {$i_2 = o_{0}$};
-%           \node[anchor=45] at (-1, 1) {$i_1$};
-%         \end{scope}
-%         &
-%         \begin{scope}[scale=3, yshift=25]
-%           \input{tikz/4_9/hexagon}
-%         \end{scope}
-%         \\
-%       };
-%     \end{tikzfigure}
-%   \end{proof}
-% \end{lemma}
-
-% \begin{lemma}\label{thm:expansion:patch:4:10}
-%   There are an expansion $3$-patch with outer tuple $o = (1, 1, 2, 1, 2, 2)$ and a corresponding $o$-$6$-gonal $3$-patch consisting only of $4$-gons and $4k + 10$-gons for all $k \in \nats$.
-%   \begin{proof}
-%     Using \autoref{const:edge:replacement:4:2} on the edges drawn thick in both $3$-patches in \autoref{fig:expansion:patch:4:10} results in $3$-patches consisting only $n$-gons with the specified amount of vertices. The left patch is an expansion patch with outer tuple $o$, while the right patch is $o$-$6$-gonal, these properties do not change when using \autoref{const:edge:replacement:4:2}.
-%     \begin{tikzfigure}{\label{fig:expansion:patch:4:10}}{\todo{better picture}}
-%       \matrix (m) [column sep=1cm] {
-%         \begin{scope}[scale=3]
-%           \input{tikz/4_10/ngon}
-%         \end{scope}
-%         &
-%         \begin{scope}[scale=3]
-%           \input{tikz/4_10/hexagon}
-%         \end{scope}
-%         \\
-%       };
-%     \end{tikzfigure}
-%   \end{proof}
-% \end{lemma}
-
-
-% \begin{lemma}\label{thm:expansion:patch:poly:4:k}
-%   There is an expansion $3$-patch with the polyhedral property consisting of $4$-gons and $k$-gons, $k \geq 7$.
-%   \begin{proof}
-%     Use \autoref{const:edge:replacement:4:1} on the edges drawn thick in \autoref{fig:expansion:patch:poly:4}. \todo{argue that this has the polyhedral property}.
-%     \begin{tikzfigure}{\label{fig:expansion:patch:poly:4}}{\todo{better picture}}
-%       \input{svgs/case_4_k_2val_to_3val.svg.tex}
-%     \end{tikzfigure}
-%   \end{proof}
-% \end{lemma}
-
-
-% \begin{theorem}
-%   Let $p$ and $v$ be sequences for which \eqref{eq:vp:3} holds for some orientable closed $2$-manifold $S$ with {\sc Euler}-characteristic $\chi$. Then $(p, v)$ is $[(4k + 1) \times 4, 2 \times (4k+7)]$-$[3]$-realizable and $[(4k + 3) \times 4, 2 \times (4k+9)]$-$[3]$-realizable for all $k \in \nats$. When not being in the case $\chi = 2$, $\sum_{k=3,\, 2 \nmid k}^{m} p_k = 0$ and $\sum_{k=4, \,3 \nmid k}^m v_k = 1$, it is also $[(4k + 4) \times 4, 2 \times (4k+10)]$-$[3]$-realizable.
-%   \begin{proof}
-%     \autoref{thm:expansion:patch:4:7}, \autoref{thm:expansion:patch:4:9}, \autoref{thm:expansion:patch:4:10} and \autoref{thm:expansion:patch:poly:4:k} deliver the necessary patches to apply \autoref{thm:main:const}, which shows the claim.
-%   \end{proof}
-% \end{theorem}
+\begin{theorem}
+  Let $p$ and $v$ be a pair of admissible sequences for a orientable closed $2$-manifold $S$. Then $(p, v)$ is $[(5k + 5) \times 5, (5k+11)]$-$[3]$-realizable for all $k \in \nats$.
+  \begin{proof}
+    An expansion $3$-patch with outer tuple $o = (1, 2, 1, 1, 2, 1, 1, 2, 2, 1, 2, 2, 1, 2)$, a corresponding $o$-$6$-gonal $3$-patch and a expansion $3$-patch with the polyhedral property, all consisting only of quintangles and hendecagons, are shown in \autoref{fig:expansion:patch:5:11}. Using \autoref{const:edge:replacement:5:1}, \autoref{const:edge:replacement:5:2} and \autoref{const:edge:replacement:5:3} on the edges as indicated in all three we get new $3$-patches consisting only of quintangles and $5k + 11$-gons. Therefore we can apply \autoref{thm:main:const}.
+    \begin{tikzfigure}{\label{fig:expansion:patch:5:11}}{}
+      \matrix (m) [column sep=1cm] {
+        \begin{scope}[scale=3, yshift=25]
+          \input{tikz/5_11/ngon}
+        \end{scope}
+        &
+        \begin{scope}[scale=3, yshift=25]
+          \input{tikz/5_11/hexagon}
+        \end{scope}
+        \\
+        \begin{scope}[scale=3, yshift=25]
+          \input{tikz/5_11/mouse}
+        \end{scope}
+        \\
+      };
+    \end{tikzfigure}
+  \end{proof}
+\end{theorem}
