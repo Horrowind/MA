@@ -7,16 +7,123 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with tr
   \begin{proof}
     An expansion $3$-patch with outer tuple $o = (2, 1, 2, 2, 2, 1, 1, 1, 2, 1)$ and a corresponding $o$-$6$-gonal $3$-patch, both consisting only of triangles and heptagons is shown in \autoref{fig:expansion:patch:3:7}. Since the expansion patch is already polyhedral, we can apply \autoref{thm:main:const}.
     \begin{tikzfigure}{\label{fig:expansion:patch:3:7}}{\todo{caption, rework expansion patch}}
-      \matrix (m) [column sep=1cm] {
-        \begin{scope}[scale=3]
-          \input{tikz/3_7/ngon}
-        \end{scope}
-        &
-        \begin{scope}[scale=3]
-          \input{tikz/3_7/hexagon}
-        \end{scope}
-        \\
-      };
+      \begin{scope}
+        \matrix (m) [column sep=1cm] {
+          
+          % \input{tikz/3_7/ngon}
+          
+          \begin{scope}[yscale=0.866]
+
+            \coordinate (p0)  at  (0,0) ;
+            \coordinate (p1)  at  (0.5,1)  ;
+            \coordinate (p2)  at  (1.5,5)  ;
+            \coordinate (p3)  at  (0.500,10.600);
+            \coordinate (p4)  at  (-0.5,11)  ;
+            \coordinate (p5)  at  (-1.5,11.666)  ;
+            \coordinate (p6)  at  (-2.5,13.666)  ;
+            \coordinate (p7)  at  (-3.5,11.666)  ;
+            \coordinate (p8)  at  (-4.5,11);
+            \coordinate (p9)  at  (-4.5,9.666) ;
+            \coordinate (p10) at  (-3.5,7.666);
+            \coordinate (p11) at  (-5.5,7.666)  ;     
+            \coordinate (p12) at  (-6.5,7) ;        
+            \coordinate (p13) at  (-7.3,6.2);    
+            \coordinate (p14) at  (-7.2,4.8)  ;
+            \coordinate (p15) at  (-2.5,3);
+            \coordinate (p16) at  (-2.5,7)  ;
+            
+            \draw(p0)-- (p1)-- (p2)-- (p3)-- (p4)-- (p5)-- (p6)-- (p7)-- (p8)-- (p9)-- (p10)-- (p11)-- (p12)-- (p13)-- (p14)--(p15)-- (p0) ;
+
+            \draw (p15)--(p16)--(p4);
+            \draw (p16)-- (p10);
+            \draw (p7) -- (p5);
+          \end{scope}        
+          
+          \begin{scope}[rotate=-60,xshift=-0.5cm,yshift=0.866cm,yscale=0.866]
+
+            \coordinate (p0)  at  (0,0) ;
+            \coordinate (p1)  at  (0.5,1)  ;
+            \coordinate (p2)  at  (1.5,5)  ;
+            \coordinate (p3)  at  (0.500,10.600);         
+            \coordinate (p4)  at  (-0.5,11)  ;
+            \coordinate (p5)  at  (-1.5,11.666)  ;
+            \coordinate (p6)  at  (-2.5,13.666)  ;
+            \coordinate (p7)  at  (-3.5,11.666)  ;
+            \coordinate (p8)  at  (-4.5,11);
+            \coordinate (p9)  at  (-4.5,9.666) ;
+            \coordinate (p10) at  (-3.5,7.666);
+            \coordinate (p11) at  (-5.5,7.666)  ;     
+            \coordinate (p12) at  (-6.5,7) ;        
+            \coordinate (p13) at  (-7.3,6.2);    
+            \coordinate (p14) at  (-7.2,4.8)  ;
+            \coordinate (p15) at  (-2.5,3);
+            \coordinate (p16) at  (-2.5,7)  ;
+            
+            \draw(p0)-- (p1)-- (p2)-- (p3)-- (p4)-- (p5)-- (p6)-- (p7)-- (p8)-- (p9)-- (p10)-- (p11)-- (p12)-- (p13)-- (p14)--(p15)-- (p0) ;
+
+            \draw (p15)--(p16)--(p4);
+            \draw (p16)-- (p10);
+            \draw (p7) -- (p5);
+          \end{scope}
+
+          \begin{scope}[xshift=2cm,yshift=19.0666cm, rotate=-180,yscale=0.866]
+
+            \coordinate (p0)  at  (0,0) ;
+            \coordinate (p1)  at  (0.5,1)  ;
+            \coordinate (p2)  at  (1.5,5)  ;
+            \coordinate (p3)  at  (0.500,10.600);         
+            \coordinate (p4)  at  (-0.5,11)  ;
+            \coordinate (p5)  at  (-1.5,11.666)  ;
+            \coordinate (p6)  at  (-2.5,13.666)  ;
+            \coordinate (p7)  at  (-3.5,11.666)  ;
+            \coordinate (p8)  at  (-4.5,11);
+            \coordinate (p9)  at  (-4.5,9.666) ;
+            \coordinate (p10) at  (-3.5,7.666);
+            \coordinate (p11) at  (-5.5,7.666)  ;     
+            \coordinate (p12) at  (-6.5,7) ;        
+            \coordinate (p13) at  (-7.3,6.2);    
+            \coordinate (p14) at  (-7.2,4.8)  ;
+            \coordinate (p15) at  (-2.5,3);
+            \coordinate (p16) at  (-2.5,7)  ;
+            
+            \draw(p0)-- (p1)-- (p2)-- (p3)-- (p4)-- (p5)-- (p6)-- (p7)-- (p8)-- (p9)-- (p10)-- (p11)-- (p12)-- (p13)-- (p14)--(p15)-- (p0) ;
+
+            \draw (p15)--(p16)--(p4);
+            \draw (p16)-- (p10);
+            \draw (p7) -- (p5);
+          \end{scope}
+          \begin{scope}[xshift=1.5cm,yshift=18.2cm, rotate=-240,yscale=0.866]
+
+            \coordinate (p0)  at  (0,0) ;
+            \coordinate (p1)  at  (0.5,1)  ;
+            \coordinate (p2)  at  (1.5,5)  ;
+            \coordinate (p3)  at  (0.500,10.600);         
+            \coordinate (p4)  at  (-0.5,11)  ;
+            \coordinate (p5)  at  (-1.5,11.666)  ;
+            \coordinate (p6)  at  (-2.5,13.666)  ;
+            \coordinate (p7)  at  (-3.5,11.666)  ;
+            \coordinate (p8)  at  (-4.5,11);
+            \coordinate (p9)  at  (-4.5,9.666) ;
+            \coordinate (p10) at  (-3.5,7.666);
+            \coordinate (p11) at  (-5.5,7.666)  ;     
+            \coordinate (p12) at  (-6.5,7) ;        
+            \coordinate (p13) at  (-7.3,6.2);    
+            \coordinate (p14) at  (-7.2,4.8)  ;
+            \coordinate (p15) at  (-2.5,3);
+            \coordinate (p16) at  (-2.5,7)  ;
+            
+            \draw(p0)-- (p1)-- (p2)-- (p3)-- (p4)-- (p5)-- (p6)-- (p7)-- (p8)-- (p9)-- (p10)-- (p11)-- (p12)-- (p13)-- (p14)--(p15)-- (p0) ;
+
+            \draw (p15)--(p16)--(p4);
+            \draw (p16)-- (p10);
+            \draw (p7) -- (p5);
+          \end{scope}
+
+          &
+
+          \\
+        };
+      \end{scope}
     \end{tikzfigure}
     % \begin{tikzfigure}{\label{fig:expansion:patch:poly:3:7}}{\todo{caption}}
     %   \begin{scope}[scale=3]
