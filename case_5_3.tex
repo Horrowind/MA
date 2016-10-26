@@ -178,19 +178,46 @@ We now can split the infinitely many cases in four series, each with a different
 \begin{theorem}
   Let $p$ and $v$ be a pair of admissible sequences for a orientable closed $2$-manifold $S$. Then $(p, v)$ is $[(5k + 1) \times 5, (5k+7)]$-$[3]$-realizable for all $k \in \nats$.
   \begin{proof}
-    An expansion $3$-patch with outer tuple $o = (1, 1, 1, 2, 2, 2)$, a corresponding $o$-$6$-gonal $3$-patch and a expansion $3$-patch with the polyhedral property, all consisting only of quintangles and heptagons, are shown in \autoref{fig:expansion:patch:5:7}. Using \autoref{const:edge:replacement:5:1}, \autoref{const:edge:replacement:5:2} and \autoref{const:edge:replacement:5:3} on the edges as indicated in all three we get new $3$-patches consisting only of quintangles and $5k + 7$-gons. Therefore we can apply \autoref{thm:main:const}.
+    An expansion $3$-patch with outer tuple $o = (1, 1, 1, 2, 2, 2)$, a corresponding $o$-$6$-gonal $3$-patch and a expansion $3$-patch with the polyhedral property, all consisting only of pentagons and heptagons, are shown in \autoref{fig:expansion:patch:5:7}. Using \autoref{const:edge:replacement:5:1}, \autoref{const:edge:replacement:5:2} and \autoref{const:edge:replacement:5:3} on the edges as indicated in all three we get new $3$-patches consisting only of pentagons and $5k + 7$-gons. Therefore we can apply \autoref{thm:main:const}.
     \begin{tikzfigure}{\label{fig:expansion:patch:5:7}}{}
       \matrix (m) [column sep=1cm, row sep=1cm] {
-        \begin{scope}[scale=3, yshift=25]
-          \input{tikz/5_7/ngon}
+        \begin{scope}[yscale=0.866]
+          \draw[very thick] (-0.5, 1) -- (-2.5, 5) -- (-4.5, 6.333) -- (-4, 8) -- (-4.5, 9) -- (-4, 10) -- (-2.5, 10.333) -- (-1, 10) -- (-0.5, 9) -- (0.5, 9) -- (1, 8) -- (2.5, 7.666) -- (2.5, 5) -- (0.5, 1) -- (-0.5, 1);
+          \draw (-2.5, 5) -- (-2, 6) -- (1, 8);
+          \draw (-2, 6) -- (-2, 8) -- (-4, 8);
+          \draw (-2, 8) -- (-0.5, 9);
         \end{scope}
         &
-        \begin{scope}[scale=3, yshift=25]
-          \input{tikz/5_7/hexagon}
+        \begin{scope}[scale=0.5]
+          %\input{tikz/5_7/ngon}
+          \begin{scope}[yscale=0.866]
+            \draw[very thick] (-0.5, 1) -- (-2.5, 5) -- (-4.5, 6.333) -- (-4, 8) -- (-4.5, 9) -- (-4, 10) -- (-2.5, 10.333) -- (-1, 10) -- (-0.5, 9) -- (0.5, 9) -- (1, 8) -- (2.5, 7.666) -- (2.5, 5) -- (0.5, 1) -- (-0.5, 1);
+            \draw (-2.5, 5) -- (-2, 6) -- (1, 8);
+            \draw (-2, 6) -- (-2, 8) -- (-4, 8);
+            \draw (-2, 8) -- (-0.5, 9);
+          \end{scope}
+          \begin{scope}[rotate=-60, yscale=0.866]
+            \draw[very thick] (-0.5, 1) -- (-2.5, 5) -- (-4.5, 6.333) -- (-4, 8) -- (-4.5, 9) -- (-4, 10) -- (-2.5, 10.333) -- (-1, 10) -- (-0.5, 9) -- (0.5, 9) -- (1, 8) -- (2.5, 7.666) -- (2.5, 5) -- (0.5, 1) -- (-0.5, 1);
+            \draw (-2.5, 5) -- (-2, 6) -- (1, 8);
+            \draw (-2, 6) -- (-2, 8) -- (-4, 8);
+            \draw (-2, 8) -- (-0.5, 9);
+          \end{scope}
+          \begin{scope}[yscale=0.866,shift={(0 cm,18 cm)},rotate=180]
+            \draw[very thick] (-0.5, 1) -- (-2.5, 5) -- (-4.5, 6.333) -- (-4, 8) -- (-4.5, 9) -- (-4, 10) -- (-2.5, 10.333) -- (-1, 10) -- (-0.5, 9) -- (0.5, 9) -- (1, 8) -- (2.5, 7.666) -- (2.5, 5) -- (0.5, 1) -- (-0.5, 1);
+            \draw (-2.5, 5) -- (-2, 6) -- (1, 8);
+            \draw (-2, 6) -- (-2, 8) -- (-4, 8);
+            \draw (-2, 8) -- (-0.5, 9);
+          \end{scope}
+          \begin{scope}[shift={(0 cm,15.588 cm)},rotate=120,yscale=0.866]
+            \draw[very thick] (-0.5, 1) -- (-2.5, 5) -- (-4.5, 6.333) -- (-4, 8) -- (-4.5, 9) -- (-4, 10) -- (-2.5, 10.333) -- (-1, 10) -- (-0.5, 9) -- (0.5, 9) -- (1, 8) -- (2.5, 7.666) -- (2.5, 5) -- (0.5, 1) -- (-0.5, 1);
+            \draw (-2.5, 5) -- (-2, 6) -- (1, 8);
+            \draw (-2, 6) -- (-2, 8) -- (-4, 8);
+            \draw (-2, 8) -- (-0.5, 9);
+          \end{scope}
         \end{scope}
         \\
         \begin{scope}[scale=3, yshift=25]
-          \input{tikz/5_7/mouse}
+          \input{tikz/5_7/hexagon}
         \end{scope}
         \\
       };
@@ -201,21 +228,24 @@ We now can split the infinitely many cases in four series, each with a different
 \begin{theorem}
   Let $p$ and $v$ be a pair of admissible sequences for a orientable closed $2$-manifold $S$. Then $(p, v)$ is $[(5k + 2) \times 5, (5k+8)]$-$[3]$-realizable for all $k \in \nats$.
   \begin{proof}
-    An expansion $3$-patch with outer tuple $o = (1, 2, 2, 2, 1, 2, 1, 1, 1, 2)$, a corresponding $o$-$6$-gonal $3$-patch and a expansion $3$-patch with the polyhedral property, all consisting only of quintangles and octagons, are shown in \autoref{fig:expansion:patch:5:8}. Using \autoref{const:edge:replacement:5:1}, \autoref{const:edge:replacement:5:2} and \autoref{const:edge:replacement:5:3} on the edges as indicated in all three we get new $3$-patches consisting only of quintangles and $5k + 8$-gons. Therefore we can apply \autoref{thm:main:const}.
+    An expansion $3$-patch with outer tuple $o = (1, 2, 2, 2, 1, 2, 1, 1, 1, 2)$, a corresponding $o$-$6$-gonal $3$-patch and a expansion $3$-patch with the polyhedral property, all consisting only of pentagons and octagons, are shown in \autoref{fig:expansion:patch:5:8}. Using \autoref{const:edge:replacement:5:1}, \autoref{const:edge:replacement:5:2} and \autoref{const:edge:replacement:5:3} on the edges as indicated in all three we get new $3$-patches consisting only of pentagons and $5k + 8$-gons. Therefore we can apply \autoref{thm:main:const}.
     \begin{tikzfigure}{\label{fig:expansion:patch:5:8}}{}
       \matrix (m) [column sep=1cm] {
-        \begin{scope}[scale=3, yshift=25]
-          \input{tikz/5_8/ngon}
+        \begin{scope}[scale=0.5]
+          \begin{scope}[yscale=0.866]
+            \draw[very thick] (-0.5, 1) -- (0.5, 5) -- (-0.5, 9) -- (-1.5, 11);
+            % \input{tikz/5_8/ngon}
+          \end{scope}
         \end{scope}
-        &
+        \\
         \begin{scope}[scale=3, yshift=25]
           \input{tikz/5_8/hexagon}
         \end{scope}
         \\
-        \begin{scope}[scale=3, yshift=25]
-          \input{tikz/5_8/mouse}
-        \end{scope}
-        \\
+        % \begin{scope}[scale=3, yshift=25]
+        %   \input{tikz/5_8/mouse}
+        % \end{scope}
+        % \\
       };
     \end{tikzfigure}
   \end{proof}
@@ -224,7 +254,7 @@ We now can split the infinitely many cases in four series, each with a different
 \begin{theorem}
   Let $p$ and $v$ be a pair of admissible sequences for a orientable closed $2$-manifold $S$. Then $(p, v)$ is $[(5k + 3) \times 5, (5k+9)]$-$[3]$-realizable for all $k \in \nats$.
   \begin{proof}
-    An expansion $3$-patch with outer tuple $o = (1, 2, 1, 1, 2, 1, 1, 2, 2, 1, 2, 2, 1, 2)$, a corresponding $o$-$6$-gonal $3$-patch and a expansion $3$-patch with the polyhedral property, all consisting only of quintangles and nonagons, are shown in \autoref{fig:expansion:patch:5:9}. Using \autoref{const:edge:replacement:5:1}, \autoref{const:edge:replacement:5:2} and \autoref{const:edge:replacement:5:3} on the edges as indicated in all three we get new $3$-patches consisting only of quintangles and $5k + 9$-gons. Therefore we can apply \autoref{thm:main:const}.
+    An expansion $3$-patch with outer tuple $o = (1, 2, 1, 1, 2, 1, 1, 2, 2, 1, 2, 2, 1, 2)$, a corresponding $o$-$6$-gonal $3$-patch and a expansion $3$-patch with the polyhedral property, all consisting only of pentagons and nonagons, are shown in \autoref{fig:expansion:patch:5:9}. Using \autoref{const:edge:replacement:5:1}, \autoref{const:edge:replacement:5:2} and \autoref{const:edge:replacement:5:3} on the edges as indicated in all three we get new $3$-patches consisting only of pentagons and $5k + 9$-gons. Therefore we can apply \autoref{thm:main:const}.
     \begin{tikzfigure}{\label{fig:expansion:patch:5:9}}{}
       \matrix (m) [column sep=1cm] {
         \begin{scope}[scale=3, yshift=25]
@@ -247,7 +277,7 @@ We now can split the infinitely many cases in four series, each with a different
 \begin{theorem}
   Let $p$ and $v$ be a pair of admissible sequences for a orientable closed $2$-manifold $S$. Then $(p, v)$ is $[(5k + 5) \times 5, (5k+11)]$-$[3]$-realizable for all $k \in \nats$.
   \begin{proof}
-    An expansion $3$-patch with outer tuple $o = (1, 2, 1, 1, 2, 1, 1, 2, 2, 1, 2, 2, 1, 2)$, a corresponding $o$-$6$-gonal $3$-patch and a expansion $3$-patch with the polyhedral property, all consisting only of quintangles and hendecagons, are shown in \autoref{fig:expansion:patch:5:11}. Using \autoref{const:edge:replacement:5:1}, \autoref{const:edge:replacement:5:2} and \autoref{const:edge:replacement:5:3} on the edges as indicated in all three we get new $3$-patches consisting only of quintangles and $5k + 11$-gons. Therefore we can apply \autoref{thm:main:const}.
+    An expansion $3$-patch with outer tuple $o = (1, 2, 1, 1, 2, 1, 1, 2, 2, 1, 2, 2, 1, 2)$, a corresponding $o$-$6$-gonal $3$-patch and a expansion $3$-patch with the polyhedral property, all consisting only of pentagons and hendecagons, are shown in \autoref{fig:expansion:patch:5:11}. Using \autoref{const:edge:replacement:5:1}, \autoref{const:edge:replacement:5:2} and \autoref{const:edge:replacement:5:3} on the edges as indicated in all three we get new $3$-patches consisting only of pentagons and $5k + 11$-gons. Therefore we can apply \autoref{thm:main:const}.
     \begin{tikzfigure}{\label{fig:expansion:patch:5:11}}{}
       \matrix (m) [column sep=1cm] {
         \begin{scope}[scale=3, yshift=25]

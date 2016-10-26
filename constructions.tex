@@ -105,22 +105,34 @@ As previously stated, these definitions are used to formalize the construction s
     \matrix (m) [column sep=1cm] {
       \begin{scope}
         \draw (0 : 2) -- (60 : 2) -- (120 : 2) -- (180 : 2) -- (240 : 2) -- (300 : 2) -- (0 : 2);
+        \fill [black] (  0 : 2) circle (2pt);
         \node[anchor=180] at (  0 : 2) {$i'_1 = o_3$};
+        \fill [black] ( 60 : 2) circle (2pt);
         \node[anchor=240] at ( 60 : 2) {$o_2 = o_s$};
+        \fill [black] (120 : 2) circle (2pt);
         \node[anchor=300] at (120 : 2) {$o_1$};
+        \fill [black] (180 : 2) circle (2pt);
         \node[anchor=  0] at (180 : 2) {$i_1 = o_0$};
+        \fill [black] (240 : 2) circle (2pt);
         \node[anchor= 60] at (240 : 2) {$i_0$};
+        \fill [black] (300 : 2) circle (2pt);
         \node[anchor=120] at (300 : 2) {$i'_0$};
         \node             at (  0 : 0) {$\mathcal{H}$};
       \end{scope}
       &
       \begin{scope}
         \draw (0, 1) -- (0, -1) -- (-2, -1) -- (-2, 1) -- (0, 1) -- (2, 1) -- (2, -1) -- (0, -1);
+        \fill [black] (-2, -1) circle (2pt);
         \node[anchor= 45] at (-2, -1) {$i_0$};
+        \fill [black] ( 0, -1) circle (2pt);
         \node[anchor= 90] at ( 0, -1) {$i'_0$};
+        \fill [black] ( 2, -1) circle (2pt);
         \node[anchor=135] at ( 2, -1) {$i'_1 = o_3$};
+        \fill [black] ( 2,  1) circle (2pt);
         \node[anchor=225] at ( 2,  1) {$o_2 = o_s$};
+        \fill [black] ( 0,  1) circle (2pt);
         \node[anchor=270] at ( 0,  1) {$o_1$};
+        \fill [black] (-2,  1) circle (2pt);
         \node[anchor=315] at (-2,  1) {$i_1 = o_0$};
         \node[anchor=  0] at ( 0,  0) {$\mathcal{Q}_2$};
       \end{scope}
