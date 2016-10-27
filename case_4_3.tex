@@ -1,29 +1,32 @@
 \section{$3$-valent {\sc Eberhard}-like theorems with quadrangles}
 
-In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with quadrangles, i.e. for $q = [q_4 \times 4, q_l \times l]$, $w = [w_3 \times 3]$, $l > 6$, $\gcd(q_4, q_l) = 1$. As it turns out in \label{sec:negative:results}, this is only possible for all admissible pairs of sequences on all closed orientable $2$-manifolds, if $4 \nmid l$. For all the proofs, we want to use \autoref{thm:main:const}, therefore we need to have a construction scheme for patches with arbitrary large $l$-gons. These we get by the next two constructions:
+In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with quadrangles, i.e. for $q = [q_4 \times 4, q_l \times l]$, $w = [w_3 \times 3]$, $l > 6$, $\gcd(q_4, q_l) = 1$. As it turns out in \autoref{sec:negative:results}, this is only possible for all admissible pairs of sequences on all closed orientable $2$-manifolds, if $4 \nmid l$. For all the proofs, we want to use \autoref{thm:main:const}, therefore we need to have a construction scheme for patches with arbitrary large $l$-gons. These we get by the next two constructions:
 
 \begin{construction}\label{const:edge:replacement:4:1}
   \begin{cinput}
   \item A $3$-patch with $p$-vector $p$ and a specified edge with exactly one vertex incident to some $k_1$-gon and the other vertex  incident to some $k_2$-gon.
+  \item We want to label the edge with a square and the two polygons by arrows beginning at the edge which point to them. 
   \end{cinput}
   \begin{coutput}
   \item A new $3$-patch with $p$-vector $p - [k_1, k_2] + [k \times 4] + [k_1 + k, k_2 + k]$ for all $k \in \nats$.
   \item If every two faces of the $3$-patch meet proper, then this is carried over to the new patch.
   \end{coutput}
   \begin{cdescription}
-    Using the replacement of the single edge as seen in \autoref{fig:const:edge:replacement:4:1} results in a new map with $p$-vector $p - [k_1, k_2] + [4] + [k_1 + 1, k_2 + 1]$. The thick line on the left is the specified line and the thick line on the right is a new line which we can use to repeat the construction. Every time we use this construction we add a new quadrangle while increasing the number of vertices of the left and right polygon; doing this $k$ times has the desired result, since we only inserted $3$-valent vertices. That all faces meet proper follows by induction, as this property is preserved in each step.
+    Using the replacement of the single edge as seen in \autoref{fig:const:edge:replacement:4:1} results in a new map with $p$-vector $p - [k_1, k_2] + [4] + [k_1 + 1, k_2 + 1]$. The line on the left labeled with a square is the specified edge and the line on the right labeled with a square is a new edge which we can use to repeat the construction. Every time we use this construction we add a new quadrangle while increasing the number of vertices of the left and right polygon; doing this $k$ times has the desired result, since we only inserted $3$-valent vertices. That all faces meet proper follows by induction, as this property is preserved in each step.
     \begin{tikzfigure}{\label{fig:const:edge:replacement:4:1}}{}
       \matrix (m) [column sep=1cm] {
         \begin{scope}
-          \draw[very thick] (-1, 0) -- (1, 0);
+          \draw[lsquare] (-1, 0) -- (1, 0);
           \draw (-1.2, 0.5) -- (-1, 0) -- (-1.2, -0.5);
           \draw (1.2, 0.5) -- (1, 0) -- (1.2, -0.5);
-          \node at (-1.5, 0) {$k_1$};
-          \node at (1.5, 0) {$k_2$};
+          \node (k1) at (-2.5, 0) {$k_1$};
+          \node (k2) at (2.5, 0) {$k_2$};
+          \draw[lface] (-1, 0) -- (k1);
+          \draw[lface] ( 1, 0) -- (k2);
         \end{scope}
         &
         \begin{scope}
-          \draw[very thick] (-1, 0.5) -- (1, 0.5);
+          \draw[lsquare] (-1, 0.5) -- (1, 0.5);
           \draw (-1, -0.5) -- (1, -0.5);
           \draw (-1.2, 1) -- (-1, 0.5);
           \draw (-1.2, -1) -- (-1, -0.5);
@@ -32,9 +35,11 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with qu
           \draw (1, 0.5) -- (1, -0.5);
           \draw (-1, 0.5) -- (-1, -0.5);
 
-          \node at (-1.8, 0) {$k_1 + 1$};
-          \node at (1.8, 0) {$k_2 + 1$};
-          \node at (0, 0) {$4$};
+          \node (k1) at (-2.8, 0) {$k_1 + 1$};
+          \node (k2) at ( 2.8, 0) {$k_2 + 1$};
+          \node      at (   0, 0) {$4$};
+          \draw[lface] (-1, 0.5) -> (k1);
+          \draw[lface] ( 1, 0.5) -> (k2);
         \end{scope}
         \\
       };
@@ -45,33 +50,39 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with qu
 \begin{construction}\label{const:edge:replacement:4:2}
   \begin{cinput}
   \item A $3$-patch with $p$-vector $p$ and a specified edge incident to both some $k_1$-gon and some $k_2$-gon.
+  \item We want to label the edge with a diamond and the two polygons by arrows beginning at the edge which point to them. 
   \end{cinput}
   \begin{coutput}
   \item A new $3$-patch with $p$-vector $p - [k_1, k_2] + [(4k) \times 4] + [4k + k_1 , 4k + k_2]$ for all $k \in \nats$.
   \end{coutput}
   \begin{cdescription}
-    Using the replacement of the single edge as seen in \autoref{fig:const:edge:replacement:4:2} results in a new map with $p$-vector $p - [k_1, k_2] + [4 \times 4] + [k_1 + 4, k_2 + 4]$. The thick line on the left is the specified line and the thick line on the right is a new line which we can use to repeat the construction. Every time we use this construction we add four new quadrangles while increasing the number of vertices of the left and right polygon; doing this $k$ times has the desired result, since we only insert $3$-valent vertices.
+    Using the replacement of the single edge as seen in \autoref{fig:const:edge:replacement:4:2} results in a new map with $p$-vector $p - [k_1, k_2] + [4 \times 4] + [k_1 + 4, k_2 + 4]$. The thick line on the left is the specified edge and the thick line on the right is a new edge which we can use to repeat the construction. Every time we use this construction we add four new quadrangles while increasing the number of vertices of the left and right polygon; doing this $k$ times has the desired result, since we only insert $3$-valent vertices.
     \begin{tikzfigure}{\label{fig:const:edge:replacement:4:2}}{}
       \matrix (m) [column sep=1cm] {
         \begin{scope}
-          \draw[very thick] (0, -1) -- (0, 1);
+          \draw[ldiamond] (0, -1) -- (0, 1);
           \draw (0.5, -1.2) -- (0, -1) -- (-0.5, -1.2);
           \draw (0.5, 1.2) -- (0, 1) -- (-0.5, 1.2);
-          \node at (-1, 0) {$k_1$};
-          \node at (1, 0) {$k_2$};
+          \node (k1) at (-2, 0) {$k_1$};
+          \node (k2) at ( 2, 0) {$k_2$};
+          \draw[lface] (0, -0.4) -- (k1);
+          \draw[lface] (0, -0.4) -- (k2);
         \end{scope}
         &
         \begin{scope}
           \draw (0.5, -2.2) -- (0, -2) -- (-0.5, -2.2);
-          \draw (0.5, 2.2) -- (0, 2) -- (-0.5, 2.2);
-          \draw[very thick] (0, 2) -- (0, 1.5);
+          \draw (0.5, 2.7) -- (0, 2.5) -- (-0.5, 2.7);
+          \draw[ldiamond] (0, 2.5) -- (0, 1.5);
           \draw (0, 1.5) -- (-0.5, 1) -- (-0.5, -1) -- (0, -1.5) -- (0.5, -1) -- (0.5, 1) -- (0, 1.5);
           \draw (0, -2) -- (0, -1.5);
           \draw (-0.5, -1) -- (0, -0.5) -- (0.5, -1);
           \draw (-0.5, 1) -- (0, 0.5) -- (0.5, 1);
           \draw (0, -0.5) -- (0, 0.5);
-          \node at (-1.25, 0) {$k_1 + 4$};
-          \node at (1.25, 0) {$k_2 + 4$};
+          \node (k1) at (-2, 0) {$k_1 + 4$};
+          \node (k2) at (2, 0) {$k_2 + 4$};
+          \draw[lface] (0, 1.8) -- (k1);
+          \draw[lface] (0, 1.8) -- (k2);
+
           \node at (-0.25, 0) {$4$};
           \node at (0.25, 0) {$4$};
           \node at (0, -1) {$4$};
@@ -91,12 +102,18 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with qu
     \begin{tikzfigure}{\label{fig:expansion:patch:poly:4}}{A expansion patch with the polyhedral property consisting of $4$-gons and $7$-gons}
       \matrix (m) [column sep=1cm] {
         \begin{scope}[yscale=0.866]
-          \draw[very thick] (-0.5, 1) -- (-0.5, 3) -- (-2, 4) -- (-3.5, 7) -- (-3.5, 8) -- (-2.5, 7.666) -- (-1.5, 8) -- (-0.5, 9) -- (0.5, 9) -- (1.5, 10) -- (2.5, 10.333) -- (3.5, 10) -- (4.5, 9) -- (4.25, 7.5) -- (3.5, 7) -- (2, 4) -- (2, 2) -- (0.5, 1) -- (-0.5, 1);
+          \draw (-0.5, 1) -- (-0.5, 3) -- (-2, 4) -- (-3.5, 7) -- (-3.5, 8) -- (-2.5, 7.666) -- (-1.5, 8) -- (-0.5, 9) -- (0.5, 9) -- (1.5, 10) -- (2.5, 10.333) -- (3.5, 10) -- (4.5, 9) -- (4.25, 7.5) -- (3.5, 7)  (2, 4) -- (2, 2) -- (0.5, 1) -- (-0.5, 1);
           \draw (3.5, 7) -- (0.5, 9);
-          \draw (-1, 6) -- (-0.5, 6);
+          \draw[lsquare] (-1, 6) -- (-0.5, 6);
           \draw (-0.5, 1) -- (-0.5, 3) -- (0, 4) -- (-1, 6) -- (-2.5, 7.666);
           \draw (2, 4) -- (1, 4.666) -- (-0.5, 6) -- (-1.5, 8);
           \draw (0, 4) -- (1, 4.666);
+          \draw[lsquare] (3.5, 7) -- (2, 4);
+
+          \draw[lface] (-1, 6) -- (-2, 5.5);
+          \draw[lface] (-0.5, 6) -- (0.5, 6.5);
+          \draw[lface] (3.5, 7) -- (2.5, 8.5);
+          \draw[lface] (2, 4) -- (1, 2);
         \end{scope}
         &
         \begin{scope}[scale=0.5]

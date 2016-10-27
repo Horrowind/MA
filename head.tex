@@ -19,16 +19,24 @@
 \usepackage[labelfont=bf]{caption}
 \usepackage[inner=2cm,outer=2cm,top=1.5cm,bottom=1.5cm,includeheadfoot]{geometry}
 \usepackage[section]{placeins}
-\counterwithin{figure}{section}
 
-\newcommand{\hdef}[1]{\textbf{#1}}
 \usepackage{tikz}
 \usetikzlibrary{%
     shapes.geometric,
     matrix,
     intersections,
-    positioning
+    positioning,
+    arrows,
+    decorations.markings
 }
+\tikzset{
+     lface/.style={dotted, decoration={markings, mark=at position 1.0 with {\arrow[>=angle 60]{>}}}, postaction={decorate}},
+   lsquare/.style={        decoration={markings, mark=at position 0.5 with {\arrow{open square  }}}, postaction={decorate}},
+  ldiamond/.style={        decoration={markings, mark=at position 0.5 with {\arrow{open diamond }}}, postaction={decorate}}
+}
+\counterwithin{figure}{section}
+
+\newcommand{\hdef}[1]{\textbf{#1}}
 %\usepackage{shapepar}
 
 \setlist{nosep}
