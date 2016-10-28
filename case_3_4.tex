@@ -88,13 +88,87 @@ We now can split the infinitely many cases in two series, each with a different 
     An expansion $4$-patch with outer tuple $o = (1, 2, 1, 3, 2, 3)$, a corresponding $o$-$4$-gonal $4$-patch and a expansion $4$-patch with the polyhedral property, all consisting only of triangles and pentagons, are shown in \autoref{fig:expansion:patch:3:5:4}. Using \autoref{const:edge:replacement:3:4:1} and \autoref{const:edge:replacement:3:4:2} on the edges as indicated in all three we get new $4$-patches consisting only of triangles and $3k + 5$-gons. Therefore we can apply \autoref{thm:main:const}.
     \begin{tikzfigure}{\label{fig:expansion:patch:3:5:4}}{}
       \matrix (m) [column sep=1cm, row sep=1cm] {
-        \begin{scope}[scale=3, yshift=25]
-          \input{tikz/3_5_4/mouse}
+        \begin{scope}[yscale=0.866]
+          \draw (0.5,1)--(-0.5,1)--(-1.5,3)--(-4,6)--(-3.5,7)--(-2.5,7)--(-1,6.5)--(-0.5,7)--(0.5,7)--(1,7.5)--(2.5,7)--(1.5,3)--(0.5,1);
+          \draw (-1.5,3)--(-0.5,4.5)--(0.5,3)--(0.5,1); %1
+          \draw (-4,6)--(-1,6)--(-1,6.5); %8
+          \draw[lsquare] (-1.5,3)--(-1,6); %4
+          \draw (-0.5,4.5) --(-1,6); %3
+          \draw (-0.5,4.5) --(0.5,7); %7
+          \draw[lsquare] (0.5,3) --(0.5,7); %5
+          \draw (0.5,3) --(1,7.5); %2
+
+          \draw[lface] (-1,6)--(-2,6.5);
+          \draw[lface] (-1.5,3)--(-0.5,2.5);
+          \draw[lface] (0.5,3)--(1.5,3.5);
+          \draw[lface] (0.5,7)--(-0.25,6.25);
+          
+          \node[anchor= 90] at (0.5,1)  {$i_{0}'$};
+          \node[anchor= 90] at (-0.5,1) {$i_0$};
+          \node[anchor=  0] at (-1.5,3) {$i_1$};
+          \node[anchor= 30] at (-4,6)   {$i_2=o_0$};
+          \node[anchor=300] at (-3.5,7) {$o_1$};
+          \node[anchor=270] at (-2.5,7) {$o_2$};
+          \node[anchor=315] at (-1,6.5) {$o_3$};
+          \node[anchor=270] at (-0.5,7) {$o_4$};
+          \node[anchor=270] at (0.5,7)  {$o_5$};
+          \node[anchor=270] at (1,7.5)  {$o_6$};
+          \node[anchor=240] at (2.5,7)  {$i_2'=o_7$};
+          \node[anchor=180] at (1.5,3)  {$i_1'$};
+       
+          
         \end{scope}
         &
-        \begin{scope}[scale=3, yshift=25]
-          \input{tikz/3_5_4/quadrangle}
+        \begin{scope}[scale=0.6]
+        \begin{scope}[yscale=0.866]
+          \draw[very thick] (0.5,1)--(-0.5,1)--(-1.5,3)--(-4,6)--(-3.5,7)--(-2.5,7)--(-1,6.5)--(-0.5,7)--(0.5,7)--(1,7.5)--(2.5,7)--(1.5,3)--(0.5,1);
+          \draw (-1.5,3)--(-0.5,4.5)--(0.5,3)--(0.5,1); %1
+          \draw (-4,6)--(-1,6)--(-1,6.5); %8
+          \draw (-1.5,3)--(-1,6); %4
+          \draw (-0.5,4.5) --(-1,6); %3
+          \draw (-0.5,4.5) --(0.5,7); %7
+          \draw (0.5,3) --(0.5,7); %5
+          \draw (0.5,3) --(1,7.5); %2
         \end{scope}
+        \begin{scope}[rotate=-60, yscale=0.866]
+          \draw[very thick] (0.5,1)--(-0.5,1)--(-1.5,3)--(-4,6)--(-3.5,7)--(-2.5,7)--(-1,6.5)--(-0.5,7)--(0.5,7)--(1,7.5)--(2.5,7)--(1.5,3)--(0.5,1);
+          \draw (-1.5,3)--(-0.5,4.5)--(0.5,3)--(0.5,1); %1
+          \draw (-4,6)--(-1,6)--(-1,6.5); %8
+          \draw (-1.5,3)--(-1,6); %4
+          \draw (-0.5,4.5) --(-1,6); %3
+          \draw (-0.5,4.5) --(0.5,7); %7
+          \draw (0.5,3) --(0.5,7); %5
+          \draw (0.5,3) --(1,7.5); %2
+          \end{scope}
+          \begin{scope}[yscale=0.866,shift={(0 cm,14 cm)},rotate=180]
+            \draw[very thick] (0.5,1)--(-0.5,1)--(-1.5,3)--(-4,6)--(-3.5,7)--(-2.5,7)--(-1,6.5)--(-0.5,7)--(0.5,7)--(1,7.5)--(2.5,7)--(1.5,3)--(0.5,1);
+            \draw (-1.5,3)--(-0.5,4.5)--(0.5,3)--(0.5,1); %1
+          \draw (-4,6)--(-1,6)--(-1,6.5); %8
+          \draw (-1.5,3)--(-1,6); %4
+          \draw (-0.5,4.5) --(-1,6); %3
+          \draw (-0.5,4.5) --(0.5,7); %7
+          \draw (0.5,3) --(0.5,7); %5
+          \draw (0.5,3) --(1,7.5); %2
+          \end{scope}
+          \begin{scope}[shift={(0 cm,12.124 cm)},rotate=120,yscale=0.866]
+   \draw[very thick] (0.5,1)--(-0.5,1)--(-1.5,3)--(-4,6)--(-3.5,7)--(-2.5,7)--(-1,6.5)--(-0.5,7)--(0.5,7)--(1,7.5)--(2.5,7)--(1.5,3)--(0.5,1);
+            \draw (-1.5,3)--(-0.5,4.5)--(0.5,3)--(0.5,1); %1
+          \draw (-4,6)--(-1,6)--(-1,6.5); %8
+          \draw (-1.5,3)--(-1,6); %4
+          \draw (-0.5,4.5) --(-1,6); %3
+          \draw (-0.5,4.5) --(0.5,7); %7
+          \draw (0.5,3) --(0.5,7); %5
+          \draw (0.5,3) --(1,7.5); %2
+    \draw (0.5,1)--(-0.5,1)--(-1.5,3)--(-4,6)--(-3.5,7)--(-2.5,7)--(-1,6.5)--(-0.5,7)--(0.5,7)--(1,7.5)--(2.5,7)--(1.5,3)--(0.5,1);
+          \end{scope}
+          \end{scope}
+        %\begin{scope}[scale=3, yshift=25]
+        %  \input{tikz/3_5_4/mouse}
+        %\end{scope}
+        
+        %\begin{scope}[scale=3, yshift=25]
+        %  \input{tikz/3_5_4/quadrangle}
+        %\end{scope}
         \\
       };
     \end{tikzfigure}
