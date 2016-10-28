@@ -16,6 +16,7 @@
 \usepackage{chngcntr}
 \usepackage{array}
 \usepackage{aliascnt}
+\usepackage{subcaption}
 \usepackage[labelfont=bf]{caption}
 \usepackage[inner=2cm,outer=2cm,top=1.5cm,bottom=1.5cm,includeheadfoot]{geometry}
 \usepackage[section]{placeins}
@@ -30,10 +31,11 @@
     decorations.markings
 }
 \tikzset{
-     lface/.style={dotted, decoration={markings, mark=at position 1.0 with {\arrow[>=angle 60]{>}}}, postaction={decorate}},
-   lsquare/.style={        decoration={markings, mark=at position 0.5 with {\arrow{open square  }}}, postaction={decorate}},
-  ldiamond/.style={        decoration={markings, mark=at position 0.5 with {\arrow{open diamond }}}, postaction={decorate}}
+     lface/.style={dotted,     decoration={markings, mark=at position 1.0 with {\arrow[>=angle 60]{>}}}, postaction={decorate}},
+   lsquare/.style={very thick, decoration={markings, mark=at position {0.5*\pgfdecoratedpathlength+3.5pt} with {\arrow{open square  }}}, postaction={decorate}},
+  ldiamond/.style={very thick, decoration={markings, mark=at position {0.5*\pgfdecoratedpathlength+5.5pt} with {\arrow{open diamond }}}, postaction={decorate}}
 }
+
 \counterwithin{figure}{section}
 
 \newcommand{\hdef}[1]{\textbf{#1}}
@@ -47,8 +49,18 @@
 % figure enviroments
 \captionsetup[FLOAT_TYPE]{labelformat=simple, labelsep=none}
 \newenvironment{tikzfigure}[2]
-    {\begin{figure}[!h] \caption{#2} #1 \centering  \begin{tikzpicture}[line cap=round, line join=round]}
+    {\begin{figure}[!h] \caption{#2} #1 \centering \begin{tikzpicture}[line cap=round, line join=round]}
     {\end{tikzpicture} \end{figure}}
+
+\newenvironment{tikzfigure2}
+    {\begin{figure}[!p] \caption{} \centering}
+    {\end{figure}}
+
+\newenvironment{tikzsubfigure}[3]
+    {\begin{subfigure}[t]{#3\textwidth} \caption{#2} #1 \centering \begin{tikzpicture}[line cap=round, line join=round]}
+    {\end{tikzpicture} \end{subfigure}}
+
+
 
 \newcommand{\todo}[1]{(TODO)}
 

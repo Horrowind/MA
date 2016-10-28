@@ -16,15 +16,17 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with pe
     \begin{tikzfigure}{\label{fig:const:edge:replacement:5:1}}{}
       \matrix (m) [column sep=1cm] {
         \begin{scope}
-          \draw[very thick] (-1, 0) -- (1, 0);
+          \draw[lsquare] (-1, 0) -- (1, 0);
           \draw (-1.2, 0.5) -- (-1, 0) -- (-1.2, -0.5);
           \draw (1.2, 0.5) -- (1, 0) -- (1.2, -0.5);
-          \node at (-1.5, 0) {$k_1$};
-          \node at (1.5, 0) {$k_2$};
+          \node (k1) at (-2.5, 0) {$k_1$};
+          \node (k2) at (2.5, 0) {$k_2$};
+          \draw[lface] (-1, 0) -- (k1);
+          \draw[lface] ( 1, 0) -- (k2);
         \end{scope}
         &
         \begin{scope}
-          \draw[very thick] (-1, 2.5) -- (1, 2.5);
+          \draw[lsquare] (-1, 2.5) -- (1, 2.5);
           \draw (-1, -2.5) -- (1, -2.5);
           \draw (-1.2, 3) -- (-1, 2.5);
           \draw (-1.2, -3) -- (-1, -2.5);
@@ -41,8 +43,8 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with pe
           \draw (0.4, 0.5) -- (0.3, 0) -- (0.4, -0.5);
           \draw (-0.4, 0.5) -- (-0.3, 0) -- (-0.4, -0.5);
           \draw (0.3, 0) -- (-0.3, 0);
-          \node at (-1.8, 0) {$k_1 + 5$};
-          \node at (1.8, 0) {$k_2 + 5$};
+          \node (k1) at (-1.8, 0) {$k_1 + 5$};
+          \node (k2) at (1.8, 0) {$k_2 + 5$};
           \node at (0, 2) {$5$};
           \node at (0, -2) {$5$};
           \node at (0.6, 1) {$5$};
@@ -53,6 +55,10 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with pe
           \node at (0.6, 0) {$5$};
           \node at (0, -0.3) {$5$};
           \node at (0, 0.3) {$5$};
+
+          \draw[lface] (-1, 2.5) -- (k1);
+          \draw[lface] ( 1, 2.5) -- (k2);
+
         \end{scope}
         \\
       };
@@ -76,8 +82,10 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with pe
           \draw (-1.2, 0.5) -- (-1, 0) -- (-1.2, -0.5);
           \draw (1.2, 0.5) -- (1, 0) -- (1.2, -0.5);
           \draw (0, 0.2) -- (0, 0.8);
-          \node at (-1.5, 0) {$k_1$};
-          \node at (1.5, 0) {$k_2$};
+          \node (k1) at (-2.5, 0) {$k_1$};
+          \node (k2) at (2.5, 0) {$k_2$};
+          \draw[lface] (-1, 0) -- (k1);
+          \draw[lface] ( 1, 0) -- (k2);
         \end{scope}
         &
         \begin{scope}
@@ -99,8 +107,8 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with pe
           \draw (0.4, -0.5) -- (0.3, -1) -- (0.4, -1.5);
           \draw (-0.4, -0.5) -- (-0.3, -1) -- (-0.4, -1.5);
           \draw (0.3, -1) -- (-0.3, -1);
-          \node at (-1.8, 0) {$k_1 + 5$};
-          \node at (1.8, 0) {$k_2 + 5$};
+          \node (k1) at (-1.8, 0) {$k_1 + 5$};
+          \node (k2) at (1.8, 0) {$k_2 + 5$};
           \node at (0, 1) {$5$};
           \node at (0, 2) {$5$};
           \node at (0.6, 0) {$5$};
@@ -111,6 +119,8 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with pe
           \node at (0.6, -1) {$5$};
           \node at (0, -1.3) {$5$};
           \node at (0, -0.7) {$5$};
+          \draw[lface] (-1, 2.5) -- (k1);
+          \draw[lface] ( 1, 2.5) -- (k2);
         \end{scope}
         \\
       };
@@ -130,17 +140,19 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with pe
     \begin{tikzfigure}{\label{fig:const:edge:replacement:5:3}}{}
       \matrix (m) [column sep=1cm] {
         \begin{scope}
-          \draw[very thick] (0, -1) -- (0, 1);
+          \draw[ldiamond] (0, -1) -- (0, 1);
           \draw (0.5, -1.2) -- (0, -1) -- (-0.5, -1.2);
           \draw (0.5, 1.2) -- (0, 1) -- (-0.5, 1.2);
-          \node at (-1, 0) {$k_1$};
-          \node at (1, 0) {$k_2$};
+          \node (k1) at (-1, 0) {$k_1$};
+          \node (k2) at (1, 0) {$k_2$};
+          \draw[lface] (0, 0) -- (k1);
+          \draw[lface] (0, 0) -- (k2);
         \end{scope}
         &
         \begin{scope}
           \draw (0.5, -2.7) -- (0, -2.5) -- (-0.5, -2.7);
           \draw (0.5, 2.7) -- (0, 2.5) -- (-0.5, 2.7);
-          \draw[very thick] (0, 2.5) -- (0, 2);
+          \draw[ldiamond] (0, 2.5) -- (0, 2);
           \draw (0, -2.5) -- (0, -2);
           \draw (0, -2) -- (-1.5 , -1.5) -- (-2, 0) -- (-1.5, 1.5) -- (0, 2) -- (1.5, 1.5) -- (2, 0) -- (1.5, -1.5) -- (0, -2);
           \draw (-0.5, -1) -- (-0.5, -0.5) -- (-1, 0) -- (-0.5, 0.5) -- (-0.5, 1) -- (0.5, 1) -- (0.5, 0.5) -- (1, 0) -- (0.5, -0.5) -- (0.5, -1) -- (-0.5, -1);
@@ -164,8 +176,10 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with pe
           \node at (0, 1.5) {$5$};
           \node at (0, -0.75) {$5$};
           \node at (0, 0.75) {$5$};
-          \node[anchor=east] at (-2, 0) {$k_1 + 5$};
-          \node[anchor=west] at (2, 0) {$k_2 + 5$};
+          \node[anchor=east] (k1) at (-2, 1.5) {$k_1 + 5$};
+          \node[anchor=west] (k2) at (2, 1.5) {$k_2 + 5$};
+          \draw[lface] (0, 2.25) -- (k1);
+          \draw[lface] (0, 2.25) -- (k2);
         \end{scope}
         \\
       };
@@ -183,10 +197,12 @@ We now can split the infinitely many cases in four series, each with a different
     \begin{tikzfigure}{\label{fig:expansion:patch:5:7}}{}
       \matrix (m) [column sep=1cm, row sep=1cm] {
         \begin{scope}[yscale=0.866]
-          \draw[very thick] (-0.5, 1) -- (-2.5, 5) -- (-4.5, 6.333) -- (-4, 8) -- (-4.5, 9) -- (-4, 10) -- (-2.5, 10.333) -- (-1, 10) -- (-0.5, 9) -- (0.5, 9) -- (1, 8) -- (2.5, 7.666) -- (2.5, 5) -- (0.5, 1) -- (-0.5, 1);
+          \draw (-0.5, 1) -- (-2.5, 5) -- (-4.5, 6.333) -- (-4, 8) -- (-4.5, 9) -- (-4, 10) -- (-2.5, 10.333) -- (-1, 10) -- (-0.5, 9) -- (0.5, 9) -- (1, 8) -- (2.5, 7.666) -- (2.5, 5) -- (0.5, 1) -- (-0.5, 1);
           \draw (-2.5, 5) -- (-2, 6) -- (1, 8);
-          \draw (-2, 6) -- (-2, 8) -- (-4, 8);
-          \draw (-2, 8) -- (-0.5, 9);
+          \draw (-0.5, 9) -- (-2, 8) -- (-4, 8);
+          \draw[lsquare] (-2, 6) -- (-2, 8);
+          \draw[lface] (-2, 6) -- (-1, 5);
+          \draw[lface] (-2, 8) -- (-3, 9);
         \end{scope}
         &
         \begin{scope}[scale=0.5]
@@ -230,27 +246,64 @@ We now can split the infinitely many cases in four series, each with a different
   Let $p$ and $v$ be a pair of admissible sequences for a orientable closed $2$-manifold $S$. Then $(p, v)$ is $[(5k + 2) \times 5, (5k+8)]$-$[3]$-realizable for all $k \in \nats$.
   \begin{proof}
     An expansion $3$-patch with outer tuple $o = (1, 2, 2, 2, 1, 2, 1, 1, 1, 2)$, a corresponding $o$-$6$-gonal $3$-patch and a expansion $3$-patch with the polyhedral property, all consisting only of pentagons and octagons, are shown in \autoref{fig:expansion:patch:5:8}. Using \autoref{const:edge:replacement:5:1}, \autoref{const:edge:replacement:5:2} and \autoref{const:edge:replacement:5:3} on the edges as indicated in all three we get new $3$-patches consisting only of pentagons and $5k + 8$-gons. Therefore we can apply \autoref{thm:main:const}.
-    \begin{tikzfigure}{\label{fig:expansion:patch:5:8}}{}
-      \matrix (m) [column sep=1cm] {
+    \begin{tikzfigure2}
+      \begin{tikzsubfigure}{}{Huhu}{0.5}
+        \begin{scope}[scale=0.7, yscale=0.866]
+          \draw (-0.5, 1) -- (-1, 2) -- (-5.5, 5) -- (-8, 4) -- (-8.5, 5) -- (-8, 6) -- (-8.5, 7) -- (-8.5, 9) -- (-7, 10) -- (-6, 10) -- (-5.5, 11) -- (-4.5, 11) -- (-4, 10) -- (-2.5, 9) -- (-1, 10) -- (1, 8) -- (1, 2) -- (0.5, 1) -- (-0.5, 1);
+          \draw (-5.5, 5) -- (-6, 6) -- (-8, 6);
+          \draw (-1, 2) -- (-2.5, 5) (-4.5, 7) -- (-6, 6);
+          \draw (-4.5, 7) -- (-4.5, 9) -- (-6, 10);
+          \draw (-4.5, 9) -- (-4, 10);
+          \draw (-2.5, 5) -- (-2.5, 9);
+          \draw[lsquare] (-2.5, 5) -- (-4.5, 7);
+        \end{scope}
+      \end{tikzsubfigure}%
+      ~
+      \begin{tikzsubfigure}{}{}{0.5}
         \begin{scope}[scale=0.5]
           \begin{scope}[yscale=0.866]
-            \draw[very thick] (-0.5, 1) -- (0.5, 5) -- (-0.5, 9) -- (-1.5, 11);
-            % \input{tikz/5_8/ngon}
+            \draw[very thick] (-0.5, 1) -- (-1, 2) -- (-5.5, 5) -- (-8, 4) -- (-8.5, 5) -- (-8, 6) -- (-8.5, 7) -- (-8.5, 9) -- (-7, 10) -- (-6, 10) -- (-5.5, 11) -- (-4.5, 11) -- (-4, 10) -- (-2.5, 9) -- (-1, 10) -- (1, 8) -- (1, 2) -- (0.5, 1) -- (-0.5, 1);
+            \draw (-5.5, 5) -- (-6, 6) -- (-8, 6);
+            \draw (-1, 2) -- (-2.5, 5) -- (-4.5, 7) -- (-6, 6);
+            \draw (-4.5, 7) -- (-4.5, 9) -- (-6, 10);
+            \draw (-4.5, 9) -- (-4, 10);
+            \draw (-2.5, 5) -- (-2.5, 9);
+          \end{scope}
+          \begin{scope}[rotate=-60, yscale=0.866]
+            \draw[very thick] (-0.5, 1) -- (-1, 2) -- (-5.5, 5) -- (-8, 4) -- (-8.5, 5) -- (-8, 6) -- (-8.5, 7) -- (-8.5, 9) -- (-7, 10) -- (-6, 10) -- (-5.5, 11) -- (-4.5, 11) -- (-4, 10) -- (-2.5, 9) -- (-1, 10) -- (1, 8) -- (1, 2) -- (0.5, 1) -- (-0.5, 1);
+            \draw (-5.5, 5) -- (-6, 6) -- (-8, 6);
+            \draw (-1, 2) -- (-2.5, 5) -- (-4.5, 7) -- (-6, 6);
+            \draw (-4.5, 7) -- (-4.5, 9) -- (-6, 10);
+            \draw (-4.5, 9) -- (-4, 10);
+            \draw (-2.5, 5) -- (-2.5, 9);
+          \end{scope}
+          \begin{scope}[yscale=0.866,shift={(0 cm,22 cm)},rotate=180]
+            \draw[very thick] (-0.5, 1) -- (-1, 2) -- (-5.5, 5) -- (-8, 4) -- (-8.5, 5) -- (-8, 6) -- (-8.5, 7) -- (-8.5, 9) -- (-7, 10) -- (-6, 10) -- (-5.5, 11) -- (-4.5, 11) -- (-4, 10) -- (-2.5, 9) -- (-1, 10) -- (1, 8) -- (1, 2) -- (0.5, 1) -- (-0.5, 1);
+            \draw (-5.5, 5) -- (-6, 6) -- (-8, 6);
+            \draw (-1, 2) -- (-2.5, 5) -- (-4.5, 7) -- (-6, 6);
+            \draw (-4.5, 7) -- (-4.5, 9) -- (-6, 10);
+            \draw (-4.5, 9) -- (-4, 10);
+            \draw (-2.5, 5) -- (-2.5, 9);
+          \end{scope}
+          \begin{scope}[shift={(0 cm,19.052 cm)},rotate=120,yscale=0.866]
+            \draw[very thick] (-0.5, 1) -- (-1, 2) -- (-5.5, 5) -- (-8, 4) -- (-8.5, 5) -- (-8, 6) -- (-8.5, 7) -- (-8.5, 9) -- (-7, 10) -- (-6, 10) -- (-5.5, 11) -- (-4.5, 11) -- (-4, 10) -- (-2.5, 9) -- (-1, 10) -- (1, 8) -- (1, 2) -- (0.5, 1) -- (-0.5, 1);
+            \draw (-5.5, 5) -- (-6, 6) -- (-8, 6);
+            \draw (-1, 2) -- (-2.5, 5) -- (-4.5, 7) -- (-6, 6);
+            \draw (-4.5, 7) -- (-4.5, 9) -- (-6, 10);
+            \draw (-4.5, 9) -- (-4, 10);
+            \draw (-2.5, 5) -- (-2.5, 9);
           \end{scope}
         \end{scope}
-        \\
-        \begin{scope}[scale=3, yshift=25]
+      \end{tikzsubfigure}
+      \begin{tikzsubfigure}{}{}{1.0}
+        \begin{scope}[scale=6]
           \input{tikz/5_8/hexagon}
         \end{scope}
-        \\
-        % \begin{scope}[scale=3, yshift=25]
-        %   \input{tikz/5_8/mouse}
-        % \end{scope}
-        % \\
-      };
-    \end{tikzfigure}
+      \end{tikzsubfigure}
+    \end{tikzfigure2}
   \end{proof}
 \end{theorem}
+
 
 \begin{theorem}
   Let $p$ and $v$ be a pair of admissible sequences for a orientable closed $2$-manifold $S$. Then $(p, v)$ is $[(5k + 3) \times 5, (5k+9)]$-$[3]$-realizable for all $k \in \nats$.
@@ -360,6 +413,82 @@ We now can split the infinitely many cases in four series, each with a different
     An expansion $3$-patch with outer tuple $o = (1, 2, 1, 1, 2, 1, 1, 2, 2, 1, 2, 2, 1, 2)$, a corresponding $o$-$6$-gonal $3$-patch and a expansion $3$-patch with the polyhedral property, all consisting only of pentagons and hendecagons, are shown in \autoref{fig:expansion:patch:5:11}. Using \autoref{const:edge:replacement:5:1}, \autoref{const:edge:replacement:5:2} and \autoref{const:edge:replacement:5:3} on the edges as indicated in all three we get new $3$-patches consisting only of pentagons and $5k + 11$-gons. Therefore we can apply \autoref{thm:main:const}.
     \begin{tikzfigure}{\label{fig:expansion:patch:5:11}}{}
       \matrix (m) [column sep=1cm] {
+        \begin{scope}[yscale=0.866]
+            \draw[very thick] (-0.5, 1) -- (-1, 2) -- (-1.625, 2.75) -- (-2.5, 3) -- (-3.5, 3) -- (-4, 2.666) -- (-4.5, 5) -- (-4, 6) -- (-4, 8) -- (-2.5, 9) -- (-1.5, 9) -- (-0.5, 8.75) -- (0.5, 7.25) -- (1.5, 7) -- (0, 5.333) -- (0.5, 5) -- (1, 4) -- (1.25, 3) -- (1, 2) -- (0.5, 1) -- (-0.5, 1); 
+            \draw (-1,2) -- (-1.25, 3) -- (-1, 4) -- (-0.5, 5) -- (0, 5.333);
+            \draw (-4, 6) -- (-3.5, 5) -- (-2.5, 5) -- (-1.833, 5.2) -- (-1.166, 5.5) -- (-0.5, 6) -- (0.5, 7.25);
+            \draw[lsquare] (-0.5, 6) -- (-0.5, 5);
+            \draw[lface] (-0.5, 6) -- (-1.5, 7);
+            \draw[lface] (-0.5, 5) -- (0, 4);
+            \draw (-3.5, 3) -- (-3.5, 5);
+            \draw (-2.5, 3) -- (-2.25, 4) -- (-2.5, 5);
+            \draw (-1.626, 2.75) -- (-1.75, 3.5) -- (-1.5, 3.5) -- (-1.25, 3);
+            \draw (-1.75, 3.5) -- (-2, 4) -- (-2.25, 4);
+            \draw (-1.5, 3.5) -- (-1.5, 4.5) -- (-1.833, 4.75) -- (-1.833, 5.2);
+            \draw (-2, 4) -- (-1.833, 4.75);
+            \draw (-1, 4) -- (-1.25, 4.75) -- (-1.5, 4.5);
+            \draw (-1.25, 4.75) -- (-1.166, 5.5);
+        \end{scope}
+        &
+        \begin{scope}[scale=0.5]
+          \begin{scope}[yscale=0.866]
+            \draw[very thick] (-0.5, 1) -- (-1, 2) -- (-1.625, 2.75) -- (-2.5, 3) -- (-3.5, 3) -- (-4, 2.666) -- (-4.5, 5) -- (-4, 6) -- (-4, 8) -- (-2.5, 9) -- (-1.5, 9) -- (-0.5, 8.75) -- (0.5, 7.25) -- (1.5, 7) -- (0, 5.333) -- (0.5, 5) -- (1, 4) -- (1.25, 3) -- (1, 2) -- (0.5, 1) -- (-0.5, 1); 
+            \draw (-1,2) -- (-1.25, 3) -- (-1, 4) -- (-0.5, 5) -- (0, 5.333);
+            \draw (-4, 6) -- (-3.5, 5) -- (-2.5, 5) -- (-1.833, 5.2) -- (-1.166, 5.5) -- (-0.5, 6) -- (0.5, 7.25);
+            \draw (-0.5, 6) -- (-0.5, 5);
+            \draw (-3.5, 3) -- (-3.5, 5);
+            \draw (-2.5, 3) -- (-2.25, 4) -- (-2.5, 5);
+            \draw (-1.626, 2.75) -- (-1.75, 3.5) -- (-1.5, 3.5) -- (-1.25, 3);
+            \draw (-1.75, 3.5) -- (-2, 4) -- (-2.25, 4);
+            \draw (-1.5, 3.5) -- (-1.5, 4.5) -- (-1.833, 4.75) -- (-1.833, 5.2);
+            \draw (-2, 4) -- (-1.833, 4.75);
+            \draw (-1, 4) -- (-1.25, 4.75) -- (-1.5, 4.5);
+            \draw (-1.25, 4.75) -- (-1.166, 5.5);
+          \end{scope}
+          \begin{scope}[rotate=-60, yscale=0.866]
+            \draw[very thick] (-0.5, 1) -- (-1, 2) -- (-1.625, 2.75) -- (-2.5, 3) -- (-3.5, 3) -- (-4, 2.666) -- (-4.5, 5) -- (-4, 6) -- (-4, 8) -- (-2.5, 9) -- (-1.5, 9) -- (-0.5, 8.75) -- (0.5, 7.25) -- (1.5, 7) -- (0, 5.333) -- (0.5, 5) -- (1, 4) -- (1.25, 3) -- (1, 2) -- (0.5, 1) -- (-0.5, 1); 
+            \draw (-1,2) -- (-1.25, 3) -- (-1, 4) -- (-0.5, 5) -- (0, 5.333);
+            \draw (-4, 6) -- (-3.5, 5) -- (-2.5, 5) -- (-1.833, 5.2) -- (-1.166, 5.5) -- (-0.5, 6) -- (0.5, 7.25);
+            \draw (-0.5, 6) -- (-0.5, 5);
+            \draw (-3.5, 3) -- (-3.5, 5);
+            \draw (-2.5, 3) -- (-2.25, 4) -- (-2.5, 5);
+            \draw (-1.626, 2.75) -- (-1.75, 3.5) -- (-1.5, 3.5) -- (-1.25, 3);
+            \draw (-1.75, 3.5) -- (-2, 4) -- (-2.25, 4);
+            \draw (-1.5, 3.5) -- (-1.5, 4.5) -- (-1.833, 4.75) -- (-1.833, 5.2);
+            \draw (-2, 4) -- (-1.833, 4.75);
+            \draw (-1, 4) -- (-1.25, 4.75) -- (-1.5, 4.5);
+            \draw (-1.25, 4.75) -- (-1.166, 5.5);
+          \end{scope}
+          \begin{scope}[yscale=0.866,shift={(0 cm,16 cm)},rotate=180]
+            \draw[very thick] (-0.5, 1) -- (-1, 2) -- (-1.625, 2.75) -- (-2.5, 3) -- (-3.5, 3) -- (-4, 2.666) -- (-4.5, 5) -- (-4, 6) -- (-4, 8) -- (-2.5, 9) -- (-1.5, 9) -- (-0.5, 8.75) -- (0.5, 7.25) -- (1.5, 7) -- (0, 5.333) -- (0.5, 5) -- (1, 4) -- (1.25, 3) -- (1, 2) -- (0.5, 1) -- (-0.5, 1); 
+            \draw (-1,2) -- (-1.25, 3) -- (-1, 4) -- (-0.5, 5) -- (0, 5.333);
+            \draw (-4, 6) -- (-3.5, 5) -- (-2.5, 5) -- (-1.833, 5.2) -- (-1.166, 5.5) -- (-0.5, 6) -- (0.5, 7.25);
+            \draw (-0.5, 6) -- (-0.5, 5);
+            \draw (-3.5, 3) -- (-3.5, 5);
+            \draw (-2.5, 3) -- (-2.25, 4) -- (-2.5, 5);
+            \draw (-1.626, 2.75) -- (-1.75, 3.5) -- (-1.5, 3.5) -- (-1.25, 3);
+            \draw (-1.75, 3.5) -- (-2, 4) -- (-2.25, 4);
+            \draw (-1.5, 3.5) -- (-1.5, 4.5) -- (-1.833, 4.75) -- (-1.833, 5.2);
+            \draw (-2, 4) -- (-1.833, 4.75);
+            \draw (-1, 4) -- (-1.25, 4.75) -- (-1.5, 4.5);
+            \draw (-1.25, 4.75) -- (-1.166, 5.5);
+          \end{scope}
+          \begin{scope}[shift={(0cm, 13.856cm)},rotate=120,yscale=0.866]
+            \draw[very thick] (-0.5, 1) -- (-1, 2) -- (-1.625, 2.75) -- (-2.5, 3) -- (-3.5, 3) -- (-4, 2.666) -- (-4.5, 5) -- (-4, 6) -- (-4, 8) -- (-2.5, 9) -- (-1.5, 9) -- (-0.5, 8.75) -- (0.5, 7.25) -- (1.5, 7) -- (0, 5.333) -- (0.5, 5) -- (1, 4) -- (1.25, 3) -- (1, 2) -- (0.5, 1) -- (-0.5, 1); 
+            \draw (-1,2) -- (-1.25, 3) -- (-1, 4) -- (-0.5, 5) -- (0, 5.333);
+            \draw (-4, 6) -- (-3.5, 5) -- (-2.5, 5) -- (-1.833, 5.2) -- (-1.166, 5.5) -- (-0.5, 6) -- (0.5, 7.25);
+            \draw (-0.5, 6) -- (-0.5, 5);
+            \draw (-3.5, 3) -- (-3.5, 5);
+            \draw (-2.5, 3) -- (-2.25, 4) -- (-2.5, 5);
+            \draw (-1.626, 2.75) -- (-1.75, 3.5) -- (-1.5, 3.5) -- (-1.25, 3);
+            \draw (-1.75, 3.5) -- (-2, 4) -- (-2.25, 4);
+            \draw (-1.5, 3.5) -- (-1.5, 4.5) -- (-1.833, 4.75) -- (-1.833, 5.2);
+            \draw (-2, 4) -- (-1.833, 4.75);
+            \draw (-1, 4) -- (-1.25, 4.75) -- (-1.5, 4.5);
+            \draw (-1.25, 4.75) -- (-1.166, 5.5);
+          \end{scope}
+        \end{scope}
+        \\
         \begin{scope}[scale=3, yshift=25]
           \input{tikz/5_11/ngon}
         \end{scope}
@@ -368,11 +497,7 @@ We now can split the infinitely many cases in four series, each with a different
           \input{tikz/5_11/hexagon}
         \end{scope}
         \\
-        \begin{scope}[scale=3, yshift=25]
-          \input{tikz/5_11/mouse}
-        \end{scope}
-        \\
       };
-    \end{tikzfigure}
+      \end{tikzfigure}
   \end{proof}
 \end{theorem}
