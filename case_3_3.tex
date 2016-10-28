@@ -6,9 +6,8 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with tr
   Let $p$ and $v$ be a pair of admissible sequences for a orientable closed $2$-manifold $S$. Then $(p, v)$ is $[3, 3 \times 7]$-$[3]$-realizable.
   \begin{proof}
     An expansion $3$-patch with outer tuple $o = (2, 1, 2, 2, 2, 1, 1, 1, 2, 1)$ and a corresponding $o$-$6$-gonal $3$-patch, both consisting only of triangles and heptagons is shown in \autoref{fig:expansion:patch:3:7}. Since the expansion patch is already polyhedral, we can apply \autoref{thm:main:const}.
-    \begin{tikzfigure}{\label{fig:expansion:patch:3:7}}{\todo{caption, rework expansion patch}}
-      \matrix (m) [column sep=1cm] {
-
+    \begin{tikzfigure2}{\todo{caption, rework expansion patch}}
+      \begin{tikzsubfigure}{}{}{0.5}
         \begin{scope}[yscale=0.866, scale=0.8]
 
           \coordinate (p0)  at  (0,0);
@@ -53,9 +52,8 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with tr
           \draw (p7) -- (p5);
           
         \end{scope} 
-
-        &
-        % \input{tikz/3_7/ngon}
+      \end{tikzsubfigure}%
+      \begin{tikzsubfigure}{}{}{0.5}
         \begin{scope}[scale=0.5]
           \begin{scope}[yscale=0.866]
 
@@ -164,14 +162,13 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with tr
             \draw (p7) -- (p5);
           \end{scope} 
         \end{scope}
-        \\
-      };
-    \end{tikzfigure}
-    % \begin{tikzfigure}{\label{fig:expansion:patch:poly:3:7}}{\todo{caption}}
-    %   \begin{scope}[scale=3]
-    %     \input{tikz/3_7/mouse}
-    %   \end{scope}
-    % \end{tikzfigure}
+      \end{tikzsubfigure}
+      \begin{tikzsubfigure}{}{}{1}
+        \begin{scope}[scale=6]
+          \input{tikz/3_7/hexagon2}
+        \end{scope}
+      \end{tikzsubfigure}
+    \end{tikzfigure2}
   \end{proof}
 \end{theorem}
 
@@ -179,8 +176,8 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with tr
   Let $p$ and $v$ be a pair of admissible sequences for a orientable closed $2$-manifold $S$. Then $(p, v)$ is $[2 \times 3, 3 \times 8]$-$[3]$-realizable.
   \begin{proof}
     An expansion $3$-patch with outer tuple $o = (1, 1, 2, 2, 1, 1, 2, 2)$ and a corresponding $o$-$6$-gonal $3$-patch, both consisting only of triangles and octagons is shown in \autoref{fig:expansion:patch:3:8}. Since the expansion patch is already polyhedral, we can apply \autoref{thm:main:const}.
-    \begin{tikzfigure}{\label{fig:expansion:patch:3:8}}{\todo{caption, rework expansion patch}}
-      \matrix (m) [column sep=1cm] {
+    \begin{tikzfigure2}{\todo{caption, rework expansion patch}}
+      \begin{tikzsubfigure}{}{}{0.5}
         \begin{scope}[yscale=0.866, scale=0.8]
           \draw[very thick] (-1,0)--(-0.5,1)--(-1,4)--(0.5,10.5)--(-0.5,11.5)--(-2.5,11)--(-3.5,10.5)--(-4.5,10.5)--(-5.5,11)--(-6.375,10.25)--(-6.875,9.25)--(-7,8)--(-7.625,5.75)--(-3.5,1)--(-1,0);
 
@@ -203,9 +200,9 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with tr
           \node[anchor=  0] at (-7,8)         {$o_1$};
           \node[anchor=340] at (-7.625,5.75)  {$i_2=o_0$};
           \node[anchor= 60] at (-3.5,1)       {$i_1$}; 
-          
         \end{scope}
-        &
+      \end{tikzsubfigure}%
+      \begin{tikzsubfigure}{}{}{0.5}
         \begin{scope}[scale=0.5]
           \begin{scope}[yscale=0.866]
             \draw[very thick] (-1,0)--(-0.5,1)--(-1,4)--(0.5,10.5)--(-0.5,11.5)--(-2.5,11)--(-3.5,10.5)--(-4.5,10.5)--(-5.5,11)--(-6.375,10.25)--(-6.875,9.25)--(-7,8)--(-7.625,5.75)--(-3.5,1)--(-1,0);
@@ -238,16 +235,13 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with tr
             \draw (-4,8)--(-4.5,7);
           \end{scope}        
         \end{scope}
-        % \begin{scope}[scale=3]
-        %   \input{tikz/3_8/mouse}
-        % \end{scope}
-        &
-        % \begin{scope}[scale=3]
-        %   \input{tikz/3_8/hexagon}
-        % \end{scope}
-        \\
-      };
-    \end{tikzfigure}
+      \end{tikzsubfigure}
+      \begin{tikzsubfigure}{}{}{1}
+        \begin{scope}[scale=6]
+          \input{tikz/3_8/hexagon2}
+        \end{scope}
+      \end{tikzsubfigure}
+    \end{tikzfigure2}
   \end{proof}
 \end{theorem}
 
@@ -256,37 +250,41 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with tr
   \begin{proof}
     An expansion $3$-patch with outer tuple $o = (2, 2, 2, 1, 1, 2, 2, 1, 1, 1)$ and a corresponding $o$-$6$-gonal $3$-patch, both consisting only of triangles and decagons is shown in \autoref{fig:expansion:patch:3:10}. Since the expansion patch is already polyhedral, we can apply \autoref{thm:main:const}.
     \begin{tikzfigure}{\label{fig:expansion:patch:3:10}}{\todo{caption, rework expansion patch}}
-      \begin{scope}[yscale=0.866]
-        \draw (-0.5,1)--(-1.5,1.5)--(-3.5,1.5)--(-4.5,1.5)--(-7,5)--(-6.5,6)--(-5.5,6.5)--(-3.5,7)--(-2.5,6.5)--(-2,5.5)--(-2,4.5)--(-1.5,3.5)--(-0.5,4)--(0.5,4)--(1.5,3.5)--(2,2.5)--(1.5,1.5)--(0.5,1)--(-0.5,1);
-        \draw (-7,5)--(-6,5)--(-5,5.5)--(-4,5)--(-3,5)--(-2,5.5);
-        \draw (-6,5)--(-5,4.5)--(-4,5);
-        \draw (-5,5.5)--(-5,4.5);
-        \draw (-3,5)--(-2,4.5);
-        \draw (-3.5,1.5)--(-2,2.5)--(-1.5,3.5);
-        \draw (-2,2.5)--(-1.5,1.5);
+      \matrix (m) [column sep=1cm] {
+        \begin{scope}[yscale=0.866]
+          \draw (-0.5,1)--(-1.5,1.5)--(-3.5,1.5)--(-4.5,1.5)--(-7,5)--(-6.5,6)--(-5.5,6.5)--(-3.5,7)--(-2.5,6.5)--(-2,5.5)--(-2,4.5)--(-1.5,3.5)--(-0.5,4)--(0.5,4)--(1.5,3.5)--(2,2.5)--(1.5,1.5)--(0.5,1)--(-0.5,1);
+          \draw (-7,5)--(-6,5)--(-5,5.5)--(-4,5)--(-3,5)--(-2,5.5);
+          \draw (-6,5)--(-5,4.5)--(-4,5);
+          \draw (-5,5.5)--(-5,4.5);
+          \draw (-3,5)--(-2,4.5);
+          \draw (-3.5,1.5)--(-2,2.5)--(-1.5,3.5);
+          \draw (-2,2.5)--(-1.5,1.5);
 
-        \node[anchor= 90] at (0.5,1)    {$i_{0}'$};
-        \node[anchor= 90] at (-0.5,1)   {$i_0$};
-        \node[anchor= 75] at (-1.5,1.5) {$i_1$};
-        \node[anchor= 90] at (-3.5,1.5) {$i_2$};
-        \node[anchor= 45] at (-4.5,1.5) {$i_3=o_0$};
-        \node[anchor=  0] at (-7,5)     {$o_1$};
-        \node[anchor=315] at (-6.5,6)   {$o_2$};
-        \node[anchor=270] at (-5.5,6.5) {$o_3$};
-        \node[anchor=270] at (-3.5,7)   {$o_4$};
-        \node[anchor=215] at (-2.5,6.5) {$\mathbf{o_5}$};
-        \node[anchor=180] at (-2,5.5)   {$o_6$};
-        \node[anchor=180] at (-2,4.5)   {$o_7$};
-        \node[anchor=250] at (-1.5,3.5) {$o_8$};
-        \node[anchor=270] at (-0.5,4)   {$o_9$};
-        \node[anchor=270] at (0.5,4)    {$o_{10}$};
-        \node[anchor=225] at (1.5,3.5)  {$i_3'=o_{11}$};
-        \node[anchor=180] at (2,2.5)    {$i_2'$};
-        \node[anchor=135] at (1.5,1.5)  {$i_1'$};
-      \end{scope}
-
-
-      
+          \node[anchor= 90] at (0.5,1)    {$i_{0}'$};
+          \node[anchor= 90] at (-0.5,1)   {$i_0$};
+          \node[anchor= 75] at (-1.5,1.5) {$i_1$};
+          \node[anchor= 90] at (-3.5,1.5) {$i_2$};
+          \node[anchor= 45] at (-4.5,1.5) {$i_3=o_0$};
+          \node[anchor=  0] at (-7,5)     {$o_1$};
+          \node[anchor=315] at (-6.5,6)   {$o_2$};
+          \node[anchor=270] at (-5.5,6.5) {$o_3$};
+          \node[anchor=270] at (-3.5,7)   {$o_4$};
+          \node[anchor=215] at (-2.5,6.5) {$\mathbf{o_5}$};
+          \node[anchor=180] at (-2,5.5)   {$o_6$};
+          \node[anchor=180] at (-2,4.5)   {$o_7$};
+          \node[anchor=250] at (-1.5,3.5) {$o_8$};
+          \node[anchor=270] at (-0.5,4)   {$o_9$};
+          \node[anchor=270] at (0.5,4)    {$o_{10}$};
+          \node[anchor=225] at (1.5,3.5)  {$i_3'=o_{11}$};
+          \node[anchor=180] at (2,2.5)    {$i_2'$};
+          \node[anchor=135] at (1.5,1.5)  {$i_1'$};
+        \end{scope}
+        &
+        \begin{scope}[scale=3]
+          \input{tikz/3_10/hexagon}
+        \end{scope}
+        \\
+      };
     \end{tikzfigure}
     \begin{tikzfigure}{\label{fig:expansion:patch:poly:3:10}}{\todo{caption, rework patch}}
 
@@ -371,10 +369,6 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with tr
             
           \end{scope}
         \end{scope}
-        &
-        % \begin{scope}[scale=3]
-        %   \input{tikz/3_10/hexagon}
-        % \end{scope}
         \\
       };
       % \begin{scope}[scale=3]

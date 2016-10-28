@@ -33,7 +33,8 @@
 \tikzset{
      lface/.style={dotted,     decoration={markings, mark=at position 1.0 with {\arrow[>=angle 60]{>}}}, postaction={decorate}},
    lsquare/.style={very thick, decoration={markings, mark=at position {0.5*\pgfdecoratedpathlength+3.5pt} with {\arrow{open square  }}}, postaction={decorate}},
-  ldiamond/.style={very thick, decoration={markings, mark=at position {0.5*\pgfdecoratedpathlength+5.5pt} with {\arrow{open diamond }}}, postaction={decorate}}
+  ldiamond/.style={very thick, decoration={markings, mark=at position {0.5*\pgfdecoratedpathlength+5.5pt} with {\arrow{open diamond }}}, postaction={decorate}},
+  lvertex/.style={draw, very thick, circle}
 }
 
 \counterwithin{figure}{section}
@@ -52,15 +53,13 @@
     {\begin{figure}[!h] \caption{#2} #1 \centering \begin{tikzpicture}[line cap=round, line join=round]}
     {\end{tikzpicture} \end{figure}}
 
-\newenvironment{tikzfigure2}
-    {\begin{figure}[!p] \caption{} \centering}
+\newenvironment{tikzfigure2}[1][]
+    {\begin{figure}[!p] \caption{#1} \centering}
     {\end{figure}}
 
 \newenvironment{tikzsubfigure}[3]
     {\begin{subfigure}[t]{#3\textwidth} \caption{#2} #1 \centering \begin{tikzpicture}[line cap=round, line join=round]}
     {\end{tikzpicture} \end{subfigure}}
-
-
 
 \newcommand{\todo}[1]{(TODO)}
 

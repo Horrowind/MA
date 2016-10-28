@@ -4,7 +4,7 @@ In this section we want to prove $4$-valent {\sc Eberhard}-like theorems with tr
 
 \begin{construction}\label{const:edge:replacement:3:4:1}
   \begin{cinput}
-  \item A $4$-patch with $p$-vector $p$ and a specified edge with exactly one vertex incident to some $k_1$-gon and the other vertex  incident to some $k_2$-gon.
+  \item A $4$-patch with $p$-vector $p$ and a specified edge with exactly one vertex incident to some $k_1$-gon and the other vertex incident to some $k_2$-gon.
   \end{cinput}
   \begin{coutput}
   \item A new $4$-patch with $p$-vector $p - [k_1, k_2] + [2k \times 3] + [k_1 + k, k_2 + k]$ for all $k \in \nats$.
@@ -15,25 +15,29 @@ In this section we want to prove $4$-valent {\sc Eberhard}-like theorems with tr
     \begin{tikzfigure}{\label{fig:const:edge:replacement:3:4:1}}{}
       \matrix (m) [column sep=1cm] {
         \begin{scope}
-          \draw[very thick] (-1, 0) -- (1, 0);
+          \draw[lsquare] (-1, 0) -- (1, 0);
           \draw (-1.2, 0.5) -- (-1, 0) -- (-1.2, -0.5);
           \draw (1.2, 0.5) -- (1, 0) -- (1.2, -0.5);
           \draw (-1, 0) -- (-0.8, -0.5);
           \draw (1, 0) -- (0.8, 0.5);
-          \node at (-1.5, 0) {$k_1$};
-          \node at (1.5, 0) {$k_2$};
+          \node (k1) at (-2, 0) {$k_1$};
+          \node (k2) at (2, 0) {$k_2$};
+          \draw[lface] (-1, 0) -- (k1);
+          \draw[lface] ( 1, 0) -- (k2);
         \end{scope}
         &
         \begin{scope}
-          \draw[very thick] (-1, 0.5) -- (1, 0.5);
+          \draw[lsquare] (-1, 0.5) -- (1, 0.5);
           \draw (-1, -0.5) -- (1, -0.5);
           \draw (-1.2, 1) -- (-1, 0.5) -- (-1, -0.5) -- (-1.2, -1);
           \draw (1.2, 1) -- (1, 0.5) -- (1, -0.5) -- (1.2, -1);
           \draw (-1, 0.5) -- (1, -0.5);
           \draw (-1, -0.5) -- (-0.8, -1);
           \draw (1, 0.5) -- (0.8, 1);
-          \node at (-1.5, 0) {$k_1$};
-          \node at (1.5, 0) {$k_2$};
+          \node (k1) at (-2, 0) {$k_1$};
+          \node (k2) at (2, 0) {$k_2$};
+          \draw[lface] (-1, 0.5) -- (k1);
+          \draw[lface] ( 1, 0.5) -- (k2);
         \end{scope}
         \\
       };
@@ -43,7 +47,7 @@ In this section we want to prove $4$-valent {\sc Eberhard}-like theorems with tr
 
 \begin{construction}\label{const:edge:replacement:3:4:2}
   \begin{cinput}
-  \item A $4$-patch with $p$-vector $p$ and a specified path of length $2$ with the start vertex incident to some $k_1$-gon and the end vertex incident to some $k_2$-gon, while the vertex in the middle is incident to neither polygon.
+  \item A $4$-patch with $p$-vector $p$ and a specified edge which is the common edge of a $k_1$-gon and a $k_2$-gon.
   \end{cinput}
   \begin{coutput}
   \item A new $4$-patch with $p$-vector $p - [k_1, k_2] + [(6k) \times 3] + [k_1 + 3k, k_2 + 3k]$ for all $k \in \nats$.
@@ -53,17 +57,20 @@ In this section we want to prove $4$-valent {\sc Eberhard}-like theorems with tr
     \begin{tikzfigure}{\label{fig:const:edge:replacement:3:4:2}}{}
       \matrix (m) [column sep=1cm] {
         \begin{scope}
-          \draw[very thick] (0, -1) -- (0, 1);
+          \draw[ldiamond] (0, -1) -- (0, 1);
           \draw (0.5, -1.2) -- (0, -1) -- (-0.5, -1.2);
           \draw (0.5, 1.2) -- (0, 1) -- (-0.5, 1.2);
-          \node at (-1, 0) {$k_1$};
-          \node at (1, 0) {$k_2$};
+          \node (k1) at (-1, 0) {$k_1$};
+          \node (k2) at (1, 0) {$k_2$};
+          \draw[lface] (0, 0) -- (k1);
+          \draw[lface] (0, 0) -- (k2);
         \end{scope}
         &
         \begin{scope}
-          \draw[very thick] (0, -1) -- (0, 1);
+          \draw[ldiamond] (0, 0.6) -- (0, 1.2);
+          \draw (0, 0.6) -- (0, -1);
           \draw (0.5, -1.2) -- (0, -1) -- (-0.5, -1.2);
-          \draw (0.5, 1.2) -- (0, 1) -- (-0.5, 1.2);
+          \draw (0.5, 1.4) -- (0, 1.2) -- (-0.5, 1.4);
           
           \draw (-0.5, 0) -- (0, -0.6) -- (0.5, 0);
           \draw (-0.5, 0) -- (0, -0.2) -- (0.5, 0);
@@ -71,14 +78,58 @@ In this section we want to prove $4$-valent {\sc Eberhard}-like theorems with tr
           \draw (-0.5, 0) -- (0, 0.2) -- (0.5, 0);
           
 
-          \node[anchor=east] at (-2, 0) {$k_1 + 3$};
-          \node[anchor=west] at (2, 0) {$k_2 + 3$};
+          \node (k1) at (-2, 0) {$k_1 + 3$};
+          \node (k2) at (2, 0) {$k_2 + 3$};
+          \draw[lface] (0, 0.9) -- (k1);
+          \draw[lface] (0, 0.9) -- (k2);
+
         \end{scope}
         \\
       };
     \end{tikzfigure}  
   \end{cdescription}
 \end{construction}
+
+\begin{construction}\label{const:edge:replacement:3:4:3}
+  \begin{cinput}
+  \item A $4$-patch with $p$-vector $p$ and a specified vertex which is adjacent to both $k_1$-gon and a $k_2$-gon which do not share an edge containing this vertex.
+  \end{cinput}
+  \begin{coutput}
+  \item A new $4$-patch with $p$-vector $p - [k_1, k_2] + [(6k) \times 3] + [k_1 + 3k, k_2 + 3k]$ for all $k \in \nats$.
+  \end{coutput}
+  \begin{cdescription}
+    Using the replacement of the path as seen in \autoref{fig:const:edge:replacement:3:4:2} results in a new map with $p$-vector $p - [k_1, k_2] + [(6k) \times 3] + [k_1 + 3, k_2 + 3]$. The thick drawn path on the left is the specified path and the thick drawn path on the right is a new path which we can use to repeat the construction. Every time we use this construction we add six new triangles while increasing the number of vertices of the left and right polygon by three; doing this $k$ times has the desired result, since we only inserted $4$-valent vertices.
+    \begin{tikzfigure}{\label{fig:const:edge:replacement:3:4:2}}{}
+      \matrix (m) [column sep=1cm] {
+        \begin{scope}
+          \draw (0.2, -0.5) -- (0, 0) -- (-0.2, -0.5);
+          \draw (0.2, 0.5) -- (0, 0) -- (-0.2, 0.5);
+          \node (k1) at (-1, 0) {$k_1$};
+          \node (k2) at (1, 0) {$k_2$};
+          \node[lvertex] at (0, 0) {};
+          \draw[lface] (0, 0) -- (k1);
+          \draw[lface] (0, 0) -- (k2);
+        \end{scope}
+        &
+        \begin{scope}
+          \draw (0.2, -1.5) -- (0, -1) -- (-0.2, -1.5);
+          \draw (0.2, 1.5) -- (0, 1) -- (-0.2, 1.5);
+          \draw (0, -1) -- (-0.25, -0.5) -- (-0.25, 0.5) -- (0, 1);
+          \draw (0, -1) -- ( 0.25, -0.5) -- ( 0.25, 0.5) -- (0, 1);
+          \draw (-0.25, -0.5) -- ( 0.25,  0.5) -- (-0.25,  0.5);
+          \draw (-0.25,  0.5) -- ( 0.25, -0.5) -- (-0.25, -0.5);
+          \node (k1) at (-2, 0) {$k_1 + 3$};
+          \node (k2) at (2, 0) {$k_2 + 3$};
+          \node[lvertex] at (0, 1) {};
+          \draw[lface] (0, 1) -- (k1);
+          \draw[lface] (0, 1) -- (k2);
+        \end{scope}
+        \\
+      };
+    \end{tikzfigure}  
+  \end{cdescription}
+\end{construction}
+
 
 We now can split the infinitely many cases in two series, each with a different residual class of $l \mod 3$:
 
