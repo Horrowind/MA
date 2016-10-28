@@ -23,8 +23,8 @@ typedef __uint128_t boundary_bits_t;
 #endif
 
 
-#define VALENCE  5
-int small_ngon = 3;
+#define VALENCE  3
+int small_ngon = 5;
 int large_ngon = 7;
 #define MAX_NGON_COUNT 2
 

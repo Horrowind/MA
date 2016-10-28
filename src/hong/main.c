@@ -197,10 +197,21 @@ b32 search_database(boundary_t start, boundary_t goal, int* ngons, int ngons_cou
                 }
             }
 
+		
+
+	    
             if(stop) {
                 printf("Found boundary "); boundary_write(start); printf("\n");
                 planar_graph_t planar_graph = planar_graph_from_builder(builder);
-                stop = planar_graph_output_sdl(planar_graph);
+
+		int large_ngon_count = 0;
+		for(int i = 1; i < planar_graph.face_count; i++) {
+		    if(planar_graph.faces[i].ngon == large_ngon) {
+			large_ngon_count++;
+		    }
+		}
+		printf("large_ngon_count: %i\n", large_ngon_count);
+		stop = planar_graph_output_sdl(planar_graph);
                 planar_graph_deinit(planar_graph);
                 if(stop) {
                     for(int i = 0; i < 512; i++) {

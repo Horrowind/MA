@@ -515,7 +515,7 @@ void planar_graph_output_tikz(planar_graph_t g, int k) {
     }
     // print tikz-code for connection lines
     for (int i = 0; i < g.edge_count; i++) {
-	fprintf(f,"\\draw (%f, %f) -- (%f, %f);\n",
+	fprintf(f, g.edges[i].edge_data ? "\\draw[thick] (%f, %f) -- (%f, %f);\n" : "\\draw (%f, %f) -- (%f, %f);\n",
 		g.edges[i].vertex1->x, g.edges[i].vertex1->y,
 		g.edges[i].vertex2->x, g.edges[i].vertex2->y);
 	/* fprintf(f,"\\draw (%f, %f) to node {%li} node [swap] {%li} (%f, %f);\n", */

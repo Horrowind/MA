@@ -110,10 +110,62 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with qu
           \draw (0, 4) -- (1, 4.666);
           \draw[lsquare] (3.5, 7) -- (2, 4);
 
-          \draw[lface] (-1, 6) -- (-2, 5.5);
-          \draw[lface] (-0.5, 6) -- (0.5, 6.5);
-          \draw[lface] (3.5, 7) -- (2.5, 8.5);
-          \draw[lface] (2, 4) -- (1, 3);
+          \node (n1) at (-2,5.5)  {$7$};
+          \node (n2) at (0.5,6.5) {$7$};
+          \node (n3) at (2.5,8.5) {$7$};
+          \node (n4) at (1,3)     {$7$};
+          \node at (-1.5,7) {$4$};
+          \node at (0.1,4.7)  {$4$};
+
+          
+          \draw[lface] (-1, 6) -- (n1);
+          \draw[lface] (-0.5, 6) -- (n2);
+          \draw[lface] (3.5, 7) -- (n3);
+          \draw[lface] (2, 4) -- (n4);
+
+          \node[anchor= 90] at (-0.5, 1)    {$i_0$};
+          \node[anchor= 45] at (-0.5, 3)    {$i_1$};
+          \node[anchor= 30] at (-2, 4)      {$i_2$};
+          \node[anchor=  0] at (-3.5, 7)    {$i_3$};
+          \node[anchor=270] at (-3.5, 8)    {$i_4=o_0$};
+          \node[anchor=270] at (-2.5, 7.666){$o_{1}$};
+          \node[anchor=300] at (-1.5, 8)    {$o_{2}$};
+          \node[anchor=270] at (-0.5, 9)    {$o_{3}$};
+          \node[anchor=300] at (0.5, 9)     {$o_{4}$};
+          \node[anchor=300] at (1.5, 10)    {$o_{5}$};
+          \node[anchor=270] at (2.5, 10.333){$o_{6}$};
+          \node[anchor=245] at (3.5, 10)    {$o_{7}$};
+          \node[anchor=180] at (4.5, 9)     {$o_{8}$};
+          \node[anchor=180] at (4.25, 7.5)  {$o_{10}$};
+          \node[anchor=160] at (3.5, 7)     {$i_3'=o_{11}$};
+          \node[anchor=180] at (2, 4)       {$i_2'$};
+          \node[anchor=180] at (2, 2)       {$i_1'$};
+          \node[anchor=180] at (0.5, 1)     {$i_0'$};
+
+          \fill[black] (-0.5, 1)    circle (2pt);
+          \fill[black] (-0.5, 3)    circle (2pt);
+          \fill[black] (-2, 4)      circle (2pt);
+          \fill[black] (-3.5, 7)    circle (2pt);
+          \fill[black] (-3.5, 8)    circle (2pt);
+          \fill[black] (-2.5, 7.666)circle (2pt);
+          \fill[black] (-1.5, 8)    circle (2pt);
+          \fill[black] (-0.5, 9)    circle (2pt);
+          \fill[black] (0.5, 9)     circle (2pt);
+          \fill[black] (1.5, 10)    circle (2pt);
+          \fill[black] (2.5, 10.333)circle (2pt);
+          \fill[black] (3.5, 10)    circle (2pt);
+          \fill[black] (4.5, 9)     circle (2pt);
+          \fill[black] (4.25, 7.5)  circle (2pt);
+          \fill[black] (3.5, 7)     circle (2pt);
+          \fill[black] (2, 4)       circle (2pt);
+          \fill[black] (2, 2)       circle (2pt);
+          \fill[black] (0.5, 1)     circle (2pt);
+          \fill[black] (-1,6)       circle (2pt);
+          \fill[black] (-0.5,6)     circle (2pt);
+          \fill[black] (0,4)        circle (2pt);
+          \fill[black] (1, 4.666)   circle (2pt);
+          
+       
         \end{scope}
         &
         \begin{scope}[scale=0.5]
@@ -124,6 +176,30 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with qu
             \draw (-0.5, 1) -- (-0.5, 3) -- (0, 4) -- (-1, 6) -- (-2.5, 7.666);
             \draw (2, 4) -- (1, 4.666) -- (-0.5, 6) -- (-1.5, 8);
             \draw (0, 4) -- (1, 4.666);
+
+            \fill[black] (-0.5, 1)    circle (3pt);
+          \fill[black] (-0.5, 3)    circle (3pt);
+          \fill[black] (-2, 4)      circle (3pt);
+          \fill[black] (-3.5, 7)    circle (3pt);
+          \fill[black] (-3.5, 8)    circle (3pt);
+          \fill[black] (-2.5, 7.666)circle (3pt);
+          \fill[black] (-1.5, 8)    circle (3pt);
+          \fill[black] (-0.5, 9)    circle (3pt);
+          \fill[black] (0.5, 9)     circle (3pt);
+          \fill[black] (1.5, 10)    circle (3pt);
+          \fill[black] (2.5, 10.333)circle (3pt);
+          \fill[black] (3.5, 10)    circle (3pt);
+          \fill[black] (4.5, 9)     circle (3pt);
+          \fill[black] (4.25, 7.5)  circle (3pt);
+          \fill[black] (3.5, 7)     circle (3pt);
+          \fill[black] (2, 4)       circle (3pt);
+          \fill[black] (2, 2)       circle (3pt);
+          \fill[black] (0.5, 1)     circle (3pt);
+          \fill[black] (-1,6)       circle (3pt);
+          \fill[black] (-0.5,6)     circle (3pt);
+          \fill[black] (0,4)        circle (3pt);
+          \fill[black] (1, 4.666)   circle (3pt);
+          
           \end{scope}
           \begin{scope}[rotate=60,yscale=0.866]
             \draw[very thick] (-0.5, 1) -- (-0.5, 3) -- (-2, 4) -- (-3.5, 7) -- (-3.5, 8) -- (-2.5, 7.666) -- (-1.5, 8) -- (-0.5, 9) -- (0.5, 9) -- (1.5, 10) -- (2.5, 10.333) -- (3.5, 10) -- (4.5, 9) -- (4.25, 7.5) -- (3.5, 7) -- (2, 4) -- (2, 2) -- (0.5, 1) -- (-0.5, 1);
@@ -132,6 +208,29 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with qu
             \draw (-0.5, 1) -- (-0.5, 3) -- (0, 4) -- (-1, 6) -- (-2.5, 7.666);
             \draw (2, 4) -- (1, 4.666) -- (-0.5, 6) -- (-1.5, 8);
             \draw (0, 4) -- (1, 4.666);
+
+                 \fill[black] (-0.5, 1)    circle (3pt);
+          \fill[black] (-0.5, 3)    circle (3pt);
+          \fill[black] (-2, 4)      circle (3pt);
+          \fill[black] (-3.5, 7)    circle (3pt);
+          \fill[black] (-3.5, 8)    circle (3pt);
+          \fill[black] (-2.5, 7.666)circle (3pt);
+          \fill[black] (-1.5, 8)    circle (3pt);
+          \fill[black] (-0.5, 9)    circle (3pt);
+          \fill[black] (0.5, 9)     circle (3pt);
+          \fill[black] (1.5, 10)    circle (3pt);
+          \fill[black] (2.5, 10.333)circle (3pt);
+          \fill[black] (3.5, 10)    circle (3pt);
+          \fill[black] (4.5, 9)     circle (3pt);
+          \fill[black] (4.25, 7.5)  circle (3pt);
+          \fill[black] (3.5, 7)     circle (3pt);
+          \fill[black] (2, 4)       circle (3pt);
+          \fill[black] (2, 2)       circle (3pt);
+          \fill[black] (0.5, 1)     circle (3pt);
+          \fill[black] (-1,6)       circle (3pt);
+          \fill[black] (-0.5,6)     circle (3pt);
+          \fill[black] (0,4)        circle (3pt);
+          \fill[black] (1, 4.666)   circle (3pt);
           \end{scope}
           \begin{scope}[yscale=0.866,shift={(0 cm,18 cm)},rotate=180]
             \draw[very thick] (-0.5, 1) -- (-0.5, 3) -- (-2, 4) -- (-3.5, 7) -- (-3.5, 8) -- (-2.5, 7.666) -- (-1.5, 8) -- (-0.5, 9) -- (0.5, 9) -- (1.5, 10) -- (2.5, 10.333) -- (3.5, 10) -- (4.5, 9) -- (4.25, 7.5) -- (3.5, 7) -- (2, 4) -- (2, 2) -- (0.5, 1) -- (-0.5, 1);
@@ -140,6 +239,29 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with qu
             \draw (-0.5, 1) -- (-0.5, 3) -- (0, 4) -- (-1, 6) -- (-2.5, 7.666);
             \draw (2, 4) -- (1, 4.666) -- (-0.5, 6) -- (-1.5, 8);
             \draw (0, 4) -- (1, 4.666);
+
+                 \fill[black] (-0.5, 1)    circle (3pt);
+          \fill[black] (-0.5, 3)    circle (3pt);
+          \fill[black] (-2, 4)      circle (3pt);
+          \fill[black] (-3.5, 7)    circle (3pt);
+          \fill[black] (-3.5, 8)    circle (3pt);
+          \fill[black] (-2.5, 7.666)circle (3pt);
+          \fill[black] (-1.5, 8)    circle (3pt);
+          \fill[black] (-0.5, 9)    circle (3pt);
+          \fill[black] (0.5, 9)     circle (3pt);
+          \fill[black] (1.5, 10)    circle (3pt);
+          \fill[black] (2.5, 10.333)circle (3pt);
+          \fill[black] (3.5, 10)    circle (3pt);
+          \fill[black] (4.5, 9)     circle (3pt);
+          \fill[black] (4.25, 7.5)  circle (3pt);
+          \fill[black] (3.5, 7)     circle (3pt);
+          \fill[black] (2, 4)       circle (3pt);
+          \fill[black] (2, 2)       circle (3pt);
+          \fill[black] (0.5, 1)     circle (3pt);
+          \fill[black] (-1,6)       circle (3pt);
+          \fill[black] (-0.5,6)     circle (3pt);
+          \fill[black] (0,4)        circle (3pt);
+          \fill[black] (1, 4.666)   circle (3pt);
           \end{scope}
           \begin{scope}[shift={(0 cm,15.588 cm)},rotate=240,yscale=0.866]
             \draw[very thick] (-0.5, 1) -- (-0.5, 3) -- (-2, 4) -- (-3.5, 7) -- (-3.5, 8) -- (-2.5, 7.666) -- (-1.5, 8) -- (-0.5, 9) -- (0.5, 9) -- (1.5, 10) -- (2.5, 10.333) -- (3.5, 10) -- (4.5, 9) -- (4.25, 7.5) -- (3.5, 7) -- (2, 4) -- (2, 2) -- (0.5, 1) -- (-0.5, 1);
@@ -148,6 +270,29 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with qu
             \draw (-0.5, 1) -- (-0.5, 3) -- (0, 4) -- (-1, 6) -- (-2.5, 7.666);
             \draw (2, 4) -- (1, 4.666) -- (-0.5, 6) -- (-1.5, 8);
             \draw (0, 4) -- (1, 4.666);
+
+                 \fill[black] (-0.5, 1)    circle (3pt);
+          \fill[black] (-0.5, 3)    circle (3pt);
+          \fill[black] (-2, 4)      circle (3pt);
+          \fill[black] (-3.5, 7)    circle (3pt);
+          \fill[black] (-3.5, 8)    circle (3pt);
+          \fill[black] (-2.5, 7.666)circle (3pt);
+          \fill[black] (-1.5, 8)    circle (3pt);
+          \fill[black] (-0.5, 9)    circle (3pt);
+          \fill[black] (0.5, 9)     circle (3pt);
+          \fill[black] (1.5, 10)    circle (3pt);
+          \fill[black] (2.5, 10.333)circle (3pt);
+          \fill[black] (3.5, 10)    circle (3pt);
+          \fill[black] (4.5, 9)     circle (3pt);
+          \fill[black] (4.25, 7.5)  circle (3pt);
+          \fill[black] (3.5, 7)     circle (3pt);
+          \fill[black] (2, 4)       circle (3pt);
+          \fill[black] (2, 2)       circle (3pt);
+          \fill[black] (0.5, 1)     circle (3pt);
+          \fill[black] (-1,6)       circle (3pt);
+          \fill[black] (-0.5,6)     circle (3pt);
+          \fill[black] (0,4)        circle (3pt);
+          \fill[black] (1, 4.666)   circle (3pt);
           \end{scope}
         \end{scope}
         \\
@@ -173,6 +318,11 @@ We now can split the infinitely many cases in three series, each with a differen
     \begin{tikzfigure}{\label{fig:expansion:patch:4:7}}{}
       \matrix (m) [column sep=1cm] {
         \begin{scope}[scale=1.2]
+
+          \node (n1) at (1.5,3) {$7$};
+          \node (n2) at (0.5,1.5){$7$};
+          \node at (2.2,1.8) {$4$};
+          
           \draw (0.5, 2.5) -- (-0.5, 2) -- (-1, 1) -- (-0.1, 0) -- (1.1, 0) -- (2, 1) -- (1.5, 2);
           \draw[ldiamond] (0.5, 2.5) -- (1.5, 2);
           \draw (0.5, 2.5) -- (0, 3.5) -- (0.9, 4.5) -- (2.1, 4.5) -- (3, 3.5) -- (2.5, 2.5) -- (1.5, 2);
@@ -189,8 +339,23 @@ We now can split the infinitely many cases in three series, each with a differen
           \node[anchor=-20] at (0.5, 2.5) {$o_{1}$};
           \node[anchor=0] at (-0.5, 2) {$i_2 = o_{0}$};
           \node[anchor=45] at (-1, 1) {$i_1$};
-          \draw[lface] (1, 2.25) -- (0.5, 1.5);
-          \draw[lface] (1, 2.25) -- (1.5, 3);
+          \draw[lface] (1, 2.25) -- (n1);
+          \draw[lface] (1, 2.25) -- (n2);
+
+          \fill[black] (-0.1, 0)  circle(2pt);
+          \fill[black] (1.2, 0)   circle(2pt);
+          \fill[black] (2, 1)     circle(2pt);
+          \fill[black] (3, 1.5)   circle(2pt);
+          \fill[black] (2.5, 2.5) circle(2pt);
+          \fill[black] (3, 3.5)   circle(2pt);
+          \fill[black] (2.1, 4.5) circle(2pt);
+          \fill[black] (0.9, 4.5) circle(2pt);
+          \fill[black] (0, 3.5)   circle(2pt);
+          \fill[black] (0.5, 2.5) circle(2pt);
+          \fill[black] (-0.5, 2)  circle(2pt);
+          \fill[black] (-1, 1)    circle(2pt);
+          \fill[black] (1.5,2)    circle(2pt);
+          
         \end{scope}
         &
         \begin{scope}[scale=3, yshift=25]
@@ -209,6 +374,13 @@ We now can split the infinitely many cases in three series, each with a differen
     \begin{tikzfigure}{\label{fig:expansion:patch:4:9}}{}
       \matrix (m) [column sep=1cm] {
         \begin{scope}[scale=0.8]
+
+          \node (n1) at (-0.5,4.2) {$9$};
+          \node (n2) at (0.8,2.2)  {$9$};
+          \node at (1.1,3.8)   {$4$};
+          \node at (2.2,2.6)   {$4$};
+          \node at (2.4,1.6)   {$4$};
+          
           \draw (-0.5, 3) -- (-1, 2) -- (-1, 1) -- (0, 0) -- (1, 0) -- (2, 1) -- (2, 2) -- (1.5, 3) -- (0.5, 3.5);
           \draw[ldiamond] (0.5, 3.5) -- (-0.5, 3);
           \draw (2, 1) -- (3, 1) -- (3, 2) -- (2, 2);
@@ -231,8 +403,30 @@ We now can split the infinitely many cases in three series, each with a differen
           \node[anchor=20] at (-0.5, 3) {$o_{1}$};
           \node[anchor=0] at (-1, 2) {$i_2 = o_{0}$};
           \node[anchor=45] at (-1, 1) {$i_1$};
-          \draw[lface] (0, 3.25) -- (0.5, 2.5);
-          \draw[lface] (0, 3.25) -- (-0.5, 4);
+          \draw[lface] (0, 3.25) -- (n1);
+          \draw[lface] (0, 3.25) -- (n2);
+
+
+          \fill[black] (0, 0)   circle (2pt);
+          \fill[black] (1, 0)   circle (2pt);
+          \fill[black] (2, 1) circle (2pt);
+          \fill[black] (3, 1) circle (2pt);
+          \fill[black] (3, 2) circle (2pt);
+          \fill[black] (2.5, 3) circle (2pt);
+          \fill[black] (1, 4.5) circle (2pt);
+          \fill[black] (1, 5.5) circle (2pt);
+          \fill[black] (0, 6.5) circle (2pt);
+          \fill[black] (-1, 6.5) circle (2pt);
+          \fill[black] (-2, 5.5) circle (2pt);
+          \fill[black] (-2, 4.5) circle (2pt);
+          \fill[black] (-1.5, 3.5) circle (2pt);
+          \fill[black] (-0.5, 3) circle (2pt);
+          \fill[black] (-1, 2) circle (2pt);
+          \fill[black] (-1, 1) circle (2pt);
+          \fill[black] (0.5,3.5) circle (2pt);
+          \fill[black] (2,2)   circle (2pt);
+          \fill[black] (1.5,3) circle (2pt);
+          
         \end{scope}
         &
         \begin{scope}[scale=3, yshift=25]
