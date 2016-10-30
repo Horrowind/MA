@@ -190,6 +190,165 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with pe
   Let $p$ and $v$ be a pair of admissible sequences for a orientable closed $2$-manifold $S$. Then $(p, v)$ is $[(5k + 1) \times 5, (5k+7)]$-$[3]$-realizable for all $k \in \nats$.
   \begin{proof}
     An expansion $3$-patch with outer tuple $o = (1, 1, 1, 2, 2, 2)$, a corresponding $o$-$6$-gonal $3$-patch and a expansion $3$-patch with the polyhedral property, all consisting only of pentagons and heptagons, are shown in \autoref{fig:expansion:patch:5:7}. Using \autoref{const:edge:replacement:5:1}, \autoref{const:edge:replacement:5:2} and \autoref{const:edge:replacement:5:3} on the edges as indicated in all three we get new $3$-patches consisting only of pentagons and $5k + 7$-gons. Therefore we can apply \autoref{thm:main:const}.
+    \begin{tikzfigure2}{}
+      \begin{tikzsubfigure}{}{}{0.5}
+        \begin{scope}[yscale=0.866]
+
+          \node[anchor= 90] at (-0.5, 1)      {$i_{0}$};
+          \node[anchor= 90] at (-2.5, 5)      {$i_{1}$};
+          \node[anchor= 45] at (-4.5, 6.333)  {$i_{2}=o_{0}$};
+          \node[anchor=  0] at (-4, 8)        {$o_{1}$};
+          \node[anchor=  0] at (-4.5, 9)      {$o_{2}$};
+          \node[anchor=  0] at (-4, 10)       {$o_{3}$};
+          \node[anchor=-45] at (-2.5, 10.333) {$o_{4}$};
+          \node[anchor=-45] at (-1, 10)       {$o_{5}$};
+          \node[anchor=230] at (-0.5, 9)      {$o_{6}$};
+          \node[anchor=230] at (0.5, 9)       {$o_{7}$};
+          \node[anchor=230] at (1, 8)         {$o_{8}$};
+          \node[anchor=230] at (2.5, 7.666)   {$i_{2}'=o_{9}$};
+          \node[anchor=180] at (2.5, 5)       {$i_{1}'$};
+          \node[anchor=180] at (0.5, 1)       {$i_{0}'$};
+          \node (n1) at (-1, 5) {$7$};
+          \node (n2) at (-3, 9) {$7$};
+          \node at (-3, 6.5)    {$5$};
+          \node at (-0.5,8)     {$5$};
+
+          \fill[black]  (-0.5, 1)      circle (2pt);
+          \fill[black]  (-2.5, 5)      circle (2pt);
+          \fill[black]  (-4.5, 6.333)  circle (2pt);
+          \fill[black]  (-4, 8)        circle (2pt);
+          \fill[black]  (-4.5, 9)      circle (2pt);
+          \fill[black]  (-4, 10)       circle (2pt);
+          \fill[black]  (-2.5, 10.333) circle (2pt);
+          \fill[black]  (-1, 10)       circle (2pt);
+          \fill[black]  (-0.5, 9)      circle (2pt);
+          \fill[black]  (0.5, 9)       circle (2pt);
+          \fill[black]  (1, 8)         circle (2pt);
+          \fill[black]  (2.5, 7.666)   circle (2pt);
+          \fill[black]  (2.5, 5)       circle (2pt);
+          \fill[black]  (0.5, 1)       circle (2pt);
+          \fill[black]  (-2, 6)        circle (2pt);
+          \fill[black]  (-2, 8)       circle (2pt);
+
+          \draw (-0.5, 1) -- (-2.5, 5) -- (-4.5, 6.333) -- (-4, 8) -- (-4.5, 9) -- (-4, 10) -- (-2.5, 10.333) -- (-1, 10) -- (-0.5, 9) -- (0.5, 9) -- (1, 8) -- (2.5, 7.666) -- (2.5, 5) -- (0.5, 1) -- (-0.5, 1);
+          \draw (-2.5, 5) -- (-2, 6) -- (1, 8);
+          \draw (-0.5, 9) -- (-2, 8) -- (-4, 8);
+          \draw[lsquare] (-2, 6) -- (-2, 8);
+          \draw[lface] (-2, 6) -- (n1);
+          \draw[lface] (-2, 8) -- (n2);
+
+        \end{scope}
+      \end{tikzsubfigure}%
+      \begin{tikzsubfigure}{}{}{0.5}
+        \begin{scope}[scale=0.5]
+          \begin{scope}[yscale=0.866]
+            \draw[very thick] (-0.5, 1) -- (-2.5, 5) -- (-4.5, 6.333) -- (-4, 8) -- (-4.5, 9) -- (-4, 10) -- (-2.5, 10.333) -- (-1, 10) -- (-0.5, 9) -- (0.5, 9) -- (1, 8) -- (2.5, 7.666) -- (2.5, 5) -- (0.5, 1) -- (-0.5, 1);
+            \draw (-2.5, 5) -- (-2, 6) -- (1, 8);
+            \draw (-2, 6) -- (-2, 8) -- (-4, 8);
+            \draw (-2, 8) -- (-0.5, 9);
+
+
+          \fill[black]  (-0.5, 1)      circle (3pt);
+          \fill[black]  (-2.5, 5)      circle (3pt);
+          \fill[black]  (-4.5, 6.333)  circle (3pt);
+          \fill[black]  (-4, 8)        circle (3pt);
+          \fill[black]  (-4.5, 9)      circle (3pt);
+          \fill[black]  (-4, 10)       circle (3pt);
+          \fill[black]  (-2.5, 10.333) circle (3pt);
+          \fill[black]  (-1, 10)       circle (3pt);
+          \fill[black]  (-0.5, 9)      circle (3pt);
+          \fill[black]  (0.5, 9)       circle (3pt);
+          \fill[black]  (1, 8)         circle (3pt);
+          \fill[black]  (2.5, 7.666)   circle (3pt);
+          \fill[black]  (2.5, 5)       circle (3pt);
+          \fill[black]  (0.5, 1)       circle (3pt);
+          \fill[black]  (-2, 6)        circle (3pt);
+          \fill[black]  (-2, 8)        circle (3pt);
+
+          \end{scope}
+          \begin{scope}[rotate=-60, yscale=0.866]
+            \draw[very thick] (-0.5, 1) -- (-2.5, 5) -- (-4.5, 6.333) -- (-4, 8) -- (-4.5, 9) -- (-4, 10) -- (-2.5, 10.333) -- (-1, 10) -- (-0.5, 9) -- (0.5, 9) -- (1, 8) -- (2.5, 7.666) -- (2.5, 5) -- (0.5, 1) -- (-0.5, 1);
+            \draw (-2.5, 5) -- (-2, 6) -- (1, 8);
+            \draw (-2, 6) -- (-2, 8) -- (-4, 8);
+            \draw (-2, 8) -- (-0.5, 9);
+
+
+          \fill[black]  (-0.5, 1)      circle (3pt);
+          \fill[black]  (-2.5, 5)      circle (3pt);
+          \fill[black]  (-4.5, 6.333)  circle (3pt);
+          \fill[black]  (-4, 8)        circle (3pt);
+          \fill[black]  (-4.5, 9)      circle (3pt);
+          \fill[black]  (-4, 10)       circle (3pt);
+          \fill[black]  (-2.5, 10.333) circle (3pt);
+          \fill[black]  (-1, 10)       circle (3pt);
+          \fill[black]  (-0.5, 9)      circle (3pt);
+          \fill[black]  (0.5, 9)       circle (3pt);
+          \fill[black]  (1, 8)         circle (3pt);
+          \fill[black]  (2.5, 7.666)   circle (3pt);
+          \fill[black]  (2.5, 5)       circle (3pt);
+          \fill[black]  (0.5, 1)       circle (3pt);
+          \fill[black]  (-2, 6)        circle (3pt);
+          \fill[black]  (-2, 8)        circle (3pt);
+
+          \end{scope}
+          \begin{scope}[yscale=0.866,shift={(0 cm,18 cm)},rotate=180]
+            \draw[very thick] (-0.5, 1) -- (-2.5, 5) -- (-4.5, 6.333) -- (-4, 8) -- (-4.5, 9) -- (-4, 10) -- (-2.5, 10.333) -- (-1, 10) -- (-0.5, 9) -- (0.5, 9) -- (1, 8) -- (2.5, 7.666) -- (2.5, 5) -- (0.5, 1) -- (-0.5, 1);
+            \draw (-2.5, 5) -- (-2, 6) -- (1, 8);
+            \draw (-2, 6) -- (-2, 8) -- (-4, 8);
+            \draw (-2, 8) -- (-0.5, 9);
+
+
+          \fill[black]  (-0.5, 1)      circle (3pt);
+          \fill[black]  (-2.5, 5)      circle (3pt);
+          \fill[black]  (-4.5, 6.333)  circle (3pt);
+          \fill[black]  (-4, 8)        circle (3pt);
+          \fill[black]  (-4.5, 9)      circle (3pt);
+          \fill[black]  (-4, 10)       circle (3pt);
+          \fill[black]  (-2.5, 10.333) circle (3pt);
+          \fill[black]  (-1, 10)       circle (3pt);
+          \fill[black]  (-0.5, 9)      circle (3pt);
+          \fill[black]  (0.5, 9)       circle (3pt);
+          \fill[black]  (1, 8)         circle (3pt);
+          \fill[black]  (2.5, 7.666)   circle (3pt);
+          \fill[black]  (2.5, 5)       circle (3pt);
+          \fill[black]  (0.5, 1)       circle (3pt);
+          \fill[black]  (-2, 6)        circle (3pt);
+          \fill[black]  (-2, 8)        circle (3pt);
+
+          \end{scope}
+          \begin{scope}[shift={(0 cm,15.588 cm)},rotate=120,yscale=0.866]
+            \draw[very thick] (-0.5, 1) -- (-2.5, 5) -- (-4.5, 6.333) -- (-4, 8) -- (-4.5, 9) -- (-4, 10) -- (-2.5, 10.333) -- (-1, 10) -- (-0.5, 9) -- (0.5, 9) -- (1, 8) -- (2.5, 7.666) -- (2.5, 5) -- (0.5, 1) -- (-0.5, 1);
+            \draw (-2.5, 5) -- (-2, 6) -- (1, 8);
+            \draw (-2, 6) -- (-2, 8) -- (-4, 8);
+            \draw (-2, 8) -- (-0.5, 9);
+
+
+          \fill[black]  (-0.5, 1)      circle (3pt);
+          \fill[black]  (-2.5, 5)      circle (3pt);
+          \fill[black]  (-4.5, 6.333)  circle (3pt);
+          \fill[black]  (-4, 8)        circle (3pt);
+          \fill[black]  (-4.5, 9)      circle (3pt);
+          \fill[black]  (-4, 10)       circle (3pt);
+          \fill[black]  (-2.5, 10.333) circle (3pt);
+          \fill[black]  (-1, 10)       circle (3pt);
+          \fill[black]  (-0.5, 9)      circle (3pt);
+          \fill[black]  (0.5, 9)       circle (3pt);
+          \fill[black]  (1, 8)         circle (3pt);
+          \fill[black]  (2.5, 7.666)   circle (3pt);
+          \fill[black]  (2.5, 5)       circle (3pt);
+          \fill[black]  (0.5, 1)       circle (3pt);
+          \fill[black]  (-2, 6)        circle (3pt);
+          \fill[black]  (-2, 8)        circle (3pt);
+
+          \end{scope}
+        \end{scope}
+      \end{tikzsubfigure}
+      \begin{tikzsubfigure}{}{}{1}
+        \begin{scope}[scale=6]
+          \input{tikz/5_7/hexagon2}
+        \end{scope}
+      \end{tikzsubfigure}
+    \end{tikzfigure2}
   \end{proof}
 \end{theorem}
 \begin{tikzfigure2}{}
@@ -242,6 +401,210 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with pe
   Let $p$ and $v$ be a pair of admissible sequences for a orientable closed $2$-manifold $S$. Then $(p, v)$ is $[(5k + 2) \times 5, (5k+8)]$-$[3]$-realizable for all $k \in \nats$.
   \begin{proof}
     An expansion $3$-patch with outer tuple $o = (1, 2, 2, 2, 1, 2, 1, 1, 1, 2)$, a corresponding $o$-$6$-gonal $3$-patch and a expansion $3$-patch with the polyhedral property, all consisting only of pentagons and octagons, are shown in \autoref{fig:expansion:patch:5:8}. Using \autoref{const:edge:replacement:5:1}, \autoref{const:edge:replacement:5:2} and \autoref{const:edge:replacement:5:3} on the edges as indicated in all three we get new $3$-patches consisting only of pentagons and $5k + 8$-gons. Therefore we can apply \autoref{thm:main:const}.
+    \begin{tikzfigure2}{}{}
+      \begin{tikzsubfigure}{}{Huhu}{0.5}
+        \begin{scope}[scale=0.7, yscale=0.866]
+          \draw (-0.5, 1) -- (-1, 2) -- (-5.5, 5) -- (-8, 4) -- (-8.5, 5) -- (-8, 6) -- (-8.5, 7) -- (-8.5, 9) -- (-7, 10) -- (-6, 10) -- (-5.5, 11) -- (-4.5, 11) -- (-4, 10) -- (-2.5, 9) -- (-1, 10) -- (1, 8) -- (1, 2) -- (0.5, 1) -- (-0.5, 1);
+          \draw (-5.5, 5) -- (-6, 6) -- (-8, 6);
+          \draw (-1, 2) -- (-2.5, 5) (-4.5, 7) -- (-6, 6);
+          \draw (-4.5, 7) -- (-4.5, 9) -- (-6, 10);
+          \draw (-4.5, 9) -- (-4, 10);
+          \draw (-2.5, 5) -- (-2.5, 9);
+          \draw[lsquare] (-2.5, 5) -- (-4.5, 7);
+          
+          \fill[black]  (-0.5, 1)  circle(2pt);
+          \fill[black]  (-1, 2)    circle(2pt);
+          \fill[black]  (-8.5, 5)  circle(2pt);
+          \fill[black]  (-8, 4)    circle(2pt);
+          \fill[black]  (-5.5, 5)  circle(2pt);
+          \fill[black]  (-8, 6)    circle(2pt);
+          \fill[black]  (-8.5, 7)  circle(2pt);
+          \fill[black]  (-8.5, 9)  circle(2pt);
+          \fill[black]  (-7, 10)   circle(2pt);
+          \fill[black]  (-6, 10)   circle(2pt);
+          \fill[black]  (-5.5, 11) circle(2pt);
+          \fill[black]  (-4.5, 11) circle(2pt);
+          \fill[black]  (-4, 10)   circle(2pt);
+          \fill[black]  (-2.5, 9)  circle(2pt);
+          \fill[black]  (-1, 10)   circle(2pt);
+          \fill[black]  (1, 8)     circle(2pt);
+          \fill[black]  (1, 2)     circle(2pt);
+          \fill[black]  (0.5, 1)   circle(2pt);
+          \fill[black]  (-2.5, 5)  circle(2pt);
+          \fill[black]  (-4.5, 7)  circle(2pt);
+          \fill[black]  (-4.5, 9)  circle(2pt);
+          \fill[black]  (-6, 6)    circle(2pt);
+
+
+          \node[anchor= 90] at (-0.5, 1)  {$i_{0}$};
+          \node[anchor= 45] at (-1, 2)    {$i_{1}$};
+          \node[anchor=  0] at (-8.5, 5)  {$o_{1}$};
+          \node[anchor= 90] at (-8, 4)    {$i_{3}=o_{0}$};
+          \node[anchor= 90] at (-5.5, 5)  {$i_{2}$};
+          \node[anchor=  0] at (-8, 6)    {$o_{2}$};
+          \node[anchor=  0] at (-8.5, 7)  {$o_{3}$};
+          \node[anchor=  0] at (-8.5, 9)  {$o_{4}$};
+          \node[anchor=-30] at (-7, 10)   {$o_{5}$};
+          \node[anchor=-60] at (-6, 10)   {$o_{6}$};
+          \node[anchor=270] at (-5.5, 11) {$\mathbf{o_{7}}$};
+          \node[anchor=270] at (-4.5, 11) {$o_{8}$};
+          \node[anchor=240] at (-4, 10)   {$o_{9}$};
+          \node[anchor=270] at (-2.5, 9)  {$o_{10}$};
+          \node[anchor=270] at (-1, 10)   {$i_{3}'=o_{11}$};
+          \node[anchor=210] at (1, 8)     {$i_{2}'$};
+          \node[anchor=180] at (1, 2)     {$i_{1}'$};
+          \node[anchor= 90] at (0.5, 1)   {$i_{0}'$};
+
+          \node at (-1,6) {$8$};
+          \node at (-7,8) {$8$};
+          \node at (-4,5.5) {$5$};
+          \node at (-3.3,7) {$5$};
+          \node at (-5,10) {$5$};
+          \node at (-7,5) {$5$};
+
+        \end{scope}
+      \end{tikzsubfigure}%
+      \begin{tikzsubfigure}{}{}{0.5}
+        \begin{scope}[scale=0.5]
+          \begin{scope}[yscale=0.866]
+            \draw[very thick] (-0.5, 1) -- (-1, 2) -- (-5.5, 5) -- (-8, 4) -- (-8.5, 5) -- (-8, 6) -- (-8.5, 7) -- (-8.5, 9) -- (-7, 10) -- (-6, 10) -- (-5.5, 11) -- (-4.5, 11) -- (-4, 10) -- (-2.5, 9) -- (-1, 10) -- (1, 8) -- (1, 2) -- (0.5, 1) -- (-0.5, 1);
+            \draw (-5.5, 5) -- (-6, 6) -- (-8, 6);
+            \draw (-1, 2) -- (-2.5, 5) -- (-4.5, 7) -- (-6, 6);
+            \draw (-4.5, 7) -- (-4.5, 9) -- (-6, 10);
+            \draw (-4.5, 9) -- (-4, 10);
+            \draw (-2.5, 5) -- (-2.5, 9);
+
+          \fill[black]  (-0.5, 1)  circle(3pt);
+          \fill[black]  (-1, 2)    circle(3pt);
+          \fill[black]  (-8.5, 5)  circle(3pt);
+          \fill[black]  (-8, 4)    circle(3pt);
+          \fill[black]  (-5.5, 5)  circle(3pt);
+          \fill[black]  (-8, 6)    circle(3pt);
+          \fill[black]  (-8.5, 7)  circle(3pt);
+          \fill[black]  (-8.5, 9)  circle(3pt);
+          \fill[black]  (-7, 10)   circle(3pt);
+          \fill[black]  (-6, 10)   circle(3pt);
+          \fill[black]  (-5.5, 11) circle(3pt);
+          \fill[black]  (-4.5, 11) circle(3pt);
+          \fill[black]  (-4, 10)   circle(3pt);
+          \fill[black]  (-2.5, 9)  circle(3pt);
+          \fill[black]  (-1, 10)   circle(3pt);
+          \fill[black]  (1, 8)     circle(3pt);
+          \fill[black]  (1, 2)     circle(3pt);
+          \fill[black]  (0.5, 1)   circle(3pt);
+          \fill[black]  (-2.5, 5)  circle(3pt);
+          \fill[black]  (-4.5, 7)  circle(3pt);
+          \fill[black]  (-4.5, 9)  circle(3pt);
+          \fill[black]  (-6, 6)    circle(3pt);
+
+          \end{scope}
+          \begin{scope}[rotate=-60, yscale=0.866]
+            \draw[very thick] (-0.5, 1) -- (-1, 2) -- (-5.5, 5) -- (-8, 4) -- (-8.5, 5) -- (-8, 6) -- (-8.5, 7) -- (-8.5, 9) -- (-7, 10) -- (-6, 10) -- (-5.5, 11) -- (-4.5, 11) -- (-4, 10) -- (-2.5, 9) -- (-1, 10) -- (1, 8) -- (1, 2) -- (0.5, 1) -- (-0.5, 1);
+            \draw (-5.5, 5) -- (-6, 6) -- (-8, 6);
+            \draw (-1, 2) -- (-2.5, 5) -- (-4.5, 7) -- (-6, 6);
+            \draw (-4.5, 7) -- (-4.5, 9) -- (-6, 10);
+            \draw (-4.5, 9) -- (-4, 10);
+            \draw (-2.5, 5) -- (-2.5, 9);
+
+
+          \fill[black]  (-0.5, 1)  circle(3pt);
+          \fill[black]  (-1, 2)    circle(3pt);
+          \fill[black]  (-8.5, 5)  circle(3pt);
+          \fill[black]  (-8, 4)    circle(3pt);
+          \fill[black]  (-5.5, 5)  circle(3pt);
+          \fill[black]  (-8, 6)    circle(3pt);
+          \fill[black]  (-8.5, 7)  circle(3pt);
+          \fill[black]  (-8.5, 9)  circle(3pt);
+          \fill[black]  (-7, 10)   circle(3pt);
+          \fill[black]  (-6, 10)   circle(3pt);
+          \fill[black]  (-5.5, 11) circle(3pt);
+          \fill[black]  (-4.5, 11) circle(3pt);
+          \fill[black]  (-4, 10)   circle(3pt);
+          \fill[black]  (-2.5, 9)  circle(3pt);
+          \fill[black]  (-1, 10)   circle(3pt);
+          \fill[black]  (1, 8)     circle(3pt);
+          \fill[black]  (1, 2)     circle(3pt);
+          \fill[black]  (0.5, 1)   circle(3pt);
+          \fill[black]  (-2.5, 5)  circle(3pt);
+          \fill[black]  (-4.5, 7)  circle(3pt);
+          \fill[black]  (-4.5, 9)  circle(3pt);
+          \fill[black]  (-6, 6)    circle(3pt);
+
+          \end{scope}
+          \begin{scope}[yscale=0.866,shift={(0 cm,22 cm)},rotate=180]
+            \draw[very thick] (-0.5, 1) -- (-1, 2) -- (-5.5, 5) -- (-8, 4) -- (-8.5, 5) -- (-8, 6) -- (-8.5, 7) -- (-8.5, 9) -- (-7, 10) -- (-6, 10) -- (-5.5, 11) -- (-4.5, 11) -- (-4, 10) -- (-2.5, 9) -- (-1, 10) -- (1, 8) -- (1, 2) -- (0.5, 1) -- (-0.5, 1);
+            \draw (-5.5, 5) -- (-6, 6) -- (-8, 6);
+            \draw (-1, 2) -- (-2.5, 5) -- (-4.5, 7) -- (-6, 6);
+            \draw (-4.5, 7) -- (-4.5, 9) -- (-6, 10);
+            \draw (-4.5, 9) -- (-4, 10);
+            \draw (-2.5, 5) -- (-2.5, 9);
+
+
+          \fill[black]  (-0.5, 1)  circle(3pt);
+          \fill[black]  (-1, 2)    circle(3pt);
+          \fill[black]  (-8.5, 5)  circle(3pt);
+          \fill[black]  (-8, 4)    circle(3pt);
+          \fill[black]  (-5.5, 5)  circle(3pt);
+          \fill[black]  (-8, 6)    circle(3pt);
+          \fill[black]  (-8.5, 7)  circle(3pt);
+          \fill[black]  (-8.5, 9)  circle(3pt);
+          \fill[black]  (-7, 10)   circle(3pt);
+          \fill[black]  (-6, 10)   circle(3pt);
+          \fill[black]  (-5.5, 11) circle(3pt);
+          \fill[black]  (-4.5, 11) circle(3pt);
+          \fill[black]  (-4, 10)   circle(3pt);
+          \fill[black]  (-2.5, 9)  circle(3pt);
+          \fill[black]  (-1, 10)   circle(3pt);
+          \fill[black]  (1, 8)     circle(3pt);
+          \fill[black]  (1, 2)     circle(3pt);
+          \fill[black]  (0.5, 1)   circle(3pt);
+          \fill[black]  (-2.5, 5)  circle(3pt);
+          \fill[black]  (-4.5, 7)  circle(3pt);
+          \fill[black]  (-4.5, 9)  circle(3pt);
+          \fill[black]  (-6, 6)    circle(3pt);
+
+          \end{scope}
+          \begin{scope}[shift={(0 cm,19.052 cm)},rotate=120,yscale=0.866]
+            \draw[very thick] (-0.5, 1) -- (-1, 2) -- (-5.5, 5) -- (-8, 4) -- (-8.5, 5) -- (-8, 6) -- (-8.5, 7) -- (-8.5, 9) -- (-7, 10) -- (-6, 10) -- (-5.5, 11) -- (-4.5, 11) -- (-4, 10) -- (-2.5, 9) -- (-1, 10) -- (1, 8) -- (1, 2) -- (0.5, 1) -- (-0.5, 1);
+            \draw (-5.5, 5) -- (-6, 6) -- (-8, 6);
+            \draw (-1, 2) -- (-2.5, 5) -- (-4.5, 7) -- (-6, 6);
+            \draw (-4.5, 7) -- (-4.5, 9) -- (-6, 10);
+            \draw (-4.5, 9) -- (-4, 10);
+            \draw (-2.5, 5) -- (-2.5, 9);
+
+
+          \fill[black]  (-0.5, 1)  circle(3pt);
+          \fill[black]  (-1, 2)    circle(3pt);
+          \fill[black]  (-8.5, 5)  circle(3pt);
+          \fill[black]  (-8, 4)    circle(3pt);
+          \fill[black]  (-5.5, 5)  circle(3pt);
+          \fill[black]  (-8, 6)    circle(3pt);
+          \fill[black]  (-8.5, 7)  circle(3pt);
+          \fill[black]  (-8.5, 9)  circle(3pt);
+          \fill[black]  (-7, 10)   circle(3pt);
+          \fill[black]  (-6, 10)   circle(3pt);
+          \fill[black]  (-5.5, 11) circle(3pt);
+          \fill[black]  (-4.5, 11) circle(3pt);
+          \fill[black]  (-4, 10)   circle(3pt);
+          \fill[black]  (-2.5, 9)  circle(3pt);
+          \fill[black]  (-1, 10)   circle(3pt);
+          \fill[black]  (1, 8)     circle(3pt);
+          \fill[black]  (1, 2)     circle(3pt);
+          \fill[black]  (0.5, 1)   circle(3pt);
+          \fill[black]  (-2.5, 5)  circle(3pt);
+          \fill[black]  (-4.5, 7)  circle(3pt);
+          \fill[black]  (-4.5, 9)  circle(3pt);
+          \fill[black]  (-6, 6)    circle(3pt);
+
+          \end{scope}
+        \end{scope}
+      \end{tikzsubfigure}
+      \begin{tikzsubfigure}{}{}{1.0}
+        \begin{scope}[scale=6]
+          \input{tikz/5_8/hexagon}
+        \end{scope}
+      \end{tikzsubfigure}
+    \end{tikzfigure2}
   \end{proof}
 \end{theorem}
 
@@ -306,6 +669,257 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with pe
   Let $p$ and $v$ be a pair of admissible sequences for a orientable closed $2$-manifold $S$. Then $(p, v)$ is $[(5k + 3) \times 5, (5k+9)]$-$[3]$-realizable for all $k \in \nats$.
   \begin{proof}
     An expansion $3$-patch with outer tuple $o = (1, 2, 1, 1, 2, 1, 1, 2, 2, 1, 2, 2, 1, 2)$, a corresponding $o$-$6$-gonal $3$-patch and a expansion $3$-patch with the polyhedral property, all consisting only of pentagons and nonagons, are shown in \autoref{fig:expansion:patch:5:9}. Using \autoref{const:edge:replacement:5:1}, \autoref{const:edge:replacement:5:2} and \autoref{const:edge:replacement:5:3} on the edges as indicated in all three we get new $3$-patches consisting only of pentagons and $5k + 9$-gons. Therefore we can apply \autoref{thm:main:const}.
+    \begin{tikzfigure}{\label{fig:expansion:patch:5:9}}{}
+      \matrix (m) [column sep=1cm] {
+        \begin{scope}[yscale=0.866, scale=0.5]
+          \draw (0.5,1)--(-0.5,1)--(0,8)--(-1,12)--(-2.5,14.333)--(-1.5,14.333)--(-0.5,15)--(0.5,15)--(1.5,15.666)--(2.5,15.666)--(3.5,15)--(4.5,15.666)--(5.5,15.666)--(6.5,15)--(7.5,15)--(8,14)--(8,12.666)--(8.5,11.666)--(9.5,11)--(9.5,9.666)-- (8.5,7)--(6,4)--(0.5,1);
+          \draw (0,8)--(4,10)--(8.5,11.666);
+          \draw[lsquare] (4,10)--(3.5,11);
+          \draw (-1,12)--(2,12)--(3.5,11)--(5,12)--(8,12.666);
+          \draw (5,12)--(6.5,15);
+          \draw (-1.5,14.333)--(1.75,13);
+          \draw (2,12)--(1.75,13)--(1.75,13.5)--(0.5,15);
+          \draw (1.75,13.5)--(3.5,15);
+
+          \node (n1) at (5,8)    {$9$};
+          \node (n2) at (3.5,13) {$9$};
+          \node at (1,10.5)      {$5$};
+          \node at (0,13)        {$5$};
+          \node at (0,14.5)      {$5$};
+          \node at (7,14)        {$5$};
+          \node at (6,11.5)      {$5$};
+          \node at (2,15)        {$5$};
+
+          \draw[lface] (3.75,10.5) --(n1);
+          \draw[lface] (3.75,10.5) --(n2);
+          
+          \fill[black] (0.5,1)       circle (2pt);
+          \fill[black] (-0.5,1)      circle (2pt);
+          \fill[black] (0,8)         circle (2pt);
+          \fill[black] (-1,12)       circle (2pt);
+          \fill[black] (-2.5,14.333) circle (2pt);
+          \fill[black] (-1.5,14.333) circle (2pt);
+          \fill[black] (-0.5,15)     circle (2pt);
+          \fill[black] (0.5,15)      circle (2pt);
+          \fill[black] (1.5,15.666)  circle (2pt);
+          \fill[black] (2.5,15.666)  circle (2pt);
+          \fill[black] (3.5,15)      circle (2pt);
+          \fill[black] (4.5,15.666)  circle (2pt);
+          \fill[black] (5.5,15.666)  circle (2pt);
+          \fill[black] (6.5,15)      circle (2pt);
+          \fill[black] (7.5,15)      circle (2pt);
+          \fill[black] (8,14)        circle (2pt);
+          \fill[black] (8,12.666)    circle (2pt);
+          \fill[black] (8.5,11.666)  circle (2pt);
+          \fill[black] (9.5,11)      circle (2pt);
+          \fill[black] (9.5,9.666)   circle (2pt);
+          \fill[black] (8.5,7)       circle (2pt);
+          \fill[black] (6,4)         circle (2pt);
+          \fill[black] (4,10)        circle (2pt);
+          \fill[black] (3.5,11)      circle (2pt);
+          \fill[black] (2,12)        circle (2pt);
+          \fill[black] (5,12)        circle (2pt);
+          \fill[black] (1.75,13)     circle (2pt);
+          \fill[black] (1.75,13.5)   circle (2pt);
+
+          \node[anchor= 90] at (0.5,1)       {$i_{0}'$};
+          \node[anchor= 90] at (-0.5,1)      {$i_0$};
+          \node[anchor=  0] at (0,8)         {$i_1$};
+          \node[anchor= 30] at (-1,12)       {$i_2$};
+          \node[anchor=  0] at (-2.5,14.333) {$i_3=o_0$};
+          \node[anchor=270] at (-1.5,14.333) {$o_1$};
+          \node[anchor=315] at (-0.5,15)     {$o_{2}$};
+          \node[anchor=270] at (0.5,15)      {$o_{3}$};
+          \node[anchor=270] at (1.5,15.666)  {$o_{4}$};
+          \node[anchor=215] at (2.5,15.666)  {$o_{5}$};
+          \node[anchor= 90] at (3.5,15)      {$o_{6}$};
+          \node[anchor=270] at (4.5,15.666)  {$o_{7}$};
+          \node[anchor=270] at (5.5,15.666)  {$o_{8}$};
+          \node[anchor=270] at (6.5,15)      {$o_{9}$};
+          \node[anchor=270] at (7.5,15)      {$o_{10}$};
+          \node[anchor=225] at (8,14)        {$o_{11}$};
+          \node[anchor=180] at (8,12.666)    {$o_{12}$};
+          \node[anchor=180] at (8.5,11.666)  {$o_{13}$};
+          \node[anchor=180] at (9.5,11)      {$o_{14}$};
+          \node[anchor=180] at (9.5,9.666)   {$i_3'=o_{15}$};
+          \node[anchor=135] at (8.5,7)       {$i_2'$};
+          \node[anchor=135] at (6,4)         {$i_1'$};
+
+        \end{scope}
+        &
+        \begin{scope}[scale=0.4]
+          \begin{scope}[yscale=0.866]
+            \draw[very thick] (0.5,1)--(-0.5,1)--(0,8)--(-1,12)--(-2.5,14.333)--(-1.5,14.333)--(-0.5,15)--(0.5,15)--(1.5,15.666)--(2.5,15.666)--(3.5,15)--(4.5,15.666)--(5.5,15.666)--(6.5,15)--(7.5,15)--(8,14)--(8,12.666)--(8.5,11.666)--(9.5,11)--(9.5,9.666)-- (8.5,7)--(6,4)--(0.5,1);
+            \draw (0,8)--(4,10)--(8.5,11.666);
+            \draw (4,10)--(3.5,11);
+            \draw (-1,12)--(2,12)--(3.5,11)--(5,12)--(8,12.666);
+            \draw (5,12)--(6.5,15);
+            \draw (-1.5,14.333)--(1.75,13);
+            \draw (2,12)--(1.75,13)--(1.75,13.5)--(0.5,15);
+            \draw (1.75,13.5)--(3.5,15);
+
+            \fill[black] (0.5,1)       circle (3pt);
+            \fill[black] (-0.5,1)      circle (3pt);
+            \fill[black] (0,8)         circle (3pt);
+            \fill[black] (-1,12)       circle (3pt);
+            \fill[black] (-2.5,14.333) circle (3pt);
+            \fill[black] (-1.5,14.333) circle (3pt);
+            \fill[black] (-0.5,15)     circle (3pt);
+            \fill[black] (0.5,15)      circle (3pt);
+            \fill[black] (1.5,15.666)  circle (3pt);
+            \fill[black] (2.5,15.666)  circle (3pt);
+            \fill[black] (3.5,15)      circle (3pt);
+            \fill[black] (4.5,15.666)  circle (3pt);
+            \fill[black] (5.5,15.666)  circle (3pt);
+            \fill[black] (6.5,15)      circle (3pt);
+            \fill[black] (7.5,15)      circle (3pt);
+            \fill[black] (8,14)        circle (3pt);
+            \fill[black] (8,12.666)    circle (3pt);
+            \fill[black] (8.5,11.666)  circle (3pt);
+            \fill[black] (9.5,11)      circle (3pt);
+            \fill[black] (9.5,9.666)   circle (3pt);
+            \fill[black] (8.5,7)       circle (3pt);
+            \fill[black] (6,4)         circle (3pt);
+            \fill[black] (4,10)        circle (3pt);
+            \fill[black] (3.5,11)      circle (3pt);
+            \fill[black] (2,12)        circle (3pt);
+            \fill[black] (5,12)        circle (3pt);
+            \fill[black] (1.75,13)     circle (3pt);
+            \fill[black] (1.75,13.5)   circle (3pt);
+          \end{scope}
+          \begin{scope}[rotate=60,yscale=0.866]
+            \draw[very thick] (0.5,1)--(-0.5,1)--(0,8)--(-1,12)--(-2.5,14.333)--(-1.5,14.333)--(-0.5,15)--(0.5,15)--(1.5,15.666)--(2.5,15.666)--(3.5,15)--(4.5,15.666)--(5.5,15.666)--(6.5,15)--(7.5,15)--(8,14)--(8,12.666)--(8.5,11.666)--(9.5,11)--(9.5,9.666)-- (8.5,7)--(6,4)--(0.5,1);
+            \draw (0,8)--(4,10)--(8.5,11.666);
+            \draw (4,10)--(3.5,11);
+            \draw (-1,12)--(2,12)--(3.5,11)--(5,12)--(8,12.666);
+            \draw (5,12)--(6.5,15);
+            \draw (-1.5,14.333)--(1.75,13);
+            \draw (2,12)--(1.75,13)--(1.75,13.5)--(0.5,15);
+            \draw (1.75,13.5)--(3.5,15);
+            \fill[black] (0.5,1)       circle (3pt);
+            \fill[black] (-0.5,1)      circle (3pt);
+            \fill[black] (0,8)         circle (3pt);
+            \fill[black] (-1,12)       circle (3pt);
+            \fill[black] (-2.5,14.333) circle (3pt);
+            \fill[black] (-1.5,14.333) circle (3pt);
+            \fill[black] (-0.5,15)     circle (3pt);
+            \fill[black] (0.5,15)      circle (3pt);
+            \fill[black] (1.5,15.666)  circle (3pt);
+            \fill[black] (2.5,15.666)  circle (3pt);
+            \fill[black] (3.5,15)      circle (3pt);
+            \fill[black] (4.5,15.666)  circle (3pt);
+            \fill[black] (5.5,15.666)  circle (3pt);
+            \fill[black] (6.5,15)      circle (3pt);
+            \fill[black] (7.5,15)      circle (3pt);
+            \fill[black] (8,14)        circle (3pt);
+            \fill[black] (8,12.666)    circle (3pt);
+            \fill[black] (8.5,11.666)  circle (3pt);
+            \fill[black] (9.5,11)      circle (3pt);
+            \fill[black] (9.5,9.666)   circle (3pt);
+            \fill[black] (8.5,7)       circle (3pt);
+            \fill[black] (6,4)         circle (3pt);
+            \fill[black] (4,10)        circle (3pt);
+            \fill[black] (3.5,11)      circle (3pt);
+            \fill[black] (2,12)        circle (3pt);
+            \fill[black] (5,12)        circle (3pt);
+            \fill[black] (1.75,13)     circle (3pt);
+            \fill[black] (1.75,13.5)   circle (3pt);
+          \end{scope}
+          \begin{scope}[yscale=0.866,shift={(0 cm,30 cm)},rotate=180]
+            \draw[very thick] (0.5,1)--(-0.5,1)--(0,8)--(-1,12)--(-2.5,14.333)--(-1.5,14.333)--(-0.5,15)--(0.5,15)--(1.5,15.666)--(2.5,15.666)--(3.5,15)--(4.5,15.666)--(5.5,15.666)--(6.5,15)--(7.5,15)--(8,14)--(8,12.666)--(8.5,11.666)--(9.5,11)--(9.5,9.666)-- (8.5,7)--(6,4)--(0.5,1);
+            \draw (0,8)--(4,10)--(8.5,11.666);
+            \draw (4,10)--(3.5,11);
+            \draw (-1,12)--(2,12)--(3.5,11)--(5,12)--(8,12.666);
+            \draw (5,12)--(6.5,15);
+            \draw (-1.5,14.333)--(1.75,13);
+            \draw (2,12)--(1.75,13)--(1.75,13.5)--(0.5,15);
+            \draw (1.75,13.5)--(3.5,15);
+            
+            \fill[black] (0.5,1)       circle (3pt);
+            \fill[black] (-0.5,1)      circle (3pt);
+            \fill[black] (0,8)         circle (3pt);
+            \fill[black] (-1,12)       circle (3pt);
+            \fill[black] (-2.5,14.333) circle (3pt);
+            \fill[black] (-1.5,14.333) circle (3pt);
+            \fill[black] (-0.5,15)     circle (3pt);
+            \fill[black] (0.5,15)      circle (3pt);
+            \fill[black] (1.5,15.666)  circle (3pt);
+            \fill[black] (2.5,15.666)  circle (3pt);
+            \fill[black] (3.5,15)      circle (3pt);
+            \fill[black] (4.5,15.666)  circle (3pt);
+            \fill[black] (5.5,15.666)  circle (3pt);
+            \fill[black] (6.5,15)      circle (3pt);
+            \fill[black] (7.5,15)      circle (3pt);
+            \fill[black] (8,14)        circle (3pt);
+            \fill[black] (8,12.666)    circle (3pt);
+            \fill[black] (8.5,11.666)  circle (3pt);
+            \fill[black] (9.5,11)      circle (3pt);
+            \fill[black] (9.5,9.666)   circle (3pt);
+            \fill[black] (8.5,7)       circle (3pt);
+            \fill[black] (6,4)         circle (3pt);
+            \fill[black] (4,10)        circle (3pt);
+            \fill[black] (3.5,11)      circle (3pt);
+            \fill[black] (2,12)        circle (3pt);
+            \fill[black] (5,12)        circle (3pt);
+            \fill[black] (1.75,13)     circle (3pt);
+            \fill[black] (1.75,13.5)   circle (3pt);
+          \end{scope}
+          \begin{scope}[shift={(0 cm,25.98 cm)},rotate=240,yscale=0.866]
+            \draw[very thick] (0.5,1)--(-0.5,1)--(0,8)--(-1,12)--(-2.5,14.333)--(-1.5,14.333)--(-0.5,15)--(0.5,15)--(1.5,15.666)--(2.5,15.666)--(3.5,15)--(4.5,15.666)--(5.5,15.666)--(6.5,15)--(7.5,15)--(8,14)--(8,12.666)--(8.5,11.666)--(9.5,11)--(9.5,9.666)-- (8.5,7)--(6,4)--(0.5,1);
+            \draw (0,8)--(4,10)--(8.5,11.666);
+            \draw (4,10)--(3.5,11);
+            \draw (-1,12)--(2,12)--(3.5,11)--(5,12)--(8,12.666);
+            \draw (5,12)--(6.5,15);
+            \draw (-1.5,14.333)--(1.75,13);
+            \draw (2,12)--(1.75,13)--(1.75,13.5)--(0.5,15);
+            \draw (1.75,13.5)--(3.5,15);
+            
+            \fill[black] (0.5,1)       circle (3pt);
+            \fill[black] (-0.5,1)      circle (3pt);
+            \fill[black] (0,8)         circle (3pt);
+            \fill[black] (-1,12)       circle (3pt);
+            \fill[black] (-2.5,14.333) circle (3pt);
+            \fill[black] (-1.5,14.333) circle (3pt);
+            \fill[black] (-0.5,15)     circle (3pt);
+            \fill[black] (0.5,15)      circle (3pt);
+            \fill[black] (1.5,15.666)  circle (3pt);
+            \fill[black] (2.5,15.666)  circle (3pt);
+            \fill[black] (3.5,15)      circle (3pt);
+            \fill[black] (4.5,15.666)  circle (3pt);
+            \fill[black] (5.5,15.666)  circle (3pt);
+            \fill[black] (6.5,15)      circle (3pt);
+            \fill[black] (7.5,15)      circle (3pt);
+            \fill[black] (8,14)        circle (3pt);
+            \fill[black] (8,12.666)    circle (3pt);
+            \fill[black] (8.5,11.666)  circle (3pt);
+            \fill[black] (9.5,11)      circle (3pt);
+            \fill[black] (9.5,9.666)   circle (3pt);
+            \fill[black] (8.5,7)       circle (3pt);
+            \fill[black] (6,4)         circle (3pt);
+            \fill[black] (4,10)        circle (3pt);
+            \fill[black] (3.5,11)      circle (3pt);
+            \fill[black] (2,12)        circle (3pt);
+            \fill[black] (5,12)        circle (3pt);
+            \fill[black] (1.75,13)     circle (3pt);
+            \fill[black] (1.75,13.5)   circle (3pt);
+          \end{scope}
+
+        \end{scope}
+        \\
+        % \begin{scope}[scale=3, yshift=25]
+        %   \input{tikz/5_9/ngon}
+        % \end{scope}
+        % &
+        % \begin{scope}[scale=3, yshift=25]
+        %   \input{tikz/5_9/hexagon}
+        % \end{scope}
+        % \\
+        % \begin{scope}[scale=3, yshift=25]
+        %   \input{tikz/5_9/mouse}
+        % \end{scope}
+        % \\
+      };
+    \end{tikzfigure}
   \end{proof}
 \end{theorem}
           
@@ -558,6 +1172,419 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with pe
   Let $p$ and $v$ be a pair of admissible sequences for a orientable closed $2$-manifold $S$. Then $(p, v)$ is $[(5k + 5) \times 5, (5k+11)]$-$[3]$-realizable for all $k \in \nats$.
   \begin{proof}
     An expansion $3$-patch with outer tuple $o = (1, 2, 1, 1, 2, 1, 1, 2, 2, 1, 2, 2, 1, 2)$, a corresponding $o$-$6$-gonal $3$-patch and a expansion $3$-patch with the polyhedral property, all consisting only of pentagons and hendecagons, are shown in \autoref{fig:expansion:patch:5:11}. Using \autoref{const:edge:replacement:5:1}, \autoref{const:edge:replacement:5:2} and \autoref{const:edge:replacement:5:3} on the edges as indicated in all three we get new $3$-patches consisting only of pentagons and $5k + 11$-gons. Therefore we can apply \autoref{thm:main:const}.
+<<<<<<< Updated upstream
+=======
+    \begin{tikzfigure}{\label{fig:expansion:patch:5:11}}{}
+      \matrix (m) [column sep=1cm] {
+        \begin{scope}[yscale=0.866,scale=1]
+          \draw (-0.5, 1) -- (-1, 2) -- (-1.625, 2.75) -- (-2.5, 3) -- (-3.5, 3) -- (-4, 2.666) -- (-4.5, 5) -- (-4, 6) -- (-4, 8) -- (-2.5, 9) -- (-1.5, 9) -- (-0.5, 8.75) -- (0.5, 7.25) -- (1.5, 7) -- (0, 5.333) -- (0.5, 5) -- (1, 4) -- (1.25, 3) -- (1, 2) -- (0.5, 1) -- (-0.5, 1); 
+          \draw (-1,2) -- (-1.25, 3) -- (-1, 4) -- (-0.5, 5) -- (0, 5.333);
+          \draw (-4, 6) -- (-3.5, 5) -- (-2.5, 5) -- (-1.833, 5.2) -- (-1.166, 5.5) -- (-0.5, 6) -- (0.5, 7.25);
+
+          \node (n1) at (-1.5,7.25) {$11$};
+          \node (n2) at (0,4) {$11$};
+          \node at (-4,4) {$5$};
+          \node at (-3,4) {$5$};
+          \node at (-2.1,3.4) {$5$};
+          \node at (-2.1,4.5) {$5$};
+          \node at (-1.7,4) {$5$};
+          \node at (-1.2,4) {$5$};
+          \node at (-1.5,3) {$5$};
+          \node at (-1.5,5) {$5$};
+          \node at (0.5,6.5) {$5$};
+          \node at (-0.8,5) {$5$};
+
+          \node[anchor= 90] at (-0.5, 1)      {$i_{0}'$};
+          \node[anchor= 90] at (-1, 2)        {$i_{1}$};   
+          \node[anchor= 60] at (-1.625, 2.75) {$i_{2}$};   
+          \node[anchor= 90] at (-2.5, 3)      {$i_{3}$};   
+          \node[anchor= 90] at (-3.5, 3)      {$i_{4}$};   
+          \node[anchor= 45] at (-4, 2.666)    {$i_{5}$};   
+          \node[anchor=  0] at (-4.5, 5)      {$i_{6}=o_0$};   
+          \node[anchor=  0] at (-4, 6)        {$o_1$}; 
+          \node[anchor=335] at (-4, 8)        {$o_2$}; 
+          \node[anchor=270] at (-2.5, 9)      {$o_3$}; 
+          \node[anchor=210] at (-1.5, 9)      {$o_4$}; 
+          \node[anchor=180] at (-0.5, 8.75)   {$o_5$}; 
+          \node[anchor=230] at (0.5, 7.25)    {$o_6$}; 
+          \node[anchor=250] at (1.5, 7)       {$i_{6}'=o_7$};   
+          \node[anchor=270] at (0, 5.333)     {$i_{5}'$};   
+          \node[anchor=180] at (0.5, 5)       {$i_{4}'$};   
+          \node[anchor=180] at (1, 4)         {$i_{3}'$};   
+          \node[anchor=180] at (1.25, 3)      {$i_{2}'$};   
+          \node[anchor=180] at (1, 2)         {$i_{1}'$};   
+          \node[anchor= 90] at (0.5, 1)       {$i_{0}'$};   
+
+          \fill[black] (-0.5, 1)      circle(2pt);
+          \fill[black] (-1, 2)        circle(2pt);
+          \fill[black] (-1.625, 2.75) circle(2pt);
+          \fill[black] (-2.5, 3)      circle(2pt);
+          \fill[black] (-3.5, 3)      circle(2pt);
+          \fill[black] (-4, 2.666)    circle(2pt);
+          \fill[black] (-4.5, 5)      circle(2pt);
+          \fill[black] (-4, 6)        circle(2pt);
+          \fill[black] (-4, 8)        circle(2pt);
+          \fill[black] (-2.5, 9)      circle(2pt);
+          \fill[black] (-1.5, 9)      circle(2pt);
+          \fill[black] (-0.5, 8.75)   circle(2pt);
+          \fill[black] (0.5, 7.25)    circle(2pt);
+          \fill[black] (1.5, 7)       circle(2pt);
+          \fill[black] (0, 5.333)     circle(2pt);
+          \fill[black] (0.5, 5)       circle(2pt);
+          \fill[black] (1, 4)         circle(2pt);
+          \fill[black] (1.25, 3)      circle(2pt);
+          \fill[black] (1, 2)         circle(2pt);
+          \fill[black] (0.5, 1)       circle(2pt);
+          
+          \fill[black] (-0.5, 6)   circle(2pt);
+          \fill[black] (-0.5, 5)   circle(2pt);
+          \fill[black] (-3.5, 5)   circle(2pt);
+          \fill[black] (-2.5, 5)   circle(2pt);
+          \fill[black] (-2.25, 4)  circle(2pt);
+          \fill[black] (-1.833, 4.75)     circle(2pt);
+          \fill[black]  (-1.833, 5.2)     circle(2pt);
+          \fill[black]  (-1.25, 3)    circle(2pt);
+          \fill[black]  (-1.5, 3.5)  circle(2pt);
+          \fill[black] (-1.626, 2.75)    circle(2pt);
+          \fill[black]  (-2, 4)     circle(2pt);
+          \fill[black]   (-1.5, 4.5)    circle(2pt);
+          \fill[black]  (-1.25, 4.75)    circle(2pt);
+          \fill[black] (-1.166, 5.5)     circle(2pt);
+          \fill[black]  (-1, 4)     circle(2pt);
+          
+          \draw[lsquare] (-0.5, 6) -- (-0.5, 5);
+          \draw[lface] (-0.5, 6) -- (n1);
+          \draw[lface] (-0.5, 5) -- (n2);
+          \draw (-3.5, 3) -- (-3.5, 5);
+          \draw (-2.5, 3) -- (-2.25, 4) -- (-2.5, 5);
+          \draw (-1.626, 2.75) -- (-1.75, 3.5) -- (-1.5, 3.5) -- (-1.25, 3);
+          \draw (-1.75, 3.5) -- (-2, 4) -- (-2.25, 4);
+          \draw (-1.5, 3.5) -- (-1.5, 4.5) -- (-1.833, 4.75) -- (-1.833, 5.2);
+          \draw (-2, 4) -- (-1.833, 4.75);
+          \draw (-1, 4) -- (-1.25, 4.75) -- (-1.5, 4.5);
+          \draw (-1.25, 4.75) -- (-1.166, 5.5);
+        \end{scope}
+        &
+        \begin{scope}[scale=0.5]
+          \begin{scope}[yscale=0.866]
+            \draw[very thick] (-0.5, 1) -- (-1, 2) -- (-1.625, 2.75) -- (-2.5, 3) -- (-3.5, 3) -- (-4, 2.666) -- (-4.5, 5) -- (-4, 6) -- (-4, 8) -- (-2.5, 9) -- (-1.5, 9) -- (-0.5, 8.75) -- (0.5, 7.25) -- (1.5, 7) -- (0, 5.333) -- (0.5, 5) -- (1, 4) -- (1.25, 3) -- (1, 2) -- (0.5, 1) -- (-0.5, 1); 
+            \draw (-1,2) -- (-1.25, 3) -- (-1, 4) -- (-0.5, 5) -- (0, 5.333);
+            \draw (-4, 6) -- (-3.5, 5) -- (-2.5, 5) -- (-1.833, 5.2) -- (-1.166, 5.5) -- (-0.5, 6) -- (0.5, 7.25);
+            \draw (-0.5, 6) -- (-0.5, 5);
+            \draw (-3.5, 3) -- (-3.5, 5);
+            \draw (-2.5, 3) -- (-2.25, 4) -- (-2.5, 5);
+            \draw (-1.626, 2.75) -- (-1.75, 3.5) -- (-1.5, 3.5) -- (-1.25, 3);
+            \draw (-1.75, 3.5) -- (-2, 4) -- (-2.25, 4);
+            \draw (-1.5, 3.5) -- (-1.5, 4.5) -- (-1.833, 4.75) -- (-1.833, 5.2);
+            \draw (-2, 4) -- (-1.833, 4.75);
+            \draw (-1, 4) -- (-1.25, 4.75) -- (-1.5, 4.5);
+            \draw (-1.25, 4.75) -- (-1.166, 5.5);
+
+            \fill[black] (-0.5, 1)      circle(3pt);
+            \fill[black] (-1, 2)        circle(3pt);
+            \fill[black] (-1.625, 2.75) circle(3pt);
+            \fill[black] (-2.5, 3)      circle(3pt);
+            \fill[black] (-3.5, 3)      circle(3pt);
+            \fill[black] (-4, 2.666)    circle(3pt);
+            \fill[black] (-4.5, 5)      circle(3pt);
+            \fill[black] (-4, 6)        circle(3pt);
+            \fill[black] (-4, 8)        circle(3pt);
+            \fill[black] (-2.5, 9)      circle(3pt);
+            \fill[black] (-1.5, 9)      circle(3pt);
+            \fill[black] (-0.5, 8.75)   circle(3pt);
+            \fill[black] (0.5, 7.25)    circle(3pt);
+            \fill[black] (1.5, 7)       circle(3pt);
+            \fill[black] (0, 5.333)     circle(3pt);
+            \fill[black] (0.5, 5)       circle(3pt);
+            \fill[black] (1, 4)         circle(3pt);
+            \fill[black] (1.25, 3)      circle(3pt);
+            \fill[black] (1, 2)         circle(3pt);
+            \fill[black] (0.5, 1)       circle(3pt);
+            
+            \fill[black] (-0.5, 6)      circle(3pt);
+            \fill[black] (-0.5, 5)      circle(3pt);
+            \fill[black] (-3.5, 5)      circle(3pt);
+            \fill[black] (-2.5, 5)      circle(3pt);
+            \fill[black] (-2.25, 4)     circle(3pt);
+            \fill[black] (-1.833, 4.75) circle(3pt);
+            \fill[black] (-1.833, 5.2)  circle(3pt);
+            \fill[black] (-1.25, 3)     circle(3pt);
+            \fill[black] (-1.5, 3.5)    circle(3pt);
+            \fill[black] (-1.626, 2.75) circle(3pt);
+            \fill[black] (-2, 4)        circle(3pt);
+            \fill[black] (-1.5, 4.5)    circle(3pt);
+            \fill[black] (-1.25, 4.75)  circle(3pt);
+            \fill[black] (-1.166, 5.5)  circle(3pt);
+            \fill[black] (-1, 4)        circle(3pt);
+
+
+          \end{scope}
+          \begin{scope}[rotate=-60, yscale=0.866]
+            \draw[very thick] (-0.5, 1) -- (-1, 2) -- (-1.625, 2.75) -- (-2.5, 3) -- (-3.5, 3) -- (-4, 2.666) -- (-4.5, 5) -- (-4, 6) -- (-4, 8) -- (-2.5, 9) -- (-1.5, 9) -- (-0.5, 8.75) -- (0.5, 7.25) -- (1.5, 7) -- (0, 5.333) -- (0.5, 5) -- (1, 4) -- (1.25, 3) -- (1, 2) -- (0.5, 1) -- (-0.5, 1); 
+            \draw (-1,2) -- (-1.25, 3) -- (-1, 4) -- (-0.5, 5) -- (0, 5.333);
+            \draw (-4, 6) -- (-3.5, 5) -- (-2.5, 5) -- (-1.833, 5.2) -- (-1.166, 5.5) -- (-0.5, 6) -- (0.5, 7.25);
+            \draw (-0.5, 6) -- (-0.5, 5);
+            \draw (-3.5, 3) -- (-3.5, 5);
+            \draw (-2.5, 3) -- (-2.25, 4) -- (-2.5, 5);
+            \draw (-1.626, 2.75) -- (-1.75, 3.5) -- (-1.5, 3.5) -- (-1.25, 3);
+            \draw (-1.75, 3.5) -- (-2, 4) -- (-2.25, 4);
+            \draw (-1.5, 3.5) -- (-1.5, 4.5) -- (-1.833, 4.75) -- (-1.833, 5.2);
+            \draw (-2, 4) -- (-1.833, 4.75);
+            \draw (-1, 4) -- (-1.25, 4.75) -- (-1.5, 4.5);
+            \draw (-1.25, 4.75) -- (-1.166, 5.5);
+
+            \fill[black] (-0.5, 1)      circle(3pt);
+            \fill[black] (-1, 2)        circle(3pt);
+            \fill[black] (-1.625, 2.75) circle(3pt);
+            \fill[black] (-2.5, 3)      circle(3pt);
+            \fill[black] (-3.5, 3)      circle(3pt);
+            \fill[black] (-4, 2.666)    circle(3pt);
+            \fill[black] (-4.5, 5)      circle(3pt);
+            \fill[black] (-4, 6)        circle(3pt);
+            \fill[black] (-4, 8)        circle(3pt);
+            \fill[black] (-2.5, 9)      circle(3pt);
+            \fill[black] (-1.5, 9)      circle(3pt);
+            \fill[black] (-0.5, 8.75)   circle(3pt);
+            \fill[black] (0.5, 7.25)    circle(3pt);
+            \fill[black] (1.5, 7)       circle(3pt);
+            \fill[black] (0, 5.333)     circle(3pt);
+            \fill[black] (0.5, 5)       circle(3pt);
+            \fill[black] (1, 4)         circle(3pt);
+            \fill[black] (1.25, 3)      circle(3pt);
+            \fill[black] (1, 2)         circle(3pt);
+            \fill[black] (0.5, 1)       circle(3pt);
+            
+            \fill[black] (-0.5, 6)      circle(3pt);
+            \fill[black] (-0.5, 5)      circle(3pt);
+            \fill[black] (-3.5, 5)      circle(3pt);
+            \fill[black] (-2.5, 5)      circle(3pt);
+            \fill[black] (-2.25, 4)     circle(3pt);
+            \fill[black] (-1.833, 4.75) circle(3pt);
+            \fill[black] (-1.833, 5.2)  circle(3pt);
+            \fill[black] (-1.25, 3)     circle(3pt);
+            \fill[black] (-1.5, 3.5)    circle(3pt);
+            \fill[black] (-1.626, 2.75) circle(3pt);
+            \fill[black] (-2, 4)        circle(3pt);
+            \fill[black] (-1.5, 4.5)    circle(3pt);
+            \fill[black] (-1.25, 4.75)  circle(3pt);
+            \fill[black] (-1.166, 5.5)  circle(3pt);
+            \fill[black] (-1, 4)        circle(3pt);
+
+          \end{scope}
+          \begin{scope}[yscale=0.866,shift={(0 cm,16 cm)},rotate=180]
+            \draw[very thick] (-0.5, 1) -- (-1, 2) -- (-1.625, 2.75) -- (-2.5, 3) -- (-3.5, 3) -- (-4, 2.666) -- (-4.5, 5) -- (-4, 6) -- (-4, 8) -- (-2.5, 9) -- (-1.5, 9) -- (-0.5, 8.75) -- (0.5, 7.25) -- (1.5, 7) -- (0, 5.333) -- (0.5, 5) -- (1, 4) -- (1.25, 3) -- (1, 2) -- (0.5, 1) -- (-0.5, 1); 
+            \draw (-1,2) -- (-1.25, 3) -- (-1, 4) -- (-0.5, 5) -- (0, 5.333);
+            \draw (-4, 6) -- (-3.5, 5) -- (-2.5, 5) -- (-1.833, 5.2) -- (-1.166, 5.5) -- (-0.5, 6) -- (0.5, 7.25);
+            \draw (-0.5, 6) -- (-0.5, 5);
+            \draw (-3.5, 3) -- (-3.5, 5);
+            \draw (-2.5, 3) -- (-2.25, 4) -- (-2.5, 5);
+            \draw (-1.626, 2.75) -- (-1.75, 3.5) -- (-1.5, 3.5) -- (-1.25, 3);
+            \draw (-1.75, 3.5) -- (-2, 4) -- (-2.25, 4);
+            \draw (-1.5, 3.5) -- (-1.5, 4.5) -- (-1.833, 4.75) -- (-1.833, 5.2);
+            \draw (-2, 4) -- (-1.833, 4.75);
+            \draw (-1, 4) -- (-1.25, 4.75) -- (-1.5, 4.5);
+            \draw (-1.25, 4.75) -- (-1.166, 5.5);
+
+            \fill[black] (-0.5, 1)      circle(3pt);
+            \fill[black] (-1, 2)        circle(3pt);
+            \fill[black] (-1.625, 2.75) circle(3pt);
+            \fill[black] (-2.5, 3)      circle(3pt);
+            \fill[black] (-3.5, 3)      circle(3pt);
+            \fill[black] (-4, 2.666)    circle(3pt);
+            \fill[black] (-4.5, 5)      circle(3pt);
+            \fill[black] (-4, 6)        circle(3pt);
+            \fill[black] (-4, 8)        circle(3pt);
+            \fill[black] (-2.5, 9)      circle(3pt);
+            \fill[black] (-1.5, 9)      circle(3pt);
+            \fill[black] (-0.5, 8.75)   circle(3pt);
+            \fill[black] (0.5, 7.25)    circle(3pt);
+            \fill[black] (1.5, 7)       circle(3pt);
+            \fill[black] (0, 5.333)     circle(3pt);
+            \fill[black] (0.5, 5)       circle(3pt);
+            \fill[black] (1, 4)         circle(3pt);
+            \fill[black] (1.25, 3)      circle(3pt);
+            \fill[black] (1, 2)         circle(3pt);
+            \fill[black] (0.5, 1)       circle(3pt);
+            
+            \fill[black] (-0.5, 6)      circle(3pt);
+            \fill[black] (-0.5, 5)      circle(3pt);
+            \fill[black] (-3.5, 5)      circle(3pt);
+            \fill[black] (-2.5, 5)      circle(3pt);
+            \fill[black] (-2.25, 4)     circle(3pt);
+            \fill[black] (-1.833, 4.75) circle(3pt);
+            \fill[black] (-1.833, 5.2)  circle(3pt);
+            \fill[black] (-1.25, 3)     circle(3pt);
+            \fill[black] (-1.5, 3.5)    circle(3pt);
+            \fill[black] (-1.626, 2.75) circle(3pt);
+            \fill[black] (-2, 4)        circle(3pt);
+            \fill[black] (-1.5, 4.5)    circle(3pt);
+            \fill[black] (-1.25, 4.75)  circle(3pt);
+            \fill[black] (-1.166, 5.5)  circle(3pt);
+            \fill[black] (-1, 4)        circle(3pt);
+
+          \end{scope}
+          \begin{scope}[shift={(0cm, 13.856cm)},rotate=120,yscale=0.866]
+            \draw[very thick] (-0.5, 1) -- (-1, 2) -- (-1.625, 2.75) -- (-2.5, 3) -- (-3.5, 3) -- (-4, 2.666) -- (-4.5, 5) -- (-4, 6) -- (-4, 8) -- (-2.5, 9) -- (-1.5, 9) -- (-0.5, 8.75) -- (0.5, 7.25) -- (1.5, 7) -- (0, 5.333) -- (0.5, 5) -- (1, 4) -- (1.25, 3) -- (1, 2) -- (0.5, 1) -- (-0.5, 1); 
+            \draw (-1,2) -- (-1.25, 3) -- (-1, 4) -- (-0.5, 5) -- (0, 5.333);
+            \draw (-4, 6) -- (-3.5, 5) -- (-2.5, 5) -- (-1.833, 5.2) -- (-1.166, 5.5) -- (-0.5, 6) -- (0.5, 7.25);
+            \draw (-0.5, 6) -- (-0.5, 5);
+            \draw (-3.5, 3) -- (-3.5, 5);
+            \draw (-2.5, 3) -- (-2.25, 4) -- (-2.5, 5);
+            \draw (-1.626, 2.75) -- (-1.75, 3.5) -- (-1.5, 3.5) -- (-1.25, 3);
+            \draw (-1.75, 3.5) -- (-2, 4) -- (-2.25, 4);
+            \draw (-1.5, 3.5) -- (-1.5, 4.5) -- (-1.833, 4.75) -- (-1.833, 5.2);
+            \draw (-2, 4) -- (-1.833, 4.75);
+            \draw (-1, 4) -- (-1.25, 4.75) -- (-1.5, 4.5);
+            \draw (-1.25, 4.75) -- (-1.166, 5.5);
+
+            \fill[black] (-0.5, 1)      circle(3pt);
+            \fill[black] (-1, 2)        circle(3pt);
+            \fill[black] (-1.625, 2.75) circle(3pt);
+            \fill[black] (-2.5, 3)      circle(3pt);
+            \fill[black] (-3.5, 3)      circle(3pt);
+            \fill[black] (-4, 2.666)    circle(3pt);
+            \fill[black] (-4.5, 5)      circle(3pt);
+            \fill[black] (-4, 6)        circle(3pt);
+            \fill[black] (-4, 8)        circle(3pt);
+            \fill[black] (-2.5, 9)      circle(3pt);
+            \fill[black] (-1.5, 9)      circle(3pt);
+            \fill[black] (-0.5, 8.75)   circle(3pt);
+            \fill[black] (0.5, 7.25)    circle(3pt);
+            \fill[black] (1.5, 7)       circle(3pt);
+            \fill[black] (0, 5.333)     circle(3pt);
+            \fill[black] (0.5, 5)       circle(3pt);
+            \fill[black] (1, 4)         circle(3pt);
+            \fill[black] (1.25, 3)      circle(3pt);
+            \fill[black] (1, 2)         circle(3pt);
+            \fill[black] (0.5, 1)       circle(3pt);
+            
+            \fill[black] (-0.5, 6)      circle(3pt);
+            \fill[black] (-0.5, 5)      circle(3pt);
+            \fill[black] (-3.5, 5)      circle(3pt);
+            \fill[black] (-2.5, 5)      circle(3pt);
+            \fill[black] (-2.25, 4)     circle(3pt);
+            \fill[black] (-1.833, 4.75) circle(3pt);
+            \fill[black] (-1.833, 5.2)  circle(3pt);
+            \fill[black] (-1.25, 3)     circle(3pt);
+            \fill[black] (-1.5, 3.5)    circle(3pt);
+            \fill[black] (-1.626, 2.75) circle(3pt);
+            \fill[black] (-2, 4)        circle(3pt);
+            \fill[black] (-1.5, 4.5)    circle(3pt);
+            \fill[black] (-1.25, 4.75)  circle(3pt);
+            \fill[black] (-1.166, 5.5)  circle(3pt);
+            \fill[black] (-1, 4)        circle(3pt);
+
+          \end{scope}
+        \end{scope}
+        \\
+        \begin{scope}[scale=0.6]
+          \draw (13,6)--(12,7)--(11,6)--(11,3)--(8,0)--(3,0)--(0,5)--(3,8)--(4,9)--(3,10)--(3,12)--(6,14)--(6,16)--(8,18)--(10,17)--(12,16)--(13,14)--(16,14)--(16,12)--(20,11)--(21,9)--(20,7)--(19,6)--(17,5)--(15,5)--(13,6);
+          \draw (3,0)--(4,3)--(4,6)--(3,8);
+          \draw (4,3)--(8,4)--(11,3);
+          \draw (8,4)--(8,5)--(6,6)--(4,6);
+          \draw (8,5)--(10,6)--(11,6);
+          \draw (10,6)--(9,7)--(6,8)--(6,6);
+          \draw (6,8)--(4,9);
+          \draw (9,7)--(11,9)--(12,7);
+          \draw[ldiamond] (11,9)--(12,11);
+          \draw (16,12)--(12,11)--(11,13)--(13,14);
+          \draw (11,13)--(9,15)--(6,14);
+          \draw (9,15)--(10,17);
+
+          \node[anchor= 90] at (13,6)  {$i_{0}$};
+          \node[anchor= 90] at (12,7)  {$i_{1}$};
+          \node[anchor=160] at (11,6)  {$i_{2}$};
+          \node[anchor= 90] at (11,3)  {$i_{3}$};
+          \node[anchor=135] at (8,0)   {$i_{4}=o_0$};
+          \node[anchor= 90] at (3,0)   {$o_{1}$};
+          \node[anchor=  0] at (0,5)   {$o_{2}$};
+          \node[anchor=  0] at (3,8)   {$o_{3}$};
+          \node[anchor=  0] at (4,9)   {$o_{4}$};
+          \node[anchor=  0] at (3,10)  {$o_{5}$};
+          \node[anchor=  0] at (3,12)  {$o_{6}$};
+          \node[anchor=335] at (6,14)  {$o_{7}$};
+          \node[anchor=335] at (6,16)  {$o_{8}$};
+          \node[anchor=270] at (8,18)  {$o_{9}$};
+          \node[anchor=240] at (10,17) {$o_{10}$};
+          \node[anchor=235] at (12,16) {$o_{11}$};
+          \node[anchor=235] at (13,14) {$o_{12}$};
+          \node[anchor=235] at (16,14) {$o_{13}$};
+          \node[anchor=200] at (16,12) {$o_{14}$};
+          \node[anchor=235] at (20,11) {$o_{15}$};
+          \node[anchor=180] at (21,9)  {$i_{4}'=o_{16}$};
+          \node[anchor=135] at (20,7)  {$i_{3}'$};
+          \node[anchor= 90] at (19,6)  {$i_{2}'$};
+          \node[anchor= 90] at (17,5)  {$i_{1}'$};
+          \node[anchor= 90] at (15,5)  {$i_{0}'$};
+
+          \fill[black]  (13,6)  circle (2pt);
+          \fill[black]  (12,7)  circle (2pt);
+          \fill[black]  (11,6)  circle (2pt);
+          \fill[black]  (11,3)  circle (2pt);
+          \fill[black]  (8,0)   circle (2pt);
+          \fill[black]  (3,0)   circle (2pt);
+          \fill[black]  (0,5)   circle (2pt);
+          \fill[black]  (3,8)   circle (2pt);
+          \fill[black]  (4,9)   circle (2pt);
+          \fill[black]  (3,10)  circle (2pt);
+          \fill[black]  (3,12)  circle (2pt);
+          \fill[black]  (6,14)  circle (2pt);
+          \fill[black]  (6,16)  circle (2pt);
+          \fill[black]  (8,18)  circle (2pt);
+          \fill[black]  (10,17) circle (2pt);
+          \fill[black]  (12,16) circle (2pt);
+          \fill[black]  (13,14) circle (2pt);
+          \fill[black]  (16,14) circle (2pt);
+          \fill[black]  (16,12) circle (2pt);
+          \fill[black]  (20,11) circle (2pt);
+          \fill[black]  (21,9)  circle (2pt);
+          \fill[black]  (20,7)  circle (2pt);
+          \fill[black]  (19,6)  circle (2pt);
+          \fill[black]  (17,5)  circle (2pt);
+          \fill[black]  (15,5)  circle (2pt);
+
+          \fill[black]  (4,3)   circle (2pt);
+          \fill[black]  (4,5)   circle (2pt);
+          \fill[black]  (6,6)   circle (2pt);
+          \fill[black]  (8,4)   circle (2pt);
+          \fill[black]  (8,5)   circle (2pt);
+          \fill[black]  (10,6)  circle (2pt);
+          \fill[black]  (9,7)   circle (2pt);
+          \fill[black]  (6,8)   circle (2pt);
+          \fill[black]  (11,9)  circle (2pt);
+          \fill[black]  (12,11) circle (2pt);
+          \fill[black]  (11,13) circle (2pt);
+          \fill[black]  (9,15)  circle (2pt);
+
+          \node (n1) at (9,12)  {$11$};
+          \node (n2) at (14,9)  {$11$};
+          \node at (2,4)   {$5$};
+          \node at (7,2)   {$5$};
+          \node at (6,4.5) {$5$};
+          \node at (10,5)  {$5$};
+          \node at (8,6)   {$5$};
+          \node at (5,7)   {$5$};
+          \node at (10.5,7){$5$};
+          \node at (13,12) {$5$};
+          \node at (11,15) {$5$};
+          \node at (8,16)  {$5$};
+
+          \draw[lface] (11.5,10)--(n1);
+          \draw[lface] (11.5,10)--(n2);
+          
+        \end{scope}
+        
+        % \begin{scope}[scale=3, yshift=25]
+        %   \input{tikz/5_11/ngon}
+        % \end{scope}
+        &
+        \begin{scope}[scale=1, yshift=25]
+          \input{tikz/5_11/hexagon}
+        \end{scope}
+        \\
+      };
+    \end{tikzfigure}
+>>>>>>> Stashed changes
   \end{proof}
 \end{theorem}
 
