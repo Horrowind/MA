@@ -53,8 +53,7 @@
     {\begin{figure}[!h] \caption{#2} #1 \centering \begin{tikzpicture}[line cap=round, line join=round]}
     {\end{tikzpicture} \end{figure}}
 
-\newenvironment{tikzfigure2}[1][]
-    {\begin{figure}[!p] \caption{#1} \centering}
+\newenvironment{tikzfigure2}[1]{\begin{figure}[!b]\caption{#1}\label{} \centering}
     {\end{figure}}
 
 \newenvironment{tikzsubfigure}[3]

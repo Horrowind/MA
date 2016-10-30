@@ -1,14 +1,17 @@
+\cleardoublepage
+\hbox{}\newpage
+{\par\vspace*{\fill}}
 \section{$3$-valent {\sc Eberhard}-like theorems with triangles}\label{sec:3:3}
 
 In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with triangles, i.e. for $q = [q_3 \times 3, q_l \times l]$, $w = [w_3 \times 3]$, $l > 6$, $\gcd(q_3, q_l) = 1$. As it turns out in \autoref{sec:negative:results}, this is only possible for all admissible pairs of sequences on all closed orientable $2$-manifolds in three cases: $q = [3, 3 \times 7]$, $q = [2 \times 3, 3 \times 8]$ and $q = [4 \times 3, 3 \times 10]$. We tackle each case separately in the following three theorems.
-
+\clearpage
 \begin{theorem}
   Let $p$ and $v$ be a pair of admissible sequences for a orientable closed $2$-manifold $S$. Then $(p, v)$ is $[3, 3 \times 7]$-$[3]$-realizable.
   \begin{proof}
     An expansion $3$-patch with outer tuple $o = (2, 1, 2, 2, 2, 1, 1, 1, 2, 1)$ and a corresponding $o$-$6$-gonal $3$-patch, both consisting only of triangles and heptagons is shown in \autoref{fig:expansion:patch:3:7}. Since the expansion patch is already polyhedral, we can apply \autoref{thm:main:const}.
-    \begin{tikzfigure2}{\todo{caption, rework expansion patch}}
+    \begin{tikzfigure2}{Huhu}%\todo{caption, rework expansion patch}}
       \begin{tikzsubfigure}{}{}{0.5}
-        \begin{scope}[yscale=0.866, scale=0.8]
+        \begin{scope}[yscale=0.866, scale=0.5]
 
           \coordinate (p0)  at  (0,0);
           \coordinate (p1)  at  (0.5,1);
@@ -33,7 +36,7 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with tr
           \node[anchor=180] at (p2) {$i_1'$};
           \node[anchor=180] at (p3) {$i_2'=o_{11}$};
           \node[anchor=270] at (p4) {$o_{10}$};
-          \node[anchor=200] at (p5) {$o_{9}$};
+          \node[anchor=240] at (p5) {$o_{9}$};
           \node[anchor=270] at (p6) {$o_{8}$};
           \node[anchor=340] at (p7) {$o_{7}$};
           \node[anchor=  0] at (p8) {$\mathbf{o_{6}}$};
@@ -77,7 +80,7 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with tr
         \end{scope} 
       \end{tikzsubfigure}%
       \begin{tikzsubfigure}{}{}{0.5}
-        \begin{scope}[scale=0.5]
+        \begin{scope}[scale=0.35]
           \begin{scope}[yscale=0.866]
 
             \coordinate (p0)  at  (0,0) ;
@@ -263,21 +266,21 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with tr
         \end{scope}
       \end{tikzsubfigure}
       \begin{tikzsubfigure}{}{}{1}
-        \begin{scope}[scale=6]
+        \begin{scope}[scale=5]
           \input{tikz/3_7/hexagon2}
         \end{scope}
       \end{tikzsubfigure}
     \end{tikzfigure2}
   \end{proof}
 \end{theorem}
-
+\clearpage
 \begin{theorem}
   Let $p$ and $v$ be a pair of admissible sequences for a orientable closed $2$-manifold $S$. Then $(p, v)$ is $[2 \times 3, 3 \times 8]$-$[3]$-realizable.
   \begin{proof}
     An expansion $3$-patch with outer tuple $o = (1, 1, 2, 2, 1, 1, 2, 2)$ and a corresponding $o$-$6$-gonal $3$-patch, both consisting only of triangles and octagons is shown in \autoref{fig:expansion:patch:3:8}. Since the expansion patch is already polyhedral, we can apply \autoref{thm:main:const}.
     \begin{tikzfigure2}{\todo{caption, rework expansion patch}}
       \begin{tikzsubfigure}{}{}{0.5}
-        \begin{scope}[yscale=0.866, scale=0.8]
+        \begin{scope}[yscale=0.866, scale=0.5]
           \draw (-1,0)--(-0.5,1)--(-1,4)--(0.5,10.5)--(-0.5,11.5)--(-2.5,11)--(-3.5,10.5)--(-4.5,10.5)--(-5.5,11)--(-6.375,10.25)--(-6.875,9.25)--(-7,8)--(-7.625,5.75)--(-3.5,1)--(-1,0);
 
           \draw (-1,4)-- (-3,6)--(-4.5,7)--(-7,8);
@@ -328,7 +331,7 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with tr
         \end{scope}
       \end{tikzsubfigure}%
       \begin{tikzsubfigure}{}{}{0.5}
-        \begin{scope}[scale=0.5]
+        \begin{scope}[scale=0.3]
           \begin{scope}[yscale=0.866]
             \draw[very thick] (-1,0)--(-0.5,1)--(-1,4)--(0.5,10.5)--(-0.5,11.5)--(-2.5,11)--(-3.5,10.5)--(-4.5,10.5)--(-5.5,11)--(-6.375,10.25)--(-6.875,9.25)--(-7,8)--(-7.625,5.75)--(-3.5,1)--(-1,0);
 
@@ -355,7 +358,7 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with tr
             \fill[black] (-4.5,7)        circle (3pt);
             \fill[black] (-4,9.5)        circle (3pt);
             \fill[black] (-3,6)          circle (3pt);
-          
+            
           \end{scope}
 
           \begin{scope}[rotate=-60, yscale=0.866]
@@ -439,96 +442,22 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with tr
         \end{scope}
       \end{tikzsubfigure}
       \begin{tikzsubfigure}{}{}{1}
-        \begin{scope}[scale=6]
+        \begin{scope}[scale=5]
           \input{tikz/3_8/hexagon2}
         \end{scope}
       \end{tikzsubfigure}
     \end{tikzfigure2}
   \end{proof}
 \end{theorem}
+\clearpage
 
 \begin{theorem}
   Let $p$ and $v$ be a pair of admissible sequences for a orientable closed $2$-manifold $S$. Then $(p, v)$ is $[4 \times 3, 3 \times 10]$-$[3]$-realizable.
   \begin{proof}
     An expansion $3$-patch with outer tuple $o = (2, 2, 2, 1, 1, 2, 2, 1, 1, 1)$ and a corresponding $o$-$6$-gonal $3$-patch, both consisting only of triangles and decagons is shown in \autoref{fig:expansion:patch:3:10}. Since the expansion patch is already polyhedral, we can apply \autoref{thm:main:const}.
-    \begin{tikzfigure}{\label{fig:expansion:patch:3:10}}{\todo{caption, rework expansion patch}}
-      \matrix (m) [column sep=1cm] {
-        \begin{scope}[yscale=0.866]
-          \draw (-0.5,1)--(-1.5,1.5)--(-3.5,1.5)--(-4.5,1.5)--(-7,5)--(-6.5,6)--(-5.5,6.5)--(-3.5,7)--(-2.5,6.5)--(-2,5.5)--(-2,4.5)--(-1.5,3.5)--(-0.5,4)--(0.5,4)--(1.5,3.5)--(2,2.5)--(1.5,1.5)--(0.5,1)--(-0.5,1);
-          \draw (-7,5)--(-6,5)--(-5,5.5)--(-4,5)--(-3,5)--(-2,5.5);
-          \draw (-6,5)--(-5,4.5)--(-4,5);
-          \draw (-5,5.5)--(-5,4.5);
-          \draw (-3,5)--(-2,4.5);
-          \draw (-3.5,1.5)--(-2,2.5)--(-1.5,3.5);
-          \draw (-2,2.5)--(-1.5,1.5);
-
-          \node[anchor= 90] at (0.5,1)    {$i_{0}'$};
-          \node[anchor= 90] at (-0.5,1)   {$i_0$};
-          \node[anchor= 75] at (-1.5,1.5) {$i_1$};
-          \node[anchor= 90] at (-3.5,1.5) {$i_2$};
-          \node[anchor= 45] at (-4.5,1.5) {$i_3=o_0$};
-          \node[anchor=  0] at (-7,5)     {$o_1$};
-          \node[anchor=315] at (-6.5,6)   {$o_2$};
-          \node[anchor=270] at (-5.5,6.5) {$o_3$};
-          \node[anchor=270] at (-3.5,7)   {$o_4$};
-          \node[anchor=215] at (-2.5,6.5) {$\mathbf{o_5}$};
-          \node[anchor=180] at (-2,5.5)   {$o_6$};
-          \node[anchor=180] at (-2,4.5)   {$o_7$};
-          \node[anchor=250] at (-1.5,3.5) {$o_8$};
-          \node[anchor=270] at (-0.5,4)   {$o_9$};
-          \node[anchor=270] at (0.5,4)    {$o_{10}$};
-          \node[anchor=225] at (1.5,3.5)  {$i_3'=o_{11}$};
-          \node[anchor=180] at (2,2.5)    {$i_2'$};
-          \node[anchor=135] at (1.5,1.5)  {$i_1'$};
-
-          \fill[black] (0.5,1)    circle (2pt);
-          \fill[black] (-0.5,1)   circle (2pt);
-          \fill[black] (-1.5,1.5) circle (2pt);
-          \fill[black] (-3.5,1.5) circle (2pt);
-          \fill[black] (-4.5,1.5) circle (2pt);
-          \fill[black] (-7,5)     circle (2pt);
-          \fill[black] (-6.5,6)   circle (2pt);
-          \fill[black] (-5.5,6.5) circle (2pt);
-          \fill[black] (-3.5,7)   circle (2pt);
-          \fill[black] (-2.5,6.5) circle (2pt);
-          \fill[black] (-2,5.5)   circle (2pt);
-          \fill[black] (-2,4.5)   circle (2pt);
-          \fill[black] (-1.5,3.5) circle (2pt);
-          \fill[black] (-0.5,4)   circle (2pt);
-          \fill[black] (0.5,4)    circle (2pt);
-          \fill[black] (1.5,3.5)  circle (2pt);
-          \fill[black] (2,2.5)    circle (2pt);
-          \fill[black] (1.5,1.5)  circle (2pt);
-          \fill[black] (-6,5)     circle (2pt);
-          \fill[black] (-5,5.5)   circle (2pt);
-          \fill[black] (-5,4.5)   circle (2pt);
-          \fill[black] (-4,5)     circle (2pt);
-          \fill[black] (-3,5)     circle (2pt);
-          \fill[black] (-2,2.5)   circle (2pt);
-
-          \node at (-3.5,6)      {$10$};
-          \node at (-5.333,5)    {$3$};
-          \node at (-4.666,5)    {$3$};
-          \node at (-2.333,5)    {$3$};
-          \node at (-4,3.5)      {$10$};
-          \node at (-2.333,1.85) {$3$};
-          \node at (0,2.5)       {$10$};
-          
-        \end{scope}
-        &
-        \begin{scope}[scale=3]
-          \input{tikz/3_10/hexagon}
-        \end{scope}
-        \\
-      };
-    \end{tikzfigure}
-    \begin{tikzfigure}{\label{fig:expansion:patch:poly:3:10}}{\todo{caption, rework patch}}
-
-      \matrix (m) [column sep=1cm] {
-        % \begin{scope}[scale=3]
-        %   \input{tikz/3_10/ngon}
-        % \end{scope}
-        \begin{scope}[yscale=0.866, scale=0.7]
+    \begin{tikzfigure2}{}
+      \begin{tikzsubfigure}{}{}{0.5}
+        \begin{scope}[yscale=0.866, scale=0.6]
           \draw[very thick] (0.5,1)--(-0.5,1)--(-4,6.667)--(-3.5,11.5)--(-2.5,12)--(-1.5,12)--(-0.5,11.5)--(-0.5,12.5)--(0.5,13.5)--(0.5,14.5)--(1.5,14)-- (2.5,14)--(3.5,14.5)--(3.5,13.5)--(4.5,12.5)--(5.5,12.5)--(6.5,13)--(7.375, 12.25)--(7.875, 11.25)--(7.625, 9.75)-- (6.875, 9.25)-- (3,7.333)--(0.5,1);
           \draw (-0.5,11.5)--(2,9)--(3,9)--(4.5,11.5)--(4.5,12.5);
           \draw (4.5,11.5)--(5.5,12.5);
@@ -596,7 +525,8 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with tr
           \node at (4.833,12.2){$3$};
 
         \end{scope}
-        &
+      \end{tikzsubfigure}~
+      \begin{tikzsubfigure}{}{}{0.5}
         \begin{scope}[scale=0.4]
           \begin{scope}[yscale=0.866]
             \draw[very thick] (0.5,1)--(-0.5,1)--(-4,6.667)--(-3.5,11.5)--(-2.5,12)--(-1.5,12)--(-0.5,11.5)--(-0.5,12.5)--(0.5,13.5)--(0.5,14.5)--(1.5,14)-- (2.5,14)--(3.5,14.5)--(3.5,13.5)--(4.5,12.5)--(5.5,12.5)--(6.5,13)--(7.375, 12.25)--(7.875, 11.25)--(7.625, 9.75)-- (6.875, 9.25)-- (3,7.333)--(0.5,1);
@@ -608,31 +538,31 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with tr
             \draw (2.5,14)--(3.5,13.5);
 
             \fill[black] (0.5,1)        circle (3pt); 
-          \fill[black] (-0.5,1)       circle (3pt);
-          \fill[black] (-4,6.667)     circle (3pt);
-          \fill[black] (-3.5,11.5)    circle (3pt);
-          \fill[black] (-2.5,12)      circle (3pt);
-          \fill[black] (-1.5,12)      circle (3pt);
-          \fill[black] (-0.5,11.5)    circle (3pt);
-          \fill[black] (-0.5,12.5)    circle (3pt);
-          \fill[black] (0.5,13.5)     circle (3pt);
-          \fill[black] (0.5,14.5)     circle (3pt);
-          \fill[black] (1.5,14)       circle (3pt);
-          \fill[black] (2.5,14)       circle (3pt);
-          \fill[black] (3.5,14.5)     circle (3pt);
-          \fill[black] (3.5,13.5)     circle (3pt);
-          \fill[black] (4.5,12.5)     circle (3pt);
-          \fill[black] (5.5,12.5)     circle (3pt);
-          \fill[black] (6.5,13)       circle (3pt);
-          \fill[black] (7.375, 12.25) circle (3pt);
-          \fill[black] (7.875, 11.25) circle (3pt);
-          \fill[black] (7.625, 9.75)  circle (3pt);
-          \fill[black] (6.875, 9.25)  circle (3pt);
-          \fill[black] (3,7.333)      circle (3pt);
-          \fill[black] (2.75,8)       circle (3pt);
-          \fill[black] (2,9)          circle (3pt);
-          \fill[black] (4.5,11.5)     circle (3pt);
-          \fill[black] (3,9)          circle (3pt);
+            \fill[black] (-0.5,1)       circle (3pt);
+            \fill[black] (-4,6.667)     circle (3pt);
+            \fill[black] (-3.5,11.5)    circle (3pt);
+            \fill[black] (-2.5,12)      circle (3pt);
+            \fill[black] (-1.5,12)      circle (3pt);
+            \fill[black] (-0.5,11.5)    circle (3pt);
+            \fill[black] (-0.5,12.5)    circle (3pt);
+            \fill[black] (0.5,13.5)     circle (3pt);
+            \fill[black] (0.5,14.5)     circle (3pt);
+            \fill[black] (1.5,14)       circle (3pt);
+            \fill[black] (2.5,14)       circle (3pt);
+            \fill[black] (3.5,14.5)     circle (3pt);
+            \fill[black] (3.5,13.5)     circle (3pt);
+            \fill[black] (4.5,12.5)     circle (3pt);
+            \fill[black] (5.5,12.5)     circle (3pt);
+            \fill[black] (6.5,13)       circle (3pt);
+            \fill[black] (7.375, 12.25) circle (3pt);
+            \fill[black] (7.875, 11.25) circle (3pt);
+            \fill[black] (7.625, 9.75)  circle (3pt);
+            \fill[black] (6.875, 9.25)  circle (3pt);
+            \fill[black] (3,7.333)      circle (3pt);
+            \fill[black] (2.75,8)       circle (3pt);
+            \fill[black] (2,9)          circle (3pt);
+            \fill[black] (4.5,11.5)     circle (3pt);
+            \fill[black] (3,9)          circle (3pt);
             
           \end{scope}
           \begin{scope}[rotate=60, yscale=0.866]
@@ -644,33 +574,33 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with tr
             \draw (0.5,13.5)--(1.5,14);
             \draw (2.5,14)--(3.5,13.5);
 
-                        \fill[black] (0.5,1)        circle (3pt); 
-          \fill[black] (-0.5,1)       circle (3pt);
-          \fill[black] (-4,6.667)     circle (3pt);
-          \fill[black] (-3.5,11.5)    circle (3pt);
-          \fill[black] (-2.5,12)      circle (3pt);
-          \fill[black] (-1.5,12)      circle (3pt);
-          \fill[black] (-0.5,11.5)    circle (3pt);
-          \fill[black] (-0.5,12.5)    circle (3pt);
-          \fill[black] (0.5,13.5)     circle (3pt);
-          \fill[black] (0.5,14.5)     circle (3pt);
-          \fill[black] (1.5,14)       circle (3pt);
-          \fill[black] (2.5,14)       circle (3pt);
-          \fill[black] (3.5,14.5)     circle (3pt);
-          \fill[black] (3.5,13.5)     circle (3pt);
-          \fill[black] (4.5,12.5)     circle (3pt);
-          \fill[black] (5.5,12.5)     circle (3pt);
-          \fill[black] (6.5,13)       circle (3pt);
-          \fill[black] (7.375, 12.25) circle (3pt);
-          \fill[black] (7.875, 11.25) circle (3pt);
-          \fill[black] (7.625, 9.75)  circle (3pt);
-          \fill[black] (6.875, 9.25)  circle (3pt);
-          \fill[black] (3,7.333)      circle (3pt);
-\fill[black] (2.75,8)       circle (3pt);
-          \fill[black] (2,9)          circle (3pt);
-          \fill[black] (4.5,11.5)     circle (3pt);
-          \fill[black] (3,9)          circle (3pt);
-          
+            \fill[black] (0.5,1)        circle (3pt); 
+            \fill[black] (-0.5,1)       circle (3pt);
+            \fill[black] (-4,6.667)     circle (3pt);
+            \fill[black] (-3.5,11.5)    circle (3pt);
+            \fill[black] (-2.5,12)      circle (3pt);
+            \fill[black] (-1.5,12)      circle (3pt);
+            \fill[black] (-0.5,11.5)    circle (3pt);
+            \fill[black] (-0.5,12.5)    circle (3pt);
+            \fill[black] (0.5,13.5)     circle (3pt);
+            \fill[black] (0.5,14.5)     circle (3pt);
+            \fill[black] (1.5,14)       circle (3pt);
+            \fill[black] (2.5,14)       circle (3pt);
+            \fill[black] (3.5,14.5)     circle (3pt);
+            \fill[black] (3.5,13.5)     circle (3pt);
+            \fill[black] (4.5,12.5)     circle (3pt);
+            \fill[black] (5.5,12.5)     circle (3pt);
+            \fill[black] (6.5,13)       circle (3pt);
+            \fill[black] (7.375, 12.25) circle (3pt);
+            \fill[black] (7.875, 11.25) circle (3pt);
+            \fill[black] (7.625, 9.75)  circle (3pt);
+            \fill[black] (6.875, 9.25)  circle (3pt);
+            \fill[black] (3,7.333)      circle (3pt);
+            \fill[black] (2.75,8)       circle (3pt);
+            \fill[black] (2,9)          circle (3pt);
+            \fill[black] (4.5,11.5)     circle (3pt);
+            \fill[black] (3,9)          circle (3pt);
+            
           \end{scope}
           \begin{scope}[yscale=0.866,shift={(0 cm,26 cm)},rotate=180]
             \draw[very thick] (0.5,1)--(-0.5,1)--(-4,6.667)--(-3.5,11.5)--(-2.5,12)--(-1.5,12)--(-0.5,11.5)--(-0.5,12.5)--(0.5,13.5)--(0.5,14.5)--(1.5,14)-- (2.5,14)--(3.5,14.5)--(3.5,13.5)--(4.5,12.5)--(5.5,12.5)--(6.5,13)--(7.375, 12.25)--(7.875, 11.25)--(7.625, 9.75)-- (6.875, 9.25)-- (3,7.333)--(0.5,1);
@@ -681,32 +611,32 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with tr
             \draw (0.5,13.5)--(1.5,14);
             \draw (2.5,14)--(3.5,13.5);
 
-                        \fill[black] (0.5,1)        circle (3pt); 
-          \fill[black] (-0.5,1)       circle (3pt);
-          \fill[black] (-4,6.667)     circle (3pt);
-          \fill[black] (-3.5,11.5)    circle (3pt);
-          \fill[black] (-2.5,12)      circle (3pt);
-          \fill[black] (-1.5,12)      circle (3pt);
-          \fill[black] (-0.5,11.5)    circle (3pt);
-          \fill[black] (-0.5,12.5)    circle (3pt);
-          \fill[black] (0.5,13.5)     circle (3pt);
-          \fill[black] (0.5,14.5)     circle (3pt);
-          \fill[black] (1.5,14)       circle (3pt);
-          \fill[black] (2.5,14)       circle (3pt);
-          \fill[black] (3.5,14.5)     circle (3pt);
-          \fill[black] (3.5,13.5)     circle (3pt);
-          \fill[black] (4.5,12.5)     circle (3pt);
-          \fill[black] (5.5,12.5)     circle (3pt);
-          \fill[black] (6.5,13)       circle (3pt);
-          \fill[black] (7.375, 12.25) circle (3pt);
-          \fill[black] (7.875, 11.25) circle (3pt);
-          \fill[black] (7.625, 9.75)  circle (3pt);
-          \fill[black] (6.875, 9.25)  circle (3pt);
-          \fill[black] (3,7.333)      circle (3pt);
-\fill[black] (2.75,8)       circle (3pt);
-          \fill[black] (2,9)          circle (3pt);
-          \fill[black] (4.5,11.5)     circle (3pt);
-          \fill[black] (3,9)          circle (3pt);
+            \fill[black] (0.5,1)        circle (3pt); 
+            \fill[black] (-0.5,1)       circle (3pt);
+            \fill[black] (-4,6.667)     circle (3pt);
+            \fill[black] (-3.5,11.5)    circle (3pt);
+            \fill[black] (-2.5,12)      circle (3pt);
+            \fill[black] (-1.5,12)      circle (3pt);
+            \fill[black] (-0.5,11.5)    circle (3pt);
+            \fill[black] (-0.5,12.5)    circle (3pt);
+            \fill[black] (0.5,13.5)     circle (3pt);
+            \fill[black] (0.5,14.5)     circle (3pt);
+            \fill[black] (1.5,14)       circle (3pt);
+            \fill[black] (2.5,14)       circle (3pt);
+            \fill[black] (3.5,14.5)     circle (3pt);
+            \fill[black] (3.5,13.5)     circle (3pt);
+            \fill[black] (4.5,12.5)     circle (3pt);
+            \fill[black] (5.5,12.5)     circle (3pt);
+            \fill[black] (6.5,13)       circle (3pt);
+            \fill[black] (7.375, 12.25) circle (3pt);
+            \fill[black] (7.875, 11.25) circle (3pt);
+            \fill[black] (7.625, 9.75)  circle (3pt);
+            \fill[black] (6.875, 9.25)  circle (3pt);
+            \fill[black] (3,7.333)      circle (3pt);
+            \fill[black] (2.75,8)       circle (3pt);
+            \fill[black] (2,9)          circle (3pt);
+            \fill[black] (4.5,11.5)     circle (3pt);
+            \fill[black] (3,9)          circle (3pt);
           \end{scope}
           \begin{scope}[shift={(0 cm,22.516 cm)},rotate=240,yscale=0.866]
             \draw[very thick] (0.5,1)--(-0.5,1)--(-4,6.667)--(-3.5,11.5)--(-2.5,12)--(-1.5,12)--(-0.5,11.5)--(-0.5,12.5)--(0.5,13.5)--(0.5,14.5)--(1.5,14)-- (2.5,14)--(3.5,14.5)--(3.5,13.5)--(4.5,12.5)--(5.5,12.5)--(6.5,13)--(7.375, 12.25)--(7.875, 11.25)--(7.625, 9.75)-- (6.875, 9.25)-- (3,7.333)--(0.5,1);
@@ -717,41 +647,107 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with tr
             \draw (0.5,13.5)--(1.5,14);
             \draw (2.5,14)--(3.5,13.5);
 
-                        \fill[black] (0.5,1)        circle (3pt); 
-          \fill[black] (-0.5,1)       circle (3pt);
-          \fill[black] (-4,6.667)     circle (3pt);
-          \fill[black] (-3.5,11.5)    circle (3pt);
-          \fill[black] (-2.5,12)      circle (3pt);
-          \fill[black] (-1.5,12)      circle (3pt);
-          \fill[black] (-0.5,11.5)    circle (3pt);
-          \fill[black] (-0.5,12.5)    circle (3pt);
-          \fill[black] (0.5,13.5)     circle (3pt);
-          \fill[black] (0.5,14.5)     circle (3pt);
-          \fill[black] (1.5,14)       circle (3pt);
-          \fill[black] (2.5,14)       circle (3pt);
-          \fill[black] (3.5,14.5)     circle (3pt);
-          \fill[black] (3.5,13.5)     circle (3pt);
-          \fill[black] (4.5,12.5)     circle (3pt);
-          \fill[black] (5.5,12.5)     circle (3pt);
-          \fill[black] (6.5,13)       circle (3pt);
-          \fill[black] (7.375, 12.25) circle (3pt);
-          \fill[black] (7.875, 11.25) circle (3pt);
-          \fill[black] (7.625, 9.75)  circle (3pt);
-          \fill[black] (6.875, 9.25)  circle (3pt);
-          \fill[black] (3,7.333)      circle (3pt);
-\fill[black] (2.75,8)       circle (3pt);
-          \fill[black] (2,9)          circle (3pt);
-          \fill[black] (4.5,11.5)     circle (3pt);
-          \fill[black] (3,9)          circle (3pt);
+            \fill[black] (0.5,1)        circle (3pt); 
+            \fill[black] (-0.5,1)       circle (3pt);
+            \fill[black] (-4,6.667)     circle (3pt);
+            \fill[black] (-3.5,11.5)    circle (3pt);
+            \fill[black] (-2.5,12)      circle (3pt);
+            \fill[black] (-1.5,12)      circle (3pt);
+            \fill[black] (-0.5,11.5)    circle (3pt);
+            \fill[black] (-0.5,12.5)    circle (3pt);
+            \fill[black] (0.5,13.5)     circle (3pt);
+            \fill[black] (0.5,14.5)     circle (3pt);
+            \fill[black] (1.5,14)       circle (3pt);
+            \fill[black] (2.5,14)       circle (3pt);
+            \fill[black] (3.5,14.5)     circle (3pt);
+            \fill[black] (3.5,13.5)     circle (3pt);
+            \fill[black] (4.5,12.5)     circle (3pt);
+            \fill[black] (5.5,12.5)     circle (3pt);
+            \fill[black] (6.5,13)       circle (3pt);
+            \fill[black] (7.375, 12.25) circle (3pt);
+            \fill[black] (7.875, 11.25) circle (3pt);
+            \fill[black] (7.625, 9.75)  circle (3pt);
+            \fill[black] (6.875, 9.25)  circle (3pt);
+            \fill[black] (3,7.333)      circle (3pt);
+            \fill[black] (2.75,8)       circle (3pt);
+            \fill[black] (2,9)          circle (3pt);
+            \fill[black] (4.5,11.5)     circle (3pt);
+            \fill[black] (3,9)          circle (3pt);
           \end{scope}
         \end{scope}
-        \\
-      };
-      % \begin{scope}[scale=3]
-      %   \input{tikz/3_10/mouse}
-      % \end{scope}
+      \end{tikzsubfigure}
+      \begin{tikzsubfigure}{}{}{0.5}
+        \begin{scope}[yscale=0.866]
+          \draw (-0.5,1)--(-1.5,1.5)--(-3.5,1.5)--(-4.5,1.5)--(-7,5)--(-6.5,6)--(-5.5,6.5)--(-3.5,7)--(-2.5,6.5)--(-2,5.5)--(-2,4.5)--(-1.5,3.5)--(-0.5,4)--(0.5,4)--(1.5,3.5)--(2,2.5)--(1.5,1.5)--(0.5,1)--(-0.5,1);
+          \draw (-7,5)--(-6,5)--(-5,5.5)--(-4,5)--(-3,5)--(-2,5.5);
+          \draw (-6,5)--(-5,4.5)--(-4,5);
+          \draw (-5,5.5)--(-5,4.5);
+          \draw (-3,5)--(-2,4.5);
+          \draw (-3.5,1.5)--(-2,2.5)--(-1.5,3.5);
+          \draw (-2,2.5)--(-1.5,1.5);
 
+          \node[anchor= 90] at (0.5,1)    {$i_{0}'$};
+          \node[anchor= 90] at (-0.5,1)   {$i_0$};
+          \node[anchor= 75] at (-1.5,1.5) {$i_1$};
+          \node[anchor= 90] at (-3.5,1.5) {$i_2$};
+          \node[anchor= 45] at (-4.5,1.5) {$i_3=o_0$};
+          \node[anchor=  0] at (-7,5)     {$o_1$};
+          \node[anchor=315] at (-6.5,6)   {$o_2$};
+          \node[anchor=270] at (-5.5,6.5) {$o_3$};
+          \node[anchor=270] at (-3.5,7)   {$o_4$};
+          \node[anchor=215] at (-2.5,6.5) {$\mathbf{o_5}$};
+          \node[anchor=180] at (-2,5.5)   {$o_6$};
+          \node[anchor=180] at (-2,4.5)   {$o_7$};
+          \node[anchor=250] at (-1.5,3.5) {$o_8$};
+          \node[anchor=270] at (-0.5,4)   {$o_9$};
+          \node[anchor=270] at (0.5,4)    {$o_{10}$};
+          \node[anchor=225] at (1.5,3.5)  {$i_3'=o_{11}$};
+          \node[anchor=180] at (2,2.5)    {$i_2'$};
+          \node[anchor=135] at (1.5,1.5)  {$i_1'$};
 
-    \end{tikzfigure}
+          \fill[black] (0.5,1)    circle (2pt);
+          \fill[black] (-0.5,1)   circle (2pt);
+          \fill[black] (-1.5,1.5) circle (2pt);
+          \fill[black] (-3.5,1.5) circle (2pt);
+          \fill[black] (-4.5,1.5) circle (2pt);
+          \fill[black] (-7,5)     circle (2pt);
+          \fill[black] (-6.5,6)   circle (2pt);
+          \fill[black] (-5.5,6.5) circle (2pt);
+          \fill[black] (-3.5,7)   circle (2pt);
+          \fill[black] (-2.5,6.5) circle (2pt);
+          \fill[black] (-2,5.5)   circle (2pt);
+          \fill[black] (-2,4.5)   circle (2pt);
+          \fill[black] (-1.5,3.5) circle (2pt);
+          \fill[black] (-0.5,4)   circle (2pt);
+          \fill[black] (0.5,4)    circle (2pt);
+          \fill[black] (1.5,3.5)  circle (2pt);
+          \fill[black] (2,2.5)    circle (2pt);
+          \fill[black] (1.5,1.5)  circle (2pt);
+          \fill[black] (-6,5)     circle (2pt);
+          \fill[black] (-5,5.5)   circle (2pt);
+          \fill[black] (-5,4.5)   circle (2pt);
+          \fill[black] (-4,5)     circle (2pt);
+          \fill[black] (-3,5)     circle (2pt);
+          \fill[black] (-2,2.5)   circle (2pt);
+
+          \node at (-3.5,6)      {$10$};
+          \node at (-5.333,5)    {$3$};
+          \node at (-4.666,5)    {$3$};
+          \node at (-2.333,5)    {$3$};
+          \node at (-4,3.5)      {$10$};
+          \node at (-2.333,1.85) {$3$};
+          \node at (0,2.5)       {$10$};
+          
+        \end{scope}
+      \end{tikzsubfigure}
+    \end{tikzfigure2}
+    \begin{figure}{}{}
+      \ContinuedFloat
+      \begin{tikzsubfigure}{}{}{1.0}
+        \begin{scope}[scale=8]
+          \input{tikz/3_10/hexagon}
+        \end{scope}
+      \end{tikzsubfigure}
+    \end{figure}
   \end{proof}
 \end{theorem}

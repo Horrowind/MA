@@ -1,25 +1,24 @@
 \section{Overview}
 
-The {\sc Eberhard} theorems are two results (in various formulations and extensions) on the constructability of $r$-valent polyhedra with a given vector $(p_k)_{k \geq 3}$, where $p_k$ describes the number of occurrences of each $k$-gon. The original formulations were as in the following:
-\begin{theorem}[{\sc Eberhard}s theorem for $3$-valent polyhedra]\label{thm:eberhard:3} Let $(p_3, p_4, p_5, p_7, \dots p_K)$ be a sequence of natural numbers for which
+The {\sc Eberhard} theorems are two results in various formulations and extensions on the constructability of $r$-valent polyhedra for a given sequence $(p_k)_{k \geq 3}$, where $p_k$ describes the number of occurrences of each $k$-gon. The original formulations were:
+\begin{theorem}[{\sc Eberhard}s theorem for $3$-valent polyhedra]\label{thm:eberhard:3} Let $(p_3, p_4, p_5, p_7, \dots p_m)$ be a sequence of natural numbers for which
 \begin{align*}
-  \sum_{3 \leq k \leq K \atop k \neq 6}(6 - k) \cdot p_k = 12,
+  \sum_{3 \leq k \leq m \atop k \neq 6}(6 - k) \cdot p_k = 12,
 \end{align*}
-holds, then there exists a number $p_6$ and a $3$-valent polyhedron which has exactly $p_k$ $k$-gons for each $3 \leq k \leq K$.
+holds, then there exists a number $p_6$ and a $3$-valent polyhedron which has exactly $p_k$ $k$-gons for each $3 \leq k \leq m$.
 \end{theorem}
-\begin{theorem}[{\sc Eberhard}s theorem for $4$-valent polyhedra]\label{thm:eberhard:4} Let $(p_3,  p_5, \dots p_K)$ be a sequence of natural numbers for which
+\begin{theorem}[{\sc Eberhard}s theorem for $4$-valent polyhedra]\label{thm:eberhard:4} Let $(p_3,  p_5, \dots p_m)$ be a sequence of natural numbers for which
 \begin{align*}
-  \sum_{3 \leq k \leq K \atop k \neq 4}(4 - k) \cdot p_k = 8,
+  \sum_{3 \leq k \leq m \atop k \neq 4}(4 - k) \cdot p_k = 8,
 \end{align*}
-holds, then there exists a number $p_4$ and a $4$-valent polyhedron which has exactly $p_k$ $k$-gons for each $3 \leq k \leq K$.
+holds, then there exists a number $p_4$ and a $4$-valent polyhedron which has exactly $p_k$ $k$-gons for each $3 \leq k \leq m$.
 \end{theorem}
+In both cases we call the sequence $(p_k)_{k \geq 3}$ to be realizable (as an $r$-valent polyhedron). The sums in both theorems are in fact necessary conditions for a sequence $(p_k)_{k \geq 3}$ to be realizable and are easily deducible from the {\sc Euler}-equations. We see that in the $3$-valent case as well as in the $4$-valent case there is a special type of $k$-gons, which do cancel out in these sums. We can interpret these $k$-gons as flat in the respective context and can assign positive and negative curvature to each $k$-gon (where the amount of curvature equals $6 - k$ or $4 - k$). Then we can restate the theorems as: Given a number of $k$-gons for each $k$, such that they add up to the right amount of curvature, there exists an $r$-valent polyhedron with these amounts of $k$-gon when additionally adding enough flat $k$-gons.\\
 
-In both cases we call the sequence $(p_k)_{k \geq 3}$ to be realizable (as an $r$-valent polyhedron). The sums in both theorems are in fact necessary conditions for a sequence $(p_k)_{k \geq 3}$ to be realizable and are easily deducible from the {\sc Euler}-equations. We see that in the $3$-valent case as well as in the $4$-valent case there is a special type of $k$-gons, which do cancel out in these sums. We can interpret these $k$-gons as flat in the respective context and can assign positive and negative curvature to each $k$-gon (where the amount of curvature equals $6 - k$ or $4 - k$). Then we can restate the theorems as: Given a number of $k$-gons for each $k$, such that they add up to the right amount of curvature, there exists an $r$-valent polyhedron with these amounts of $k$-gon when additionally adding enough flat $k$-gons.
+One kind of generalization of these results was to let go of polyhedra and try to proof the results more generally for polyhedral maps on surfaces. This was done in the 1970's (\cite{jendrol1977generalization}, \cite{jucovivc1973theorem}, \cite{barnette1971toroidal}, \cite{grunbaum1969planar}, \cite{zaks1971analogue}) and there is now a complete characterization for which sequences $(p_k)_{k\geq 3}$ and $(v_k)_{k \geq 3}$ there exists a polyhedral map on some surface with $p_k$ $k$-gons and $v_k$ $k$-valent vertices when choosing the value of $p_6$ and $v_3$ or $p_4$ and $v_4$ appropriately. We review these results later in \autoref{sec:polymap}, when giving exact definitions for polyhedral maps on surfaces.\\
 
-One kind of generalization of these results was to let go of polyhedra and try to proof the results more generally for maps on surfaces. This was done in the 1970's and there is now a complete characterization which sequences $(p_k)_{k\geq 3}$ for the number of $k$-gons and $(v_k)_{k \geq 3}$ for the number of $k$-valent vertices have a realization as a map on some surface with $p_k$ $k$-gons when choosing the value of $p_6$ or $p_4$ appropriately and adding only $3$-valent or $4$-valent vertices. We review these results later in \autoref{sec:polymap}, when giving exact definitions for maps on surfaces.
+Another approach would be to allow for more than one type of $k$-gon to act as flat $k$-gons and leave their exact amount unspecified in the sequence $p$. A self-evident problem in this direction is: Given two sequences $q$, $w$ which act ``flat'', are we able to find a realization whose number of $k$-gons is described by $p + c\cdot q$ and whose number of $k$-valent vertices is described by $v + d\cdot w$ for all given sequences $p$ and $v$ for some $c, d \in \nats$? The obvious necessary combinatorial prerequisites for the sequences involved in these {\sc Eberhard}-like problems are established in \autoref{sec:gen:eberhard}.\\
 
-Another approach would be to allow for more than one type of $k$-gon to act as flat $k$-gons and leave their exact amount unspecified in the sequence $p$. A self-evident problem in this direction is: Given two sequences $q$, $w$, which act ``flat'', are we able to find a realization whose number of $k$-gons is described by $p + c\cdot q$ and whose number of $k$-valent vertices is described by $v + d\cdot w$ for all given sequences $p$ and $v$ for some $c, d \in \nats$? The obvious necessary combinatorial prerequisites for the sequences involved in these {\sc Eberhard}-like problems are established in \autoref{sec:gen:eberhard}.
-
-In \autoref{sec:construction} we describe and proof our main construction method, which we apply in the \crefrange{sec:3:3}{sec:3:5} to proof all {\sc Eberhard}-like theorems whenever these hold for all admissible sequences $p$, $v$ provided that the sequence $q$ has two non-zero entries and the sequence $w$ has only one non-zero entry.
+In \autoref{sec:construction} we describe and proof our main construction method, which we apply in the \crefrange{sec:3:3}{sec:3:5} to proof all {\sc Eberhard}-like theorems whenever these hold for all admissible sequences $p$, $v$ provided that the sequence $q$ has two non-zero coprime entries and the sequence $w$ has only one non-zero entry.\\
 
 Finally, we state in \autoref{sec:negative:results} why the remaining theorems fail on certain sequences $p$, $v$ and use the last section to state our conjectures which sequences might be realizable in those cases.

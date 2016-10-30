@@ -2,31 +2,31 @@
 
 We want to introduce a generalized form of the {\sc Eberhard} theorems in this section. We start with the usual formulation of them and do step by step abstractions to get a good grasp
 
-We can reformulate the statements of \autoref{thm:eberhard:3} and \autoref{thm:eberhard:4} as in the following:
-\begin{theorem}
+We can reformulate the statements of \autoref{thm:eberhard:3} and \autoref{thm:eberhard:4} as follows:
+\begin{theorem}\label{thm:eberhard:reformulated}
   Let $p \defeq (p_3, p_4, \dots, p_m)$ be a sequence of natural numbers, where
   \begin{align*}
     \sum_{k=3}^m(6 - k) \cdot p_k = 12 \qquad \left( \text{or:}\quad \sum_{k=3}^m(4 - k) \cdot p_k = 8 \right)
   \end{align*}
-  then there exists $c, d \in \nats$, such that $p + c \cdot [6]$ and $d \cdot [3]$ (or: $p + c \cdot [4]$ and $d \cdot [4]$) are realizable on the sphere $\sphere^2$.
+  then there exist $c, d \in \nats$, such that $p + c \cdot [6]$ and $d \cdot [3]$ (or: $p + c \cdot [4]$ and $d \cdot [4]$) are realizable on the sphere $\sphere^2$.
 \end{theorem}
 
 \begin{remark}\label{rem:gen:is:no:gen}
-The only difference between this version and \autoref{thm:eberhard:3} or \autoref{thm:eberhard:4} is, that in the previous statements $p_6$ or $p_4$ is assumed to be zero at first, while in this version we can specify a least amount of hexagons or quadrangles to occur in the polyhedron. To get from the original polyhedron of \autoref{thm:eberhard:3} or \autoref{thm:eberhard:4} (or even the polyhedral maps of \autoref{thm:eberhard:extended:3} and \autoref{thm:eberhard:extended:4}) to one which has at least the specified amount of hexagons or quadrangles is a quick construction we show in \autoref{ex:easy:expansion3} later. 
+While in \autoref{thm:eberhard:3} and \autoref{thm:eberhard:4} we simply get values $p_6$ or $p_4$ which make the polyhedron realizable, \autoref{thm:eberhard:reformulated} allows us to specify a least amount of hexagons or quadrangles to occur in the polyhedron. To get from the original polyhedron of \autoref{thm:eberhard:3} or \autoref{thm:eberhard:4} (or even the polyhedral maps of \autoref{thm:eberhard:extended:3} and \autoref{thm:eberhard:extended:4}) to a polyhedron that has at least the specified amount of hexagons or quadrangles is a quick construction we show in \autoref{ex:easy:expansion3} later, as it serves as a nice example of our general construction scheme. We can view the {\sc Eberhard} theorem as an statement about $p$-vectors: starting with an arbitrary $p$-vector, we can add a scalar multiple of another sequence (here: $c \cdot [6]$ or $c \cdot [4]$), such that the whole sequence is realizable.
 \end{remark}
 
 We want to capture this more generally in the following definition:
-\begin{definition}[$(q_3, \dots, q_n)$-$(w_3, \dots, w_m)$-realizable]\label{def:eberhard:realizable}
-  A pair of sequence $p = (p_3, \dots, p_m)$, $v = (v_3, \dots, v_n)$ is said to be \hdef{$(q_3, \dots, q_n)$-$(w_3, \dots, w_m)$-realizable} on a closed $2$-manifold $S$, if there exists $c, d \in \nats$, such that $(p + c q, v + d w)$ is realizable on $S$. 
+\begin{definition}[$q$-$w$-realizable]\label{def:eberhard:realizable}
+  A pair of sequence $p$, $v$ is said to be \hdef{$q$-$w$-realizable} on a closed $2$-manifold $S$, if there exists $c, d \in \nats$, such that $(p + c q, v + d w)$ is realizable on $S$. 
 \end{definition}
 
-The sequences $[6]$ and $[3]$ (or: $[4]$ and $[4]$) play an important part in these theorems. Geometrically, hexagons ``act flat'' in an $3$-valent grid, as do quadrangles in $4$-valent grids. From this perspective, we can take the next step and state a very general {\sc Eberhard}-like problem:
+The sequences $[6]$ and $[3]$ (or: $[4]$ and $[4]$) play an important part in these theorems. Geometrically, hexagons ``act flat'' in a $3$-valent grid, as do quadrangles in $4$-valent grids. From this perspective, we can take the next step and state a very general {\sc Eberhard}-like problem:
 
 \begin{problem}\label{prob:eberhard:unspecified}
   Let $(q_k)_{k \geq 3}$, $(w_k)_{k \geq 3}$ be a pair of ``flat'' sequences. Show for all ``admissible'' sequences $p$, $v$ and for every closed $2$-manifold $S$ that $(p, v)$ is $q$-$w$-realizable.
 \end{problem}
 
-In this section, we want to give conditions which flesh out the vague descriptions ``flat'' and ``admissible''. 
+In this section, we want to give conditions which narrow down the vague descriptions ``flat'' and ``admissible''. 
 
 For this, let $M$ be a polyhedral map on a closed $2$-manifold $S$ with faces $V$, edges $E$ and faces $F$, $p$-vector $p = (p_3, \dots, p_n)$ and $v$-vector $v = (v_3, \dots, v_m)$. $\chi$ shall be the {\sc Euler}-characteristic of $S$ and we want to abbreviate $v = |V|$, $e = |E|$ and $f = |F|$. Using a double counting argument (each edge is adjacent to two faces and each edge is adjacent to two vertices, see \autoref{rem:edge:incidence}) the following holds:
 \begin{align}
@@ -39,7 +39,7 @@ For this, let $M$ be a polyhedral map on a closed $2$-manifold $S$ with faces $V
 % \end{align}
 % for each $p$-vector $p$ and $v$-vector $v$ of a polyhedral map.
 
-Next we want to state the following fundamental property of maps on surfaces (which holds even for embeddings):
+Further, we state the following fundamental property of maps on surfaces (which holds even for embeddings):
 \begin{theorem}[{\sc Euler-Poincaré} relation]\label{thm:eulers:relation} $v - e + f = \chi$.
 \end{theorem}
 
@@ -75,7 +75,7 @@ We want to constitute from this equation when a pair of sequences is ``flat'', i
   A pair of sequences $(q, w)$ is called \hdef{flat with parameter $t$}, if \eqref{eq:qw:flat} holds.
 \end{definition}
 
-If $t > \frac{2}{3}$, the coefficients of each $w_k$ is negative and therefore \eqref{eq:qw:flat} cannot hold. The same is true for $t < \frac{1}{3}$ and the coefficients of $q_k$, therefore from now on assume that $t \in \left[\frac{1}{3}, \frac{2}{3}\right]$.
+If $t > \frac{2}{3}$, the coefficients of each $w_k$ is negative and therefore \eqref{eq:qw:flat} cannot hold. The same is true for $t < \frac{1}{3}$ and the coefficients of $q_k$, therefore from now on we assume that $t \in \left[\frac{1}{3}, \frac{2}{3}\right]$.
 
 With this definition we now have everything ready to state the general {\sc Eberhard} problem:
 
@@ -106,9 +106,9 @@ Each of these cases will be the topic of the later \crefrange{sec:3:3}{sec:3:5}.
   r &= 4: \qquad &  \sum_{4=3}^m \left(4 - k \right) v_k\,+\, &&  & \sum_{k=3}^n \left(4 - k \right) p_k &&= 4 \chi  \label{eq:vp:4}\\
   r &= 5: \qquad &2 \sum_{k=3}^m \left(5 - k \right) v_k\,+\, &&3 & \sum_{k=3}^n \left( \tfrac{10}{3} - k \right) p_k &&= 10 \chi, \label{eq:vp:5}
 \end{alignat}
-but since all of them originate from the same equation, we get no additional value from doing so. In fact, we can state this like in the next lemma.
+but since all of them originate from the same equation, we get no additional value from doing so. In fact, we can state this follows.
 \begin{lemma}
-  Let $p, v$ be a pair of sequences and $S$ be a closed manifold with {\sc Euler} characteristic $\chi$. The following are equivalent:
+  Let $p, v$ be a pair of sequences and $S$ be a closed manifold with {\sc Euler} characteristic~$\chi$. The following are equivalent:
   \begin{enumerate}[label=(\roman*)]
     \item $p$, $v$ are admissible on $S$.
     \item \eqref{eq:vp:3} and \eqref{eq:handshake} hold for $p$ and $v$.
@@ -123,11 +123,10 @@ but since all of them originate from the same equation, we get no additional val
   We immediately recognize \eqref{eq:vp:3} and \eqref{eq:vp:4} in \autoref{thm:eberhard:extended:3} and \autoref{thm:eberhard:extended:4} and the used sequences for $q$ and $w$ clearly suffice \eqref{eq:flat:3} or \eqref{eq:flat:4}, but there is no mention of \eqref{eq:handshake} in those theorems. In fact we can add to every pair of sequences $p$ and $q$ as in \autoref{thm:eberhard:extended:3} a number of hexagons and $3$-valent vertices to make them suffice \eqref{eq:handshake}, if $2 | \sum_{k \geq 3} p_k$. But $2 | \sum_{k \geq 3} p_k$ automatically follows from \eqref{eq:vp:3}. The same goes for \autoref{thm:eberhard:extended:4}, where we can add quadrangles and $4$-valent vertices to suffice \eqref{eq:handshake}, provided that the parity condition mentioned in the theorem holds. Thus we can conclude that \autoref{problem:eberhard} is in fact a generalization of both theorems. 
 \end{remark}
 
-
-The last thing we want to mention in this chapter is a useful property of the condition $\gcd(q_s, q_l) = 1$ we wanted to have for our sequence $q$:
+To wrap up this chapter we describe a useful property of the condition $\gcd(q_s, q_l) = 1$ we required for our sequence $q$:
 
 \begin{lemma}\label{lem:2:valued:eberhard}
-  Let $(p, v)$ be an admissible pair of sequences for some closed $2$-manifold $S$ with {\sc Euler} characteristics $\chi$ and $M$ be a map on $\chi$ with $p$-vector $p' \defeq p + [c_s \times s, c_l \times l]$, $v + d [r]$, for $s, l, c_s, c_l, r \in \nats$. Then $p' = p + c \cdot [q_s \times s, q_l \times l]$, where $[q_s \times s, q_l \times l]$ and $[r]$ are $t$-flat for parameter $t = \tfrac{2}{r}$ and $\gcd(q_s, q_l) = 1$. To put it differently: To show \autoref{problem:eberhard} for $[q_s \times s, q_l \times l]$ and $[r]$, where $\gcd(q_s, q_l) = 1$, it suffices to construct any polyhedral map $M$ where additionally to $p$ and $v$ only $s$-gons, $l$-gons and $r$-valent vertices are added, the proportion of the number of $s$-gons and $l$-gons is already dealt with automatically.
+  Let $(p, v)$ be an admissible pair of sequences for some closed $2$-manifold $S$ with {\sc Euler} characteristics $\chi$ and $M$ be a map on $\chi$ with $p$-vector $p' \defeq p + [c_s \times s, c_l \times l]$, $v + d [r]$, for $s, l, c_s, c_l, r \in \nats$. Then $p' = p + c \cdot [q_s \times s, q_l \times l]$, where $[q_s \times s, q_l \times l]$ and $[r]$ are $t$-flat for parameter $t = \tfrac{2}{r}$ and $\gcd(q_s, q_l) = 1$. In other words: to show \autoref{problem:eberhard} for $[q_s \times s, q_l \times l]$ and $[r]$, where $\gcd(q_s, q_l) = 1$, it suffices to construct any polyhedral map $M$ where additionally to $p$ and $v$ only $s$-gons, $l$-gons and $r$-valent vertices are added, the proportion of the number of $s$-gons and $l$-gons is already dealt with automatically.
   \begin{proof}
     Similarly to the reasoning above, we subtract \eqref{eq:general:vp:relation} for $(p', v')$ from \eqref{eq:general:vp:relation} for $(p, v)$ and get:
     \begin{align*}
