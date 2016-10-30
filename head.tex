@@ -17,6 +17,7 @@
 \usepackage{array}
 \usepackage{aliascnt}
 \usepackage{subcaption}
+\usepackage{changepage}
 \usepackage[labelfont=bf]{caption}
 \usepackage[inner=2cm,outer=2cm,top=1.5cm,bottom=1.5cm,includeheadfoot]{geometry}
 \usepackage[section]{placeins}
@@ -37,6 +38,7 @@
   lvertex/.style={draw, very thick, circle}
 }
 
+\strictpagecheck
 \counterwithin{figure}{section}
 
 \newcommand{\hdef}[1]{\textbf{#1}}
@@ -48,12 +50,16 @@
 \theoremstyle{definition}
 
 % figure enviroments
+\DeclareCaptionSubType*[alph]{figure}
+\renewcommand\thesubfigure{\thefigure(\alph{subfigure})}
+\DeclareCaptionLabelFormat{mysubfigurelabelformat}{Figure#1 #2}
+\captionsetup[subfigure]{labelformat=mysubfigurelabelformat}
 \captionsetup[FLOAT_TYPE]{labelformat=simple, labelsep=none}
 \newenvironment{tikzfigure}[2]
     {\begin{figure}[!h] \caption{#2} #1 \centering \begin{tikzpicture}[line cap=round, line join=round]}
     {\end{tikzpicture} \end{figure}}
 
-\newenvironment{tikzfigure2}[1]{\begin{figure}[!b]\caption{#1}\label{} \centering}
+\newenvironment{tikzfigure2}[1]{\begin{figure}[!b] \centering}
     {\end{figure}}
 
 \newenvironment{tikzsubfigure}[3]
