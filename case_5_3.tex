@@ -568,8 +568,8 @@ We now can split the infinitely many cases in four series, each with a different
     An expansion $3$-patch with outer tuple $o = (1, 2, 1, 1, 2, 1, 1, 2, 2, 1, 2, 2, 1, 2)$, a corresponding $o$-$6$-gonal $3$-patch and a expansion $3$-patch with the polyhedral property, all consisting only of pentagons and hendecagons, are shown in \autoref{fig:expansion:patch:5:11}. Using \autoref{const:edge:replacement:5:1}, \autoref{const:edge:replacement:5:2} and \autoref{const:edge:replacement:5:3} on the edges as indicated in all three we get new $3$-patches consisting only of pentagons and $5k + 11$-gons. Therefore we can apply \autoref{thm:main:const}.
     \begin{tikzfigure}{\label{fig:expansion:patch:5:11}}{}
       \matrix (m) [column sep=1cm] {
-        \begin{scope}[yscale=0.866,scale=1.5]
-            \draw[very thick] (-0.5, 1) -- (-1, 2) -- (-1.625, 2.75) -- (-2.5, 3) -- (-3.5, 3) -- (-4, 2.666) -- (-4.5, 5) -- (-4, 6) -- (-4, 8) -- (-2.5, 9) -- (-1.5, 9) -- (-0.5, 8.75) -- (0.5, 7.25) -- (1.5, 7) -- (0, 5.333) -- (0.5, 5) -- (1, 4) -- (1.25, 3) -- (1, 2) -- (0.5, 1) -- (-0.5, 1); 
+        \begin{scope}[yscale=0.866,scale=1]
+            \draw (-0.5, 1) -- (-1, 2) -- (-1.625, 2.75) -- (-2.5, 3) -- (-3.5, 3) -- (-4, 2.666) -- (-4.5, 5) -- (-4, 6) -- (-4, 8) -- (-2.5, 9) -- (-1.5, 9) -- (-0.5, 8.75) -- (0.5, 7.25) -- (1.5, 7) -- (0, 5.333) -- (0.5, 5) -- (1, 4) -- (1.25, 3) -- (1, 2) -- (0.5, 1) -- (-0.5, 1); 
             \draw (-1,2) -- (-1.25, 3) -- (-1, 4) -- (-0.5, 5) -- (0, 5.333);
             \draw (-4, 6) -- (-3.5, 5) -- (-2.5, 5) -- (-1.833, 5.2) -- (-1.166, 5.5) -- (-0.5, 6) -- (0.5, 7.25);
 
@@ -586,27 +586,26 @@ We now can split the infinitely many cases in four series, each with a different
             \node at (0.5,6.5) {$5$};
             \node at (-0.8,5) {$5$};
 
-            
             \node[anchor= 90] at (-0.5, 1)      {$i_{0}'$};
             \node[anchor= 90] at (-1, 2)        {$i_{1}$};   
             \node[anchor= 60] at (-1.625, 2.75) {$i_{2}$};   
             \node[anchor= 90] at (-2.5, 3)      {$i_{3}$};   
-            \node[anchor=  0] at (-3.5, 3)      {$i_{4}$};   
-            \node[anchor=335] at (-4, 2.666)    {$i_{5}$};   
-            \node[anchor=270] at (-4.5, 5)      {$i_{6}=o_0$};   
-            \node[anchor=270] at (-4, 6)        {$o_1$}; 
-            \node[anchor=270] at (-4, 8)        {$o_2$}; 
+            \node[anchor= 90] at (-3.5, 3)      {$i_{4}$};   
+            \node[anchor= 45] at (-4, 2.666)    {$i_{5}$};   
+            \node[anchor=  0] at (-4.5, 5)      {$i_{6}=o_0$};   
+            \node[anchor=  0] at (-4, 6)        {$o_1$}; 
+            \node[anchor=335] at (-4, 8)        {$o_2$}; 
             \node[anchor=270] at (-2.5, 9)      {$o_3$}; 
             \node[anchor=210] at (-1.5, 9)      {$o_4$}; 
             \node[anchor=180] at (-0.5, 8.75)   {$o_5$}; 
-            \node[anchor=335] at (0.5, 7.25)    {$o_6$}; 
-            \node[anchor=270] at (1.5, 7)       {$i_{6}'=o_7$};   
+            \node[anchor=230] at (0.5, 7.25)    {$o_6$}; 
+            \node[anchor=250] at (1.5, 7)       {$i_{6}'=o_7$};   
             \node[anchor=270] at (0, 5.333)     {$i_{5}'$};   
-            \node[anchor=270] at (0.5, 5)       {$i_{4}'$};   
-            \node[anchor=270] at (1, 4)         {$i_{3}'$};   
-            \node[anchor=210] at (1.25, 3)      {$i_{2}'$};   
+            \node[anchor=180] at (0.5, 5)       {$i_{4}'$};   
+            \node[anchor=180] at (1, 4)         {$i_{3}'$};   
+            \node[anchor=180] at (1.25, 3)      {$i_{2}'$};   
             \node[anchor=180] at (1, 2)         {$i_{1}'$};   
-            \node[anchor=180] at (0.5, 1)       {$i_{0}'$};   
+            \node[anchor= 90] at (0.5, 1)       {$i_{0}'$};   
 
             \fill[black] (-0.5, 1)      circle(2pt);
             \fill[black] (-1, 2)        circle(2pt);
@@ -672,6 +671,45 @@ We now can split the infinitely many cases in four series, each with a different
             \draw (-2, 4) -- (-1.833, 4.75);
             \draw (-1, 4) -- (-1.25, 4.75) -- (-1.5, 4.5);
             \draw (-1.25, 4.75) -- (-1.166, 5.5);
+
+            \fill[black] (-0.5, 1)      circle(3pt);
+            \fill[black] (-1, 2)        circle(3pt);
+            \fill[black] (-1.625, 2.75) circle(3pt);
+            \fill[black] (-2.5, 3)      circle(3pt);
+            \fill[black] (-3.5, 3)      circle(3pt);
+            \fill[black] (-4, 2.666)    circle(3pt);
+            \fill[black] (-4.5, 5)      circle(3pt);
+            \fill[black] (-4, 6)        circle(3pt);
+            \fill[black] (-4, 8)        circle(3pt);
+            \fill[black] (-2.5, 9)      circle(3pt);
+            \fill[black] (-1.5, 9)      circle(3pt);
+            \fill[black] (-0.5, 8.75)   circle(3pt);
+            \fill[black] (0.5, 7.25)    circle(3pt);
+            \fill[black] (1.5, 7)       circle(3pt);
+            \fill[black] (0, 5.333)     circle(3pt);
+            \fill[black] (0.5, 5)       circle(3pt);
+            \fill[black] (1, 4)         circle(3pt);
+            \fill[black] (1.25, 3)      circle(3pt);
+            \fill[black] (1, 2)         circle(3pt);
+            \fill[black] (0.5, 1)       circle(3pt);
+            
+            \fill[black] (-0.5, 6)      circle(3pt);
+            \fill[black] (-0.5, 5)      circle(3pt);
+            \fill[black] (-3.5, 5)      circle(3pt);
+            \fill[black] (-2.5, 5)      circle(3pt);
+            \fill[black] (-2.25, 4)     circle(3pt);
+            \fill[black] (-1.833, 4.75) circle(3pt);
+            \fill[black] (-1.833, 5.2)  circle(3pt);
+            \fill[black] (-1.25, 3)     circle(3pt);
+            \fill[black] (-1.5, 3.5)    circle(3pt);
+            \fill[black] (-1.626, 2.75) circle(3pt);
+            \fill[black] (-2, 4)        circle(3pt);
+            \fill[black] (-1.5, 4.5)    circle(3pt);
+            \fill[black] (-1.25, 4.75)  circle(3pt);
+            \fill[black] (-1.166, 5.5)  circle(3pt);
+            \fill[black] (-1, 4)        circle(3pt);
+
+
           \end{scope}
           \begin{scope}[rotate=-60, yscale=0.866]
             \draw[very thick] (-0.5, 1) -- (-1, 2) -- (-1.625, 2.75) -- (-2.5, 3) -- (-3.5, 3) -- (-4, 2.666) -- (-4.5, 5) -- (-4, 6) -- (-4, 8) -- (-2.5, 9) -- (-1.5, 9) -- (-0.5, 8.75) -- (0.5, 7.25) -- (1.5, 7) -- (0, 5.333) -- (0.5, 5) -- (1, 4) -- (1.25, 3) -- (1, 2) -- (0.5, 1) -- (-0.5, 1); 
@@ -686,9 +724,47 @@ We now can split the infinitely many cases in four series, each with a different
             \draw (-2, 4) -- (-1.833, 4.75);
             \draw (-1, 4) -- (-1.25, 4.75) -- (-1.5, 4.5);
             \draw (-1.25, 4.75) -- (-1.166, 5.5);
+
+            \fill[black] (-0.5, 1)      circle(3pt);
+            \fill[black] (-1, 2)        circle(3pt);
+            \fill[black] (-1.625, 2.75) circle(3pt);
+            \fill[black] (-2.5, 3)      circle(3pt);
+            \fill[black] (-3.5, 3)      circle(3pt);
+            \fill[black] (-4, 2.666)    circle(3pt);
+            \fill[black] (-4.5, 5)      circle(3pt);
+            \fill[black] (-4, 6)        circle(3pt);
+            \fill[black] (-4, 8)        circle(3pt);
+            \fill[black] (-2.5, 9)      circle(3pt);
+            \fill[black] (-1.5, 9)      circle(3pt);
+            \fill[black] (-0.5, 8.75)   circle(3pt);
+            \fill[black] (0.5, 7.25)    circle(3pt);
+            \fill[black] (1.5, 7)       circle(3pt);
+            \fill[black] (0, 5.333)     circle(3pt);
+            \fill[black] (0.5, 5)       circle(3pt);
+            \fill[black] (1, 4)         circle(3pt);
+            \fill[black] (1.25, 3)      circle(3pt);
+            \fill[black] (1, 2)         circle(3pt);
+            \fill[black] (0.5, 1)       circle(3pt);
+            
+            \fill[black] (-0.5, 6)      circle(3pt);
+            \fill[black] (-0.5, 5)      circle(3pt);
+            \fill[black] (-3.5, 5)      circle(3pt);
+            \fill[black] (-2.5, 5)      circle(3pt);
+            \fill[black] (-2.25, 4)     circle(3pt);
+            \fill[black] (-1.833, 4.75) circle(3pt);
+            \fill[black] (-1.833, 5.2)  circle(3pt);
+            \fill[black] (-1.25, 3)     circle(3pt);
+            \fill[black] (-1.5, 3.5)    circle(3pt);
+            \fill[black] (-1.626, 2.75) circle(3pt);
+            \fill[black] (-2, 4)        circle(3pt);
+            \fill[black] (-1.5, 4.5)    circle(3pt);
+            \fill[black] (-1.25, 4.75)  circle(3pt);
+            \fill[black] (-1.166, 5.5)  circle(3pt);
+            \fill[black] (-1, 4)        circle(3pt);
+
           \end{scope}
           \begin{scope}[yscale=0.866,shift={(0 cm,16 cm)},rotate=180]
-            \draw (-0.5, 1) -- (-1, 2) -- (-1.625, 2.75) -- (-2.5, 3) -- (-3.5, 3) -- (-4, 2.666) -- (-4.5, 5) -- (-4, 6) -- (-4, 8) -- (-2.5, 9) -- (-1.5, 9) -- (-0.5, 8.75) -- (0.5, 7.25) -- (1.5, 7) -- (0, 5.333) -- (0.5, 5) -- (1, 4) -- (1.25, 3) -- (1, 2) -- (0.5, 1) -- (-0.5, 1); 
+            \draw[very thick] (-0.5, 1) -- (-1, 2) -- (-1.625, 2.75) -- (-2.5, 3) -- (-3.5, 3) -- (-4, 2.666) -- (-4.5, 5) -- (-4, 6) -- (-4, 8) -- (-2.5, 9) -- (-1.5, 9) -- (-0.5, 8.75) -- (0.5, 7.25) -- (1.5, 7) -- (0, 5.333) -- (0.5, 5) -- (1, 4) -- (1.25, 3) -- (1, 2) -- (0.5, 1) -- (-0.5, 1); 
             \draw (-1,2) -- (-1.25, 3) -- (-1, 4) -- (-0.5, 5) -- (0, 5.333);
             \draw (-4, 6) -- (-3.5, 5) -- (-2.5, 5) -- (-1.833, 5.2) -- (-1.166, 5.5) -- (-0.5, 6) -- (0.5, 7.25);
             \draw (-0.5, 6) -- (-0.5, 5);
@@ -700,6 +776,44 @@ We now can split the infinitely many cases in four series, each with a different
             \draw (-2, 4) -- (-1.833, 4.75);
             \draw (-1, 4) -- (-1.25, 4.75) -- (-1.5, 4.5);
             \draw (-1.25, 4.75) -- (-1.166, 5.5);
+
+            \fill[black] (-0.5, 1)      circle(3pt);
+            \fill[black] (-1, 2)        circle(3pt);
+            \fill[black] (-1.625, 2.75) circle(3pt);
+            \fill[black] (-2.5, 3)      circle(3pt);
+            \fill[black] (-3.5, 3)      circle(3pt);
+            \fill[black] (-4, 2.666)    circle(3pt);
+            \fill[black] (-4.5, 5)      circle(3pt);
+            \fill[black] (-4, 6)        circle(3pt);
+            \fill[black] (-4, 8)        circle(3pt);
+            \fill[black] (-2.5, 9)      circle(3pt);
+            \fill[black] (-1.5, 9)      circle(3pt);
+            \fill[black] (-0.5, 8.75)   circle(3pt);
+            \fill[black] (0.5, 7.25)    circle(3pt);
+            \fill[black] (1.5, 7)       circle(3pt);
+            \fill[black] (0, 5.333)     circle(3pt);
+            \fill[black] (0.5, 5)       circle(3pt);
+            \fill[black] (1, 4)         circle(3pt);
+            \fill[black] (1.25, 3)      circle(3pt);
+            \fill[black] (1, 2)         circle(3pt);
+            \fill[black] (0.5, 1)       circle(3pt);
+            
+            \fill[black] (-0.5, 6)      circle(3pt);
+            \fill[black] (-0.5, 5)      circle(3pt);
+            \fill[black] (-3.5, 5)      circle(3pt);
+            \fill[black] (-2.5, 5)      circle(3pt);
+            \fill[black] (-2.25, 4)     circle(3pt);
+            \fill[black] (-1.833, 4.75) circle(3pt);
+            \fill[black] (-1.833, 5.2)  circle(3pt);
+            \fill[black] (-1.25, 3)     circle(3pt);
+            \fill[black] (-1.5, 3.5)    circle(3pt);
+            \fill[black] (-1.626, 2.75) circle(3pt);
+            \fill[black] (-2, 4)        circle(3pt);
+            \fill[black] (-1.5, 4.5)    circle(3pt);
+            \fill[black] (-1.25, 4.75)  circle(3pt);
+            \fill[black] (-1.166, 5.5)  circle(3pt);
+            \fill[black] (-1, 4)        circle(3pt);
+
           \end{scope}
           \begin{scope}[shift={(0cm, 13.856cm)},rotate=120,yscale=0.866]
             \draw[very thick] (-0.5, 1) -- (-1, 2) -- (-1.625, 2.75) -- (-2.5, 3) -- (-3.5, 3) -- (-4, 2.666) -- (-4.5, 5) -- (-4, 6) -- (-4, 8) -- (-2.5, 9) -- (-1.5, 9) -- (-0.5, 8.75) -- (0.5, 7.25) -- (1.5, 7) -- (0, 5.333) -- (0.5, 5) -- (1, 4) -- (1.25, 3) -- (1, 2) -- (0.5, 1) -- (-0.5, 1); 
@@ -714,10 +828,48 @@ We now can split the infinitely many cases in four series, each with a different
             \draw (-2, 4) -- (-1.833, 4.75);
             \draw (-1, 4) -- (-1.25, 4.75) -- (-1.5, 4.5);
             \draw (-1.25, 4.75) -- (-1.166, 5.5);
+
+            \fill[black] (-0.5, 1)      circle(3pt);
+            \fill[black] (-1, 2)        circle(3pt);
+            \fill[black] (-1.625, 2.75) circle(3pt);
+            \fill[black] (-2.5, 3)      circle(3pt);
+            \fill[black] (-3.5, 3)      circle(3pt);
+            \fill[black] (-4, 2.666)    circle(3pt);
+            \fill[black] (-4.5, 5)      circle(3pt);
+            \fill[black] (-4, 6)        circle(3pt);
+            \fill[black] (-4, 8)        circle(3pt);
+            \fill[black] (-2.5, 9)      circle(3pt);
+            \fill[black] (-1.5, 9)      circle(3pt);
+            \fill[black] (-0.5, 8.75)   circle(3pt);
+            \fill[black] (0.5, 7.25)    circle(3pt);
+            \fill[black] (1.5, 7)       circle(3pt);
+            \fill[black] (0, 5.333)     circle(3pt);
+            \fill[black] (0.5, 5)       circle(3pt);
+            \fill[black] (1, 4)         circle(3pt);
+            \fill[black] (1.25, 3)      circle(3pt);
+            \fill[black] (1, 2)         circle(3pt);
+            \fill[black] (0.5, 1)       circle(3pt);
+            
+            \fill[black] (-0.5, 6)      circle(3pt);
+            \fill[black] (-0.5, 5)      circle(3pt);
+            \fill[black] (-3.5, 5)      circle(3pt);
+            \fill[black] (-2.5, 5)      circle(3pt);
+            \fill[black] (-2.25, 4)     circle(3pt);
+            \fill[black] (-1.833, 4.75) circle(3pt);
+            \fill[black] (-1.833, 5.2)  circle(3pt);
+            \fill[black] (-1.25, 3)     circle(3pt);
+            \fill[black] (-1.5, 3.5)    circle(3pt);
+            \fill[black] (-1.626, 2.75) circle(3pt);
+            \fill[black] (-2, 4)        circle(3pt);
+            \fill[black] (-1.5, 4.5)    circle(3pt);
+            \fill[black] (-1.25, 4.75)  circle(3pt);
+            \fill[black] (-1.166, 5.5)  circle(3pt);
+            \fill[black] (-1, 4)        circle(3pt);
+
           \end{scope}
         \end{scope}
         \\
-        \begin{scope}[scale=0.2]
+        \begin{scope}[scale=0.6]
           \draw (13,6)--(12,7)--(11,6)--(11,3)--(8,0)--(3,0)--(0,5)--(3,8)--(4,9)--(3,10)--(3,12)--(6,14)--(6,16)--(8,18)--(10,17)--(12,16)--(13,14)--(16,14)--(16,12)--(20,11)--(21,9)--(20,7)--(19,6)--(17,5)--(15,5)--(13,6);
           \draw (3,0)--(4,3)--(4,6)--(3,8);
           \draw (4,3)--(8,4)--(11,3);
@@ -739,7 +891,7 @@ We now can split the infinitely many cases in four series, each with a different
           \node[anchor= 90] at (3,0)   {$o_{1}$};
           \node[anchor=  0] at (0,5)   {$o_{2}$};
           \node[anchor=  0] at (3,8)   {$o_{3}$};
-          \node[anchor= 90] at (4,9)   {$o_{4}$};
+          \node[anchor=  0] at (4,9)   {$o_{4}$};
           \node[anchor=  0] at (3,10)  {$o_{5}$};
           \node[anchor=  0] at (3,12)  {$o_{6}$};
           \node[anchor=335] at (6,14)  {$o_{7}$};
@@ -756,6 +908,45 @@ We now can split the infinitely many cases in four series, each with a different
           \node[anchor= 90] at (19,6)  {$i_{2}'$};
           \node[anchor= 90] at (17,5)  {$i_{1}'$};
           \node[anchor= 90] at (15,5)  {$i_{0}'$};
+
+          \fill[black]  (13,6)  circle (2pt);
+          \fill[black]  (12,7)  circle (2pt);
+          \fill[black]  (11,6)  circle (2pt);
+          \fill[black]  (11,3)  circle (2pt);
+          \fill[black]  (8,0)   circle (2pt);
+          \fill[black]  (3,0)   circle (2pt);
+          \fill[black]  (0,5)   circle (2pt);
+          \fill[black]  (3,8)   circle (2pt);
+          \fill[black]  (4,9)   circle (2pt);
+          \fill[black]  (3,10)  circle (2pt);
+          \fill[black]  (3,12)  circle (2pt);
+          \fill[black]  (6,14)  circle (2pt);
+          \fill[black]  (6,16)  circle (2pt);
+          \fill[black]  (8,18)  circle (2pt);
+          \fill[black]  (10,17) circle (2pt);
+          \fill[black]  (12,16) circle (2pt);
+          \fill[black]  (13,14) circle (2pt);
+          \fill[black]  (16,14) circle (2pt);
+          \fill[black]  (16,12) circle (2pt);
+          \fill[black]  (20,11) circle (2pt);
+          \fill[black]  (21,9)  circle (2pt);
+          \fill[black]  (20,7)  circle (2pt);
+          \fill[black]  (19,6)  circle (2pt);
+          \fill[black]  (17,5)  circle (2pt);
+          \fill[black]  (15,5)  circle (2pt);
+
+          \fill[black]  (4,3)   circle (2pt);
+          \fill[black]  (4,5)   circle (2pt);
+          \fill[black]  (6,6)   circle (2pt);
+          \fill[black]  (8,4)   circle (2pt);
+          \fill[black]  (8,5)   circle (2pt);
+          \fill[black]  (10,6)  circle (2pt);
+          \fill[black]  (9,7)   circle (2pt);
+          \fill[black]  (6,8)   circle (2pt);
+          \fill[black]  (11,9)  circle (2pt);
+          \fill[black]  (12,11) circle (2pt);
+          \fill[black]  (11,13) circle (2pt);
+          \fill[black]  (9,15)  circle (2pt);
 
           \node (n1) at (9,12)  {$11$};
           \node (n2) at (14,9)  {$11$};
