@@ -23,6 +23,8 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with qu
           \node (k2) at (2.5, 0) {$k_2$};
           \draw[lface] (-1, 0) -- (k1);
           \draw[lface] ( 1, 0) -- (k2);
+          \fill[black] (-1,0) circle(2pt);
+          \fill[black] (1,0) circle(2pt);
         \end{scope}
         &
         \begin{scope}
@@ -34,6 +36,12 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with qu
           \draw (1.2, -1) -- (1, -0.5);
           \draw (1, 0.5) -- (1, -0.5);
           \draw (-1, 0.5) -- (-1, -0.5);
+
+          \fill[black] (-1,0.5) circle(2pt);
+          \fill[black] (1,0.5) circle(2pt);
+          \fill[black] (-1,-0.5) circle(2pt);
+          \fill[black] (1,-0.5) circle(2pt);
+
 
           \node (k1) at (-2.8, 0) {$k_1 + 1$};
           \node (k2) at ( 2.8, 0) {$k_2 + 1$};
@@ -67,6 +75,10 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with qu
           \node (k2) at ( 2, 0) {$k_2$};
           \draw[lface] (0, 0) -- (k1);
           \draw[lface] (0, 0) -- (k2);
+
+          \fill[black] (0,-1) circle(2pt);
+          \fill[black] (0,1) circle(2pt);
+
         \end{scope}
         &
         \begin{scope}
@@ -82,6 +94,17 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with qu
           \node (k2) at (2, 0) {$k_2 + 4$};
           \draw[lface] (0, 2) -- (k1);
           \draw[lface] (0, 2) -- (k2);
+
+          \fill[black] (0,-2) circle(2pt);
+          \fill[black] (0,2.5) circle(2pt);
+          \fill[black] (0,1.5) circle(2pt);
+          \fill[black] (-0.5,1) circle(2pt);
+          \fill[black] (-0.5,-1) circle(2pt);
+          \fill[black] (0,-1.5) circle(2pt);
+          \fill[black] (0.5,-1) circle(2pt);
+          \fill[black] (0.5,1) circle(2pt);
+          \fill[black] (0,-0.5) circle(2pt);
+          \fill[black] (0,0.5) circle(2pt);
 
           \node at (-0.25, 0) {$4$};
           \node at (0.25, 0) {$4$};
@@ -139,8 +162,8 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with qu
           \node[anchor=180] at (4.25, 7.5)  {$o_{10}$};
           \node[anchor=160] at (3.5, 7)     {$i_3'=o_{11}$};
           \node[anchor=180] at (2, 4)       {$i_2'$};
-          \node[anchor=180] at (2, 2)       {$i_1'$};
-          \node[anchor=180] at (0.5, 1)     {$i_0'$};
+          \node[anchor= 90] at (2, 2)       {$i_1'$};
+          \node[anchor= 90] at (0.5, 1)     {$i_0'$};
 
           \fill[black] (-0.5, 1)    circle (2pt);
           \fill[black] (-0.5, 3)    circle (2pt);
@@ -367,58 +390,112 @@ In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with qu
 \begin{tikzfigure2}{\todo{caption}}
   \begin{tikzsubfigure}{}{}{1}
     \begin{scope}[scale=0.7]
-
       \node (n1) at (-0.5,4.2) {$9$};
       \node (n2) at (0.8,2.2)  {$9$};
-      \node at (1.1,3.8)   {$4$};
-      \node at (2.2,2.6)   {$4$};
-      \node at (2.4,1.6)   {$4$};
+      \node at (1.25,3.75)   {$4$};
+      \node at (2,3)   {$4$};
+      \node at (-1.25,2.75)   {$4$};
       
       \draw (-0.5, 3) -- (-1, 2) -- (-1, 1) -- (0, 0) -- (1, 0) -- (2, 1) -- (2, 2) -- (1.5, 3) -- (0.5, 3.5);
       \draw[ldiamond] (0.5, 3.5) -- (-0.5, 3);
-      \draw (2, 1) -- (3, 1) -- (3, 2) -- (2, 2);
-      \draw (3, 2) -- (2.5, 3) -- (1.5, 3);
-      \draw (2.5, 3) -- (1, 4.5);
+      \draw (1,4.5) -- (2,4) -- (2.5, 3)--(2,2);
+      \draw (2,4) -- (1.5, 3);
+      \draw (-1,2) -- (-2,2.5) -- (-1.5, 3.5);
+     % \draw (3, 2) -- (2.5, 3) -- (1.5, 3);
+     % \draw (2.5, 3) -- (1, 4.5);
       \draw (0.5, 3.5) -- (1, 4.5) -- (1, 5.5) -- (0, 6.5) -- (-1, 6.5) -- (-2, 5.5) -- (-2, 4.5) -- (-1.5, 3.5) -- (-0.5, 3);
-      \node[anchor=90] at (0, 0) {$i_0$};
-      \node[anchor=90] at (1, 0) {$i'_0$};
-      \node[anchor=120] at (2, 1) {$i'_1$};
-      \node[anchor=180] at (3, 1) {$i'_2 = o_{11}$};
-      \node[anchor=180] at (3, 2) {$o_{10}$};
-      \node[anchor=-150] at (2.5, 3) {$o_9$};
-      \node[anchor=-150] at (1, 4.5) {$o_8$};
-      \node[anchor=-150] at (1, 5.5) {$o_7$};
-      \node[anchor=-110] at (0, 6.5) {$o_6$};
-      \node[anchor=-70] at (-1, 6.5) {$o_5$};
-      \node[anchor=-20] at (-2, 5.5) {$o_4$};
-      \node[anchor=0] at (-2, 4.5) {$o_3$};
-      \node[anchor=60] at (-1.5, 3.5) {$\mathbf{o_2}$};
-      \node[anchor=20] at (-0.5, 3) {$o_{1}$};
-      \node[anchor=0] at (-1, 2) {$i_2 = o_{0}$};
-      \node[anchor=45] at (-1, 1) {$i_1$};
+
+      \node[anchor=90] at (0, 0) {$i_1$};
+      \node[anchor=90] at (1, 0) {$i_0$};
+      \node[anchor=120] at (2, 1) {$i'_0$};
+      \node[anchor=180] at (2,2) {$i'_1$};
+      \node[anchor=180] at (2,4) {$o_{10}$};
+      \node[anchor=180] at (2.5, 3) {$i_{2}'=o_{11}$};
+      \node[anchor=-150] at (1, 4.5) {$o_9$};
+      \node[anchor=-150] at (1, 5.5) {$\mathbf{o_8}$};
+      \node[anchor=-110] at (0, 6.5) {$o_7$};
+      \node[anchor=-70] at (-1, 6.5) {$o_6$};
+      \node[anchor=-20] at (-2, 5.5) {$o_5$};
+      \node[anchor=  0] at (-2, 4.5) {$o_4$};
+      \node[anchor=  0] at (-1.5, 3.5) {$o_3$};
+      \node[anchor=20] at (-2,2.5) {$o_{2}$};
+      \node[anchor=45] at (-1, 2) {$o_{1}$};
+      \node[anchor= 30] at (-1, 1) {$i_2=o_{0}$};
       \draw[lface] (0, 3.25) -- (n1);
       \draw[lface] (0, 3.25) -- (n2);
 
 
-      \fill[black] (0, 0)   circle (2pt);
-      \fill[black] (1, 0)   circle (2pt);
-      \fill[black] (2, 1) circle (2pt);
-      \fill[black] (3, 1) circle (2pt);
-      \fill[black] (3, 2) circle (2pt);
-      \fill[black] (2.5, 3) circle (2pt);
-      \fill[black] (1, 4.5) circle (2pt);
-      \fill[black] (1, 5.5) circle (2pt);
-      \fill[black] (0, 6.5) circle (2pt);
-      \fill[black] (-1, 6.5) circle (2pt);
-      \fill[black] (-2, 5.5) circle (2pt);
-      \fill[black] (-2, 4.5) circle (2pt);
-      \fill[black] (-1.5, 3.5) circle (2pt);
-      \fill[black] (-0.5, 3) circle (2pt);
-      \fill[black] (-1, 2) circle (2pt);
-      \fill[black] (-1, 1) circle (2pt);
-      \fill[black] (0.5,3.5) circle (2pt);
-      \fill[black] (2,2)   circle (2pt);
-      \fill[black] (1.5,3) circle (2pt);
+      \fill[black]  (0, 0) circle (2pt);
+      \fill[black]  (1, 0) circle (2pt);
+      \fill[black]  (2, 1) circle (2pt);
+      \fill[black]  (2,2) circle (2pt);
+      \fill[black]  (2,4) circle (2pt);
+      \fill[black]  (2.5, 3) circle (2pt);
+      \fill[black]  (1, 4.5) circle (2pt);
+      \fill[black]  (1, 5.5) circle (2pt);
+      \fill[black]  (0, 6.5) circle (2pt);
+      \fill[black]  (-1, 6.5) circle (2pt);
+      \fill[black]  (-2, 5.5) circle (2pt);
+      \fill[black]  (-2, 4.5) circle (2pt);
+      \fill[black]  (-1.5, 3.5) circle (2pt);
+      \fill[black]  (-2,2.5) circle (2pt);
+      \fill[black]  (-1, 2) circle (2pt);
+      \fill[black]  (-1, 1) circle (2pt);
+      \fill[black]  (0.5,3.5) circle (2pt);
+      \fill[black]  (-0.5, 3) circle (2pt);
+      \fill[black]  (1.5, 3) circle (2pt);
+
+      % \node (n1) at (-0.5,4.2) {$9$};
+      % \node (n2) at (0.8,2.2)  {$9$};
+      % \node at (1.1,3.8)   {$4$};
+      % \node at (2.2,2.6)   {$4$};
+      % \node at (2.4,1.6)   {$4$};
+      
+      % \draw (-0.5, 3) -- (-1, 2) -- (-1, 1) -- (0, 0) -- (1, 0) -- (2, 1) -- (2, 2) -- (1.5, 3) -- (0.5, 3.5);
+      % \draw[ldiamond] (0.5, 3.5) -- (-0.5, 3);
+      % \draw (2, 1) -- (3, 1) -- (3, 2) -- (2, 2);
+      % \draw (3, 2) -- (2.5, 3) -- (1.5, 3);
+      % \draw (2.5, 3) -- (1, 4.5);
+      % \draw (0.5, 3.5) -- (1, 4.5) -- (1, 5.5) -- (0, 6.5) -- (-1, 6.5) -- (-2, 5.5) -- (-2, 4.5) -- (-1.5, 3.5) -- (-0.5, 3);
+      % \node[anchor=90] at (0, 0) {$i_0$};
+      % \node[anchor=90] at (1, 0) {$i'_0$};
+      % \node[anchor=120] at (2, 1) {$i'_1$};
+      % \node[anchor=180] at (3, 1) {$i'_2 = o_{11}$};
+      % \node[anchor=180] at (3, 2) {$o_{10}$};
+      % \node[anchor=-150] at (2.5, 3) {$o_9$};
+      % \node[anchor=-150] at (1, 4.5) {$o_8$};
+      % \node[anchor=-150] at (1, 5.5) {$o_7$};
+      % \node[anchor=-110] at (0, 6.5) {$o_6$};
+      % \node[anchor=-70] at (-1, 6.5) {$o_5$};
+      % \node[anchor=-20] at (-2, 5.5) {$o_4$};
+      % \node[anchor=0] at (-2, 4.5) {$o_3$};
+      % \node[anchor=60] at (-1.5, 3.5) {$\mathbf{o_2}$};
+      % \node[anchor=20] at (-0.5, 3) {$o_{1}$};
+      % \node[anchor=0] at (-1, 2) {$i_2 = o_{0}$};
+      % \node[anchor=45] at (-1, 1) {$i_1$};
+      % \draw[lface] (0, 3.25) -- (n1);
+      % \draw[lface] (0, 3.25) -- (n2);
+
+
+      % \fill[black] (0, 0)   circle (2pt);
+      % \fill[black] (1, 0)   circle (2pt);
+      % \fill[black] (2, 1) circle (2pt);
+      % \fill[black] (3, 1) circle (2pt);
+      % \fill[black] (3, 2) circle (2pt);
+      % \fill[black] (2.5, 3) circle (2pt);
+      % \fill[black] (1, 4.5) circle (2pt);
+      % \fill[black] (1, 5.5) circle (2pt);
+      % \fill[black] (0, 6.5) circle (2pt);
+      % \fill[black] (-1, 6.5) circle (2pt);
+      % \fill[black] (-2, 5.5) circle (2pt);
+      % \fill[black] (-2, 4.5) circle (2pt);
+      % \fill[black] (-1.5, 3.5) circle (2pt);
+      % \fill[black] (-0.5, 3) circle (2pt);
+      % \fill[black] (-1, 2) circle (2pt);
+      % \fill[black] (-1, 1) circle (2pt);
+      % \fill[black] (0.5,3.5) circle (2pt);
+      % \fill[black] (2,2)   circle (2pt);
+      % \fill[black] (1.5,3) circle (2pt);
       
     \end{scope}
   \end{tikzsubfigure}
