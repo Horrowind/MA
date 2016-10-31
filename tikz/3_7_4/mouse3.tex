@@ -1,0 +1,56 @@
+\documentclass[a4paper]{article}
+\usepackage[left=0.5cm, right=0.5cm, top=1cm, bottom=1cm]{geometry}
+\usepackage{tikz}
+\begin{document}
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[scale = 10, auto]
+\coordinate (x0) at (-0.502095, 0.359300);
+\coordinate (x1) at (-0.222330, 0.487069);
+\coordinate (x2) at (0.057267, 0.614753);
+\coordinate (x3) at (0.142315, 0.989821);
+\coordinate (x4) at (-0.415415, 0.909632);
+\coordinate (x5) at (-0.841254, 0.540641);
+\coordinate (x6) at (0.654861, 0.755750);
+\coordinate (x7) at (-1.000000, 0.000000);
+\coordinate (x8) at (-0.841254, -0.540641);
+\coordinate (x9) at (-0.415415, -0.909632);
+\coordinate (x10) at (0.959493, 0.281733);
+\coordinate (x11) at (0.142315, -0.989821);
+\coordinate (x12) at (0.959493, -0.281733);
+\coordinate (x13) at (0.654861, -0.755750);
+\draw (x0) -- (x1);
+\draw (x1) -- (x2);
+\draw (x2) -- (x3);
+\draw (x3) -- (x4);
+\draw (x4) -- (x5);
+\draw (x5) -- (x0);
+\draw (x0) -- (x2);
+\draw (x2) -- (x6);
+\draw[thick] (x6) -- (x3);
+\draw (x5) -- (x7);
+\draw (x7) -- (x0);
+\draw (x7) -- (x8);
+\draw (x8) -- (x9);
+\draw (x9) -- (x10);
+\draw (x10) -- (x6);
+\draw (x9) -- (x11);
+\draw (x11) -- (x10);
+\draw (x11) -- (x12);
+\draw (x12) -- (x10);
+\draw (x11) -- (x13);
+\draw (x13) -- (x12);
+\node at (-0.000000, -0.000000) {0};
+\node at (-0.296919, 0.650203) {1};
+\node at (-0.222386, 0.487041) {2};
+\node at (0.284814, 0.786775) {3};
+\node at (-0.781116, 0.299980) {4};
+\node at (-0.155306, 0.080180) {5};
+\node at (0.228798, -0.539240) {6};
+\node at (0.687100, -0.329940) {7};
+\node at (0.585556, -0.675768) {8};
+\end{tikzpicture}
+\caption{Graph}
+
+\end{figure}
+\end{document}
