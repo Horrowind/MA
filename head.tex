@@ -28,12 +28,13 @@
     intersections,
     positioning,
     arrows,
+    arrows.meta,
     decorations.markings
 }
 \tikzset{
      lface/.style={dotted,     decoration={markings, mark=at position 1.0 with {\arrow[>=angle 60]{>}}}, postaction={decorate}},
-   lsquare/.style={very thick, decoration={markings, mark=at position {0.5*\pgfdecoratedpathlength+3.5pt} with {\arrow{open square  }}}, postaction={decorate}},
-  ldiamond/.style={very thick, decoration={markings, mark=at position {0.5*\pgfdecoratedpathlength+5.5pt} with {\arrow{open diamond }}}, postaction={decorate}},
+   lsquare/.style={very thick, decoration={markings, mark=at position {0.5*\pgfdecoratedpathlength+3.5pt} with {\arrow{open square}}}, postaction={decorate}},
+  ldiamond/.style={very thick, decoration={markings, mark=at position {0.5*\pgfdecoratedpathlength+5.5pt} with {\arrow{open diamond}}}, postaction={decorate}},
   lvertex/.style={draw, very thick, circle}
 }
 
@@ -58,7 +59,7 @@
     {\begin{figure}[!h] \caption{#2} #1 \centering \begin{tikzpicture}[line cap=round, line join=round]}
     {\end{tikzpicture} \end{figure}}
 
-\newenvironment{tikzfigure2}[1]{\begin{figure}[!b] \centering}
+\newenvironment{tikzfigure2}{\begin{figure}[!b] \centering}
     {\end{figure}}
 
 \newenvironment{tikzsubfigure}[3]
