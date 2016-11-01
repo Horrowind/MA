@@ -60,6 +60,8 @@ In \cite{horvnak1977nearly} we can also find similar results to those in \cite{m
         \node at (150 : 1.5) {$f_2$};
         \node at (270 : 1.5) {$f_0$};
         \node[anchor=north, inner sep=9pt] at (0 : 0) {$v$};
+
+        \fill[black] (0,0) circle(2pt);
       \end{scope}
       &
       \begin{scope}
@@ -80,6 +82,11 @@ In \cite{horvnak1977nearly} we can also find similar results to those in \cite{m
         \node[anchor=north] at (90 : 1) {$v$};
         \draw[loosely dotted, shift={(90:1)}] (60 : 1) -- (120 : 1);
 
+        \fill[black] (330:1) circle(2pt);
+        \fill[black] (90:1) circle(2pt);
+        \fill[black] (210:1) circle(2pt);
+        
+        
       \end{scope}
       \\
     };
@@ -151,6 +158,10 @@ In \cite{horvnak1977nearly} we can also find similar results to those in \cite{m
         \node at ( 90 : 2.5) {$f_0$};
         \node at (210 : 2.5) {$f_1$};
         \node at (300 : 2.5) {$f_2$};
+
+        \foreach \x in {345,15,45,75,105,135,165,195,225,285,315}
+        \fill[black] (\x:2) circle(2pt);
+        
       \end{scope}
       &
       \begin{scope}
@@ -195,6 +206,9 @@ In \cite{horvnak1977nearly} we can also find similar results to those in \cite{m
         \node at (300 : 2.5) {$f_2$};
         \node at (255 : 2) {$f_r$};
         
+        \foreach \x in {345,15,45,75,105,135,165,195,225,285,315}
+        \fill[black] (\x:2) circle(2pt);
+
       \end{scope}
       \\
     };
@@ -230,6 +244,10 @@ In \cite{horvnak1977nearly} we can also find similar results to those in \cite{m
         \node at ( 90 : 2.5) {$f_0$};
         \node at (210 : 2.5) {$f_1$};
         \node at (330 : 2.5) {$f_2$};
+
+         \foreach \x in {345,15,45,75,105,135,165,195,225,315}
+        \fill[black] (\x:2) circle(2pt);
+
       \end{scope}
       &
       \begin{scope}
@@ -260,6 +278,10 @@ In \cite{horvnak1977nearly} we can also find similar results to those in \cite{m
         \node at (210 : 2.5) {$f_1$};
         \node at (330 : 2.5) {$f_2$};
         \node at (270 : 1.75) {$f_r$};
+
+        \foreach \x in {345,15,45,75,105,135,165,195,225,315}
+        \fill[black] (\x:2) circle(2pt);
+
       \end{scope}
       \\
     };
@@ -275,12 +297,24 @@ In \cite{horvnak1977nearly} we can also find similar results to those in \cite{m
         \draw (180 : 3) -- (0 : 0);
         \draw (240 : 3) -- (0 : 0);
         \draw (300 : 3) -- (0 : 0);
+
+        \foreach \x in {0,60,120,180,240,300}
+        \fill[black] (\x:3) circle(3pt);
+        \fill[black] (0:0) circle(3pt);
+        
       \end{scope}
       &
       \begin{scope}[scale=0.7]
         \draw (0 : 3) -- (60 : 3) -- (120 : 3) -- (180 : 3) -- (240 : 3) -- (300 : 3) -- (0 : 3);
         \draw (0 : 3) -- (30 : 2) -- (60 : 3) -- (90: 2) -- (120 : 3) -- (150 : 2) -- (180 : 3) -- (210 : 2) -- (240 : 3) -- (270 : 2) -- (300 : 3) -- (330 : 2) -- (0 : 3);
         \draw (30 : 2) -- (90 : 2) -- (150 : 2) -- (210 : 2) -- (270 : 2) -- (330 : 2) -- (30 : 2);
+
+        \foreach \x in {0,60,120,180,240,300}
+        \fill[black] (\x:3) circle(3pt);
+
+        \foreach \x in {30,90,150,210,270,330}
+        \fill[black] (\x:2) circle(3pt);
+
       \end{scope}
       &
       \begin{scope}[scale=0.7]
@@ -301,6 +335,16 @@ In \cite{horvnak1977nearly} we can also find similar results to those in \cite{m
           \draw (270 : 1) -- (270 : 2);
           \draw (330 : 1) -- (330 : 2);
           \draw (30 : 1) -- (90 : 1) -- (150 : 1) -- (210 : 1) -- (270 : 1) -- (330 : 1) -- (30 : 1);
+
+        \foreach \x in {0,60,120,180,240,300}
+        \fill[black] (\x:3) circle(3pt);
+
+        \foreach \x in {0,30,60,90,120,150,180,210,240,270,300,330}
+        \fill[black] (\x:2) circle(3pt);
+
+        \foreach \x in {30,90,150,210,270,330}
+        \fill[black] (\x:1) circle(3pt);
+
         \end{scope}
         \\
         \begin{scope}[scale=0.7]
@@ -314,6 +358,12 @@ In \cite{horvnak1977nearly} we can also find similar results to those in \cite{m
           \draw (225 : 3) -- (225 : 2);
           \draw (270 : 3) -- (270 : 2);
           \draw (315 : 3) -- (315 : 2);
+
+          \foreach \x in {0,45,90,135,180,225,270,315}
+          \fill[black] (\x:3) circle(3pt);
+          \foreach \x in {0,45,90,135,180,225,270,315}
+          \fill[black] (\x:2) circle(3pt);
+          
         \end{scope}
         &
         \begin{scope}[scale=0.7]
@@ -340,6 +390,16 @@ In \cite{horvnak1977nearly} we can also find similar results to those in \cite{m
           \draw (270 :2.2) -- (270 : 3);
           \draw (306 :2.2) -- (306 : 3);
           \draw (342 :2.2) -- (342 : 3);
+
+          \foreach \x in {0,36,72,108,144,180,216,252,288,324}
+          \fill[black] (\x:1) circle(3pt);
+          \foreach \x in {0,36,72,108,144,180,216,252,288,324}
+          \fill[black] (\x:1.8) circle(3pt);
+          \foreach \x in {18,54,90,126,162,198,234,270,306,342}
+          \fill[black] (\x:2.2) circle(3pt);
+          \foreach \x in {18,54,90,126,162,198,234,270,306,342}
+          \fill[black] (\x:3) circle(3pt);
+          
         \end{scope}
         &\\
       };
@@ -389,6 +449,13 @@ The last theorem we want to present in this section explains, why we were unable
       \draw (0, 1) -- (0, -1);
       \draw[loosely dotted] (-2.5, 0) -- (-2, 0);
       \draw[loosely dotted] (2.5, 0) -- (2, 0);
+
+      \fill[black] (-1,0) circle(2pt);
+      \fill[black] (1,0) circle(2pt);
+      \fill[black] (0,-1) circle(2pt);
+      \fill[black] (0,1) circle(2pt);
+
+
     \end{tikzfigure}%
     As there can not be two triangles adjacent to a single edge with two $3$-valence vertices in the map, every edge adjacent to a triangle has to have either a vertex of valence greater than $3$ or it has also to be adjacent to a larger $k$-gon, $k > 3$. Using this we can estimate the number of triangle-edge pairs $(f, e)$, $f$ is a triangle, $e$ is an edge and $f$ contains $e$. There are $3p_3$ many of these pairs, since every triangle contains three edges. On the other hand, around each vertex of valence $r > 3$ we can put at maximum $r$ triangles, which would be $2r$ triangle-edge pairs. Around each $k$-gon we can fit no more than $\floor{\frac{k}{2}} + \lceil \frac{j}{2} \rceil$ triangles, where $j$ is the number of vertices with valence greater than $3$ adjacent to the $k$-gon \todo{insert figure}. We can only hope for the greatest number of triangle-edge pairs, if we do not waste the vertices with valence greater than $3$ to the larger $k$-gons. Thus we can have only $\floor{\frac{k}{2}}$ triangle-edge pairs around each $k$-gon. Let $p' \defeq p + c \cdot [q_3 \times 3, q_l \times l]$, $v' = v + c \cdot [3]$, we have
     \begin{align*}
