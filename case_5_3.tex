@@ -9,10 +9,10 @@ For all the proofs, we want to use \autoref{thm:main:const}, therefore we need t
   \end{cinput}
   \begin{coutput}
   \item A $3$-patch with $p$-vector $p - [k_1, k_2] + [10k \times 5] + [k_1 + 5k, k_2 + 5k]$ for all $k \in \nats$.%
-  \item If every two faces of the $3$-patch meet proper, then this is carried over to the new patch.
+  \item If every two faces of the $3$-patch meet properly, then this is carried over to the new patch.
   \end{coutput}
   \begin{cdescription}
-    Using the replacement of the single edge as seen in \autoref{fig:const:edge:replacement:5:1} results in a new $3$-patch with $p$-vector $p - [k_1, k_2] + [10 \times 5] + [k_1 + 5, k_2 + 5]$. The line on the left labeled with a square is the specified edge and the line on the right labeled with a diamond is a new edge which we can use to repeat the construction. Every time we use this construction we add ten new pentagons while increasing the number of vertices of the left and right polygon by five; doing this $k$ times gives the desired $3$-patch. That all faces meet proper follows by induction, as this property is preserved in each step.
+    Using the replacement of the single edge as seen in \autoref{fig:const:edge:replacement:5:1} results in a new $3$-patch with $p$-vector $p - [k_1, k_2] + [10 \times 5] + [k_1 + 5, k_2 + 5]$. The line on the left labeled with a square is the specified edge and the line on the right labeled with a diamond is a new edge which we can use to repeat the construction. Every time we use this construction we add ten pentagons while increasing the number of vertices of the left and right polygon by five; doing this $k$ times gives the desired $3$-patch. That all faces meet properly follows by induction as this property is preserved in each step.
     \begin{tikzfigure}{\label{fig:const:edge:replacement:5:1}}{}
       \matrix (m) [column sep=1cm] {
         \begin{scope}
@@ -98,13 +98,13 @@ For all the proofs, we want to use \autoref{thm:main:const}, therefore we need t
 \begin{construction}\label{const:edge:replacement:5:2} When we want to use this construction in this section we draw a path of length two (the specified path) thick and point with arrows to a $k_1$-gon and a $k_2$-gon.
   \begin{cinput}
   \item A $3$-patch with $p$-vector $p$ and a specified path of length two beginning at a $k_1$-gon and some leading to a $k_2$-gon; no edge of the path is adjacent to any of the polygons.
-  \item If every two faces of the $3$-patch meet proper, then this is carried over to the new patch.
+  \item If every two faces of the $3$-patch meet properly, then this is carried over to the new patch.
   \end{cinput}
   \begin{coutput}
   \item A $3$-patch with $p$-vector $p - [k_1, k_2] + [(10k) \times 5] + [5k + k_1 , 5k + k_2]$ for all $k \in \nats$.%
   \end{coutput}
   \begin{cdescription}
-    Using the replacement of the path as seen in \autoref{fig:const:edge:replacement:5:2} results in a new $3$-patch with $p$-vector $p - [k_1, k_2] + [10 \times 5] + [k_1 + 5, k_2 + 5]$. The path drawn thick on the left is the specified path and the path on the right is a new apth which we can use to repeat the construction. Every time we use this construction we add ten pentagons while increasing the number of vertices of the left and right polygon by five; doing this $k$ times gives the desired $3$-patch. That all faces meet proper follows by induction, as this property is preserved in each step.
+    Using the replacement of the path as seen in \autoref{fig:const:edge:replacement:5:2} results in a new $3$-patch with $p$-vector $p - [k_1, k_2] + [10 \times 5] + [k_1 + 5, k_2 + 5]$. The path drawn thick on the left is the specified path and the path on the right is a new path which we can use to repeat the construction. Every time we use this construction we add ten pentagons while increasing the number of vertices of the left and right polygon by five; doing this $k$ times gives the desired $3$-patch. That all faces meet properly follows by induction as this property is preserved in each step.
     \begin{tikzfigure}{\label{fig:const:edge:replacement:5:2}}{}
       \matrix (m) [column sep=1cm] {
         \begin{scope}
@@ -296,9 +296,9 @@ For all the proofs, we want to use \autoref{thm:main:const}, therefore we need t
 % We now can split the infinitely many cases in four series, each with a different residual class of $l \mod 5$:
 \clearpage
 \begin{theorem}
-  Let $p$ and $v$ be a pair of admissible sequences for a orientable closed $2$-manifold $S$. Then $(p, v)$ is $[(5k + 1) \times 5, (5k+7)]$-$[3]$-realizable for all $k \in \nats$.
+  Let $p$ and $v$ be a pair of admissible sequences for an orientable closed $2$-manifold $S$. Then $(p, v)$ is $[(5k + 1) \times 5, (5k+7)]$-$[3]$-realizable for all $k \in \nats$.
   \begin{proof}
-    An expansion $3$-patch $\mathcal{P}_N$ with outer tuple $o = (1, 1, 1, 2, 1, 2, 2, 2)$ is shown in \autoref{fig:expansion:patch:5:7:a} and a corresponding $o$-$6$-gonal $3$-patch $\mathcal{P}_F$ is shown in \autoref{fig:expansion:patch:5:7:c}, both consisting of pentagons and heptagons. By using \autoref{const:edge:replacement:5:1} and \autoref{const:edge:replacement:5:2} as indicated we get $3$-patches consisting only of pentagons and $(5k+7)$-gons, $k \in \nats$. We can see in \autoref{fig:expansion:patch:5:7:b} that $\mathcal{P}_N$ has the polyhedral property, thus we can apply \autoref{thm:main:const} with $\mathcal{P}_P \defeq \mathcal{P}_N$.
+    An expansion $3$-patch $\mathcal{P}_N$ with outer tuple $o = (1, 1, 1, 2, 1, 2, 2, 2)$ is shown in \autoref{fig:expansion:patch:5:7:a} and a corresponding $o$-$6$-gonal $3$-patch $\mathcal{P}_F$ is shown in \autoref{fig:expansion:patch:5:7:c}, both consisting of pentagons and heptagons. By using \autoref{const:edge:replacement:5:1} and \autoref{const:edge:replacement:5:2} as indicated we get $3$-patches consisting of only pentagons and $(5k+7)$-gons, $k \in \nats$. We can see in \autoref{fig:expansion:patch:5:7:b} that $\mathcal{P}_N$ has the polyhedral property, thus we can apply \autoref{thm:main:const} with $\mathcal{P}_P \defeq \mathcal{P}_N$.
   \end{proof}%
 \end{theorem}%
 \begin{tikzfigure2}{}
@@ -462,9 +462,9 @@ For all the proofs, we want to use \autoref{thm:main:const}, therefore we need t
 \end{tikzfigure2}
 \clearpage
 \begin{theorem}
-  Let $p$ and $v$ be a pair of admissible sequences for a orientable closed $2$-manifold $S$. Then $(p, v)$ is $[(5k + 2) \times 5, (5k+8)]$-$[3]$-realizable for all $k \in \nats$.
+  Let $p$ and $v$ be a pair of admissible sequences for an orientable closed $2$-manifold $S$. Then $(p, v)$ is $[(5k + 2) \times 5, (5k+8)]$-$[3]$-realizable for all $k \in \nats$.
   \begin{proof}
-    An expansion $3$-patch $\mathcal{P}_N$ with outer tuple $o = (1, 2, 2, 2, 1, 2, 1, 1, 1, 2)$ is shown in \autoref{fig:expansion:patch:5:8:a} and a corresponding $o$-$6$-gonal $3$-patch $\mathcal{P}_F$ is shown in \autoref{fig:expansion:patch:5:8:c}, both consisting of pentagons and octagons. By using \autoref{const:edge:replacement:5:1}, \autoref{const:edge:replacement:5:2} and \autoref{const:edge:replacement:5:3} as indicated we get $3$-patches consisting only of pentagons and $(5k+8)$-gons, $k \in \nats$. We can see in \autoref{fig:expansion:patch:5:8:b} that $\mathcal{P}_N$ has the polyhedral property, thus we can apply \autoref{thm:main:const} with $\mathcal{P}_P \defeq \mathcal{P}_N$.
+    An expansion $3$-patch $\mathcal{P}_N$ with outer tuple $o = (1, 2, 2, 2, 1, 2, 1, 1, 1, 2)$ is shown in \autoref{fig:expansion:patch:5:8:a} and a corresponding $o$-$6$-gonal $3$-patch $\mathcal{P}_F$ is shown in \autoref{fig:expansion:patch:5:8:c}, both consisting of pentagons and octagons. By using \autoref{const:edge:replacement:5:1}, \autoref{const:edge:replacement:5:2} and \autoref{const:edge:replacement:5:3} as indicated we get $3$-patches consisting of only pentagons and $(5k+8)$-gons, $k \in \nats$. We can see in \autoref{fig:expansion:patch:5:8:b} that $\mathcal{P}_N$ has the polyhedral property, thus we can apply \autoref{thm:main:const} with $\mathcal{P}_P \defeq \mathcal{P}_N$.
   \end{proof}
 \end{theorem}%
 \begin{tikzfigure2}{}{}
@@ -676,9 +676,9 @@ For all the proofs, we want to use \autoref{thm:main:const}, therefore we need t
 \end{tikzfigure2}
 \clearpage
 \begin{theorem}
-  Let $p$ and $v$ be a pair of admissible sequences for a orientable closed $2$-manifold $S$. Then $(p, v)$ is $[(5k + 3) \times 5, (5k+9)]$-$[3]$-realizable for all $k \in \nats$.
+  Let $p$ and $v$ be a pair of admissible sequences for an orientable closed $2$-manifold $S$. Then $(p, v)$ is $[(5k + 3) \times 5, (5k+9)]$-$[3]$-realizable for all $k \in \nats$.
   \begin{proof}
-    An expansion $3$-patch $\mathcal{P}_N$ with outer tuple $o = (1, 1, 2, 2, 2, 2, 1, 2, 1, 2, 1, 1, 1, 1, 2, 2)$ is shown in \autoref{fig:expansion:patch:5:9:a} and a corresponding $o$-$6$-gonal $3$-patch $\mathcal{P}_F$ is shown in \autoref{fig:expansion:patch:5:9:c}, both consisting of pentagons and enneagons. By using \autoref{const:edge:replacement:5:1} as indicated we get $3$-patches consisting only of pentagons and $(5k+9)$-gons, $k \in \nats$. We can see in \autoref{fig:expansion:patch:5:9:b} that $\mathcal{P}_N$ has the polyhedral property, thus we can apply \autoref{thm:main:const} with $\mathcal{P}_P \defeq \mathcal{P}_N$.
+    An expansion $3$-patch $\mathcal{P}_N$ with outer tuple $o = (1, 1, 2, 2, 2, 2, 1, 2, 1, 2, 1, 1, 1, 1, 2, 2)$ is shown in \autoref{fig:expansion:patch:5:9:a} and a corresponding $o$-$6$-gonal $3$-patch $\mathcal{P}_F$ is shown in \autoref{fig:expansion:patch:5:9:c}, both consisting of pentagons and enneagons. By using \autoref{const:edge:replacement:5:1} as indicated we get $3$-patches consisting of only pentagons and $(5k+9)$-gons, $k \in \nats$. We can see in \autoref{fig:expansion:patch:5:9:b} that $\mathcal{P}_N$ has the polyhedral property, thus we can apply \autoref{thm:main:const} with $\mathcal{P}_P \defeq \mathcal{P}_N$.
   \end{proof}
 \end{theorem}
 \begin{tikzfigure2}
@@ -925,9 +925,9 @@ For all the proofs, we want to use \autoref{thm:main:const}, therefore we need t
 \end{figure}
 \clearpage
 \begin{theorem}
-  Let $p$ and $v$ be a pair of admissible sequences for a orientable closed $2$-manifold $S$. Then $(p, v)$ is $[(5k + 5) \times 5, (5k+11)]$-$[3]$-realizable for all $k \in \nats$.
+  Let $p$ and $v$ be a pair of admissible sequences for an orientable closed $2$-manifold $S$. Then $(p, v)$ is $[(5k + 5) \times 5, (5k+11)]$-$[3]$-realizable for all $k \in \nats$.
   \begin{proof}
-    An expansion $3$-patch $\mathcal{P}_N$ with outer tuple $o = (1, 1, 2, 1, 1, 2, 1, 2, 1, 2, 1, 2, 2, 1, 2, 2)$ is shown in \autoref{fig:expansion:patch:5:11:c}, a corresponding $o$-$6$-gonal $3$-patch $\mathcal{P}_F$ is shown in \autoref{fig:expansion:patch:5:11:d} and an expansion $3$-patch is shown in \autoref{fig:expansion:patch:5:11:a}, which has the polyhedral property as is seen \autoref{fig:expansion:patch:5:11:b}, both consisting of pentagons and hendecagons. By using \autoref{const:edge:replacement:5:1} and \autoref{const:edge:replacement:5:3} as indicated we get $3$-patches consisting only of pentagons and $(5k+11)$-gons, $k \in \nats$. Therefore we can apply \autoref{thm:main:const}.
+    An expansion $3$-patch $\mathcal{P}_N$ with outer tuple $o = (1, 1, 2, 1, 1, 2, 1, 2, 1, 2, 1, 2, 2, 1, 2, 2)$ is shown in \autoref{fig:expansion:patch:5:11:c}, a corresponding $o$-$6$-gonal $3$-patch $\mathcal{P}_F$ is shown in \autoref{fig:expansion:patch:5:11:d} and an expansion $3$-patch is shown in \autoref{fig:expansion:patch:5:11:a}, which has the polyhedral property as is seen \autoref{fig:expansion:patch:5:11:b}, all consisting of only pentagons and hendecagons. By using \autoref{const:edge:replacement:5:1} and \autoref{const:edge:replacement:5:3} as indicated we get $3$-patches consisting of only pentagons and $(5k+11)$-gons, $k \in \nats$. Therefore we can apply \autoref{thm:main:const}.
   \end{proof}
 \end{theorem}
 \begin{tikzfigure2}{}

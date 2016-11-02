@@ -1,22 +1,21 @@
 \mysection{$5$-valent {\sc Eberhard}-like theorems with triangles}\label{sec:3:5}
 
-In the previous two section, we could rely on \autoref{thm:eberhard:extended:3} and \autoref{thm:eberhard:extended:4} to do the main work for us and create an initial map we can begin to work with. Since the previous work on $5$-valent {\sc Eberhard} theorems is not as advanced as in the $3$-valent and $4$-valent cases and does not consider the additional $v$-vector, we need a new $5$-valent {\sc Eberhard} theorem which we can use as first construction step and which includes both a $p$-vector and a $v$-vector. But the situation is not as difficult as doing a whole construction of a polyhedral map by ourselves, as in fact, we can use \autoref{thm:eberhard:extended:4} nonetheless and just need to convert the $4$-valent vertices into $5$-valent ones.
+In the previous two sections, we could rely on \autoref{thm:eberhard:extended:3} and \autoref{thm:eberhard:extended:4} to do the main work for us and create an initial map with which we can begin our constructions. As there is no comparable theorem stated in the litrature on $5$-valent {\sc Eberhard} theorems as in the $3$-valent and $4$-valent cases which does consider the additional $v$-vector, we need a new $5$-valent {\sc Eberhard} theorem which we can use as first construction step and which includes both a $p$-vector and a $v$-vector. But the situation is not as difficult as doing a whole construction of a polyhedral map by ourselves, as in fact, we can use \autoref{thm:eberhard:extended:4} nonetheless and just need to convert the $4$-valent vertices into $5$-valent ones in an intermediate step.
 \clearpage
-\begin{proposition}
+\begin{proposition}\label{thm:bootstrap:5}
   Let $p = (p_3, p_4, \dots, p_n)$, $v = (v_3, v_4, \dots, v_m)$ be a pair of admissible sequences, then $p$ is $[2\times3, 4]$-$[5]$-realizable on a closed orientable $2$-manifold $S$ with {\sc Euler} characteristic $\chi$.
   \begin{proof}
     Let $p' \defeq p + v$ and $v' = [v'_4 \times 4]$ for some $v'_4$ we want to specify shortly. Since $p$ and $v$ are admissible, \eqref{eq:vp:4} holds for $p$ and $v$, and it also holds for $p'$ and $v'$:
     \begin{align*}
-      &\sum_{k=3}^{\max(n, m)} (4 - k) p'_k + \sum_{k=3}^{\max(n, m)} (4 - k) v'_k \\
-      ={}& \sum_{k=3}^n (4 - k) p_k + \sum_{k=3}^m (4 - k) v_k = 4 \chi
+      \sum_{k=3}^{\max(n, m)} (4 - k) p'_k + \sum_{k=3}^{\max(n, m)} (4 - k) v'_k ={}\sum_{k=3}^n (4 - k) p_k + \sum_{k=3}^m (4 - k) v_k = 4 \chi
     \end{align*}
     as well as \eqref{eq:handshake}
     \begin{align*}
       \sum_{k = 3}^n k (p_k + v_k) = \sum_{k = 3}^n k p_k + \sum_{k = 3}^n k v_k = 4e = \sum_{k = 3} k v'_k
     \end{align*}
-    if we set $v'_4 \defeq e$. Hence the sequences $p'$, $v'$ are $[4]$-$[4]$-realizable by \autoref{thm:eberhard:extended:4} as a polyhedral map on $S$. Let $M'$ be this realization with $e'$ edges and $v'$ vertices. We use $M'$ to create a realization with valence $5$ by inserting additional triangles and quadrangles. This is done by replacing each edge of the realization by four triangles and a single quadrangle while replacing each vertex by eight triangles and five squares as shown in \autoref{fig:case34:img1}. Since $S$ is orientable we can do this such that the resulting map is $5$-valent.
+    if we set $v'_4 \defeq e$. Hence the sequences $p'$, $v'$ are $[4]$-$[4]$-realizable by \autoref{thm:eberhard:extended:4} as a polyhedral map on $S$. Let $M'$ be this realization with $e'$ edges and $v'$ vertices. We use $M'$ to create a new realization which replaces $4$-valent vertices with $5$-valent ones by inserting additional triangles and quadrangles. This is done by replacing each edge of the realization by four triangles and a single quadrangle while replacing each vertex by eight triangles and five squares as shown in \autoref{fig:case34:img1}. Since $S$ is orientable we can do this such that the resulting map is $5$-valent.
 
-    \begin{tikzfigure}{\label{fig:case34:img1}}{Building a $5$-valent polyhedral map out of a $4$-valent one by adding triangles and quadrangles \todo{Finish this!}}
+    \begin{tikzfigure}{\label{fig:case34:img1}}{Building a $5$-valent polyhedral map out of a $4$-valent one by adding triangles and quadrangles.}
       \matrix (m) [column sep=1cm] {
         \begin{scope}[scale=0.5]
           \filldraw[fill=gray!50!white] (-3.5, -0.5) -- (-3, 0) -- (-1, 0) -- (-1, -2) -- (-1.5, -2.5);
@@ -56,21 +55,28 @@ In the previous two section, we could rely on \autoref{thm:eberhard:extended:3} 
           \filldraw[fill=gray!50!white] (-0.5, -5.5) -- (-1, -5) -- (-1, -3) -- (1, -3) -- (1, -5) -- (0.5, -5.5);
           \filldraw[fill=gray!50!white] (-0.5, 5.5) -- (-1, 5) -- (-1, 3) -- (1, 3) -- (1, 5) -- (0.5, 5.5);
 
+          \draw[very thick] (-9.5, -3.5) -- (-9, -3) -- (-7, -3) -- (-7, -5) -- (-7.5, -5.5);
+          \draw[very thick] (9.5, -3.5) -- (9, -3) -- (7, -3) -- (7, -5) -- (7.5, -5.5);
+          \draw[very thick] (9.5, 3.5) -- (9, 3) -- (7, 3) -- (7, 5) -- (7.5, 5.5);
+          \draw[very thick] (-9.5, 3.5) -- (-9, 3) -- (-7, 3) -- (-7, 5) -- (-7.5, 5.5);
+          \draw[very thick] (-0.5, -5.5) -- (-1, -5) -- (-1, -3) -- (1, -3) -- (1, -5) -- (0.5, -5.5);
+          \draw[very thick] (-0.5, 5.5) -- (-1, 5) -- (-1, 3) -- (1, 3) -- (1, 5) -- (0.5, 5.5);
+
           % \filldraw[fill=gray!75!white] (-5, -1) -- (-3, 1) -- (-3, 3) -- (-1, 1) -- (1, 1) -- (-1, -1) -- (-1, -3) -- (-3, -1) -- cycle;
 
           \draw (-9, -3) -- (9, -3);
-          \draw (-9, -1) -- (9, -1);
+          \draw (-9, -1) -- (-3, -1) (3, -1) -- (9, -1);
           \draw (-9, 1) -- (9, 1);
           \draw (-9, 3) -- (9, 3);
 
           \draw (-7, -5) -- (-7, 5);
           \draw (-5, -5) -- (-5, 5);
-          \draw (-3, -5) -- (-3, 5);
-          \draw (-1, -5) -- (-1, 5);
-          \draw ( 1, -5) -- ( 1, 5);
-          \draw ( 3, -5) -- ( 3, 5);
+          \draw (-3, -1) -- (-3, 5);
+          \draw ( 3, -1) -- ( 3, 5);
           \draw ( 5, -5) -- ( 5, 5);
           \draw ( 7, -5) -- ( 7, 5);
+
+          \draw[dashed, very thick] (-3, -5) -- (-3, -1) -- (3, -1) -- (3, -5);
 
           \draw (-9, -3) -- (-7, -1);
           \draw (-9,  1) -- (-7,  3);
@@ -125,6 +131,31 @@ In the previous two section, we could rely on \autoref{thm:eberhard:extended:3} 
           \draw ( 4.5, -5.5) -- (5, -5) -- (5, -5.5);
           \draw[very thick] ( 7, -5.5) -- ( 7, -5);
 
+          \draw ( 7,  5.5) -- ( 7,  5);
+          \draw[very thick] ( 7,  5) -- ( 6.5,  5.5);
+          \draw ( 5,  5.5) -- ( 5,  5);
+          \draw ( 3.5,  5.5) -- ( 3,  5) -- ( 3,  5.5);
+          \draw[very thick] ( 1,  5.5) -- ( 1,  5);
+          \draw (-1,  5.5) -- (-1,  5);
+          \draw[very thick] (-1,  5) -- (-1.5,  5.5);
+          \draw (-3,  5.5) -- (-3,  5);
+          \draw (-4.5, 5.5) -- (-5, 5) -- (-5, 5.5);
+          \draw[very thick] ( -7, 5.5) -- ( -7, 5);
+
+          \draw[very thick] (-9, -3) -- (-9.5, -3); 
+          \draw (-9, -1) -- (-9.5, -1); 
+          \draw (-9, -1) -- (-9.5, -0.5); 
+          \draw (-9,  1) -- (-9.5,  1); 
+          \draw (-9,  3) -- (-9.5,  3); 
+          \draw[very thick] (-9,  3) -- (-9.5,  2.5); 
+
+          \draw[very thick] ( 9,  3) -- ( 9.5,  3); 
+          \draw ( 9,  1) -- ( 9.5,  1); 
+          \draw ( 9,  1) -- ( 9.5,  0.5); 
+          \draw ( 9, -1) -- ( 9.5, -1); 
+          \draw ( 9, -3) -- ( 9.5, -3); 
+          \draw[very thick] ( 9, -3) -- ( 9.5, -2.5); 
+
           \foreach \x in {-7,-5,-3,-1,1,3,5,7}
           \foreach \y in {-5,5}  
           \fill[black] (\x,\y) circle(3pt);
@@ -137,13 +168,13 @@ In the previous two section, we could rely on \autoref{thm:eberhard:extended:3} 
         \\
       };
     \end{tikzfigure}
-    The resulting map $M''$ is $5$-valent and has a $p$-vector of $p' + [c_1 \times 3, c_2 \times 4]$ (for some $c_1, c_2 \in \nats$ we do not want to state explicitly), but lacks lacks the specified vertices of the original $v$-vector $v$. To fix this we take for $k$-valent entry in $v$ a different $k$-gon of $M''$ and replace the $k$-gon together with the ring of triangles and quadrangles as in \autoref{fig:case34:img2}.
+    The resulting map $M''$ is $5$-valent and has a $p$-vector of $p' + [c_1 \times 3, c_2 \times 4]$ (for some $c_1, c_2 \in \nats$ we do not want to state explicitly), but lacks the specified vertices of the original $v$-vector $v$. To fix this we take for each $k$-valent entry in $v$ a different $k$-gon of $M''$ and replace the $k$-gon together with the ring of triangles and quadrangles as in \autoref{fig:case34:img2}.
     \begin{tikzfigure}{\label{fig:case34:img2}}{Replacing a $k$-gon to get a $k$-valent vertex}
       \matrix (m) [ column sep=1cm] {
         \begin{scope}[scale=0.9, xscale=-1]
           \fill[fill=gray!50!white](  0 :   1) -- ( 72 :   1) -- (144 :   1) -- (216 :   1) -- (288 :   1) -- (  0 :   1);
           \draw (  0.0 : 1.000) -- ( 72.0 : 1.000) -- (144.0 : 1.000) -- (216.0 : 1.000) -- (288 :   1) -- (  0 :   1);
-          \draw (  0.0 : 3.000) -- ( 72.0 : 3.000) -- (144.0 : 3.000) -- (216.0 : 3.000) -- (288 :   3) -- (  0 :   3);
+          \draw[dashed, very thick] (  0.0 : 3.000) -- ( 72.0 : 3.000) -- (144.0 : 3.000) -- (216.0 : 3.000) -- (288 :   3) -- (  0 :   3);
           \draw (  0.0 : 1.000) -- (337.6 : 2.497) -- (288.0 : 1.000) -- (310.4 : 2.497);
           \draw ( 72.0 : 1.000) -- ( 49.6 : 2.497) -- (  0.0 : 1.000) -- ( 22.4 : 2.497);
           \draw (144.0 : 1.000) -- (121.6 : 2.497) -- ( 72.0 : 1.000) -- ( 94.4 : 2.497);
@@ -160,7 +191,7 @@ In the previous two section, we could rely on \autoref{thm:eberhard:extended:3} 
         \end{scope}
         &
         \begin{scope}[scale=0.9, xscale=-1]
-          \draw (  0.0 : 3.000) -- ( 72.0 : 3.000) -- (144.0 : 3.000) -- (216.0 : 3.000) -- (288 :   3) -- (  0 :   3);
+          \draw[dashed, very thick] (  0.0 : 3.000) -- ( 72.0 : 3.000) -- (144.0 : 3.000) -- (216.0 : 3.000) -- (288 :   3) -- (  0 :   3);
           \draw (  0.0 : 0.000) -- (337.6 : 2.497) -- ( 22.4 : 2.497);
           \draw ( 72.0 : 0.000) -- ( 49.6 : 2.497) -- ( 94.4 : 2.497);
           \draw (144.0 : 0.000) -- (121.6 : 2.497) -- (166.4 : 2.497);
@@ -183,28 +214,28 @@ In the previous two section, we could rely on \autoref{thm:eberhard:extended:3} 
 \end{proposition}
 
 Our next corner stone is to revisit \autoref{thm:main:const} for the $5$-valent case:
-\begin{proposition}\label{thm:main:const:5} Let $r = 5$, $p$ and $v$ be an admissible pair of sequences for which we can apply \autoref{thm:eberhard:extended:3} (or \autoref{thm:eberhard:extended:4}). Let $w = [r]$ and $q = [q_3 \times 3, q_l \times l]$, where $l \geq 4$, $q_s = 3l - 10$ and $q_l = 1$. Assume there exist
+\begin{proposition}\label{thm:main:const:5} Let $r = 5$, $p$ and $v$ be an admissible pair of sequences. Let $w = [r]$ and $q = [q_3 \times 3, q_l \times l]$, where $l \geq 4$, $q_3 = 3l - 10$ and $q_l = 1$. Assume there exist
   \begin{itemize}
-  \item an expansion $r$-patch $\mathcal{P}_N$ with outer arc $o$ consisting of triangles and $l$-gons,
+  \item an expansion $r$-patch $\mathcal{P}_N$ with outer tuple $o$ consisting of triangles and $l$-gons,
   \item an $o$-$4$-gonal $r$-patch $\mathcal{P}_F$ consisting of triangles and $l$-gons,
   \item an expansion $r$-patch $\mathcal{P}_P$ with the polyhedral property consisting of triangles and $l$-gons.
   \end{itemize}
   Then $(p, v)$ is $q$-$[5]$-realizable.
   \begin{proof}
-    Analogous to \autoref{thm:main:const}.
+    The proof is analogous to \autoref{thm:main:const}. We use \autoref{thm:bootstrap:5} to create an initial map and use \autoref{const:map} to replace all redundant quadrangles with triangles and $l$-gons via the given patches $\mathcal{P}_N(k)$ and $\mathcal{P}_F$. Finally we use \autoref{const:map} again with $\mathcal{P}_P(k)$ to make the map polyhedral. This map suffices our requirements by \autoref{lem:2:valued:eberhard}.
   \end{proof}
 \end{proposition}
 
-\begin{construction}\label{const:edge:replacement:3:5:1}
+\begin{construction}\label{const:edge:replacement:3:5:1} When we want to use this construction in this section we label an edge (the specified edge) with a square and point with arrows to a $k_1$-gon and a $k_2$-gon.
   \begin{cinput}
-  \item A $3$-patch with $p$-vector $p$ and a specified edge with exactly one vertex incident to some $k_1$-gon and the other vertex incident to some $k_2$-gon.
+  \item A $5$-patch with $p$-vector $p$ and a specified edge with exactly one vertex incident to some $k_1$-gon and the other vertex incident to some $k_2$-gon. We require that in the cyclic order around both both end points, starting at the specified edge, the $k_1$-gon and the $k_2$-gon have the same position.
   \end{cinput}
   \begin{coutput}
   \item A new $3$-patch with $p$-vector $p - [k_1, k_2] + [18k \times 3] + [k_1 + 3k, k_2 + 3k]$ for all $k \in \nats$.
-  \item If every two faces of the $3$-patch meet proper, then this is carried over to the new patch.
+  \item If every two faces of the $3$-patch meet properly, then this is carried over to the new patch.
   \end{coutput}
   \begin{cdescription}
-    Using the replacement of the single edge as seen in \autoref{fig:const:edge:replacement:3:5:1} results in a new map with $p$-vector $p - [k_1, k_2] + [18 \times 3] + [k_1 + 3, k_2 + 3]$. The thick line on the left is the specified edge and the thick line on the right is a new edge which we can use to repeat the construction. Every time we use this construction we add 18 new triangles while increasing the number of vertices of the left and the right polygon by three; doing this $k$ times has the desired result, since we only inserted $5$-valent vertices. That all faces meet proper follows by induction, as this property is preserved in each step.
+    There are two different cases seen on the left in \autoref{fig:const:edge:replacement:3:5:1}, we use the respective replacement of the edge and yield a new map with $p$-vector $p - [k_1, k_2] + [18 \times 3] + [k_1 + 3, k_2 + 3]$. The line on the left labeled with a square is the specified edge and the line on the right labeled with a square is a new edge which we can use to repeat the construction. Every time we use this construction we add 18 new triangles while increasing the number of vertices of the left and right polygon by three; doing this $k$ times gives the desired $5$-patch. That all faces meet properly follows by induction as this property is preserved in each step.
     \begin{tikzfigure}{\label{fig:const:edge:replacement:3:5:1}}{}
       \matrix (m) [column sep=1cm, row sep=1cm] {
         \begin{scope}
@@ -335,15 +366,15 @@ Our next corner stone is to revisit \autoref{thm:main:const} for the $5$-valent 
   \end{cdescription}
 \end{construction}
 
-\begin{construction}\label{const:edge:replacement:3:5:2}
+\begin{construction}\label{const:edge:replacement:3:5:2} When we want to use this construction in this section we label an edge (the specified edge) with a diamond and point with arrows to a $k_1$-gon and a $k_2$-gon.
   \begin{cinput}
-  \item A $3$-patch with $p$-vector $p$ and a specified edge adjacent to both some $k_1$-gon and some $k_2$-gon.
+  \item A $5$-patch with $p$-vector $p$ and a specified edge which is the common edge of a $k_1$-gon and a $k_2$-gon.
   \end{cinput}
   \begin{coutput}
-  \item A new $3$-patch with $p$-vector $p - [k_1, k_2] + [18k \times 3] + [k_1 + 3k, k_2 + 3k]$ for all $k \in \nats$.
+  \item A $5$-patch with $p$-vector $p - [k_1, k_2] + [18k \times 3] + [k_1 + 3k, k_2 + 3k]$ for all $k \in \nats$.
   \end{coutput}
   \begin{cdescription}
-    Using the replacement of the single edge as seen in \autoref{fig:const:edge:replacement:3:5:1} results in a new map with $p$-vector $p - [k_1, k_2] + [18 \times 3] + [k_1 + 3, k_2 + 3]$. The thick line on the left is the specified edge and the thick line on the right is a new edge which we can use to repeat the construction. Every time we use this construction we add 18 new triangles while increasing the number of vertices of the left and the right polygon by three; doing this $k$ times has the desired result, since we only inserted $5$-valent vertices.
+    Using the replacement of the single edge as seen in \autoref{fig:const:edge:replacement:3:5:2} results in a new $5$-patch with $p$-vector $p - [k_1, k_2] + [18 \times 3] + [k_1 + 3, k_2 + 3]$. The line on the left labeled with a diamond is the specified edge and the line on the right labeled with a diamond is a new edge which we can use to repeat the construction. Every time we use this construction we add 18 triangles while increasing the number of vertices of the left and right polygon by three; doing this $k$ times gives the desired $5$-patch.
     \begin{tikzfigure}{\label{fig:const:edge:replacement:3:5:2}}{}
       \matrix (m) [column sep=1cm] {
         \begin{scope}
@@ -406,15 +437,15 @@ Our next corner stone is to revisit \autoref{thm:main:const} for the $5$-valent 
   \end{cdescription}
 \end{construction}
 
-\begin{construction}\label{const:edge:replacement:3:5:3}
+\begin{construction}\label{const:edge:replacement:3:5:3} When we want to use this construction in this section we encircle a vertex (the specified vertex) and point with arrows to a $k_1$-gon and a $k_2$-gon.
   \begin{cinput}
-  \item A $3$-patch with $p$-vector $p$ and a specified edge adjacent to both some $k_1$-gon and some $k_2$-gon.
+  \item A $5$-patch with $p$-vector $p$ and a specified vertex which is adjacent to both $k_1$-gon and a $k_2$-gon which do not share an edge containing this vertex.
   \end{cinput}
   \begin{coutput}
-  \item A new $3$-patch with $p$-vector $p - [k_1, k_2] + [18k \times 3] + [k_1 + 3k, k_2 + 3k]$ for all $k \in \nats$.
+  \item A new $5$-patch with $p$-vector $p - [k_1, k_2] + [18k \times 3] + [k_1 + 3k, k_2 + 3k]$ for all $k \in \nats$.
   \end{coutput}
   \begin{cdescription}
-    Using the replacement of the single edge as seen in \autoref{fig:const:edge:replacement:3:5:1} results in a new map with $p$-vector $p - [k_1, k_2] + [18 \times 3] + [k_1 + 3, k_2 + 3]$. The thick line on the left is the specified edge and the thick line on the right is a new edge which we can use to repeat the construction. Every time we use this construction we add 18 new triangles while increasing the number of vertices of the left and the right polygon by three; doing this $k$ times has the desired result, since we only inserted $5$-valent vertices.
+    Using the replacement of the vertex as seen in \autoref{fig:const:edge:replacement:3:5:3} results in a new $5$-patch with $p$-vector $p - [k_1, k_2] + [18 \times 3] + [k_1 + 3, k_2 + 3]$. The encircled vertex on the left is the specified vertex and the encircled vertex on the right is a new vertex which we can use to repeat the construction. Every time we use this construction we add 18 triangles while increasing the number of vertices of the left and right polygon by three; doing this $k$ times gives the desired $5$-patch.
     \begin{tikzfigure}{\label{fig:const:edge:replacement:3:5:3}}{}
       \matrix (m) [column sep=1cm] {
         \begin{scope}
@@ -497,13 +528,13 @@ Our next corner stone is to revisit \autoref{thm:main:const} for the $5$-valent 
 \end{construction}
 \clearpage
 \begin{theorem}
-  Let $p = (p_3, p_4, \dots, p_n)$, $v = (v_3, v_4, \dots, v_m)$ be a pair of admissible sequences for a closed orientable $2$-manifold $S$ with {\sc Euler} characteristic $\chi$, i.e. \eqref{eq:vp:5} and \eqref{eq:handshake} hold for some $e \in \nats$. Then $(p, v)$ is $[(9k + 2) \times 3, 3k + 4]$-$[5]$-realizable for all $k \in \nats$.
+  Let $p$ and $v$ be a pair of admissible sequences for an orientable closed $2$-manifold $S$. Then $(p, v)$ is $[(9k + 2) \times 3, 3k + 4]$-$[5]$-realizable for all $k \in \nats$.
   \begin{proof}
-    Using \autoref{const:edge:replacement:3:5:1} on the edges in both $5$-patches in \autoref{fig:expansion:patch:3:4:5} as indicated results in $5$-patches consisting only of triangles and $n$-gons with the specified amount of vertices. The left patch is an expansion patch with outer tuple $o$, while the right patch is $o$-$6$-gonal, these properties do not change when using \autoref{const:edge:replacement:5:1} and \autoref{const:edge:replacement:5:2} on these patches. In fact, the resulting patch on the left is even polyhedral, so we can apply \autoref{thm:main:const:5}.
+    An expansion $5$-patch $\mathcal{P}_N$ with outer tuple $o = (3, 3, 2, 2)$ is shown in \autoref{fig:expansion:patch:3:5:4:a} and a corresponding $o$-$4$-gonal $5$-patch $\mathcal{P}_F$ is shown in \autoref{fig:expansion:patch:3:5:4:c}, both consisting of triangles and quadrangles. By using \autoref{const:edge:replacement:3:5:1} as indicated we get $5$-patches consisting of only triangles and $(3k+4)$-gons, $k \in \nats$. We can see in \autoref{fig:expansion:patch:3:5:4:b} that $\mathcal{P}_N$ has the polyhedral property, thus we can apply \autoref{thm:main:const} with $\mathcal{P}_P \defeq \mathcal{P}_N$.
   \end{proof}
 \end{theorem}
-\begin{tikzfigure2}{}
-  \begin{tikzsubfigure}{\label{fig:expansion:patch:3:4:5}}{\todo{better picture}}{0.5}
+\begin{tikzfigure2}
+  \begin{tikzsubfigure}{\label{fig:expansion:patch:3:4:5:a}}{$\mathcal{P}_N = \mathcal{P}_P$}{0.5}
     \begin{scope}[scale=1.7, yscale=0.866]
       \draw (-0.5, 1) -- (0,4) -- (-0.5, 5) -- (0.5, 5) -- (1.5, 5) -- (2.5, 5) -- (3,4) -- (3.5, 3) -- (3,2) -- (0.5, 1) -- (-0.5, 1);
       \draw[lsquare] (-0.5,1)--(3,4);
@@ -545,7 +576,7 @@ Our next corner stone is to revisit \autoref{thm:main:const} for the $5$-valent 
       
     \end{scope}
   \end{tikzsubfigure}
-  \begin{tikzsubfigure}{}{}{0.5}
+  \begin{tikzsubfigure}{\label{fig:expansion:patch:3:4:5:b}}{Edge patch of $\mathcal{P}_N$}{0.5}
     \begin{scope}[scale=1.0]
       \begin{scope}[yscale=0.866]
         \draw[very thick] (-0.5, 1) -- (0,4) -- (-0.5, 5) -- (0.5, 5) -- (1.5, 5) -- (2.5, 5) -- (3,4) -- (3.5, 3) -- (3,2) -- (0.5, 1) -- (-0.5, 1);
@@ -633,7 +664,7 @@ Our next corner stone is to revisit \autoref{thm:main:const} for the $5$-valent 
 \end{tikzfigure2}
 \begin{figure}
   \ContinuedFloat
-  \begin{tikzsubfigure}{}{}{1.0}
+  \begin{tikzsubfigure}{\label{fig:expansion:patch:3:4:5:c}}{$\mathcal{P}_F$}{1.0}
     \begin{scope}[scale=8]
       \input{tikz/3_4_5/quadrangle2}
     \end{scope}
@@ -641,14 +672,14 @@ Our next corner stone is to revisit \autoref{thm:main:const} for the $5$-valent 
 \end{figure}
 \clearpage
 \begin{theorem}
-  Let $p = (p_3, p_4, \dots, p_n)$, $v = (v_3, v_4, \dots, v_m)$ be a pair of admissible sequences for a closed orientable $2$-manifold $S$ with {\sc Euler} characteristic $\chi$, i.e. \eqref{eq:vp:5} and \eqref{eq:handshake} hold for some $e \in \nats$. Then $(p, v)$ is $[(9k + 2) \times 3, 3k + 4]$-$[5]$-realizable for all $k \in \nats$.
+  Let $p$ and $v$ be a pair of admissible sequences for an orientable closed $2$-manifold $S$. Then $(p, v)$ is $[(9k + 5) \times 3, 3k + 5]$-$[5]$-realizable for all $k \in \nats$.
   \begin{proof}
-    Using \autoref{const:edge:replacement:3:5:1} on the edges drawn thick in both $5$-patches in \autoref{fig:expansion:patch:3:5:5} results in $5$-patches consisting only of triangles and $n$-gons with the specified amount of vertices. The left patch is an expansion patch with outer tuple $o$, while the right patch is $o$-$6$-gonal, these properties do not change when using \autoref{const:edge:replacement:5:1} and \autoref{const:edge:replacement:5:2} on the thick lines. In fact, the resulting patch on the left is even polyhedral, so we can apply \autoref{thm:main:const:5}.
+    An expansion $5$-patch $\mathcal{P}_N$ with outer tuple $o = (2, 3, 1, 4, 2, 3)$ is shown in \autoref{fig:expansion:patch:3:5:5:c}, a corresponding $o$-$4$-gonal $5$-patch $\mathcal{P}_F$ is shown in \autoref{fig:expansion:patch:3:5:5:d} and an expansion $5$-patch is shown in \autoref{fig:expansion:patch:3:5:5:a}, which has the polyhedral property as is seen \autoref{fig:expansion:patch:3:5:5:b}, all consisting of only triangles and pentagons. By using \autoref{const:edge:replacement:3:5:1}, \autoref{const:edge:replacement:3:5:2} and \autoref{const:edge:replacement:3:5:3} as indicated we get $5$-patches consisting of only triangles and $(3k+5)$-gons, $k \in \nats$. Therefore we can apply \autoref{thm:main:const}.
   \end{proof}
 \end{theorem}
 
 \begin{tikzfigure2}{}
-  \begin{tikzsubfigure}{}{}{0.5}
+  \begin{tikzsubfigure}{\label{fig:expansion:patch:3:5:5:a}}{$\mathcal{P}_P$}{0.5}
     \begin{scope}[scale=0.6, yscale=0.866]
       \draw (-0.5, 1) -- (-3.5, 13) -- (-2.5, 14.5) -- (-1.5, 14.75) -- (-0.5, 14) -- (0.5, 12) -- (1.5, 11.25)  (2.5, 11.5) -- (3.5, 13) -- (4.5, 13.666) -- (5.5, 13.333) -- (6.5, 13) -- (6.75, 11.833) -- (7, 10.666) -- (8, 10) -- (0.5, 1) -- (-0.5, 1);
       \draw (-1.5, 13) -- (-3.5, 13);
@@ -721,7 +752,7 @@ Our next corner stone is to revisit \autoref{thm:main:const} for the $5$-valent 
       
     \end{scope}
   \end{tikzsubfigure}
-  \begin{tikzsubfigure}{}{}{0.5}
+  \begin{tikzsubfigure}{\label{fig:expansion:patch:3:5:5:b}}{Edge patch of $\mathcal{P}_P$}{0.5}
     \begin{scope}[scale=0.35]
       \begin{scope}[yscale=0.866]
         \draw[very thick] (-0.5, 1) -- (-3.5, 13) -- (-2.5, 14.5) -- (-1.5, 14.75) -- (-0.5, 14) -- (0.5, 12) -- (1.5, 11.25) -- (2.5, 11.5) -- (3.5, 13) -- (4.5, 13.666) -- (5.5, 13.333) -- (6.5, 13) -- (6.75, 11.833) -- (7, 10.666) -- (8, 10) -- (0.5, 1) -- (-0.5, 1);
@@ -864,9 +895,9 @@ Our next corner stone is to revisit \autoref{thm:main:const} for the $5$-valent 
 \end{tikzfigure2}
 \begin{figure}
   \ContinuedFloat
-  \begin{tikzsubfigure}{}{}{1.0}
+  \begin{tikzsubfigure}{\label{fig:expansion:patch:3:5:5:d}}{$\mathcal{P}_F$}{1.0}
     \begin{scope}[scale=8]
-      \input{tikz/3_5_5/quadrangle}
+      \input{tikz/3_5_5/quadrangle2}
     \end{scope}
   \end{tikzsubfigure}
 \end{figure}
