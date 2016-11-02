@@ -1,7 +1,7 @@
-\section{Construction}\label{sec:construction}
+\mysection{Construction}\label{sec:construction}
 
 Let $r \in \nats$. Within this section one can think of $r$ as the given valence of a polyhedral map. Many constructions in this thesis will utilize the concept of replacing each face of a polyhedral map with a larger patch. It can be quite challenging to see whether the resulting structures fit as well together as the previous faces did. This section introduces the necessary formalism for these kinds of constructions. Note that throughout this section, we allow for $2$-valent vertices in maps.
-
+\clearpage
 \begin{definition}[Patch] For a planar graph embedding we want to call the single unbounded face the \hdef{outer face} and every other face \hdef{inner face}. A map on the euclidean plane potentially $2$-valent vertices is called a \hdef{patch}. It is called an \hdef{$r$-patch}, if each of its vertices except the ones on the outer face is $r$-valent, while for the valence $r(v)$ of a vertex $v$ on the outer face $2 \leq r(v) \leq r$ holds. The \hdef{$p$-vector of a patch} is the sequence $(p_3, p_4, \dots)$, where $p_k$ denotes the number of $k$-gonal inner faces of the patch. The \hdef{boundary $\partial\mathcal{P}$ of a patch} $\mathcal{P}$ is induced subgraph of all vertices and edges adjacent to the outer face.
 \end{definition}
 
@@ -90,7 +90,7 @@ As previously stated, these definitions are used to formalize the construction s
 \begin{align*}
   \partial\mathcal{P} = i_0 - i_1 - \dots - i_{m-1} - (i_m = o_0) - \dots - o_s - \dots - o_{n - 1} - (o_n = i'_m) - i'_{m-1} \dots i'_1 - i'_0 - i_o
 \end{align*}
-($i_m$ and $o_0$ denote the same vertex, the same goes for $o_n$ and $i'_m$), for $1 \leq s < n$, such that:
+($i_m$ and $o_0$ denote the same vertex, the same goes for $o_n$ and $i'_m$), for $1 \leq s < n$, $m > 0$, such that:
   \begin{itemize}
   \item $w_{\mathcal{P}}(i_0) + w_{\mathcal{P}}(i'_0) = r - 1$,
   \item $i_1 - \dots - i_{m-1}$ fits $i'_{m-1} - \dots - i'_1$,

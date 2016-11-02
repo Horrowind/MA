@@ -1,8 +1,8 @@
-\section{Negative results}\label{sec:negative:results}
+\mysection{Negative results}\label{sec:negative:results}
 
-Attentive readers might have noticed that we left out in the previous sections exactly those theorems for $[q_s \times s, q_l \times l]$-$[r]$-realizability, where $s | l$. This is not by far a coincidence. In fact, the problems with these realizations arise from graph theory, and even weaker constructs can not exists. These constructs are graphs with the following properties: 
-
-\begin{definition} A vertex is called \hdef{$(a \mod r)$-valent}, if its valence is congruent $a$ modulo $r$, $r \in \nats_{>0}$, $a \in \set{0, \dots, r - 1}$. A planar graph is called $(a \mod r)$-valent, if the valence $(a \mod r)$-valent. Dually, a face is called \hdef{$(a \mod s)$-gonal}, if the number of vertices of this face is congrent $a$ mod $s$, $s \in \nats_{>0}$, $a \in \set{0, \dots, s - 1}$ and the graph is called $(a \mod s)$-gonal if every face is $(a \mod s)$-gonal. It is called \hdef{near $(a \mod k)$-gonal} / \hdef{near $(a \mod r)$-valent}, if exactly one face / exactly one vertex is not $(a \mod s)$-gonal / $(a \mod r)$-valent. In the case of $a = 0$, these properties will be called \hdef{(near) multi-$s$-gonal} / \hdef{(near) multi-$r$-valent}.
+Attentive readers might have noticed that we left out in the previous sections exactly those theorems for $[q_s \times s, q_l \times l]$-$[r]$-realizability, where $s | l$. This is not by far a coincidence. In fact, the problems with these realizations arise from graph theory and even weaker constructs can not exists.
+\clearpage
+\begin{definition} A vertex in a graph is called \hdef{$(a \mod r)$-valent}, if its valence is congruent $a$ modulo $r$, $r \in \nats_{>0}$, $a \in \set{0, \dots, r - 1}$. A planar graph is called $(a \mod r)$-valent, if the valence $(a \mod r)$-valent. Dually, a face is called \hdef{$(a \mod s)$-gonal}, if the number of vertices of this face is congrent $a$ mod $s$, $s \in \nats_{>0}$, $a \in \set{0, \dots, s - 1}$ and the graph is called $(a \mod s)$-gonal if every face is $(a \mod s)$-gonal. It is called \hdef{near $(a \mod k)$-gonal} / \hdef{near $(a \mod r)$-valent}, if exactly one face / exactly one vertex is not $(a \mod s)$-gonal / $(a \mod r)$-valent. In the case of $a = 0$, these properties will be called \hdef{(near) multi-$s$-gonal} / \hdef{(near) multi-$r$-valent}.
 \end{definition}
 
 The following theorem is established in \cite{malkevitch1970properties}, together with many similar results for up to two exceptional vertices/faces. We can immediately draw a conclusion for which admissible pairs of sequences we can not hope for a $q$-$w$-realization by applying this theorem on $[q_s \times s, q_l \times l]$-$[r]$-realizations, $s | l$, which we will do as a corollary.
@@ -287,8 +287,11 @@ In \cite{horvnak1977nearly} we can also find similar results to those in \cite{m
     };
   \end{tikzfigure}%
   Doing so we have the same four cases as in the first construction, in fact, we can take the argument of each one and directly apply it to this figure again. In the outcome, we get a new $(r \mod 2r)$-valent and near $(s \mod 2s)$-gonal graph, which either has a fewer edges, a contradiction, or we could cut of two $s$-gons from a larger $(s \mod 2s)$-gonal faces at specific places. By repeatedly using this construction we can build around the exceptional face rings of $s$-gons until we reach one of the graphs in \autoref{fig:mod:graphs:nonrealizable:4}. %
-  \begin{tikzfigure}{\label{fig:mod:graphs:nonrealizable:4}}{A graph which is not $(r \mod 2r)$-valent and near $(s \mod 2s)$-gonal for each pair $(s, r)$}
-    \matrix (m) [column sep=1cm, row sep=1cm] {
+\captionsetup[subfigure]{labelformat=empty}
+  \begin{figure}[ht]
+    \caption{Graphs which are not $(r \mod 2r)$-valent and near $(s \mod 2s)$-gonal}
+    \label{fig:mod:graphs:nonrealizable:4}
+    \begin{tikzsubfigure}{}{$(s, r) = (3, 3)$}{0.33}
       \begin{scope}[scale=0.7]
         \draw (  0 : 3) -- (60 : 3) -- (120 : 3) -- (180 : 3) -- (240 : 3) -- (300 : 3) -- (0 : 3);
         \draw (  0 : 3) -- (0 : 0);
@@ -303,7 +306,8 @@ In \cite{horvnak1977nearly} we can also find similar results to those in \cite{m
         \fill[black] (0:0) circle(3pt);
         
       \end{scope}
-      &
+    \end{tikzsubfigure}~
+    \begin{tikzsubfigure}{}{$(s, r) = (3, 4)$}{0.33}
       \begin{scope}[scale=0.7]
         \draw (0 : 3) -- (60 : 3) -- (120 : 3) -- (180 : 3) -- (240 : 3) -- (300 : 3) -- (0 : 3);
         \draw (0 : 3) -- (30 : 2) -- (60 : 3) -- (90: 2) -- (120 : 3) -- (150 : 2) -- (180 : 3) -- (210 : 2) -- (240 : 3) -- (270 : 2) -- (300 : 3) -- (330 : 2) -- (0 : 3);
@@ -316,7 +320,8 @@ In \cite{horvnak1977nearly} we can also find similar results to those in \cite{m
         \fill[black] (\x:2) circle(3pt);
 
       \end{scope}
-      &
+    \end{tikzsubfigure}~
+    \begin{tikzsubfigure}{}{$(s, r) = (3, 5)$}{0.33}
       \begin{scope}[scale=0.7]
         \draw (0 : 3) -- (60 : 3) -- (120 : 3) -- (180 : 3) -- (240 : 3) -- (300 : 3) -- (0 : 3);
         \draw (0 : 3) -- (30 : 2) -- (60 : 3) -- (90: 2) -- (120 : 3) -- (150 : 2) -- (180 : 3) -- (210 : 2) -- (240 : 3) -- (270 : 2) -- (300 : 3) -- (330 : 2) -- (0 : 3);
@@ -346,7 +351,8 @@ In \cite{horvnak1977nearly} we can also find similar results to those in \cite{m
         \fill[black] (\x:1) circle(3pt);
 
         \end{scope}
-        \\
+    \end{tikzsubfigure}
+    \begin{tikzsubfigure}{}{$(s, r) = (4, 3)$}{0.33}
         \begin{scope}[scale=0.7]
           \draw (  0 : 3) -- ( 45 : 3) -- (90 : 3) -- (135 : 3) -- (180 : 3) -- (225 : 3) -- (270 : 3) -- (315 : 3) -- (0 : 3);
           \draw (  0 : 2) -- ( 45 : 2) -- (90 : 2) -- (135 : 2) -- (180 : 2) -- (225 : 2) -- (270 : 2) -- (315 : 2) -- (0 : 2);
@@ -365,7 +371,8 @@ In \cite{horvnak1977nearly} we can also find similar results to those in \cite{m
           \fill[black] (\x:2) circle(3pt);
           
         \end{scope}
-        &
+    \end{tikzsubfigure}~
+    \begin{tikzsubfigure}{}{$(s, r) = (5, 3)$}{0.33}
         \begin{scope}[scale=0.7]
           \draw (0 : 1) -- (36 : 1) -- (72 : 1) -- (108: 1) -- (144 : 1) -- (180 : 1) -- (216 : 1) -- (252 : 1) -- (288 : 1) -- (324 : 1) -- (0 : 1);
           \draw (18 : 3) -- (54 : 3) -- (90 : 3) -- (126: 3) -- (162 : 3) -- (198 : 3) -- (234 : 3) -- (270 : 3) -- (306 : 3) -- (342 : 3) -- (18 : 3);
@@ -401,9 +408,9 @@ In \cite{horvnak1977nearly} we can also find similar results to those in \cite{m
           \fill[black] (\x:3) circle(3pt);
           
         \end{scope}
-        &\\
-      };
-    \end{tikzfigure}%
+    \end{tikzsubfigure}
+  \end{figure}
+\captionsetup[subfigure]{labelformat=mysubfigurelabelformat}
     But none of these are $(r \mod 2r)$-valent and near $(s \mod 2s)$-gonal, a contradiction.
   \end{proof}
 \end{proposition}
@@ -427,10 +434,7 @@ Finally we can state another theorem, singling out even more cases than \autoref
 \end{corollary}
 
 \begin{example}
-  The following admissible pair of sequences $(p, v)$ is not $[3, 9]$-$[3]$-realizable by \autoref{thm:mod:nonrealizable}:
-  \begin{align*}
-    p = [4 \times 3, 6], v = [6 \times 3].
-  \end{align*}
+  $p = [4 \times 3, 6]$, $v = [6 \times 3]$ is an admissible pair of sequences which is not $[3, 9]$-$[3]$-realizable by \autoref{thm:mod:nonrealizable}.
 \end{example}
 
 The last theorem we want to present in this section explains, why we were unable to find $3$-valent {\sc Eberhard}-like theorems with triangles and large $k$-gons, $k \geq 11$:
@@ -442,7 +446,7 @@ The last theorem we want to present in this section explains, why we were unable
 \begin{theorem}\label{thm:triangle:nonrealizable}
   Let $p$ and $v$ be sequences, $S$ a closed $2$-manifold $S$ and $q = [q_3 \times 3, q_l \times l]$, $w = [3]$ for $l \in \nats, l \geq 13$, $q_3 = \frac{l - 6}{\gcd(3, l)}$, $q_l = \frac{3}{\gcd(3, l)}$. Then the set $(C(p, v, q, w, S)$ is finite. Additionally, if $l \geq 11$ and $\sum_{k \geq 4} 2k \cdot v_k + \sum_{k \geq 4} \floor{\tfrac{k}{2}} p_k < 3p_3$, then $C(p, v, q, w, S)$ is empty, except when $S \cong \sphere^2$, $p = [4 \times 3]$, $v = [4 \times 3]$, in which case $C(p, v, q, w, S) = \set{(0, 0)}$.
   \begin{proof}
-    Since any to faces of a polyhedral map on $S$ have to meet proper, there can not be two triangles which coincide on a single edge with two $3$-valence vertices (see \autoref{fig:adjacent:triangles}), with the single exception of the tetrahedron, in which case we have $(0, 0) \in C(p, v, q, w, S)$. Without loss of generality assume $(p, v) \neq ([4 \times 3], [4 \times 3])$, since we always can obtain $C(p, v, q, w, S)$ from $C(p + q, v + w, q, w, S)$. %
+    Since any to faces of a polyhedral map on $S$ have to meet proper, there can not be two triangles which coincide on a single edge with two $3$-valence vertices (see \autoref{fig:adjacent:triangles}), with the single exception of the tetrahedron, in which case we have $(0, 0) \in C(p, v, q, w, S)$. Without loss of generality assume $(p, v) \neq ([4 \times 3], [4 \times 3])$, since we can always compute $C(p, v, q, w, S)$ from $C(p + q, v + w, q, w, S)$. %
     \begin{tikzfigure}{\label{fig:adjacent:triangles}}{Two triangles incident to two $3$-valent vertices}
       \draw (-2, 0) -- (-1, 0) -- (0, 1) -- (1, 0) -- (2, 0);
       \draw (-1, 0) -- (0, -1) -- (1, 0);

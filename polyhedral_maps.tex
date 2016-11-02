@@ -1,7 +1,7 @@
-\section{Polyhedral maps}\label{sec:polymap}
+\mysection{Polyhedral maps}\label{sec:polymap}
 
 Since we want to state general {\sc Eberhard}-like theorems not only on polyhedra, i.e. the sphere $\sphere^2$, but also on arbitrary surfaces, we need to define maps on $2$-manifolds and also need to specify which maps have common properties with polyhedra, which we will call polyhedral maps. The definitions in this section closely follow the ones in \cite{brehm2004polyhedralmaps}.
-
+\clearpage
 \begin{definition}[Simple graphs]
   A \hdef{simple graph} $G$ is a pair $(V, E)$ of a finite set $V$ and $E \subseteq \begin{psmallmatrix}V\\2\end{psmallmatrix}$ (so $G$ is undirected and finite without loops and multi-edges). A \hdef{subgraph} of $G$ is a graph $G' = (V', E')$, such that $V' \subseteq V$ and $E' \subseteq E \cap  \begin{psmallmatrix}V'\\2\end{psmallmatrix}$ and we want to denote this phenomena by $G' \subseteq G$. A \hdef{path} in $G$ is a subgraph $G_P = (V_P, E_P)$ of $G$, such that $V_P = \set{v_1, \dots, v_k}$ and $E_P = \bigcup_{i = 1}^{k-1}\set{v_i, v_{i+1}}$ for all $i \in \set{1, \dots k - 1}$. A \hdef{cycle} in $G$ is a subgraph $G_C = (V_C, E_C)$ of $G$, such that $V_C = \set{v_1, \dots, v_k}$ and $E_C = \set{v_k, v_1} \cup \bigcup_{i = 1}^{k-1}\set{v_i, v_{i+1}}$. We want to write $v_1 - \dots - v_k$ for paths and $v_1 - \dots - v_k - v_1$ for cycles. The \hdef{valence} of a vertex is the number of adjacent edges.
 \end{definition}

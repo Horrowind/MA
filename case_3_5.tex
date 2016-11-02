@@ -1,8 +1,7 @@
-\checkoddpage\ifoddpage\hbox{}\clearpage\else\fi%
-\section{$5$-valent {\sc Eberhard}-like theorems with triangles}\label{sec:3:5}
+\mysection{$5$-valent {\sc Eberhard}-like theorems with triangles}\label{sec:3:5}
 
 In the previous two section, we could rely on \autoref{thm:eberhard:extended:3} and \autoref{thm:eberhard:extended:4} to do the main work for us and create an initial map we can begin to work with. Since the previous work on $5$-valent {\sc Eberhard} theorems is not as advanced as in the $3$-valent and $4$-valent cases and does not consider the additional $v$-vector, we need a new $5$-valent {\sc Eberhard} theorem which we can use as first construction step and which includes both a $p$-vector and a $v$-vector. But the situation is not as difficult as doing a whole construction of a polyhedral map by ourselves, as in fact, we can use \autoref{thm:eberhard:extended:4} nonetheless and just need to convert the $4$-valent vertices into $5$-valent ones.
-
+\clearpage
 \begin{proposition}
   Let $p = (p_3, p_4, \dots, p_n)$, $v = (v_3, v_4, \dots, v_m)$ be a pair of admissible sequences, then $p$ is $[2\times3, 4]$-$[5]$-realizable on a closed orientable $2$-manifold $S$ with {\sc Euler} characteristic $\chi$.
   \begin{proof}
@@ -505,7 +504,7 @@ Our next corner stone is to revisit \autoref{thm:main:const} for the $5$-valent 
 \end{theorem}
 \begin{tikzfigure2}{}
   \begin{tikzsubfigure}{\label{fig:expansion:patch:3:4:5}}{\todo{better picture}}{0.5}
-    \begin{scope}[scale=0.9, yscale=0.866]
+    \begin{scope}[scale=1.7, yscale=0.866]
       \draw (-0.5, 1) -- (0,4) -- (-0.5, 5) -- (0.5, 5) -- (1.5, 5) -- (2.5, 5) -- (3,4) -- (3.5, 3) -- (3,2) -- (0.5, 1) -- (-0.5, 1);
       \draw[lsquare] (-0.5,1)--(3,4);
       \draw (-0.5,1)--(3.5,3);
@@ -545,9 +544,9 @@ Our next corner stone is to revisit \autoref{thm:main:const} for the $5$-valent 
       \draw[lface] (-0.5,1)--(n1);
       
     \end{scope}
-  \end{tikzsubfigure}~
+  \end{tikzsubfigure}
   \begin{tikzsubfigure}{}{}{0.5}
-    \begin{scope}[scale=0.5]
+    \begin{scope}[scale=1.0]
       \begin{scope}[yscale=0.866]
         \draw[very thick] (-0.5, 1) -- (0,4) -- (-0.5, 5) -- (0.5, 5) -- (1.5, 5) -- (2.5, 5) -- (3,4) -- (3.5, 3) -- (3,2) -- (0.5, 1) -- (-0.5, 1);
         \draw (-0.5,1)--(3,4);
@@ -631,12 +630,15 @@ Our next corner stone is to revisit \autoref{thm:main:const} for the $5$-valent 
       \end{scope}
     \end{scope}
   \end{tikzsubfigure}
+\end{tikzfigure2}
+\begin{figure}
+  \ContinuedFloat
   \begin{tikzsubfigure}{}{}{1.0}
-    \begin{scope}[scale=5]
+    \begin{scope}[scale=8]
       \input{tikz/3_4_5/quadrangle2}
     \end{scope}
   \end{tikzsubfigure}
-\end{tikzfigure2}
+\end{figure}
 \clearpage
 \begin{theorem}
   Let $p = (p_3, p_4, \dots, p_n)$, $v = (v_3, v_4, \dots, v_m)$ be a pair of admissible sequences for a closed orientable $2$-manifold $S$ with {\sc Euler} characteristic $\chi$, i.e. \eqref{eq:vp:5} and \eqref{eq:handshake} hold for some $e \in \nats$. Then $(p, v)$ is $[(9k + 2) \times 3, 3k + 4]$-$[5]$-realizable for all $k \in \nats$.
