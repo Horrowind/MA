@@ -1,6 +1,6 @@
 \mysection{$3$-valent {\sc Eberhard}-like theorems with quadrangles}
 
-In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with quadrangles, i.e. for $q = [q_4 \times 4, q_l \times l]$, $w = [w_3 \times 3]$, $l > 6$, $\gcd(q_4, q_l) = 1$. As it turns out in \autoref{sec:negative:results}, this is only possible for all admissible pairs of sequences on all closed orientable $2$-manifolds, if $4 \nmid l$. We split the remaining cases in three series, each with a residual class of $l \mod 4$. 
+In this section we want to prove $3$-valent {\sc Eberhard}-like theorems with quadrangles, i.e. for $q = [q_4 \times 4, q_l \times l]$, $w = [w_3 \times 3]$, $l > 6$, $\gcd(q_4, q_l) = 1$. As it turns out in \autoref{sec:negative:results}, this is only possible for all admissible pairs of sequences on all closed orientable $2$-manifolds, if $2 \nmid l$. We split the remaining cases in two series, each with a residual class of $l \mod 4$ and additionally prove an {\sc Eberhard}-like theorem for $l = 10 + 4k$, $k \in \nats$ in all cases where we can apply \autoref{thm:main:const}. 
 \clearpage
 For all the proofs, we want to use \autoref{thm:main:const}, therefore we need to have a construction scheme for patches with arbitrary large $l$-gons. These we get by the next two constructions:
 \begin{construction}\label{const:edge:replacement:4:1} When we want to use this construction in this section we label an edge (the specified edge) with a square and point with arrows to a $k_1$-gon and a $k_2$-gon.
@@ -156,7 +156,7 @@ For all the proofs, we want to use \autoref{thm:main:const}, therefore we need t
           \node[anchor=300] at (1.5, 10)    {$o_{5}$};
           \node[anchor=270] at (2.5, 10.333){$o_{6}$};
           \node[anchor=245] at (3.5, 10)    {$o_{7}$};
-          \node[anchor=180] at (4.5, 9)     {$\mathbf{o_{8}}$};
+          \node[anchor=180] at (4.5, 9)     {$\bm{o_{s}}$};
           \node[anchor=180] at (4.25, 7.5)  {$i_4'=o_{9}$};
           \node[anchor=160] at (3.5, 7)     {$i_3'$};
           \node[anchor=180] at (2, 4)       {$i_2'$};
@@ -323,7 +323,7 @@ For all the proofs, we want to use \autoref{thm:main:const}, therefore we need t
 \end{lemma}
 \clearpage
 \begin{theorem}
-  Let $p$ and $v$ be a pair of admissible sequences for an orientable closed $2$-manifold $S$. Then $(p, v)$ is $[(4k + 1) \times 4, 2 \times (4k+7)]$-$[3]$-realizable for all $k \in \nats$.
+  Let $p$ and $v$ be a pair of admissible sequences for an orientable closed $2$-manifold $S$. Then $(p, v)$ is $[(4k + 1) \times 4, 2 \times (4k+7)]$-$[3]$-realizable on $S$ for all $k \in \nats$.
   \begin{proof}
     An expansion $3$-patch $\mathcal{P}_N$ with outer tuple $o = (1, 1, 1, 2, 2, 2)$ is shown in \autoref{fig:expansion:patch:4:7:a} and a corresponding $o$-$6$-gonal $3$-patch $\mathcal{P}_F$ is shown in \autoref{fig:expansion:patch:4:7:b}, both consisting of only quadrangles and heptagons. By using \autoref{const:edge:replacement:4:1} and \autoref{const:edge:replacement:4:2} as indicated we get $3$-patches consisting of only quadrangles and $(4k+7)$-gons, $k \in \nats$. By \autoref{thm:expansion:patch:poly:4:k} there is an expansion $3$-patch $\mathcal{P}_P$ with the polyhedral property consisting also of only quadrangles and $(4k+7)$-gons, thus we can apply \autoref{thm:main:const}.
   \end{proof}
@@ -348,7 +348,7 @@ For all the proofs, we want to use \autoref{thm:main:const}, therefore we need t
       \node[anchor=180] at (3, 3.5) {$o_5$};
       \node[anchor=-120] at (2.1, 4.5) {$o_4$};
       \node[anchor=-60] at (0.9, 4.5) {$o_3$};
-      \node[anchor=0] at (0, 3.5) {$\mathbf{o_2}$};
+      \node[anchor=0] at (0, 3.5) {$\bm{o_s}$};
       \node[anchor=-20] at (0.5, 2.5) {$o_{1}$};
       \node[anchor=0] at (-0.5, 2) {$i_2 = o_{0}$};
       \node[anchor=45] at (-1, 1) {$i_1$};
@@ -379,7 +379,7 @@ For all the proofs, we want to use \autoref{thm:main:const}, therefore we need t
 \end{tikzfigure2}
 \clearpage
 \begin{theorem}
-  Let $p$ and $v$ be a pair of admissible sequences for an orientable closed $2$-manifold $S$. Then $(p, v)$ is $[(4k + 3) \times 4, 2 \times (4k+9)]$-$[3]$-realizable for all $k \in \nats$.
+  Let $p$ and $v$ be a pair of admissible sequences for an orientable closed $2$-manifold $S$. Then $(p, v)$ is $[(4k + 3) \times 4, 2 \times (4k+9)]$-$[3]$-realizable on $S$ for all $k \in \nats$.
   \begin{proof}
     An expansion $3$-patch $\mathcal{P}_N$ with outer tuple $o = (2, 2, 2, 2, 1, 2, 1, 1, 1, 1)$ is shown in \autoref{fig:expansion:patch:4:9:a} and a corresponding $o$-$6$-gonal $3$-patch $\mathcal{P}_F$ is shown in \autoref{fig:expansion:patch:4:9:b}, both consisting of only quadrangles and enneagons. By using \autoref{const:edge:replacement:4:1} and \autoref{const:edge:replacement:4:2} as indicated we get $3$-patches consisting of only quadrangles and $(4k+9)$-gons, $k \in \nats$. By \autoref{thm:expansion:patch:poly:4:k} there is a expansion $3$-patch $\mathcal{P}_P$ with the polyhedral property consisting also of only quadrangles and $(4k+9)$-gons, thus we can apply \autoref{thm:main:const}.
   \end{proof}
@@ -410,7 +410,7 @@ For all the proofs, we want to use \autoref{thm:main:const}, therefore we need t
       \node[anchor=300] at (2,4) {$o_{1}$};
       \node[anchor=  0] at (2.5, 3) {$i_{2}'=o_{0}$};
       \node[anchor=320] at (1, 4.5) {$o_2$};
-      \node[anchor=300] at (1, 5.5) {$\mathbf{o_3}$};
+      \node[anchor=300] at (1, 5.5) {$\bm{o_s}$};
       \node[anchor=270] at (0, 6.5) {$o_4$};
       \node[anchor=270] at (-1, 6.5) {$o_5$};
       \node[anchor=200] at (-2, 5.5) {$o_6$};
@@ -467,7 +467,7 @@ For all the proofs, we want to use \autoref{thm:main:const}, therefore we need t
       % \node[anchor=-70] at (-1, 6.5) {$o_5$};
       % \node[anchor=-20] at (-2, 5.5) {$o_4$};
       % \node[anchor=0] at (-2, 4.5) {$o_3$};
-      % \node[anchor=60] at (-1.5, 3.5) {$\mathbf{o_2}$};
+      % \node[anchor=60] at (-1.5, 3.5) {$\bm{o_s}$};
       % \node[anchor=20] at (-0.5, 3) {$o_{1}$};
       % \node[anchor=0] at (-1, 2) {$i_2 = o_{0}$};
       % \node[anchor=45] at (-1, 1) {$i_1$};
@@ -505,7 +505,11 @@ For all the proofs, we want to use \autoref{thm:main:const}, therefore we need t
 \end{tikzfigure2}
 \clearpage
 \begin{theorem}
-  Let $p$ and $v$ be a pair of admissible sequences for an orientable closed $2$-manifold $S$. Then $(p, v)$ is $[(4k + 4) \times 4, 2 \times (4k+10)]$-$[3]$-realizable for all $k \in \nats$.
+  Let $p$ and $v$ be a pair of admissible sequences for an orientable closed $2$-manifold $S$ with {\sc Euler} characteristic $\chi$. If $\chi = 2$ we exclude the case
+  \begin{align*}
+    \sum_{k=3 \atop 2 \nmid k}^{m} p_k = 0 \text{\quad and\quad}\sum_{k=4 \atop 3 \nmid k}^n v_k = 1.
+  \end{align*}
+  Then $(p, v)$ is $[(2k + 2) \times 4, 4k+10]$-$[3]$-realizable on $S$ for all $k \in \nats$.
   \begin{proof}
     An expansion $3$-patch $\mathcal{P}_N$ with outer tuple $o = (2, 2, 1, 1)$ is shown in \autoref{fig:expansion:patch:4:10:a} and a corresponding $o$-$6$-gonal $3$-patch $\mathcal{P}_F$ is shown in \autoref{fig:expansion:patch:4:10:b}, both consisting of only quadrangles and decagons. By using \autoref{const:edge:replacement:4:1} and \autoref{const:edge:replacement:4:2} as indicated we get $3$-patches consisting of only quadrangles and $(4k+10)$-gons, $k \in \nats$. By \autoref{thm:expansion:patch:poly:4:k} there is a expansion $3$-patch $\mathcal{P}_P$ with the polyhedral property consisting also of only quadrangles and $(4k+10)$-gons, thus we can apply \autoref{thm:main:const}.
   \end{proof}
@@ -519,7 +523,7 @@ For all the proofs, we want to use \autoref{thm:main:const}, therefore we need t
       \node[anchor= 45] at (-4, 4)   {$i_2=o_{0}$};
       \node[anchor=  0] at (-5, 6) {$o_1$};
       \node[anchor=300] at (-4, 8)   {$o_2$};
-      \node[anchor=240] at (-2, 8)   {$\mathbf{o_3}$};
+      \node[anchor=240] at (-2, 8)   {$\bm{o_s}$};
       \node[anchor=240] at (-1, 6) {$o_4$};
       \node[anchor=240] at (1, 6)  {$i_{2}'=o_5$};
       \node[anchor=180] at (2, 4)    {$i_1'$};

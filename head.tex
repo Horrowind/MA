@@ -18,6 +18,7 @@
 \usepackage{aliascnt}
 \usepackage{subcaption}
 \usepackage{changepage}
+\usepackage{bm}
 \usepackage[labelfont=bf]{caption}
 \usepackage[inner=2cm,outer=2cm,top=1.3cm,bottom=1.3cm,includeheadfoot]{geometry}
 %\usepackage[inner=2cm,outer=2cm,top=1.3cm,bottom=1.3cm,includeheadfoot,showframe]{geometry}
@@ -26,9 +27,20 @@
 
 \titleformat{\section}[hang]{\fontsize{2cm}{0cm}\selectfont}{\hspace{20pt}\thesection}{20pt}{\LARGE\bfseries\sc}
 
-%\newcommand{\mysection}[1]{\checkoddpage\ifoddpage\hbox{}\thispagestyle{empty}\clearpage\else\fi{\par\vspace*{\fill}}\section{#1}}
-\newcommand{\mysection}[1]{\ifodd\thepage\hbox{}\thispagestyle{empty}\clearpage\else\fi{\par\vspace*{\fill}}\section{#1}}
+\makeatletter
+\renewcommand*{\numberline}[1]{%
+  \hb@xt@\@tempdima{\hfil#1 }%
+}
+\def\upparenthfill{$\m@th\bracelu\leaders\vrule\hfill\braceru$}
+\def\underparenthesis#1{\mathop{\vtop{\ialign{##\crcr
+$\hfil\displaystyle{#1}\hfil$\crcr\noalign{\kern3\p@\nointerlineskip}
+\upparenthfill\crcr\noalign{\kern3\p@}}}}\limits}
+\makeatother
 
+%\newcommand{\mysection}[1]{\clearpage\checkoddpage\ifoddpage\hbox{}\thispagestyle{empty}\clearpage\else\fi{\par\vspace*{\fill}}\section{#1}}
+\newcommand{\mysection}[1]{\clearpage\ifodd\thepage\hbox{}\thispagestyle{empty}\clearpage\else\fi{\par\vspace*{\fill}}\section{#1}}
+%\newcommand{\mysection}[1]{{\par\vspace*{\fill}}\section{#1}}
+\renewcommand{\emptyset}{\varnothing}
 \usepackage{tikz}
 \usetikzlibrary{%
     shapes.geometric,

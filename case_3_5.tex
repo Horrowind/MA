@@ -1,19 +1,19 @@
 \mysection{$5$-valent {\sc Eberhard}-like theorems with triangles}\label{sec:3:5}
 
-In the previous two sections, we could rely on \autoref{thm:eberhard:extended:3} and \autoref{thm:eberhard:extended:4} to do the main work for us and create an initial map with which we can begin our constructions. As there is no comparable theorem stated in the litrature on $5$-valent {\sc Eberhard} theorems as in the $3$-valent and $4$-valent cases which does consider the additional $v$-vector, we need a new $5$-valent {\sc Eberhard} theorem which we can use as first construction step and which includes both a $p$-vector and a $v$-vector. But the situation is not as difficult as doing a whole construction of a polyhedral map by ourselves, as in fact, we can use \autoref{thm:eberhard:extended:4} nonetheless and just need to convert the $4$-valent vertices into $5$-valent ones in an intermediate step.
+In the previous two sections, we could rely on \autoref{thm:eberhard:extended:3} and \autoref{thm:eberhard:extended:4} to do the main work for us and create an initial map with which we can begin our constructions. As there is no comparable theorem stated in the litrature on $5$-valent {\sc Eberhard} theorems as in the $3$-valent and $4$-valent cases which does consider the additional $v$-vector, we need a new $5$-valent {\sc Eberhard} theorem which we can use as first construction step and which includes both a $p$-vector and a $v$-vector. But the situation is not as difficult as doing a whole construction of a polyhedral map by ourselves, as in fact, we can use \autoref{thm:eberhard:extended:4} nonetheless and just need to convert superflous $4$-valent vertices into $5$-valent ones in an intermediate step.
 \clearpage
 \begin{proposition}\label{thm:bootstrap:5}
-  Let $p = (p_3, p_4, \dots, p_n)$, $v = (v_3, v_4, \dots, v_m)$ be a pair of admissible sequences, then $p$ is $[2\times3, 4]$-$[5]$-realizable on a closed orientable $2$-manifold $S$ with {\sc Euler} characteristic $\chi$.
+  Let $p = (p_3, p_4, \dots, p_n)$, $v = (v_3, v_4, \dots, v_m)$ be a pair of admissible sequences for an orientable closed manifold $S$, then $p$ is $[2\times3, 4]$-$[5]$-realizable on $S$.
   \begin{proof}
-    Let $p' \defeq p + v$ and $v' = [v'_4 \times 4]$ for some $v'_4$ we want to specify shortly. Since $p$ and $v$ are admissible, \eqref{eq:vp:4} holds for $p$ and $v$, and it also holds for $p'$ and $v'$:
+    Let $p' \defeq p + v + [2 \times 3, 2 \times 5]$ and $v' = [v'_4 \times 4]$ for some $v'_4$ we want to specify shortly. Since $p$ and $v$ are admissible, \eqref{eq:vp:4} holds for $p$ and $v$, and it also holds for $p'$ and $v'$:
     \begin{align*}
-      \sum_{k=3}^{\max(n, m)} (4 - k) p'_k + \sum_{k=3}^{\max(n, m)} (4 - k) v'_k ={}\sum_{k=3}^n (4 - k) p_k + \sum_{k=3}^m (4 - k) v_k = 4 \chi
+      \sum_{k=3}^{\max(n, m)} (4 - k) p'_k + \sum_{k=3}^{\max(n, m)} (4 - k) v'_k ={}\sum_{k=3}^n (4 - k) p_k + \sum_{k=3}^m (4 - k) v_k + 1 - 1 = 4 \chi
     \end{align*}
     as well as \eqref{eq:handshake}
     \begin{align*}
-      \sum_{k = 3}^n k (p_k + v_k) = \sum_{k = 3}^n k p_k + \sum_{k = 3}^n k v_k = 4e = \sum_{k = 3} k v'_k
+      \sum_{k = 3}^n k (p_k + v_k) = \sum_{k = 3}^n k p_k + \sum_{k = 3}^n k v_k + 16 = 4(e + 4)= \sum_{k = 3} k v'_k
     \end{align*}
-    if we set $v'_4 \defeq e$. Hence the sequences $p'$, $v'$ are $[4]$-$[4]$-realizable by \autoref{thm:eberhard:extended:4} as a polyhedral map on $S$. Let $M'$ be this realization with $e'$ edges and $v'$ vertices. We use $M'$ to create a new realization which replaces $4$-valent vertices with $5$-valent ones by inserting additional triangles and quadrangles. This is done by replacing each edge of the realization by four triangles and a single quadrangle while replacing each vertex by eight triangles and five squares as shown in \autoref{fig:case34:img1}. Since $S$ is orientable we can do this such that the resulting map is $5$-valent.
+    if we set $v'_4 \defeq e + 4$. Hence the sequences $p'$, $v'$ are $[4]$-$[4]$-realizable by \autoref{thm:eberhard:extended:4} as a polyhedral map on $S$ where we have taken care of the special case for $\chi = 0$ by adding $[2 \times 3, 2 \times 5]$. Let $M'$ be this realization. We use $M'$ to create a new realization which replaces $4$-valent vertices with $5$-valent ones by inserting additional triangles and quadrangles. This is done by replacing each edge of the realization by four triangles and a single quadrangle while replacing each vertex by eight triangles and five squares as shown in \autoref{fig:case34:img1}. Since $S$ is orientable we can do this such that the resulting map is $5$-valent.
 
     \begin{tikzfigure}{\label{fig:case34:img1}}{Building a $5$-valent polyhedral map out of a $4$-valent one by adding triangles and quadrangles.}
       \matrix (m) [column sep=1cm] {
@@ -168,7 +168,7 @@ In the previous two sections, we could rely on \autoref{thm:eberhard:extended:3}
         \\
       };
     \end{tikzfigure}
-    The resulting map $M''$ is $5$-valent and has a $p$-vector of $p' + [c_1 \times 3, c_2 \times 4]$ (for some $c_1, c_2 \in \nats$ we do not want to state explicitly), but lacks the specified vertices of the original $v$-vector $v$. To fix this we take for each $k$-valent entry in $v$ a different $k$-gon of $M''$ and replace the $k$-gon together with the ring of triangles and quadrangles as in \autoref{fig:case34:img2}.
+    The resulting map $M''$ is $5$-valent and has a $p$-vector of $p' + [c_3 \times 3, c_4 \times 4]$ (for some $c_3, c_4 \in \nats$ we do not want to state explicitly), but lacks the specified vertices of the original $v$-vector $v$. To fix this we take for each $k$-valent entry in $v$ a different $k$-gon of $M''$ and replace the $k$-gon together with the ring of triangles and quadrangles framed by dashed lines in \autoref{fig:case34:img1} as in \autoref{fig:case34:img2}.
     \begin{tikzfigure}{\label{fig:case34:img2}}{Replacing a $k$-gon to get a $k$-valent vertex}
       \matrix (m) [ column sep=1cm] {
         \begin{scope}[scale=0.9, xscale=-1]
@@ -209,7 +209,7 @@ In the previous two sections, we could rely on \autoref{thm:eberhard:extended:3}
         \\
       };
     \end{tikzfigure}
-    After this construction we have held a map with $p$-vector $p'' \defeq p' + [c'_3 \times 3, c'_4 \times 4] - v = p + [c'_3 \times 3, c'_4 \times 4]$ and with $v$-vector $v'' \defeq v + d \cdot [5]$ (for some $c'_3, c'_4, d \in \nats$) since we only inserted additional triangles, quadrangles and $5$-valent vertices while removing $k$-gons and inserting $k$-valent vertices as specified by $v$. By \autoref{lem:2:valued:eberhard}, this suffices to show the claim.
+    After this construction we have held a map with $p$-vector $p'' \defeq p' + [c'_3 \times 3, c'_4 \times 4] - v = p + [(c'_3 + 2) \times 3, (c'_4 + 2) \times 4]$ and with $v$-vector $v'' \defeq v + d \cdot [5]$ (for some $c'_3, c'_4, d \in \nats$) since we only inserted additional triangles, quadrangles and $5$-valent vertices while removing $k$-gons and inserting $k$-valent vertices as specified by $v$. By \autoref{lem:2:valued:eberhard}, this suffices to show the claim.
   \end{proof}
 \end{proposition}
 
@@ -222,7 +222,7 @@ Our next corner stone is to revisit \autoref{thm:main:const} for the $5$-valent 
   \end{itemize}
   Then $(p, v)$ is $q$-$[5]$-realizable.
   \begin{proof}
-    The proof is analogous to \autoref{thm:main:const}. We use \autoref{thm:bootstrap:5} to create an initial map and use \autoref{const:map} to replace all redundant quadrangles with triangles and $l$-gons via the given patches $\mathcal{P}_N(k)$ and $\mathcal{P}_F$. Finally we use \autoref{const:map} again with $\mathcal{P}_P(k)$ to make the map polyhedral. This map suffices our requirements by \autoref{lem:2:valued:eberhard}.
+    The proof is analogous to \autoref{thm:main:const}. We use \autoref{thm:bootstrap:5} to create an initial map and use \autoref{const:map} to replace all superflous quadrangles with triangles and $l$-gons via the given patches $\mathcal{P}_N(k)$ and $\mathcal{P}_F$. Finally we use \autoref{const:map} with $\mathcal{P}_P(k)$ to make the map polyhedral. This map suffices our requirements by \autoref{lem:2:valued:eberhard}.
   \end{proof}
 \end{proposition}
 
@@ -547,7 +547,7 @@ Our next corner stone is to revisit \autoref{thm:main:const} for the $5$-valent 
       \node[anchor=330] at (-0.5, 5) {$i_2=o_{0}$};
       \node[anchor=270] at (0.5, 5)  {$o_{1}$};
       \node[anchor=270] at (1.5,5 )  {$o_{2}$};
-      \node[anchor=270] at (2.5, 5)  {$\mathbf{o_{3}}$};
+      \node[anchor=270] at (2.5, 5)  {$\bm{o_{s}}$};
       \node[anchor=230] at (3, 4)    {$o_{4}$};
       \node[anchor=180] at (3.5,3)   {$i_2'=o_{5}$};
       \node[anchor= 90] at (3,2)     {$i_{1}'$};
@@ -726,7 +726,7 @@ Our next corner stone is to revisit \autoref{thm:main:const} for the $5$-valent 
       \node[anchor=300] at (3.5, 13)     {$o_{7}$};
       \node[anchor=300] at (4.5, 13.666) {$o_{8}$};
       \node[anchor=270] at (5.5, 13.333) {$o_{9}$};
-      \node[anchor=180] at (6.5, 13)     {$\mathbf{o_{10}}$};
+      \node[anchor=180] at (6.5, 13)     {$\bm{o_{s}}$};
       \node[anchor=180] at (6.75, 11.833){$o_{11}$};  
       \node[anchor=180] at (7, 10.666)   {$o_{12}$};
       \node[anchor=150] at (8, 10)       {$i_{1}'=o_{13}$};

@@ -1,6 +1,6 @@
 \mysection{Negative results}\label{sec:negative:results}
 
-Attentive readers might have noticed that in the previous sections we left out exactly those theorems for $[q_s \times s, q_l \times l]$-$[r]$-realizability, where $s | l$. This is not by far a coincidence. In fact, the problems with these realizations arise from graph theory and even weaker constructs can not exist.
+Attentive readers might have noticed that in the previous sections we left out exactly those theorems for $[q_s \times s, q_l \times l]$-$[r]$-realizability, where $s | l$. This is not by far a coincidence. In fact, the problems with these realizations arise from graph theory where we can proof that similiar but weaker constructs can not exist.
 \clearpage
 \begin{definition} A vertex in a graph is called \hdef{$(a \mod r)$-valent}, if its valence is congruent $a$ modulo $r$, $r \in \nats_{>0}$, $a \in \set{0, \dots, r - 1}$. A planar graph is called $(a \mod r)$-valent, if the valence $(a \mod r)$-valent. Dually, a face is called \hdef{$(a \mod s)$-gonal}, if the number of vertices of this face is congrent $a$ mod $s$, $s \in \nats_{>0}$, $a \in \set{0, \dots, s - 1}$ and the graph is called $(a \mod s)$-gonal if every face is $(a \mod s)$-gonal. It is called \hdef{near $(a \mod k)$-gonal} / \hdef{near $(a \mod r)$-valent}, if exactly one face / exactly one vertex is not $(a \mod s)$-gonal / $(a \mod r)$-valent. In the case of $a = 0$, these properties will be called \hdef{(near) multi-$s$-gonal} / \hdef{(near) multi-$r$-valent}.
 \end{definition}
@@ -10,6 +10,8 @@ The following theorem is established in \cite{malkevitch1970properties}, togethe
 \begin{theorem}\label{thm:near:regular:nonrealizable} Let $r, s \in \set{2, 3, 4, 5}$. No connected planar graph is both multi-$r$-valent and near multi-$s$-gonal.
 \end{theorem}
 \begin{corollary} No connected planar graph is both near multi-$r$-valent and multi-$s$-gonal, $r, s \in \set{2, 3, 4, 5}$.
+\begin{proof}By dualization.
+\end{proof}
 \end{corollary}
 
 \begin{corollary}\label{thm:division:nonrealizable}
@@ -18,29 +20,43 @@ The following theorem is established in \cite{malkevitch1970properties}, togethe
     \sum_{k = 3 \atop s \nmid k}^m p_k = 1, \qquad&\sum_{k = 3 \atop r \nmid k}^n v_k = 0 \text{~or} \\
     \sum_{k = 3 \atop s \nmid k}^m p_k = 0, \qquad&\sum_{k = 3 \atop r \nmid k}^n v_k = 1
   \end{align*}
-  are not $[q_s \times s, q_{c \cdot s} \times (c \cdot s)]$-$[r]$-realizable as polyhedron (for all $q_s, q_{c \cdot s} \in \nats$).
+  are not $[q_s \times s, q_{c \cdot s} \times (c \cdot s)]$-$[r]$-realizable as $3$-polytope (for all $q_s, q_{c \cdot s} \in \nats$).
 \begin{proof}
-  The $1$-skeleton of a $[q_s \times s, q_{c \cdot s} \times (c \cdot s)]$-$[r]$-realization of such a pair of $p$-vectors and $v$-vectors would directly contradict the previous one of two statements.
+  The $1$-skeleton of a $[q_s \times s, q_{c \cdot s} \times (c \cdot s)]$-$[r]$-realization of such a pair of $p$-vectors and $v$-vectors would directly contradict one of the previous two statements.
 \end{proof}
 \end{corollary}
 
+\begin{corollary}\label{thm:division:nonrealizable2}
+  Let $s=4$, $r=3$ and let $c \in \nats_{> 0}$. Then the sequences $p = (p_3, \dots, p_m)$, $v = (v_3, \dots, v_n)$ with
+  \begin{align*}
+    \sum_{k = 3 \atop 2 \nmid k}^m p_k = 1, \qquad&\sum_{k = 3 \atop 3 \nmid k}^n v_k = 0 \text{~or} \\
+    \sum_{k = 3 \atop 2 \nmid k}^m p_k = 0, \qquad&\sum_{k = 3 \atop 3 \nmid k}^n v_k = 1
+  \end{align*}
+  are not $[q_s \times s, q_{c \cdot s} \times (c \cdot s)]$-$[r]$-realizable as $3$-polytope (for all $q_s, q_{c \cdot s} \in \nats$).
+\begin{proof}
+  The $1$-skeleton of a $[q_4 \times 4, q_{2c} \times (2c)]$-$[r]$-realization of such a pair of $p$-vectors and $v$-vectors would directly contradict one of the previous two statements.
+\end{proof}
+\end{corollary}
+
+
 \begin{example}
-  The following choices of $p, v, q, w$ show examples of pairs of admissibile sequences~$(p, v)$, which are not $q$-$w$-realizable for all $k \in \nats$ by \autoref{thm:division:nonrealizable}:
+  The following choices of $p, v, q, w$ show examples of pairs of admissibile sequences~$(p, v)$, which are not $q$-$w$-realizable for all $k \in \nats$ by \autoref{thm:division:nonrealizable} or \autoref{thm:division:nonrealizable2}:
   \begin{alignat*}{10}
-    (s, r) = (4, 3):\quad& p = [& 6 \times 4&, 6], \quad v = [&10 \times 3&], \quad q = [&(2k + 1) \times 4&,{} & 8 + 4k&], \quad w = [3]\\
-    (s, r) = (5, 3):\quad& p = [&12 \times 5&, 6], \quad v = [&22 \times 3&], \quad q = [&(5k + 4) \times 5&,{} &10 + 5k&], \quad w = [3]\\
-    (s, r) = (3, 4):\quad& p = [& 8 \times 3&, 4], \quad v = [& 8 \times 4&], \quad q = [&(3k + 2) \times 3&,{} & 6 + 3k&], \quad w = [4]\\
-    (s, r) = (3, 5):\quad& p = [&22 \times 3&, 4], \quad v = [&14 \times 5&], \quad q = [&(9k + 8) \times 3&,{} & 6 + 3k&], \quad w = [5]
+    (s, r) = (4, 3):\quad& p = [& 6 \times 4, 6&], \quad v = [& 8 \times 3   &], \quad q = [&(2k + 1) \times 4&,{} & 8 + 4k&], \quad w = [3]\\
+    (s, r) = (5, 3):\quad& p = [&12 \times 5, 6&], \quad v = [&22 \times 3   &], \quad q = [&(5k + 4) \times 5&,{} &10 + 5k&], \quad w = [3]\\
+    (s, r) = (3, 4):\quad& p = [& 8 \times 3, 4&], \quad v = [& 8 \times 4   &], \quad q = [&(3k + 2) \times 3&,{} & 6 + 3k&], \quad w = [4]\\
+    (s, r) = (3, 5):\quad& p = [&22 \times 3, 4&], \quad v = [&14 \times 5   &], \quad q = [&(9k + 8) \times 3&,{} & 6 + 3k&], \quad w = [5]\\
+    (s, r) = (4, 3):\quad& p = [& 7 \times 4   &], \quad v = [& 8 \times 3, 4&], \quad q = [&(2k + 2) \times 4&,{} &10 + 4k&], \quad w = [3]
   \end{alignat*}
-  If $(s, r) = (3, 3)$, there is no admissible pair of sequences that would suffice one of the two conditions in \autoref{thm:division:nonrealizable}.
+  If $(s, r) = (3, 3)$, there is no admissible pair of sequences that would suffice one of the two conditions in \autoref{thm:division:nonrealizable} since the left hand side of \autoref{eq:vp:3} would not be divisible by $3$ in these cases.
 \end{example}
 
-In \cite{horvnak1977nearly} we can also find similar results to those in \cite{malkevitch1970properties} for cell-decompositions of arbitrary closed orientable $2$-manifolds, suggesting that only the surfaces of small genus provide exceptions to the realizablity of (near) multi-$k$-gonal / multi-$k$-valent graph embeddings. Sadly (or luckily), there is no immediate new instance of an unrealizable admissible pair of sequences from the results shown there. In the case $(s, r) = (3, 3)$ in \autoref{thm:division:nonrealizable}, the provided pairs $(p, v)$ are not admissible, which would not explain why we left out a theorem about $[3, 9]$-$[3]$-realizable maps in \autoref{sec:3:3}. Strangely, there is another type of divisibility condition, which excludes even more pairs:
+In \cite{horvnak1977nearly} we can also find similar results to those in \cite{malkevitch1970properties} for cell-decompositions of arbitrary closed orientable $2$-manifolds, which suggests that only the surfaces of small genus provide exceptions to the realizablity of (near) multi-$k$-gonal / multi-$k$-valent graph embeddings. Sadly (or luckily), there is no immediate new instance of an unrealizable admissible pair of sequences from the results shown there. In the case $(s, r) = (3, 3)$ in \autoref{thm:division:nonrealizable}, the provided unrealizable pairs $(p, v)$ are not admissible, which would not explain why we left out a theorem about $[3, 9]$-$[3]$-realizable maps in \autoref{sec:3:3}. Strangely, there is another type of divisibility condition, which excludes even more pairs:
 
 \begin{proposition}\label{thm:mod:graphs:nonrealizable}
   Let $(s, r) \in \set{(3, 3), (3, 4), (3, 5), (4, 3), (5, 3)}$. There is no connected planar graph which is both $(r \mod 2r)$-valent and near $(s \mod 2s)$-gonal.
 \begin{proof}
-  We want to use proof by contradiction. Assume that there is such a planar graph $G$ with an exceptional $sc$-gon, $c \equiv 0 \mod 2$, and let the number of edges of $G$ be minimal among all such graphs. First we want to show that we can reduce our considerations to the case where $G$ is $r$-valent. For this we use the following construction to reduce the valence of a single vertex $v$ by $2r$ by splitting the vertex into $3$ distinct vertices (\autoref{fig:mod:graphs:nonrealizable:1}). %
+  We want to use proof by contradiction. Assume that there is such a planar graph $G$ with an exceptional $k$-gon and let the number of edges of $G$ be minimal among all such graphs. By \autoref{thm:division:unrealizable} we have $k = sc$, $c \equiv 0 \mod 2$. First we want to show that we can reduce our considerations to the case where $G$ is $r$-valent. For this we use the following construction to reduce the valence of a single vertex $v$ by $2r$ by splitting off two $r$-valent vertices from a $(r \mod 2r)$-valent vertex (\autoref{fig:mod:graphs:nonrealizable:1}). %
   \begin{tikzfigure}{\label{fig:mod:graphs:nonrealizable:1}}{Splitting the vertex $v$ into $3$ vertices, here $r = 3$}
     \matrix (m) [column sep=1cm] {
       \begin{scope}
@@ -91,11 +107,11 @@ In \cite{horvnak1977nearly} we can also find similar results to those in \cite{m
       \\
     };
   \end{tikzfigure}\\
-  There are two special conditions which can occur here: First, one of faces $f_0, f_1, f_2$ depicted in \autoref{fig:mod:graphs:nonrealizable:1} is the exceptional face and second, there are at least to faces of $\set{f_0, f_1, f_2}$, which are actually the same set and the construction disconnects the graph. Therefore there are four cases which we need to consider arising from those two conditions. We want to call the number of vertices of the face $f_i$ with $k_i$.
+  There are two special conditions which can occur here: First, one of faces $f_0, f_1, f_2$ depicted in \autoref{fig:mod:graphs:nonrealizable:1} could be the exceptional face and second, at least to faces of $\set{f_0, f_1, f_2}$ could actually be the same which would disconnect the graph. Therefore there are four cases which we need to consider arising from those two conditions. We want to call the number of vertices of the face $f_i$ with $k_i$.
   \begin{enumerate}
   \item {\it None of the $f_i$ is the exceptional face and all of the $f_i$ are distinct faces.} In this case $f_0 \cup f_1 \cup f_2$ forms a new face with $\sum_{i=0}^c k_i$ vertices, for which $k_0 + k_1 + k_2 \equiv 3s \equiv s ~(\mod 2s)$ holds. Therefore the new face is a new ordinary face and we have a new graph with a single exceptional face.
   \item {\it The face $f_e \in \set{f_0, f_1, f_2}$ is the exceptional face and all of the $f_i$ are distinct faces.} In this case again all of the $f_i$ form a new face with $k_0 + k_1 + k_2$ vertices, and since $k_0 + k_1 + k_2 \equiv 2s + sc \equiv sc ~(\mod 2s)$ holds, the new face is the new single exceptional face.
-  \item {\it None of the $f_i$ is the exceptional face and some of the $f_i$ coincide.} In this case there are several connected components. We want to show that we can pick one which has exactly one exceptional face, which would contradict that we started with a minimal example. Let $h \in \set{1, \dots, 2} = |\set{f_0, f_1, f_2}|$, the number of different faces $f_i$. $f_0 \cup f_1 \cup f_2$ is adjacent to $\sum_{f_i \in \set{f_0, f_1, f_2}} k_i$ vertices. After the splitting step we have exactly $4 - h$ connected components; two, if we have two different faces and three if all faces are actually the same. We want to call the face of each component which has common edges with $f_0 \cup f_1 \cup f_2$ as the outer face of this component. If we look at those connected components which do not contain the exceptional face, then each of them contains only multi-$r$-valent vertices and except for their outer face only multi-$s$-gonal faces. But by \autoref{thm:near:regular:nonrealizable} we see that the outer face must be multi-$s$-gonal, too. If any of these components do not have an $(s \mod 2s)$-gonal outer face, we would have held a smaller graph (with fewer edges) if we had only considered this connected component. Therefore every connected component not containing the exceptional face has a $(s \mod 2s)$-gonal outer face and we return our view on the connected component with the exceptional face. The outer face of this component has the same amount of vertices as are adjacent to $f_0 \cup f_1 \cup f_2$ minus the number of vertices of each of the outer faces of the other connected components. If we take this modulo $2s$ (we have $3 - h$ other connected components each with a $(s \mod 2s)$-gonal outer face):
+  \item {\it None of the $f_i$ is the exceptional face and some of the $f_i$ coincide.} In this case there are several connected components. We want to show that we can pick one which has exactly one exceptional face, which would contradict that we started with a minimal example. Let $h = |\set{f_0, f_1, f_2}|$, the number of different faces $f_i$. $f_0 \cup f_1 \cup f_2$ is adjacent to $\sum_{f_i \in \set{f_0, f_1, f_2}} k_i$ vertices. After the splitting step we have exactly $4 - h$ connected components; two, if we have two different faces and three if all faces are actually the same. We want to call the face of each component which has common edges with $f_0 \cup f_1 \cup f_2$ as the outer face of this component. If we look at those connected components which do not contain the exceptional face, then each of them contains only multi-$r$-valent vertices and except for their outer face only multi-$s$-gonal faces. But by \autoref{thm:near:regular:nonrealizable} we see that the outer face must be multi-$s$-gonal, too. If any of these components do not have an $(s \mod 2s)$-gonal outer face, we would have held a smaller graph (with fewer edges) if we had only considered this connected component. Therefore every connected component not containing the exceptional face has a $(s \mod 2s)$-gonal outer face and we return our view on the connected component with the exceptional face. The outer face of this component has the same amount of vertices as are adjacent to $f_0 \cup f_1 \cup f_2$ minus the number of vertices of each of the outer faces of the other connected components. If we take this modulo $2s$ (we have $3 - h$ other connected components each with a $(s \mod 2s)$-gonal outer face):
 
     \begin{align*}
       &\sum_{f_i \in \set{f_0, f_1, f_2}} k_i - s(3 - h) \\
@@ -103,7 +119,7 @@ In \cite{horvnak1977nearly} we can also find similar results to those in \cite{m
       \equiv{}& s h - s(3 - h) \equiv s &(\mod 2s)
     \end{align*}
     Therefore we have held a smaller connected component with exactly one exceptional face and fewer faces.
-  \item {\it The face $f_e \in \set{f_0, f_1, f_2}$ is the exceptional face and some of the $f_i$ coincide.} In this case we can argue similarly as in the previous case. After the construction in \autoref{fig:mod:graphs:nonrealizable:1} we have $4 - h$ connected components with $(s \mod 2s)$-gonal outer face (where again $h = |\set{f_0, f_1, f_2}|$) and the number of vertices of these outer faces has to add up to the number of vertices adjacent to $f_0 \cup f_1 \cup f_2$. Therefore we have
+  \item {\it The face $f_e \in \set{f_0, f_1, f_2}$ is the exceptional face and some of the $f_i$ coincide.} In this case we can argue similarly as in the previous case. After the construction in \autoref{fig:mod:graphs:nonrealizable:1} we have $4 - h$ connected components (where again $h = |\set{f_0, f_1, f_2}|$) with $(s \mod 2s)$-gonal outer face, or else one of these connected components would be a smaller $(r \mod 2r)$-valent, near $(s \mod 2s)$-gonal graph. The number of vertices of these outer faces has to add up to the number of vertices adjacent to $f_0 \cup f_1 \cup f_2$. Therefore we have
     \begin{align*}
       0{}\equiv{}&\sum_{f_i \in \set{f_0, f_1, f_2}} k_i - s(4 - h) \\
       \equiv{}& \sum_{f_i \in \set{f_0, f_1, f_2} \setminus \set{f_e}} s + sc - s(4 - h) \\
@@ -114,7 +130,7 @@ In \cite{horvnak1977nearly} we can also find similar results to those in \cite{m
     which contradicts our assumption $c \equiv 0 \mod 2$.
   \end{enumerate}
 
-  Thus the splitting construction is sound and we can use it repeatedly to replace all vertices with valence greater than $r$ by new vertices with valence $r$. Therefore from now on assume $G$ to be $r$-valent (remember we removed repeatedly $2r$ from the valence of some vertex which was $(r \mod 2r)$-valent). Next, we want to use \autoref{fig:mod:graphs:nonrealizable:2} to cut of the exceptional face a $2s$-gon, if we did not already have a $2s$-gonal exceptional face. We only have two cases here, either all of $f_0$, $f_1$, $f_2$ are distinct or not, since $f_0$, $f_1$, $f_2$ can not be the exceptional face, but the same arguments as in the previous case-by-case-analysis apply here (cases (i) and (iii)). We only need to add that the remaining face $f_r$ is in fact an ordinary $(s \mod 2s)$-gonal face, since we obtained it by removing $3s$ edges from the exceptional face.
+  Thus the splitting construction is sound and we can use it repeatedly to replace all vertices with valence greater than $r$ by new vertices with valence $r$. Therefore from now on assume $G$ to be $r$-valent (remember we removed repeatedly $2r$ from the valence of some vertex which was $(r \mod 2r)$-valent). Next, we want to use \autoref{fig:mod:graphs:nonrealizable:2} to cut off a $2s$-gon from the exceptional face, if we did not already have a $2s$-gonal exceptional face. We only have two cases here, either all of $f_0$, $f_1$, $f_2$ are distinct or not, since $f_0$, $f_1$, $f_2$ can not be the exceptional face, but the same arguments as in the previous case-by-case-analysis apply here (cases (i) and (iii)). We only need to add that the remaining face $f_r$ is in fact an ordinary $(s \mod 2s)$-gonal face, since we obtained it by removing $3s$ edges from the exceptional face.
   \begin{tikzfigure}{\label{fig:mod:graphs:nonrealizable:2}}{Cutting off a $2s$-gons and a $s$-gon from the exceptional face, here $s = 3$, $r = 4$}
     \matrix (m) [ column sep=1cm] {
       \begin{scope}
@@ -285,7 +301,7 @@ In \cite{horvnak1977nearly} we can also find similar results to those in \cite{m
       \\
     };
   \end{tikzfigure}%
-  Doing so we have the same four cases as in the first construction, in fact, we can take the argument of each one and directly apply it to this figure again. In the outcome, we get a new $(r \mod 2r)$-valent and near $(s \mod 2s)$-gonal graph, which either has a fewer edges, a contradiction, or we could cut of two $s$-gons from a larger $(s \mod 2s)$-gonal faces at specific places. By repeatedly using this construction we can build around the exceptional face rings of $s$-gons until we reach one of the graphs in \autoref{fig:mod:graphs:nonrealizable:4}. %
+  Doing so we have the same four cases as in the first construction, in fact, we can take the argument of each one and directly apply it to this figure again. In the outcome, we get a new $(r \mod 2r)$-valent and near $(s \mod 2s)$-gonal graph, which either has fewer edges, a contradiction, or we could cut of two $s$-gons from a larger $(s \mod 2s)$-gonal faces at specific places. By repeatedly using this construction we can build around the exceptional face rings of $s$-gons until we reach one of the graphs in \autoref{fig:mod:graphs:nonrealizable:4}. %
 \captionsetup[subfigure]{labelformat=empty}
   \begin{figure}[ht]
     \caption{Graphs which are not $(r \mod 2r)$-valent and near $(s \mod 2s)$-gonal}
@@ -428,7 +444,7 @@ Finally we can state another theorem, singling out even more cases than \autoref
   \end{align*}
   are not $[q_s \times s, q_{2cs + s} \times (2cs + s)]$-$[r]$-realizable on the sphere $\sphere^2$ (for all $q_s, q_{2cs + s} \in \nats$).
 \begin{proof}
-  With \autoref{thm:division:nonrealizable} we can filter out the cases where we have an exceptional $k$-gon (or $k$-valent vertex) for which $k$ is not divisible by $s$ (or $r$). Otherwise, the $1$-skeleton of a $[q_s \times s, q_{2cs + s} \times (2cs + s)]$-$[r]$-realization of such a pair of $p$-vectors and $v$-vectors would directly contradict \autoref{thm:mod:graphs:nonrealizable}.
+  The $1$-skeleton of a $[q_s \times s, q_{2cs + s} \times (2cs + s)]$-$[r]$-realization of such a pair of $p$-vectors and $v$-vectors would directly contradict \autoref{thm:mod:graphs:nonrealizable}.
 \end{proof}
 \end{corollary}
 
@@ -443,9 +459,9 @@ The last theorem we want to present in this section explains, why we were unable
 \end{definition}
 
 \begin{theorem}\label{thm:triangle:nonrealizable}
-  Let $p$ and $v$ be sequences, $S$ a closed $2$-manifold $S$ and $q = [q_3 \times 3, q_l \times l]$, $w = [3]$ for $l \in \nats, l \geq 13$, $q_3 = \frac{l - 6}{\gcd(3, l)}$, $q_l = \frac{3}{\gcd(3, l)}$. Then the set $(C(p, v, q, w, S)$ is finite. Additionally, if $l \geq 11$ and $\sum_{k \geq 4} 2k \cdot v_k + \sum_{k \geq 4} \floor{\tfrac{k}{2}} p_k < 3p_3$, then $C(p, v, q, w, S)$ is empty, except when $S \cong \sphere^2$, $p = [4 \times 3]$, $v = [4 \times 3]$, in which case $C(p, v, q, w, S) = \set{(0, 0)}$.
+  Let $p$ and $v$ be sequences, $S$ be a closed $2$-manifold and $q = [q_3 \times 3, q_l \times l]$, $w = [3]$ for $l \in \nats, l \geq 13$, where $q$ and $w$ are flat with parameter $t = \frac{2}{3}$, i.e. $3q_3 = (l - 6)q_l$. Then the set $C(p, v, q, w, S)$ is finite. Additionally, if $l \geq 11$ and $\sum_{k \geq 4} 2k \cdot v_k + \sum_{k \geq 4} \floor{\tfrac{k}{2}} p_k < 3p_3$, then $C(p, v, q, w, S)$ is empty, except when $S \cong \sphere^2$, $p = [4 \times 3]$, $v = [4 \times 3]$, in which case $C(p, v, q, w, \sphere^2) = \set{(0, 0)}$.
   \begin{proof}
-    Since any to faces of a polyhedral map on $S$ have to meet proper, there can not be two triangles which coincide on a single edge with two $3$-valence vertices (see \autoref{fig:adjacent:triangles}), with the single exception of the tetrahedron, in which case we have $(0, 0) \in C(p, v, q, w, S)$. Without loss of generality assume $(p, v) \neq ([4 \times 3], [4 \times 3])$, since we can always compute $C(p, v, q, w, S)$ from $C(p + q, v + w, q, w, S)$. %
+    Since any to faces of a polyhedral map on $S$ have to meet proper, there can not be two triangles which coincide on a single edge with two $3$-valence vertices (see \autoref{fig:adjacent:triangles}), with the single exception of the tetrahedron, in which case we have $(0, 0) \in C(p, v, q, w, \sphere^2)$. Without loss of generality assume $(p, v) \neq ([4 \times 3], [4 \times 3])$, since we can always compute $C(p, v, q, w, S)$ from $C(p + q, v + w, q, w, S)$. %
     \begin{tikzfigure}{\label{fig:adjacent:triangles}}{Two triangles incident to two $3$-valent vertices}
       \draw (-2, 0) -- (-1, 0) -- (0, 1) -- (1, 0) -- (2, 0);
       \draw (-1, 0) -- (0, -1) -- (1, 0);
@@ -460,14 +476,14 @@ The last theorem we want to present in this section explains, why we were unable
 
 
     \end{tikzfigure}%
-    As there can not be two triangles adjacent to a single edge with two $3$-valence vertices in the map, every edge adjacent to a triangle has to have either a vertex of valence greater than $3$ or it has also to be adjacent to a larger $k$-gon, $k > 3$. Using this we can estimate the number of triangle-edge pairs $(f, e)$, $f$ is a triangle, $e$ is an edge and $f$ contains $e$. There are $3p_3$ of these pairs, since every triangle contains three edges. On the other hand, around each vertex of valence $r > 3$ we can put a maximum of $r$ triangles, which would be $2r$ triangle-edge pairs. Around each $k$-gon we can fit no more than $\floor{\frac{k}{2}} + \lceil \frac{j}{2} \rceil$ triangles, where $j$ is the number of vertices with valence greater than $3$ adjacent to the $k$-gon \todo{insert figure}. We can only hope for the greatest number of triangle-edge pairs, if we do not have vertices with valence greater than $3$ next to the larger $k$-gons. Thus we can have only $\floor{\frac{k}{2}}$ triangle-edge pairs around each $k$-gon. Let $p' \defeq p + c \cdot [q_3 \times 3, q_l \times l]$, $v' = v + c \cdot [3]$, we have
+    As there can not be two triangles adjacent to a single edge with two $3$-valence vertices in the map, every edge adjacent to a triangle has to have either a vertex of valence greater than $3$ or it has also to be adjacent to a larger $k$-gon, $k > 3$. Using this we can estimate the number of triangle-edge pairs $(f, e)$, where $f$ is a triangle, $e$ is an edge and $f$ contains $e$. There are $3p_3$ of these pairs, since every triangle contains three edges. On the other hand, around each vertex of valence $r > 3$ we can put a maximum of $r$ triangles, which would be $2r$ triangle-edge pairs. Around each $k$-gon we can fit no more than $\lfloor \frac{k}{2} \rfloor + \lceil \frac{j}{2} \rceil$ triangles, where $j$ is the number of vertices with valence greater than $3$ adjacent to the $k$-gon \todo{insert figure}. We can only hope for the greatest number of triangle-edge pairs, if we do not have vertices with valence greater than $3$ next to the larger $k$-gons. Thus we can have only $\lfloor \frac{k}{2} \lceil$ triangle-edge pairs around each $k$-gon. For the $p$-vector $p'$ and the $v$-vector $v'$ of a $q$-$w$-realization, we have $p' \defeq p + c \cdot [q_3 \times 3, q_l \times l]$, $v' = v + c \cdot [3]$, thus
     \begin{align*}
       &\sum_{k \geq 4} 2k \cdot v'_k + \sum_{k \geq 4} \floor{\tfrac{k}{2}} p'_k \\
       ={}&\sum_{k \geq 4} 2k \cdot v_k + \sum_{k \geq 4} \floor{\tfrac{k}{2}} p_k + c \cdot q_l \cdot \floor{\tfrac{l}{2}}\\
       \geq{} & 3 p'_3 {}={} 3 p_3 + 3 c \cdot q_3 \\
       \implies & \sum_{k \geq 4} 2k \cdot v_k + \sum_{k \geq 4} \floor{\tfrac{k}{2}} p_k - 3p_3 \geq c \cdot (3 q_3 - q_l \cdot \floor{\tfrac{l}{2}})
     \end{align*}
-    Since $3q_3 = (l - 6)q_l$, the coefficient $(3 q_3 - q_l \cdot \floor{\tfrac{l}{2}})$ is positive if $\floor{\frac{l}{2}} < l - 6$, i.e. if $l \geq 13$, and there are only finitely many solutions in this case. If $\sum_{k \geq 4} 2k \cdot v_k + \sum_{k \geq 4} \floor{\tfrac{k}{2}} p_k < 3p_3$, the coefficient of $c$ has to be negative, which is only the case for $l < 11$. This finishes the proof.
+    Since $3q_3 = (l - 6)q_l$, the coefficient $(3 q_3 - q_l \cdot \lfloor \tfrac{l}{2} \rfloor)$ is positive if $\lfloor \frac{l}{2} \rfloor  < l - 6$, i.e. if $l \geq 13$, and there are only finitely many solutions in this case. If $\sum_{k \geq 4} 2k \cdot v_k + \sum_{k \geq 4} \lfloor \tfrac{k}{2} \rfloor p_k < 3p_3$, the coefficient of $c$ has to be negative, which is only the case for $l < 11$. This finishes the proof.
   \end{proof}
 \end{theorem}
 
@@ -478,7 +494,7 @@ The last theorem we want to present in this section explains, why we were unable
   \end{align*}
   Note that for all $l \geq 11$ (and even $l \in \nats$) 
   \begin{align*}
-    (l - 4)q_l = \tfrac{3(l - 4)}{\gcd(l, 3)} \geq \tfrac{l - 6}{\gcd(l, 3)} = q_3
+    (l - 4)q_l \geq (l - 6)q_l = 3q_3 \geq q_3
   \end{align*}
   and therefore $v_3 \geq 4$, and $v$ is a defined sequence.
 \end{example}
