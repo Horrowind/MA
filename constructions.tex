@@ -86,6 +86,123 @@ Using this notation we describe the following construction scheme:
 For the rest of the construction, the notion ``corner vertices'' will relate to the original vertices $V$, while ``side vertices'' denote those on the subdivisions made before. The remaining vertices of $G'$ will be called ``inner vertices''. $G'$ is simple: $G'$ is nonempty and connected by construction and there is no possibility for it to contain loops or multi-edges since these would also be present in either $G$ or one of the patches $\mathcal{P}(f)$. Lastly, each face of the embedding is homeomorphic to a $2$-cell, since all faces in the new embedding are homeomorphic to an inner face of some patch $\mathcal{P}(f)$, thus the embedding of $G'$ into $S$ is a map $M'$. By \autoref{thm:fitting:tuples} each side vertex is $r$-valent, which is also true for the inner vertices (they come from $r$-valent inner vertices of an $r$-patch). Each corner vertex has the same valence it had previously in the map $M$, therefore the $v$-vector of $M'$ is $v + d \cdot [r]$ for some $d \in \nats$. The $p$-vector of $M'$ is the sum of the $p$-vectors $p^{(f)}$ of each patch $\mathcal{P}(f)$ ($f \in F$). Thus we have constructed another map on $S$ with $v$-vector $v + d \cdot [r]$ and $p$-vector $\sum_{f \in F} p^{(f)}$.
   \end{cdescription}
 \end{construction}
+\begin{tikzfigure}{}{}
+  \matrix (m) [column sep=1cm] {
+    \begin{scope}[scale=0.5]
+      \draw (-3,0)--(-3,3)--(-6,5)--(-6,8)--(-3,10)--(0,8)--(6,8)--(6,5)--(7,1)--(3,0)--(-3,0);
+      \draw (-3,3)--(0,5)--(0,8);
+      \draw (3,0)--(3,3)--(0,5);
+      \draw (3,3)--(7,1);
+      \draw (3,3)--(6,5);
+
+      % loose ends
+      \draw (-3,0)-- (-3.5,-0.666);
+      \draw (-3,3)-- (-3.5,2.5);
+      \draw (-6,5)--  (-6.5,4.666);
+      \draw (-6,8)-- (-6.5,8.333);
+      \draw (-3,10)-- (-3,10.5);
+      \draw (0,8)-- (0.5,8.333);
+      \draw (6,8)-- (6.5,8.5);
+      \draw (6,5)-- (6.5,5);
+      \draw (7,1)-- (7.5,0.5);
+      \draw (3,0)-- (3.5,-0.666);
+
+      \fill[black] (-3,0) circle(3pt);
+      \fill[black] (-3,3)circle(3pt);
+      \fill[black] (-6,5)circle(3pt);
+      \fill[black] (-6,8)circle(3pt);
+      \fill[black] (-3,10)circle(3pt);
+      \fill[black] (0,8)circle(3pt);
+      \fill[black] (6,8)circle(3pt);
+      \fill[black] (6,5)circle(3pt);
+      \fill[black] (7,1) circle(3pt);
+      \fill[black] (3,0)circle(3pt);
+      \fill[black] (0,5)circle(3pt);
+      \fill[black] (3,3)circle(3pt);
+
+      \node at (-3,6.5) {$f_1$};
+      \node at (0,2.5) {$f_2$};
+      \node at (3,5.5) {$f_3$};
+      \node at (4.5,1.5) {$f_4$};
+      \node at (5,3) {$f_5$};
+      
+    \end{scope}
+    &
+    \begin{scope}[scale=0.5]
+      \draw (-3,0)--(-3,3)--(-6,5)--(-6,8)--(-3,10)--(0,8)--(6,8)--(6,5)--(7,1)--(3,0)--(-3,0);
+      \draw (-3,3)--(0,5)--(0,8);
+      \draw (3,0)--(3,3)--(0,5);
+      \draw (3,3)--(7,1);
+      \draw (3,3)--(6,5);
+
+      % loose ends
+      \draw (-3,0)-- (-3.5,-0.666);
+      \draw (-3,3)-- (-3.5,2.5);
+      \draw (-6,5)--  (-6.5,4.666);
+      \draw (-6,8)-- (-6.5,8.333);
+      \draw (-3,10)-- (-3,10.5);
+      \draw (0,8)-- (0.5,8.333);
+      \draw (6,8)-- (6.5,8.5);
+      \draw (6,5)-- (6.5,5);
+      \draw (7,1)-- (7.5,0.5);
+      \draw (3,0)-- (3.5,-0.666);
+
+      \fill[black] (-3,0) circle(3pt);
+      \fill[black] (-3,3)circle(3pt);
+      \fill[black] (-6,5)circle(3pt);
+      \fill[black] (-6,8)circle(3pt);
+      \fill[black] (-3,10)circle(3pt);
+      \fill[black] (0,8)circle(3pt);
+      \fill[black] (6,8)circle(3pt);
+      \fill[black] (6,5)circle(3pt);
+      \fill[black] (7,1) circle(3pt);
+      \fill[black] (3,0)circle(3pt);
+      \fill[black] (0,5)circle(3pt);
+      \fill[black] (3,3)circle(3pt);
+
+      \node at (-3,6.5) {$\mathcal{P}(f_1)$};
+      \node at (0,2.5) {$\mathcal{P}(f_2)$};
+      \node at (3,5.5) {$\mathcal{P}(f_3)$};
+      \node at (4.3,1.2) {$\mathcal{P}(f_4)$};
+      \node at (5,3) {$\mathcal{P}(f_5)$};
+      
+      \foreach \x in {0.2,0.4,0.6,0.8}
+      \fill[black] ($(3,0)!\x!(-3,0)$) circle (3pt);    
+      \foreach \x in {0.2,0.4,0.6,0.8}
+      \fill[black] ($(-3,0)!\x!(-3,3)$) circle (3pt); 
+      \foreach \x in {0.2,0.4,0.6,0.8}
+      \fill[black] ($(-3,3)!\x!(-6,5)$) circle (3pt);
+      \foreach \x in {0.2,0.4,0.6,0.8}
+      \fill[black] ($(-6,5)!\x!(-6,8)$) circle (3pt);
+      \foreach \x in {0.2,0.4,0.6,0.8}
+      \fill[black] ($(-6,8)!\x!(-3,10)$) circle (3pt);
+      \foreach \x in {0.2,0.4,0.6,0.8}
+      \fill[black] ($(-3,10)!\x!(0,8)$) circle (3pt);
+      \foreach \x in {0.2,0.4,0.6,0.8}
+      \fill[black] ($(0,8)!\x!(6,8)$) circle (3pt);
+      \foreach \x in {0.2,0.4,0.6,0.8}
+      \fill[black] ($(6,8)!\x!(6,5)$) circle (3pt);
+      \foreach \x in {0.2,0.4,0.6,0.8}
+      \fill[black] ($(6,5)!\x!(7,1)$) circle (3pt);     
+      \foreach \x in {0.2,0.4,0.6,0.8}
+      \fill[black] ($(7,1)!\x!(3,0)$) circle (3pt); 
+      \foreach \x in {0.2,0.4,0.6,0.8}
+      \fill[black] ($(3,0)!\x!(3,3)$) circle (3pt);
+      \foreach \x in {0.2,0.4,0.6,0.8}
+      \fill[black] ($(3,3)!\x!(7,1)$) circle (3pt);
+      \foreach \x in {0.2,0.4,0.6,0.8}
+      \fill[black] ($(3,3)!\x!(6,5)$) circle (3pt);
+      \foreach \x in {0.2,0.4,0.6,0.8}
+      \fill[black] ($(3,3)!\x!(0,5)$) circle (3pt);
+      \foreach \x in {0.2,0.4,0.6,0.8}
+      \fill[black] ($(0,5)!\x!(0,8)$) circle (3pt);
+      \foreach \x in {0.2,0.4,0.6,0.8}
+      \fill[black] ($(0,5)!\x!(-3,3)$) circle (3pt);      
+    \end{scope}
+    \\
+    };
+\end{tikzfigure}
+
 
 As previously stated, these definitions are used to formalize the construction step ``replace each face with a patch''. Up until now, there is no requirement explicitly stated on the interior of the patch. If we expect the result of such a construction to be a polyhedral map, further conditions have to be met. Additionally, when using \autoref{const:map} we have the problem of assigning a patch for each face of the map. While we might need only one type of patch for a $k$-gon for each $k \geq 3$, we could still have to deal with a huge amount of values of $k$. We now want to define a construction scheme for patches for arbitrary $k$ which additionally allow to create polyhedral maps, even from non-polyhedral ones.
 
@@ -769,6 +886,217 @@ Recall that in \autoref{const:map} we constructed $M'$ to be subdividing each ed
 
 \end{proof}
 \end{proposition}
+
+\begin{tikzfigure}{}{}
+  \matrix (m) [column sep=1cm] {
+    \begin{scope}[scale=0.5]
+      \draw (-3,0)--(-3,3)--(-6,5)--(-6,8)--(-3,10)--(0,8)--(6,8)--(6,5)--(7,1)--(3,0)--(-3,0);
+      \draw (-3,3)--(0,5)--(0,8);
+      \draw (3,0)--(3,3)--(0,5);
+      \draw (3,3)--(7,1);
+      \draw (3,3)--(6,5);
+
+      % loose ends
+      \draw (-3,0)-- (-3.5,-0.666);
+      \draw (-3,3)-- (-3.5,2.5);
+      \draw (-6,5)--  (-6.5,4.666);
+      \draw (-6,8)-- (-6.5,8.333);
+      \draw (-3,10)-- (-3,10.5);
+      \draw (0,8)-- (0.5,8.333);
+      \draw (6,8)-- (6.5,8.5);
+      \draw (6,5)-- (6.5,5);
+      \draw (7,1)-- (7.5,0.5);
+      \draw (3,0)-- (3.5,-0.666);
+
+      \fill[black] (-3,0) circle(3pt);
+      \fill[black] (-3,3)circle(3pt);
+      \fill[black] (-6,5)circle(3pt);
+      \fill[black] (-6,8)circle(3pt);
+      \fill[black] (-3,10)circle(3pt);
+      \fill[black] (0,8)circle(3pt);
+      \fill[black] (6,8)circle(3pt);
+      \fill[black] (6,5)circle(3pt);
+      \fill[black] (7,1) circle(3pt);
+      \fill[black] (3,0)circle(3pt);
+      \fill[black] (0,5)circle(3pt);
+      \fill[black] (3,3)circle(3pt);
+
+      \node at (-3,6.5) {$f_1$};
+      \node at (0,2.5) {$f_2$};
+      \node at (3,5.5) {$f_3$};
+      \node at (4.5,1.5) {$f_4$};
+      \node at (5,3) {$f_5$};
+      
+    \end{scope}
+    &
+    \begin{scope}[scale=0.5]
+      \draw (-3,0)--(-3,3)--(-6,5)--(-6,8)--(-3,10)--(0,8)--(6,8)--(6,5)--(7,1)--(3,0)--(-3,0);
+      \draw (-3,3)--(0,5)--(0,8);
+      \draw (3,0)--(3,3)--(0,5);
+      \draw (3,3)--(7,1);
+      \draw (3,3)--(6,5);
+
+
+      \coordinate[shift={(0,1)}] (penta1) at ( 50:0.5) ;
+      \coordinate[shift={(0,1)}] (penta2) at (122:0.5) ;
+      \coordinate[shift={(0,1)}] (penta3) at (194:0.5) ;
+      \coordinate[shift={(0,1)}] (penta4) at (266:0.5) ;
+      \coordinate[shift={(0,1)}] (penta5) at (338:0.5) ;
+
+      \coordinate[shift={(1.5,3)}] (penta9) at  ( 20:0.5) ;
+      \coordinate[shift={(1.5,3)}] (penta10) at ( 92:0.5) ;
+      \coordinate[shift={(1.5,3)}] (penta11) at (164:0.5) ;
+      \coordinate[shift={(1.5,3)}] (penta12) at (236:0.5) ;
+      \coordinate[shift={(1.5,3)}] (penta13) at (308:0.5) ;
+
+      \coordinate[shift={(-1.5,3.25)}] (hexa1) at (  0:0.5) ;
+      \coordinate[shift={(-1.5,3.25)}] (hexa2) at ( 60:0.5) ;
+      \coordinate[shift={(-1.5,3.25)}] (hexa3) at (120:0.5) ;
+      \coordinate[shift={(-1.5,3.25)}] (hexa4) at (180:0.5) ;
+      \coordinate[shift={(-1.5,3.25)}] (hexa5) at (240:0.5) ;
+      \coordinate[shift={(-1.5,3.25)}] (hexa6) at (300:0.5) ;
+
+      \coordinate[shift={(2.2,0.65)}] (tri1) at ( 75:0.4) ;
+      \coordinate[shift={(2.2,0.65)}] (tri2) at (195:0.4) ;
+      \coordinate[shift={(2.2,0.65)}] (tri3) at (315:0.4) ;
+      
+      \coordinate[shift={(2.7,1.5)}] (tri4) at ( 30:0.4) ;
+      \coordinate[shift={(2.7,1.5)}] (tri5) at (150:0.4) ;
+      \coordinate[shift={(2.7,1.5)}] (tri6) at (270:0.4) ;
+      
+ 
+      \draw (penta5)--(penta1)--(penta2)--(penta3)--(penta4)--(penta5);
+      \draw (penta9)--(penta10)--(penta11)--(penta12)--(penta13)--(penta9);
+
+      \draw (hexa1)--(hexa2)--(hexa3)--(hexa4)--(hexa5)--(hexa6)--(hexa1);
+
+      \draw (tri1)--(tri2)--(tri3)--(tri1);
+      \draw (tri4)--(tri5)--(tri6)--(tri4);
+           
+      % loose ends
+      \draw (-3,0)-- (-3.5,-0.666);
+      \draw (-3,3)-- (-3.5,2.5);
+      \draw (-6,5)--  (-6.5,4.666);
+      \draw (-6,8)-- (-6.5,8.333);
+      \draw (-3,10)-- (-3,10.5);
+      \draw (0,8)-- (0.5,8.333);
+      \draw (6,8)-- (6.5,8.5);
+      \draw (6,5)-- (6.5,5);
+      \draw (7,1)-- (7.5,0.5);
+      \draw (3,0)-- (3.5,-0.666);
+
+      \fill[black] (-3,0) circle(3pt);
+      \fill[black] (-3,3)circle(3pt);
+      \fill[black] (-6,5)circle(3pt);
+      \fill[black] (-6,8)circle(3pt);
+      \fill[black] (-3,10)circle(3pt);
+      \fill[black] (0,8)circle(3pt);
+      \fill[black] (6,8)circle(3pt);
+      \fill[black] (6,5)circle(3pt);
+      \fill[black] (7,1) circle(3pt);
+      \fill[black] (3,0)circle(3pt);
+      \fill[black] (0,5)circle(3pt);
+      \fill[black] (3,3)circle(3pt);
+
+      \draw ($(3,0)!0.4!(3,3)$) --(tri2);
+      \draw ($(7,1)!0.6!(3,3)$) --(tri1);
+      \draw ($(7,1)!0.4!(3,0)$) --(tri3);
+
+
+      \draw ($(6,5)!0.6!(3,3)$) --(tri5);
+      \draw ($(7,1)!0.4!(3,3)$) --(tri6);
+      \draw ($(6,5)!0.4!(7,1)$) --(tri4);
+
+      \draw ($(3,3)!0.6!(0,5)$) --(penta1);
+      \draw ($(0,5)!0.6!(-3,3)$) --(penta2);
+      \draw ($(-3,3)!0.6!(-3,0)$) --(penta3);
+      \draw ($(-3,0)!0.6!(3,0)$) --(penta4);
+      \draw ($(3,0)!0.6!(3,3)$) --(penta5);
+
+      \draw ($(6,5)!0.6!(6,8)$) --(penta9);
+      \draw ($(6,8)!0.6!(0,8)$) --(penta10);
+      \draw ($(0,8)!0.6!(0,5)$) --(penta11);
+      \draw ($(0,5)!0.6!(3,3)$) --(penta12);
+      \draw ($(3,3)!0.6!(6,5)$) --(penta13);
+
+      \draw ($(0,5)!0.6!(0,8)$) --(hexa1);
+      \draw ($(0,8)!0.6!(-3,10)$) --(hexa2);
+      \draw ($(-3,10)!0.6!(-6,8)$) --(hexa3);
+      \draw ($(-6,8)!0.6!(-6,5)$) --(hexa4);
+      \draw ($(-6,5)!0.6!(-3,3)$) --(hexa5);
+      \draw ($(-3,3)!0.6!(0,5)$) --(hexa6);
+
+      \node at (-1.5,1) {$\mathcal{M}$};
+      \node at (-1.7,2.4) {$\mathcal{M}$};
+      \node at (1.5,0.8) {$\mathcal{M}$};
+      \node at (1.6,2.6) {$\mathcal{M}$};
+      \node at (-0.2,3.8) {$\mathcal{M}$};
+
+      \node at (3.8,0.7) {$\mathcal{M}$};
+      \node at (3.8,2) {$\mathcal{M}$};
+      \node at (5.45,1.2) {$\mathcal{M}$};
+
+      \node at (6,2.5) {$\mathcal{M}$};
+      \node at (4.4,3) {$\mathcal{M}$};
+      \node at (5.6,3.8) {$\mathcal{M}$};
+
+      \node at (3,4.5) {$\mathcal{M}$};
+      \node at (4.8,5.8) {$\mathcal{M}$};
+      \node at (4.3,7.3) {$\mathcal{M}$};
+      \node at (1.4,7.3) {$\mathcal{M}$};
+      \node at (1.4,5.5) {$\mathcal{M}$};
+
+      % \node at (-2.8,4.5) {$\mathcal{M}$};
+      % \node at (-1.5,5.8) {$\mathcal{M}$};
+      % \node at (-1.6,7.3) {$\mathcal{M}$};
+      % \node at (-3.2,8.2) {$\mathcal{M}$};
+      % \node at (-4.8,7.2) {$\mathcal{M}$};
+      % \node at (-4.8,5.3) {$\mathcal{M}$};
+
+      \node[shift={(-1.5,3.25)}] at ( 30:1.8) {$\mathcal{M}$};
+      \node[shift={(-1.5,3.25)}] at ( 90:1.8) {$\mathcal{M}$} ;
+      \node[shift={(-1.5,3.25)}] at (150:1.8) {$\mathcal{M}$} ;
+      \node[shift={(-1.5,3.25)}] at (210:1.8) {$\mathcal{M}$} ;
+      \node[shift={(-1.5,3.25)}] at (270:1.8) {$\mathcal{M}$} ;
+      \node[shift={(-1.5,3.25)}] at (330:1.8) {$\mathcal{M}$} ;
+
+      
+      \foreach \x in {0.2,0.4,0.6,0.8}
+      \fill[black] ($(3,0)!\x!(-3,0)$) circle (3pt);    
+      \foreach \x in {0.2,0.4,0.6,0.8}
+      \fill[black] ($(-3,0)!\x!(-3,3)$) circle (3pt); 
+      \foreach \x in {0.2,0.4,0.6,0.8}
+      \fill[black] ($(-3,3)!\x!(-6,5)$) circle (3pt);
+      \foreach \x in {0.2,0.4,0.6,0.8}
+      \fill[black] ($(-6,5)!\x!(-6,8)$) circle (3pt);
+      \foreach \x in {0.2,0.4,0.6,0.8}
+      \fill[black] ($(-6,8)!\x!(-3,10)$) circle (3pt);
+      \foreach \x in {0.2,0.4,0.6,0.8}
+      \fill[black] ($(-3,10)!\x!(0,8)$) circle (3pt);
+      \foreach \x in {0.2,0.4,0.6,0.8}
+      \fill[black] ($(0,8)!\x!(6,8)$) circle (3pt);
+      \foreach \x in {0.2,0.4,0.6,0.8}
+      \fill[black] ($(6,8)!\x!(6,5)$) circle (3pt);
+      \foreach \x in {0.2,0.4,0.6,0.8}
+      \fill[black] ($(6,5)!\x!(7,1)$) circle (3pt);     
+      \foreach \x in {0.2,0.4,0.6,0.8}
+      \fill[black] ($(7,1)!\x!(3,0)$) circle (3pt); 
+      \foreach \x in {0.2,0.4,0.6,0.8}
+      \fill[black] ($(3,0)!\x!(3,3)$) circle (3pt);
+      \foreach \x in {0.2,0.4,0.6,0.8}
+      \fill[black] ($(3,3)!\x!(7,1)$) circle (3pt);
+      \foreach \x in {0.2,0.4,0.6,0.8}
+      \fill[black] ($(3,3)!\x!(6,5)$) circle (3pt);
+      \foreach \x in {0.2,0.4,0.6,0.8}
+      \fill[black] ($(3,3)!\x!(0,5)$) circle (3pt);
+      \foreach \x in {0.2,0.4,0.6,0.8}
+      \fill[black] ($(0,5)!\x!(0,8)$) circle (3pt);
+      \foreach \x in {0.2,0.4,0.6,0.8}
+      \fill[black] ($(0,5)!\x!(-3,3)$) circle (3pt);      
+    \end{scope}
+    \\
+  };
+  \end{tikzfigure}
 
 \begin{remark} As we have seen in the proof of \autoref{thm:const:polymap} and in \autoref{fig:thm:polymap} the edge patch serves as a replacement figure of an edge in \autoref{const:map}, thus its name.
 \end{remark}
