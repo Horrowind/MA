@@ -1127,5 +1127,20 @@ Assume there exist
 \end{proposition}
 
 \begin{remark}
-  \todo{What really needs to be checked.}
+  We will use \autoref{thm:main:const} heavily in the next five sections. Therefore we want to stress what is needed to check if the prerequisites of \autoref{thm:main:const} are fulfilled. As is stated, we need three $r$-patches, $\mathcal{P}_N$, $\mathcal{P}_F$ and $\mathcal{P}_P$, which we will call in this manner for the rest of the thesis. The list of properties is:
+  \begin{itemize}
+    \item $\mathcal{P}_N$, $\mathcal{P}_F$ and $\mathcal{P}_P$ consist of only $s$-gons and $l$-gons and all inner vertices have valence $r$.
+    \item $\mathcal{P}_N$ and $\mathcal{P}_P$ are expansion patches:
+      \begin{itemize}
+      \item $i_0$ and $i'_0$ are in sum incident to $r-1$ faces,
+      \item $i_k$ and $i'_k$, are in sum incident to $r$ faces, $1 \leq k < m$,
+      \item starting at the vertex $o_s$ and going in both directions for each pair of vertices $o_{s+k \mod n}$ and $o_{s-k \mod n}$ the identity $w_{\mathcal{P}_X}(o_{s+k \mod n}) + w_{\mathcal{P}_X}(o_{s-k \mod n}) = r$ holds, where we ``identify'' $o_n$ with $o_0$. For ease of comparison we also state the outer tuple $o$ for $\mathcal{P}_N$. 
+      \end{itemize}
+    \item $\mathcal{P}_F$ is $o$-$6$-gonal or $o$-$4$-gonal, i.e. if starting at some vertex and looking at the number of inner faces incident to this vertex we see the pattern
+      \begin{align*}
+        \underbrace{1, (\dots o \dots), 1, (\dots o \dots), \dots, 1, (\dots o \dots)}_{\text{six or four times}},
+      \end{align*}
+      where $o$ is the outer tuple of $\mathcal{P}_N$.
+    \item $\mathcal{P}_P$ has the polyhedral property. For this we provide the corresponding edge patch to make the verification easier.
+ \end{itemize}
 \end{remark}

@@ -40,7 +40,7 @@ $\hfil\displaystyle{#1}\hfil$\crcr\noalign{\kern3\p@\nointerlineskip}
 
 %\newcommand{\mysection}[1]{\clearpage\checkoddpage\ifoddpage\hbox{}\thispagestyle{empty}\clearpage\else\fi{\par\vspace*{\fill}}\section{#1}}
 \newcommand{\mysection}[1]{\clearpage\ifodd\thepage\hbox{}\thispagestyle{empty}\clearpage\else\fi{\par\vspace*{\fill}}\section{#1}}
-%\newcommand{\mysection}[1]{{\par\vspace*{\fill}}\section{#1}}
+%\newcommand{\mysection}[1]{{\clearpage\par\vspace*{\fill}}\section{#1}}
 \renewcommand{\emptyset}{\varnothing}
 \usepackage{tikz}
 \usetikzlibrary{%
@@ -81,8 +81,7 @@ $\hfil\displaystyle{#1}\hfil$\crcr\noalign{\kern3\p@\nointerlineskip}
     {\begin{figure}[!h] \caption{#2} #1 \centering \begin{tikzpicture}[line cap=round, line join=round]}
     {\end{tikzpicture} \end{figure}}
 
-\newenvironment{tikzfigure2}{\begin{figure}[!b] \centering}
-    {\end{figure}}
+\newenvironment{tikzfigure2}{\begin{figure}[b!]\centering}{\end{figure}}
 
 \newenvironment{tikzsubfigure}[3]
     {\begin{subfigure}[t]{#3\textwidth} \caption{#2} #1 \centering \begin{tikzpicture}[line cap=round, line join=round]}

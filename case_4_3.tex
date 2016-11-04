@@ -507,16 +507,16 @@ For all the proofs, we want to use \autoref{thm:main:const}, therefore we need t
 \begin{theorem}
   Let $p$ and $v$ be a pair of admissible sequences for an orientable closed $2$-manifold $S$ with {\sc Euler} characteristic $\chi$. If $\chi = 2$ we exclude the case
   \begin{align*}
-    \sum_{k=3 \atop 2 \nmid k}^{m} p_k = 0 \text{\quad and\quad}\sum_{k=4 \atop 3 \nmid k}^n v_k = 1.
+    \sum_{k=3 \atop 2 \nmid k}^{m} p_k = 0 \text{\quad and\quad}\sum_{k=4 \atop 3 \nmid k}^n v_k = 1,
   \end{align*}
-  Then $(p, v)$ is $[(2k + 2) \times 4, 4k+10]$-$[3]$-realizable on $S$ for all $k \in \nats$.
+  then $(p, v)$ is $[(2k + 2) \times 4, 4k+10]$-$[3]$-realizable on $S$ for all $k \in \nats$.
   \begin{proof}
-    An expansion $3$-patch $\mathcal{P}_N$ with outer tuple $o = (2, 2, 1, 1)$ is shown in \autoref{fig:expansion:patch:4:10:a} and a corresponding $o$-$6$-gonal $3$-patch $\mathcal{P}_F$ is shown in \autoref{fig:expansion:patch:4:10:b}, both consisting of only quadrangles and decagons. By using \autoref{const:edge:replacement:4:1} and \autoref{const:edge:replacement:4:2} as indicated we get $3$-patches consisting of only quadrangles and $(4k+10)$-gons, $k \in \nats$. By \autoref{thm:expansion:patch:poly:4:k} there is a expansion $3$-patch $\mathcal{P}_P$ with the polyhedral property consisting also of only quadrangles and $(4k+10)$-gons, thus we can apply \autoref{thm:main:const}.
-  \end{proof}
-\end{theorem}
-{\par\vspace*{\fill}}
-\begin{tikzfigure2}
+    An expansion $3$-patch $\mathcal{P}_N$ with outer tuple $o = (2, 2, 1, 1)$ is shown in \autoref{fig:expansion:patch:4:10:a} and a corresponding $o$-$6$-gonal $3$-patch $\mathcal{P}_F$ is shown in \autoref{fig:expansion:patch:4:10:b}, both consisting of only quadrangles and decagons. By using \autoref{const:edge:replacement:4:1} and \autoref{const:edge:replacement:4:2} as indicated we get $3$-patches consisting of only quadrangles and $(4k+10)$-gons, $k \in \nats$. By \autoref{thm:expansion:patch:poly:4:k} there is a expansion $3$-patch $\mathcal{P}_P$ with the polyhedral property consisting also of only quadrangles and $(4k+10)$-gons, thus we can apply \autoref{thm:main:const}.%
+  \end{proof}%
+\end{theorem}%
+\begin{figure}[h]
   \begin{tikzsubfigure}{\label{fig:expansion:patch:4:10:a}}{$\mathcal{P}_N$}{1.0}
+    % \clip[draw] (-4.5, 0.75) rectangle (2, 6);
     \begin{scope}[yscale=0.866, scale=0.8]
       \node[anchor= 90] at (-1, 2) {$i_0$};
       \node[anchor= 45] at (-2, 4)   {$i_1$};
@@ -569,8 +569,8 @@ For all the proofs, we want to use \autoref{thm:main:const}, therefore we need t
     \end{scope}
   \end{tikzsubfigure}
   \begin{tikzsubfigure}{\label{fig:expansion:patch:4:10:b}}{$\mathcal{P}_F$}{1.0}
-    \begin{scope}[scale=5]
+    \begin{scope}[scale=4.5]
       \input{tikz/4_10/hexagon2}
     \end{scope}
   \end{tikzsubfigure}
-\end{tikzfigure2}
+\end{figure}
