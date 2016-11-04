@@ -1,6 +1,6 @@
 \mysection{$5$-valent {\sc Eberhard}-like theorems with triangles}\label{sec:3:5}
 
-In the previous two sections, we could rely on \autoref{thm:eberhard:extended:3} and \autoref{thm:eberhard:extended:4} to do the main work for us and create an initial map with which we can begin our constructions. As there is no comparable theorem stated in the litrature on $5$-valent {\sc Eberhard} theorems as in the $3$-valent and $4$-valent cases which does consider the additional $v$-vector, we need a new $5$-valent {\sc Eberhard} theorem which we can use as first construction step and which includes both a $p$-vector and a $v$-vector. But the situation is not as difficult as doing a whole construction of a polyhedral map by ourselves, as in fact, we can use \autoref{thm:eberhard:extended:4} nonetheless and just need to convert superflous $4$-valent vertices into $5$-valent ones in an intermediate step.
+In the previous two sections, we could rely on \autoref{thm:eberhard:extended:3} and \autoref{thm:eberhard:extended:4} to do the main work for us and create an initial map with which we can begin our constructions. As there is no comparable theorem stated in the litrature on $5$-valent {\sc Eberhard} theorems as in the $3$-valent and $4$-valent cases which does consider the additional $v$-vector, we need a new $5$-valent {\sc Eberhard} theorem which we can use as first construction step and which includes both a $p$-vector and a $v$-vector. But the situation is not as difficult as doing a whole construction of a polyhedral map by ourselves, as in fact, we can use \autoref{thm:eberhard:extended:4} nonetheless and just need to convert superfluous $4$-valent vertices into $5$-valent ones in an intermediate step.
 \clearpage
 \begin{proposition}\label{thm:bootstrap:5}
   Let $p = (p_3, p_4, \dots, p_n)$, $v = (v_3, v_4, \dots, v_m)$ be a pair of admissible sequences for an orientable closed manifold $S$, then $p$ is $[2\times3, 4]$-$[5]$-realizable on $S$.
@@ -222,7 +222,7 @@ Our next corner stone is to revisit \autoref{thm:main:const} for the $5$-valent 
   \end{itemize}
   Then $(p, v)$ is $q$-$[5]$-realizable.
   \begin{proof}
-    The proof is analogous to \autoref{thm:main:const}. We use \autoref{thm:bootstrap:5} to create an initial map and use \autoref{const:map} to replace all superflous quadrangles with triangles and $l$-gons via the given patches $\mathcal{P}_N(k)$ and $\mathcal{P}_F$. Finally we use \autoref{const:map} with $\mathcal{P}_P(k)$ to make the map polyhedral. This map suffices our requirements by \autoref{lem:2:valued:eberhard}.
+    The proof is analogous to \autoref{thm:main:const}. We use \autoref{thm:bootstrap:5} to create an initial map and use \autoref{const:map} to replace all superfluous quadrangles with triangles and $l$-gons via the given patches $\mathcal{P}_N(k)$ and $\mathcal{P}_F$. Finally we use \autoref{const:map} with $\mathcal{P}_P(k)$ to make the map polyhedral. This map suffices our requirements by \autoref{lem:2:valued:eberhard}.
   \end{proof}
 \end{proposition}
 
@@ -297,8 +297,32 @@ Our next corner stone is to revisit \autoref{thm:main:const} for the $5$-valent 
           \fill[black] (-1,1.5) circle (2pt);
           \fill[black] (1,-1.5) circle (2pt);
           \fill[black] (1,1.5) circle (2pt);
-          \fill[black] (-1,-1.5) circle (2pt);          
+          \fill[black] (-1,-1.5) circle (2pt);
 
+          \node at (0,0.2) {$3$};
+          \node at (0,-0.2) {$3$};
+          \node at (0,-1.3) {$3$};
+          \node at (0.25,1.3) {$3$};
+
+          \node at (0.4,0.3) {$3$};
+          \node at (0.4,-0.3) {$3$};
+          \node at (-0.4,-0.3) {$3$};
+          \node at (-0.4,0.3) {$3$};
+
+          \node at (-0.65,0) {$3$};
+          \node at ( 0.65,0) {$3$};
+
+          \node at (0.15,0.7) {$3$};
+          \node at (0.15,-0.7) {$3$};
+          \node at (-0.15,-0.7) {$3$};
+          \node at (-0.15,0.7) {$3$};
+
+          \node at (-0.7,1) {$3$};
+          \node at (0.7,1) {$3$};
+          \node at (-0.7,-1) {$3$};
+          \node at (0.7,-1) {$3$};
+          
+          
         \end{scope}
         \\
         \begin{scope}
@@ -316,7 +340,7 @@ Our next corner stone is to revisit \autoref{thm:main:const} for the $5$-valent 
           \fill[black] (1,0) circle(2pt);
         \end{scope}
         &
-        \begin{scope}
+        \begin{scope}[scale=1.3]
           \draw[lsquare] (-1, 1.5) -- (1, 1.5);
           \draw (-1, -1.5) -- (1, -1.5);
           \draw (-1.2, 2) -- (-1, 1.5);
@@ -343,22 +367,48 @@ Our next corner stone is to revisit \autoref{thm:main:const} for the $5$-valent 
           \draw[lface] (-1, 1.5) -- (k1);
           \draw[lface] ( 1, 1.5) -- (k2);
           
-          \fill[black] (-0.8,0.5) circle (2pt);
-          \fill[black] (-0.8,-0.5) circle (2pt);          
-          \fill[black] (0.8,0.5) circle (2pt);
-          \fill[black] (0.8,-0.5) circle (2pt);          
-          \fill[black] (-1,1.5) circle (2pt);
-          \fill[black] (1,-1.5) circle (2pt);
-          \fill[black] (1,1.5) circle (2pt);
-          \fill[black] (-1,-1.5) circle (2pt);          
+          \fill[black] (-0.8,0.5) circle (1.5pt);
+          \fill[black] (-0.8,-0.5) circle (1.5pt);          
+          \fill[black] (0.8,0.5) circle (1.5pt);
+          \fill[black] (0.8,-0.5) circle (1.5pt);          
+          \fill[black] (-1,1.5) circle (1.5pt);
+          \fill[black] (1,-1.5) circle (1.5pt);
+          \fill[black] (1,1.5) circle (1.5pt);
+          \fill[black] (-1,-1.5) circle (1.5pt);          
 
-          \fill[black] (-0.3,-0.75) circle (2pt);
-          \fill[black] (-0.3,-0.25) circle (2pt);
-          \fill[black] (-0.3, 0.25) circle (2pt);
-          \fill[black] ( 0.3, 0.75) circle (2pt);
-          \fill[black] ( 0.3, 0.25) circle (2pt);
-          \fill[black] ( 0.3,-0.25) circle (2pt);
+          \fill[black] (-0.3,-0.75) circle (1.5pt);
+          \fill[black] (-0.3,-0.25) circle (1.5pt);
+          \fill[black] (-0.3, 0.25) circle (1.5pt);
+          \fill[black] ( 0.3, 0.75) circle (1.5pt);
+          \fill[black] ( 0.3, 0.25) circle (1.5pt);
+          \fill[black] ( 0.3,-0.25) circle (1.5pt);
 
+
+          \node at (-0.15,0.1) {$3$};
+          \node at (0.15,-0.1) {$3$};
+          \node at (-0.15,-0.4) {$3$};
+          \node at (0.15,0.4) {$3$};
+
+          \node at (0.4,0.5) {$3$};
+          \node at (-0.4,-0.5) {$3$};
+
+          \node at (0.4,0.1) {$3$};
+          \node at (-0.4,-0.1) {$3$};
+
+          \node at (0.65,-0.25) {$3$};
+          \node at (-0.65,0.25) {$3$};
+
+          \node at (0.35,-0.45) {$3$};
+          \node at (-0.35,0.45) {$3$};
+
+          \node at (-0.3,-0.95) {$3$};
+          \node at (0.3,0.95) {$3$};
+
+          \node at (0.65,0.8) {$3$};
+          \node at (-0.65,-0.8) {$3$};
+
+          \node at (-0.45,1) {$3$};
+          \node at (0.45,-1) {$3$};
         \end{scope}
         \\
       };
@@ -393,7 +443,7 @@ Our next corner stone is to revisit \autoref{thm:main:const} for the $5$-valent 
 
         \end{scope}
         &
-        \begin{scope}[scale=1]
+        \begin{scope}[scale=1.3]
           \draw[ldiamond] (0, 1.75) -- (0, 2.5);
           \draw (0.5, -2.2) -- (0, -2) -- (-0.5, -2.2);
           \draw (0.5,  2.7) -- (0,  2.5) -- (-0.5,  2.7);
@@ -401,11 +451,11 @@ Our next corner stone is to revisit \autoref{thm:main:const} for the $5$-valent 
           \draw (0.5,  2.3) -- (0,  2.5) -- (-0.5,  2.3);
 
           \draw (0, -1.75) -- (-1, 0) -- (0, 1.75) -- (1, 0) -- (0, -1.75) -- (-0.2, -0.75) -- (-0.5, 0) -- (-0.2, 0.75) -- (0, 1.75) -- (0.2, 0.75) -- (0.5, 0) -- (0.2, -0.75) -- (0, -1.75) -- (0, -2);
-          \draw (-0.2, -0.75) -- (0, -0.5) -- (0.2, -0.75) -- (-0.2, -0.75);
-          \draw (-0.2,  0.75) -- (0,  0.5) -- (0.2,  0.75) -- (-0.2,  0.75);
-          \draw (-1, 0) -- (-0.5, 0) -- (0, -0.5) -- (0.5, 0) -- (1, 0);
-          \draw (-0.5, 0) -- (0, 0.5) -- (0.5, 0);
-          \draw (0, -0.5) -- (0, 0.5);
+          \draw (-0.2, -0.75) -- (0, -0.3) -- (0.2, -0.75) -- (-0.2, -0.75);
+          \draw (-0.2,  0.75) -- (0,  0.3) -- (0.2,  0.75) -- (-0.2,  0.75);
+          \draw (-1, 0) -- (-0.5, 0) -- (0, -0.3) -- (0.5, 0) -- (1, 0);
+          \draw (-0.5, 0) -- (0, 0.3) -- (0.5, 0);
+          \draw (0, -0.3) -- (0, 0.3);
           \draw (-0.2, -0.75) -- (-1, 0) -- (-0.2, 0.75);
           \draw ( 0.2, -0.75) -- ( 1, 0) -- ( 0.2, 0.75);
           \node (n1) at (-1.8, 0) {$k_1 + 3$};
@@ -415,20 +465,42 @@ Our next corner stone is to revisit \autoref{thm:main:const} for the $5$-valent 
           \draw[lface] (0,2.125)--(n1);
           \draw[lface] (0,2.125)--(n2);
 
-          \fill[black] (-1,0) circle(2pt);
-          \fill[black] ( 1,0) circle(2pt);
-          \fill[black] ( 0,-1.75) circle(2pt);
-          \fill[black] (0,1.75) circle(2pt);
-          \fill[black] (0.2,0.75) circle(2pt);
-          \fill[black] (-0.2,0.75) circle(2pt);
-          \fill[black] (-0.2,-0.75) circle(2pt);
-          \fill[black] (0.2,-0.75) circle(2pt);
-          \fill[black] (0,2.5) circle(2pt);
-          \fill[black] (0,-2) circle(2pt);
-          \fill[black] (0.5,0) circle(2pt);
-          \fill[black] (-0.5,0) circle(2pt);
-          \fill[black] (0,-0.5) circle(2pt);
-          \fill[black] (0,0.5) circle(2pt);
+          \fill[black] (-1,0) circle(1.5pt);
+          \fill[black] ( 1,0) circle(1.5pt);
+          \fill[black] ( 0,-1.75) circle(1.5pt);
+          \fill[black] (0,1.75) circle(1.5pt);
+          \fill[black] (0.2,0.75) circle(1.5pt);
+          \fill[black] (-0.2,0.75) circle(1.5pt);
+          \fill[black] (-0.2,-0.75) circle(1.5pt);
+          \fill[black] (0.2,-0.75) circle(1.5pt);
+          \fill[black] (0,2.5) circle(1.5pt);
+          \fill[black] (0,-2) circle(1.5pt);
+          \fill[black] (0.5,0) circle(1.5pt);
+          \fill[black] (-0.5,0) circle(1.5pt);
+          \fill[black] (0,-0.3) circle(1.5pt);
+          \fill[black] (0,0.3) circle(1.5pt);
+
+          \node at (0.15,0) {$3$};
+          \node at (-0.15,0) {$3$};
+          \node at (0,0.57) {$3$};
+          \node at (0,-0.57) {$3$};
+
+          \node at (0,1) {$3$};
+          \node at (0,-1) {$3$};
+
+          \node at (0.23,0.35) {$3$};
+          \node at (0.6,0.17) {$3$};
+          \node at (0.23,-0.35) {$3$};
+          \node at (0.6,-0.17) {$3$};
+          \node at (-0.23,0.35) {$3$};
+          \node at (-0.6,0.17) {$3$};
+          \node at (-0.23,-0.35) {$3$};
+          \node at (-0.6,-0.17) {$3$};
+
+          \node at (0.33,0.85) {$3$};
+          \node at (-0.33,0.85) {$3$};
+          \node at (-0.33,-0.85) {$3$};
+          \node at (0.33,-0.85) {$3$};
 
         \end{scope}
         \\
@@ -553,16 +625,16 @@ Our next corner stone is to revisit \autoref{thm:main:const} for the $5$-valent 
       \node[anchor= 90] at (3,2)     {$i_{1}'$};
       \node[anchor= 90] at (0.5, 1)  {$i_{0}'$};
       
-      \fill[black] (-0.5, 1) circle (2pt);
-      \fill[black] (0, 4)    circle (2pt);
-      \fill[black] (-0.5, 5) circle (2pt);
-      \fill[black] (0.5, 5)  circle (2pt);
-      \fill[black] (1.5,5 )  circle (2pt);
-      \fill[black] (2.5, 5)  circle (2pt);
-      \fill[black] (3, 4)    circle (2pt);
-      \fill[black] (3.5,3)   circle (2pt);
-      \fill[black] (3,2)     circle (2pt);
-      \fill[black] (0.5, 1)  circle (2pt);
+      \fill[black] (-0.5, 1) circle (1.5pt);
+      \fill[black] (0, 4)    circle (1.5pt);
+      \fill[black] (-0.5, 5) circle (1.5pt);
+      \fill[black] (0.5, 5)  circle (1.5pt);
+      \fill[black] (1.5,5 )  circle (1.5pt);
+      \fill[black] (2.5, 5)  circle (1.5pt);
+      \fill[black] (3, 4)    circle (1.5pt);
+      \fill[black] (3.5,3)   circle (1.5pt);
+      \fill[black] (3,2)     circle (1.5pt);
+      \fill[black] (0.5, 1)  circle (1.5pt);
 
       \node (n1) at (2,2) {$4$};
       \node at (2.5,3) {$3$};
@@ -585,16 +657,16 @@ Our next corner stone is to revisit \autoref{thm:main:const} for the $5$-valent 
         \draw (0.5,5)--(0,4)--(3,4);
         \draw (0,4)--(1.5,5);
         
-        \fill[black] (-0.5, 1) circle (3pt);
-        \fill[black] (0, 4)    circle (3pt);
-        \fill[black] (-0.5, 5) circle (3pt);
-        \fill[black] (0.5, 5)  circle (3pt);
-        \fill[black] (1.5,5 )  circle (3pt);
-        \fill[black] (2.5, 5)  circle (3pt);
-        \fill[black] (3, 4)    circle (3pt);
-        \fill[black] (3.5,3)   circle (3pt);
-        \fill[black] (3,2)     circle (3pt);
-        \fill[black] (0.5, 1)  circle (3pt);
+        \fill[black] (-0.5, 1) circle (2.5pt);
+        \fill[black] (0, 4)    circle (2.5pt);
+        \fill[black] (-0.5, 5) circle (2.5pt);
+        \fill[black] (0.5, 5)  circle (2.5pt);
+        \fill[black] (1.5,5 )  circle (2.5pt);
+        \fill[black] (2.5, 5)  circle (2.5pt);
+        \fill[black] (3, 4)    circle (2.5pt);
+        \fill[black] (3.5,3)   circle (2.5pt);
+        \fill[black] (3,2)     circle (2.5pt);
+        \fill[black] (0.5, 1)  circle (2.5pt);
         
       \end{scope}
       \begin{scope}[rotate=60, yscale=0.866]
@@ -605,16 +677,16 @@ Our next corner stone is to revisit \autoref{thm:main:const} for the $5$-valent 
         \draw (0.5,5)--(0,4)--(3,4);
         \draw (0,4)--(1.5,5);
         
-        \fill[black] (-0.5, 1) circle (3pt);
-        \fill[black] (0, 4)    circle (3pt);
-        \fill[black] (-0.5, 5) circle (3pt);
-        \fill[black] (0.5, 5)  circle (3pt);
-        \fill[black] (1.5,5 )  circle (3pt);
-        \fill[black] (2.5, 5)  circle (3pt);
-        \fill[black] (3, 4)    circle (3pt);
-        \fill[black] (3.5,3)   circle (3pt);
-        \fill[black] (3,2)     circle (3pt);
-        \fill[black] (0.5, 1)  circle (3pt);
+        \fill[black] (-0.5, 1) circle (2.5pt);
+        \fill[black] (0, 4)    circle (2.5pt);
+        \fill[black] (-0.5, 5) circle (2.5pt);
+        \fill[black] (0.5, 5)  circle (2.5pt);
+        \fill[black] (1.5,5 )  circle (2.5pt);
+        \fill[black] (2.5, 5)  circle (2.5pt);
+        \fill[black] (3, 4)    circle (2.5pt);
+        \fill[black] (3.5,3)   circle (2.5pt);
+        \fill[black] (3,2)     circle (2.5pt);
+        \fill[black] (0.5, 1)  circle (2.5pt);
         
       \end{scope}
       \begin{scope}[yscale=0.866, shift={(0 cm,10 cm)}, rotate=180]
@@ -626,16 +698,16 @@ Our next corner stone is to revisit \autoref{thm:main:const} for the $5$-valent 
         \draw (0.5,5)--(0,4)--(3,4);
         \draw (0,4)--(1.5,5);
            
-        \fill[black] (-0.5, 1) circle (3pt);
-        \fill[black] (0, 4)    circle (3pt);
-        \fill[black] (-0.5, 5) circle (3pt);
-        \fill[black] (0.5, 5)  circle (3pt);
-        \fill[black] (1.5,5 )  circle (3pt);
-        \fill[black] (2.5, 5)  circle (3pt);
-        \fill[black] (3, 4)    circle (3pt);
-        \fill[black] (3.5,3)   circle (3pt);
-        \fill[black] (3,2)     circle (3pt);
-        \fill[black] (0.5, 1)  circle (3pt);
+        \fill[black] (-0.5, 1) circle (2.5pt);
+        \fill[black] (0, 4)    circle (2.5pt);
+        \fill[black] (-0.5, 5) circle (2.5pt);
+        \fill[black] (0.5, 5)  circle (2.5pt);
+        \fill[black] (1.5,5 )  circle (2.5pt);
+        \fill[black] (2.5, 5)  circle (2.5pt);
+        \fill[black] (3, 4)    circle (2.5pt);
+        \fill[black] (3.5,3)   circle (2.5pt);
+        \fill[black] (3,2)     circle (2.5pt);
+        \fill[black] (0.5, 1)  circle (2.5pt);
         
       \end{scope}
       \begin{scope}[shift={(0 cm,8.66 cm)},rotate=240,yscale=0.866]
@@ -647,16 +719,16 @@ Our next corner stone is to revisit \autoref{thm:main:const} for the $5$-valent 
         \draw (0,4)--(1.5,5);
         
      
-        \fill[black] (-0.5, 1) circle (3pt);
-        \fill[black] (0, 4)    circle (3pt);
-        \fill[black] (-0.5, 5) circle (3pt);
-        \fill[black] (0.5, 5)  circle (3pt);
-        \fill[black] (1.5,5 )  circle (3pt);
-        \fill[black] (2.5, 5)  circle (3pt);
-        \fill[black] (3, 4)    circle (3pt);
-        \fill[black] (3.5,3)   circle (3pt);
-        \fill[black] (3,2)     circle (3pt);
-        \fill[black] (0.5, 1)  circle (3pt);
+        \fill[black] (-0.5, 1) circle (2.5pt);
+        \fill[black] (0, 4)    circle (2.5pt);
+        \fill[black] (-0.5, 5) circle (2.5pt);
+        \fill[black] (0.5, 5)  circle (2.5pt);
+        \fill[black] (1.5,5 )  circle (2.5pt);
+        \fill[black] (2.5, 5)  circle (2.5pt);
+        \fill[black] (3, 4)    circle (2.5pt);
+        \fill[black] (3.5,3)   circle (2.5pt);
+        \fill[black] (3,2)     circle (2.5pt);
+        \fill[black] (0.5, 1)  circle (2.5pt);
         
       \end{scope}
     \end{scope}
@@ -903,10 +975,9 @@ Our next corner stone is to revisit \autoref{thm:main:const} for the $5$-valent 
 \end{figure}
 \begin{tikzfigure}{}{}
   \begin{scope}[scale=1.0]
-    
-     \draw (0, 3.5) -- (0, 4);
+     \draw[ldiamond] (0, 2.7) -- (0, 4);
          
-     \draw (0, -3.5) -- (-2, 0) -- (0, 3.5) -- (2, 0) -- (0, -3.5) -- (-0.4, -1.5) -- (-1, 0) -- (-0.4, 1.5) -- (0, 3.5) -- (0.4, 1.5) -- (1, 0) -- (0.4, -1.5) -- (0, -3.5) -- (0, -4);
+     \draw (0, -2.7) -- (-2, 0) -- (0, 2.7) -- (2, 0) -- (0, -2.7) -- (-0.4, -1.5) -- (-1, 0) -- (-0.4, 1.5) -- (0, 2.7) -- (0.4, 1.5) -- (1, 0) -- (0.4, -1.5) -- (0, -2.7) -- (0, -4);
      \draw (-0.4, -1.5) -- (0, -1) -- (0.4, -1.5) -- (-0.4, -1.5);
      \draw (-0.4,  1.5) -- (0,  1) -- (0.4,  1.5) -- (-0.4,  1.5);
      \draw (-2, 0) -- (-1, 0) -- (0, -1) -- (1, 0) -- (2, 0);
@@ -914,8 +985,10 @@ Our next corner stone is to revisit \autoref{thm:main:const} for the $5$-valent 
      \draw (0, -1) -- (0, 1);
      \draw (-0.4, -1.5) -- (-2, 0) -- (-0.4, 1.5);
      \draw ( 0.4, -1.5) -- ( 2, 0) -- ( 0.4, 1.5);
-     %\draw[bend angle=60, bend left] (0,-2) to (0,2);
 
+     \fill[black] ( 0,-2.7) circle(2pt);
+     \fill[black] (0,2.7) circle(2pt);
+     
      \draw (0,-4)--(3,0)--(0,7.5)--(-3,0)--(0,-4);
      \draw(-3,0)--(0,4)--(3,0);
      \draw (0,-4) -- (2,-1) arc (-30 : 30 : 2) -- (0, 4);
@@ -923,22 +996,32 @@ Our next corner stone is to revisit \autoref{thm:main:const} for the $5$-valent 
      
      \draw (-3,0) to[out=55, in=180] (0,4.2);
      \draw  (3,0) to[out=125, in=0]  (0,4.2);
+     \draw[ldiamond](5,-4.5)--(-5,-4.5);
+     \draw (0,-6)--(7,-5)--(5,-4.5)(-5,-4.5)--(-7,-5)--(0,-6);
+     \draw (-3,0)--(-5,-4.5)--(-5.5,2)--(-7,-5);
+     \draw (3,0)--(5,-4.5)--(5.5,2)--(7,-5);
+     \draw (-3.5,5)--(-6,4.5)--(-5.5,2)--(-3.5,5)--(0,8);
+     \draw (3.5,5)--(6,4.5)--(5.5,2)--(3.5,5)--(0,8);
+     \draw[ldiamond] (0,8)--(0,7.5);
+     \draw (6,4.5)--(7,2)--(7,-5);
+     \draw (7,2)--(5.5,2);
 
-     \draw
-     
-     % \draw (0,-6)--(4.5,-4.5)--(5,3.5)--(3.5,-3)--(1.5,0)--(0,2)--(-1.5,0)--(-3.5,-3)--(-5,3.5)--(-4.5,-4.5)--(0,-6);
-     % \draw (0,5)--(-3.5,-3)--(3.5,-3)--(0,5);
-     % \draw (-4.5,-4.5)--(-3.5,-3)(3.5,-3)--(4.5,-4.5);
-     % \draw (0,5)--(0,7)--(2.5,7.5)--(5,3.5)--(8,-0.5)--(4.5,-4.5);
-     % \draw (0,7)--(-2.5,7.5)--(-5,3.5);
-     % \draw (2.5,7.5)--(8,5.5)--(8,-0.5);
-     % \draw (8,5.5)--(5,3.5);
-     % \draw (-2.5,7.5)--(-8,5.5)--(-5,3.5);
-     
+     \fill[black] (0,-6) circle(2pt);
+     \fill[black] (0,7.5) circle(2pt);
+     \fill[black] (0,8) circle(2pt);
+     \fill[black] (3.5,5) circle(2pt);
+     \fill[black] (-3.5,5) circle(2pt);
+     \fill[black] (5.5,2) circle(2pt);
+     \fill[black] (-5.5,2) circle(2pt);
+     \fill[black] (5,-4.5) circle(2pt);
+     \fill[black] (-5,-4.5) circle(2pt);
+     \fill[black] (6,4.5) circle(2pt);
+     \fill[black] (-6,4.5) circle(2pt);
+     \fill[black] (7,-5) circle(2pt);
+     \fill[black] (-7,-5) circle(2pt);
+     \fill[black] (7,2) circle(2pt);
      \fill[black] (-2,0) circle(2pt);
      \fill[black] ( 2,0) circle(2pt);
-     \fill[black] ( 0,-3.5) circle(2pt);
-     \fill[black] (0,3.5) circle(2pt);
      \fill[black] (0.4,1.5) circle(2pt);
      \fill[black] (-0.4,1.5) circle(2pt);
      \fill[black] (-0.4,-1.5) circle(2pt);
@@ -952,5 +1035,58 @@ Our next corner stone is to revisit \autoref{thm:main:const} for the $5$-valent 
      \fill[black] (3,0) circle(2pt);
      \fill[black] (-3,0) circle(2pt);
 
-    \end{scope}
+     \node (n1) at (2,5) {$5$};
+     \node (n2) at (-2,5){$5$};
+     \node (n3) at (-1,-4){$5$};
+     \node (n4) at (0,-5.25){$5$};
+     \node (n5) at (0.5,2.5){$5$};
+     \node (n6) at (-0.5,2.5){$5$};
+
+     \draw[lface] (0,7.75)--(n1);
+     \draw[lface] (0,7.75)--(n2);
+     \draw[lface] (0,-4.5)--(n3);
+     \draw[lface] (0,-4.5)--(n4);
+     \draw[lface] (0,3.35)--(n5);
+     \draw[lface] (0,3.35)--(n6);
+     
+     \node at (0,-1.3) {$3$};
+     \node at (0,-1.8) {$3$};
+     \node at (0,1.3) {$3$};
+     \node at (0,1.8) {$3$};
+     \node at (0,5) {$3$};
+     \node at (0.3,0) {$3$};
+     \node at (-0.3,0) {$3$};
+     \node at (0.35,1) {$3$};
+     \node at (-0.35,1) {$3$};
+     \node at (-0.35,-1) {$3$};
+     \node at (0.35,-1) {$3$};
+     \node at (0.55,1.7) {$3$};
+     \node at (-0.55,1.7) {$3$};
+     \node at (-0.55,-1.7) {$3$};
+     \node at (0.55,-1.7) {$3$};
+     \node at (1.2,0.4) {$3$};
+     \node at (-1.2,0.4) {$3$};
+     \node at (-1.2,-0.4) {$3$};
+     \node at (1.2,-0.4) {$3$};
+     \node at (-0.8,3.4) {$3$};
+     \node at (-2.7,0) {$3$};
+     \node at (2.7,0) {$3$};
+     \node at (6,2.5) {$3$};
+     \node at (5,4) {$3$};
+     \node at (-5,4) {$3$};
+     \node at (6,-4) {$3$};
+     \node at (-6,-4) {$3$};
+     \node at (6.5,1) {$3$};
+
+     \node[anchor=320] at (-3.5,5) {$i_0'=o_7$};
+     \node[anchor=270] at (0,8) {$i_0'$};
+     \node[anchor=270] at (3.5,5) {$i_0$};
+     \node[anchor=230] at (6,4.5) {$i_1=o_0$}; 
+     \node[anchor=180] at (7,2) {$o_1$};
+     \node[anchor=135] at (7,-5) {$o_2$}; 
+     \node[anchor= 90] at (0,-6) {$o_3$};
+     \node[anchor= 45] at (-7,-5){$o_4$};
+     \node[anchor=  0] at (-5.5,2){$o_5$}; 
+     \node[anchor=  0] at (-6,4.5) {$o_6$};
+   \end{scope}
 \end{tikzfigure}
