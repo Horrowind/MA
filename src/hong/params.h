@@ -25,12 +25,12 @@ typedef __uint128_t boundary_bits_t;
 
 #define VALENCE  3
 int small_ngon = 5;
-int large_ngon = 7;
+int large_ngon = 11;
 #define MAX_NGON_COUNT 2
 
-#define NUM_THREADS 2
-#define MAX_SIZE_CAP 30
-#define MAX_SIZE ((BOUNDARY_BITS / 6 / BITS) + 1 > MAX_SIZE_CAP ? MAX_SIZE_CAP : (BOUNDARY_BITS / 6 / BITS) + 1)
+#define NUM_THREADS 4
+#define MAX_SIZE_CAP 14
+#define MAX_SIZE ((BOUNDARY_BITS / 4 / BITS) + 1 > MAX_SIZE_CAP ? MAX_SIZE_CAP : (BOUNDARY_BITS / 4 / BITS) + 1)
 
 #define MAX_SEARCH_SIZE 50
 

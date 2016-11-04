@@ -210,7 +210,8 @@ b32 search_database(boundary_t start, boundary_t goal, int* ngons, int ngons_cou
 		    }
 		}
 		printf("large_ngon_count: %i\n", large_ngon_count);
-		stop = planar_graph_output_sdl(planar_graph);
+		stop = (goal.bits == 0) ? (large_ngon_count % 2 == 0) : (large_ngon_count % 2 == 1);
+		stop = stop && planar_graph_output_sdl(planar_graph);
                 planar_graph_deinit(planar_graph);
                 if(stop) {
                     for(int i = 0; i < 512; i++) {
@@ -338,7 +339,7 @@ int main(int argc, char* argv[]) {
     test_boundary->size = 15;
     {
         boundary_t boundary;
-        for(boundary.size = 1; boundary.size < MAX_SIZE; boundary.size++) {
+        for(boundary.size = 1; boundary.size < MAX_SIZE; boundary.size+=2) {
             for(boundary.bits = 0; boundary.bits < (1 << (boundary.size * BITS)); boundary.bits++) {
                 boundary_t boundary_normalized = boundary_normalize(boundary);
                 if(database_contains(monogon_database, boundary_normalized)) {
@@ -373,7 +374,7 @@ int main(int argc, char* argv[]) {
     printf("Found %i mouses\n", mouse_count);
     for(int i = 0; i < mouse_count; i++) {
         boundary_write(mouse_data[i]); printf("\n");
-        b32 is_also_found = search_database(mouse_data[i], mouse_goal_boundary, ngons, 2);
+        b32 is_also_found = search_database(boundary_unfold(mouse_data[i], 4), small_ngon_boundary, ngons, 2);
         if(is_also_found) {
             int is_found;
             switch(VALENCE) {
@@ -384,7 +385,7 @@ int main(int argc, char* argv[]) {
                 is_found = search_database(boundary_unfold(mouse_data[i], 4), small_ngon_boundary, ngons, 2);
                 break;
             case 5:
-                is_found = search_database(boundary_unfold(mouse_data[i], 5), small_ngon_boundary, ngons, 2);
+                is_found = search_database(mouse_data[i], mouse_goal_boundary, ngons, 2);
                 break;
             }
             if(is_found) {

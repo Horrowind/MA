@@ -36,6 +36,7 @@
 $\hfil\displaystyle{#1}\hfil$\crcr\noalign{\kern3\p@\nointerlineskip}
 \upparenthfill\crcr\noalign{\kern3\p@}}}}\limits}
 \makeatother
+\addto\extrasenglish{\def\sectionautorefname{Section}}
 
 %\newcommand{\mysection}[1]{\clearpage\checkoddpage\ifoddpage\hbox{}\thispagestyle{empty}\clearpage\else\fi{\par\vspace*{\fill}}\section{#1}}
 \newcommand{\mysection}[1]{\clearpage\ifodd\thepage\hbox{}\thispagestyle{empty}\clearpage\else\fi{\par\vspace*{\fill}}\section{#1}}
@@ -49,7 +50,8 @@ $\hfil\displaystyle{#1}\hfil$\crcr\noalign{\kern3\p@\nointerlineskip}
     positioning,
     arrows,
     arrows.meta,
-    decorations.markings
+    decorations.markings,
+    calc
 }
 \tikzset{
      lface/.style={dotted,     decoration={markings, mark=at position 1.0 with {\arrow[>=angle 60]{>}}}, postaction={decorate}},

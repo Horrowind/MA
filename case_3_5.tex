@@ -697,7 +697,7 @@ Our next corner stone is to revisit \autoref{thm:main:const} for the $5$-valent 
         \draw (-0.5,1)--(3.5,3);
         \draw (0.5,5)--(0,4)--(3,4);
         \draw (0,4)--(1.5,5);
-           
+        
         \fill[black] (-0.5, 1) circle (2.5pt);
         \fill[black] (0, 4)    circle (2.5pt);
         \fill[black] (-0.5, 5) circle (2.5pt);
@@ -718,7 +718,7 @@ Our next corner stone is to revisit \autoref{thm:main:const} for the $5$-valent 
         \draw (0.5,5)--(0,4)--(3,4);
         \draw (0,4)--(1.5,5);
         
-     
+        
         \fill[black] (-0.5, 1) circle (2.5pt);
         \fill[black] (0, 4)    circle (2.5pt);
         \fill[black] (-0.5, 5) circle (2.5pt);
@@ -746,12 +746,145 @@ Our next corner stone is to revisit \autoref{thm:main:const} for the $5$-valent 
 \begin{theorem}
   Let $p$ and $v$ be a pair of admissible sequences for an orientable closed $2$-manifold $S$. Then $(p, v)$ is $[(9k + 5) \times 3, 3k + 5]$-$[5]$-realizable for all $k \in \nats$.
   \begin{proof}
-    An expansion $5$-patch $\mathcal{P}_N$ with outer tuple $o = (2, 3, 1, 4, 2, 3)$ is shown in \autoref{fig:expansion:patch:3:5:5:c}, a corresponding $o$-$4$-gonal $5$-patch $\mathcal{P}_F$ is shown in \autoref{fig:expansion:patch:3:5:5:d} and an expansion $5$-patch is shown in \autoref{fig:expansion:patch:3:5:5:a}, which has the polyhedral property as is seen \autoref{fig:expansion:patch:3:5:5:b}, all consisting of only triangles and pentagons. By using \autoref{const:edge:replacement:3:5:1}, \autoref{const:edge:replacement:3:5:2} and \autoref{const:edge:replacement:3:5:3} as indicated we get $5$-patches consisting of only triangles and $(3k+5)$-gons, $k \in \nats$. Therefore we can apply \autoref{thm:main:const}.
+    An expansion $5$-patch $\mathcal{P}_N$ with outer tuple $o = (2, 3, 1, 4, 2, 3)$ is shown in \autoref{fig:expansion:patch:3:5:5:a}, a corresponding $o$-$4$-gonal $5$-patch $\mathcal{P}_F$ is shown in \autoref{fig:expansion:patch:3:5:5:d} and an expansion $5$-patch $\mathcal{P}_P$ is shown in \autoref{fig:expansion:patch:3:5:5:b}, which has the polyhedral property as is seen \autoref{fig:expansion:patch:3:5:5:c}, all consisting of only triangles and pentagons. By using \autoref{const:edge:replacement:3:5:1}, \autoref{const:edge:replacement:3:5:2} and \autoref{const:edge:replacement:3:5:3} as indicated we get $5$-patches consisting of only triangles and $(3k+5)$-gons, $k \in \nats$. Therefore we can apply \autoref{thm:main:const}.
   \end{proof}
 \end{theorem}
 
-\begin{tikzfigure2}{}
-  \begin{tikzsubfigure}{\label{fig:expansion:patch:3:5:5:a}}{$\mathcal{P}_P$}{0.5}
+\begin{tikzfigure2}
+  \begin{tikzsubfigure}{\label{fig:expansion:patch:3:5:5:a}}{$\mathcal{P}_N$}{1.0}
+    \begin{scope}[scale=1.0]
+      \draw[ldiamond] (0, 2.7) -- (0, 4);
+      
+      \draw (0, -2.7) -- (-2, 0) -- (0, 2.7) -- (2, 0) -- (0, -2.7) -- (-0.4, -1.5) -- (-1, 0) -- (-0.4, 1.5) -- (0, 2.7) -- (0.4, 1.5) -- (1, 0) -- (0.4, -1.5) -- (0, -2.7) -- (0, -4);
+      \draw (-0.4, -1.5) -- (0, -1) -- (0.4, -1.5) -- (-0.4, -1.5);
+      \draw (-0.4,  1.5) -- (0,  1) -- (0.4,  1.5) -- (-0.4,  1.5);
+      \draw (-2, 0) -- (-1, 0) -- (0, -1) -- (1, 0) -- (2, 0);
+      \draw (-1, 0) -- (0, 1) -- (1, 0);
+      \draw (0, -1) -- (0, 1);
+      \draw (-0.4, -1.5) -- (-2, 0) -- (-0.4, 1.5);
+      \draw ( 0.4, -1.5) -- ( 2, 0) -- ( 0.4, 1.5);
+
+      \fill[black] ( 0,-2.7) circle(2pt);
+      \fill[black] (0,2.7) circle(2pt);
+      
+      \draw (0,-4)--(3,0)--(0,7.5)--(-3,0)--(0,-4);
+      \draw(-3,0)--(0,4)--(3,0);
+      \draw (0,-4) -- (2,-1) arc (-30 : 30 : 2) -- (0, 4);
+      \draw (0,-4) -- (-2,-1) arc (210 : 150 : 2) -- (0, 4);
+      
+      \draw (-3,0) to[out=55, in=180] (0,4.2);
+      \draw  (3,0) to[out=125, in=0]  (0,4.2);
+
+      \draw[ldiamond](5,-4.5)--(-5,-4.5);
+      \draw (0,-6)--(7,-5)--(5,-4.5)(-5,-4.5)--(-7,-5)--(0,-6);
+      \draw (-3,0)--(-5,-4.5)--(-5.5,2)--(-7,-5);
+      \draw (3,0)--(5,-4.5)--(5.5,2)--(7,-5);
+      \draw (-3.5,5)--(-6,4.5)--(-5.5,2)--(-3.5,5)--(0,8);
+      \draw (3.5,5)--(6,4.5)--(5.5,2)--(3.5,5)--(0,8);
+      \draw[ldiamond] (0,8)--(0,7.5);
+      \draw (6,4.5)--(7,2)--(7,-5);
+      \draw (7,2)--(5.5,2);
+
+      \fill[black] (0,-6) circle(2pt);
+      \fill[black] (0,7.5) circle(2pt);
+      \fill[black] (0,8) circle(2pt);
+      \fill[black] (3.5,5) circle(2pt);
+      \fill[black] (-3.5,5) circle(2pt);
+      \fill[black] (5.5,2) circle(2pt);
+      \fill[black] (-5.5,2) circle(2pt);
+      \fill[black] (5,-4.5) circle(2pt);
+      \fill[black] (-5,-4.5) circle(2pt);
+      \fill[black] (6,4.5) circle(2pt);
+      \fill[black] (-6,4.5) circle(2pt);
+      \fill[black] (7,-5) circle(2pt);
+      \fill[black] (-7,-5) circle(2pt);
+      \fill[black] (7,2) circle(2pt);
+
+      % \draw
+      
+      % \draw (0,-6)--(4.5,-4.5)--(5,3.5)--(3.5,-3)--(1.5,0)--(0,2)--(-1.5,0)--(-3.5,-3)--(-5,3.5)--(-4.5,-4.5)--(0,-6);
+      % \draw (0,5)--(-3.5,-3)--(3.5,-3)--(0,5);
+      % \draw (-4.5,-4.5)--(-3.5,-3)(3.5,-3)--(4.5,-4.5);
+      % \draw (0,5)--(0,7)--(2.5,7.5)--(5,3.5)--(8,-0.5)--(4.5,-4.5);
+      % \draw (0,7)--(-2.5,7.5)--(-5,3.5);
+      % \draw (2.5,7.5)--(8,5.5)--(8,-0.5);
+      % \draw (8,5.5)--(5,3.5);
+      % \draw (-2.5,7.5)--(-8,5.5)--(-5,3.5);
+      
+      \fill[black] (-2,0) circle(2pt);
+      \fill[black] ( 2,0) circle(2pt);
+      \fill[black] (0.4,1.5) circle(2pt);
+      \fill[black] (-0.4,1.5) circle(2pt);
+      \fill[black] (-0.4,-1.5) circle(2pt);
+      \fill[black] (0.4,-1.5) circle(2pt);
+      \fill[black] (0,4) circle(2pt);
+      \fill[black] (0,-4) circle(2pt);
+      \fill[black] (1,0) circle(2pt);
+      \fill[black] (-1,0) circle(2pt);
+      \fill[black] (0,-1) circle(2pt);
+      \fill[black] (0,1) circle(2pt);
+      \fill[black] (3,0) circle(2pt);
+      \fill[black] (-3,0) circle(2pt);
+
+      \node (n1) at (2,5) {$5$};
+      \node (n2) at (-2,5){$5$};
+      \node (n3) at (-1,-4){$5$};
+      \node (n4) at (0,-5.25){$5$};
+      \node (n5) at (0.5,2.5){$5$};
+      \node (n6) at (-0.5,2.5){$5$};
+
+      \draw[lface] (0,7.75)--(n1);
+      \draw[lface] (0,7.75)--(n2);
+      \draw[lface] (0,-4.5)--(n3);
+      \draw[lface] (0,-4.5)--(n4);
+      \draw[lface] (0,3.35)--(n5);
+      \draw[lface] (0,3.35)--(n6);
+      
+      \node at (0,-1.3) {$3$};
+      \node at (0,-1.8) {$3$};
+      \node at (0,1.3) {$3$};
+      \node at (0,1.8) {$3$};
+      \node at (0,5) {$3$};
+      \node at (0.3,0) {$3$};
+      \node at (-0.3,0) {$3$};
+      \node at (0.35,1) {$3$};
+      \node at (-0.35,1) {$3$};
+      \node at (-0.35,-1) {$3$};
+      \node at (0.35,-1) {$3$};
+      \node at (0.55,1.7) {$3$};
+      \node at (-0.55,1.7) {$3$};
+      \node at (-0.55,-1.7) {$3$};
+      \node at (0.55,-1.7) {$3$};
+      \node at (1.2,0.4) {$3$};
+      \node at (-1.2,0.4) {$3$};
+      \node at (-1.2,-0.4) {$3$};
+      \node at (1.2,-0.4) {$3$};
+      \node at (-0.8,3.4) {$3$};
+      \node at (-2.7,0) {$3$};
+      \node at (2.7,0) {$3$};
+      \node at (6,2.5) {$3$};
+      \node at (5,4) {$3$};
+      \node at (-5,4) {$3$};
+      \node at (6,-4) {$3$};
+      \node at (-6,-4) {$3$};
+      \node at (6.5,1) {$3$};
+
+      \node[anchor=320] at (-3.5,5) {$i_0'=o_7$};
+      \node[anchor=270] at (0,8) {$i_0'$};
+      \node[anchor=270] at (3.5,5) {$i_0$};
+      \node[anchor=230] at (6,4.5) {$i_1=o_0$}; 
+      \node[anchor=180] at (7,2) {$o_1$};
+      \node[anchor=135] at (7,-5) {$o_2$}; 
+      \node[anchor= 90] at (0,-6) {$\bm{o_s}$};
+      \node[anchor= 45] at (-7,-5){$o_4$};
+      \node[anchor=  0] at (-5.5,2){$o_5$}; 
+      \node[anchor=  0] at (-6,4.5) {$o_6$};
+    \end{scope}
+  \end{tikzsubfigure}
+\end{tikzfigure2}
+\begin{figure}
+  \ContinuedFloat
+  \begin{tikzsubfigure}{\label{fig:expansion:patch:3:5:5:b}}{$\mathcal{P}_P$}{0.5}
     \begin{scope}[scale=0.6, yscale=0.866]
       \draw (-0.5, 1) -- (-3.5, 13) -- (-2.5, 14.5) -- (-1.5, 14.75) -- (-0.5, 14) -- (0.5, 12) -- (1.5, 11.25)  (2.5, 11.5) -- (3.5, 13) -- (4.5, 13.666) -- (5.5, 13.333) -- (6.5, 13) -- (6.75, 11.833) -- (7, 10.666) -- (8, 10) -- (0.5, 1) -- (-0.5, 1);
       \draw (-1.5, 13) -- (-3.5, 13);
@@ -824,7 +957,7 @@ Our next corner stone is to revisit \autoref{thm:main:const} for the $5$-valent 
       
     \end{scope}
   \end{tikzsubfigure}
-  \begin{tikzsubfigure}{\label{fig:expansion:patch:3:5:5:b}}{Edge patch of $\mathcal{P}_P$}{0.5}
+  \begin{tikzsubfigure}{\label{fig:expansion:patch:3:5:5:c}}{Edge patch of $\mathcal{P}_P$}{0.5}
     \begin{scope}[scale=0.35]
       \begin{scope}[yscale=0.866]
         \draw[very thick] (-0.5, 1) -- (-3.5, 13) -- (-2.5, 14.5) -- (-1.5, 14.75) -- (-0.5, 14) -- (0.5, 12) -- (1.5, 11.25) -- (2.5, 11.5) -- (3.5, 13) -- (4.5, 13.666) -- (5.5, 13.333) -- (6.5, 13) -- (6.75, 11.833) -- (7, 10.666) -- (8, 10) -- (0.5, 1) -- (-0.5, 1);
@@ -964,129 +1097,9 @@ Our next corner stone is to revisit \autoref{thm:main:const} for the $5$-valent 
       \end{scope}
     \end{scope}
   \end{tikzsubfigure}
-\end{tikzfigure2}
-\begin{figure}
-  \ContinuedFloat
   \begin{tikzsubfigure}{\label{fig:expansion:patch:3:5:5:d}}{$\mathcal{P}_F$}{1.0}
-    \begin{scope}[scale=8]
+    \begin{scope}[scale=7]
       \input{tikz/3_5_5/quadrangle2}
     \end{scope}
   \end{tikzsubfigure}
 \end{figure}
-\begin{tikzfigure}{}{}
-  \begin{scope}[scale=1.0]
-     \draw[ldiamond] (0, 2.7) -- (0, 4);
-         
-     \draw (0, -2.7) -- (-2, 0) -- (0, 2.7) -- (2, 0) -- (0, -2.7) -- (-0.4, -1.5) -- (-1, 0) -- (-0.4, 1.5) -- (0, 2.7) -- (0.4, 1.5) -- (1, 0) -- (0.4, -1.5) -- (0, -2.7) -- (0, -4);
-     \draw (-0.4, -1.5) -- (0, -1) -- (0.4, -1.5) -- (-0.4, -1.5);
-     \draw (-0.4,  1.5) -- (0,  1) -- (0.4,  1.5) -- (-0.4,  1.5);
-     \draw (-2, 0) -- (-1, 0) -- (0, -1) -- (1, 0) -- (2, 0);
-     \draw (-1, 0) -- (0, 1) -- (1, 0);
-     \draw (0, -1) -- (0, 1);
-     \draw (-0.4, -1.5) -- (-2, 0) -- (-0.4, 1.5);
-     \draw ( 0.4, -1.5) -- ( 2, 0) -- ( 0.4, 1.5);
-
-     \fill[black] ( 0,-2.7) circle(2pt);
-     \fill[black] (0,2.7) circle(2pt);
-     
-     \draw (0,-4)--(3,0)--(0,7.5)--(-3,0)--(0,-4);
-     \draw(-3,0)--(0,4)--(3,0);
-     \draw (0,-4) -- (2,-1) arc (-30 : 30 : 2) -- (0, 4);
-     \draw (0,-4) -- (-2,-1) arc (210 : 150 : 2) -- (0, 4);
-     
-     \draw (-3,0) to[out=55, in=180] (0,4.2);
-     \draw  (3,0) to[out=125, in=0]  (0,4.2);
-     \draw[ldiamond](5,-4.5)--(-5,-4.5);
-     \draw (0,-6)--(7,-5)--(5,-4.5)(-5,-4.5)--(-7,-5)--(0,-6);
-     \draw (-3,0)--(-5,-4.5)--(-5.5,2)--(-7,-5);
-     \draw (3,0)--(5,-4.5)--(5.5,2)--(7,-5);
-     \draw (-3.5,5)--(-6,4.5)--(-5.5,2)--(-3.5,5)--(0,8);
-     \draw (3.5,5)--(6,4.5)--(5.5,2)--(3.5,5)--(0,8);
-     \draw[ldiamond] (0,8)--(0,7.5);
-     \draw (6,4.5)--(7,2)--(7,-5);
-     \draw (7,2)--(5.5,2);
-
-     \fill[black] (0,-6) circle(2pt);
-     \fill[black] (0,7.5) circle(2pt);
-     \fill[black] (0,8) circle(2pt);
-     \fill[black] (3.5,5) circle(2pt);
-     \fill[black] (-3.5,5) circle(2pt);
-     \fill[black] (5.5,2) circle(2pt);
-     \fill[black] (-5.5,2) circle(2pt);
-     \fill[black] (5,-4.5) circle(2pt);
-     \fill[black] (-5,-4.5) circle(2pt);
-     \fill[black] (6,4.5) circle(2pt);
-     \fill[black] (-6,4.5) circle(2pt);
-     \fill[black] (7,-5) circle(2pt);
-     \fill[black] (-7,-5) circle(2pt);
-     \fill[black] (7,2) circle(2pt);
-     \fill[black] (-2,0) circle(2pt);
-     \fill[black] ( 2,0) circle(2pt);
-     \fill[black] (0.4,1.5) circle(2pt);
-     \fill[black] (-0.4,1.5) circle(2pt);
-     \fill[black] (-0.4,-1.5) circle(2pt);
-     \fill[black] (0.4,-1.5) circle(2pt);
-     \fill[black] (0,4) circle(2pt);
-     \fill[black] (0,-4) circle(2pt);
-     \fill[black] (1,0) circle(2pt);
-     \fill[black] (-1,0) circle(2pt);
-     \fill[black] (0,-1) circle(2pt);
-     \fill[black] (0,1) circle(2pt);
-     \fill[black] (3,0) circle(2pt);
-     \fill[black] (-3,0) circle(2pt);
-
-     \node (n1) at (2,5) {$5$};
-     \node (n2) at (-2,5){$5$};
-     \node (n3) at (-1,-4){$5$};
-     \node (n4) at (0,-5.25){$5$};
-     \node (n5) at (0.5,2.5){$5$};
-     \node (n6) at (-0.5,2.5){$5$};
-
-     \draw[lface] (0,7.75)--(n1);
-     \draw[lface] (0,7.75)--(n2);
-     \draw[lface] (0,-4.5)--(n3);
-     \draw[lface] (0,-4.5)--(n4);
-     \draw[lface] (0,3.35)--(n5);
-     \draw[lface] (0,3.35)--(n6);
-     
-     \node at (0,-1.3) {$3$};
-     \node at (0,-1.8) {$3$};
-     \node at (0,1.3) {$3$};
-     \node at (0,1.8) {$3$};
-     \node at (0,5) {$3$};
-     \node at (0.3,0) {$3$};
-     \node at (-0.3,0) {$3$};
-     \node at (0.35,1) {$3$};
-     \node at (-0.35,1) {$3$};
-     \node at (-0.35,-1) {$3$};
-     \node at (0.35,-1) {$3$};
-     \node at (0.55,1.7) {$3$};
-     \node at (-0.55,1.7) {$3$};
-     \node at (-0.55,-1.7) {$3$};
-     \node at (0.55,-1.7) {$3$};
-     \node at (1.2,0.4) {$3$};
-     \node at (-1.2,0.4) {$3$};
-     \node at (-1.2,-0.4) {$3$};
-     \node at (1.2,-0.4) {$3$};
-     \node at (-0.8,3.4) {$3$};
-     \node at (-2.7,0) {$3$};
-     \node at (2.7,0) {$3$};
-     \node at (6,2.5) {$3$};
-     \node at (5,4) {$3$};
-     \node at (-5,4) {$3$};
-     \node at (6,-4) {$3$};
-     \node at (-6,-4) {$3$};
-     \node at (6.5,1) {$3$};
-
-     \node[anchor=320] at (-3.5,5) {$i_0'=o_7$};
-     \node[anchor=270] at (0,8) {$i_0'$};
-     \node[anchor=270] at (3.5,5) {$i_0$};
-     \node[anchor=230] at (6,4.5) {$i_1=o_0$}; 
-     \node[anchor=180] at (7,2) {$o_1$};
-     \node[anchor=135] at (7,-5) {$o_2$}; 
-     \node[anchor= 90] at (0,-6) {$o_3$};
-     \node[anchor= 45] at (-7,-5){$o_4$};
-     \node[anchor=  0] at (-5.5,2){$o_5$}; 
-     \node[anchor=  0] at (-6,4.5) {$o_6$};
-   \end{scope}
-\end{tikzfigure}
