@@ -38,8 +38,10 @@ $\hfil\displaystyle{#1}\hfil$\crcr\noalign{\kern3\p@\nointerlineskip}
 \makeatother
 \addto\extrasenglish{\def\sectionautorefname{Section}}
 
+\newcounter{flavorimg}\stepcounter{flavorimg}
 %\newcommand{\mysection}[1]{\clearpage\checkoddpage\ifoddpage\hbox{}\thispagestyle{empty}\clearpage\else\fi{\par\vspace*{\fill}}\section{#1}}
-\newcommand{\mysection}[1]{\clearpage\ifodd\thepage\hbox{}\thispagestyle{empty}\clearpage\else\fi{\par\vspace*{\fill}}\section{#1}}
+\newcommand{\mysection}[1]{\clearpage\ifodd\thepage\thispagestyle{empty}\input{flavorimg/img\theflavorimg.tex}\stepcounter{flavorimg}\clearpage\else\fi{\par\vspace*{\fill}}\section{#1}}
+%\newcommand{\mysection}[1]{\clearpage\ifodd\thepage\hbox{}\thispagestyle{empty}\clearpage\else\fi{\par\vspace*{\fill}}\section{#1}}
 %\newcommand{\mysection}[1]{{\clearpage\par\vspace*{\fill}}\section{#1}}
 \renewcommand{\emptyset}{\varnothing}
 \usepackage{tikz}

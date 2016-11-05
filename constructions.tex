@@ -81,12 +81,12 @@ Using this notation we describe the following construction scheme:
     \item A map $M'$ on $S$ with $v$-vector $v + d \cdot [r]$ for some $d \in \nats$ and $p$-vector $\sum_{f \in F} p^{(f)}$
   \end{coutput} 
   \begin{cdescription} 
-    Divide each edge $e \in E$ in the embedding of $G$ into $S$ by $n$ vertices and draw in each face $f$ the dedicated $r$-patch $\mathcal{P}(f)$ such that the corner vertices of $\mathcal{P}(f)$ coincide with the original vertices $V$ and the side vertices are the new vertices added by the subdivision. We can do this because both the face we want to replace and the patch we want to insert are homeomorphic to a $2$-cell and the number of vertices of the patch and the subdivision match exactly. Note that each of these patches may allow for many distinct drawings. While the rotation of the drawing is irrelevant for the correctness of the construction, there is a difference based on the orientation of the drawing (drawing the patch “from one side” of $S$ gives a different result than drawing it from the other side). When drawing each patch equally oriented, they allow for \autoref{thm:fitting:tuples} to be applied, so assume hereafter that this was done. These patches form a combined graph $G'$, which is embedded by construction into $S$ (there is a homeomorphism between each subdivided face $f \in F$ and the corresponding patch $\mathcal{P}(f)$). 
+    Divide each edge $e \in E$ in the embedding of $G$ into $S$ by $n$ vertices and draw in each face $f$ the dedicated $r$-patch $\mathcal{P}(f)$ such that the corner vertices of $\mathcal{P}(f)$ coincide with the original vertices $V$ and the side vertices are the new vertices added by the subdivision, see \autoref{fig:const:map:overview}. We can do this because both the face we want to replace and the patch we want to insert are homeomorphic to a $2$-cell and the number of vertices of the patch and the subdivision match exactly. Note that each of these patches may allow for many distinct drawings. While the rotation of the drawing is irrelevant for the correctness of the construction, there is a difference based on the orientation of the drawing (drawing the patch “from one side” of $S$ gives a different result than drawing it from the other side). When drawing each patch equally oriented, they allow for \autoref{thm:fitting:tuples} to be applied, so assume hereafter that this was done. These patches form a combined graph $G'$, which is embedded by construction into $S$ (there is a homeomorphism between each subdivided face $f \in F$ and the corresponding patch $\mathcal{P}(f)$). 
 
 For the rest of the construction, the notion ``corner vertices'' will relate to the original vertices $V$, while ``side vertices'' denote those on the subdivisions made before. The remaining vertices of $G'$ will be called ``inner vertices''. $G'$ is simple: $G'$ is nonempty and connected by construction and there is no possibility for it to contain loops or multi-edges since these would also be present in either $G$ or one of the patches $\mathcal{P}(f)$. Lastly, each face of the embedding is homeomorphic to a $2$-cell, since all faces in the new embedding are homeomorphic to an inner face of some patch $\mathcal{P}(f)$, thus the embedding of $G'$ into $S$ is a map $M'$. By \autoref{thm:fitting:tuples} each side vertex is $r$-valent, which is also true for the inner vertices (they come from $r$-valent inner vertices of an $r$-patch). Each corner vertex has the same valence it had previously in the map $M$, therefore the $v$-vector of $M'$ is $v + d \cdot [r]$ for some $d \in \nats$. The $p$-vector of $M'$ is the sum of the $p$-vectors $p^{(f)}$ of each patch $\mathcal{P}(f)$ ($f \in F$). Thus we have constructed another map on $S$ with $v$-vector $v + d \cdot [r]$ and $p$-vector $\sum_{f \in F} p^{(f)}$.
   \end{cdescription}
 \end{construction}
-\begin{tikzfigure}{}{}
+\begin{tikzfigure}{\label{fig:const:map:overview}}{}
   \matrix (m) [column sep=1cm] {
     \begin{scope}[scale=0.5]
       \draw (-3,0)--(-3,3)--(-6,5)--(-6,8)--(-3,10)--(0,8)--(6,8)--(6,5)--(7,1)--(3,0)--(-3,0);
@@ -677,217 +677,8 @@ With these constructions at hand we can now finally design a scheme to create a 
 \begin{proposition}\label{thm:const:polymap}
   Given a map $M$ on an orientable closed $2$-manifold $S$ and an expansion $r$-patch $\mathcal{M}$ with outer tuple $o$, \autoref{const:map} returns a polyhedral map on $S$ when we take $\mathcal{P}(f) = \mathcal{M}(k)$ for each $k$-gonal face $f$ of $M$.
 \begin{proof}
-The only requirement of \autoref{const:map} we did not explicitly state is that $o$ is self-fitting (which it is by definition) and that $\mathcal{M}(k)$ is $o$-$k$-gonal, which was the result of \autoref{const:expansion:patch}. Thus we can apply \autoref{const:map} and get a map $M'$ on $S$, for which we need to show that it is polyhedral. We want to use a proof by contradiction so assume that two faces of $M'$, $f$ and $f'$, do not meet properly. By construction, there are two faces $f_o$ and $f'_o$ in the original map $M$, such that $f$ is contained in $\mathcal{P}(f_o)$ and $f'$ is contained in $\mathcal{P}(f'_o)$. Since $f$ and $f'$ do not meet properly, $f_o \cap f'_o \neq \emptyset$ and $\mathcal{P}(f_o) \cap \mathcal{P}(f'_o) \neq \emptyset$. We consider two cases: either $f_o$ and $f'_o$ denote the same face or they do not. We can quickly rule out the first case since $f_o$ is a $2$-cell and thus no vertices of the boundary of $\mathcal{P}(f_o)$ are identified in $M$ and we proved that the inner faces of $\mathcal{P}(f_o)$ meet properly in \autoref{const:expansion:patch}. Therefore assume that $f_o$ and $f'_o$ are different. The patches $\mathcal{P}(f_o)$ and $\mathcal{P}(f'_o)$ and hence the faces $f$ and $f'$ only have a non-empty intersection if $f_o$ and $f'_o$ are adjacent. Since the central $k$-gons of $\mathcal{M}(k)$ are only adjacent to faces of the corresponding patch (since $m > 0$ in \autoref{def:expansion:patch}), we can also assume that neither $f$ nor $f'$ is one of those central $k$-gons and that $f$ and $f'$ are contained in two copies of $\mathcal{M}$. Let $\mathcal{M}_c$ be the copy of $\mathcal{M}$ which contains $f$ (and is a subpatch of $\mathcal{P}(f_o)$) and let $\mathcal{M}_c'$ be the copy of $\mathcal{M}$ which contains $f'$ (and is a subpatch of $\mathcal{P}(f'_o)$). Thus, we know that $\mathcal{M}_c \neq \mathcal{M}'_c$ and $\mathcal{M}_c \cap \mathcal{M}_c' \neq \emptyset$.
-
-Recall that in \autoref{const:map} we constructed $M'$ to be subdividing each edge of $M$ and replacing each face with the corresponding patch. We again want to use the notion of ``corner vertices'' for the original vertices in $M$, ``side vertices'' for the vertices added by the subdivision and ``inner vertices'' for all of the other vertices. Note that both $\mathcal{M}_c$ and $\mathcal{M}_c'$ only contain exactly one corner vertex ($o_s$). If $f$ and $f'$ meet non-properly, then $\mathcal{M}_c$ and $\mathcal{M}_c'$ have to share at least one side vertex (they can not share an inner vertex, as these are completely internal to $\mathcal{P}(f_o)$ and $\mathcal{P}(f'_o)$ and those patches only meet at their boundary). As $M$ does not contain $2$-valent vertices, the intersection of $f_o$ and $f'_o$ does not contain paths of length greater than one. Since $\mathcal{M}_c$ and $\mathcal{M}_c'$ do only contain vertices in the subdivision of adjacent edges in $M$, the intersection $\mathcal{M}_c \cap\mathcal{M}_c'$ contains only vertices in the subdivision of a single edge in $M$, see \autoref{fig:thm:polymap}. However, $\mathcal{M}_c$ and $\mathcal{M}_c'$ are then both contained in an edge patch formed along this edge and the faces in $\mathcal{M}_c$ and $\mathcal{M}'_c$ meet properly by definition of the polyhedral property - we have reached a contradiction.
-
-    \begin{tikzfigure}{\label{fig:thm:polymap}}{}
-      \begin{scope}[scale=0.8]
-      \node[shift={(-4,0)}] (0, 0) {$k$-gon};
-
-      \draw[shift={(-5,0)}] (9 : 1) -- (81 : 1) -- (153 : 1)  (225 : 1) -- (297 : 1) -- (9 : 1);
-      \draw[shift={(-5,0)}][loosely dotted] (153 : 1) -- (225 : 1);
-
-
-      \draw[shift={(-5,0)}] (9 : 1) -- (9 : 2.5);
-      \draw[shift={(-5,0)}][loosely dotted] (9 : 2.5) -- (9 : 3.5);
-      \draw[shift={(-5,0)}] (9 : 3.5) -- (9 : 5.062);
-      \draw[shift={(-5,0)}] (81 : 1) -- (81 : 2.5);
-      \draw[shift={(-5,0)}][loosely dotted] (81 : 2.5) -- (81 : 3.5);
-      \draw[shift={(-5,0)}] (81 : 3.5) -- (81 : 5.062);
-      \draw[shift={(-5,0)}] (153 : 1) -- (153 : 2.5);
-      \draw[shift={(-5,0)}][loosely dotted] (153 : 2.5) -- (153 : 3.5);
-      \draw[shift={(-5,0)}] (153 : 3.5) -- (153 : 5.062);
-      \draw[shift={(-5,0)}] (225 : 1) -- (225 : 2.5);
-      \draw[shift={(-5,0)}][loosely dotted] (225 : 2.5) -- (225 : 3.5);
-      \draw[shift={(-5,0)}] (225 : 3.5) -- (225 : 5.062);
-      \draw[shift={(-5,0)}] (297 : 1) -- (297 : 2.5);
-      \draw[shift={(-5,0)}][loosely dotted] (297 : 2.5) -- (297 : 3.5);
-      \draw[shift={(-5,0)}] (297 : 3.5) -- (297 : 5.062);
-      \draw[shift={(-5,0)}][loosely dotted] (4 : 5.012) -- (356 : 5.012);
-
-
-      \draw[shift={(-5,0)}] (-13 : 5.1315) -- (356 : 5.012) (4 : 5.012) -- (13 : 5.1315);
-      \draw[shift={(-5,0)}][loosely dotted] (13 : 5.1315) -- (27 : 5.612);
-      \draw[shift={(-5,0)}] (27 : 5.612) -- (36 : 6.180) -- (45 : 5.612);
-      \draw[shift={(-5,0)}][loosely dotted] (45 : 5.612) -- (68 : 5.012);
-      \draw[shift={(-5,0)}] (68 : 5.012) -- (85 : 5.1315);
-      \draw[shift={(-5,0)}][loosely dotted] (85 : 5.1315) -- (99 : 5.612);
-      \draw[shift={(-5,0)}] (99 : 5.612) -- (108 : 6.180) -- (117 : 5.612);
-      \draw[shift={(-5,0)}][loosely dotted] (117 : 5.612) -- (131 : 5.1315);
-      \draw[shift={(-5,0)}] (131 : 5.1315) -- (153 : 5.062);
-      \draw[shift={(-5,0)}] (-131 : 5.1315) -- (225 : 5.062);
-      \draw[shift={(-5,0)}][loosely dotted] (-117 : 5.612) -- (-131 : 5.1315);
-      \draw[shift={(-5,0)}] (-99 : 5.612) -- (-108 : 6.180) -- (-117 : 5.612);
-      \draw[shift={(-5,0)}][loosely dotted] (-99 : 5.612) -- (-85 : 5.1315);
-      \draw[shift={(-5,0)}] (-59 : 5.1315) -- (-85 : 5.1315);
-      \draw[shift={(-5,0)}][loosely dotted] (-45 : 5.612) -- (-85 : 5.1315);
-      \draw[shift={(-5,0)}] (-27 : 5.612) -- (-36 : 6.180) -- (-45 : 5.612);
-      \draw[shift={(-5,0)}][loosely dotted] (-27 : 5.612) -- (-13 : 5.1315);
-
-      \fill[shift={(-5,0)}] [black] (9 : 1) circle (2pt);
-      \node[shift={(-4,0)}][anchor="108"] at (9 : 1) {$i_0$};
-      \fill[shift={(-5,0)}] [black] (9 : 2) circle (2pt);
-      \node[shift={(-4,0)}][anchor="99"] at (9 : 2) {$i_1$};
-      \fill[shift={(-5,0)}] [black] (9 : 4) circle (2pt);
-      \node[shift={(-4,0)}][anchor="99"] at (9 : 4) {$i_{m-1}$};
-      \fill[shift={(-5,0)}] [black] (9 : 5.062) circle (2pt);
-      \node[shift={(-4,0)}][anchor="45"] at (9 : 5.062) {$o_{0}$};
-      \node[shift={(-4,0)}][anchor="180"] at (9 : 5.062) {$o_{2s \mod n}$};
-      \fill[shift={(-5,0)}] [black] (-9 : 5.062) circle (2pt);
-      \node[shift={(-4,0)}][anchor="0"] at (-9 : 5.062) {$o_{2s \mod n}$};
-      \fill[shift={(-5,0)}] [black] (-30 : 5.774) circle (2pt);
-      \node[shift={(-4,0)}][anchor="0"] at (-30 : 5.774) {$o_{s - 1}$};
-      \fill[shift={(-5,0)}] [black] (-36 : 6.180) circle (2pt);
-      \node[shift={(-4,0)}][anchor="-36"] at (-36 : 6.180) {$\bm{o_s}$};
-      \fill[shift={(-5,0)}] [black] (-42 : 5.774) circle (2pt);
-      \node[shift={(-4,0)}][anchor="-36"] at (-42 : 5.774) {$o_{s + 1}$};
-      % \fill[shift={(-5,0)}] [black] (-63 : 5.062) circle (2pt);
-      % \node[shift={(-4,0)}][anchor="-63"] at (-63 : 5.062) {$o_{n - 1}$};
-      \fill[shift={(-5,0)}] [black] (-63 : 5.062) circle (2pt);
-      \node[shift={(-4,0)}][anchor="-117"] at (-63 : 5.062) {$o_{n}$};
-      \fill[shift={(-5,0)}] [black] (-63 : 4) circle (2pt);
-      \node[shift={(-4,0)}][anchor="198"] at (-63 : 4) {$i'_{m-1}$};
-      \fill[shift={(-5,0)}] [black] (-63 : 2) circle (2pt);
-      \node[shift={(-4,0)}][anchor="198"] at (-63 : 2) {$i'_{1}$};
-      \fill[shift={(-5,0)}] [black] (-63 : 1) circle (2pt);
-      \node[shift={(-4,0)}][anchor="180"] at (-63 : 1) {$i'_0$};
-      \node[shift={(-4,0)}] at (-27 : 3.5) {$\mathcal{M}$};
-
-      \fill[shift={(-5,0)}] [black] (81 : 1) circle (2pt);
-      \node[shift={(-4,0)}][anchor="180"] at (81 : 1) {$i_0$};
-      \fill[shift={(-5,0)}] [black] (81 : 2) circle (2pt);
-      \node[shift={(-4,0)}][anchor="162"] at (81 : 2) {$i_1$};
-      \fill[shift={(-5,0)}] [black] (81 : 4) circle (2pt);
-      \node[shift={(-4,0)}][anchor="162"] at (81 : 4) {$i_{m-1}$};
-      \fill[shift={(-5,0)}] [black] (81 : 5.062) circle (2pt);
-      \node[shift={(-4,0)}][anchor="126"] at (81 : 5.062) {$o_{0}$};
-      \fill[shift={(-5,0)}] [black] (72 : 5) circle (2pt);
-      \node[shift={(-4,0)}][anchor="83"] at (72 : 5) {$o_{1}$};
-      \fill[shift={(-5,0)}] [black] (42 : 5.774) circle (2pt);
-      \node[shift={(-4,0)}][anchor="42"] at (42 : 5.774) {$o_{s - 1}$};
-      \fill[shift={(-5,0)}] [black] (36 : 6.180) circle (2pt);
-      \node[shift={(-4,0)}][anchor="36"] at (36 : 6.180) {$\bm{o_s}$};
-      \fill[shift={(-5,0)}] [black] (30 : 5.774) circle (2pt);
-      \node[shift={(-4,0)}][anchor="0"] at (30 : 5.774) {$o_{s + 1}$};
-      %\fill[shift={(-5,0)}] [black] (9 : 5.062) circle (2pt);
-      %\node[shift={(-4,0)}][anchor="0"] at (9 : 5.062) {$o_{n - 1}$};
-      \fill[shift={(-5,0)}] [black] (9 : 5.062) circle (2pt);
-      \node[shift={(-4,0)}][anchor="-45"] at (9 : 5.062) {$o_{n}$};
-      \fill[shift={(-5,0)}] [black] (9 : 4) circle (2pt);
-      \node[shift={(-4,0)}][anchor="270"] at (9 : 4) {$i'_{m-1}$};
-      \fill[shift={(-5,0)}] [black] (9 : 2) circle (2pt);
-      \node[shift={(-4,0)}][anchor="270"] at (9 : 2) {$i'_{1}$};
-      \fill[shift={(-5,0)}] [black] (9 : 1) circle (2pt);
-      \node[shift={(-4,0)}][anchor="252"] at (9 : 1) {$i'_0$};
-      \node[shift={(-4,0)}] at (45 : 3.5) {$\mathcal{M}$};
-
-      \node[shift={(-4,0)}] at (117 : 3.5) {$\mathcal{M}$};
-      \node[shift={(-4,0)}] at (-99 : 3.5) {$\mathcal{M}$};
-
-      \draw[shift={(-5,0)}][loosely dotted] (180 : 4) -- (198 : 4);
-
-      \node[shift={(4,0)}] (0, 0) {$k'$-gon};
-
-      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (9 : 1) -- (81 : 1) -- (153 : 1)  (225 : 1) -- (297 : 1) -- (9 : 1);
-      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (153 : 1) -- (225 : 1);
-
-
-      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (9 : 1) -- (9 : 2.5);
-      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (9 : 2.5) -- (9 : 3.5);
-      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (9 : 3.5) -- (9 : 5.062);
-      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (81 : 1) -- (81 : 2.5);
-      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (81 : 2.5) -- (81 : 3.5);
-      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (81 : 3.5) -- (81 : 5.062);
-      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (153 : 1) -- (153 : 2.5);
-      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (153 : 2.5) -- (153 : 3.5);
-      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (153 : 3.5) -- (153 : 5.062);
-      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (225 : 1) -- (225 : 2.5);
-      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (225 : 2.5) -- (225 : 3.5);
-      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (225 : 3.5) -- (225 : 5.062);
-      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (297 : 1) -- (297 : 2.5);
-      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (297 : 2.5) -- (297 : 3.5);
-      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (297 : 3.5) -- (297 : 5.062);
-      
-      % \draw[shift={(5,0)}, rotate around={180:(0,0)}] (-13 : 5.1315) -- (13 : 5.1315);
-      % \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (13 : 5.1315) -- (27 : 5.612);
-      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (36 : 6.180) -- (45 : 5.612);
-      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (45 : 5.612) -- (59 : 5.1315);
-      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (59 : 5.1315) -- (85 : 5.1315);
-      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (85 : 5.1315) -- (99 : 5.612);
-      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (99 : 5.612) -- (108 : 6.180) -- (117 : 5.612);
-      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (117 : 5.612) -- (131 : 5.1315);
-      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (131 : 5.1315) -- (144 : 5);
-      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (-131 : 5.1315) -- (216 : 5);
-      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (-117 : 5.612) -- (-131 : 5.1315);
-      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (-99 : 5.612) -- (-108 : 6.180) -- (-117 : 5.612);
-      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (-99 : 5.612) -- (-85 : 5.1315);
-      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (-59 : 5.1315) -- (-85 : 5.1315);
-      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (-45 : 5.612) -- (-85 : 5.1315);
-      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (-36 : 6.180) -- (-45 : 5.612);
-      %\draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (-27 : 5.612) -- (-13 : 5.1315);
-
-      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (9 : 1) circle (2pt);
-      \node[shift={(4,0)}][anchor="282"] at (189 : 1) {$i_0$};
-      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (9 : 2) circle (2pt);
-      \node[shift={(4,0)}][anchor="270"] at (189 : 2) {$i_1$};
-      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (9 : 4) circle (2pt);
-      \node[shift={(4,0)}][anchor="270"] at (189 : 4) {$i_{m-1}$};
-      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (9 : 5.062) circle (2pt);
-      \node[shift={(4,0)}][anchor="225"] at (189 : 5) {$o_{0}$};
-      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (-30 : 5.774) circle (2pt);
-      \node[shift={(4,0)}][anchor="180"] at (150 : 5.774) {$o_{s - 1}$};
-      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (-36 : 6.180) circle (2pt);
-      \node[shift={(4,0)}][anchor="144"] at (144 : 6.180) {$\bm{o_s}$};
-      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (-42 : 5.774) circle (2pt);
-      \node[shift={(4,0)}][anchor="144"] at (138 : 5.774) {$o_{s + 1}$};
-      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (-63 : 5.062) circle (2pt);
-      \node[shift={(4,0)}][anchor="63"] at (117 : 5) {$o_{n}$};
-      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (-63 : 4) circle (2pt);
-      \node[shift={(4,0)}][anchor="18"] at (117 : 4) {$i'_{m-1}$};
-      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (-63 : 2) circle (2pt);
-      \node[shift={(4,0)}][anchor="18"] at (117 : 2) {$i'_{1}$};
-      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (-63 : 1) circle (2pt);
-      \node[shift={(4,0)}][anchor="0"] at (117 : 1) {$i'_0$};
-      \node[shift={(4,0)}] at (144 : 3.5) {$\mathcal{M}$};
-
-      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (81 : 1) circle (2pt);
-      \node[shift={(4,0)}][anchor="0"] at (261 : 1) {$i_0$};
-      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (81 : 2) circle (2pt);
-      \node[shift={(4,0)}][anchor="342"] at (261 : 2) {$i_1$};
-      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (81 : 4) circle (2pt);
-      \node[shift={(4,0)}][anchor="342"] at (261 : 4) {$i_{m-1}$};
-      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (81 : 5.062) circle (2pt);
-      \node[shift={(4,0)}][anchor="300"] at (261 : 5.062) {$o_{0}$};
-      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (42 : 5.774) circle (2pt);
-      \node[shift={(4,0)}][anchor="216"] at (222 : 5.774) {$o_{s - 1}$};
-      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (36 : 6.180) circle (2pt);
-      \node[shift={(4,0)}][anchor="216"] at (216 : 6.180) {$\bm{o_s}$};
-      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (30 : 5.774) circle (2pt);
-      \node[shift={(4,0)}][anchor="180"] at (210 : 5.774) {$o_{s + 1}$};
-      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (9 : 5.062) circle (2pt);
-      \node[shift={(4,0)}][anchor="135"] at (189 : 5.062) {$o_{n}$};
-      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (9 : 4) circle (2pt);
-      \node[shift={(4,0)}][anchor="90"] at (189 : 4) {$i'_{m-1}$};
-      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (9 : 2) circle (2pt);
-      \node[shift={(4,0)}][anchor="90"] at (189 : 2) {$i'_{1}$};
-      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (9 : 1) circle (2pt);
-      \node[shift={(4,0)}][anchor="72"] at (189 : 1) {$i'_0$};
-      \node[shift={(4,0)}] at (216 : 3.5) {$\mathcal{M}$};
-
-      \node[shift={(4,0)}] at (288 : 3.5) {$\mathcal{M}$};
-      \node[shift={(4,0)}] at (72 : 3.5) {$\mathcal{M}$};
-
-      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (171 : 4) -- (189 : 4);
-
-      \end{scope}
-
-    \end{tikzfigure}
-
-\end{proof}
-\end{proposition}
-
-\begin{tikzfigure}{}{}
+The only requirement of \autoref{const:map} we did not explicitly state is that $o$ is self-fitting (which it is by definition) and that $\mathcal{M}(k)$ is $o$-$k$-gonal, which was the result of \autoref{const:expansion:patch}. Thus we can apply \autoref{const:map} and get a map $M'$ on $S$ and need to show that $\mathcal{M'}$ is polyhedral; for a schematic overview, see \autoref{fig:const:polymap:overview}. We want to use a proof by contradiction so assume that two faces of $M'$, $f$ and $f'$, do not meet properly. By construction, there are two faces $f_o$ and $f'_o$ in the original map $M$, such that $f$ is contained in $\mathcal{P}(f_o)$ and $f'$ is contained in $\mathcal{P}(f'_o)$. Since $f$ and $f'$ do not meet properly, $f_o \cap f'_o \neq \emptyset$ and $\mathcal{P}(f_o) \cap \mathcal{P}(f'_o) \neq \emptyset$. We consider two cases: either $f_o$ and $f'_o$ denote the same face or they do not. We can quickly rule out the first case since $f_o$ is a $2$-cell and thus no vertices of the boundary of $\mathcal{P}(f_o)$ are identified in $M$ and we proved that the inner faces of $\mathcal{P}(f_o)$ meet properly in \autoref{const:expansion:patch}. Therefore assume that $f_o$ and $f'_o$ are different. The patches $\mathcal{P}(f_o)$ and $\mathcal{P}(f'_o)$ and hence the faces $f$ and $f'$ only have a non-empty intersection if $f_o$ and $f'_o$ are adjacent. Since the central $k$-gons of $\mathcal{M}(k)$ are only adjacent to faces of the corresponding patch (since $m > 0$ in \autoref{def:expansion:patch}), we can also assume that neither $f$ nor $f'$ is one of those central $k$-gons and that $f$ and $f'$ are contained in two copies of $\mathcal{M}$. Let $\mathcal{M}_c$ be the copy of $\mathcal{M}$ which contains $f$ (and is a subpatch of $\mathcal{P}(f_o)$) and let $\mathcal{M}_c'$ be the copy of $\mathcal{M}$ which contains $f'$ (and is a subpatch of $\mathcal{P}(f'_o)$). Thus, we know that $\mathcal{M}_c \neq \mathcal{M}'_c$ and $\mathcal{M}_c \cap \mathcal{M}_c' \neq \emptyset$.
+\begin{tikzfigure}{\label{fig:const:polymap:overview}}{\autoref{const:map} for $\mathcal{P}(f) = \mathcal{M}(k)$}
   \matrix (m) [column sep=1cm] {
     \begin{scope}[scale=0.5]
       \draw (-3,0)--(-3,3)--(-6,5)--(-6,8)--(-3,10)--(0,8)--(6,8)--(6,5)--(7,1)--(3,0)--(-3,0);
@@ -1097,6 +888,215 @@ Recall that in \autoref{const:map} we constructed $M'$ to be subdividing each ed
     \\
   };
   \end{tikzfigure}
+
+Recall that in \autoref{const:map} we constructed $M'$ to be subdividing each edge of $M$ and replacing each face with the corresponding patch. We again want to use the notion of ``corner vertices'' for the original vertices in $M$, ``side vertices'' for the vertices added by the subdivision and ``inner vertices'' for all of the other vertices. Note that both $\mathcal{M}_c$ and $\mathcal{M}_c'$ only contain exactly one corner vertex ($o_s$). If $f$ and $f'$ meet non-properly, then $\mathcal{M}_c$ and $\mathcal{M}_c'$ have to share at least one side vertex (they can not share an inner vertex, as these are completely internal to $\mathcal{P}(f_o)$ and $\mathcal{P}(f'_o)$ and those patches only meet at their boundary). As $M$ does not contain $2$-valent vertices, the intersection of $f_o$ and $f'_o$ does not contain paths of length greater than one. Since $\mathcal{M}_c$ and $\mathcal{M}_c'$ do only contain vertices in the subdivision of adjacent edges in $M$, the intersection $\mathcal{M}_c \cap\mathcal{M}_c'$ contains only vertices in the subdivision of a single edge in $M$, see \autoref{fig:thm:polymap}. However, $\mathcal{M}_c$ and $\mathcal{M}_c'$ are then both contained in an edge patch formed along this edge and the faces in $\mathcal{M}_c$ and $\mathcal{M}'_c$ meet properly by definition of the polyhedral property - we have reached a contradiction.
+
+    \begin{tikzfigure}{\label{fig:thm:polymap}}{Copies of $\mathcal{M}$ adjacent to a subdivided edge form the edge patch of $\mathcal{M}$}
+      \begin{scope}[scale=0.8]
+      \node[shift={(-4,0)}] (0, 0) {$k$-gon};
+
+      \draw[shift={(-5,0)}] (9 : 1) -- (81 : 1) -- (153 : 1)  (225 : 1) -- (297 : 1) -- (9 : 1);
+      \draw[shift={(-5,0)}][loosely dotted] (153 : 1) -- (225 : 1);
+
+
+      \draw[shift={(-5,0)}] (9 : 1) -- (9 : 2.5);
+      \draw[shift={(-5,0)}][loosely dotted] (9 : 2.5) -- (9 : 3.5);
+      \draw[shift={(-5,0)}] (9 : 3.5) -- (9 : 5.062);
+      \draw[shift={(-5,0)}] (81 : 1) -- (81 : 2.5);
+      \draw[shift={(-5,0)}][loosely dotted] (81 : 2.5) -- (81 : 3.5);
+      \draw[shift={(-5,0)}] (81 : 3.5) -- (81 : 5.062);
+      \draw[shift={(-5,0)}] (153 : 1) -- (153 : 2.5);
+      \draw[shift={(-5,0)}][loosely dotted] (153 : 2.5) -- (153 : 3.5);
+      \draw[shift={(-5,0)}] (153 : 3.5) -- (153 : 5.062);
+      \draw[shift={(-5,0)}] (225 : 1) -- (225 : 2.5);
+      \draw[shift={(-5,0)}][loosely dotted] (225 : 2.5) -- (225 : 3.5);
+      \draw[shift={(-5,0)}] (225 : 3.5) -- (225 : 5.062);
+      \draw[shift={(-5,0)}] (297 : 1) -- (297 : 2.5);
+      \draw[shift={(-5,0)}][loosely dotted] (297 : 2.5) -- (297 : 3.5);
+      \draw[shift={(-5,0)}] (297 : 3.5) -- (297 : 5.062);
+      \draw[shift={(-5,0)}][loosely dotted] (4 : 5.012) -- (356 : 5.012);
+
+
+      \draw[shift={(-5,0)}] (-13 : 5.1315) -- (356 : 5.012) (4 : 5.012) -- (13 : 5.1315);
+      \draw[shift={(-5,0)}][loosely dotted] (13 : 5.1315) -- (27 : 5.612);
+      \draw[shift={(-5,0)}] (27 : 5.612) -- (36 : 6.180) -- (45 : 5.612);
+      \draw[shift={(-5,0)}][loosely dotted] (45 : 5.612) -- (68 : 5.012);
+      \draw[shift={(-5,0)}] (68 : 5.012) -- (85 : 5.1315);
+      \draw[shift={(-5,0)}][loosely dotted] (85 : 5.1315) -- (99 : 5.612);
+      \draw[shift={(-5,0)}] (99 : 5.612) -- (108 : 6.180) -- (117 : 5.612);
+      \draw[shift={(-5,0)}][loosely dotted] (117 : 5.612) -- (131 : 5.1315);
+      \draw[shift={(-5,0)}] (131 : 5.1315) -- (153 : 5.062);
+      \draw[shift={(-5,0)}] (-131 : 5.1315) -- (225 : 5.062);
+      \draw[shift={(-5,0)}][loosely dotted] (-117 : 5.612) -- (-131 : 5.1315);
+      \draw[shift={(-5,0)}] (-99 : 5.612) -- (-108 : 6.180) -- (-117 : 5.612);
+      \draw[shift={(-5,0)}][loosely dotted] (-99 : 5.612) -- (-85 : 5.1315);
+      \draw[shift={(-5,0)}] (-59 : 5.1315) -- (-85 : 5.1315);
+      \draw[shift={(-5,0)}][loosely dotted] (-45 : 5.612) -- (-85 : 5.1315);
+      \draw[shift={(-5,0)}] (-27 : 5.612) -- (-36 : 6.180) -- (-45 : 5.612);
+      \draw[shift={(-5,0)}][loosely dotted] (-27 : 5.612) -- (-13 : 5.1315);
+
+      \fill[shift={(-5,0)}] [black] (9 : 1) circle (2pt);
+      \node[shift={(-4,0)}][anchor="108"] at (9 : 1) {$i_0$};
+      \fill[shift={(-5,0)}] [black] (9 : 2) circle (2pt);
+      \node[shift={(-4,0)}][anchor="99"] at (9 : 2) {$i_1$};
+      \fill[shift={(-5,0)}] [black] (9 : 4) circle (2pt);
+      \node[shift={(-4,0)}][anchor="99"] at (9 : 4) {$i_{m-1}$};
+      \fill[shift={(-5,0)}] [black] (9 : 5.062) circle (2pt);
+      \node[shift={(-4,0)}][anchor="45"] at (9 : 5.062) {$o_{0}$};
+      \node[shift={(-4,0)}][anchor="180"] at (9 : 5.062) {$o_{2s \mod n}$};
+      \fill[shift={(-5,0)}] [black] (-9 : 5.062) circle (2pt);
+      \node[shift={(-4,0)}][anchor="0"] at (-9 : 5.062) {$o_{2s \mod n}$};
+      \fill[shift={(-5,0)}] [black] (-30 : 5.774) circle (2pt);
+      \node[shift={(-4,0)}][anchor="0"] at (-30 : 5.774) {$o_{s - 1}$};
+      \fill[shift={(-5,0)}] [black] (-36 : 6.180) circle (2pt);
+      \node[shift={(-4,0)}][anchor="-36"] at (-36 : 6.180) {$\bm{o_s}$};
+      \fill[shift={(-5,0)}] [black] (-42 : 5.774) circle (2pt);
+      \node[shift={(-4,0)}][anchor="-36"] at (-42 : 5.774) {$o_{s + 1}$};
+      % \fill[shift={(-5,0)}] [black] (-63 : 5.062) circle (2pt);
+      % \node[shift={(-4,0)}][anchor="-63"] at (-63 : 5.062) {$o_{n - 1}$};
+      \fill[shift={(-5,0)}] [black] (-63 : 5.062) circle (2pt);
+      \node[shift={(-4,0)}][anchor="-117"] at (-63 : 5.062) {$o_{n}$};
+      \fill[shift={(-5,0)}] [black] (-63 : 4) circle (2pt);
+      \node[shift={(-4,0)}][anchor="198"] at (-63 : 4) {$i'_{m-1}$};
+      \fill[shift={(-5,0)}] [black] (-63 : 2) circle (2pt);
+      \node[shift={(-4,0)}][anchor="198"] at (-63 : 2) {$i'_{1}$};
+      \fill[shift={(-5,0)}] [black] (-63 : 1) circle (2pt);
+      \node[shift={(-4,0)}][anchor="180"] at (-63 : 1) {$i'_0$};
+      \node[shift={(-4,0)}] at (-27 : 3.5) {$\mathcal{M}$};
+
+      \fill[shift={(-5,0)}] [black] (81 : 1) circle (2pt);
+      \node[shift={(-4,0)}][anchor="180"] at (81 : 1) {$i_0$};
+      \fill[shift={(-5,0)}] [black] (81 : 2) circle (2pt);
+      \node[shift={(-4,0)}][anchor="162"] at (81 : 2) {$i_1$};
+      \fill[shift={(-5,0)}] [black] (81 : 4) circle (2pt);
+      \node[shift={(-4,0)}][anchor="162"] at (81 : 4) {$i_{m-1}$};
+      \fill[shift={(-5,0)}] [black] (81 : 5.062) circle (2pt);
+      \node[shift={(-4,0)}][anchor="126"] at (81 : 5.062) {$o_{0}$};
+      \fill[shift={(-5,0)}] [black] (72 : 5) circle (2pt);
+      \node[shift={(-4,0)}][anchor="83"] at (72 : 5) {$o_{1}$};
+      \fill[shift={(-5,0)}] [black] (42 : 5.774) circle (2pt);
+      \node[shift={(-4,0)}][anchor="42"] at (42 : 5.774) {$o_{s - 1}$};
+      \fill[shift={(-5,0)}] [black] (36 : 6.180) circle (2pt);
+      \node[shift={(-4,0)}][anchor="36"] at (36 : 6.180) {$\bm{o_s}$};
+      \fill[shift={(-5,0)}] [black] (30 : 5.774) circle (2pt);
+      \node[shift={(-4,0)}][anchor="0"] at (30 : 5.774) {$o_{s + 1}$};
+      %\fill[shift={(-5,0)}] [black] (9 : 5.062) circle (2pt);
+      %\node[shift={(-4,0)}][anchor="0"] at (9 : 5.062) {$o_{n - 1}$};
+      \fill[shift={(-5,0)}] [black] (9 : 5.062) circle (2pt);
+      \node[shift={(-4,0)}][anchor="-45"] at (9 : 5.062) {$o_{n}$};
+      \fill[shift={(-5,0)}] [black] (9 : 4) circle (2pt);
+      \node[shift={(-4,0)}][anchor="270"] at (9 : 4) {$i'_{m-1}$};
+      \fill[shift={(-5,0)}] [black] (9 : 2) circle (2pt);
+      \node[shift={(-4,0)}][anchor="270"] at (9 : 2) {$i'_{1}$};
+      \fill[shift={(-5,0)}] [black] (9 : 1) circle (2pt);
+      \node[shift={(-4,0)}][anchor="252"] at (9 : 1) {$i'_0$};
+      \node[shift={(-4,0)}] at (45 : 3.5) {$\mathcal{M}$};
+
+      \node[shift={(-4,0)}] at (117 : 3.5) {$\mathcal{M}$};
+      \node[shift={(-4,0)}] at (-99 : 3.5) {$\mathcal{M}$};
+
+      \draw[shift={(-5,0)}][loosely dotted] (180 : 4) -- (198 : 4);
+
+      \node[shift={(4,0)}] (0, 0) {$k'$-gon};
+
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (9 : 1) -- (81 : 1) -- (153 : 1)  (225 : 1) -- (297 : 1) -- (9 : 1);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (153 : 1) -- (225 : 1);
+
+
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (9 : 1) -- (9 : 2.5);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (9 : 2.5) -- (9 : 3.5);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (9 : 3.5) -- (9 : 5.062);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (81 : 1) -- (81 : 2.5);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (81 : 2.5) -- (81 : 3.5);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (81 : 3.5) -- (81 : 5.062);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (153 : 1) -- (153 : 2.5);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (153 : 2.5) -- (153 : 3.5);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (153 : 3.5) -- (153 : 5.062);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (225 : 1) -- (225 : 2.5);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (225 : 2.5) -- (225 : 3.5);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (225 : 3.5) -- (225 : 5.062);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (297 : 1) -- (297 : 2.5);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (297 : 2.5) -- (297 : 3.5);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (297 : 3.5) -- (297 : 5.062);
+      
+      % \draw[shift={(5,0)}, rotate around={180:(0,0)}] (-13 : 5.1315) -- (13 : 5.1315);
+      % \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (13 : 5.1315) -- (27 : 5.612);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (36 : 6.180) -- (45 : 5.612);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (45 : 5.612) -- (59 : 5.1315);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (59 : 5.1315) -- (85 : 5.1315);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (85 : 5.1315) -- (99 : 5.612);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (99 : 5.612) -- (108 : 6.180) -- (117 : 5.612);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (117 : 5.612) -- (131 : 5.1315);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (131 : 5.1315) -- (153 : 5.062);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (-131 : 5.1315) -- (225 : 5.062);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (-117 : 5.612) -- (-131 : 5.1315);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (-99 : 5.612) -- (-108 : 6.180) -- (-117 : 5.612);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (-99 : 5.612) -- (-85 : 5.1315);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (-59 : 5.1315) -- (-85 : 5.1315);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (-45 : 5.612) -- (-85 : 5.1315);
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}] (-36 : 6.180) -- (-45 : 5.612);
+      %\draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (-27 : 5.612) -- (-13 : 5.1315);
+
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (9 : 1) circle (2pt);
+      \node[shift={(4,0)}][anchor="282"] at (189 : 1) {$i_0$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (9 : 2) circle (2pt);
+      \node[shift={(4,0)}][anchor="270"] at (189 : 2) {$i_1$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (9 : 4) circle (2pt);
+      \node[shift={(4,0)}][anchor="270"] at (189 : 4) {$i_{m-1}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (9 : 5.062) circle (2pt);
+      \node[shift={(4,0)}][anchor="225"] at (189 : 5) {$o_{0}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (-30 : 5.774) circle (2pt);
+      \node[shift={(4,0)}][anchor="180"] at (150 : 5.774) {$o_{s - 1}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (-36 : 6.180) circle (2pt);
+      \node[shift={(4,0)}][anchor="144"] at (144 : 6.180) {$\bm{o_s}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (-42 : 5.774) circle (2pt);
+      \node[shift={(4,0)}][anchor="144"] at (138 : 5.774) {$o_{s + 1}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (-63 : 5.062) circle (2pt);
+      \node[shift={(4,0)}][anchor="63"] at (117 : 5) {$o_{n}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (-63 : 4) circle (2pt);
+      \node[shift={(4,0)}][anchor="18"] at (117 : 4) {$i'_{m-1}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (-63 : 2) circle (2pt);
+      \node[shift={(4,0)}][anchor="18"] at (117 : 2) {$i'_{1}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (-63 : 1) circle (2pt);
+      \node[shift={(4,0)}][anchor="0"] at (117 : 1) {$i'_0$};
+      \node[shift={(4,0)}] at (153 : 3.5) {$\mathcal{M}$};
+
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (81 : 1) circle (2pt);
+      \node[shift={(4,0)}][anchor="0"] at (261 : 1) {$i_0$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (81 : 2) circle (2pt);
+      \node[shift={(4,0)}][anchor="342"] at (261 : 2) {$i_1$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (81 : 4) circle (2pt);
+      \node[shift={(4,0)}][anchor="342"] at (261 : 4) {$i_{m-1}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (81 : 5.062) circle (2pt);
+      \node[shift={(4,0)}][anchor="300"] at (261 : 5.062) {$o_{0}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (42 : 5.774) circle (2pt);
+      \node[shift={(4,0)}][anchor="216"] at (222 : 5.774) {$o_{s - 1}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (36 : 6.180) circle (2pt);
+      \node[shift={(4,0)}][anchor="216"] at (216 : 6.180) {$\bm{o_s}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (30 : 5.774) circle (2pt);
+      \node[shift={(4,0)}][anchor="180"] at (210 : 5.774) {$o_{s + 1}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (9 : 5.062) circle (2pt);
+      \node[shift={(4,0)}][anchor="135"] at (189 : 5.062) {$o_{n}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (9 : 4) circle (2pt);
+      \node[shift={(4,0)}][anchor="90"] at (189 : 4) {$i'_{m-1}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (9 : 2) circle (2pt);
+      \node[shift={(4,0)}][anchor="90"] at (189 : 2) {$i'_{1}$};
+      \fill[shift={(5,0)}, rotate around={180:(0,0)}] [black] (9 : 1) circle (2pt);
+      \node[shift={(4,0)}][anchor="72"] at (189 : 1) {$i'_0$};
+      \node[shift={(4,0)}] at (225 : 3.5) {$\mathcal{M}$};
+
+      \node[shift={(4,0)}] at (297 : 3.5) {$\mathcal{M}$};
+      \node[shift={(4,0)}] at (81 : 3.5) {$\mathcal{M}$};
+
+      \draw[shift={(5,0)}, rotate around={180:(0,0)}][loosely dotted] (180 : 4) -- (198 : 4);
+
+      \end{scope}
+
+    \end{tikzfigure}
+
+\end{proof}
+\end{proposition}
+
 
 \begin{remark} As we have seen in the proof of \autoref{thm:const:polymap} and in \autoref{fig:thm:polymap} the edge patch serves as a replacement figure of an edge in \autoref{const:map}, thus its name.
 \end{remark}

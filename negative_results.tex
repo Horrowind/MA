@@ -476,42 +476,43 @@ The last theorem we want to present in this section explains, why we were unable
 
 
     \end{tikzfigure}%
-    As there can not be two triangles adjacent to a single edge with two $3$-valence vertices in the map, every edge adjacent to a triangle has to have either a vertex of valence greater than $3$ or it has also to be adjacent to a larger $k$-gon, $k > 3$. Using this we can estimate the number of triangle-edge pairs $(f, e)$, where $f$ is a triangle, $e$ is an edge and $f$ contains $e$. There are $3p_3$ of these pairs, since every triangle contains three edges. On the other hand, around each vertex of valence $r > 3$ we can put a maximum of $r$ triangles, which would be $2r$ triangle-edge pairs. Around each $k$-gon we can fit no more than $\lfloor \frac{k}{2} \rfloor + \lceil \frac{j}{2} \rceil$ triangles, where $j$ is the number of vertices with valence greater than $3$ adjacent to the $k$-gon.
+    As there can not be two triangles adjacent to a single edge with two $3$-valence vertices in the map, every edge adjacent to a triangle has to have either a vertex of valence greater than $3$ or it has also to be adjacent to a larger $k$-gon, $k > 3$. Using this we can estimate the number of triangle-edge pairs $(f, e)$, where $f$ is a triangle, $e$ is an edge and $f$ contains $e$. There are $3p_3$ of these pairs, since every triangle contains three edges. On the other hand, around each vertex of valence $r > 3$ we can put a maximum of $r$ triangles, which would be $2r$ triangle-edge pairs. Around each $k$-gon, $k > 3$ we can fit no more than $\lfloor \frac{k}{2} \rfloor$ triangles if all vertices of the $k$-gon are $3$-valent since we can only put triangles at every other edge to avoid \autoref{fig:adjacent:triangles}. Having vertices with valence $r > 3$ adjacent to $k$-gons, $k > 3$ in fact decreases the maximum number of possible triangle-edge pairs in the map because in this situation we would reduce the number of triangle-edge pairs we could place around the vertex by two. Any additional triangle edge pair we could place around the $k$-gon in this situation would already have been accounted for by the count of pairs around the vertex, thus we really did decrease the overall number of triangle edge pairs.
+% + \lceil \frac{j}{2} \rceil$ triangles, where $j$ is the number of vertices with valence greater than $3$ adjacent to the $k$-gon.
     
-    \begin{tikzfigure}{}{}
-      \draw (30:7)--(45:7)--(60:7)--(75:7)--(90:7)--(105:7)--(120:7)--(135:7)--(150:7);
-      \draw[dashed] (150:7)--(165:7) (30:7)--(15:7);
+    % \begin{tikzfigure}{}{}
+    %   \draw (30:7)--(45:7)--(60:7)--(75:7)--(90:7)--(105:7)--(120:7)--(135:7)--(150:7);
+    %   \draw[dashed] (150:7)--(165:7) (30:7)--(15:7);
       
-      \draw (30:7)--(37.5:8.5)--(45:7)(60:7)--(67.5:8.5)--(75:7);
-      \draw (90:7)--(97.5:8.5)-- (105:7)--(112.5:8.5)--(120:7)--(127.5:8.5)--(135:7)--(142.5:8.5)--(150:7);
-      \draw[loosely dotted] (135:7)--(135:7.5);
-      \draw[loosely dotted] (135:7)--(134:7.5);
-      \draw[loosely dotted] (135:7)--(136:7.5);
+    %   \draw (30:7)--(37.5:8.5)--(45:7)(60:7)--(67.5:8.5)--(75:7);
+    %   \draw (90:7)--(97.5:8.5)-- (105:7)--(112.5:8.5)--(120:7)--(127.5:8.5)--(135:7)--(142.5:8.5)--(150:7);
+    %   \draw[loosely dotted] (135:7)--(135:7.5);
+    %   \draw[loosely dotted] (135:7)--(134:7.5);
+    %   \draw[loosely dotted] (135:7)--(136:7.5);
 
-      \draw[loosely dotted] (120:7)--(120:7.5);
-      \draw[loosely dotted] (120:7)--(121:7.5);
-      \draw[loosely dotted] (120:7)--(119:7.5);
+    %   \draw[loosely dotted] (120:7)--(120:7.5);
+    %   \draw[loosely dotted] (120:7)--(121:7.5);
+    %   \draw[loosely dotted] (120:7)--(119:7.5);
 
-      \draw[loosely dotted] (105:7)--(105:7.5);
-      \draw[loosely dotted] (105:7)--(104:7.5);
-      \draw[loosely dotted] (105:7)--(106:7.5);
+    %   \draw[loosely dotted] (105:7)--(105:7.5);
+    %   \draw[loosely dotted] (105:7)--(104:7.5);
+    %   \draw[loosely dotted] (105:7)--(106:7.5);
 
-      \draw[loosely dotted] (132:8)--(138:8);
-      \draw[loosely dotted] (118:8)--(123:8);
-      \draw[loosely dotted] (102:8)--(108:8);
+    %   \draw[loosely dotted] (132:8)--(138:8);
+    %   \draw[loosely dotted] (118:8)--(123:8);
+    %   \draw[loosely dotted] (102:8)--(108:8);
 
-      \node[rotate=30] at (-3.1, 5.5) {$\underbrace{\qquad\qquad\qquad\qquad\qquad}_{}$};
-      \node at (-1,5) {$j$ vertices of valence $> 3$};
+    %   \node[rotate=30] at (-3.1, 5.5) {$\underbrace{\qquad\qquad\qquad\qquad\qquad}_{}$};
+    %   \node at (-1,5) {$j$ vertices of valence $> 3$};
 
-      \node at(0,3) {$k$-gon};
+    %   \node at(0,3) {$k$-gon};
       
-      \foreach \x in {30,45,60,75,90,105,120,135,150}
-      \fill[black] (\x:7) circle (2pt);
-       \foreach \x in {37.5,67.5,97.5,112.5,127.5,142.5}
-      \fill[black] (\x:8.5) circle (2pt);
-    \end{tikzfigure}
+    %   \foreach \x in {30,45,60,75,90,105,120,135,150}
+    %   \fill[black] (\x:7) circle (2pt);
+    %    \foreach \x in {37.5,67.5,97.5,112.5,127.5,142.5}
+    %   \fill[black] (\x:8.5) circle (2pt);
+    % \end{tikzfigure}
     
-    We can only hope for the greatest number of triangle-edge pairs, if we do not have vertices with valence greater than $3$ next to the larger $k$-gons. Thus we can have only $\lfloor \frac{k}{2} \rfloor$ triangle-edge pairs around each $k$-gon. For the $p$-vector $p'$ and the $v$-vector $v'$ of a $q$-$w$-realization, we have $p' \defeq p + c \cdot [q_3 \times 3, q_l \times l]$, $v' = v + c \cdot [3]$, thus
+    Therefore we can assume to have $\lfloor \frac{k}{2} \rfloor$ triangle-edge pairs around each $k$-gon and $2r$ triangle-edge pairs around each $r$-valent vertex. For the $p$-vector $p'$ and the $v$-vector $v'$ of a $q$-$w$-realization, we have $p' \defeq p + c \cdot [q_3 \times 3, q_l \times l]$, $v' = v + c \cdot [3]$, thus
     \begin{align*}
       &\sum_{k \geq 4} 2k \cdot v'_k + \sum_{k \geq 4} \floor{\tfrac{k}{2}} p'_k \\
       ={}&\sum_{k \geq 4} 2k \cdot v_k + \sum_{k \geq 4} \floor{\tfrac{k}{2}} p_k + c \cdot q_l \cdot \floor{\tfrac{l}{2}}\\
