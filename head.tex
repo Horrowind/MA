@@ -116,10 +116,10 @@ $\hfil\displaystyle{#1}\hfil$\crcr\noalign{\kern3\p@\nointerlineskip}
 \newlength{\tempitemindent}
 
 \newenvironment{cinput}
-    {\leavevmode \par \begin{minipage}[t]{.1\textwidth} {\it Input: } \end{minipage}\begin{minipage}[t]{.9\textwidth} \begin{itemize} }
+    {\leavevmode \par \begin{minipage}[t]{.1\textwidth} {\it Input: } \end{minipage}\begin{minipage}[t]{.8999\textwidth} \begin{itemize} }
     {\end{itemize} \vspace{0.2em} \end{minipage}}
 \newenvironment{coutput}
-    {\leavevmode \par \begin{minipage}[t]{.1\textwidth} {\it Output: } \end{minipage}\begin{minipage}[t]{.9\textwidth} \begin{itemize} }
+    {\leavevmode\par\begin{minipage}[t]{.1\textwidth}{\it Output: }\end{minipage}\begin{minipage}[t]{.8999\textwidth}\begin{itemize} }
     {\setlength{\global\tempitemindent}{\leftmargin}\vspace{0.2em}\end{itemize} \end{minipage}}
 \newenvironment{cdescription}
     {\leavevmode \par \begin{minipage}[t]{\dimexpr .1\textwidth + \tempitemindent}{\it Description: }\end{minipage}\ignorespaces}

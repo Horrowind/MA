@@ -890,7 +890,6 @@ The only requirement of \autoref{const:map} we did not explicitly state is that 
   \end{tikzfigure}
 
 Recall that in \autoref{const:map} we constructed $M'$ to be subdividing each edge of $M$ and replacing each face with the corresponding patch. We again want to use the notion of ``corner vertices'' for the original vertices in $M$, ``side vertices'' for the vertices added by the subdivision and ``inner vertices'' for all of the other vertices. Note that both $\mathcal{M}_c$ and $\mathcal{M}_c'$ only contain exactly one corner vertex ($o_s$). If $f$ and $f'$ meet non-properly, then $\mathcal{M}_c$ and $\mathcal{M}_c'$ have to share at least one side vertex (they can not share an inner vertex, as these are completely internal to $\mathcal{P}(f_o)$ and $\mathcal{P}(f'_o)$ and those patches only meet at their boundary). As $M$ does not contain $2$-valent vertices, the intersection of $f_o$ and $f'_o$ does not contain paths of length greater than one. Since $\mathcal{M}_c$ and $\mathcal{M}_c'$ do only contain vertices in the subdivision of adjacent edges in $M$, the intersection $\mathcal{M}_c \cap\mathcal{M}_c'$ contains only vertices in the subdivision of a single edge in $M$, see \autoref{fig:thm:polymap}. However, $\mathcal{M}_c$ and $\mathcal{M}_c'$ are then both contained in an edge patch formed along this edge and the faces in $\mathcal{M}_c$ and $\mathcal{M}'_c$ meet properly by definition of the polyhedral property - we have reached a contradiction.
-
     \begin{tikzfigure}{\label{fig:thm:polymap}}{Copies of $\mathcal{M}$ adjacent to a subdivided edge form the edge patch of $\mathcal{M}$}
       \begin{scope}[scale=0.8]
       \node[shift={(-4,0)}] (0, 0) {$k$-gon};
@@ -1093,11 +1092,9 @@ Recall that in \autoref{const:map} we constructed $M'$ to be subdividing each ed
       \end{scope}
 
     \end{tikzfigure}
-
-\end{proof}
+  \end{proof}
 \end{proposition}
-
-
+\clearpage
 \begin{remark} As we have seen in the proof of \autoref{thm:const:polymap} and in \autoref{fig:thm:polymap} the edge patch serves as a replacement figure of an edge in \autoref{const:map}, thus its name.
 \end{remark}
 
