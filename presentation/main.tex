@@ -1,0 +1,985 @@
+\documentclass[10pt, notheorems]{beamer}
+\usepackage[utf8]{inputenc}
+
+\usepackage[ngerman]{babel}
+\usepackage{array}
+\usepackage{tikz}
+\usepackage{amssymb}
+\usepackage{ragged2e}
+\usepackage{amsthm}
+\usepackage{aliascnt}
+\usepackage{tikz-3dplot}
+
+\newcommand{\newthm}[3]{%
+  \newaliascnt{#2}{#1}%
+  \newtheorem{#2}[#2]{#3}%
+  \aliascntresetthe{#2}%
+  \expandafter\def\csname#2autorefname\endcsname{#3}%
+}
+
+\newtheorem{theorem}{Satz}[section]
+\newthm{theorem}{example}{Beispiel}
+\newthm{theorem}{definition}{Definition}
+\newthm{theorem}{proposition}{Proposition}
+\newthm{theorem}{lemma}{Lemma}
+
+\usetikzlibrary{
+  shapes.geometric,
+  matrix,
+  intersections,
+  positioning,
+  arrows,
+  arrows.meta,
+  decorations.markings,
+  calc
+}
+
+\tikzset{
+     lface/.style={dotted,     decoration={markings, mark=at position 1.0 with {\arrow[>=angle 60]{>}}}, postaction={decorate}},
+   lsquare/.style={very thick, decoration={markings, mark=at position {0.5*\pgfdecoratedpathlength+3.5pt} with {\arrow{open square}}}, postaction={decorate}},
+  ldiamond/.style={very thick, decoration={markings, mark=at position {0.5*\pgfdecoratedpathlength+5.5pt} with {\arrow{open diamond}}}, postaction={decorate}},
+  lvertex/.style={draw, very thick, circle}
+}
+
+\input{newstyle-2}
+\setlength{\parskip}{\smallskipamount}
+\usepackage{lmodern}
+\newcommand{\todo}[1]{(TODO)}
+\setbeamertemplate{background canvas}[vertical shading][bottom=gray!0,top=gray!0]
+
+\let\emptyset\varnothing
+\newcommand{\set}[1]{\{ #1 \}}
+\newcommand{\nats}{\mathbb{N}}
+\newcommand{\wholes}{\mathbb{Z}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\sphere}{\mathbb{S}}
+
+\renewcommand{\mod}{\operatorname{mod}}
+\renewcommand{\gcd}{\operatorname{ggT}}
+
+
+
+\definecolor{darkred}{rgb}{0.8,0,0}
+\colorlet{darkred2}{darkred!80!black}
+\newcommand{\hdef}[1]{\textcolor{darkred2}{#1}}
+\newcommand{\red}[1]{\textcolor{darkred2}{#1}}
+\newcommand{\ho}[2]{\only<#1->{\alert<#1>{#2}}}
+
+\begin{document}
+\title{Neue Sätze vom {\sc Eberhard}-typ}
+\author{Sebastian Manecke}
+\date{Kolloqium zur Masterarbeit\\Betreut durch Prof. Dr. Ulrich Brehm\\22. November 2016}
+\frame{\titlepage}
+\begin{frame}{$3$-Polytope mit beschriebenen Flächen und Eckentypen}
+  Für ein $3$-Polytop wollen wir die Anzahl der $k$-Ecke mit $p_k$ und die Anzahl der Ecken, in denen $k$-Kanten zusammenstoßen, ($k$-valente Ecken) mit $v_k$ bezeichnen $(k \geq 3)$.
+  \pause
+  \begin{example}
+    Für ein Tetraeder ist $p_3 = 4$ und $v_3 = 4$ und $v_k = p_k = 0$ für alle anderen $k \geq 3$.\\
+    \pause
+    Für ein Dodekaeder ist $p_5 = 12$ und $v_3 = 20$ und $v_k = p_k = 0$ sonst.\\
+    \pause
+    \dots etc. 
+  \end{example}
+  Eine naheliegende Frage ist, ob wir zu jeder Vorgabe von $p_k$'s und $v_k$'s auch ein $3$-Polytop (eine Realisation) finden können, welches genau $p_k$ $k$-Ecke besitzt und dessen Anzahl an $k$-valenten Ecken genau $v_k$ ist.
+  \pause
+  \begin{example}
+    Für $p_4 = 500$, $v_3 = 1$ und $p_k = v_k = 0$ sonst, gibt es (offensichtlich) kein $3$-Polytop.\\
+    \pause
+    Für $p_5 = 12$, $p_6 = 1$, $v_3 = 22$ und $p_k = v_k = 0$ sonst, gibt es (weniger offensichtlich) ebenfalls kein $3$-Polytop. Beide Beispiele sind also nicht realisierbar.
+  \end{example}
+\end{frame}
+
+\begin{frame}
+  Es ergibt sich (grob vereinfacht) folgendes Bild, Punkte bezeichnen realisierbare Anzahlen $p$ und $v$:
+
+  \vspace{0.5cm}
+  { \centering
+    \begin{tikzpicture}
+      \coordinate (v) at (0,4);
+      \coordinate (p) at (4,0);
+      \draw[<->] (v) node[above] {$v$} -- (0,0) --  (p) node[right] {$p$};
+      \foreach \point in {1,...,120}{
+        \pgfmathparse{mod(\point, 13)}
+        \pgfmathsetmacro\xpos{0.5 + 3.5 / 13 * \pgfmathresult}
+        \pgfmathparse{mod(\point + 2, 60)}
+        \pgfmathsetmacro\ypos{0.5 + 3.5 / 60 * \pgfmathresult}
+        \fill[black] (\xpos,\ypos) circle (1pt);
+      }
+      \only<2->{
+        \fill[darkred2] (2, 2.2) circle (1pt) {};
+        \node[darkred2, anchor=180] at (2, 2.2) {?}; 
+      }
+    \end{tikzpicture}\\
+  }
+  \vspace{0.5cm}
+  \pause
+  Zu bestimmen, ob ein Punkt im Diagramm realisierbar ist, d.h. ob es ein $3$-Polytop mit beschriebenen Flächen und Ecken gibt, ist schwierig.
+\end{frame}
+
+\begin{frame}{Eine kleine Rechnung}
+  Wir betrachten ein $3$-valentes $3$-Polytop (es stoßen in jeder Ecke drei Kanten zusammen), welches $p_3$ Dreiecke, $p_4$ Vierecke, \dots, $p_m$ $m$-Ecke hat.\\
+  \pause
+  Durch  einfaches und doppeltes Abzählen (jede Kante ist benachbart zu genau zwei Knoten und zu genau zwei Flächen), können wir die Anzahl der Flächen ($f_2$), Kanten ($f_1$) und Ecken ($f_0$) bestimmen:
+  \begin{align*}
+    f_2 = \sum_k p_k \qquad f_1 = \tfrac{1}{2}\sum_k k p_k \qquad f_0 = \tfrac{3}{2}\sum_k k p_k
+  \end{align*}
+  \pause
+  Von der {\sc Euler}schen Polyederformel wissen wir $f_0 - f_1 + f_2 = 2$ und können dies zur folgenden Gleichung umstellen:
+  \begin{align*}
+    \sum_k (6 - k) p_k = 12
+  \end{align*}
+\end{frame}
+
+\begin{frame}{Interpretation von $\sum_k (6 - k) p_k = 12$}
+  Wir können aus der vorangegangen Formel diskrete Krümmungen für Polygone angeben:
+
+  \centering
+    \begin{tikzpicture}[every text node part/.style={align=left}]
+      \node (x1) at (0, 0) {$\sum_k (6 - k) p_k = 12$};
+      \pause
+      \node[rectangle, text width = 3.5cm, anchor=90] (x2) at (-2, -1) {Die Krümmung eines $k$-Ecks ist \\ - für $k \leq 5$ positiv\\ - für $k = 6$ null (flach)\\ - für $k \geq 7$ negativ};
+      \draw[->] (x1.215) -- (x2);
+      \pause
+      \node[rectangle, text width = 3.5cm, anchor=90] (x3) at ( 2.5, -1) {Es sind zwölf Krümmungseinheiten notwendig};
+      \draw[->] (x1.346) -- (x3);
+    \end{tikzpicture}
+  
+  \pause
+  \justifying
+  Wir sehen insbesondere das die Anzahl der Sechsecke für die Formel irrelevant ist.
+\end{frame}
+
+\begin{frame}
+  Dieselbe Rechnung für $4$- und $5$-valente $3$-Polytope ergibt
+  \begin{block}{}
+  \begin{align*}
+    4\text{-valent:\quad}&\sum_k (k-4)p_k = 8\\
+    5\text{-valent:\quad}&\sum_k (3k-10)p_k = 20\\
+  \end{align*}
+  \end{block}
+  Man beachte, dass es im $5$-valenten Fall kein ``flaches'' Polygon gibt.
+\end{frame}
+
+\begin{frame}{{\sc Eberhard}s Theorem}
+  \begin{theorem}[\sc Eberhard]
+    Es seien natürliche Zahlen $p_3$, $p_4$, $p_5$, $p_7$, \dots, $p_m$ so gegeben, dass
+    \begin{align*}
+      \sum_k^m (6 - k) p_k = 12
+    \end{align*}
+    gilt. Dann gibt es eine Anzahl $p_6$ und ein $3$-valentes $3$-Polytop (in allen Ecken stoßen $3$ Kanten zusammen), dessen Anzahl an $k$-Ecken genau $p_k$ entspricht.   
+  \end{theorem}
+  \pause
+  \begin{theorem}[\sc Grünbaum]
+    Es seien natürliche Zahlen $p_3$, $p_5$, $p_7$, \dots, $p_m$ so gegeben, dass
+    \begin{align*}
+      \sum_k^m (4 - k) p_k = 8
+    \end{align*}
+    gilt. Dann gibt es eine Anzahl $p_4$ und ein $4$-valentes $3$-Polytop (in allen Ecken stoßen $3$ Kanten zusammen), dessen Anzahl an $k$-Ecken genau $p_k$ entspricht.   
+  \end{theorem}
+\end{frame}
+
+\begin{frame}
+  In unserem Schaubild:
+
+  \vspace{0.5cm}
+  \begin{columns}
+    \begin{column}{0.4\textwidth}\\
+
+      { \centering
+        \begin{tikzpicture}
+          \coordinate (v) at (0,4);
+          \coordinate (p) at (4,0);
+          \draw[<->] (v) node[above] {$v$} -- (0,0) --  (p) node[right] {$p$};
+          \foreach \point in {1,...,120}{
+            \pgfmathparse{mod(\point, 13)}
+            \pgfmathsetmacro\xpos{0.5 + 3.5 / 13 * \pgfmathresult}
+            \pgfmathparse{mod(\point + 2, 60)}
+            \pgfmathsetmacro\ypos{0.5 + 3.5 / 60 * \pgfmathresult}
+            \fill[black] (\xpos,\ypos) circle (1pt);
+          }
+          \only<1-7>{
+            \node[darkred2, anchor=10] at (2, 2.2) {?}; 
+          }
+          \only<2-7>{
+            \draw[darkred2, ->] (2, 2.2) -- (2.3, 2.4); 
+          }
+          \only<3-7>{
+            \draw[darkred2, ->] (2.3, 2.4) -- (2.6, 2.6); 
+          }
+          \only<4-7>{
+            \draw[darkred2, ->] (2.6, 2.6) -- (2.9, 2.8); 
+          }
+          \only<5-7>{
+            \draw[darkred2, ->] (2.9, 2.8) -- (3.2, 3.0); 
+            \node[darkred2, anchor=240] at (3.2, 3.0) {!}; 
+          }
+          \fill[darkred2] (2, 2.2) circle (1pt) {};
+
+          \only<8>{
+            \draw[darkred2, ->] (2.00, 2.2) -- (2.36, 2.2); 
+            \draw[darkred2, ->] (2.00, 2.2) -- (2.0, 2.56);
+            \draw[darkred2    ] (2.36, 2.2) arc (0:90:0.36);
+          }
+        \end{tikzpicture}
+      }
+    \end{column}
+    \begin{column}{0.4\textwidth}
+      \uncover<6->{\par Hierbei entspricht der Rote Pfeil für das klassische $3$-valente {\sc Eberhard}-Theorem einem Hinzufügen von einem Sechseck und zwei $3$-valenten Knoten.\\}
+      \medskip
+      \uncover<7->{\par Die Idee der Arbeit ist ähnliche Theoreme für andere Richtungen und auch für Graphen auf Mannigfaltigkeiten zu teigen.\\}
+      \medskip
+      \uncover<8->{\par Nur bestimmte / ``flache'' Richtungen kommen hierbei infrage.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Allgemeine {\sc Eberhard}-typ Probleme}
+  \begin{definition}[Sequenz]
+    Eine \hdef{Sequenz} $a$ ist eine Abbildung $a : \nats \setminus \set{0, 1, 2} \to \nats, k \mapsto a_k$ mit endlichem Träger. Auf der Menge der Sequenzen seien Addition und Multiplikation mit natürlichen Zahlen komponentenweise definiert.
+  \end{definition}
+  \pause
+  Wir schreiben Sequenzen wie im folgenden Beispiel:
+  \begin{example}
+    $(2, 0, 0, 1)$, $[2 \times 3, 1 \times 6]$, $[2 \times 3, 6]$ und $2 \cdot [3] + [6]$ beschreiben alle dieselbe Sequenz.
+  \end{example}
+  \pause
+  \begin{block}{Allgemeine {\sc Eberhard}-typ Probleme}
+    Gegeben $p$, $v$ Sequenzen, welche in einer noch zu spezifizierenden Weise zulässig sind (sie erfüllen ein Analogon der Gleichung $\sum_k (6 - k) p_k = 12$) und gegeben weitere Sequenzen $q$ und $w$, welche in einer noch zu spezifizierenden Weise ``flach'' sind, gibt es $c, d \in \nats$ und eine Realisierung deren Anzahl an $k$-Ecken genau $p_k + c \cdot q_k$ entspricht und deren Anzahl an $k$-valenten Ecken genau $v_k + c \cdot w_k$ entspricht?
+  \end{block}
+\end{frame}
+
+\begin{frame}{Graphen und Einbettungen}
+  \begin{definition}
+    Ein \hdef{schlichter Graph} $G = (V, E)$ besteht aus einer endlichen Menge von Knoten $V$ und einer Kantenmenge $E \subseteq \set{\set{u, v} : u, v \in E}$.
+  \end{definition}
+  \pause
+  \begin{definition}
+    Eine \hdef{Einbettung} $\phi$ eines Graphen $G = (V, E)$ (nicht notwendigerweise schlicht) in eine (topologische) $2$-Mannigfaltigkeit $S$ ist eine Abbildung welche Knoten Punkte aus $S$ zuordnet und Kanten homöomorphe Bilder von $[0, 1]$ in $S$ zuordnet sodass die natürliche Grapheninzidenz erhalten bleibt.
+  \end{definition}
+\end{frame}
+\begin{frame}
+  \begin{definition}{Flächen von Einbettungen}
+    Die Abschlüsse der Zusammenhangskomponenten des Komplements des Bildes einer Einbettung heißen Flächen.
+  \end{definition}
+  \pause
+  \vspace{1cm}
+  \centering
+  \begin{tikzpicture}
+    \only<2>{
+      \fill[gray!30!white] (-1.5, -0.6) .. controls (-1.2,-0.8) and (-0.75, -0.8) .. (-0.5, -0.8) .. controls (-0.6,-0.9) and (-0.6, -1.0) .. (-0.6, -1.2) .. controls (-0.7, -1.2) and (-1.2,-0.9) .. cycle;
+    }
+    \only<3>{
+      \fill[gray!30!white] (-3.5,0) .. controls (-3.5, 1) and (-1.5, 1.5) .. (0, 1.5) 
+      .. controls ( 1.5, 1.5) and ( 3.5, 1) .. (3.5, 0)
+      .. controls ( 3.5,-1) and ( 1.5,-1.5) .. (0,-1.5)
+      .. controls (-1.5,-1.5) and (-3.5,-1) .. (-3.5, 0);
+      \fill[white] (-1.75,0) .. controls (-1.5,-0.3) and (-1,-0.35) .. (0,-.35) .. controls (1,-0.35) and (1.5,-0.3) .. (1.75,0).. controls (1.5,0.3) and (1,0.5) .. (0,.5) .. controls (-1,0.5) and (-1.5,0.3) .. (-1.75,0);
+      \fill[white] (-1.5, -0.6) .. controls (-1.2,-0.8) and (-0.75, -0.8) .. (-0.5, -0.8) .. controls (-0.6,-0.9) and (-0.6, -1.0) .. (-0.6, -1.2) .. controls (-0.7, -1.2) and (-1.2,-0.9) .. cycle;
+
+    }
+    \draw (-3.5,0) .. controls (-3.5, 1) and (-1.5, 1.5) .. (0, 1.5);
+    \draw ( 3.5,0) .. controls ( 3.5, 1) and ( 1.5, 1.5) .. (0, 1.5);
+    \draw (-3.5,0) .. controls (-3.5,-1) and (-1.5,-1.5) .. (0,-1.5);
+    \draw ( 3.5,0) .. controls ( 3.5,-1) and ( 1.5,-1.5) .. (0,-1.5);
+    \draw (-1.875, 0.15) -- (-1.75,0);
+    \draw ( 1.875, 0.15) -- ( 1.75,0);
+    \draw (-1.75,0) .. controls (-1.5,-0.3) and (-1,-0.35) .. (0,-.35) .. controls (1,-0.35) and (1.5,-0.3) .. (1.75,0);
+    \draw (-1.75,0) .. controls (-1.5,0.3) and (-1,0.5) .. (0,.5) .. controls (1,0.5) and (1.5,0.3) .. (1.75,0);
+    \fill[black, shift={(-1.5, -0.6)}, rotate=-30, xscale=0.9] (0, 0) circle (0.8pt);
+    \fill[black, shift={(-0.5, -0.8)}, xscale=0.9] (0, 0) circle (0.8pt);
+    \fill[black, shift={(-0.6, -1.2)}, xscale=0.9] (0, 0) circle (0.8pt);
+    \draw (-1.5, -0.6) .. controls (-1.2,-0.8) and (-0.75, -0.8) .. (-0.5, -0.8);
+    \draw (-0.5, -0.8) .. controls (-0.6,-0.9) and (-0.6, -1.0) .. (-0.6, -1.2);
+    \draw (-1.5, -0.6) .. controls (-1.2,-0.9) and (-0.7, -1.2) .. (-0.6, -1.2);
+  \end{tikzpicture}
+\end{frame}
+\begin{frame}{Polyedrische Karten}
+  \begin{definition}
+    Eine \hdef{Karte} ist eine Einbettung eines schlichten Graphen mit mindestens $3$-valenten Ecken bei der jede Fläche eine abgeschlossene $2$-Zelle ist (homöomorph zu $\set{x \in \reals : |x| \leq 1}$).
+  \end{definition}
+  \pause
+  \begin{definition}
+    Eine Karte ist \hdef{polyedrisch} wenn je zwei verschiedene Flächen gutartig inzidieren, d.h. je zwei verschiedene Flächen sind disjunkt, inzident zu genau einer gemeinsamen Ecke oder inzident zu genau einer gemeinsamen Kante.
+  \end{definition}
+  \pause
+  \begin{definition}[$p$- und $v$-Vektoren]
+    Der \hdef{$p$-Vektor} einer Karte $M$ ist die Sequenz~$(p_k)$, wobei $p_k$ die Anzahl der $k$-gonalen Flächen von $M$ angibt. Der \hdef{$v$-Vektor} einer Karte $M$ ist die Sequenz~$(v_k)$, wobei $v_k$ die Anzahl der $k$-valenten Ecken von $M$ angibt.
+  \end{definition}
+\end{frame}
+\begin{frame}{Realisierbarkeit}
+  \begin{definition}
+    Ein Paar von Sequenzen $p = (p_3, \dots, p_m)$ und $v = (v_3, \dots, v_n)$ heißt \hdef{realisierbar} auf einer $2$-Mannigfaltigkeit, wenn es eine polyedrische Karte gibt, welche $p$ als $p$-Vektor und $v$ als $v$-Vektor hat. Diese Karte heißt \hdef{Realisierung}.
+  \end{definition}
+  \pause
+  Wir haben in den vorangegangenen {\sc Eberhard}-Theoremen gesehen, dass es grundlegende Gleichungen gibt, welche für die Realisierbarkeit erfüllt sein müssen. Diese leiten sich aus der {\sc Euler}-{\sc Poincaré}-Formel ab:
+  \begin{block}{{\sc Euler}-{\sc Poincaré}-Formel}
+    Für Einbettungen in eine Mannigfaltigkeit mit {\sc Euler}-Charakteristik $\chi$ mit Eckenmenge $V$, Kantenmenge $E$ und Flächenmenge $F$ gilt:
+    \begin{align*}
+      |V| - |E| + |F| = \chi.
+    \end{align*}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Zulässige Sequenzen}
+  Mit einer ähnlichen Rechnung wie zuvor lässt sich aus der {\sc Euler}-{\sc Poincaré}-Formel zeigen, dass zwischen $p$- und $v$-Vektoren und der Anzahl der Kanten $e$ von Karten auf $2$-Mannigfaltigkeiten $S$ der Charakteristik $\chi$ der folgende Zusammenhang für alle $t \in \reals$ herrscht:
+  \begin{block}{}
+    \begin{align*}
+      \sum_{k=3}^m (2 - t \cdot k ) v_k + \sum_{k=3}^n ( 2 - (1 - t) \cdot k ) p_k &= 2 \chi\\
+      \sum_{k=3}^{m} k \cdot p_k = \sum_{k=3}^{n} k \cdot v_k &= 2e
+    \end{align*}
+  \end{block}
+  Wir möchten Paare $(p, v)$ als \hdef{zulässig für $S$} bezeichnen, wenn sie die obigen Gleichungen für bestimmte $e$ und alle $t \in \reals$ erfüllen. Zulässig zu sein ist also eine notwendige Bedingung für Realisierbarkeit.
+\end{frame}
+
+\begin{frame}{Flache Sequenzen}
+  Völlig analog können wir auch Bedingungen an Sequenzen $q$ und $w$ finden, wenn $p+c\cdot q$ und $v+d\cdot w$ realisierbar sein sollen:
+  \begin{block}{}
+    \begin{align*}
+      \sum_{k=3}^m \left(\frac{2}{t} - k \right) w_k = \sum_{k=3}^n \left( \frac{2}{1-t} - k \right) q_k = 0.
+    \end{align*}
+  \end{block}
+  \pause
+  Falls obige Gleichung für ein $t \in \left[\tfrac{1}{3}, \tfrac{2}{3}\right]$ gilt, dann heißen $q$ und $w$ \hdef{flach mit Parameter $t$}.
+  \pause
+  \begin{definition}
+    Zwei zulässige Sequenzen $p$, $v$ für eine $2$-Mannigfaltigkeit $S$ mit {\sc Euler}-Charakteristic $\chi$ heißen \hdef{$q$-$w$-realisierbar auf $S$}, falls es $c, d \in \nats$ und eine Realisation von $(p + c \cdot v, q + d \cdot w)$ auf $S$ gibt.
+  \end{definition}
+\end{frame}
+
+\begin{frame}
+  \begin{theorem}[{\sc Jendrol', Jucovi{\v{c}}}, 1977, \cite{jendrol1977generalization}] \label{thm:eberhard:extended:3}
+    Ein Paar von zulässigen Sequenzen $p$, $v$ für eine geschlossenen orientierbaren $2$-Mannigfaltigkeit $S$ ist $[6]$-$[3]$-realisierbar genau dann, wenn:
+    \begin{align*}
+      \sum_{k=3,\,2 \nmid k}^{m} p_k \neq 0 \text{ oder} \sum_{k=4,\,3 \nmid k}^n v_k \neq 1& &\text{ wenn } \chi = 2, \\
+      p \neq [5, 7] \text{ oder } v \neq [v_3 \times 3]& &\text{ wenn } \chi = 0.
+    \end{align*}
+  \end{theorem}
+  \pause
+  \begin{theorem}[{\sc Jendrol', Jucovi{\v{c}}, Barnette, Grünbaum, Zaks}, 1973, \cite{jucovivc1973theorem}, \cite{barnette1971toroidal}, \cite{grunbaum1969planar}, \cite{zaks1971analogue}] \label{thm:eberhard:extended:4}
+    Ein Paar von zulässigen Sequenzen $p$, $v$ für auf einer geschlossenen orientierbaren $2$-Mannigfaltigkeit $S$ ist $[4]$-$[4]$-realisierbar genau dann, wenn
+    \begin{align*}
+      p \neq [3, 5] \text{ oder } v \neq [v_4 \times 4]& &\text{ wenn } \chi = 0,\\
+      p \neq [p_4 \times 4] \text{ oder } v \neq [3, 5]& &\text{ wenn } \chi = 0.
+    \end{align*}
+  \end{theorem}
+\end{frame}
+
+\begin{frame}[fragile]{Genaue Problemstellung}
+  Wir wollen {\sc Eberhard}-typ Probleme für Sequenzen $q$ mit zwei teilerfremden Einträgen und Sequenzen $w$ mit genau einem Eintrag eingehend betrachten:
+  \begin{block}{}
+    \begin{align*}
+      q &= [q_s \times s, q_l \times l] \qquad s < l,\,\gcd(q_s, q_l) = 1, \\
+      w &= [r]
+    \end{align*}
+  \end{block}
+  Es entstehen fünf Fälle für $(s,r)$, jeder nur noch von $l$ abhängig:
+  \begin{tikzpicture}[line join=round]
+    \centering
+    \tdplotsetmaincoords{75}{105}
+    \matrix (m) [column sep=1cm] {
+      \begin{scope}[tdplot_main_coords]
+        \node at (0, 0, 1.5) {$(3, 3)$};
+        \draw (0.5,0.5,0.5) -- ( 0.5, -0.5, -0.5);
+        \draw (0.5,0.5,0.5) -- (  -0.5,0.5, -0.5);
+        \draw (0.5,0.5,0.5) -- (  -0.5, -0.5,0.5);
+        \draw (0.5, -0.5, -0.5) -- (  -0.5,0.5, -0.5);
+        \draw[dotted] ( -0.5,0.5, -0.5) -- (  -0.5, -0.5,0.5);
+        \draw ( -0.5, -0.5,0.5) -- ( 0.5, -0.5, -0.5);
+      \end{scope}
+      &
+      \begin{scope}[tdplot_main_coords]
+        \node at (0, 0, 1.5) {$(4, 3)$};
+        \draw[dotted] (-0.5,-0.5,-0.5) -- ( 0.5,-0.5,-0.5);
+        \draw[dotted] (-0.5,-0.5,-0.5) -- (-0.5, 0.5,-0.5);
+        \draw[dotted] (-0.5,-0.5,-0.5) -- (-0.5,-0.5, 0.5);
+        \draw ( 0.5, 0.5, 0.5) -- (-0.5, 0.5, 0.5);
+        \draw ( 0.5, 0.5, 0.5) -- ( 0.5,-0.5, 0.5);
+        \draw ( 0.5, 0.5, 0.5) -- ( 0.5, 0.5,-0.5);
+        \draw ( 0.5,-0.5,-0.5) -- ( 0.5, 0.5,-0.5);
+        \draw ( 0.5, 0.5,-0.5) -- (-0.5, 0.5,-0.5);
+        \draw (-0.5, 0.5,-0.5) -- (-0.5, 0.5, 0.5);
+        \draw (-0.5, 0.5, 0.5) -- (-0.5,-0.5, 0.5);
+        \draw (-0.5,-0.5, 0.5) -- ( 0.5,-0.5, 0.5);
+        \draw ( 0.5,-0.5, 0.5) -- ( 0.5,-0.5,-0.5);
+      \end{scope}
+      &
+      \begin{scope}[tdplot_main_coords]
+        \def\phi{0.809}
+        \def\phiinv{0.309}
+        \node at (0, 0, 1.5) {$(5, 3)$};
+        
+        \draw (\phi, \phiinv, 0) -- (\phi, -\phiinv, 0);
+        \draw (0.5, 0.5, -0.5) -- (\phi, \phiinv, 0) --(0.5, 0.5, 0.5);
+        \draw (0.5,-0.5, -0.5) -- (\phi,-\phiinv, 0) --(0.5,-0.5, 0.5);
+        \draw[dotted] (-\phi, \phiinv, 0) -- (-\phi, -\phiinv, 0);
+        \draw[dotted] (-0.5, 0.5, -0.5) -- (-\phi, \phiinv, 0) -- (-0.5, 0.5, 0.5);
+        \draw[dotted] (-0.5,-0.5, -0.5) -- (-\phi,-\phiinv, 0) -- (-0.5,-0.5, 0.5);
+        \draw (0, \phi, \phiinv) -- (0, \phi, -\phiinv);
+        \draw (-0.5, 0.5, 0.5) -- (0, \phi, \phiinv) -- (0.5, 0.5, 0.5);
+        \draw[dotted] (-0.5, 0.5,-0.5) -- (0, \phi,-\phiinv);
+        \draw (0, \phi,-\phiinv) -- (0.5, 0.5,-0.5);
+        \draw (0, -\phi, \phiinv) -- (0, -\phi, -\phiinv);
+        \draw (-0.5, -0.5, 0.5) -- (0, -\phi, \phiinv) -- (0.5, -0.5, 0.5);
+        \draw[dotted] (-0.5, -0.5,-0.5) -- (0, -\phi,-\phiinv);
+        \draw (0, -\phi,-\phiinv) -- (0.5, -0.5,-0.5);
+        \draw (\phiinv, 0, \phi) -- (-\phiinv, 0, \phi);
+        \draw ( 0.5, -0.5, 0.5) -- ( \phiinv, 0, \phi) -- ( 0.5, 0.5, 0.5);
+        \draw (-0.5, -0.5, 0.5) -- (-\phiinv, 0, \phi) -- (-0.5, 0.5, 0.5);
+        \draw[dotted] (\phiinv, 0, -\phi) -- (-\phiinv, 0, -\phi);
+        \draw (0.5, -0.5, -0.5) -- (\phiinv, 0, -\phi) -- (0.5, 0.5, -0.5);
+        \draw[dotted] (-0.5, -0.5, -0.5) -- (-\phiinv, 0, -\phi) -- (-0.5, 0.5, -0.5);
+        
+      \end{scope}
+      &
+      \begin{scope}[tdplot_main_coords]
+        \node at (0, 0, 1.5) {$(3, 4)$};
+        \draw[dotted] (-0.7, 0.0, 0.0) -- ( 0.0,-0.7, 0.0);
+        \draw[dotted] (-0.7, 0.0, 0.0) -- ( 0.0, 0.7, 0.0);
+        \draw[dotted] (-0.7, 0.0, 0.0) -- ( 0.0, 0.0,-0.7);
+        \draw[dotted] (-0.7, 0.0, 0.0) -- ( 0.0, 0.0, 0.7);
+        \draw ( 0.7, 0.0, 0.0) -- ( 0.0,-0.7, 0.0);
+        \draw ( 0.7, 0.0, 0.0) -- ( 0.0, 0.7, 0.0);
+        \draw ( 0.7, 0.0, 0.0) -- ( 0.0, 0.0,-0.7);
+        \draw ( 0.7, 0.0, 0.0) -- ( 0.0, 0.0, 0.7);
+        \draw ( 0.0,-0.7, 0.0) -- ( 0.0, 0.0,-0.7);
+        \draw ( 0.0, 0.0,-0.7) -- ( 0.0, 0.7, 0.0);
+        \draw ( 0.0, 0.7, 0.0) -- ( 0.0, 0.0, 0.7);
+        \draw ( 0.0, 0.0, 0.7) -- ( 0.0,-0.7, 0.0);
+      \end{scope}
+      &
+      \begin{scope}[tdplot_main_coords]
+        \def\phi{0.809}
+        \node at (0, 0, 1.5) {$(3, 5)$};
+        \draw (0, -0.5, -\phi) -- (0, 0.5, -\phi);
+        \draw[dotted] (0, -0.5, -\phi) -- (-0.5, -\phi, 0);
+        \draw (0, -0.5, -\phi) -- ( 0.5, -\phi, 0);
+        \draw (0, -0.5, -\phi) -- ( \phi, 0, -0.5);
+        \draw[dotted] (0, -0.5, -\phi) -- (-\phi, 0, -0.5);
+        \draw (0, 0.5, -\phi) -- (-0.5, \phi, 0);
+        \draw (0, 0.5, -\phi) -- ( 0.5, \phi, 0);
+        \draw (0, 0.5, -\phi) -- ( \phi, 0, -0.5);
+        \draw[dotted] (0, 0.5, -\phi) -- (-\phi, 0, -0.5);
+        \draw (0, -0.5, \phi) -- (0, 0.5, \phi);
+        \draw[dotted] (0, -0.5, \phi) -- (-0.5, -\phi, 0);
+        \draw (0, -0.5, \phi) -- ( 0.5, -\phi, 0);
+        \draw (0, -0.5, \phi) -- ( \phi, 0, 0.5);
+        \draw[dotted] (0, -0.5, \phi) -- (-\phi, 0, 0.5);
+        \draw (0, 0.5, \phi) -- (-0.5, \phi, 0);
+        \draw (0, 0.5, \phi) -- ( 0.5, \phi, 0);
+        \draw (0, 0.5, \phi) -- ( \phi, 0, 0.5);
+        \draw[dotted] (0, 0.5, \phi) -- (-\phi, 0, 0.5);
+        \draw[dotted] (-0.5, -\phi, 0) -- (0.5, -\phi, 0);
+        \draw (-0.5, \phi, 0) -- (0.5, \phi, 0);
+        \draw[dotted] (-\phi, 0, -0.5) -- (-\phi, 0, 0.5);
+        \draw ( \phi, 0, -0.5) -- ( \phi, 0, 0.5);
+        \draw ( \phi, 0, -0.5) -- ( 0.5, -\phi, 0);
+        \draw ( \phi, 0,  0.5) -- ( 0.5, -\phi, 0);
+        \draw ( \phi, 0, -0.5) -- ( 0.5,  \phi, 0);
+        \draw ( \phi, 0,  0.5) -- ( 0.5,  \phi, 0);
+        \draw[dotted] (-\phi, 0, -0.5) -- (-0.5, -\phi, 0);
+        \draw[dotted] (-\phi, 0,  0.5) -- (-0.5, -\phi, 0);
+        \draw[dotted] (-\phi, 0, -0.5) -- (-0.5,  \phi, 0);
+        \draw[dotted] (-\phi, 0,  0.5) -- (-0.5,  \phi, 0);
+      \end{scope}
+      \\
+    };
+  \end{tikzpicture}
+\end{frame}
+
+\begin{frame}{1. Beweisschritt}{}
+  {\sc Eberhard}-typ Probleme für Sequenzen $q = [q_s \times s, q_l \times l]$ mit zwei teilerfremden Einträgen und Sequenzen $w = [r]$ mit genau einem Eintrag, $s, l, r \in \nats$ haben eine nützliche Eigenschaft, die die Konstruktion vereinfacht:
+  \begin{lemma}
+    Seien $p, v$ zulässige Sequenzen für eine $2$-Mannigfaltigkeit $S$ und $q$, $w$ wie oben und flach mit Parameter $t \in \left[\tfrac{1}{3}, \tfrac{2}{3}\right]$. Sei $M$ eine polyedrische Karte mit $p$-Vektor $p + [c_s \cdot q_s \times s, c_l \cdot q_l \times l]$ und $v$-Vektor $v + [d \times r]$ für $c_s, c_l, d \in \nats$. Dann ist $M$ eine $q$-$w$-Realisierung von $(p, v)$.
+  \end{lemma}
+  \pause
+  Das heißt, sobald wir eine Realisierung finden, die neben $p$ und $v$ nur $s$-Ecke, $l$-Ecke und $r$-valente Knoten besitzt, dann ist dies auch automatisch eine gewünschte $q$-$w$-Realisierung von $(p, v)$ und es ist kein genaues Nachzählen der \newline $s$- und $l$-Ecke notwendig (hierbei ist $\gcd(q_s, q_l) = 1$ wichtig!).
+\end{frame}
+
+\begin{frame}[fragile]{2. Beweisschritt}{}
+  Obwohl wir uns auf fünf Fälle beschränken konnten, gibt es für den Parameter $l$ immer noch unendlich viele Möglichkeiten. Wir können jedoch, wenn wir die $l$-Ecke geschickt anordnen, aus zwei $l$-Ecken zwei $l + s$-Ecke konstruieren:
+  \begin{example}
+    Für den Fall $(s, r) = (3, 5)$ können zwei $l$-Ecke, die über eine Kante verbunden sind zu zwei $l + s$-Ecken vergrößern, wobei wir $18$ Dreiecke einfügen:
+
+    { \centering
+      \begin{tikzpicture}
+        \matrix (m) [column sep=1cm, row sep=1cm] {
+          \begin{scope}[scale=0.6]
+            \draw[very thick] (-1, 0) -- (1, 0);
+            \draw (-1.2, 0.5) -- (-1, 0) -- (-1.2, -0.5);
+            \draw (1.2, 0.5) -- (1, 0) -- (1.2, -0.5);
+            \draw (-0.8, 0.5) -- (-1, 0) -- (-0.8, -0.5);
+            \draw (0.8, 0.5) -- (1, 0) -- (0.8, -0.5);
+            \node (k1) at (-2, 0) {$k_1$};
+            \node (k2) at (2, 0) {$k_2$};
+            
+            \fill[black] (-1,0) circle(2pt);
+            \fill[black] (1,0) circle(2pt);
+          \end{scope}
+          &
+          \begin{scope}[scale=0.6]
+            \draw[very thick] (-1, 1.5) -- (1, 1.5);
+            \draw (-1, -1.5) -- (1, -1.5);
+            \draw (-1.2, 2) -- (-1, 1.5);
+            \draw (-1.2, -2) -- (-1, -1.5);
+            \draw (1.2, 2) -- (1, 1.5);
+            \draw (1.2, -2) -- (1, -1.5);
+            \draw (-0.8, 2) -- (-1, 1.5);
+            \draw (-0.8, -2) -- (-1, -1.5);
+            \draw (0.8, 2) -- (1, 1.5);
+            \draw (0.8, -2) -- (1, -1.5);
+            \draw (1, 1.5) -- (0.8, 0.5) -- (0.8, -0.5) -- (1, -1.5);
+            \draw (-1, 1.5) -- (-0.8, 0.5) -- (-0.8, -0.5) -- (-1, -1.5);
+            \draw (-1, -1.5) -- (0, -1) -- (1, -1.5);
+            \draw (-1, 1.5) -- (0, 1) -- (1, 1.5);
+            \draw (-0.8, -0.5) -- (0, -1) -- (0.8, -0.5);
+            \draw (-0.8, 0.5) -- (0, 1) -- (0.8, 0.5);
+            \draw (-0.8, -0.5) -- (0, -0.5) -- (0.8, -0.5);
+            \draw (-0.8, 0.5) -- (0, 0.5) -- (0.8, 0.5);
+            \draw (-0.8, -0.5) -- (-0.4, 0) -- (0, -0.5) -- (0.4, 0) -- (0.8, -0.5);
+            \draw (-0.8, 0.5) -- (-0.4, 0) -- (0, 0.5) -- (0.4, 0) -- (0.8, 0.5);
+            \draw (-0.4, 0) -- (0.4, 0);
+            \draw (0, -1) -- (0, -0.5);
+            \draw (0, 1) -- (0, 0.5);
+            
+            
+            \node (k1) at (-1.8, 0) {$k_1 + 3$};
+            \node (k2) at (1.8, 0) {$k_2 + 3$};
+            
+            \fill[black] (0,-1) circle (2pt);
+            \fill[black] (0,1) circle (2pt);
+            \fill[black] (0,-0.5) circle (2pt);
+            \fill[black] (0,0.5) circle (2pt);
+            \fill[black] (-0.8,0.5) circle (2pt);
+            \fill[black] (-0.8,-0.5) circle (2pt);          
+            \fill[black] (-0.4,0) circle (2pt);
+            \fill[black] (0.4,0) circle (2pt);
+            \fill[black] (0.8,0.5) circle (2pt);
+            \fill[black] (0.8,-0.5) circle (2pt);          
+            \fill[black] (-1,1.5) circle (2pt);
+            \fill[black] (1,-1.5) circle (2pt);
+            \fill[black] (1,1.5) circle (2pt);
+            \fill[black] (-1,-1.5) circle (2pt);
+          \end{scope}
+          \\
+        };
+      \end{tikzpicture}
+      \par }
+    Diese Konstruktion lässt sich beliebig oft durchführen.
+  \end{example}
+  \pause
+  Solche Konstruktionen sind inspiriert von den platonischen Körpern, es gibt sie für vier der fünf Fälle. Damit ``reduziert'' sich der Gesamtaufwand auf 14 Unterfälle.
+\end{frame}
+
+\begin{frame}[fragile]{3. Beweisschritt}
+  Explizite Konstruktionen von Karten sind sehr aufwendig, was sich in den orignalen Arbeiten für die klassischen {\sc Eberhard} Sätze erkennen lässt. Wir nutzen daher aus, dass es diese Sätze schon gibt und können so eine erste Realisierung erhalten, welche jedoch zu viele Sechsecke oder Vierecke enthält.
+
+  \medskip
+
+  \pause
+  Idee: Wir bilden um jedes $k$-Eck einen Ring aus $k$ Kopien eines Patches $\mathcal{M}$, welcher nur aus $s$-Ecken, $l$-Ecken und $r$-Valenten Knoten besteht.
+  
+  { \centering\scriptsize
+    \begin{tikzpicture}
+      \matrix (m) [column sep=1cm] {
+        \begin{scope}[scale=0.25]
+          \draw (-3,0)--(-3,3)--(-6,5)--(-6,8)--(-3,10)--(0,8)--(6,8)--(6,5)--(7,1)--(3,0)--(-3,0);
+          \draw (-3,3)--(0,5)--(0,8);
+          \draw (3,0)--(3,3)--(0,5);
+          \draw (3,3)--(7,1);
+          \draw (3,3)--(6,5);
+
+          % loose ends
+          \draw (-3,0)-- (-3.5,-0.666);
+          \draw (-3,3)-- (-3.5,2.5);
+          \draw (-6,5)--  (-6.5,4.666);
+          \draw (-6,8)-- (-6.5,8.333);
+          \draw (-3,10)-- (-3,10.5);
+          \draw (0,8)-- (0.5,8.333);
+          \draw (6,8)-- (6.5,8.5);
+          \draw (6,5)-- (6.5,5);
+          \draw (7,1)-- (7.5,0.5);
+          \draw (3,0)-- (3.5,-0.666);
+
+          \fill[black] (-3,0) circle(3pt);
+          \fill[black] (-3,3)circle(3pt);
+          \fill[black] (-6,5)circle(3pt);
+          \fill[black] (-6,8)circle(3pt);
+          \fill[black] (-3,10)circle(3pt);
+          \fill[black] (0,8)circle(3pt);
+          \fill[black] (6,8)circle(3pt);
+          \fill[black] (6,5)circle(3pt);
+          \fill[black] (7,1) circle(3pt);
+          \fill[black] (3,0)circle(3pt);
+          \fill[black] (0,5)circle(3pt);
+          \fill[black] (3,3)circle(3pt);
+
+          \node at (-3,6.5) {$f_1$};
+          \node at (0,2.5) {$f_2$};
+          \node at (3,5.5) {$f_3$};
+          \node at (4.5,1.5) {$f_4$};
+          \node at (5,3) {$f_5$};
+          
+        \end{scope}
+        &
+        \tiny
+        \begin{scope}[scale=0.25]
+          \draw (-3,0)--(-3,3)--(-6,5)--(-6,8)--(-3,10)--(0,8)--(6,8)--(6,5)--(7,1)--(3,0)--(-3,0);
+          \draw (-3,3)--(0,5)--(0,8);
+          \draw (3,0)--(3,3)--(0,5);
+          \draw (3,3)--(7,1);
+          \draw (3,3)--(6,5);
+
+
+          \coordinate[shift={(0,0.5)}] (penta1) at ( 50:0.5) ;
+          \coordinate[shift={(0,0.5)}] (penta2) at (122:0.5) ;
+          \coordinate[shift={(0,0.5)}] (penta3) at (194:0.5) ;
+          \coordinate[shift={(0,0.5)}] (penta4) at (266:0.5) ;
+          \coordinate[shift={(0,0.5)}] (penta5) at (338:0.5) ;
+
+          \coordinate[shift={(0.75,1.5)}] (penta9) at  ( 20:0.5) ;
+          \coordinate[shift={(0.75,1.5)}] (penta10) at ( 92:0.5) ;
+          \coordinate[shift={(0.75,1.5)}] (penta11) at (164:0.5) ;
+          \coordinate[shift={(0.75,1.5)}] (penta12) at (236:0.5) ;
+          \coordinate[shift={(0.75,1.5)}] (penta13) at (308:0.5) ;
+
+          \only<1-3>{
+            \coordinate[shift={(-0.75,1.625)}] (hexa1) at (  0:0.5) ;
+            \coordinate[shift={(-0.75,1.625)}] (hexa2) at ( 60:0.5) ;
+            \coordinate[shift={(-0.75,1.625)}] (hexa3) at (120:0.5) ;
+            \coordinate[shift={(-0.75,1.625)}] (hexa4) at (180:0.5) ;
+            \coordinate[shift={(-0.75,1.625)}] (hexa5) at (240:0.5) ;
+            \coordinate[shift={(-0.75,1.625)}] (hexa6) at (300:0.5) ;
+            \draw (hexa1)--(hexa2)--(hexa3)--(hexa4)--(hexa5)--(hexa6)--(hexa1);
+            \draw ($(0,5)!0.6!(0,8)$) --(hexa1);
+            \draw ($(0,8)!0.6!(-3,10)$) --(hexa2);
+            \draw ($(-3,10)!0.6!(-6,8)$) --(hexa3);
+            \draw ($(-6,8)!0.6!(-6,5)$) --(hexa4);
+            \draw ($(-6,5)!0.6!(-3,3)$) --(hexa5);
+            \draw ($(-3,3)!0.6!(0,5)$) --(hexa6);
+            \node[shift={(-0.75,1.625)}] at ( 30:1.8) {$\mathcal{M}$};
+            \node[shift={(-0.75,1.625)}] at ( 90:1.8) {$\mathcal{M}$};
+            \node[shift={(-0.75,1.625)}] at (150:1.8) {$\mathcal{M}$};
+            \node[shift={(-0.75,1.625)}] at (210:1.8) {$\mathcal{M}$};
+            \node[shift={(-0.75,1.625)}] at (270:1.8) {$\mathcal{M}$};
+            \node[shift={(-0.75,1.625)}] at (330:1.8) {$\mathcal{M}$};
+          }
+
+          \only<4>{
+            \node at (-3, 6.5) {$\mathcal{P}$};
+          }
+          
+          \coordinate[shift={(1.1,0.325)}] (tri1) at ( 75:0.4) ;
+          \coordinate[shift={(1.1,0.325)}] (tri2) at (195:0.4) ;
+          \coordinate[shift={(1.1,0.325)}] (tri3) at (315:0.4) ;
+          
+          \coordinate[shift={(1.35,0.75)}] (tri4) at ( 30:0.4) ;
+          \coordinate[shift={(1.35,0.75)}] (tri5) at (150:0.4) ;
+          \coordinate[shift={(1.35,0.75)}] (tri6) at (270:0.4) ;
+          
+          
+          \draw (penta5)--(penta1)--(penta2)--(penta3)--(penta4)--(penta5);
+          \draw (penta9)--(penta10)--(penta11)--(penta12)--(penta13)--(penta9);
+
+
+          \draw (tri1)--(tri2)--(tri3)--(tri1);
+          \draw (tri4)--(tri5)--(tri6)--(tri4);
+          
+          % loose ends
+          \draw (-3,0)-- (-3.5,-0.666);
+          \draw (-3,3)-- (-3.5,2.5);
+          \draw (-6,5)--  (-6.5,4.666);
+          \draw (-6,8)-- (-6.5,8.333);
+          \draw (-3,10)-- (-3,10.5);
+          \draw (0,8)-- (0.5,8.333);
+          \draw (6,8)-- (6.5,8.5);
+          \draw (6,5)-- (6.5,5);
+          \draw (7,1)-- (7.5,0.5);
+          \draw (3,0)-- (3.5,-0.666);
+
+          \fill[black] (-3,0) circle(3pt);
+          \fill[black] (-3,3)circle(3pt);
+          \fill[black] (-6,5)circle(3pt);
+          \fill[black] (-6,8)circle(3pt);
+          \fill[black] (-3,10)circle(3pt);
+          \fill[black] (0,8)circle(3pt);
+          \fill[black] (6,8)circle(3pt);
+          \fill[black] (6,5)circle(3pt);
+          \fill[black] (7,1) circle(3pt);
+          \fill[black] (3,0)circle(3pt);
+          \fill[black] (0,5)circle(3pt);
+          \fill[black] (3,3)circle(3pt);
+
+          \draw ($(3,0)!0.4!(3,3)$) --(tri2);
+          \draw ($(7,1)!0.6!(3,3)$) --(tri1);
+          \draw ($(7,1)!0.4!(3,0)$) --(tri3);
+
+
+          \draw ($(6,5)!0.6!(3,3)$) --(tri5);
+          \draw ($(7,1)!0.4!(3,3)$) --(tri6);
+          \draw ($(6,5)!0.4!(7,1)$) --(tri4);
+
+          \draw ($(3,3)!0.6!(0,5)$) --(penta1);
+          \draw ($(0,5)!0.6!(-3,3)$) --(penta2);
+          \draw ($(-3,3)!0.6!(-3,0)$) --(penta3);
+          \draw ($(-3,0)!0.6!(3,0)$) --(penta4);
+          \draw ($(3,0)!0.6!(3,3)$) --(penta5);
+
+          \draw ($(6,5)!0.6!(6,8)$) --(penta9);
+          \draw ($(6,8)!0.6!(0,8)$) --(penta10);
+          \draw ($(0,8)!0.6!(0,5)$) --(penta11);
+          \draw ($(0,5)!0.6!(3,3)$) --(penta12);
+          \draw ($(3,3)!0.6!(6,5)$) --(penta13);
+
+
+          \node at (-1.5,1) {$\mathcal{M}$};
+          \node at (-1.7,2.4) {$\mathcal{M}$};
+          \node at (1.5,0.8) {$\mathcal{M}$};
+          \node at (1.6,2.6) {$\mathcal{M}$};
+          \node at (-0.2,3.8) {$\mathcal{M}$};
+
+          \node at (3.8,0.7) {$\mathcal{M}$};
+          \node at (3.8,2) {$\mathcal{M}$};
+          \node at (5.45,1.2) {$\mathcal{M}$};
+
+          \node at (6,2.5) {$\mathcal{M}$};
+          \node at (4.4,3) {$\mathcal{M}$};
+          \node at (5.6,3.8) {$\mathcal{M}$};
+
+          \node at (3,4.5) {$\mathcal{M}$};
+          \node at (4.8,5.8) {$\mathcal{M}$};
+          \node at (4.3,7.3) {$\mathcal{M}$};
+          \node at (1.4,7.3) {$\mathcal{M}$};
+          \node at (1.4,5.5) {$\mathcal{M}$};
+
+          % \node at (-2.8,4.5) {$\mathcal{M}$};
+          % \node at (-1.5,5.8) {$\mathcal{M}$};
+          % \node at (-1.6,7.3) {$\mathcal{M}$};
+          % \node at (-3.2,8.2) {$\mathcal{M}$};
+          % \node at (-4.8,7.2) {$\mathcal{M}$};
+          % \node at (-4.8,5.3) {$\mathcal{M}$};
+
+
+
+          
+          \foreach \x in {0.2,0.4,0.6,0.8}
+          \fill[black] ($(3,0)!\x!(-3,0)$) circle (3pt);    
+          \foreach \x in {0.2,0.4,0.6,0.8}
+          \fill[black] ($(-3,0)!\x!(-3,3)$) circle (3pt); 
+          \foreach \x in {0.2,0.4,0.6,0.8}
+          \fill[black] ($(-3,3)!\x!(-6,5)$) circle (3pt);
+          \foreach \x in {0.2,0.4,0.6,0.8}
+          \fill[black] ($(-6,5)!\x!(-6,8)$) circle (3pt);
+          \foreach \x in {0.2,0.4,0.6,0.8}
+          \fill[black] ($(-6,8)!\x!(-3,10)$) circle (3pt);
+          \foreach \x in {0.2,0.4,0.6,0.8}
+          \fill[black] ($(-3,10)!\x!(0,8)$) circle (3pt);
+          \foreach \x in {0.2,0.4,0.6,0.8}
+          \fill[black] ($(0,8)!\x!(6,8)$) circle (3pt);
+          \foreach \x in {0.2,0.4,0.6,0.8}
+          \fill[black] ($(6,8)!\x!(6,5)$) circle (3pt);
+          \foreach \x in {0.2,0.4,0.6,0.8}
+          \fill[black] ($(6,5)!\x!(7,1)$) circle (3pt);     
+          \foreach \x in {0.2,0.4,0.6,0.8}
+          \fill[black] ($(7,1)!\x!(3,0)$) circle (3pt); 
+          \foreach \x in {0.2,0.4,0.6,0.8}
+          \fill[black] ($(3,0)!\x!(3,3)$) circle (3pt);
+          \foreach \x in {0.2,0.4,0.6,0.8}
+          \fill[black] ($(3,3)!\x!(7,1)$) circle (3pt);
+          \foreach \x in {0.2,0.4,0.6,0.8}
+          \fill[black] ($(3,3)!\x!(6,5)$) circle (3pt);
+          \foreach \x in {0.2,0.4,0.6,0.8}
+          \fill[black] ($(3,3)!\x!(0,5)$) circle (3pt);
+          \foreach \x in {0.2,0.4,0.6,0.8}
+          \fill[black] ($(0,5)!\x!(0,8)$) circle (3pt);
+          \foreach \x in {0.2,0.4,0.6,0.8}
+          \fill[black] ($(0,5)!\x!(-3,3)$) circle (3pt);      
+        \end{scope}
+        \\
+      };
+      
+    \end{tikzpicture}
+    \par }
+
+  \pause
+  Im nächsten Schritt ersetzen wir alle überschüssigen Sechs- oder Vierecke durch einen eigenen Patch $\mathcal{P}$, welcher ebenfalls nur aus $s$-Ecken, $l$-Ecken und $r$-valenten Knoten besteht, und erhalten eine Karte mit gewünschtem $p$- und $v$-Vektoren.
+\end{frame}
+
+\begin{frame}{4. Beweisschritt}
+  Die letzte Eigenschaft die wir für eine $q$-$w$-Realisierung sicherstellen müssen ist, dass die konstruierte Karte polyedrisch ist. 
+  \begin{lemma}
+    Sei $\mathcal{M}$ der Patch aus der vorangegangen Konstruktion, so dass zusätzlich alle Flächen in den vier Kopien entlang jeder Kante gutartig zusammenstoßen. Dann ist die erhaltene Karte polyedrisch.
+  \end{lemma}
+
+  { \centering
+    \begin{tikzpicture}[scale=0.25]
+
+      \begin{scope}[scale=0.8]
+
+        \draw[shift={(-5,0)}] (9 : 1) -- (81 : 1) -- (153 : 1)  (225 : 1) -- (297 : 1) -- (9 : 1);
+        \draw[shift={(-5,0)}][dotted] (153 : 1) -- (225 : 1);
+
+
+        \draw[shift={(-5,0)}] (9 : 1) -- (9 : 2.5);
+        \draw[shift={(-5,0)}] (9 : 2.5) -- (9 : 3.5);
+        \draw[shift={(-5,0)}] (9 : 3.5) -- (9 : 5.062);
+        \draw[shift={(-5,0)}] (81 : 1) -- (81 : 2.5);
+        \draw[shift={(-5,0)}] (81 : 2.5) -- (81 : 3.5);
+        \draw[shift={(-5,0)}] (81 : 3.5) -- (81 : 5.062);
+        \draw[shift={(-5,0)}] (153 : 1) -- (153 : 2.5);
+        \draw[shift={(-5,0)}] (153 : 2.5) -- (153 : 3.5);
+        \draw[shift={(-5,0)}] (153 : 3.5) -- (153 : 5.062);
+        \draw[shift={(-5,0)}] (225 : 1) -- (225 : 2.5);
+        \draw[shift={(-5,0)}] (225 : 2.5) -- (225 : 3.5);
+        \draw[shift={(-5,0)}] (225 : 3.5) -- (225 : 5.062);
+        \draw[shift={(-5,0)}] (297 : 1) -- (297 : 2.5);
+        \draw[shift={(-5,0)}] (297 : 2.5) -- (297 : 3.5);
+        \draw[shift={(-5,0)}] (297 : 3.5) -- (297 : 5.062);
+        \draw[shift={(-5,0)}] (4 : 5.012) -- (356 : 5.012);
+
+
+        \draw[shift={(-5,0)}] (-13 : 5.1315) -- (356 : 5.012) (4 : 5.012) -- (13 : 5.1315);
+        \draw[shift={(-5,0)}] (13 : 5.1315) -- (27 : 5.612);
+        \draw[shift={(-5,0)}] (27 : 5.612) -- (36 : 6.180) -- (45 : 5.612);
+        \draw[shift={(-5,0)}] (45 : 5.612) -- (68 : 5.012);
+        \draw[shift={(-5,0)}] (68 : 5.012) -- (85 : 5.1315);
+        \draw[shift={(-5,0)}] (85 : 5.1315) -- (99 : 5.612);
+        \draw[shift={(-5,0)}] (99 : 5.612) -- (108 : 6.180) -- (117 : 5.612);
+        \draw[shift={(-5,0)}] (117 : 5.612) -- (131 : 5.1315);
+        \draw[shift={(-5,0)}] (131 : 5.1315) -- (153 : 5.062);
+        \draw[shift={(-5,0)}] (-131 : 5.1315) -- (225 : 5.062);
+        \draw[shift={(-5,0)}] (-117 : 5.612) -- (-131 : 5.1315);
+        \draw[shift={(-5,0)}] (-99 : 5.612) -- (-108 : 6.180) -- (-117 : 5.612);
+        \draw[shift={(-5,0)}] (-99 : 5.612) -- (-85 : 5.1315);
+        \draw[shift={(-5,0)}] (-59 : 5.1315) -- (-85 : 5.1315);
+        \draw[shift={(-5,0)}] (-45 : 5.612) -- (-85 : 5.1315);
+        \draw[shift={(-5,0)}] (-27 : 5.612) -- (-36 : 6.180) -- (-45 : 5.612);
+        \draw[shift={(-5,0)}] (-27 : 5.612) -- (-13 : 5.1315);
+
+        \node[shift={(-1,0)}] at (-27 : 3.5) {$\mathcal{M}$};
+
+        \node[shift={(-1,0)}] at (45 : 3.5) {$\mathcal{M}$};
+
+        \node[shift={(-1,0)}] at (117 : 3.5) {$\mathcal{M}$};
+        \node[shift={(-1,0)}] at (-99 : 3.5) {$\mathcal{M}$};
+
+        \draw[shift={(-5,0)}][dotted] (180 : 4) -- (198 : 4);
+
+        \draw[shift={(5,0)}, rotate around={180:(0,0)}] (9 : 1) -- (81 : 1) -- (153 : 1)  (225 : 1) -- (297 : 1) -- (9 : 1);
+        \draw[shift={(5,0)}, rotate around={180:(0,0)}][dotted] (153 : 1) -- (225 : 1);
+
+
+        \draw[shift={(5,0)}, rotate around={180:(0,0)}] (9 : 1) -- (9 : 2.5);
+        \draw[shift={(5,0)}, rotate around={180:(0,0)}] (9 : 2.5) -- (9 : 3.5);
+        \draw[shift={(5,0)}, rotate around={180:(0,0)}] (9 : 3.5) -- (9 : 5.062);
+        \draw[shift={(5,0)}, rotate around={180:(0,0)}] (81 : 1) -- (81 : 2.5);
+        \draw[shift={(5,0)}, rotate around={180:(0,0)}] (81 : 2.5) -- (81 : 3.5);
+        \draw[shift={(5,0)}, rotate around={180:(0,0)}] (81 : 3.5) -- (81 : 5.062);
+        \draw[shift={(5,0)}, rotate around={180:(0,0)}] (153 : 1) -- (153 : 2.5);
+        \draw[shift={(5,0)}, rotate around={180:(0,0)}] (153 : 2.5) -- (153 : 3.5);
+        \draw[shift={(5,0)}, rotate around={180:(0,0)}] (153 : 3.5) -- (153 : 5.062);
+        \draw[shift={(5,0)}, rotate around={180:(0,0)}] (225 : 1) -- (225 : 2.5);
+        \draw[shift={(5,0)}, rotate around={180:(0,0)}] (225 : 2.5) -- (225 : 3.5);
+        \draw[shift={(5,0)}, rotate around={180:(0,0)}] (225 : 3.5) -- (225 : 5.062);
+        \draw[shift={(5,0)}, rotate around={180:(0,0)}] (297 : 1) -- (297 : 2.5);
+        \draw[shift={(5,0)}, rotate around={180:(0,0)}] (297 : 2.5) -- (297 : 3.5);
+        \draw[shift={(5,0)}, rotate around={180:(0,0)}] (297 : 3.5) -- (297 : 5.062);
+        
+        % \draw[shift={(5,0)}, rotate around={180:(0,0)}] (-13 : 5.1315) -- (13 : 5.1315);
+        % \draw[shift={(5,0)}, rotate around={180:(0,0)}][dotted] (13 : 5.1315) -- (27 : 5.612);
+        \draw[shift={(5,0)}, rotate around={180:(0,0)}] (36 : 6.180) -- (45 : 5.612);
+        \draw[shift={(5,0)}, rotate around={180:(0,0)}] (45 : 5.612) -- (59 : 5.1315);
+        \draw[shift={(5,0)}, rotate around={180:(0,0)}] (59 : 5.1315) -- (85 : 5.1315);
+        \draw[shift={(5,0)}, rotate around={180:(0,0)}] (85 : 5.1315) -- (99 : 5.612);
+        \draw[shift={(5,0)}, rotate around={180:(0,0)}] (99 : 5.612) -- (108 : 6.180) -- (117 : 5.612);
+        \draw[shift={(5,0)}, rotate around={180:(0,0)}] (117 : 5.612) -- (131 : 5.1315);
+        \draw[shift={(5,0)}, rotate around={180:(0,0)}] (131 : 5.1315) -- (153 : 5.062);
+        \draw[shift={(5,0)}, rotate around={180:(0,0)}] (-131 : 5.1315) -- (225 : 5.062);
+        \draw[shift={(5,0)}, rotate around={180:(0,0)}] (-117 : 5.612) -- (-131 : 5.1315);
+        \draw[shift={(5,0)}, rotate around={180:(0,0)}] (-99 : 5.612) -- (-108 : 6.180) -- (-117 : 5.612);
+        \draw[shift={(5,0)}, rotate around={180:(0,0)}] (-99 : 5.612) -- (-85 : 5.1315);
+        \draw[shift={(5,0)}, rotate around={180:(0,0)}] (-59 : 5.1315) -- (-85 : 5.1315);
+        \draw[shift={(5,0)}, rotate around={180:(0,0)}] (-45 : 5.612) -- (-85 : 5.1315);
+        \draw[shift={(5,0)}, rotate around={180:(0,0)}] (-36 : 6.180) -- (-45 : 5.612);
+        % \draw[shift={(5,0)}, rotate around={180:(0,0)}][dotted] (-27 : 5.612) -- (-13 : 5.1315);
+
+        \node[shift={(1,0)}] at (153 : 3.5) {$\mathcal{M}$};
+        \node[shift={(1,0)}] at (225 : 3.5) {$\mathcal{M}$};
+
+        \node[shift={(1,0)}] at (297 : 3.5) {$\mathcal{M}$};
+        \node[shift={(1,0)}] at (81 : 3.5) {$\mathcal{M}$};
+
+        \draw[shift={(5,0)}, rotate around={180:(0,0)}][dotted] (180 : 4) -- (198 : 4);
+
+      \end{scope}
+
+    \end{tikzpicture}
+    \par
+  }
+
+  Diese Schritte sind nun in allen $14$ Fällen zu tun.
+\end{frame}
+
+\begin{frame}{Negative Resultate}
+  Die vorherigen Beweisschritte lassen sich nicht für alle Parameterwerte von $s$, $r$ und $l$ durchführen, nämlich dann nicht, wenn $s | l$. Tatsächlich gibt es in diesen Fällen nicht $q$-$w$-realisierbare Sequenzen $p$ und $q$, welche zulässig auf der Sphäre $\sphere^2$ sind. Diese Resultate lassen sich graphentheoretisch zeigen:
+
+  \begin{definition} Ein Knoten in einem Graphen heißt \hdef{$(a \mod r)$-valent}, wenn seine Valenz kongruent $a$ modulo $r$ ist, $r \in \nats_{>0}$, $a \in \set{0, \dots, r - 1}$. Ein Graph heißt (fast) $(a \mod r)$-valent, wenn alle (alle bis auf genau ein) Knoten $(a \mod r)$-valent sind. Dual heißen Flächen \hdef{$(a \mod s)$-gonal}, wenn ihre Knotenanzahl kongruent $a$ modulo $s$ ist, $s \in \nats_{>0}$, $a \in \set{0, \dots, s - 1}$ und der Graph heißt (fast) $(a \mod s)$-gonal wenn alle (alle bis auf genau eine) Fläche  $(a \mod s)$-gonal ist.
+  \end{definition}
+  
+  \begin{theorem}[Malkevitch '70, \cite{malkevitch1970properties}] Sei $r, s \in \set{2, 3, 4, 5}$. Kein verbundener planarer Graph ist sowohl $(0 \mod r)$-valent als auch fast $(0 \mod s)$-gonal. Dual: Kein verbundener planarer Graph ist sowohl $(0 \mod s)$-gonal als auch fast $(0 \mod r)$-valent.
+  \end{theorem}
+\end{frame}
+
+\begin{frame}
+  \begin{example}
+    Es lässt sich damit zeigen, dass die folgenden für die Sphäre $\sphere^2$ zulässigen Sequenzen $p$, $v$ keine $q$-$w$-Realisierung besitzen (für alle $k \in \nats$):
+    \begin{alignat*}{10}
+      &p = [& 6 \times 4, 6&], \quad v = [& 8 \times 3   &], \quad q = [&(2k + 1) \times 4&,{} & 8 + 4k&], \quad w = [3]\\
+      &p = [&12 \times 5, 6&], \quad v = [&22 \times 3   &], \quad q = [&(5k + 4) \times 5&,{} &10 + 5k&], \quad w = [3]\\
+      &p = [& 8 \times 3, 4&], \quad v = [& 8 \times 4   &], \quad q = [&(3k + 2) \times 3&,{} & 6 + 3k&], \quad w = [4]\\
+      &p = [&22 \times 3, 4&], \quad v = [&14 \times 5   &], \quad q = [&(9k + 8) \times 3&,{} & 6 + 3k&], \quad w = [5]\\
+      &p = [& 7 \times 4   &], \quad v = [& 8 \times 3, 4&], \quad q = [&(2k + 2) \times 4&,{} &10 + 4k&], \quad w = [3]
+    \end{alignat*}
+    
+  \end{example}
+\end{frame}
+
+\begin{frame}
+  Dieses Resultat lässt sich erweitern zu:
+  \begin{theorem}
+    Sei $(s, r) \in \set{(3, 3), (3, 4), (3, 5), (4, 3), (5, 3)}$. Es gibt keinen verbundenen planaren Graphen welcher sowohl $(r \mod 2r)$-valent als auch fast $(s \mod 2s)$-gonal ist. Dual: Es gibt keinen verbundenen planaren Graphen welcher sowohl $(s \mod 2s)$-gonal als auch fast $(r \mod 2r)$-valent ist. 
+  \end{theorem}
+
+  \begin{example}
+    $p = [4 \times 3, 6]$, $v = [6 \times 3]$ sind zulässig auf der Sphäre $\sphere^2$, aber nicht $[3, 9]$-$[3]$-realisierbar.
+  \end{example}
+\end{frame}
+
+\begin{frame}
+  Zuletzt können wir viele der Unterfälle von $(s, r) = (3, 3)$ ausschließen:
+  \begin{definition}
+    \hdef{$C(p, v, q, w, S)$} ist die Menge aller Paare $(c, d) \in \nats^2$ für die $(p + c \cdot q, v + d \cdot w)$ auf $S$ realisierbar ist.
+  \end{definition}
+
+  \begin{theorem}\label{thm:triangle:nonrealizable}
+    Seien  $p$ und $v$ zulässige Sequenzen, $S$ eine geschlossenen $2$-Mannigfaltigkeit und $q = [q_3 \times 3, q_l \times l]$ und $w = [3]$, $l \in \nats, l \geq 13$. Dann ist $|C(p, v, q, w, S)| < \infty$. Wenn $l \geq 11$ und $\sum_{k \geq 4} 2k \cdot v_k + \sum_{k \geq 4} \lfloor \tfrac{k}{2} \rfloor p_k < 3p_3$, dann ist $C(p, v, q, w, S) = \emptyset$, außer wenn $S \cong \sphere^2$, $p = [4 \times 3]$, $v = [4 \times 3]$. In diesem Fall ist $C(p, v, q, w, \sphere^2) = \set{(0, 0)}$.
+  \end{theorem}
+\end{frame}
+
+\begin{frame}
+  \centering
+  Vielen Dank für Ihre Aufmerksamkeit.
+\end{frame}
+\begin{frame}
+  \footnotesize{
+    \bibliographystyle{alpha}
+    \bibliography{bibliography}{}
+  }
+\end{frame}
+
+\begin{frame}
+\end{frame}
+
+% Extra
+
+
+\end{document}
