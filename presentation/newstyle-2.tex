@@ -1,0 +1,107 @@
+\setbeamertemplate{background canvas}[vertical shading][bottom=gray!15,top=gray!0]
+% stuff from CambridgeUS
+\setbeamerfont{block title}{size={}}
+\setbeamercolor{titlelike}{parent=structure}
+\setbeamertemplate{navigation symbols}{}
+
+%% inner theme stuff
+%my version of \useinnertheme[shadow]{rounded} mixed with rectangles
+\setbeamertemplate{blocks}[rounded][shadow=true]
+\setbeamertemplate{items}[square]
+\setbeamertemplate{sections/subsections in toc}[square]
+\setbeamertemplate{title page}[default][colsep=-4bp,rounded=true,shadow=true]
+\setbeamertemplate{part page}[default][colsep=-4bp,rounded=true,shadow=true]
+
+
+% my version of \useoutertheme{infolines} without frame counter
+\setbeamercolor*{author in head/foot}{parent=palette tertiary}
+\setbeamercolor*{title in head/foot}{parent=palette secondary}
+\setbeamercolor*{date in head/foot}{parent=palette primary}
+\setbeamercolor*{bibliography entry author}{parent=palette primary}
+\setbeamercolor*{bibliography entry location}{parent=palette secondary}
+%\setbeamercolor*{section in head/foot}{parent=palette tertiary}
+%\setbeamercolor*{subsection in head/foot}{parent=palette primary}
+\defbeamertemplate*{footline}{infolines theme}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.35\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\insertshorttitle
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.60\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{title in
+      head/foot}\insertsectionhead{}
+    \ifx\insertsubsectionhead\empty
+    \relax
+    \else~~/~~\insertsubsectionhead{}\fi%
+    \insertauthor{}
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.05\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+    \usebeamerfont{date in head/foot}%\insertsectiontitle{}\hspace*{2em}
+    \insertframenumber{}~~~ %/ \inserttotalframenumber\hspace*{2ex} 
+  \end{beamercolorbox}
+  }%
+  \vskip0pt%
+}
+
+%\defbeamertemplate*{headline}{infolines theme}
+%{
+%  \leavevmode%
+%  \hbox{%
+%  \begin{beamercolorbox}[wd=.5\paperwidth,ht=4.25ex,dp=1ex,left]{section in head/foot}%
+%    \usebeamerfont{section in head/foot}\insertsectionhead\hspace*{2ex}
+%  \end{beamercolorbox}%
+%  \begin{beamercolorbox}[wd=.5\paperwidth,ht=4.25ex,dp=1ex,left]{subsection in head/foot}%
+%    \usebeamerfont{subsection in head/foot}\hspace*{2ex}\insertsubsectionhead
+%  \end{beamercolorbox}}%   
+%\vskip0pt%
+%}
+
+\setbeamersize{text margin left=1em,text margin right=1em}
+
+% colour themes
+%\usecolortheme{beaver}
+\definecolor{darkred}{rgb}{0.8,0,0}
+
+\setbeamercolor{section in toc}{fg=black,bg=white}
+\setbeamercolor{alerted text}{fg=darkred!80!gray}
+\setbeamercolor*{palette primary}{fg=darkred!60!black,bg=gray!30!white}
+\setbeamercolor*{palette secondary}{fg=darkred!70!black,bg=gray!15!white}
+\setbeamercolor*{palette tertiary}{bg=darkred!80!black,fg=gray!10!white}
+\setbeamercolor*{palette quaternary}{fg=darkred,bg=gray!5!white}
+
+\setbeamercolor*{sidebar}{fg=darkred,bg=gray!15!white}
+
+\setbeamercolor*{palette sidebar primary}{fg=darkred!10!black}
+\setbeamercolor*{palette sidebar secondary}{fg=white}
+\setbeamercolor*{palette sidebar tertiary}{fg=darkred!50!black}
+\setbeamercolor*{palette sidebar quaternary}{fg=gray!10!white}
+
+%\setbeamercolor*{titlelike}{parent=palette primary}
+\setbeamercolor{titlelike}{parent=pallette primary,fg=darkred}
+\setbeamercolor{frametitle}{bg=gray!10!white}
+\setbeamercolor{frametitle right}{bg=gray!60!white}
+
+\setbeamercolor*{separation line}{}
+\setbeamercolor*{fine separation line}{}
+
+
+%colour of the item box
+\setbeamercolor{item}{use={structure,normal text},fg=structure.fg!50!normal
+  text.fg, bg=gray!20}
+%\setbeamercolor{example text}{use=structure,fg=darkred!60!black,bg=gray!30!white}
+\setbeamercolor{block title}{use=structure,fg=darkred!60!black,bg=gray!30!white}
+%\setbeamercolor{block title alerted}{use=alerted text,bg=darkred!60!black,fg=gray!0!white}
+\setbeamercolor{block title example}{use=example text,fg=darkred!60!black,bg=gray!30!white}
+
+\setbeamercolor{block body}{parent=normal text,use=block title,bg=block title.bg!30!bg}
+\setbeamercolor{block body alerted}{parent=normal text,use=block title alerted,bg=block title alerted.bg!10!bg}
+\setbeamercolor{block body example}{parent=normal text,use=block title,bg=block title.bg!30!bg}
+
+%fontthemes & stuff
+%\usefonttheme[onlysmall]{structurebold}
+%\usepackage{times}  % times
+%\usepackage{helvet}    %helvetica
+%\usefonttheme{serif}
+%no preview
+\setbeamercovered{transparent}

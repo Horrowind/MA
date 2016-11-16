@@ -3,6 +3,7 @@
 
 \usepackage[ngerman]{babel}
 \usepackage{array}
+\usepackage{tabularx}
 \usepackage{tikz}
 \usepackage{amssymb}
 \usepackage{ragged2e}
@@ -567,7 +568,32 @@
     Diese Konstruktion lässt sich beliebig oft durchführen.
   \end{example}
   \pause
-  Solche Konstruktionen sind inspiriert von den platonischen Körpern, es gibt sie für vier der fünf Fälle. Damit ``reduziert'' sich der Gesamtaufwand auf 14 Unterfälle.
+  Solche Konstruktionen sind inspiriert von den platonischen Körpern, es gibt sie für vier der fünf Fälle. Damit ``reduziert'' sich der Gesamtaufwand auf 18 Unterfälle.
+\end{frame}
+
+\begin{frame}{2. Beweisschritt}
+  \begin{tabularx}{\textwidth}{|c|c|X|}
+    \hline
+    $(s, r)$ & $l$ &\\
+    \hline
+    $(3, 3)$ & & \\
+    $(3, 4)$ & $l \equiv 0~(\mod 4)$ &\\
+    $(3, 4)$ & $l \equiv 1~(\mod 4)$ &\\
+    $(3, 4)$ & $l \equiv 2~(\mod 4)$ &\\
+    $(3, 4)$ & $l \equiv 3~(\mod 4)$ &\\
+    $(3, 5)$ & $l \equiv 0~(\mod 5)$ &\\
+    $(3, 5)$ & $l \equiv 1~(\mod 5)$ &\\
+    $(3, 5)$ & $l \equiv 2~(\mod 5)$ &\\
+    $(3, 5)$ & $l \equiv 3~(\mod 5)$ &\\
+    $(3, 5)$ & $l \equiv 4~(\mod 5)$ &\\
+    $(4, 3)$ & $l \equiv 0~(\mod 3)$ &\\
+    $(4, 3)$ & $l \equiv 1~(\mod 3)$ &\\
+    $(4, 3)$ & $l \equiv 2~(\mod 3)$ &\\
+    $(5, 3)$ & $l \equiv 0~(\mod 3)$ &\\
+    $(5, 3)$ & $l \equiv 1~(\mod 3)$ &\\
+    $(5, 3)$ & $l \equiv 2~(\mod 3)$ &\\
+    \hline
+  \end{tabularx}
 \end{frame}
 
 \begin{frame}[fragile]{3. Beweisschritt}
@@ -915,9 +941,95 @@
     \end{tikzpicture}
     \par
   }
-
-  Diese Schritte sind nun in allen $14$ Fällen zu tun.
 \end{frame}
+
+\begin{frame}
+  Diese Schritte lassen sich in $11$ Fällen durchführen.\\
+  \medskip
+  \begin{tabularx}{\textwidth}{|c|c|X|}
+    \hline
+    $(s, r)$ & $l$ &\\
+    \hline
+    $(3, 3)$ & &\\
+    $(3, 4)$ & $l \equiv 0~(\mod 4)$ &\\
+    $(3, 4)$ & $l \equiv 1~(\mod 4)$ & \only<2>{Für alle $p, v, S$ möglich}\\
+    $(3, 4)$ & $l \equiv 2~(\mod 4)$ & \only<2>{Für fast alle $p, v, S$ möglich}\\
+    $(3, 4)$ & $l \equiv 3~(\mod 4)$ & \only<2>{Für alle $p, v, S$ möglich}\\
+    $(3, 5)$ & $l \equiv 0~(\mod 5)$ & \\
+    $(3, 5)$ & $l \equiv 1~(\mod 5)$ & \only<2>{Für alle $p, v, S$ möglich}\\
+    $(3, 5)$ & $l \equiv 2~(\mod 5)$ & \only<2>{Für alle $p, v, S$ möglich}\\
+    $(3, 5)$ & $l \equiv 3~(\mod 5)$ & \only<2>{Für alle $p, v, S$ möglich}\\
+    $(3, 5)$ & $l \equiv 4~(\mod 5)$ & \only<2>{Für alle $p, v, S$ möglich}\\
+    $(4, 3)$ & $l \equiv 0~(\mod 3)$ &\\
+    $(4, 3)$ & $l \equiv 1~(\mod 3)$ & \only<2>{Für alle $p, v, S$ möglich}\\
+    $(4, 3)$ & $l \equiv 2~(\mod 3)$ & \only<2>{Für alle $p, v, S$ möglich}\\
+    $(5, 3)$ & $l \equiv 0~(\mod 3)$ &\\
+    $(5, 3)$ & $l \equiv 1~(\mod 3)$ & \only<2>{Für alle $p, v, S$ möglich}\\
+    $(5, 3)$ & $l \equiv 2~(\mod 3)$ & \only<2>{Für alle $p, v, S$ möglich}\\
+    \hline
+  \end{tabularx}
+\end{frame}
+
+\begin{frame}{Negative Resultate}
+  Viele der Unterfälle von $(s, r) = (3, 3)$ lassen sich ausschließen:
+  \begin{definition}
+    \hdef{$C(p, v, q, w, S)$} ist die Menge aller Paare $(c, d) \in \nats^2$ für die $(p + c \cdot q, v + d \cdot w)$ auf $S$ realisierbar ist.
+  \end{definition}
+  \pause
+  \begin{theorem}
+    Seien  $p$ und $v$ zulässige Sequenzen, $S$ eine geschlossenen $2$-Mannigfaltigkeit und $q = [q_3 \times 3, q_l \times l]$ und $w = [3]$, $l \in \nats, l \geq 13$. Dann ist $|C(p, v, q, w, S)| < \infty$. Wenn $l \geq 11$ und $\sum_{k \geq 4} 2k \cdot v_k + \sum_{k \geq 4} \lfloor \tfrac{k}{2} \rfloor p_k < 3p_3$, dann ist $C(p, v, q, w, S) = \emptyset$, außer wenn $S \cong \sphere^2$, $p = [4 \times 3]$, $v = [4 \times 3]$. In diesem Fall ist $C(p, v, q, w, \sphere^2) = \set{(0, 0)}$.
+
+  \pause
+    Beweis: In einer polyedrischen Karte kann die folgende Figur nicht auftreten, außer im Fall des Tetraeders.
+
+    { \centering
+      \begin{tikzpicture}[scale=0.5]
+        \draw (-2, 0) -- (-1, 0) -- (0, 1) -- (1, 0) -- (2, 0);
+        \draw (-1, 0) -- (0, -1) -- (1, 0);
+        \draw (0, 1) -- (0, -1);
+        \draw[loosely dotted] (-2.5, 0) -- (-2, 0);
+        \draw[loosely dotted] (2.5, 0) -- (2, 0);
+
+        \fill[black] (-1,0) circle(2pt);
+        \fill[black] (1,0) circle(2pt);
+        \fill[black] (0,-1) circle(2pt);
+        \fill[black] (0,1) circle(2pt);
+      \end{tikzpicture}
+      \par
+    }
+    Eine Abschätzung der Anzahl an Kanten die an Dreiecken anliegen zeigt das Resultat.
+  \end{theorem}
+\end{frame}
+
+\begin{frame}
+  \begin{tabularx}{\textwidth}{|c|c|X|}
+    \hline
+    $(s, r)$ & $l$ &\\
+    \hline
+    $(3, 3)$ & $l = 7$               & \only<3>{Für alle $p, v, S$ möglich}\\
+    $(3, 3)$ & $l = 8$               & \only<3>{Für alle $p, v, S$ möglich}\\
+    $(3, 3)$ & $l = 9$               &\\
+    $(3, 3)$ & $l = 10$              & \only<3>{Für alle $p, v, S$ möglich}\\
+    $(3, 3)$ & $l \geq 11$           & \only<2,3>{Es gibt unrealisierbare Beispiele für alle $S$}\\
+    $(3, 4)$ & $l \equiv 0~(\mod 4)$ &\\
+    $(3, 4)$ & $l \equiv 1~(\mod 4)$ & Für alle $p, v, S$ möglich\\
+    $(3, 4)$ & $l \equiv 2~(\mod 4)$ & Für fast alle $p, v, S$ möglich\\
+    $(3, 4)$ & $l \equiv 3~(\mod 4)$ & Für alle $p, v, S$ möglich\\
+    $(3, 5)$ & $l \equiv 0~(\mod 5)$ & \\
+    $(3, 5)$ & $l \equiv 1~(\mod 5)$ & Für alle $p, v, S$ möglich\\
+    $(3, 5)$ & $l \equiv 2~(\mod 5)$ & Für alle $p, v, S$ möglich\\
+    $(3, 5)$ & $l \equiv 3~(\mod 5)$ & Für alle $p, v, S$ möglich\\
+    $(3, 5)$ & $l \equiv 4~(\mod 5)$ & Für alle $p, v, S$ möglich\\
+    $(4, 3)$ & $l \equiv 0~(\mod 3)$ &\\
+    $(4, 3)$ & $l \equiv 1~(\mod 3)$ & Für alle $p, v, S$ möglich\\
+    $(4, 3)$ & $l \equiv 2~(\mod 3)$ & Für alle $p, v, S$ möglich\\
+    $(5, 3)$ & $l \equiv 0~(\mod 3)$ &\\
+    $(5, 3)$ & $l \equiv 1~(\mod 3)$ & Für alle $p, v, S$ möglich\\
+    $(5, 3)$ & $l \equiv 2~(\mod 3)$ & Für alle $p, v, S$ möglich\\
+    \hline
+  \end{tabularx}
+\end{frame}
+
 
 \begin{frame}{Negative Resultate}
   Die vorherigen Beweisschritte lassen sich nicht für alle Parameterwerte von $s$, $r$ und $l$ durchführen, nämlich dann nicht, wenn $s | l$. Tatsächlich gibt es in diesen Fällen nicht $q$-$w$-realisierbare Sequenzen $p$ und $q$, welche zulässig auf der Sphäre $\sphere^2$ sind. Diese Resultate lassen sich graphentheoretisch zeigen:
@@ -954,15 +1066,34 @@
   \end{example}
 \end{frame}
 
-\begin{frame}
-  Zuletzt können wir viele der Unterfälle von $(s, r) = (3, 3)$ ausschließen:
-  \begin{definition}
-    \hdef{$C(p, v, q, w, S)$} ist die Menge aller Paare $(c, d) \in \nats^2$ für die $(p + c \cdot q, v + d \cdot w)$ auf $S$ realisierbar ist.
-  \end{definition}
 
-  \begin{theorem}\label{thm:triangle:nonrealizable}
-    Seien  $p$ und $v$ zulässige Sequenzen, $S$ eine geschlossenen $2$-Mannigfaltigkeit und $q = [q_3 \times 3, q_l \times l]$ und $w = [3]$, $l \in \nats, l \geq 13$. Dann ist $|C(p, v, q, w, S)| < \infty$. Wenn $l \geq 11$ und $\sum_{k \geq 4} 2k \cdot v_k + \sum_{k \geq 4} \lfloor \tfrac{k}{2} \rfloor p_k < 3p_3$, dann ist $C(p, v, q, w, S) = \emptyset$, außer wenn $S \cong \sphere^2$, $p = [4 \times 3]$, $v = [4 \times 3]$. In diesem Fall ist $C(p, v, q, w, \sphere^2) = \set{(0, 0)}$.
-  \end{theorem}
+\begin{frame}
+  \begin{tabularx}{\textwidth}{|c|c|X|}
+    \hline
+    $(s, r)$ & $l$ &\\
+    \hline
+    $(3, 3)$ & $l = 7$               & Für alle $p, v, S$ möglich\\
+    $(3, 3)$ & $l = 8$               & Für alle $p, v, S$ möglich\\
+    $(3, 3)$ & $l = 9$               & \only<4>{Es gibt unrealisierbare Beispiele für $S \cong \sphere^2$}\\
+    $(3, 3)$ & $l = 10$              & Für alle $p, v, S$ möglich\\
+    $(3, 3)$ & $l \geq 11$           & Es gibt unrealisierbare Beispiele für alle $S$\\
+    $(3, 4)$ & $l \equiv 0~(\mod 4)$ & \only<2-4>{Es gibt unrealisierbare Beispiele für $S \cong \sphere^2$}\\
+    $(3, 4)$ & $l \equiv 1~(\mod 4)$ & Für alle $p, v, S$ möglich\\
+    $(3, 4)$ & $l \equiv 2~(\mod 4)$ & \only<1-2>{Für fast alle $p, v, S$ möglich}\only<3-4>{Immer möglich, außer für vorheriges Gegenbeispiel}\\
+    $(3, 4)$ & $l \equiv 3~(\mod 4)$ & Für alle $p, v, S$ möglich\\
+    $(3, 5)$ & $l \equiv 0~(\mod 5)$ & \only<2-4>{Es gibt unrealisierbare Beispiele für $S \cong \sphere^2$}\\
+    $(3, 5)$ & $l \equiv 1~(\mod 5)$ & Für alle $p, v, S$ möglich\\
+    $(3, 5)$ & $l \equiv 2~(\mod 5)$ & Für alle $p, v, S$ möglich\\
+    $(3, 5)$ & $l \equiv 3~(\mod 5)$ & Für alle $p, v, S$ möglich\\
+    $(3, 5)$ & $l \equiv 4~(\mod 5)$ & Für alle $p, v, S$ möglich\\
+    $(4, 3)$ & $l \equiv 0~(\mod 3)$ & \only<2-4>{Es gibt unrealisierbare Beispiele für $S \cong \sphere^2$}\\
+    $(4, 3)$ & $l \equiv 1~(\mod 3)$ & Für alle $p, v, S$ möglich\\
+    $(4, 3)$ & $l \equiv 2~(\mod 3)$ & Für alle $p, v, S$ möglich\\
+    $(5, 3)$ & $l \equiv 0~(\mod 3)$ & \only<2-4>{Es gibt unrealisierbare Beispiele für $S \cong \sphere^2$}\\
+    $(5, 3)$ & $l \equiv 1~(\mod 3)$ & Für alle $p, v, S$ möglich\\
+    $(5, 3)$ & $l \equiv 2~(\mod 3)$ & Für alle $p, v, S$ möglich\\
+    \hline
+  \end{tabularx}
 \end{frame}
 
 \begin{frame}
