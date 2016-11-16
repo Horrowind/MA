@@ -345,11 +345,13 @@
   \begin{definition}
     Zwei zulässige Sequenzen $p$, $v$ für eine $2$-Mannigfaltigkeit $S$ mit {\sc Euler}-Charakteristic $\chi$ heißen \hdef{$q$-$w$-realisierbar auf $S$}, falls es $c, d \in \nats$ und eine Realisation von $(p + c \cdot v, q + d \cdot w)$ auf $S$ gibt.
   \end{definition}
+  \pause
+  Das $q$, $w$ flach mit Parameter $t$ sind, ist also eine notwendige Begingung dafür, dass zwei zulässige Sequenzen $q$-$w$-realisierbar sind.
 \end{frame}
 
 \begin{frame}
   \begin{theorem}[{\sc Jendrol', Jucovi{\v{c}}}, 1977, \cite{jendrol1977generalization}] \label{thm:eberhard:extended:3}
-    Ein Paar von zulässigen Sequenzen $p$, $v$ für eine geschlossenen orientierbaren $2$-Mannigfaltigkeit $S$ ist $[6]$-$[3]$-realisierbar genau dann, wenn:
+    Ein Paar von zulässigen Sequenzen $p$, $v$ für eine kompakten orientierbaren $2$-Mannigfaltigkeit $S$ ist $[6]$-$[3]$-realisierbar genau dann, wenn:
     \begin{align*}
       \sum_{k=3,\,2 \nmid k}^{m} p_k \neq 0 \text{ oder} \sum_{k=4,\,3 \nmid k}^n v_k \neq 1& &\text{ wenn } \chi = 2, \\
       p \neq [5, 7] \text{ oder } v \neq [v_3 \times 3]& &\text{ wenn } \chi = 0.
@@ -357,7 +359,7 @@
   \end{theorem}
   \pause
   \begin{theorem}[{\sc Jendrol', Jucovi{\v{c}}, Barnette, Grünbaum, Zaks}, 1973, \cite{jucovivc1973theorem}, \cite{barnette1971toroidal}, \cite{grunbaum1969planar}, \cite{zaks1971analogue}] \label{thm:eberhard:extended:4}
-    Ein Paar von zulässigen Sequenzen $p$, $v$ für auf einer geschlossenen orientierbaren $2$-Mannigfaltigkeit $S$ ist $[4]$-$[4]$-realisierbar genau dann, wenn
+    Ein Paar von zulässigen Sequenzen $p$, $v$ für auf einer kompakten orientierbaren $2$-Mannigfaltigkeit $S$ ist $[4]$-$[4]$-realisierbar genau dann, wenn
     \begin{align*}
       p \neq [3, 5] \text{ oder } v \neq [v_4 \times 4]& &\text{ wenn } \chi = 0,\\
       p \neq [p_4 \times 4] \text{ oder } v \neq [3, 5]& &\text{ wenn } \chi = 0.
@@ -366,13 +368,14 @@
 \end{frame}
 
 \begin{frame}[fragile]{Genaue Problemstellung}
-  Wir wollen {\sc Eberhard}-typ Probleme für Sequenzen $q$ mit zwei teilerfremden Einträgen und Sequenzen $w$ mit genau einem Eintrag eingehend betrachten:
+  Wir wollen {\sc Eberhard}-typ Probleme für Sequenzen $q$ mit zwei teilerfremden Einträgen und Sequenzen $w$ mit genau einem Eintrag auf orientierbaren kompakten $2$-Mannigfaltigkeiten eingehend betrachten:
   \begin{block}{}
     \begin{align*}
       q &= [q_s \times s, q_l \times l] \qquad s < l,\,\gcd(q_s, q_l) = 1, \\
       w &= [r]
     \end{align*}
   \end{block}
+  \pause
   Es entstehen fünf Fälle für $(s,r)$, jeder nur noch von $l$ abhängig:
   \begin{tikzpicture}[line join=round]
     \centering
@@ -497,7 +500,7 @@
 \end{frame}
 
 \begin{frame}[fragile]{2. Beweisschritt}{}
-  Obwohl wir uns auf fünf Fälle beschränken konnten, gibt es für den Parameter $l$ immer noch unendlich viele Möglichkeiten. Wir können jedoch, wenn wir die $l$-Ecke geschickt anordnen, aus zwei $l$-Ecken zwei $l + s$-Ecke konstruieren:
+  Obwohl wir uns auf fünf Fälle beschränken konnten, gibt es für den Parameter $l$ immer noch unendlich viele Möglichkeiten. Wir können jedoch, wenn wir die $l$-Ecke geschickt anordnen, aus zwei $l$-Ecken zwei $(l + s)$-Ecke konstruieren:
   \begin{example}
     Für den Fall $(s, r) = (3, 5)$ können zwei $l$-Ecke, die über eine Kante verbunden sind zu zwei $l + s$-Ecken vergrößern, wobei wir $18$ Dreiecke einfügen:
 
@@ -568,7 +571,7 @@
     Diese Konstruktion lässt sich beliebig oft durchführen.
   \end{example}
   \pause
-  Solche Konstruktionen sind inspiriert von den platonischen Körpern, es gibt sie für vier der fünf Fälle. Damit ``reduziert'' sich der Gesamtaufwand auf 18 Unterfälle.
+  Solche Konstruktionen sind inspiriert von den platonischen Körpern, es gibt sie für vier der fünf Fälle. Damit ``reduziert'' sich der Gesamtaufwand auf 16 Unterfälle.
 \end{frame}
 
 \begin{frame}{2. Beweisschritt}
@@ -833,7 +836,7 @@
 \begin{frame}{4. Beweisschritt}
   Die letzte Eigenschaft die wir für eine $q$-$w$-Realisierung sicherstellen müssen ist, dass die konstruierte Karte polyedrisch ist. 
   \begin{lemma}
-    Sei $\mathcal{M}$ der Patch aus der vorangegangen Konstruktion, so dass zusätzlich alle Flächen in den vier Kopien entlang jeder Kante gutartig zusammenstoßen. Dann ist die erhaltene Karte polyedrisch.
+    Sei $\mathcal{M}$ der Patch aus der vorangegangen Konstruktion, so dass zusätzlich alle Flächen in den vier Kopien entlang jeder Kante gutartig zusammenstoßen. Dann ist die aus der Konstruktion erhaltene Karte polyedrisch.
   \end{lemma}
 
   { \centering
@@ -881,9 +884,9 @@
         \draw[shift={(-5,0)}] (-27 : 5.612) -- (-36 : 6.180) -- (-45 : 5.612);
         \draw[shift={(-5,0)}] (-27 : 5.612) -- (-13 : 5.1315);
 
-        \node[shift={(-1,0)}] at (-27 : 3.5) {$\mathcal{M}$};
+        \node[shift={(-1,0)}] at (-27 : 3.5) {\hdef{$\mathcal{M}$}};
 
-        \node[shift={(-1,0)}] at (45 : 3.5) {$\mathcal{M}$};
+        \node[shift={(-1,0)}] at (45 : 3.5) {\hdef{$\mathcal{M}$}};
 
         \node[shift={(-1,0)}] at (117 : 3.5) {$\mathcal{M}$};
         \node[shift={(-1,0)}] at (-99 : 3.5) {$\mathcal{M}$};
@@ -928,8 +931,8 @@
         \draw[shift={(5,0)}, rotate around={180:(0,0)}] (-36 : 6.180) -- (-45 : 5.612);
         % \draw[shift={(5,0)}, rotate around={180:(0,0)}][dotted] (-27 : 5.612) -- (-13 : 5.1315);
 
-        \node[shift={(1,0)}] at (153 : 3.5) {$\mathcal{M}$};
-        \node[shift={(1,0)}] at (225 : 3.5) {$\mathcal{M}$};
+        \node[shift={(1,0)}] at (153 : 3.5) {\hdef{$\mathcal{M}$}};
+        \node[shift={(1,0)}] at (225 : 3.5) {\hdef{$\mathcal{M}$}};
 
         \node[shift={(1,0)}] at (297 : 3.5) {$\mathcal{M}$};
         \node[shift={(1,0)}] at (81 : 3.5) {$\mathcal{M}$};
@@ -977,10 +980,10 @@
   \end{definition}
   \pause
   \begin{theorem}
-    Seien  $p$ und $v$ zulässige Sequenzen, $S$ eine geschlossenen $2$-Mannigfaltigkeit und $q = [q_3 \times 3, q_l \times l]$ und $w = [3]$, $l \in \nats, l \geq 13$. Dann ist $|C(p, v, q, w, S)| < \infty$. Wenn $l \geq 11$ und $\sum_{k \geq 4} 2k \cdot v_k + \sum_{k \geq 4} \lfloor \tfrac{k}{2} \rfloor p_k < 3p_3$, dann ist $C(p, v, q, w, S) = \emptyset$, außer wenn $S \cong \sphere^2$, $p = [4 \times 3]$, $v = [4 \times 3]$. In diesem Fall ist $C(p, v, q, w, \sphere^2) = \set{(0, 0)}$.
+    Seien  $p$ und $v$ zulässige Sequenzen, $S$ eine kompakten $2$-Mannigfaltigkeit und $q = [q_3 \times 3, q_l \times l]$ und $w = [3]$, $l \in \nats, l \geq 13$. Dann ist $|C(p, v, q, w, S)| < \infty$. Wenn $l \geq 11$ und $\sum_{k \geq 4} 2k \cdot v_k + \sum_{k \geq 4} \lfloor \tfrac{k}{2} \rfloor p_k < 3p_3$, dann ist $C(p, v, q, w, S) = \emptyset$, außer wenn $S \cong \sphere^2$, $p = [4 \times 3]$, $v = [4 \times 3]$. In diesem Fall ist $C(p, v, q, w, \sphere^2) = \set{(0, 0)}$.
 
   \pause
-    Beweis: In einer polyedrischen Karte kann die folgende Figur nicht auftreten, außer im Fall des Tetraeders.
+    Beweisidee: In einer polyedrischen Karte kann die folgende Figur nicht auftreten, außer im Fall des Tetraeders.
 
     { \centering
       \begin{tikzpicture}[scale=0.5]
@@ -1074,22 +1077,22 @@
     \hline
     $(3, 3)$ & $l = 7$               & Für alle $p, v, S$ möglich\\
     $(3, 3)$ & $l = 8$               & Für alle $p, v, S$ möglich\\
-    $(3, 3)$ & $l = 9$               & \only<4>{Es gibt unrealisierbare Beispiele für $S \cong \sphere^2$}\\
+    $(3, 3)$ & $l = 9$               & \only<2-3>{Es gibt unrealisierbare Beispiele für $S \cong \sphere^2$}\\
     $(3, 3)$ & $l = 10$              & Für alle $p, v, S$ möglich\\
     $(3, 3)$ & $l \geq 11$           & Es gibt unrealisierbare Beispiele für alle $S$\\
-    $(3, 4)$ & $l \equiv 0~(\mod 4)$ & \only<2-4>{Es gibt unrealisierbare Beispiele für $S \cong \sphere^2$}\\
+    $(3, 4)$ & $l \equiv 0~(\mod 4)$ & \only<2-3>{Es gibt unrealisierbare Beispiele für $S \cong \sphere^2$}\\
     $(3, 4)$ & $l \equiv 1~(\mod 4)$ & Für alle $p, v, S$ möglich\\
-    $(3, 4)$ & $l \equiv 2~(\mod 4)$ & \only<1-2>{Für fast alle $p, v, S$ möglich}\only<3-4>{Immer möglich, außer für vorheriges Gegenbeispiel}\\
+    $(3, 4)$ & $l \equiv 2~(\mod 4)$ & \only<1-2>{Für fast alle $p, v, S$ möglich}\only<3>{Immer möglich, außer für vorheriges Gegenbeispiel}\\
     $(3, 4)$ & $l \equiv 3~(\mod 4)$ & Für alle $p, v, S$ möglich\\
-    $(3, 5)$ & $l \equiv 0~(\mod 5)$ & \only<2-4>{Es gibt unrealisierbare Beispiele für $S \cong \sphere^2$}\\
+    $(3, 5)$ & $l \equiv 0~(\mod 5)$ & \only<2-3>{Es gibt unrealisierbare Beispiele für $S \cong \sphere^2$}\\
     $(3, 5)$ & $l \equiv 1~(\mod 5)$ & Für alle $p, v, S$ möglich\\
     $(3, 5)$ & $l \equiv 2~(\mod 5)$ & Für alle $p, v, S$ möglich\\
     $(3, 5)$ & $l \equiv 3~(\mod 5)$ & Für alle $p, v, S$ möglich\\
     $(3, 5)$ & $l \equiv 4~(\mod 5)$ & Für alle $p, v, S$ möglich\\
-    $(4, 3)$ & $l \equiv 0~(\mod 3)$ & \only<2-4>{Es gibt unrealisierbare Beispiele für $S \cong \sphere^2$}\\
+    $(4, 3)$ & $l \equiv 0~(\mod 3)$ & \only<2-3>{Es gibt unrealisierbare Beispiele für $S \cong \sphere^2$}\\
     $(4, 3)$ & $l \equiv 1~(\mod 3)$ & Für alle $p, v, S$ möglich\\
     $(4, 3)$ & $l \equiv 2~(\mod 3)$ & Für alle $p, v, S$ möglich\\
-    $(5, 3)$ & $l \equiv 0~(\mod 3)$ & \only<2-4>{Es gibt unrealisierbare Beispiele für $S \cong \sphere^2$}\\
+    $(5, 3)$ & $l \equiv 0~(\mod 3)$ & \only<2-3>{Es gibt unrealisierbare Beispiele für $S \cong \sphere^2$}\\
     $(5, 3)$ & $l \equiv 1~(\mod 3)$ & Für alle $p, v, S$ möglich\\
     $(5, 3)$ & $l \equiv 2~(\mod 3)$ & Für alle $p, v, S$ möglich\\
     \hline
