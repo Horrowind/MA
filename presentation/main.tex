@@ -61,32 +61,56 @@
 
 
 \definecolor{darkred}{rgb}{0.8,0,0}
-\colorlet{darkred2}{darkred!80!black}
+\colorlet{darkred2}{darkred!60!black}
 \newcommand{\hdef}[1]{\textcolor{darkred2}{#1}}
 \newcommand{\red}[1]{\textcolor{darkred2}{#1}}
 \newcommand{\ho}[2]{\only<#1->{\alert<#1>{#2}}}
 
+\AtBeginSection[]{%
+  \begin{frame}%
+  \vfill%
+  \centering%
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}\insertsectionhead\par%
+  \end{beamercolorbox}
+  \vfill%
+  \end{frame}%
+}
+
+
 \begin{document}
-\title{Neue Sätze vom {\sc Eberhard}-typ}
+\title{Neue Sätze vom {\sc Eberhard}-Typ}
 \author{Sebastian Manecke}
 \date{Kolloqium zur Masterarbeit\\Betreut durch Prof. Dr. Ulrich Brehm\\22. November 2016}
+
+
+
 \frame{\titlepage}
+
+
+
+\begin{frame}
+  %TODO: Dreieck, Viereck, Fünfeck
+  Gliederung:
+\tableofcontents
+\end{frame}
+\section{$3$-Polytope mit beschriebenen Flächen und Eckentypen}
 \begin{frame}{$3$-Polytope mit beschriebenen Flächen und Eckentypen}
-  Für ein $3$-Polytop wollen wir die Anzahl der $k$-Ecke mit $p_k$ und die Anzahl der Ecken, in denen $k$-Kanten zusammenstoßen, ($k$-valente Ecken) mit $v_k$ bezeichnen $(k \geq 3)$.
+  Für ein $3$-Polytop wollen wir die Anzahl der $k$-gonale Flächen mit $p_k$ und die Anzahl der Ecken, in denen $k$ Kanten zusammenstoßen, ($k$-valente Ecken) mit $v_k$ bezeichnen $(k \geq 3)$.
   \pause
   \begin{example}
     Für ein Tetraeder ist $p_3 = 4$ und $v_3 = 4$ und $v_k = p_k = 0$ für alle anderen $k \geq 3$.\\
     \pause
     Für ein Dodekaeder ist $p_5 = 12$ und $v_3 = 20$ und $v_k = p_k = 0$ sonst.\\
-    \pause
-    \dots etc. 
   \end{example}
-  Eine naheliegende Frage ist, ob wir zu jeder Vorgabe von $p_k$'s und $v_k$'s auch ein $3$-Polytop (eine Realisation) finden können, welches genau $p_k$ $k$-Ecke besitzt und dessen Anzahl an $k$-valenten Ecken genau $v_k$ ist.
+\end{frame}
+\begin{frame}{$3$-Polytope mit beschriebenen Flächen und Eckentypen}
+  Eine naheliegende Frage ist, ob wir zu jeder Vorgabe von $p_k$'s und $v_k$'s auch ein $3$-Polytop (eine Realisierung) finden können, welches genau $p_k$ $k$-gonale Flächen besitzt und dessen Anzahl an $k$-valenten Ecken genau $v_k$ ist.
   \pause
   \begin{example}
     Für $p_4 = 500$, $v_3 = 1$ und $p_k = v_k = 0$ sonst, gibt es (offensichtlich) kein $3$-Polytop.\\
     \pause
-    Für $p_5 = 12$, $p_6 = 1$, $v_3 = 22$ und $p_k = v_k = 0$ sonst, gibt es (weniger offensichtlich) ebenfalls kein $3$-Polytop. Beide Beispiele sind also nicht realisierbar.
+    Für $p_5 = 12$, $p_6 = 1$, $v_3 = 22$ und $p_k = v_k = 0$ sonst, gibt es ebenfalls kein $3$-Polytop. Beide Beispiele sind also nicht realisierbar.
   \end{example}
 \end{frame}
 
@@ -118,11 +142,11 @@
 \end{frame}
 
 \begin{frame}{Eine kleine Rechnung}
-  Wir betrachten ein $3$-valentes $3$-Polytop (es stoßen in jeder Ecke drei Kanten zusammen), welches $p_3$ Dreiecke, $p_4$ Vierecke, \dots, $p_m$ $m$-Ecke hat.\\
+  Wir betrachten ein $3$-valentes $3$-Polytop (es stoßen in jeder Ecke drei Kanten zusammen), welches $p_3$ Dreiecke, $p_4$ Vierecke, \dots, $p_m$ $m$-gonale Flächen hat.\\
   \pause
-  Durch  einfaches und doppeltes Abzählen (jede Kante ist benachbart zu genau zwei Knoten und zu genau zwei Flächen), können wir die Anzahl der Flächen ($f_2$), Kanten ($f_1$) und Ecken ($f_0$) bestimmen:
+  Durch  einfaches und doppeltes Abzählen (jede Kante ist benachbart zu genau zwei Ecken und zu genau zwei Flächen), können wir die Anzahl der Flächen ($f_2$), Kanten ($f_1$) und Ecken ($f_0$) bestimmen:
   \begin{align*}
-    f_2 = \sum_k p_k \qquad f_1 = \tfrac{1}{2}\sum_k k p_k \qquad f_0 = \tfrac{3}{2}\sum_k k p_k
+    f_2 = \sum_k p_k \qquad f_1 = \tfrac{1}{2}\sum_k k p_k \qquad f_0 = \tfrac{1}{3}\sum_k k p_k
   \end{align*}
   \pause
   Von der {\sc Euler}schen Polyederformel wissen wir $f_0 - f_1 + f_2 = 2$ und können dies zur folgenden Gleichung umstellen:
@@ -138,7 +162,7 @@
     \begin{tikzpicture}[every text node part/.style={align=left}]
       \node (x1) at (0, 0) {$\sum_k (6 - k) p_k = 12$};
       \pause
-      \node[rectangle, text width = 3.5cm, anchor=90] (x2) at (-2, -1) {Die Krümmung eines $k$-Ecks ist \\ - für $k \leq 5$ positiv\\ - für $k = 6$ null (flach)\\ - für $k \geq 7$ negativ};
+      \node[rectangle, text width = 3.5cm, anchor=90] (x2) at (-2, -1) {Die Krümmung einer $k$-gonalen Fläche ist \\ - für $k \leq 5$ positiv\\ - für $k = 6$ null (flach)\\ - für $k \geq 7$ negativ};
       \draw[->] (x1.215) -- (x2);
       \pause
       \node[rectangle, text width = 3.5cm, anchor=90] (x3) at ( 2.5, -1) {Es sind zwölf Krümmungseinheiten notwendig};
@@ -147,17 +171,21 @@
   
   \pause
   \justifying
-  Wir sehen insbesondere das die Anzahl der Sechsecke für die Formel irrelevant ist.
+  Wir sehen insbesondere, dass die Anzahl der Sechsecke für die Formel irrelevant ist.
 \end{frame}
 
 \begin{frame}
   Dieselbe Rechnung für $4$- und $5$-valente $3$-Polytope ergibt
-  \begin{block}{}
-  \begin{align*}
-    4\text{-valent:\quad}&\sum_k (k-4)p_k = 8\\
-    5\text{-valent:\quad}&\sum_k (3k-10)p_k = 20\\
-  \end{align*}
-  \end{block}
+
+  \medskip
+  \begin{beamercolorbox}[sep=-10pt,center,shadow=true,rounded=true]{block body}
+    \begin{align*}
+      4\text{-valent:\quad}&\sum_k (k-4)p_k = 8\\
+      5\text{-valent:\quad}&\sum_k (3k-10)p_k = 20
+    \end{align*}
+  \end{beamercolorbox}
+  \medskip
+
   Man beachte, dass es im $5$-valenten Fall kein ``flaches'' Polygon gibt.
 \end{frame}
 
@@ -167,7 +195,7 @@
     \begin{align*}
       \sum_k^m (6 - k) p_k = 12
     \end{align*}
-    gilt. Dann gibt es eine Anzahl $p_6$ und ein $3$-valentes $3$-Polytop (in allen Ecken stoßen $3$ Kanten zusammen), dessen Anzahl an $k$-Ecken genau $p_k$ entspricht.   
+    gilt. Dann gibt es eine Anzahl $p_6$ und ein $3$-valentes $3$-Polytop (in allen Ecken stoßen $3$ Kanten zusammen), dessen Anzahl an $k$-gonalen Flächen genau $p_k$ entspricht.   
   \end{theorem}
   \pause
   \begin{theorem}[\sc Grünbaum]
@@ -175,7 +203,7 @@
     \begin{align*}
       \sum_k^m (4 - k) p_k = 8
     \end{align*}
-    gilt. Dann gibt es eine Anzahl $p_4$ und ein $4$-valentes $3$-Polytop (in allen Ecken stoßen $3$ Kanten zusammen), dessen Anzahl an $k$-Ecken genau $p_k$ entspricht.   
+    gilt. Dann gibt es eine Anzahl $p_4$ und ein $4$-valentes $3$-Polytop (in allen Ecken stoßen $4$ Kanten zusammen), dessen Anzahl an $k$-gonalen Flächen genau $p_k$ entspricht.   
   \end{theorem}
 \end{frame}
 
@@ -184,7 +212,7 @@
 
   \vspace{0.5cm}
   \begin{columns}
-    \begin{column}{0.4\textwidth}\\
+    \begin{column}{0.3\textwidth}\\
 
       { \centering
         \begin{tikzpicture}
@@ -224,116 +252,48 @@
         \end{tikzpicture}
       }
     \end{column}
-    \begin{column}{0.4\textwidth}
-      \uncover<6->{\par Hierbei entspricht der Rote Pfeil für das klassische $3$-valente {\sc Eberhard}-Theorem einem Hinzufügen von einem Sechseck und zwei $3$-valenten Knoten.\\}
-      \medskip
-      \uncover<7->{\par Die Idee der Arbeit ist ähnliche Theoreme für andere Richtungen und auch für Graphen auf Mannigfaltigkeiten zu teigen.\\}
-      \medskip
-      \uncover<8->{\par Nur bestimmte / ``flache'' Richtungen kommen hierbei infrage.}
+    \begin{column}{0.5\textwidth}
+      \begin{itemize}
+        \uncover<6->{\item der Rote Pfeil entspricht für das klassische $3$-valente {\sc Eberhard}-Theorem einem Hinzufügen von einem Sechseck und zwei $3$-valenten Ecken.}
+        \medskip
+        \uncover<7->{\item Inhalt der Arbeit ist es ähnliche Theoreme sowohl für andere Richtungen und auch für Graphen auf Mannigfaltigkeiten zu zeigen\\ (für den Vortrag beschränken wir uns jedoch weiterhin auf $3$-Polytope, der Unterschied tritt nur in Detailfragen auf)}
+        \medskip
+        \uncover<8->{\item nur bestimmte / ``flache'' Richtungen kommen hierbei infrage}
+      \end{itemize}
     \end{column}
   \end{columns}
 \end{frame}
-
-\begin{frame}{Allgemeine {\sc Eberhard}-typ Probleme}
+\section{Allgemeine {\sc Eberhard}-Typ Probleme}
+\begin{frame}{Sequenzen}
   \begin{definition}[Sequenz]
     Eine \hdef{Sequenz} $a$ ist eine Abbildung $a : \nats \setminus \set{0, 1, 2} \to \nats, k \mapsto a_k$ mit endlichem Träger. Auf der Menge der Sequenzen seien Addition und Multiplikation mit natürlichen Zahlen komponentenweise definiert.
   \end{definition}
   \pause
-  Wir schreiben Sequenzen wie im folgenden Beispiel:
+  Sequenzen werden hier durch die Angabe ihrer positiven Einträge notiert:
   \begin{example}
-    $(2, 0, 0, 1)$, $[2 \times 3, 1 \times 6]$, $[2 \times 3, 6]$ und $2 \cdot [3] + [6]$ beschreiben alle dieselbe Sequenz.
+    $[2 \times 3, 1 \times 6]$ und $2 \cdot [1 \times 3] + [1 \times 6]$ beschreiben alle dieselbe Sequenz.
   \end{example}
-  \pause
-  \begin{block}{Allgemeine {\sc Eberhard}-typ Probleme}
-    Gegeben $p$, $v$ Sequenzen, welche in einer noch zu spezifizierenden Weise zulässig sind (sie erfüllen ein Analogon der Gleichung $\sum_k (6 - k) p_k = 12$) und gegeben weitere Sequenzen $q$ und $w$, welche in einer noch zu spezifizierenden Weise ``flach'' sind, gibt es $c, d \in \nats$ und eine Realisierung deren Anzahl an $k$-Ecken genau $p_k + c \cdot q_k$ entspricht und deren Anzahl an $k$-valenten Ecken genau $v_k + c \cdot w_k$ entspricht?
-  \end{block}
 \end{frame}
-
-\begin{frame}{Graphen und Einbettungen}
-  \begin{definition}
-    Ein \hdef{schlichter Graph} $G = (V, E)$ besteht aus einer endlichen Menge von Knoten $V$ und einer Kantenmenge $E \subseteq \set{\set{u, v} : u, v \in E}$.
-  \end{definition}
-  \pause
-  \begin{definition}
-    Eine \hdef{Einbettung} $\phi$ eines Graphen $G = (V, E)$ (nicht notwendigerweise schlicht) in eine (topologische) $2$-Mannigfaltigkeit $S$ ist eine Abbildung welche Knoten Punkte aus $S$ zuordnet und Kanten homöomorphe Bilder von $[0, 1]$ in $S$ zuordnet sodass die natürliche Grapheninzidenz erhalten bleibt.
-  \end{definition}
-\end{frame}
-\begin{frame}
-  \begin{definition}{Flächen von Einbettungen}
-    Die Abschlüsse der Zusammenhangskomponenten des Komplements des Bildes einer Einbettung heißen Flächen.
-  \end{definition}
-  \pause
-  \vspace{1cm}
-  \centering
-  \begin{tikzpicture}
-    \only<2>{
-      \fill[gray!30!white] (-1.5, -0.6) .. controls (-1.2,-0.8) and (-0.75, -0.8) .. (-0.5, -0.8) .. controls (-0.6,-0.9) and (-0.6, -1.0) .. (-0.6, -1.2) .. controls (-0.7, -1.2) and (-1.2,-0.9) .. cycle;
-    }
-    \only<3>{
-      \fill[gray!30!white] (-3.5,0) .. controls (-3.5, 1) and (-1.5, 1.5) .. (0, 1.5) 
-      .. controls ( 1.5, 1.5) and ( 3.5, 1) .. (3.5, 0)
-      .. controls ( 3.5,-1) and ( 1.5,-1.5) .. (0,-1.5)
-      .. controls (-1.5,-1.5) and (-3.5,-1) .. (-3.5, 0);
-      \fill[white] (-1.75,0) .. controls (-1.5,-0.3) and (-1,-0.35) .. (0,-.35) .. controls (1,-0.35) and (1.5,-0.3) .. (1.75,0).. controls (1.5,0.3) and (1,0.5) .. (0,.5) .. controls (-1,0.5) and (-1.5,0.3) .. (-1.75,0);
-      \fill[white] (-1.5, -0.6) .. controls (-1.2,-0.8) and (-0.75, -0.8) .. (-0.5, -0.8) .. controls (-0.6,-0.9) and (-0.6, -1.0) .. (-0.6, -1.2) .. controls (-0.7, -1.2) and (-1.2,-0.9) .. cycle;
-
-    }
-    \draw (-3.5,0) .. controls (-3.5, 1) and (-1.5, 1.5) .. (0, 1.5);
-    \draw ( 3.5,0) .. controls ( 3.5, 1) and ( 1.5, 1.5) .. (0, 1.5);
-    \draw (-3.5,0) .. controls (-3.5,-1) and (-1.5,-1.5) .. (0,-1.5);
-    \draw ( 3.5,0) .. controls ( 3.5,-1) and ( 1.5,-1.5) .. (0,-1.5);
-    \draw (-1.875, 0.15) -- (-1.75,0);
-    \draw ( 1.875, 0.15) -- ( 1.75,0);
-    \draw (-1.75,0) .. controls (-1.5,-0.3) and (-1,-0.35) .. (0,-.35) .. controls (1,-0.35) and (1.5,-0.3) .. (1.75,0);
-    \draw (-1.75,0) .. controls (-1.5,0.3) and (-1,0.5) .. (0,.5) .. controls (1,0.5) and (1.5,0.3) .. (1.75,0);
-    \fill[black, shift={(-1.5, -0.6)}, rotate=-30, xscale=0.9] (0, 0) circle (0.8pt);
-    \fill[black, shift={(-0.5, -0.8)}, xscale=0.9] (0, 0) circle (0.8pt);
-    \fill[black, shift={(-0.6, -1.2)}, xscale=0.9] (0, 0) circle (0.8pt);
-    \draw (-1.5, -0.6) .. controls (-1.2,-0.8) and (-0.75, -0.8) .. (-0.5, -0.8);
-    \draw (-0.5, -0.8) .. controls (-0.6,-0.9) and (-0.6, -1.0) .. (-0.6, -1.2);
-    \draw (-1.5, -0.6) .. controls (-1.2,-0.9) and (-0.7, -1.2) .. (-0.6, -1.2);
-  \end{tikzpicture}
-\end{frame}
-\begin{frame}{Polyedrische Karten}
-  \begin{definition}
-    Eine \hdef{Karte} ist eine Einbettung eines schlichten Graphen mit mindestens $3$-valenten Ecken bei der jede Fläche eine abgeschlossene $2$-Zelle ist (homöomorph zu $\set{x \in \reals : |x| \leq 1}$).
-  \end{definition}
-  \pause
-  \begin{definition}
-    Eine Karte ist \hdef{polyedrisch} wenn je zwei verschiedene Flächen gutartig inzidieren, d.h. je zwei verschiedene Flächen sind disjunkt, inzident zu genau einer gemeinsamen Ecke oder inzident zu genau einer gemeinsamen Kante.
-  \end{definition}
-  \pause
-  \begin{definition}[$p$- und $v$-Vektoren]
-    Der \hdef{$p$-Vektor} einer Karte $M$ ist die Sequenz~$(p_k)$, wobei $p_k$ die Anzahl der $k$-gonalen Flächen von $M$ angibt. Der \hdef{$v$-Vektor} einer Karte $M$ ist die Sequenz~$(v_k)$, wobei $v_k$ die Anzahl der $k$-valenten Ecken von $M$ angibt.
-  \end{definition}
-\end{frame}
-\begin{frame}{Realisierbarkeit}
-  \begin{definition}
-    Ein Paar von Sequenzen $p = (p_3, \dots, p_m)$ und $v = (v_3, \dots, v_n)$ heißt \hdef{realisierbar} auf einer $2$-Mannigfaltigkeit, wenn es eine polyedrische Karte gibt, welche $p$ als $p$-Vektor und $v$ als $v$-Vektor hat. Diese Karte heißt \hdef{Realisierung}.
-  \end{definition}
-  \pause
-  Wir haben in den vorangegangenen {\sc Eberhard}-Theoremen gesehen, dass es grundlegende Gleichungen gibt, welche für die Realisierbarkeit erfüllt sein müssen. Diese leiten sich aus der {\sc Euler}-{\sc Poincaré}-Formel ab:
-  \begin{block}{{\sc Euler}-{\sc Poincaré}-Formel}
-    Für Einbettungen in eine Mannigfaltigkeit mit {\sc Euler}-Charakteristik $\chi$ mit Eckenmenge $V$, Kantenmenge $E$ und Flächenmenge $F$ gilt:
-    \begin{align*}
-      |V| - |E| + |F| = \chi.
-    \end{align*}
+\begin{frame}{Allgemeine {\sc Eberhard}-Typ Probleme}
+  \begin{block}{Allgemeine {\sc Eberhard}-Typ Probleme}
+    Gegeben $p$, $v$ Sequenzen, welche in einer noch zu spezifizierenden Weise ``zulässig'' sind (sie erfüllen ein Analogon der Gleichung $\sum_k (6 - k) p_k = 12$) und gegeben weitere Sequenzen $q$ und $w$, welche in einer noch zu spezifizierenden Weise ``flach'' sind, gibt es $c, d \in \nats$ und eine Realisierung deren Anzahl an $k$-gonale Flächen genau $p_k + c \cdot q_k$ entspricht und deren Anzahl an $k$-valenten Ecken genau $v_k + d \cdot w_k$ entspricht?
   \end{block}
 \end{frame}
 
 \begin{frame}{Zulässige Sequenzen}
-  Mit einer ähnlichen Rechnung wie zuvor lässt sich aus der {\sc Euler}-{\sc Poincaré}-Formel zeigen, dass zwischen $p$- und $v$-Vektoren und der Anzahl der Kanten $e$ von Karten auf $2$-Mannigfaltigkeiten $S$ der Charakteristik $\chi$ der folgende Zusammenhang für alle $t \in \reals$ herrscht:
+  Eine ähnliche Rechnung ({\sc Euler}-Formel, doppeltes Abzählen) zeigt, dass zwischen $p$- und $v$-Vektoren und der Anzahl der Kanten $f_1$ eines $3$-Polytopes der folgende Zusammenhang für alle $t \in \reals$ herrscht:
   \begin{block}{}
     \begin{align*}
-      \sum_{k=3}^m (2 - t \cdot k ) v_k + \sum_{k=3}^n ( 2 - (1 - t) \cdot k ) p_k &= 2 \chi\\
-      \sum_{k=3}^{m} k \cdot p_k = \sum_{k=3}^{n} k \cdot v_k &= 2e
+      \sum_{k=3}^m (2 - t \cdot k ) v_k + \sum_{k=3}^n ( 2 - (1 - t) \cdot k ) p_k &= 4\\
+      \sum_{k=3}^{m} k \cdot p_k = \sum_{k=3}^{n} k \cdot v_k &= 2f_1
     \end{align*}
   \end{block}
-  Wir möchten Paare $(p, v)$ als \hdef{zulässig für $S$} bezeichnen, wenn sie die obigen Gleichungen für bestimmte $e$ und alle $t \in \reals$ erfüllen. Zulässig zu sein ist also eine notwendige Bedingung für Realisierbarkeit.
+  Paare $(p, v)$ heißen \hdef{zulässig}, wenn sie die obigen Gleichungen für bestimmte $f_1 \in \nats$ und alle $t \in \reals$ erfüllen.\\
+  Zulässig zu sein ist also eine notwendige Bedingung für Realisierbarkeit.
 \end{frame}
 
 \begin{frame}{Flache Sequenzen}
-  Völlig analog können wir auch Bedingungen an Sequenzen $q$ und $w$ finden, wenn $p+c\cdot q$ und $v+d\cdot w$ realisierbar sein sollen:
+  Eine analoge Rechnung für die Realisierbarkeit von $p+c\cdot q$ und $v+d\cdot w$ liefert:
   \begin{block}{}
     \begin{align*}
       \sum_{k=3}^m \left(\frac{2}{t} - k \right) w_k = \sum_{k=3}^n \left( \frac{2}{1-t} - k \right) q_k = 0.
@@ -343,40 +303,37 @@
   Falls obige Gleichung für ein $t \in \left[\tfrac{1}{3}, \tfrac{2}{3}\right]$ gilt, dann heißen $q$ und $w$ \hdef{flach mit Parameter $t$}.
   \pause
   \begin{definition}
-    Zwei zulässige Sequenzen $p$, $v$ für eine $2$-Mannigfaltigkeit $S$ mit {\sc Euler}-Charakteristic $\chi$ heißen \hdef{$q$-$w$-realisierbar auf $S$}, falls es $c, d \in \nats$ und eine Realisation von $(p + c \cdot v, q + d \cdot w)$ auf $S$ gibt.
+    Zwei zulässige Sequenzen $p$, $v$ heißen \hdef{$q$-$w$-realisierbar}, falls es $c, d \in \nats$ und eine Realisierung von $(p + c \cdot q, v + d \cdot w)$ gibt.
   \end{definition}
   \pause
-  Das $q$, $w$ flach mit Parameter $t$ sind, ist also eine notwendige Begingung dafür, dass zwei zulässige Sequenzen $q$-$w$-realisierbar sind.
+  Flach zu sein ist eine notwendige Bedinung für $q$-$w$-Realisierbarkeit.
 \end{frame}
 
 \begin{frame}
   \begin{theorem}[{\sc Jendrol', Jucovi{\v{c}}}, 1977, \cite{jendrol1977generalization}] \label{thm:eberhard:extended:3}
-    Ein Paar von zulässigen Sequenzen $p$, $v$ für eine kompakten orientierbaren $2$-Mannigfaltigkeit $S$ ist $[6]$-$[3]$-realisierbar genau dann, wenn:
+    Ein Paar von zulässigen Sequenzen $p$, $v$ ist $[1 \times 6]$-$[1 \times 3]$-realisierbar genau dann, wenn:
     \begin{align*}
-      \sum_{k=3,\,2 \nmid k}^{m} p_k \neq 0 \text{ oder} \sum_{k=4,\,3 \nmid k}^n v_k \neq 1& &\text{ wenn } \chi = 2, \\
-      p \neq [5, 7] \text{ oder } v \neq [v_3 \times 3]& &\text{ wenn } \chi = 0.
+      \sum_{k=3,\,2 \nmid k}^{m} p_k \neq 0 \text{ oder} \sum_{k=4,\,3 \nmid k}^n v_k \neq 1
     \end{align*}
   \end{theorem}
   \pause
   \begin{theorem}[{\sc Jendrol', Jucovi{\v{c}}, Barnette, Grünbaum, Zaks}, 1973, \cite{jucovivc1973theorem}, \cite{barnette1971toroidal}, \cite{grunbaum1969planar}, \cite{zaks1971analogue}] \label{thm:eberhard:extended:4}
-    Ein Paar von zulässigen Sequenzen $p$, $v$ für auf einer kompakten orientierbaren $2$-Mannigfaltigkeit $S$ ist $[4]$-$[4]$-realisierbar genau dann, wenn
-    \begin{align*}
-      p \neq [3, 5] \text{ oder } v \neq [v_4 \times 4]& &\text{ wenn } \chi = 0,\\
-      p \neq [p_4 \times 4] \text{ oder } v \neq [3, 5]& &\text{ wenn } \chi = 0.
-    \end{align*}
+    Jedes Paar von zulässigen Sequenzen $p$, $v$ ist $[1 \times 4]$-$[1 \times 4]$-realisierbar.
   \end{theorem}
+  \pause
+  Beide Theoreme wurden auch für Graphen auf Mannigfaltigkeiten erweitert (in diesen Fällen gibt es jedoch noch Ausnahmen für Graphen auf dem Torus).
 \end{frame}
 
 \begin{frame}[fragile]{Genaue Problemstellung}
-  Wir wollen {\sc Eberhard}-typ Probleme für Sequenzen $q$ mit zwei teilerfremden Einträgen und Sequenzen $w$ mit genau einem Eintrag auf orientierbaren kompakten $2$-Mannigfaltigkeiten eingehend betrachten:
+  Wir wollen {\sc Eberhard}-Typ Probleme für Sequenzen $q$ mit zwei teilerfremden Einträgen und Sequenzen $w$ mit genau einem Eintrag eingehend betrachten:
   \begin{block}{}
     \begin{align*}
       q &= [q_s \times s, q_l \times l] \qquad s < l,\,\gcd(q_s, q_l) = 1, \\
-      w &= [r]
+      w &= [1 \times r]
     \end{align*}
   \end{block}
   \pause
-  Es entstehen fünf Fälle für $(s,r)$, jeder nur noch von $l$ abhängig:
+  $\implies$ fünf Fälle für $(s, r)$, jeder nur noch von $l$ abhängig:
   \begin{tikzpicture}[line join=round]
     \centering
     \tdplotsetmaincoords{75}{105}
@@ -490,19 +447,57 @@
   \end{tikzpicture}
 \end{frame}
 
-\begin{frame}{1. Beweisschritt}{}
-  {\sc Eberhard}-typ Probleme für Sequenzen $q = [q_s \times s, q_l \times l]$ mit zwei teilerfremden Einträgen und Sequenzen $w = [r]$ mit genau einem Eintrag, $s, l, r \in \nats$ haben eine nützliche Eigenschaft, die die Konstruktion vereinfacht:
-  \begin{lemma}
-    Seien $p, v$ zulässige Sequenzen für eine $2$-Mannigfaltigkeit $S$ und $q$, $w$ wie oben und flach mit Parameter $t \in \left[\tfrac{1}{3}, \tfrac{2}{3}\right]$. Sei $M$ eine polyedrische Karte mit $p$-Vektor $p + [c_s \cdot q_s \times s, c_l \cdot q_l \times l]$ und $v$-Vektor $v + [d \times r]$ für $c_s, c_l, d \in \nats$. Dann ist $M$ eine $q$-$w$-Realisierung von $(p, v)$.
-  \end{lemma}
+\begin{frame}
+  \begin{itemize}
+  \item Ziel: Beweisen von allen Theoremen diesen Typs, sofern sie für alle zulässigen $p$, $v$ gelten.
+    \pause
+  \item für jeden möglichen Fall von flachen $q$, $w$ entweder eine Konstruktion einer $q$-$w$-Realisierung für alle zulässigen $p$, $v$ oder ein Gegenbeispiel, welches sich nicht $q$-$w$-realisieren lässt.
+  \end{itemize}
+\end{frame}
+
+\section{Beweisschritte}
+
+\begin{frame}{1. Beweisschritt}
+  \begin{theorem}[{\sc Steinitz}]
+    Es sind äquivalent:
+    \begin{itemize}
+    \item Ein Graph $G$ ist der Kantengraph eines $3$-Polytopes
+    \item $G$ ist planar und $3$-verbunden (d.h. nach Löschen von $3$ Knoten bleibt der Graph zusammenhängend)
+    \item $G$ ist planar, alle Gebiete/Flächen von $G$ sind homöomorph zu einer Kreisscheibe ($\set{x \in \reals^2 : |x| \leq 1}$) und je zwei Flächen \hdef{inzidieren gutartig}, d.h. sie sind identisch, disjunkt, besitzen genau einen gemeinsamen Knoten oder besitzen genau eine gemeinsame Kante.
+    \end{itemize}
+  \end{theorem}
   \pause
-  Das heißt, sobald wir eine Realisierung finden, die neben $p$ und $v$ nur $s$-Ecke, $l$-Ecke und $r$-valente Knoten besitzt, dann ist dies auch automatisch eine gewünschte $q$-$w$-Realisierung von $(p, v)$ und es ist kein genaues Nachzählen der \newline $s$- und $l$-Ecke notwendig (hierbei ist $\gcd(q_s, q_l) = 1$ wichtig!).
+  \begin{example}
+    In der folgenden Konfiguration hat das untere Polygon mit dem oberen Polygon zwei gemeinsame Kanten.
+    
+    { \centering
+      \begin{tikzpicture}[scale=0.5]
+        \draw (-2, 0) -- (-1, 0) -- (0, 1) -- (1, 0) -- (2, 0);
+        \draw (-1, 0) -- (0, -1) -- (1, 0);
+        \draw (0, 1) -- (0, -1);
+        \draw[loosely dotted] (-2.5, 0) -- (-2, 0);
+        \draw[loosely dotted] (2.5, 0) -- (2, 0);
+
+        \fill[black] (-1,0) circle(2pt);
+        \fill[black] (1,0) circle(2pt);
+        \fill[black] (0,-1) circle(2pt);
+        \fill[black] (0,1) circle(2pt);
+      \end{tikzpicture}
+      \par
+    }
+  \end{example}
+  
+  Wir können also die Konstruktionen für planare Graphen durchführen.
+
 \end{frame}
 
 \begin{frame}[fragile]{2. Beweisschritt}{}
-  Obwohl wir uns auf fünf Fälle beschränken konnten, gibt es für den Parameter $l$ immer noch unendlich viele Möglichkeiten. Wir können jedoch, wenn wir die $l$-Ecke geschickt anordnen, aus zwei $l$-Ecken zwei $(l + s)$-Ecke konstruieren:
+  \begin{itemize}
+    \item für den Parameter $l$ gibt es unendlich viele Möglichkeiten in jedem der Fälle
+    \item durch geschicktes anordnen der Polygone lassen sich aus zwei $l$-gonalen Flächen zwei $l + s$-gonale konstruieren:
+  \end{itemize}
   \begin{example}
-    Für den Fall $(s, r) = (3, 5)$ können zwei $l$-Ecke, die über eine Kante verbunden sind zu zwei $l + s$-Ecken vergrößern, wobei wir $18$ Dreiecke einfügen:
+    Für den Fall $(s, r) = (3, 5)$ können zwei $l$-gonale Flächen, die über eine Kante verbunden sind zu zwei $l + s$-gonalen Flächen vergrößern, wobei wir $18$ Dreiecke einfügen:
 
     { \centering
       \begin{tikzpicture}
@@ -513,8 +508,8 @@
             \draw (1.2, 0.5) -- (1, 0) -- (1.2, -0.5);
             \draw (-0.8, 0.5) -- (-1, 0) -- (-0.8, -0.5);
             \draw (0.8, 0.5) -- (1, 0) -- (0.8, -0.5);
-            \node (k1) at (-2, 0) {$k_1$};
-            \node (k2) at (2, 0) {$k_2$};
+            \node (k1) at (-2, 0) {$l$};
+            \node (k2) at (2, 0) {$l$};
             
             \fill[black] (-1,0) circle(2pt);
             \fill[black] (1,0) circle(2pt);
@@ -546,8 +541,8 @@
             \draw (0, 1) -- (0, 0.5);
             
             
-            \node (k1) at (-1.8, 0) {$k_1 + 3$};
-            \node (k2) at (1.8, 0) {$k_2 + 3$};
+            \node (k1) at (-1.8, 0) {$l + 3$};
+            \node (k2) at (1.8, 0) {$l + 3$};
             
             \fill[black] (0,-1) circle (2pt);
             \fill[black] (0,1) circle (2pt);
@@ -571,42 +566,46 @@
     Diese Konstruktion lässt sich beliebig oft durchführen.
   \end{example}
   \pause
-  Solche Konstruktionen sind inspiriert von den platonischen Körpern, es gibt sie für vier der fünf Fälle. Damit ``reduziert'' sich der Gesamtaufwand auf 16 Unterfälle.
+  Solche Konstruktionen sind inspiriert von den platonischen Körpern, es gibt sie für vier der fünf Fälle. Damit ``reduziert'' sich in diesen Fällen der Gesamtaufwand auf 17 Induktionsanfänge.
 \end{frame}
 
 \begin{frame}{2. Beweisschritt}
-  \begin{tabularx}{\textwidth}{|c|c|X|}
+  \begin{tabularx}{\textwidth}{|c|l|X|}
     \hline
-    $(s, r)$ & $l$ &\\
+    $(s, r)$ & \multicolumn{1}{c|}{$l$} &\\
     \hline
-    $(3, 3)$ & & \\
-    $(3, 4)$ & $l \equiv 0~(\mod 4)$ &\\
-    $(3, 4)$ & $l \equiv 1~(\mod 4)$ &\\
-    $(3, 4)$ & $l \equiv 2~(\mod 4)$ &\\
-    $(3, 4)$ & $l \equiv 3~(\mod 4)$ &\\
-    $(3, 5)$ & $l \equiv 0~(\mod 5)$ &\\
-    $(3, 5)$ & $l \equiv 1~(\mod 5)$ &\\
-    $(3, 5)$ & $l \equiv 2~(\mod 5)$ &\\
-    $(3, 5)$ & $l \equiv 3~(\mod 5)$ &\\
-    $(3, 5)$ & $l \equiv 4~(\mod 5)$ &\\
-    $(4, 3)$ & $l \equiv 0~(\mod 3)$ &\\
-    $(4, 3)$ & $l \equiv 1~(\mod 3)$ &\\
-    $(4, 3)$ & $l \equiv 2~(\mod 3)$ &\\
-    $(5, 3)$ & $l \equiv 0~(\mod 3)$ &\\
-    $(5, 3)$ & $l \equiv 1~(\mod 3)$ &\\
-    $(5, 3)$ & $l \equiv 2~(\mod 3)$ &\\
+    $(3, 3)$ & \multicolumn{1}{c|}{?} & \\
+    $(4, 3)$ & $l = 7$ &\\
+    $(4, 3)$ & $l = 8$ &\\
+    $(4, 3)$ & $l = 9$ &\\
+    $(4, 3)$ & $l = 10$ &\\
+    $(5, 3)$ & $l = 7$ &\\
+    $(5, 3)$ & $l = 8$ &\\
+    $(5, 3)$ & $l = 9$ &\\
+    $(5, 3)$ & $l = 10$ &\\
+    $(5, 3)$ & $l = 11$ &\\
+    $(3, 4)$ & $l = 5$ &\\
+    $(3, 4)$ & $l = 6$ &\\
+    $(3, 4)$ & $l = 7$ &\\
+    $(3, 5)$ & $l = 4$ &\\
+    $(3, 5)$ & $l = 5$ &\\
+    $(3, 5)$ & $l = 6$ &\\
     \hline
   \end{tabularx}
 \end{frame}
 
 \begin{frame}[fragile]{3. Beweisschritt}
-  Explizite Konstruktionen von Karten sind sehr aufwendig, was sich in den orignalen Arbeiten für die klassischen {\sc Eberhard} Sätze erkennen lässt. Wir nutzen daher aus, dass es diese Sätze schon gibt und können so eine erste Realisierung erhalten, welche jedoch zu viele Sechsecke oder Vierecke enthält.
-
+  \begin{itemize}
+  \item explizite Konstruktionen von $3$-Polytopen sind sehr aufwendig
+    \pause
+  \item Ausnutzen der klassischen {\sc Eberhard}-Theoreme führt zu einer ersten Realisierung
+    \pause
+  \item diese besitzt jedoch zu viele Sechsecke oder Vierecke enthält.
+    \pause
+  \item Idee: um jede $k$-gonale Fläche einen Ring aus $k$ Kopien eines Patches $\mathcal{M}$ bilden, welcher nur aus $s$- und $l$-gonalen Flächen und $r$-valenten Ecken besteht.
+  \end{itemize}
   \medskip
-
   \pause
-  Idee: Wir bilden um jedes $k$-Eck einen Ring aus $k$ Kopien eines Patches $\mathcal{M}$, welcher nur aus $s$-Ecken, $l$-Ecken und $r$-Valenten Knoten besteht.
-  
   { \centering\scriptsize
     \begin{tikzpicture}
       \matrix (m) [column sep=1cm] {
@@ -671,7 +670,7 @@
           \coordinate[shift={(0.75,1.5)}] (penta12) at (236:0.5) ;
           \coordinate[shift={(0.75,1.5)}] (penta13) at (308:0.5) ;
 
-          \only<1-3>{
+          \only<1-6>{
             \coordinate[shift={(-0.75,1.625)}] (hexa1) at (  0:0.5) ;
             \coordinate[shift={(-0.75,1.625)}] (hexa2) at ( 60:0.5) ;
             \coordinate[shift={(-0.75,1.625)}] (hexa3) at (120:0.5) ;
@@ -693,7 +692,7 @@
             \node[shift={(-0.75,1.625)}] at (330:1.8) {$\mathcal{M}$};
           }
 
-          \only<4>{
+          \only<7>{
             \node at (-3, 6.5) {$\mathcal{P}$};
           }
           
@@ -830,13 +829,13 @@
     \par }
 
   \pause
-  Im nächsten Schritt ersetzen wir alle überschüssigen Sechs- oder Vierecke durch einen eigenen Patch $\mathcal{P}$, welcher ebenfalls nur aus $s$-Ecken, $l$-Ecken und $r$-valenten Knoten besteht, und erhalten eine Karte mit gewünschtem $p$- und $v$-Vektoren.
+  Im nächsten Schritt ersetzen wir alle überschüssigen Sechs- oder Vierecke durch einen eigenen Patch $\mathcal{P}$, welcher ebenfalls nur aus $s$- und $l$-gonalen Flächen und $r$-valenten Ecken besteht, und erhalten eine Karte mit gewünschtem $p$- und $v$-Vektoren.
 \end{frame}
 
 \begin{frame}{4. Beweisschritt}
-  Die letzte Eigenschaft die wir für eine $q$-$w$-Realisierung sicherstellen müssen ist, dass die konstruierte Karte polyedrisch ist. 
+  Die letzte Eigenschaft, die wir für eine $q$-$w$-Realisierung sicherstellen müssen, ist, dass der konstruierte Graph als $3$-Polytop realisierbar ist. 
   \begin{lemma}
-    Sei $\mathcal{M}$ der Patch aus der vorangegangen Konstruktion, so dass zusätzlich alle Flächen in den vier Kopien entlang jeder Kante gutartig zusammenstoßen. Dann ist die aus der Konstruktion erhaltene Karte polyedrisch.
+    Sei $\mathcal{M}$ der Patch aus der vorangegangen Konstruktion, so dass zusätzlich alle Flächen in den vier Kopien entlang jeder Kante gutartig zusammenstoßen. Dann ist der konstruierte Graph als $3$-Polytop realisierbar.
   \end{lemma}
 
   { \centering
@@ -945,32 +944,263 @@
     \par
   }
 \end{frame}
+\begin{frame}
+  Diese Schritte lassen sich in $11$ Fällen durchführen.\\
+  \medskip
+  \begin{tabularx}{\textwidth}{|c|m{2cm}|X|}
+    \hline
+    $(s, r)$ & \multicolumn{1}{c|}{$l$} &\\
+    \hline
+    $(3, 3)$ & \multicolumn{1}{c|}{?} & \\
+    $(4, 3)$ & $l = 7, 9$ & \only<2,3>{Für alle $p, v$ möglich}\\
+    $(4, 3)$ & $l = 8$ &\\
+    $(4, 3)$ & $l = 10$ &\only<3>{Für fast alle $p, v$ möglich}\\
+    $(5, 3)$ & $l = 7, 8, 9, 11$ & \only<2,3>{Für alle $p, v$ möglich}\\
+    $(5, 3)$ & $l = 10$ &\\
+    $(3, 4)$ & $l = 5, 7$ & \only<2,3>{Für alle $p, v$ möglich}\\
+    $(3, 4)$ & $l = 6$ &\\
+    $(3, 5)$ & $l = 4, 5$ & \only<2,3>{Für alle $p, v$ möglich}\\
+    $(3, 5)$ & $l = 5$ &\\
+    \hline
+  \end{tabularx}
+\end{frame}
 
 \begin{frame}
   Diese Schritte lassen sich in $11$ Fällen durchführen.\\
   \medskip
+  \begin{tabularx}{\textwidth}{|c|m{2cm}|X|}
+    \hline
+    $(s, r)$ & \multicolumn{1}{c|}{$l$} &\\
+    \hline
+    $(3, 3)$ & \multicolumn{1}{c|}{?} & \\
+    $(4, 3)$ & $l \equiv 1~(\mod 2)$ & Für alle $p, v$ möglich\\
+    $(4, 3)$ & $l \equiv 0~(\mod 4)$ &\\
+    $(4, 3)$ & $l \equiv 2~(\mod 4)$ & Für fast alle $p, v$ möglich\\
+    $(5, 3)$ & $l \not\equiv 0~(\mod 5)$ & Für alle $p, v$ möglich\\
+    $(5, 3)$ & $l \equiv 0~(\mod 5)$ &\\
+    $(3, 4)$ & $l \not\equiv 0~(\mod 3)$ & Für alle $p, v$ möglich\\
+    $(3, 4)$ & $l \equiv 0~(\mod 3)$ &\\
+    $(3, 5)$ & $l \not\equiv 0~(\mod 3)$ & Für alle $p, v$ möglich\\
+    $(3, 5)$ & $l \equiv 0~(\mod 3)$ &\\
+    \hline
+  \end{tabularx}
+\end{frame}
+
+
+\section{Negative Resultate}
+
+\begin{frame}{Negative Resultate}
+  Viele der Unterfälle von $(s, r) = (3, 3)$ lassen sich ausschließen:
+  \begin{theorem}
+    Seien $p$ und $v$ zulässige Sequenzen und $q = [q_3 \times 3, q_l \times l]$, $w = [1 \times 3]$, $l \geq 11$ und $\sum_{k \geq 4} 2k  v_k + \sum_{k \geq 4} \lfloor \tfrac{k}{2} \rfloor p_k < 3p_3$. Dann ist $(p, v)$ nicht $q$-$w$-realisierbar, außer für $p = [4 \times 3]$, $v = [4 \times 3]$.
+    \medskip\\
+    \pause
+    { \normalfont
+      Beweisidee: Nur im Fall des Tetraeders können zwei Dreiecke eine gemeinsame Kante besitzen.
+
+      { \centering
+        \begin{tikzpicture}[scale=0.5]
+          \draw (-2, 0) -- (-1, 0) -- (0, 1) -- (1, 0) -- (2, 0);
+          \draw (-1, 0) -- (0, -1) -- (1, 0);
+          \draw (0, 1) -- (0, -1);
+          \draw[loosely dotted] (-2.5, 0) -- (-2, 0);
+          \draw[loosely dotted] (2.5, 0) -- (2, 0);
+
+          \fill[black] (-1,0) circle(2pt);
+          \fill[black] (1,0) circle(2pt);
+          \fill[black] (0,-1) circle(2pt);
+          \fill[black] (0,1) circle(2pt);
+        \end{tikzpicture}
+        \par
+      }
+      Eine Abschätzung der Anzahl an Kanten die an Dreiecken anliegen zeigt dann das Resultat.
+    }
+  \end{theorem}
+\end{frame}
+
+\begin{frame}
   \begin{tabularx}{\textwidth}{|c|c|X|}
     \hline
     $(s, r)$ & $l$ &\\
     \hline
-    $(3, 3)$ & &\\
-    $(3, 4)$ & $l \equiv 0~(\mod 4)$ &\\
-    $(3, 4)$ & $l \equiv 1~(\mod 4)$ & \only<2>{Für alle $p, v, S$ möglich}\\
-    $(3, 4)$ & $l \equiv 2~(\mod 4)$ & \only<2>{Für fast alle $p, v, S$ möglich}\\
-    $(3, 4)$ & $l \equiv 3~(\mod 4)$ & \only<2>{Für alle $p, v, S$ möglich}\\
-    $(3, 5)$ & $l \equiv 0~(\mod 5)$ & \\
-    $(3, 5)$ & $l \equiv 1~(\mod 5)$ & \only<2>{Für alle $p, v, S$ möglich}\\
-    $(3, 5)$ & $l \equiv 2~(\mod 5)$ & \only<2>{Für alle $p, v, S$ möglich}\\
-    $(3, 5)$ & $l \equiv 3~(\mod 5)$ & \only<2>{Für alle $p, v, S$ möglich}\\
-    $(3, 5)$ & $l \equiv 4~(\mod 5)$ & \only<2>{Für alle $p, v, S$ möglich}\\
-    $(4, 3)$ & $l \equiv 0~(\mod 3)$ &\\
-    $(4, 3)$ & $l \equiv 1~(\mod 3)$ & \only<2>{Für alle $p, v, S$ möglich}\\
-    $(4, 3)$ & $l \equiv 2~(\mod 3)$ & \only<2>{Für alle $p, v, S$ möglich}\\
-    $(5, 3)$ & $l \equiv 0~(\mod 3)$ &\\
-    $(5, 3)$ & $l \equiv 1~(\mod 3)$ & \only<2>{Für alle $p, v, S$ möglich}\\
-    $(5, 3)$ & $l \equiv 2~(\mod 3)$ & \only<2>{Für alle $p, v, S$ möglich}\\
+    $(3, 3)$ & $l = 7$               & \only<3-6>{Für alle $p, v$ möglich}\\
+    $(3, 3)$ & $l = 8$               & \only<3-6>{Für alle $p, v$ möglich}\\
+    $(3, 3)$ & $l = 9$               & \only<5-6>{Es gibt unrealisierbare Beispiele}\\
+    $(3, 3)$ & $l = 10$              & \only<3-6>{Für alle $p, v$ möglich}\\
+    $(3, 3)$ & $l \geq 11$           & \only<2-6>{Es gibt unrealisierbare Beispiele}\\
+    $(4, 3)$ & $l \equiv 0~(\mod 4)$ & \only<5-6>{Es gibt unrealisierbare Beispiele}\\
+    $(4, 3)$ & $l \equiv 1~(\mod 2)$ & Für alle $p, v$ möglich\\
+    $(4, 3)$ & $l \equiv 2~(\mod 4)$ & \only<1-5>{Für fast alle $p, v$ möglich} \only<6>{Immer möglich, außer für bestimmte Beispiele}\\
+    $(5, 3)$ & $l \equiv 0~(\mod 5)$ & \only<5-6>{Es gibt unrealisierbare Beispiele}\\
+    $(5, 3)$ & $l \not\equiv 0~(\mod 5)$ & Für alle $p, v$ möglich\\
+    $(3, 4)$ & $l \equiv 0~(\mod 3)$ & \only<5-6>{Es gibt unrealisierbare Beispiele}\\
+    $(3, 4)$ & $l \not\equiv 0~(\mod 3)$ & Für alle $p, v$ möglich\\
+    $(3, 5)$ & $l \equiv 0~(\mod 3)$ & \only<5-6>{Es gibt unrealisierbare Beispiele}\\
+    $(3, 5)$ & $l \not\equiv 0~(\mod 3)$ & Für alle $p, v$ möglich\\
     \hline
   \end{tabularx}
+  \uncover<4-6>{Durch graphentheoretische Überlegungen lassen sich für alle Fälle mit $\gcd(s, l) \neq 1$ Beispiele für $p, v$ finden, die nicht $q$-$w$-realisierbar sind.}
+\end{frame}
+
+\begin{frame}{Offene Fragen}
+  \begin{itemize}
+    \item Welche $(p, v)$ sind nicht $q$-$w$-realisierbar für $s | l$?\\
+      Vermutung: Wir haben bereits alle Gegenbeispiele gefunden (wie im Fall $s = 4$, $r = 3$ und $l \equiv 2~(\mod 4)$)
+      \pause
+    \item Welche $(p, v)$ lassen sich $[q_3 \times 3, q_l \times l]$-$[3]$-realisieren? Diese Frage ist sehr schwierig für $l \geq 13$, wie sieht die Antwort für $l = 11$ oder $l = 12$ aus?
+      \pause
+    \item Wie sieht die Menge der $(c, d)$ aus für die $(p + c \cdot q, v + d \cdot w)$ realisierbar sind?
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \centering
+  Vielen Dank für Ihre Aufmerksamkeit.
+\end{frame}
+\begin{frame}
+  \footnotesize{
+    \bibliographystyle{alpha}
+    \bibliography{bibliography}{}
+  }
+\end{frame}
+
+\begin{frame}
+  \input{../flavorimg/img3.tex}
+\end{frame}
+
+% Extra
+\begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}Extra\par
+  \end{beamercolorbox}
+  \vfill
+\end{frame}
+\begin{frame}{Graphen und Einbettungen}
+  \begin{definition}
+    Ein \hdef{schlichter Graph} $G = (V, E)$ besteht aus einer endlichen Menge von Knoten $V$ und einer Kantenmenge $E \subseteq \set{\set{u, v} : u, v \in E, u \neq v}$.
+  \end{definition}
+  \pause
+  \begin{definition}
+    Eine \hdef{Einbettung} $\phi$ eines Graphen $G = (V, E)$ (nicht notwendigerweise schlicht) in eine (topologische) $2$-Mannigfaltigkeit $S$ ist eine Abbildung welche Knoten Punkte aus $S$ zuordnet und Kanten homöomorphe Bilder von $[0, 1]$ in $S$ zuordnet sodass die natürliche Grapheninzidenz erhalten bleibt.
+  \end{definition}
+\end{frame}
+\begin{frame}{}
+  \begin{definition}[Flächen von Einbettungen]
+    Die Abschlüsse der Zusammenhangskomponenten des Komplements des Bildes einer Einbettung heißen Flächen.
+  \end{definition}
+  \pause
+  \vspace{1cm}
+  \centering
+  \begin{tikzpicture}
+    \only<2>{
+      \fill[gray!30!white] (-1.5, -0.6) .. controls (-1.2,-0.8) and (-0.75, -0.8) .. (-0.5, -0.8) .. controls (-0.6,-0.9) and (-0.6, -1.0) .. (-0.6, -1.2) .. controls (-0.7, -1.2) and (-1.2,-0.9) .. cycle;
+    }
+    \only<3>{
+      \fill[gray!30!white] (-3.5,0) .. controls (-3.5, 1) and (-1.5, 1.5) .. (0, 1.5) 
+      .. controls ( 1.5, 1.5) and ( 3.5, 1) .. (3.5, 0)
+      .. controls ( 3.5,-1) and ( 1.5,-1.5) .. (0,-1.5)
+      .. controls (-1.5,-1.5) and (-3.5,-1) .. (-3.5, 0);
+      \fill[white] (-1.75,0) .. controls (-1.5,-0.3) and (-1,-0.35) .. (0,-.35) .. controls (1,-0.35) and (1.5,-0.3) .. (1.75,0).. controls (1.5,0.3) and (1,0.5) .. (0,.5) .. controls (-1,0.5) and (-1.5,0.3) .. (-1.75,0);
+      \fill[white] (-1.5, -0.6) .. controls (-1.2,-0.8) and (-0.75, -0.8) .. (-0.5, -0.8) .. controls (-0.6,-0.9) and (-0.6, -1.0) .. (-0.6, -1.2) .. controls (-0.7, -1.2) and (-1.2,-0.9) .. cycle;
+
+    }
+    \draw (-3.5,0) .. controls (-3.5, 1) and (-1.5, 1.5) .. (0, 1.5);
+    \draw ( 3.5,0) .. controls ( 3.5, 1) and ( 1.5, 1.5) .. (0, 1.5);
+    \draw (-3.5,0) .. controls (-3.5,-1) and (-1.5,-1.5) .. (0,-1.5);
+    \draw ( 3.5,0) .. controls ( 3.5,-1) and ( 1.5,-1.5) .. (0,-1.5);
+    \draw (-1.875, 0.15) -- (-1.75,0);
+    \draw ( 1.875, 0.15) -- ( 1.75,0);
+    \draw (-1.75,0) .. controls (-1.5,-0.3) and (-1,-0.35) .. (0,-.35) .. controls (1,-0.35) and (1.5,-0.3) .. (1.75,0);
+    \draw (-1.75,0) .. controls (-1.5,0.3) and (-1,0.5) .. (0,.5) .. controls (1,0.5) and (1.5,0.3) .. (1.75,0);
+    \fill[black, shift={(-1.5, -0.6)}, rotate=-30, xscale=0.9] (0, 0) circle (0.8pt);
+    \fill[black, shift={(-0.5, -0.8)}, xscale=0.9] (0, 0) circle (0.8pt);
+    \fill[black, shift={(-0.6, -1.2)}, xscale=0.9] (0, 0) circle (0.8pt);
+    \draw (-1.5, -0.6) .. controls (-1.2,-0.8) and (-0.75, -0.8) .. (-0.5, -0.8);
+    \draw (-0.5, -0.8) .. controls (-0.6,-0.9) and (-0.6, -1.0) .. (-0.6, -1.2);
+    \draw (-1.5, -0.6) .. controls (-1.2,-0.9) and (-0.7, -1.2) .. (-0.6, -1.2);
+  \end{tikzpicture}
+\end{frame}
+\begin{frame}{Polyedrische Karten}
+  \begin{definition}
+    Eine \hdef{Karte} ist eine Einbettung eines schlichten Graphen mit mindestens $3$-valenten Ecken bei der jede Fläche eine abgeschlossene $2$-Zelle ist (homöomorph zu $\set{x \in \reals^2 : |x| \leq 1}$).
+  \end{definition}
+  \pause
+  \begin{definition}
+    Eine Karte ist \hdef{polyedrisch}, wenn je zwei verschiedene Flächen gutartig inzidieren, d.h. je zwei verschiedene Flächen sind disjunkt, inzident zu genau einer gemeinsamen Ecke oder inzident zu genau einer gemeinsamen Kante.
+  \end{definition}
+  \pause
+  \begin{definition}[$p$- und $v$-Vektoren]
+    Der \hdef{$p$-Vektor} einer Karte $M$ ist die Sequenz~$(p_k)$, wobei $p_k$ die Anzahl der $k$-gonalen Flächen von $M$ angibt. Der \hdef{$v$-Vektor} einer Karte $M$ ist die Sequenz~$(v_k)$, wobei $v_k$ die Anzahl der $k$-valenten Ecken von $M$ angibt.
+  \end{definition}
+\end{frame}
+\begin{frame}{Realisierbarkeit}
+  \begin{definition}
+    Ein Paar von Sequenzen $p = (p_3, \dots, p_m)$ und $v = (v_3, \dots, v_n)$ heißt \hdef{realisierbar} auf einer $2$-Mannigfaltigkeit, wenn es eine polyedrische Karte gibt, welche $p$ als $p$-Vektor und $v$ als $v$-Vektor hat. Diese Karte heißt \hdef{Realisierung}.
+  \end{definition}
+  \pause
+  Wir haben in den vorangegangenen {\sc Eberhard}-Theoremen gesehen, dass es grundlegende Gleichungen gibt, welche für die Realisierbarkeit erfüllt sein müssen. Diese leiten sich aus der {\sc Euler}-{\sc Poincaré}-Formel ab:
+  \begin{block}{{\sc Euler}-{\sc Poincaré}-Formel}
+    Für Einbettungen mit $f_0$ Ecken, $f_1$ Kanten und $f_2$ Flächen in eine Mannigfaltigkeit mit {\sc Euler}-Charakteristik gilt:
+    \begin{align*}
+      f_0 - f_1 + f_2 = \chi.
+    \end{align*}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Zulässige Sequenzen}
+  Mit einer ähnlichen Rechnung wie zuvor lässt sich aus der {\sc Euler}-{\sc Poincaré}-Formel zeigen, dass zwischen $p$- und $v$-Vektoren und der Anzahl der Kanten $f_1$ von Karten auf $2$-Mannigfaltigkeiten $S$ der Charakteristik $\chi$ der folgende Zusammenhang für alle $t \in \reals$ herrscht:
+  \begin{block}{}
+    \begin{align*}
+      \sum_{k=3}^m (2 - t \cdot k ) v_k + \sum_{k=3}^n ( 2 - (1 - t) \cdot k ) p_k &= 2 \chi\\
+      \sum_{k=3}^{m} k \cdot p_k = \sum_{k=3}^{n} k \cdot v_k &= 2f_1
+    \end{align*}
+  \end{block}
+  Wir möchten Paare $(p, v)$ als \hdef{zulässig für $S$} bezeichnen, wenn sie die obigen Gleichungen für bestimmte $f_1$ und alle $t \in \reals$ erfüllen. Zulässig zu sein ist also eine notwendige Bedingung für Realisierbarkeit.
+\end{frame}
+
+\begin{frame}{Flache Sequenzen}
+  Völlig analog können wir auch Bedingungen an Sequenzen $q$ und $w$ finden, wenn $p+c\cdot q$ und $v+d\cdot w$ realisierbar sein sollen:
+  \begin{block}{}
+    \begin{align*}
+      \sum_{k=3}^m \left(\frac{2}{t} - k \right) w_k = \sum_{k=3}^n \left( \frac{2}{1-t} - k \right) q_k = 0.
+    \end{align*}
+  \end{block}
+  \pause
+  Falls obige Gleichung für ein $t \in \left[\tfrac{1}{3}, \tfrac{2}{3}\right]$ gilt, dann heißen $q$ und $w$ \hdef{flach mit Parameter $t$}.
+  \pause
+  \begin{definition}
+    Zwei zulässige Sequenzen $p$, $v$ für eine $2$-Mannigfaltigkeit $S$ mit {\sc Euler}-Charakteristic $\chi$ heißen \hdef{$q$-$w$-realisierbar auf $S$}, falls es $c, d \in \nats$ und eine Realisierung von $(p + c \cdot q, v + d \cdot w)$ auf $S$ gibt.
+  \end{definition}
+\end{frame}
+
+\begin{frame}
+  \begin{theorem}[{\sc Jendrol', Jucovi{\v{c}}}, 1977, \cite{jendrol1977generalization}] \label{thm:eberhard:extended:3}
+    Ein Paar von zulässigen Sequenzen $p$, $v$ für eine geschlossenen orientierbaren $2$-Mannigfaltigkeit $S$ ist $[6]$-$[3]$-realisierbar genau dann, wenn:
+    \begin{align*}
+      \sum_{k=3,\,2 \nmid k}^{m} p_k \neq 0 \text{ oder} \sum_{k=4,\,3 \nmid k}^n v_k \neq 1& &\text{ wenn } \chi = 2, \\
+      p \neq [5, 7] \text{ oder } v \neq [v_3 \times 3]& &\text{ wenn } \chi = 0.
+    \end{align*}
+  \end{theorem}
+  \pause
+  \begin{theorem}[{\sc Jendrol', Jucovi{\v{c}}, Barnette, Grünbaum, Zaks}, 1973, \cite{jucovivc1973theorem}, \cite{barnette1971toroidal}, \cite{grunbaum1969planar}, \cite{zaks1971analogue}] \label{thm:eberhard:extended:4}
+    Ein Paar von zulässigen Sequenzen $p$, $v$ für auf einer geschlossenen orientierbaren $2$-Mannigfaltigkeit $S$ ist $[4]$-$[4]$-realisierbar genau dann, wenn
+    \begin{align*}
+      p \neq [3, 5] \text{ oder } v \neq [v_4 \times 4]& &\text{ wenn } \chi = 0,\\
+      p \neq [p_4 \times 4] \text{ oder } v \neq [3, 5]& &\text{ wenn } \chi = 0.
+    \end{align*}
+  \end{theorem}
+\end{frame}
+
+
+\begin{frame}{Münchhausentrick}{}
+  {\sc Eberhard}-Typ Probleme für Sequenzen $q = [q_s \times s, q_l \times l]$ mit zwei teilerfremden Einträgen und Sequenzen $w = [1 \times r]$ mit genau einem Eintrag, $s, l, r \in \nats$ haben eine nützliche Eigenschaft, die die Konstruktion vereinfacht:
+  \begin{lemma}
+    Seien $p, v$ zulässige Sequenzen für eine $2$-Mannigfaltigkeit $S$ und $q$, $w$ wie oben und flach mit Parameter $t \in \left[\tfrac{1}{3}, \tfrac{2}{3}\right]$. Sei $M$ eine polyedrische Karte mit $p$-Vektor $p + [c_s \cdot q_s \times s, c_l \cdot q_l \times l]$ und $v$-Vektor $v + [d \times r]$ für $c_s, c_l, d \in \nats$. Dann ist $M$ eine $q$-$w$-Realisierung von $(p, v)$.
+  \end{lemma}
+  \pause
+  Das heißt, sobald wir eine Realisierung finden, die neben $p$ und $v$ nur $s$- und $l$-gonale Flächen und $r$-valente Ecken besitzt, dann ist dies auch automatisch eine gewünschte $q$-$w$-Realisierung von $(p, v)$ und es ist kein genaues Nachzählen der \newline $s$- und $l$-gonale Flächen notwendig (hierbei ist $\gcd(q_s, q_l) = 1$ wichtig!).
 \end{frame}
 
 \begin{frame}{Negative Resultate}
@@ -1004,40 +1234,10 @@
   \end{theorem}
 \end{frame}
 
-\begin{frame}
-  \begin{tabularx}{\textwidth}{|c|c|X|}
-    \hline
-    $(s, r)$ & $l$ &\\
-    \hline
-    $(3, 3)$ & $l = 7$               & \only<3>{Für alle $p, v, S$ möglich}\\
-    $(3, 3)$ & $l = 8$               & \only<3>{Für alle $p, v, S$ möglich}\\
-    $(3, 3)$ & $l = 9$               &\\
-    $(3, 3)$ & $l = 10$              & \only<3>{Für alle $p, v, S$ möglich}\\
-    $(3, 3)$ & $l \geq 11$           & \only<2,3>{Es gibt unrealisierbare Beispiele für alle $S$}\\
-    $(3, 4)$ & $l \equiv 0~(\mod 4)$ &\\
-    $(3, 4)$ & $l \equiv 1~(\mod 4)$ & Für alle $p, v, S$ möglich\\
-    $(3, 4)$ & $l \equiv 2~(\mod 4)$ & Für fast alle $p, v, S$ möglich\\
-    $(3, 4)$ & $l \equiv 3~(\mod 4)$ & Für alle $p, v, S$ möglich\\
-    $(3, 5)$ & $l \equiv 0~(\mod 5)$ & \\
-    $(3, 5)$ & $l \equiv 1~(\mod 5)$ & Für alle $p, v, S$ möglich\\
-    $(3, 5)$ & $l \equiv 2~(\mod 5)$ & Für alle $p, v, S$ möglich\\
-    $(3, 5)$ & $l \equiv 3~(\mod 5)$ & Für alle $p, v, S$ möglich\\
-    $(3, 5)$ & $l \equiv 4~(\mod 5)$ & Für alle $p, v, S$ möglich\\
-    $(4, 3)$ & $l \equiv 0~(\mod 3)$ &\\
-    $(4, 3)$ & $l \equiv 1~(\mod 3)$ & Für alle $p, v, S$ möglich\\
-    $(4, 3)$ & $l \equiv 2~(\mod 3)$ & Für alle $p, v, S$ möglich\\
-    $(5, 3)$ & $l \equiv 0~(\mod 3)$ &\\
-    $(5, 3)$ & $l \equiv 1~(\mod 3)$ & Für alle $p, v, S$ möglich\\
-    $(5, 3)$ & $l \equiv 2~(\mod 3)$ & Für alle $p, v, S$ möglich\\
-    \hline
-  \end{tabularx}
-\end{frame}
-
-
 \begin{frame}{Negative Resultate}
   Die vorherigen Beweisschritte lassen sich nicht für alle Parameterwerte von $s$, $r$ und $l$ durchführen, nämlich dann nicht, wenn $s | l$. Tatsächlich gibt es in diesen Fällen nicht $q$-$w$-realisierbare Sequenzen $p$ und $q$, welche zulässig auf der Sphäre $\sphere^2$ sind. Diese Resultate lassen sich graphentheoretisch zeigen:
 
-  \begin{definition} Ein Knoten in einem Graphen heißt \hdef{$(a \mod r)$-valent}, wenn seine Valenz kongruent $a$ modulo $r$ ist, $r \in \nats_{>0}$, $a \in \set{0, \dots, r - 1}$. Ein Graph heißt (fast) $(a \mod r)$-valent, wenn alle (alle bis auf genau ein) Knoten $(a \mod r)$-valent sind. Dual heißen Flächen \hdef{$(a \mod s)$-gonal}, wenn ihre Knotenanzahl kongruent $a$ modulo $s$ ist, $s \in \nats_{>0}$, $a \in \set{0, \dots, s - 1}$ und der Graph heißt (fast) $(a \mod s)$-gonal wenn alle (alle bis auf genau eine) Fläche  $(a \mod s)$-gonal ist.
+  \begin{definition} Ein Knoten in einem Graphen heißt \hdef{$(a \mod r)$-valent}, wenn seine Valenz kongruent $a$ modulo $r$ ist, $r \in \nats_{>0}$, $a \in \set{0, \dots, r - 1}$. Ein Graph heißt (fast) $(a \mod r)$-valent, wenn alle (alle bis auf genau einem) Knoten $(a \mod r)$-valent sind. Dual heißen Flächen \hdef{$(a \mod s)$-gonal}, wenn ihre Knotenanzahl kongruent $a$ modulo $s$ ist, $s \in \nats_{>0}$, $a \in \set{0, \dots, s - 1}$ und der Graph heißt (fast) $(a \mod s)$-gonal wenn alle (alle bis auf genau eine) Fläche  $(a \mod s)$-gonal ist.
   \end{definition}
   
   \begin{theorem}[Malkevitch '70, \cite{malkevitch1970properties}] Sei $r, s \in \set{2, 3, 4, 5}$. Kein verbundener planarer Graph ist sowohl $(0 \mod r)$-valent als auch fast $(0 \mod s)$-gonal. Dual: Kein verbundener planarer Graph ist sowohl $(0 \mod s)$-gonal als auch fast $(0 \mod r)$-valent.
@@ -1059,7 +1259,7 @@
 \end{frame}
 
 \begin{frame}
-  Dieses Resultat lässt sich erweitern zu:
+  Dieses Resultat lässt sich ergänzen mit:
   \begin{theorem}
     Sei $(s, r) \in \set{(3, 3), (3, 4), (3, 5), (4, 3), (5, 3)}$. Es gibt keinen verbundenen planaren Graphen welcher sowohl $(r \mod 2r)$-valent als auch fast $(s \mod 2s)$-gonal ist. Dual: Es gibt keinen verbundenen planaren Graphen welcher sowohl $(s \mod 2s)$-gonal als auch fast $(r \mod 2r)$-valent ist. 
   \end{theorem}
@@ -1069,7 +1269,6 @@
   \end{example}
 \end{frame}
 
-
 \begin{frame}
   \begin{tabularx}{\textwidth}{|c|c|X|}
     \hline
@@ -1077,43 +1276,26 @@
     \hline
     $(3, 3)$ & $l = 7$               & Für alle $p, v, S$ möglich\\
     $(3, 3)$ & $l = 8$               & Für alle $p, v, S$ möglich\\
-    $(3, 3)$ & $l = 9$               & \only<2-3>{Es gibt unrealisierbare Beispiele für $S \cong \sphere^2$}\\
+    $(3, 3)$ & $l = 9$               & Es gibt unrealisierbare Beispiele für $S \cong \sphere^2$\\
     $(3, 3)$ & $l = 10$              & Für alle $p, v, S$ möglich\\
     $(3, 3)$ & $l \geq 11$           & Es gibt unrealisierbare Beispiele für alle $S$\\
-    $(3, 4)$ & $l \equiv 0~(\mod 4)$ & \only<2-3>{Es gibt unrealisierbare Beispiele für $S \cong \sphere^2$}\\
-    $(3, 4)$ & $l \equiv 1~(\mod 4)$ & Für alle $p, v, S$ möglich\\
-    $(3, 4)$ & $l \equiv 2~(\mod 4)$ & \only<1-2>{Für fast alle $p, v, S$ möglich}\only<3>{Immer möglich, außer für vorheriges Gegenbeispiel}\\
-    $(3, 4)$ & $l \equiv 3~(\mod 4)$ & Für alle $p, v, S$ möglich\\
-    $(3, 5)$ & $l \equiv 0~(\mod 5)$ & \only<2-3>{Es gibt unrealisierbare Beispiele für $S \cong \sphere^2$}\\
-    $(3, 5)$ & $l \equiv 1~(\mod 5)$ & Für alle $p, v, S$ möglich\\
-    $(3, 5)$ & $l \equiv 2~(\mod 5)$ & Für alle $p, v, S$ möglich\\
-    $(3, 5)$ & $l \equiv 3~(\mod 5)$ & Für alle $p, v, S$ möglich\\
-    $(3, 5)$ & $l \equiv 4~(\mod 5)$ & Für alle $p, v, S$ möglich\\
-    $(4, 3)$ & $l \equiv 0~(\mod 3)$ & \only<2-3>{Es gibt unrealisierbare Beispiele für $S \cong \sphere^2$}\\
-    $(4, 3)$ & $l \equiv 1~(\mod 3)$ & Für alle $p, v, S$ möglich\\
-    $(4, 3)$ & $l \equiv 2~(\mod 3)$ & Für alle $p, v, S$ möglich\\
-    $(5, 3)$ & $l \equiv 0~(\mod 3)$ & \only<2-3>{Es gibt unrealisierbare Beispiele für $S \cong \sphere^2$}\\
-    $(5, 3)$ & $l \equiv 1~(\mod 3)$ & Für alle $p, v, S$ möglich\\
-    $(5, 3)$ & $l \equiv 2~(\mod 3)$ & Für alle $p, v, S$ möglich\\
+    $(4, 3)$ & $l \equiv 0~(\mod 4)$ & Es gibt unrealisierbare Beispiele für $S \cong \sphere^2$\\
+    $(4, 3)$ & $l \equiv 1~(\mod 4)$ & Für alle $p, v, S$ möglich\\
+    $(4, 3)$ & $l \equiv 2~(\mod 4)$ & Immer möglich, außer für bestimmte Gegenbeispiele\\
+    $(4, 3)$ & $l \equiv 3~(\mod 4)$ & Für alle $p, v, S$ möglich\\
+    $(5, 3)$ & $l \equiv 0~(\mod 5)$ & Es gibt unrealisierbare Beispiele für $S \cong \sphere^2$\\
+    $(5, 3)$ & $l \equiv 1~(\mod 5)$ & Für alle $p, v, S$ möglich\\
+    $(5, 3)$ & $l \equiv 2~(\mod 5)$ & Für alle $p, v, S$ möglich\\
+    $(5, 3)$ & $l \equiv 3~(\mod 5)$ & Für alle $p, v, S$ möglich\\
+    $(5, 3)$ & $l \equiv 4~(\mod 5)$ & Für alle $p, v, S$ möglich\\
+    $(3, 4)$ & $l \equiv 0~(\mod 3)$ & Es gibt unrealisierbare Beispiele für $S \cong \sphere^2$\\
+    $(3, 4)$ & $l \equiv 1~(\mod 3)$ & Für alle $p, v, S$ möglich\\
+    $(3, 4)$ & $l \equiv 2~(\mod 3)$ & Für alle $p, v, S$ möglich\\
+    $(3, 5)$ & $l \equiv 0~(\mod 3)$ & Es gibt unrealisierbare Beispiele für $S \cong \sphere^2$\\
+    $(3, 5)$ & $l \equiv 1~(\mod 3)$ & Für alle $p, v, S$ möglich\\
+    $(3, 5)$ & $l \equiv 2~(\mod 3)$ & Für alle $p, v, S$ möglich\\
     \hline
   \end{tabularx}
 \end{frame}
-
-\begin{frame}
-  \centering
-  Vielen Dank für Ihre Aufmerksamkeit.
-\end{frame}
-\begin{frame}
-  \footnotesize{
-    \bibliographystyle{alpha}
-    \bibliography{bibliography}{}
-  }
-\end{frame}
-
-\begin{frame}
-\end{frame}
-
-% Extra
-
 
 \end{document}
