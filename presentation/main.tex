@@ -94,17 +94,17 @@
   Gliederung:
 \tableofcontents
 \end{frame}
-\section{$3$-Polytope mit beschriebenen Flächen und Eckentypen}
-\begin{frame}{$3$-Polytope mit beschriebenen Flächen und Eckentypen}
+\section{$3$-Polytope mit vorgegebenen Flächen- und Eckentypen}
+\begin{frame}{$3$-Polytope mit vorgegebenen Flächen und Eckentypen}
   Für ein $3$-Polytop wollen wir die Anzahl der $k$-gonale Flächen mit $p_k$ und die Anzahl der Ecken, in denen $k$ Kanten zusammenstoßen, ($k$-valente Ecken) mit $v_k$ bezeichnen $(k \geq 3)$.
   \pause
   \begin{example}
-    Für ein Tetraeder ist $p_3 = 4$ und $v_3 = 4$ und $v_k = p_k = 0$ für alle anderen $k \geq 3$.\\
+    Für ein Tetraeder ist $p_3 = 4$ und $v_3 = 4$ und $v_k = p_k = 0$ für alle anderen $k \geq 4$.\\
     \pause
     Für ein Dodekaeder ist $p_5 = 12$ und $v_3 = 20$ und $v_k = p_k = 0$ sonst.\\
   \end{example}
 \end{frame}
-\begin{frame}{$3$-Polytope mit beschriebenen Flächen und Eckentypen}
+\begin{frame}{$3$-Polytope mit vorgegebenen Flächen und Eckentypen}
   Eine naheliegende Frage ist, ob wir zu jeder Vorgabe von $p_k$'s und $v_k$'s auch ein $3$-Polytop (eine Realisierung) finden können, welches genau $p_k$ $k$-gonale Flächen besitzt und dessen Anzahl an $k$-valenten Ecken genau $v_k$ ist.
   \pause
   \begin{example}
@@ -115,7 +115,7 @@
 \end{frame}
 
 \begin{frame}
-  Es ergibt sich (grob vereinfacht) folgendes Bild, Punkte bezeichnen realisierbare Anzahlen $p$ und $v$:
+  Es ergibt sich (grob vereinfacht) folgendes Bild, Punkte bezeichnen realisierbare Anzahlen $p = (p_3, p_4, \dots)$ und $v = (v_3, v_4, \dots)$:
 
   \vspace{0.5cm}
   { \centering
@@ -138,7 +138,7 @@
   }
   \vspace{0.5cm}
   \pause
-  Zu bestimmen, ob ein Punkt im Diagramm realisierbar ist, d.h. ob es ein $3$-Polytop mit beschriebenen Flächen und Ecken gibt, ist schwierig.
+  Zu bestimmen, ob ein Punkt im Diagramm realisierbar ist, d.h. ob es ein $3$-Polytop mit vorgegebenen Flächen und Ecken gibt, ist schwierig.
 \end{frame}
 
 \begin{frame}{Eine kleine Rechnung}
@@ -146,21 +146,21 @@
   \pause
   Durch  einfaches und doppeltes Abzählen (jede Kante ist benachbart zu genau zwei Ecken und zu genau zwei Flächen), können wir die Anzahl der Flächen ($f_2$), Kanten ($f_1$) und Ecken ($f_0$) bestimmen:
   \begin{align*}
-    f_2 = \sum_k p_k \qquad f_1 = \tfrac{1}{2}\sum_k k p_k \qquad f_0 = \tfrac{1}{3}\sum_k k p_k
+    f_2 = \sum_{k \geq 3} p_k \qquad f_1 = \tfrac{1}{2}\sum_{k \geq 3} k p_k \qquad f_0 = \tfrac{1}{3}\sum_{k \geq 3} k p_k
   \end{align*}
   \pause
   Von der {\sc Euler}schen Polyederformel wissen wir $f_0 - f_1 + f_2 = 2$ und können dies zur folgenden Gleichung umstellen:
   \begin{align*}
-    \sum_k (6 - k) p_k = 12
+    \sum_{k \geq 3} (6 - k) p_k = 12
   \end{align*}
 \end{frame}
 
-\begin{frame}{Interpretation von $\sum_k (6 - k) p_k = 12$}
+\begin{frame}{Interpretation von $\sum_{k \geq 3} (6 - k) p_k = 12$}
   Wir können aus der vorangegangen Formel diskrete Krümmungen für Polygone angeben:
 
   \centering
     \begin{tikzpicture}[every text node part/.style={align=left}]
-      \node (x1) at (0, 0) {$\sum_k (6 - k) p_k = 12$};
+      \node (x1) at (0, 0) {$\sum_{k \geq 3} (6 - k) p_k = 12$};
       \pause
       \node[rectangle, text width = 3.5cm, anchor=90] (x2) at (-2, -1) {Die Krümmung einer $k$-gonalen Fläche ist \\ - für $k \leq 5$ positiv\\ - für $k = 6$ null (flach)\\ - für $k \geq 7$ negativ};
       \draw[->] (x1.215) -- (x2);
@@ -180,8 +180,8 @@
   \medskip
   \begin{beamercolorbox}[sep=-10pt,center,shadow=true,rounded=true]{block body}
     \begin{align*}
-      4\text{-valent:\quad}&\sum_k (k-4)p_k = 8\\
-      5\text{-valent:\quad}&\sum_k (3k-10)p_k = 20
+      4\text{-valent:\quad}&\sum_{k \geq 3} (k-4)p_k = 8\\
+      5\text{-valent:\quad}&\sum_{k \geq 3} (3k-10)p_k = 20
     \end{align*}
   \end{beamercolorbox}
   \medskip
@@ -193,17 +193,17 @@
   \begin{theorem}[\sc Eberhard]
     Es seien natürliche Zahlen $p_3$, $p_4$, $p_5$, $p_7$, \dots, $p_m$ so gegeben, dass
     \begin{align*}
-      \sum_k^m (6 - k) p_k = 12
+      \sum_{k \geq 3} (6 - k) p_k = 12
     \end{align*}
-    gilt. Dann gibt es eine Anzahl $p_6$ und ein $3$-valentes $3$-Polytop (in allen Ecken stoßen $3$ Kanten zusammen), dessen Anzahl an $k$-gonalen Flächen genau $p_k$ entspricht.   
+    gilt. Dann gibt es eine Anzahl $p_6$ und ein $3$-valentes $3$-Polytop, dessen Anzahl an $k$-gonalen Flächen genau $p_k$ entspricht.   
   \end{theorem}
   \pause
   \begin{theorem}[\sc Grünbaum]
     Es seien natürliche Zahlen $p_3$, $p_5$, $p_7$, \dots, $p_m$ so gegeben, dass
     \begin{align*}
-      \sum_k^m (4 - k) p_k = 8
+      \sum_{k \geq 3} (4 - k) p_k = 8
     \end{align*}
-    gilt. Dann gibt es eine Anzahl $p_4$ und ein $4$-valentes $3$-Polytop (in allen Ecken stoßen $4$ Kanten zusammen), dessen Anzahl an $k$-gonalen Flächen genau $p_k$ entspricht.   
+    gilt. Dann gibt es eine Anzahl $p_4$ und ein $4$-valentes $3$-Polytop, dessen Anzahl an $k$-gonalen Flächen genau $p_k$ entspricht.   
   \end{theorem}
 \end{frame}
 
@@ -254,9 +254,9 @@
     \end{column}
     \begin{column}{0.5\textwidth}
       \begin{itemize}
-        \uncover<6->{\item der Rote Pfeil entspricht für das klassische $3$-valente {\sc Eberhard}-Theorem einem Hinzufügen von einem Sechseck und zwei $3$-valenten Ecken.}
+        \uncover<6->{\item Der rote Pfeil entspricht für das klassische $3$-valente {\sc Eberhard}-Theorem einem Hinzufügen von einem Sechseck und zwei $3$-valenten Ecken.}
         \medskip
-        \uncover<7->{\item Inhalt der Arbeit ist es ähnliche Theoreme sowohl für andere Richtungen und auch für Graphen auf Mannigfaltigkeiten zu zeigen\\ (für den Vortrag beschränken wir uns jedoch weiterhin auf $3$-Polytope, der Unterschied tritt nur in Detailfragen auf)}
+        \uncover<7->{\item Inhalt der Arbeit ist es ähnliche Theoreme sowohl für andere Richtungen und auch für Graphen auf Mannigfaltigkeiten zu zeigen\\ (für den Vortrag beschränken wir uns jedoch weiterhin auf $3$-Polytope, der Unterschied tritt nur in Detailfragen auf).}
         \medskip
         \uncover<8->{\item nur bestimmte / ``flache'' Richtungen kommen hierbei infrage}
       \end{itemize}
@@ -266,39 +266,46 @@
 \section{Allgemeine {\sc Eberhard}-Typ Probleme}
 \begin{frame}{Sequenzen}
   \begin{definition}[Sequenz]
-    Eine \hdef{Sequenz} $a$ ist eine Abbildung $a : \nats \setminus \set{0, 1, 2} \to \nats, k \mapsto a_k$ mit endlichem Träger. Auf der Menge der Sequenzen seien Addition und Multiplikation mit natürlichen Zahlen komponentenweise definiert.
+    Eine \hdef{Sequenz} $a$ ist eine Abbildung $a : \nats \setminus \set{0, 1, 2} \to \nats, k \mapsto a_k$ mit endlichem Träger. Auf der Menge der Sequenzen seien Addition von zwei Sequenzen und Skalarmultiplikation mit natürlichen Zahlen komponentenweise definiert.
   \end{definition}
   \pause
   Sequenzen werden hier durch die Angabe ihrer positiven Einträge notiert:
   \begin{example}
-    $[2 \times 3, 1 \times 6]$ und $2 \cdot [1 \times 3] + [1 \times 6]$ beschreiben alle dieselbe Sequenz.
+    $[2 \times 3, 1 \times 6]$ und $2 \cdot [1 \times 3] + [1 \times 6]$ beschreiben die Sequenz:
+    \begin{align*}
+      k \mapsto \begin{cases} 2 & \text{für } k = 3\\ 1 & \text{für } k = 6\\ 0 & \text{sonst}\end{cases}
+    \end{align*}
   \end{example}
 \end{frame}
 \begin{frame}{Allgemeine {\sc Eberhard}-Typ Probleme}
+  \begin{definition}
+    Ein Paar von Sequenzen $(p, v)$ heißt realisierbar, wenn es ein $3$-Polytop (eine Realisierung) gibt, dessen Anzahl an $k$-gonalen Flächen $p_k$ entspricht und dessen Anzahl an $k$-valenten Ecken $v_k$ entspricht.
+  \end{definition}
+  \pause
   \begin{block}{Allgemeine {\sc Eberhard}-Typ Probleme}
-    Gegeben $p$, $v$ Sequenzen, welche in einer noch zu spezifizierenden Weise ``zulässig'' sind (sie erfüllen ein Analogon der Gleichung $\sum_k (6 - k) p_k = 12$) und gegeben weitere Sequenzen $q$ und $w$, welche in einer noch zu spezifizierenden Weise ``flach'' sind, gibt es $c, d \in \nats$ und eine Realisierung deren Anzahl an $k$-gonale Flächen genau $p_k + c \cdot q_k$ entspricht und deren Anzahl an $k$-valenten Ecken genau $v_k + d \cdot w_k$ entspricht?
+    Seien $p$, $v$ Sequenzen, welche in einer noch zu spezifizierenden Weise ``zulässig'' sind (sie erfüllen ein Analogon der Gleichung $\sum_{k \geq 3} (6 - k) p_k = 12$) und seien weitere Sequenzen $q$ und $w$ gegeben, welche in einer noch zu spezifizierenden Weise ``flach'' sind. Gibt es $c, d \in \nats$ und eine Realisierung deren Anzahl an $k$-gonale Flächen genau $p_k + c \cdot q_k$ entspricht und deren Anzahl an $k$-valenten Ecken genau $v_k + d \cdot w_k$ entspricht?
   \end{block}
 \end{frame}
 
 \begin{frame}{Zulässige Sequenzen}
   Eine ähnliche Rechnung ({\sc Euler}-Formel, doppeltes Abzählen) zeigt, dass zwischen $p$- und $v$-Vektoren und der Anzahl der Kanten $f_1$ eines $3$-Polytopes der folgende Zusammenhang für alle $t \in \reals$ herrscht:
-  \begin{block}{}
+  \begin{beamercolorbox}[sep=-10pt,center,shadow=true,rounded=true]{block body}
     \begin{align*}
-      \sum_{k=3}^m (2 - t \cdot k ) v_k + \sum_{k=3}^n ( 2 - (1 - t) \cdot k ) p_k &= 4\\
-      \sum_{k=3}^{m} k \cdot p_k = \sum_{k=3}^{n} k \cdot v_k &= 2f_1
+      \sum_{k\geq 3} (2 - t \cdot k ) v_k + \sum_{k\geq 3} ( 2 - (1 - t) \cdot k ) p_k &= 4\\
+      \sum_{k\geq 3} k \cdot p_k = \sum_{k \geq 3} k \cdot v_k &= 2f_1
     \end{align*}
-  \end{block}
+  \end{beamercolorbox}
   Paare $(p, v)$ heißen \hdef{zulässig}, wenn sie die obigen Gleichungen für bestimmte $f_1 \in \nats$ und alle $t \in \reals$ erfüllen.\\
   Zulässig zu sein ist also eine notwendige Bedingung für Realisierbarkeit.
 \end{frame}
 
 \begin{frame}{Flache Sequenzen}
   Eine analoge Rechnung für die Realisierbarkeit von $p+c\cdot q$ und $v+d\cdot w$ liefert:
-  \begin{block}{}
+  \begin{beamercolorbox}[sep=-10pt,center,shadow=true,rounded=true]{block body}
     \begin{align*}
-      \sum_{k=3}^m \left(\frac{2}{t} - k \right) w_k = \sum_{k=3}^n \left( \frac{2}{1-t} - k \right) q_k = 0.
+      \sum_{k \geq 3} \left(\frac{2}{t} - k \right) w_k = \sum_{k \geq 3} \left( \frac{2}{1-t} - k \right) q_k = 0.
     \end{align*}
-  \end{block}
+  \end{beamercolorbox}
   \pause
   Falls obige Gleichung für ein $t \in \left[\tfrac{1}{3}, \tfrac{2}{3}\right]$ gilt, dann heißen $q$ und $w$ \hdef{flach mit Parameter $t$}.
   \pause
@@ -311,14 +318,14 @@
 
 \begin{frame}
   \begin{theorem}[{\sc Jendrol', Jucovi{\v{c}}}, 1977, \cite{jendrol1977generalization}] \label{thm:eberhard:extended:3}
-    Ein Paar von zulässigen Sequenzen $p$, $v$ ist $[1 \times 6]$-$[1 \times 3]$-realisierbar genau dann, wenn:
+    Ein Paar von zulässigen Sequenzen $(p, v)$ ist genau dann $[1 \times 6]$-$[1 \times 3]$-realisierbar, wenn:
     \begin{align*}
-      \sum_{k=3,\,2 \nmid k}^{m} p_k \neq 0 \text{ oder} \sum_{k=4,\,3 \nmid k}^n v_k \neq 1
+      \sum_{k=3,\,2 \nmid k}^{m} p_k \neq 0 \text{ oder} \sum_{k=4,\,3 \nmid k}^n v_k \neq 1.
     \end{align*}
   \end{theorem}
   \pause
   \begin{theorem}[{\sc Jendrol', Jucovi{\v{c}}, Barnette, Grünbaum, Zaks}, 1973, \cite{jucovivc1973theorem}, \cite{barnette1971toroidal}, \cite{grunbaum1969planar}, \cite{zaks1971analogue}] \label{thm:eberhard:extended:4}
-    Jedes Paar von zulässigen Sequenzen $p$, $v$ ist $[1 \times 4]$-$[1 \times 4]$-realisierbar.
+    Jedes Paar von zulässigen Sequenzen $(p, v)$ ist $[1 \times 4]$-$[1 \times 4]$-realisierbar.
   \end{theorem}
   \pause
   Beide Theoreme wurden auch für Graphen auf Mannigfaltigkeiten erweitert (in diesen Fällen gibt es jedoch noch Ausnahmen für Graphen auf dem Torus).
@@ -326,14 +333,15 @@
 
 \begin{frame}[fragile]{Genaue Problemstellung}
   Wir wollen {\sc Eberhard}-Typ Probleme für Sequenzen $q$ mit zwei teilerfremden Einträgen und Sequenzen $w$ mit genau einem Eintrag eingehend betrachten:
-  \begin{block}{}
+  \begin{beamercolorbox}[sep=-10pt,center,shadow=true,rounded=true]{block body}
     \begin{align*}
       q &= [q_s \times s, q_l \times l] \qquad s < l,\,\gcd(q_s, q_l) = 1, \\
       w &= [1 \times r]
     \end{align*}
-  \end{block}
+  \end{beamercolorbox}
   \pause
   $\implies$ fünf Fälle für $(s, r)$, jeder nur noch von $l$ abhängig:
+  \pause
   \begin{tikzpicture}[line join=round]
     \centering
     \tdplotsetmaincoords{75}{105}
@@ -449,13 +457,13 @@
 
 \begin{frame}
   \begin{itemize}
-  \item Ziel: Beweisen von allen Theoremen diesen Typs, sofern sie für alle zulässigen $p$, $v$ gelten.
+  \item Ziel: Beweisen von allen Theoremen diesen Typs (sofern sie für alle zulässigen $p$, $v$ gelten).
     \pause
   \item für jeden möglichen Fall von flachen $q$, $w$ entweder eine Konstruktion einer $q$-$w$-Realisierung für alle zulässigen $p$, $v$ oder ein Gegenbeispiel, welches sich nicht $q$-$w$-realisieren lässt.
   \end{itemize}
 \end{frame}
 
-\section{Beweisschritte}
+\section{Beweisschritte der Konstruktion}
 
 \begin{frame}{1. Beweisschritt}
   \begin{theorem}[{\sc Steinitz}]
@@ -493,8 +501,8 @@
 
 \begin{frame}[fragile]{2. Beweisschritt}{}
   \begin{itemize}
-    \item für den Parameter $l$ gibt es unendlich viele Möglichkeiten in jedem der Fälle
-    \item durch geschicktes anordnen der Polygone lassen sich aus zwei $l$-gonalen Flächen zwei $l + s$-gonale konstruieren:
+    \item Für den Parameter $l$ gibt es unendlich viele Möglichkeiten in jedem der Fälle.
+    \item Durch geschicktes Anordnen der Polygone lassen sich aus zwei $l$-gonalen Flächen zwei $l + s$-gonale konstruieren.
   \end{itemize}
   \begin{example}
     Für den Fall $(s, r) = (3, 5)$ können zwei $l$-gonale Flächen, die über eine Kante verbunden sind zu zwei $l + s$-gonalen Flächen vergrößern, wobei wir $18$ Dreiecke einfügen:
@@ -566,7 +574,7 @@
     Diese Konstruktion lässt sich beliebig oft durchführen.
   \end{example}
   \pause
-  Solche Konstruktionen sind inspiriert von den platonischen Körpern, es gibt sie für vier der fünf Fälle. Damit ``reduziert'' sich in diesen Fällen der Gesamtaufwand auf 17 Induktionsanfänge.
+  Solche Konstruktionen gibt sie für vier der fünf Fälle. Damit ``reduziert'' sich in diesen Fällen der Gesamtaufwand auf $15$ Induktionsanfänge.
 \end{frame}
 
 \begin{frame}{2. Beweisschritt}
@@ -996,7 +1004,7 @@
     \medskip\\
     \pause
     { \normalfont
-      Beweisidee: Nur im Fall des Tetraeders können zwei Dreiecke eine gemeinsame Kante besitzen.
+      Beweisidee: Nur im Fall des Tetraeders können zwei Dreiecke eine gemeinsame Kante mit $3$-valenten Endpunkten besitzen.
 
       { \centering
         \begin{tikzpicture}[scale=0.5]
@@ -1030,7 +1038,7 @@
     $(3, 3)$ & $l \geq 11$           & \only<2-6>{Es gibt unrealisierbare Beispiele}\\
     $(4, 3)$ & $l \equiv 0~(\mod 4)$ & \only<5-6>{Es gibt unrealisierbare Beispiele}\\
     $(4, 3)$ & $l \equiv 1~(\mod 2)$ & Für alle $p, v$ möglich\\
-    $(4, 3)$ & $l \equiv 2~(\mod 4)$ & \only<1-5>{Für fast alle $p, v$ möglich} \only<6>{Immer möglich, außer für bestimmte Beispiele}\\
+    $(4, 3)$ & $l \equiv 2~(\mod 4)$ & \only<1-5>{Für fast alle $p, v$ möglich} \only<6>{Alle unrealisierbaren Beispiele bekannt}\\
     $(5, 3)$ & $l \equiv 0~(\mod 5)$ & \only<5-6>{Es gibt unrealisierbare Beispiele}\\
     $(5, 3)$ & $l \not\equiv 0~(\mod 5)$ & Für alle $p, v$ möglich\\
     $(3, 4)$ & $l \equiv 0~(\mod 3)$ & \only<5-6>{Es gibt unrealisierbare Beispiele}\\
@@ -1039,7 +1047,7 @@
     $(3, 5)$ & $l \not\equiv 0~(\mod 3)$ & Für alle $p, v$ möglich\\
     \hline
   \end{tabularx}
-  \uncover<4-6>{Durch graphentheoretische Überlegungen lassen sich für alle Fälle mit $\gcd(s, l) \neq 1$ Beispiele für $p, v$ finden, die nicht $q$-$w$-realisierbar sind.}
+  \uncover<4-6>{Durch graphentheoretische Überlegungen lassen sich für alle Fälle mit $\gcd(s, l) \neq 1$ Beispiele für $(p, v)$ finden, die nicht $q$-$w$-realisierbar sind.}
 \end{frame}
 
 \begin{frame}{Offene Fragen}
@@ -1049,7 +1057,7 @@
       \pause
     \item Welche $(p, v)$ lassen sich $[q_3 \times 3, q_l \times l]$-$[3]$-realisieren? Diese Frage ist sehr schwierig für $l \geq 13$, wie sieht die Antwort für $l = 11$ oder $l = 12$ aus?
       \pause
-    \item Wie sieht die Menge der $(c, d)$ aus für die $(p + c \cdot q, v + d \cdot w)$ realisierbar sind?
+    \item Wie sieht die Menge der $(c, d)$ aus, für die $(p + c \cdot q, v + d \cdot w)$ realisierbar sind?
   \end{itemize}
 \end{frame}
 
@@ -1151,22 +1159,22 @@
 
 \begin{frame}{Zulässige Sequenzen}
   Mit einer ähnlichen Rechnung wie zuvor lässt sich aus der {\sc Euler}-{\sc Poincaré}-Formel zeigen, dass zwischen $p$- und $v$-Vektoren und der Anzahl der Kanten $f_1$ von Karten auf $2$-Mannigfaltigkeiten $S$ der Charakteristik $\chi$ der folgende Zusammenhang für alle $t \in \reals$ herrscht:
-  \begin{block}{}
+  \begin{beamercolorbox}[sep=-10pt,center,shadow=true,rounded=true]{block body}
     \begin{align*}
-      \sum_{k=3}^m (2 - t \cdot k ) v_k + \sum_{k=3}^n ( 2 - (1 - t) \cdot k ) p_k &= 2 \chi\\
-      \sum_{k=3}^{m} k \cdot p_k = \sum_{k=3}^{n} k \cdot v_k &= 2f_1
+      \sum_{k \geq 3} (2 - t \cdot k ) v_k + \sum_{k \geq 3} ( 2 - (1 - t) \cdot k ) p_k &= 2 \chi\\
+      \sum_{k \geq 3} k \cdot p_k = \sum_{k \geq 3} k \cdot v_k &= 2f_1
     \end{align*}
-  \end{block}
+  \end{beamercolorbox}
   Wir möchten Paare $(p, v)$ als \hdef{zulässig für $S$} bezeichnen, wenn sie die obigen Gleichungen für bestimmte $f_1$ und alle $t \in \reals$ erfüllen. Zulässig zu sein ist also eine notwendige Bedingung für Realisierbarkeit.
 \end{frame}
 
 \begin{frame}{Flache Sequenzen}
   Völlig analog können wir auch Bedingungen an Sequenzen $q$ und $w$ finden, wenn $p+c\cdot q$ und $v+d\cdot w$ realisierbar sein sollen:
-  \begin{block}{}
+  \begin{beamercolorbox}[sep=-10pt,center,shadow=true,rounded=true]{block body}
     \begin{align*}
-      \sum_{k=3}^m \left(\frac{2}{t} - k \right) w_k = \sum_{k=3}^n \left( \frac{2}{1-t} - k \right) q_k = 0.
+      \sum_{k \geq 3} \left(\frac{2}{t} - k \right) w_k = \sum_{k \geq 3} \left( \frac{2}{1-t} - k \right) q_k = 0.
     \end{align*}
-  \end{block}
+  \end{beamercolorbox}
   \pause
   Falls obige Gleichung für ein $t \in \left[\tfrac{1}{3}, \tfrac{2}{3}\right]$ gilt, dann heißen $q$ und $w$ \hdef{flach mit Parameter $t$}.
   \pause
@@ -1179,22 +1187,22 @@
   \begin{theorem}[{\sc Jendrol', Jucovi{\v{c}}}, 1977, \cite{jendrol1977generalization}] \label{thm:eberhard:extended:3}
     Ein Paar von zulässigen Sequenzen $p$, $v$ für eine geschlossenen orientierbaren $2$-Mannigfaltigkeit $S$ ist $[6]$-$[3]$-realisierbar genau dann, wenn:
     \begin{align*}
-      \sum_{k=3,\,2 \nmid k}^{m} p_k \neq 0 \text{ oder} \sum_{k=4,\,3 \nmid k}^n v_k \neq 1& &\text{ wenn } \chi = 2, \\
-      p \neq [5, 7] \text{ oder } v \neq [v_3 \times 3]& &\text{ wenn } \chi = 0.
+      \sum_{k \geq 3,\,2 \nmid k} p_k \neq 0 \text{ oder} \sum_{k \geq 4,\,3 \nmid k} v_k \neq 1& &\text{ wenn } \chi = 2, \\
+      p \neq [1 \times 5, 1 \times 7] \text{ oder } v \neq [4 \times 3]& &\text{ wenn } \chi = 0.
     \end{align*}
   \end{theorem}
   \pause
   \begin{theorem}[{\sc Jendrol', Jucovi{\v{c}}, Barnette, Grünbaum, Zaks}, 1973, \cite{jucovivc1973theorem}, \cite{barnette1971toroidal}, \cite{grunbaum1969planar}, \cite{zaks1971analogue}] \label{thm:eberhard:extended:4}
     Ein Paar von zulässigen Sequenzen $p$, $v$ für auf einer geschlossenen orientierbaren $2$-Mannigfaltigkeit $S$ ist $[4]$-$[4]$-realisierbar genau dann, wenn
     \begin{align*}
-      p \neq [3, 5] \text{ oder } v \neq [v_4 \times 4]& &\text{ wenn } \chi = 0,\\
-      p \neq [p_4 \times 4] \text{ oder } v \neq [3, 5]& &\text{ wenn } \chi = 0.
+      p \neq [1 \times 3, 1 \times 5] \text{ oder } v \neq [4 \times 4]& &\text{ wenn } \chi = 0,\\
+      p \neq [4 \times 4] \text{ oder } v \neq [1 \times 3, 1 \times 5]& &\text{ wenn } \chi = 0.
     \end{align*}
   \end{theorem}
 \end{frame}
 
 
-\begin{frame}{Münchhausentrick}{}
+\begin{frame}{Münchhausentrick}
   {\sc Eberhard}-Typ Probleme für Sequenzen $q = [q_s \times s, q_l \times l]$ mit zwei teilerfremden Einträgen und Sequenzen $w = [1 \times r]$ mit genau einem Eintrag, $s, l, r \in \nats$ haben eine nützliche Eigenschaft, die die Konstruktion vereinfacht:
   \begin{lemma}
     Seien $p, v$ zulässige Sequenzen für eine $2$-Mannigfaltigkeit $S$ und $q$, $w$ wie oben und flach mit Parameter $t \in \left[\tfrac{1}{3}, \tfrac{2}{3}\right]$. Sei $M$ eine polyedrische Karte mit $p$-Vektor $p + [c_s \cdot q_s \times s, c_l \cdot q_l \times l]$ und $v$-Vektor $v + [d \times r]$ für $c_s, c_l, d \in \nats$. Dann ist $M$ eine $q$-$w$-Realisierung von $(p, v)$.
