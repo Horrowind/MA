@@ -114,7 +114,7 @@
   \end{example}
 \end{frame}
 
-\begin{frame}
+\begin{frame}{$3$-Polytope mit vorgegebenen Flächen und Eckentypen}
   Es ergibt sich (grob vereinfacht) folgendes Bild, Punkte bezeichnen realisierbare Anzahlen $p = (p_3, p_4, \dots)$ und $v = (v_3, v_4, \dots)$:
 
   \vspace{0.5cm}
@@ -143,6 +143,7 @@
 
 \begin{frame}{Eine kleine Rechnung}
   Wir betrachten ein $3$-valentes $3$-Polytop (es stoßen in jeder Ecke drei Kanten zusammen), welches $p_3$ Dreiecke, $p_4$ Vierecke, \dots, $p_m$ $m$-gonale Flächen hat.\\
+  \medskip
   \pause
   Durch  einfaches und doppeltes Abzählen (jede Kante ist benachbart zu genau zwei Ecken und zu genau zwei Flächen), können wir die Anzahl der Flächen ($f_2$), Kanten ($f_1$) und Ecken ($f_0$) bestimmen:
   \begin{align*}
@@ -175,7 +176,7 @@
 \end{frame}
 
 \begin{frame}
-  Dieselbe Rechnung für $4$- und $5$-valente $3$-Polytope ergibt
+  Dieselbe Rechnung für $4$- und $5$-valente $3$-Polytope ergibt:
 
   \medskip
   \begin{beamercolorbox}[sep=-10pt,center,shadow=true,rounded=true]{block body}
@@ -185,13 +186,13 @@
     \end{align*}
   \end{beamercolorbox}
   \medskip
-
+  \pause
   Man beachte, dass es im $5$-valenten Fall kein ``flaches'' Polygon gibt.
 \end{frame}
 
 \begin{frame}{{\sc Eberhard}s Theorem}
   \begin{theorem}[\sc Eberhard]
-    Es seien natürliche Zahlen $p_3$, $p_4$, $p_5$, $p_7$, \dots, $p_m$ so gegeben, dass
+    Seien natürliche Zahlen $p_3$, $p_4$, $p_5$, $p_7$, \dots, $p_m$ so gegeben, dass
     \begin{align*}
       \sum_{k \geq 3} (6 - k) p_k = 12
     \end{align*}
@@ -199,7 +200,7 @@
   \end{theorem}
   \pause
   \begin{theorem}[\sc Grünbaum]
-    Es seien natürliche Zahlen $p_3$, $p_5$, $p_7$, \dots, $p_m$ so gegeben, dass
+    Seien natürliche Zahlen $p_3$, $p_5$, $p_7$, \dots, $p_m$ so gegeben, dass
     \begin{align*}
       \sum_{k \geq 3} (4 - k) p_k = 8
     \end{align*}
@@ -256,7 +257,7 @@
       \begin{itemize}
         \uncover<6->{\item Der rote Pfeil entspricht für das klassische $3$-valente {\sc Eberhard}-Theorem einem Hinzufügen von einem Sechseck und zwei $3$-valenten Ecken.}
         \medskip
-        \uncover<7->{\item Inhalt der Arbeit ist es ähnliche Theoreme sowohl für andere Richtungen und auch für Graphen auf Mannigfaltigkeiten zu zeigen\\ (für den Vortrag beschränken wir uns jedoch weiterhin auf $3$-Polytope, der Unterschied tritt nur in Detailfragen auf).}
+        \uncover<7->{\item Inhalt der Arbeit: ähnliche Theoreme sowohl für andere Richtungen und auch für Graphen auf Mannigfaltigkeiten zu zeigen\\ (im Vortrag jedoch weiterhin auf $3$-Polytope, der Unterschied tritt nur in Detailfragen auf)}
         \medskip
         \uncover<8->{\item nur bestimmte / ``flache'' Richtungen kommen hierbei infrage}
       \end{itemize}
@@ -285,6 +286,8 @@
   \begin{block}{Allgemeine {\sc Eberhard}-Typ Probleme}
     Seien $p$, $v$ Sequenzen, welche in einer noch zu spezifizierenden Weise ``zulässig'' sind (sie erfüllen ein Analogon der Gleichung $\sum_{k \geq 3} (6 - k) p_k = 12$) und seien weitere Sequenzen $q$ und $w$ gegeben, welche in einer noch zu spezifizierenden Weise ``flach'' sind. Gibt es $c, d \in \nats$ und eine Realisierung deren Anzahl an $k$-gonale Flächen genau $p_k + c \cdot q_k$ entspricht und deren Anzahl an $k$-valenten Ecken genau $v_k + d \cdot w_k$ entspricht?
   \end{block}
+  \pause
+  Aus $c$ ist $d$ eindeutig bestimmt und umgekehrt, diese Formulierung vereinfacht die Notation an verschiedenen Stellen.
 \end{frame}
 
 \begin{frame}{Zulässige Sequenzen}
@@ -320,7 +323,7 @@
   \begin{theorem}[{\sc Jendrol', Jucovi{\v{c}}}, 1977, \cite{jendrol1977generalization}] \label{thm:eberhard:extended:3}
     Ein Paar von zulässigen Sequenzen $(p, v)$ ist genau dann $[1 \times 6]$-$[1 \times 3]$-realisierbar, wenn:
     \begin{align*}
-      \sum_{k=3,\,2 \nmid k}^{m} p_k \neq 0 \text{ oder} \sum_{k=4,\,3 \nmid k}^n v_k \neq 1.
+      \sum_{k \geq 3,\,2 \nmid k} p_k \neq 0 \text{ oder} \sum_{k \geq 3,\,3 \nmid k} v_k \neq 1.
     \end{align*}
   \end{theorem}
   \pause
@@ -457,9 +460,11 @@
 
 \begin{frame}
   \begin{itemize}
-  \item Ziel: Beweisen von allen Theoremen diesen Typs (sofern sie für alle zulässigen $p$, $v$ gelten).
+  \item Ziel: Untersuchung aller Theoremen diesen Typs
     \pause
-  \item für jeden möglichen Fall von flachen $q$, $w$ entweder eine Konstruktion einer $q$-$w$-Realisierung für alle zulässigen $p$, $v$ oder ein Gegenbeispiel, welches sich nicht $q$-$w$-realisieren lässt.
+  \item Sofern das möglich ist, für jeden möglichen Fall von flachen $q$, $w$ eine Konstruktion einer $q$-$w$-Realisierung für alle zulässigen $p$, $v$
+    \pause
+  \item In allen anderen Fällen: Finden von Gegenbeispielen für $p$, $v$, welche sich nicht $q$-$w$-realisieren lassen
   \end{itemize}
 \end{frame}
 
@@ -494,7 +499,8 @@
       \par
     }
   \end{example}
-  
+  \pause
+
   Wir können also die Konstruktionen für planare Graphen durchführen.
 
 \end{frame}
@@ -502,8 +508,9 @@
 \begin{frame}[fragile]{2. Beweisschritt}{}
   \begin{itemize}
     \item Für den Parameter $l$ gibt es unendlich viele Möglichkeiten in jedem der Fälle.
-    \item Durch geschicktes Anordnen der Polygone lassen sich aus zwei $l$-gonalen Flächen zwei $l + s$-gonale konstruieren.
+    \item Durch geschicktes Anordnen der Polygone lassen sich aus zwei $l$-gonalen Flächen zwei $(l + 3)$-gonale konstruieren.
   \end{itemize}
+  \pause
   \begin{example}
     Für den Fall $(s, r) = (3, 5)$ können zwei $l$-gonale Flächen, die über eine Kante verbunden sind zu zwei $l + s$-gonalen Flächen vergrößern, wobei wir $18$ Dreiecke einfügen:
 
@@ -613,7 +620,6 @@
   \item Idee: um jede $k$-gonale Fläche einen Ring aus $k$ Kopien eines Patches $\mathcal{M}$ bilden, welcher nur aus $s$- und $l$-gonalen Flächen und $r$-valenten Ecken besteht.
   \end{itemize}
   \medskip
-  \pause
   { \centering\scriptsize
     \begin{tikzpicture}
       \matrix (m) [column sep=1cm] {
@@ -678,7 +684,7 @@
           \coordinate[shift={(0.75,1.5)}] (penta12) at (236:0.5) ;
           \coordinate[shift={(0.75,1.5)}] (penta13) at (308:0.5) ;
 
-          \only<1-6>{
+          \only<1-5>{
             \coordinate[shift={(-0.75,1.625)}] (hexa1) at (  0:0.5) ;
             \coordinate[shift={(-0.75,1.625)}] (hexa2) at ( 60:0.5) ;
             \coordinate[shift={(-0.75,1.625)}] (hexa3) at (120:0.5) ;
@@ -700,7 +706,7 @@
             \node[shift={(-0.75,1.625)}] at (330:1.8) {$\mathcal{M}$};
           }
 
-          \only<7>{
+          \only<6>{
             \node at (-3, 6.5) {$\mathcal{P}$};
           }
           
@@ -837,11 +843,12 @@
     \par }
 
   \pause
-  Im nächsten Schritt ersetzen wir alle überschüssigen Sechs- oder Vierecke durch einen eigenen Patch $\mathcal{P}$, welcher ebenfalls nur aus $s$- und $l$-gonalen Flächen und $r$-valenten Ecken besteht, und erhalten eine Karte mit gewünschtem $p$- und $v$-Vektoren.
+  Im nächsten Schritt ersetzen wir alle überschüssigen Sechs- oder Vierecke durch einen eigenen Patch $\mathcal{P}$, welcher ebenfalls nur aus $s$- und $l$-gonalen Flächen und $r$-valenten Ecken besteht, und erhalten eine Karte mit der richtigen Anzahl an Sechs- oder Vierecken.
 \end{frame}
 
 \begin{frame}{4. Beweisschritt}
   Die letzte Eigenschaft, die wir für eine $q$-$w$-Realisierung sicherstellen müssen, ist, dass der konstruierte Graph als $3$-Polytop realisierbar ist. 
+  \pause
   \begin{lemma}
     Sei $\mathcal{M}$ der Patch aus der vorangegangen Konstruktion, so dass zusätzlich alle Flächen in den vier Kopien entlang jeder Kante gutartig zusammenstoßen. Dann ist der konstruierte Graph als $3$-Polytop realisierbar.
   \end{lemma}
@@ -1055,7 +1062,7 @@
     \item Welche $(p, v)$ sind nicht $q$-$w$-realisierbar für $s | l$?\\
       Vermutung: Wir haben bereits alle Gegenbeispiele gefunden (wie im Fall $s = 4$, $r = 3$ und $l \equiv 2~(\mod 4)$)
       \pause
-    \item Welche $(p, v)$ lassen sich $[q_3 \times 3, q_l \times l]$-$[3]$-realisieren? Diese Frage ist sehr schwierig für $l \geq 13$, wie sieht die Antwort für $l = 11$ oder $l = 12$ aus?
+    \item Welche $(p, v)$ lassen sich $[q_3 \times 3, q_l \times l]$-$[1 \times 3]$-realisieren? Diese Frage ist sehr schwierig für $l \geq 13$, wie sieht die Antwort für $l = 11$ oder $l = 12$ aus?
       \pause
     \item Wie sieht die Menge der $(c, d)$ aus, für die $(p + c \cdot q, v + d \cdot w)$ realisierbar sind?
   \end{itemize}
@@ -1202,7 +1209,7 @@
 \end{frame}
 
 
-\begin{frame}{Münchhausentrick}
+\begin{frame}{Münchhausentrick}{}
   {\sc Eberhard}-Typ Probleme für Sequenzen $q = [q_s \times s, q_l \times l]$ mit zwei teilerfremden Einträgen und Sequenzen $w = [1 \times r]$ mit genau einem Eintrag, $s, l, r \in \nats$ haben eine nützliche Eigenschaft, die die Konstruktion vereinfacht:
   \begin{lemma}
     Seien $p, v$ zulässige Sequenzen für eine $2$-Mannigfaltigkeit $S$ und $q$, $w$ wie oben und flach mit Parameter $t \in \left[\tfrac{1}{3}, \tfrac{2}{3}\right]$. Sei $M$ eine polyedrische Karte mit $p$-Vektor $p + [c_s \cdot q_s \times s, c_l \cdot q_l \times l]$ und $v$-Vektor $v + [d \times r]$ für $c_s, c_l, d \in \nats$. Dann ist $M$ eine $q$-$w$-Realisierung von $(p, v)$.
@@ -1243,8 +1250,6 @@
 \end{frame}
 
 \begin{frame}{Negative Resultate}
-  Die vorherigen Beweisschritte lassen sich nicht für alle Parameterwerte von $s$, $r$ und $l$ durchführen, nämlich dann nicht, wenn $s | l$. Tatsächlich gibt es in diesen Fällen nicht $q$-$w$-realisierbare Sequenzen $p$ und $q$, welche zulässig auf der Sphäre $\sphere^2$ sind. Diese Resultate lassen sich graphentheoretisch zeigen:
-
   \begin{definition} Ein Knoten in einem Graphen heißt \hdef{$(a \mod r)$-valent}, wenn seine Valenz kongruent $a$ modulo $r$ ist, $r \in \nats_{>0}$, $a \in \set{0, \dots, r - 1}$. Ein Graph heißt (fast) $(a \mod r)$-valent, wenn alle (alle bis auf genau einem) Knoten $(a \mod r)$-valent sind. Dual heißen Flächen \hdef{$(a \mod s)$-gonal}, wenn ihre Knotenanzahl kongruent $a$ modulo $s$ ist, $s \in \nats_{>0}$, $a \in \set{0, \dots, s - 1}$ und der Graph heißt (fast) $(a \mod s)$-gonal wenn alle (alle bis auf genau eine) Fläche  $(a \mod s)$-gonal ist.
   \end{definition}
   
@@ -1278,32 +1283,328 @@
 \end{frame}
 
 \begin{frame}
+  \begin{columns}
+    \begin{column}{0.3\textwidth}  
+      \begin{tikzpicture}
+        \begin{scope}[yscale=0.866, scale=0.5]
+          \draw (-1,0)--(-0.5,1)--(-1,4)--(0.5,10.5)--(-0.5,11.5)--(-2.5,11)--(-3.5,10.5)--(-4.5,10.5)--(-5.5,11)--(-6.375,10.25)--(-6.875,9.25)--(-7,8)--(-7.625,5.75)--(-3.5,1)--(-1,0);
+
+          \draw (-1,4)-- (-3,6)--(-4.5,7)--(-7,8);
+          \draw (-3,6)--(-4,8)--(-4,9.5)--(-3.5,10.5);
+          \draw (-4,9.5)--(-4.5,10.5);
+          \draw (-4,8)--(-4.5,7);
+
+          \fill[black] (-1,0)          circle (2pt);
+          \fill[black] (-0.5,1)        circle (2pt);
+          \fill[black] (-1,4)          circle (2pt);
+          \fill[black] (0.5,10.5)      circle (2pt);
+          \fill[black] (-0.5,11.5)     circle (2pt);
+          \fill[black] (-2.5,11)       circle (2pt);
+          \fill[black] (-3.5,10.5)     circle (2pt);
+          \fill[black] (-4.5,10.5)     circle (2pt);
+          \fill[black] (-5.5,11)       circle (2pt);
+          \fill[black] (-6.375,10.25)  circle (2pt);
+          \fill[black] (-6.875,9.25)   circle (2pt);
+          \fill[black] (-7,8)          circle (2pt);
+          \fill[black] (-7.625,5.75)   circle (2pt);
+          \fill[black] (-3.5,1)        circle (2pt);
+          \fill[black] (-4,8)          circle (2pt);
+          \fill[black] (-4.5,7)        circle (2pt);
+          \fill[black] (-4,9.5)        circle (2pt);
+          \fill[black] (-3,6)          circle (2pt);
+        \end{scope}
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.5\textwidth} 
+      \begin{tikzpicture}
+        \begin{scope}[scale=3]
+          \fill[black] (-0.151641, 0.276786) circle (0.3pt);
+          \fill[black] (0.110346, 0.305984) circle (0.3pt);
+          \fill[black] (0.201969, 0.534986) circle (0.3pt);
+          \fill[black] (-0.550102, 0.038030) circle (0.3pt);
+          \fill[black] (-0.469252, -0.270235) circle (0.3pt);
+          \fill[black] (-0.242657, -0.483949) circle (0.3pt);
+          \fill[black] (0.069886, -0.546812) circle (0.3pt);
+          \fill[black] (0.285052, -0.135070) circle (0.3pt);
+          \fill[black] (0.298799, 0.128253) circle (0.3pt);
+          \fill[black] (0.522273, 0.232891) circle (0.3pt);
+          \fill[black] (0.802123, 0.597159) circle (0.3pt);
+          \fill[black] (0.727374, 0.686242) circle (0.3pt);
+          \fill[black] (0.642788, 0.766044) circle (0.3pt);
+          \fill[black] (0.549509, 0.835488) circle (0.3pt);
+          \fill[black] (0.448799, 0.893633) circle (0.3pt);
+          \fill[black] (-0.276845, 0.480678) circle (0.3pt);
+          \fill[black] (-0.998308, 0.058145) circle (0.3pt);
+          \fill[black] (-0.998308, -0.058145) circle (0.3pt);
+          \fill[black] (-0.316770, 0.673568) circle (0.3pt);
+          \fill[black] (-0.529803, 0.619619) circle (0.3pt);
+          \fill[black] (-0.734747, 0.512559) circle (0.3pt);
+          \fill[black] (-0.918216, 0.396080) circle (0.3pt);
+          \fill[black] (-0.957990, 0.286803) circle (0.3pt);
+          \fill[black] (-0.984808, 0.173648) circle (0.3pt);
+          \fill[black] (-0.866025, 0.500000) circle (0.3pt);
+          \fill[black] (0.342020, 0.939693) circle (0.3pt);
+          \fill[black] (0.230616, 0.973045) circle (0.3pt);
+          \fill[black] (0.116093, 0.993238) circle (0.3pt);
+          \fill[black] (0.000000, 1.000000) circle (0.3pt);
+          \fill[black] (-0.161697, 0.852892) circle (0.3pt);
+          \fill[black] (-0.116093, 0.993238) circle (0.3pt);
+          \fill[black] (-0.230616, 0.973045) circle (0.3pt);
+          \fill[black] (-0.342020, 0.939693) circle (0.3pt);
+          \fill[black] (-0.448799, 0.893633) circle (0.3pt);
+          \fill[black] (-0.499822, 0.763516) circle (0.3pt);
+          \fill[black] (-0.549509, 0.835488) circle (0.3pt);
+          \fill[black] (-0.642788, 0.766044) circle (0.3pt);
+          \fill[black] (-0.727374, 0.686242) circle (0.3pt);
+          \fill[black] (-0.802123, 0.597159) circle (0.3pt);
+          \fill[black] (-0.984808, -0.173648) circle (0.3pt);
+          \fill[black] (-0.957990, -0.286803) circle (0.3pt);
+          \fill[black] (-0.918216, -0.396080) circle (0.3pt);
+          \fill[black] (-0.866025, -0.500000) circle (0.3pt);
+          \fill[black] (-0.674368, -0.428128) circle (0.3pt);
+          \fill[black] (-0.802123, -0.597159) circle (0.3pt);
+          \fill[black] (-0.727374, -0.686242) circle (0.3pt);
+          \fill[black] (-0.642788, -0.766044) circle (0.3pt);
+          \fill[black] (-0.549509, -0.835488) circle (0.3pt);
+          \fill[black] (-0.388407, -0.698006) circle (0.3pt);
+          \fill[black] (-0.448799, -0.893633) circle (0.3pt);
+          \fill[black] (-0.342020, -0.939693) circle (0.3pt);
+          \fill[black] (-0.230616, -0.973045) circle (0.3pt);
+          \fill[black] (-0.116093, -0.993238) circle (0.3pt);
+          \fill[black] (-0.000000, -1.000000) circle (0.3pt);
+          \fill[black] (0.116093, -0.993238) circle (0.3pt);
+          \fill[black] (0.495962, -0.248431) circle (0.3pt);
+          \fill[black] (0.866025, 0.500000) circle (0.3pt);
+          \fill[black] (0.230616, -0.973045) circle (0.3pt);
+          \fill[black] (0.342020, -0.939693) circle (0.3pt);
+          \fill[black] (0.448799, -0.893633) circle (0.3pt);
+          \fill[black] (0.554387, -0.703802) circle (0.3pt);
+          \fill[black] (0.649326, -0.493105) circle (0.3pt);
+          \fill[black] (0.690734, -0.277388) circle (0.3pt);
+          \fill[black] (0.549509, -0.835488) circle (0.3pt);
+          \fill[black] (0.642788, -0.766044) circle (0.3pt);
+          \fill[black] (0.727374, -0.686242) circle (0.3pt);
+          \fill[black] (0.802123, -0.597159) circle (0.3pt);
+          \fill[black] (0.866025, -0.500000) circle (0.3pt);
+          \fill[black] (0.791252, -0.454994) circle (0.3pt);
+          \fill[black] (0.918216, -0.396080) circle (0.3pt);
+          \fill[black] (0.957990, -0.286803) circle (0.3pt);
+          \fill[black] (0.984808, -0.173648) circle (0.3pt);
+          \fill[black] (0.998308, -0.058145) circle (0.3pt);
+          \fill[black] (0.860802, -0.111982) circle (0.3pt);
+          \fill[black] (0.998308, 0.058145) circle (0.3pt);
+          \fill[black] (0.984808, 0.173648) circle (0.3pt);
+          \fill[black] (0.957990, 0.286803) circle (0.3pt);
+          \fill[black] (0.918216, 0.396080) circle (0.3pt);
+
+
+          \coordinate (x0) at (-0.151641, 0.276786);
+          \coordinate (x1) at (0.110346, 0.305984);
+          \coordinate (x2) at (0.201969, 0.534986);
+          \coordinate (x3) at (-0.550102, 0.038030);
+          \coordinate (x4) at (-0.469252, -0.270235);
+          \coordinate (x5) at (-0.242657, -0.483949);
+          \coordinate (x6) at (0.069886, -0.546812);
+          \coordinate (x7) at (0.285052, -0.135070);
+          \coordinate (x8) at (0.298799, 0.128253);
+          \coordinate (x9) at (0.522273, 0.232891);
+          \coordinate (x10) at (0.802123, 0.597159);
+          \coordinate (x11) at (0.727374, 0.686242);
+          \coordinate (x12) at (0.642788, 0.766044);
+          \coordinate (x13) at (0.549509, 0.835488);
+          \coordinate (x14) at (0.448799, 0.893633);
+          \coordinate (x15) at (-0.276845, 0.480678);
+          \coordinate (x16) at (-0.998308, 0.058145);
+          \coordinate (x17) at (-0.998308, -0.058145);
+          \coordinate (x18) at (-0.316770, 0.673568);
+          \coordinate (x19) at (-0.529803, 0.619619);
+          \coordinate (x20) at (-0.734747, 0.512559);
+          \coordinate (x21) at (-0.918216, 0.396080);
+          \coordinate (x22) at (-0.957990, 0.286803);
+          \coordinate (x23) at (-0.984808, 0.173648);
+          \coordinate (x24) at (-0.866025, 0.500000);
+          \coordinate (x25) at (0.342020, 0.939693);
+          \coordinate (x26) at (0.230616, 0.973045);
+          \coordinate (x27) at (0.116093, 0.993238);
+          \coordinate (x28) at (0.000000, 1.000000);
+          \coordinate (x29) at (-0.161697, 0.852892);
+          \coordinate (x30) at (-0.116093, 0.993238);
+          \coordinate (x31) at (-0.230616, 0.973045);
+          \coordinate (x32) at (-0.342020, 0.939693);
+          \coordinate (x33) at (-0.448799, 0.893633);
+          \coordinate (x34) at (-0.499822, 0.763516);
+          \coordinate (x35) at (-0.549509, 0.835488);
+          \coordinate (x36) at (-0.642788, 0.766044);
+          \coordinate (x37) at (-0.727374, 0.686242);
+          \coordinate (x38) at (-0.802123, 0.597159);
+          \coordinate (x39) at (-0.984808, -0.173648);
+          \coordinate (x40) at (-0.957990, -0.286803);
+          \coordinate (x41) at (-0.918216, -0.396080);
+          \coordinate (x42) at (-0.866025, -0.500000);
+          \coordinate (x43) at (-0.674368, -0.428128);
+          \coordinate (x44) at (-0.802123, -0.597159);
+          \coordinate (x45) at (-0.727374, -0.686242);
+          \coordinate (x46) at (-0.642788, -0.766044);
+          \coordinate (x47) at (-0.549509, -0.835488);
+          \coordinate (x48) at (-0.388407, -0.698006);
+          \coordinate (x49) at (-0.448799, -0.893633);
+          \coordinate (x50) at (-0.342020, -0.939693);
+          \coordinate (x51) at (-0.230616, -0.973045);
+          \coordinate (x52) at (-0.116093, -0.993238);
+          \coordinate (x53) at (-0.000000, -1.000000);
+          \coordinate (x54) at (0.116093, -0.993238);
+          \coordinate (x55) at (0.495962, -0.248431);
+          \coordinate (x56) at (0.866025, 0.500000);
+          \coordinate (x57) at (0.230616, -0.973045);
+          \coordinate (x58) at (0.342020, -0.939693);
+          \coordinate (x59) at (0.448799, -0.893633);
+          \coordinate (x60) at (0.554387, -0.703802);
+          \coordinate (x61) at (0.649326, -0.493105);
+          \coordinate (x62) at (0.690734, -0.277388);
+          \coordinate (x63) at (0.549509, -0.835488);
+          \coordinate (x64) at (0.642788, -0.766044);
+          \coordinate (x65) at (0.727374, -0.686242);
+          \coordinate (x66) at (0.802123, -0.597159);
+          \coordinate (x67) at (0.866025, -0.500000);
+          \coordinate (x68) at (0.791252, -0.454994);
+          \coordinate (x69) at (0.918216, -0.396080);
+          \coordinate (x70) at (0.957990, -0.286803);
+          \coordinate (x71) at (0.984808, -0.173648);
+          \coordinate (x72) at (0.998308, -0.058145);
+          \coordinate (x73) at (0.860802, -0.111982);
+          \coordinate (x74) at (0.998308, 0.058145);
+          \coordinate (x75) at (0.984808, 0.173648);
+          \coordinate (x76) at (0.957990, 0.286803);
+          \coordinate (x77) at (0.918216, 0.396080);
+
+          \draw (-0.151641, 0.276786) -- (0.110346, 0.305984);
+          \draw (0.110346, 0.305984) -- (0.201969, 0.534986);
+          \draw (0.201969, 0.534986) -- (-0.151641, 0.276786);
+          \draw (-0.151641, 0.276786) -- (-0.550102, 0.038030);
+          \draw (-0.550102, 0.038030) -- (-0.469252, -0.270235);
+          \draw (-0.469252, -0.270235) -- (-0.242657, -0.483949);
+          \draw (-0.242657, -0.483949) -- (0.069886, -0.546812);
+          \draw (0.069886, -0.546812) -- (0.285052, -0.135070);
+          \draw (0.285052, -0.135070) -- (0.298799, 0.128253);
+          \draw (0.298799, 0.128253) -- (0.110346, 0.305984);
+          \draw (0.285052, -0.135070) -- (0.522273, 0.232891);
+          \draw (0.522273, 0.232891) -- (0.298799, 0.128253);
+          \draw (0.522273, 0.232891) -- (0.802123, 0.597159);
+          \draw (0.802123, 0.597159) -- (0.727374, 0.686242);
+          \draw (0.727374, 0.686242) -- (0.642788, 0.766044);
+          \draw (0.642788, 0.766044) -- (0.549509, 0.835488);
+          \draw (0.549509, 0.835488) -- (0.201969, 0.534986);
+          \draw (0.549509, 0.835488) -- (0.448799, 0.893633);
+          \draw (0.448799, 0.893633) -- (-0.276845, 0.480678);
+          \draw (-0.276845, 0.480678) -- (-0.998308, 0.058145);
+          \draw (-0.998308, 0.058145) -- (-0.998308, -0.058145);
+          \draw (-0.998308, -0.058145) -- (-0.550102, 0.038030);
+          \draw (-0.276845, 0.480678) -- (-0.316770, 0.673568);
+          \draw (-0.316770, 0.673568) -- (-0.529803, 0.619619);
+          \draw (-0.529803, 0.619619) -- (-0.734747, 0.512559);
+          \draw (-0.734747, 0.512559) -- (-0.918216, 0.396080);
+          \draw (-0.918216, 0.396080) -- (-0.957990, 0.286803);
+          \draw (-0.957990, 0.286803) -- (-0.984808, 0.173648);
+          \draw (-0.984808, 0.173648) -- (-0.998308, 0.058145);
+          \draw (-0.734747, 0.512559) -- (-0.866025, 0.500000);
+          \draw (-0.866025, 0.500000) -- (-0.918216, 0.396080);
+          \draw (0.448799, 0.893633) -- (0.342020, 0.939693);
+          \draw (0.342020, 0.939693) -- (0.230616, 0.973045);
+          \draw (0.230616, 0.973045) -- (0.116093, 0.993238);
+          \draw (0.116093, 0.993238) -- (0.000000, 1.000000);
+          \draw (0.000000, 1.000000) -- (-0.161697, 0.852892);
+          \draw (-0.161697, 0.852892) -- (-0.316770, 0.673568);
+          \draw (0.000000, 1.000000) -- (-0.116093, 0.993238);
+          \draw (-0.116093, 0.993238) -- (-0.161697, 0.852892);
+          \draw (-0.116093, 0.993238) -- (-0.230616, 0.973045);
+          \draw (-0.230616, 0.973045) -- (-0.342020, 0.939693);
+          \draw (-0.342020, 0.939693) -- (-0.448799, 0.893633);
+          \draw (-0.448799, 0.893633) -- (-0.499822, 0.763516);
+          \draw (-0.499822, 0.763516) -- (-0.529803, 0.619619);
+          \draw (-0.448799, 0.893633) -- (-0.549509, 0.835488);
+          \draw (-0.549509, 0.835488) -- (-0.499822, 0.763516);
+          \draw (-0.549509, 0.835488) -- (-0.642788, 0.766044);
+          \draw (-0.642788, 0.766044) -- (-0.727374, 0.686242);
+          \draw (-0.727374, 0.686242) -- (-0.802123, 0.597159);
+          \draw (-0.802123, 0.597159) -- (-0.866025, 0.500000);
+          \draw (-0.998308, -0.058145) -- (-0.984808, -0.173648);
+          \draw (-0.984808, -0.173648) -- (-0.957990, -0.286803);
+          \draw (-0.957990, -0.286803) -- (-0.918216, -0.396080);
+          \draw (-0.918216, -0.396080) -- (-0.866025, -0.500000);
+          \draw (-0.866025, -0.500000) -- (-0.674368, -0.428128);
+          \draw (-0.674368, -0.428128) -- (-0.469252, -0.270235);
+          \draw (-0.866025, -0.500000) -- (-0.802123, -0.597159);
+          \draw (-0.802123, -0.597159) -- (-0.674368, -0.428128);
+          \draw (-0.802123, -0.597159) -- (-0.727374, -0.686242);
+          \draw (-0.727374, -0.686242) -- (-0.642788, -0.766044);
+          \draw (-0.642788, -0.766044) -- (-0.549509, -0.835488);
+          \draw (-0.549509, -0.835488) -- (-0.388407, -0.698006);
+          \draw (-0.388407, -0.698006) -- (-0.242657, -0.483949);
+          \draw (-0.549509, -0.835488) -- (-0.448799, -0.893633);
+          \draw (-0.448799, -0.893633) -- (-0.388407, -0.698006);
+          \draw (-0.448799, -0.893633) -- (-0.342020, -0.939693);
+          \draw (-0.342020, -0.939693) -- (-0.230616, -0.973045);
+          \draw (-0.230616, -0.973045) -- (-0.116093, -0.993238);
+          \draw (-0.116093, -0.993238) -- (-0.000000, -1.000000);
+          \draw (-0.000000, -1.000000) -- (0.069886, -0.546812);
+          \draw (-0.000000, -1.000000) -- (0.116093, -0.993238);
+          \draw (0.116093, -0.993238) -- (0.495962, -0.248431);
+          \draw (0.495962, -0.248431) -- (0.866025, 0.500000);
+          \draw (0.866025, 0.500000) -- (0.802123, 0.597159);
+          \draw (0.116093, -0.993238) -- (0.230616, -0.973045);
+          \draw (0.230616, -0.973045) -- (0.342020, -0.939693);
+          \draw (0.342020, -0.939693) -- (0.448799, -0.893633);
+          \draw (0.448799, -0.893633) -- (0.554387, -0.703802);
+          \draw (0.554387, -0.703802) -- (0.649326, -0.493105);
+          \draw (0.649326, -0.493105) -- (0.690734, -0.277388);
+          \draw (0.690734, -0.277388) -- (0.495962, -0.248431);
+          \draw (0.448799, -0.893633) -- (0.549509, -0.835488);
+          \draw (0.549509, -0.835488) -- (0.554387, -0.703802);
+          \draw (0.549509, -0.835488) -- (0.642788, -0.766044);
+          \draw (0.642788, -0.766044) -- (0.727374, -0.686242);
+          \draw (0.727374, -0.686242) -- (0.802123, -0.597159);
+          \draw (0.802123, -0.597159) -- (0.866025, -0.500000);
+          \draw (0.866025, -0.500000) -- (0.791252, -0.454994);
+          \draw (0.791252, -0.454994) -- (0.649326, -0.493105);
+          \draw (0.866025, -0.500000) -- (0.918216, -0.396080);
+          \draw (0.918216, -0.396080) -- (0.791252, -0.454994);
+          \draw (0.918216, -0.396080) -- (0.957990, -0.286803);
+          \draw (0.957990, -0.286803) -- (0.984808, -0.173648);
+          \draw (0.984808, -0.173648) -- (0.998308, -0.058145);
+          \draw (0.998308, -0.058145) -- (0.860802, -0.111982);
+          \draw (0.860802, -0.111982) -- (0.690734, -0.277388);
+          \draw (0.998308, -0.058145) -- (0.998308, 0.058145);
+          \draw (0.998308, 0.058145) -- (0.860802, -0.111982);
+          \draw (0.998308, 0.058145) -- (0.984808, 0.173648);
+          \draw (0.984808, 0.173648) -- (0.957990, 0.286803);
+          \draw (0.957990, 0.286803) -- (0.918216, 0.396080);
+          \draw (0.918216, 0.396080) -- (0.866025, 0.500000);
+        \end{scope}
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
   \begin{tabularx}{\textwidth}{|c|c|X|}
     \hline
     $(s, r)$ & $l$ &\\
     \hline
-    $(3, 3)$ & $l = 7$               & Für alle $p, v, S$ möglich\\
-    $(3, 3)$ & $l = 8$               & Für alle $p, v, S$ möglich\\
+    $(3, 3)$ & $l = 7, 8, 10$        & Für alle $p, v, S$ möglich\\
     $(3, 3)$ & $l = 9$               & Es gibt unrealisierbare Beispiele für $S \cong \sphere^2$\\
-    $(3, 3)$ & $l = 10$              & Für alle $p, v, S$ möglich\\
     $(3, 3)$ & $l \geq 11$           & Es gibt unrealisierbare Beispiele für alle $S$\\
     $(4, 3)$ & $l \equiv 0~(\mod 4)$ & Es gibt unrealisierbare Beispiele für $S \cong \sphere^2$\\
-    $(4, 3)$ & $l \equiv 1~(\mod 4)$ & Für alle $p, v, S$ möglich\\
-    $(4, 3)$ & $l \equiv 2~(\mod 4)$ & Immer möglich, außer für bestimmte Gegenbeispiele\\
-    $(4, 3)$ & $l \equiv 3~(\mod 4)$ & Für alle $p, v, S$ möglich\\
+    $(4, 3)$ & $l \equiv 1~(\mod 2)$ & Für alle $p, v, S$ möglich\\
+    $(4, 3)$ & $l \equiv 2~(\mod 4)$ & Alle unrealisierbaren Beispiele bekannt\\
     $(5, 3)$ & $l \equiv 0~(\mod 5)$ & Es gibt unrealisierbare Beispiele für $S \cong \sphere^2$\\
-    $(5, 3)$ & $l \equiv 1~(\mod 5)$ & Für alle $p, v, S$ möglich\\
-    $(5, 3)$ & $l \equiv 2~(\mod 5)$ & Für alle $p, v, S$ möglich\\
-    $(5, 3)$ & $l \equiv 3~(\mod 5)$ & Für alle $p, v, S$ möglich\\
-    $(5, 3)$ & $l \equiv 4~(\mod 5)$ & Für alle $p, v, S$ möglich\\
+    $(5, 3)$ & $l \not\equiv 0~(\mod 5)$ & Für alle $p, v, S$ möglich\\
     $(3, 4)$ & $l \equiv 0~(\mod 3)$ & Es gibt unrealisierbare Beispiele für $S \cong \sphere^2$\\
-    $(3, 4)$ & $l \equiv 1~(\mod 3)$ & Für alle $p, v, S$ möglich\\
-    $(3, 4)$ & $l \equiv 2~(\mod 3)$ & Für alle $p, v, S$ möglich\\
+    $(3, 4)$ & $l \not\equiv 0~(\mod 3)$ & Für alle $p, v, S$ möglich\\
     $(3, 5)$ & $l \equiv 0~(\mod 3)$ & Es gibt unrealisierbare Beispiele für $S \cong \sphere^2$\\
-    $(3, 5)$ & $l \equiv 1~(\mod 3)$ & Für alle $p, v, S$ möglich\\
-    $(3, 5)$ & $l \equiv 2~(\mod 3)$ & Für alle $p, v, S$ möglich\\
+    $(3, 5)$ & $l \not\equiv 0~(\mod 3)$ & Für alle $p, v, S$ möglich\\
     \hline
   \end{tabularx}
 \end{frame}
+
 
 \end{document}
